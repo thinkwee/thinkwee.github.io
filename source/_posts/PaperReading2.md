@@ -41,3 +41,4 @@ photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180307/14f9JEiGeI.jpg?imageslim
 -	Abstractive Document Summarization with a Graph-Based Attentional Neural Model
 -	Addressing the Rare Word Problem in Neural Machine Translation
 -	Abstractive Sentence Summarization with Attentive Recurrent Neural Networks
+-	UNSUPERVISED MACHINE TRANSLATION USING MONOLINGUAL CORPORA ONLY

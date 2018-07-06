@@ -107,5 +107,4 @@ Zico Kolter (updated by Honglak Lee)
 -	约束最小二乘法
 -	罗杰斯特回归的最大似然估计
 
-## 实现：使用CVX的线性SVM
--	matlab代码解读
+# 待续

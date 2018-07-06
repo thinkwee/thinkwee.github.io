@@ -25,6 +25,7 @@ Hexo由你的博客内容和自定义设置生成静态网页项目并上传到�
 -		2017.2.13更新优化插件，更新置顶说明,优化长廊，加宽文章宽度(blog3.0)
 -		2017.3.30更新置顶说明原文地址
 -		2017.12.27更新异地恢复
+-		2018.7.6更新一个比较全面的参考网址
 <!--more-->
 
 # 前提
@@ -174,7 +175,8 @@ mathjax:
 -	index, archive及tag开头分表代表主页，归档页面和标签页面。
 
 # 添加评论功能
--	视主题而定，我用的next主题，默认支持多说，只需要在主题配置文件中写入自己的duoshou_shortname即可
+-	~~视主题而定，我用的next主题，默认支持多说，只需要在主题配置文件中写入自己的duoshou_shortname即可~~
+-	现在多说那些啥的都关了，最好自己在leancloud上开后台空间，使用gitcomment、Disqus、来必力都行，现在我用的是valine，就冲它不用登录即可评论
 
 # 优化插件
 -	hexo生成的html文件有许多冗余，这里推荐安装一款插件压缩文件，提高效率
@@ -206,3 +208,8 @@ master分支
  *	发现其实之前的博客太花哨了，这次干脆把所有附加功能都整没了，专注写作
  *	上面那2张图已经过时了，可以去我的github里看博客的文件目录
  *	有很多module因为名字太长所以也没有完成备份，感觉还是百度云靠谱
+
+# 这位大佬靠谱
+-	网址在这：[HEXO建站备忘录](https://www.vincentqin.tech/posts/build-a-website-using-hexo/)
+-	里面提到了一个非常好的版本管理的工具，解决了theme下repository包含的问题，可以直接看介绍[hexo-git-backup](https://github.com/coneycode/hexo-git-backup)
+
