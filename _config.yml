@@ -4,7 +4,7 @@
 
 # Site
 title: Thinkwee's Blog
-subtitle: "Learn Something"
+subtitle: "Too Stupid to Give Up Learning"
 description: From 0 to 1
 author: Thinkwee
 language: zh-Hans
@@ -91,4 +91,10 @@ backup:
     type: git
     theme: next
     repository:
-       github: git@github.com:thinkwee/thinkwee.github.io.git,hexo
+        github: git@github.com:thinkwee/thinkwee.github.io.git,hexo
+
+sitemap:
+    path: sitemap.xml 
+
+baidusitemap:
+    path: baidusitemap.xml
