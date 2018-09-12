@@ -38,11 +38,13 @@ html: true
 # Expectation Maximization
 ## 公式
 -	对于简单的分布，我们想要做参数推断，只需要做最大似然估计，先求对数似然：
+
 $$
 \theta=\mathop{argmax}_{\theta} L(\theta | X) \\
-=\mathop{argmax}_{\theta} \log \prod p(x_i| \theta) \\
-=\mathop{argmax}_{\theta} \sum \log p(x_i| \theta) \\
+=\mathop{argmax}_{\theta} \log \prod p(x_i | \theta) \\
+=\mathop{argmax}_{\theta} \sum \log p(x_i | \theta) \\
 $$
+
 -	之后对这个对数似然求导计算极值即可，但是对于复杂的分布，可能并不方便求导
 -	这时我们可以用EM算法迭代求解。EM算法为分布引入一个隐变量Z，之后迭代求解出一系列的$\theta$，可以证明，每一次迭代之后得到的$\theta$都会使对数似然增加。
 -	每一次迭代分为两个部分，E和M，也就求期望和最大化
@@ -71,7 +73,8 @@ $$
 -	迭代之后，由于EM算法中M部分作用，Q部分肯定变大了（大于等于），那么使Q部分变大的这个迭代之后新的$\theta$，代入H部分，H部分会怎么变化呢？
 -	我们先计算，假如H部分的$\theta$不变，直接用上一次的$\theta ^{(t)}$带入，即$H(\theta ^{(t)},\theta ^{(t)})$
 $$
-H(\theta ^{(t)},\theta ^{(t)})-H(\theta,\theta ^{(t)})=\int _z \log p(z|x,\theta ^{(t)}) p(z|x,\theta ^{(t)}) dz - \int _z \log p(z|x,\theta) p(z|x,\theta ^{(t)}) dz \\
+H(\theta ^{(t)},\theta ^{(t)})-H(\theta,\theta ^{(t)})= \\
+\int _z \log p(z|x,\theta ^{(t)}) p(z|x,\theta ^{(t)}) dz - \int _z \log p(z|x,\theta) p(z|x,\theta ^{(t)}) dz \\
 = \int _z \log (\frac {p(z|x,\theta ^{(t)})} {p(z|x,\theta)} ) p(z|x,\theta ^{(t)}) dz \\
 = - \int _z \log (\frac {p(z|x,\theta)} {p(z|x,\theta ^{(t)})} ) p(z|x,\theta ^{(t)}) dz \\
 \geq - \log \int _z  (\frac {p(z|x,\theta)} {p(z|x,\theta ^{(t)})} ) p(z|x,\theta ^{(t)}) dz \\
@@ -137,4 +140,116 @@ $$
 ## 广义EM算法与吉布斯采样
 
 # Variational Inference
+## ELBO
 -	接下来介绍变分推断，可以看到，EM算法可以推广到变分推断
+-	重新推出ELBO与对数似然的关系：
+$$
+\log p(x) = \log p(x,z) - \log p(z|x) \\
+= \log \frac{p(x,z)}{q(z)} - \log \frac{p(z|x)}{q(z)} \\
+= \log p(x,z) - \log q(z) - \log \frac{p(z|x)}{q(z)} \\
+$$
+-	两边对隐分布$q(z)$求期望
+$$
+\log p(x) = [ \int _z q(z) \log p(x,z)dz - \int _z q(z) \log q(z)dz ] + [- \int _z \log \frac{p(z|x)}{q(z)} q(z) dz ]\\
+= ELBO+KL(q||p(z|x)) \\
+$$
+-	我们希望推断隐变量$z$的后验分布$p(z|x)$，为此我们引入一个分布$q(z)$来近似这个后验。当目前观测量也就是对数似然确定的前提下，近似后验等价于使得$q(z)$和$p(z|x)$的KL散度最小，由上式可以看出，当ELBO最大时，KL散度最小。
+-	接下来就是讨论如何使得ELBO最大化
+
+## 第一种方法
+-	对任意分布使用，一次选取隐变量一个分量更新，比如第j个分量
+-	我们自己选取的$q(z)$当然要比近似的分布简单，这里假设分布是独立的，隐变量是$M$维的：
+$$
+q(z)=\prod _{i=1}^M q_i(z_i)
+$$
+-	因此ELBO可以写成两部分
+$$
+ELBO=\int \prod q_i(z_i) \log p(x,z) dz - \int \prod q_j(z_j) \sum \log q_j(z_j) dz \\
+=part1-part2 \\
+$$
+-	其中part1可以写成对隐变量各个维度求多重积分的形式，我们挑出第j个维度将其改写成
+$$
+part1=\int \prod q_i(z_i) \log p(x,z) dz \\
+= \int _{z_1} \int _{z_2} ... \int _{z_M} \prod _{i=1}^M q_i(z_i) \log p(x,z) d z_1 , d z_2 , ... ,d z_M \\
+= \int _{z_j} q_j(z_j) ( \int _{z_{i \neq j}} \log (p(x,z)) \prod _{z_{i \neq j}} q_i(z_i) d z_i) d z_j \\
+= \int _{z_j}  q_j(z_j) [E_{i \neq j} [\log (p(x,z))]] d z_j \\
+$$
+-	在此我们定义一种伪分布的形式，一种分布的伪分布就是对其对数求积分再求指数：
+$$
+p_j(z_j) = \int _{i \neq j} p(z_1,...,z_i) d z_1 , d z_2 ,..., d z_i \\
+p_j^{'}(z_j) = exp \int _{i \neq j} \log p(z_1,...,z_i) d z_1 , d z_2 ,..., d z_i \\
+\log p_j^{'}(z_j)  = \int _{i \neq j} \log p(z_1,...,z_i) d z_1 , d z_2 ,..., d z_i \\
+$$
+-	这样part1用伪分布的形式可以改写成
+$$
+part1= \int _{z_j} \log \log p_j^{'}(x,z_j) \\
+$$
+-	part2中因为隐变量各个分量独立，可以把函数的和在联合分布上的期望改写成各个函数在边缘分布上的期望的和，在这些和中我们关注第j个变量，其余看成常量：
+$$
+part2=\int \prod q_j(z_j) \sum \log q_j(z_j) dz \\
+= \sum ( \int q_i(z_i) \log (q_i(z_i)) d z_i ) \\
+= \int q_j(z_j) \log (q_j(z_j)) d z_j + const \\
+$$
+-	再把part1和part2合起来，得到ELBO关于分量j的形式：
+$$
+ELBO = \int _{z_j} \log \log p_j^{'}(x,z_j) -  \int q_j(z_j) \log (q_j(z_j)) d z_j + const \\
+= \int _{z_j} q_j(z_j) \log \frac{p_j^{'}(x,z_j)}{q_j(z_j)} + const \\
+= - KL(p_j^{'}(x,z_j) || q_j(z_j)) \\
+$$
+-	也就是将ELBO写成了伪分布和近似分布之间的负KL散度，最大化ELBO就是最小化这个KL散度
+-	何时这个KL散度最小？也就是：
+$$
+q_j(z_j) = p_j^{'}(x,z_j) \\
+\log q_j(z_j) = E_{i \neq j} [\log (p(x,z))] \\
+$$
+-	到此我们就得到了变分推断下对于隐变量单一分量的近似分布迭代公式，在计算第j个分量的概率时，用到了$\log (p(x,z))$在其他所有分量$q_i(z_i)$上的期望，之后这个新的第j个分量的概率就参与下一次迭代，计算出其他分量的概率。
+
+## 第二种方法
+-	针对指数家族分布的变分推断
+-	定义指数家族分布：
+$$
+p(x | \theta)=h(x) exp(\eta (\theta) \cdot T(x)-A(\theta)) \\
+$$
+-	其中
+	-	$T(x)$:sufficient statistics
+	-	$\theta$:parameter of the family
+	-	$\eta$:natural parameter
+	-	$h(x)$:underlying measure
+	-	$A(\theta)$:log normalizer / partition function
+-	注意parameter of the family和natural parameter都是向量，当指数家族分布处于标量化参数形式，即$\eta _i (\theta) = \theta _i$的时候，指数家族分布可以写成：
+$$
+p(x | \eta)=h(x) exp(\eta (T(x) ^T \eta - A(\eta))
+$$
+-	当我们把概率密度函数写成指数家族形式，求最大对数似然时，有：
+$$
+\eta = \mathop{argmax} _ {\eta} [\log p(X | \eta)] \\
+= \mathop{argmax} _ {\eta} [\log \prod p(x_i | \eta)] \\
+= \mathop{argmax} _ {\eta} [\log [\prod h(x_i) exp [(\sum T(x_i))^T \eta - n A(\eta)]]] \\
+= \mathop{argmax} _ {\eta} (\sum T(x_i))^T \eta - n A(\eta)] \\
+= \mathop{argmax} _ {\eta} L(\eta) \\
+$$
+-	继续求极值，我们就可以得到指数家族分布关于log normalizer和sufficient statistics的很重要的一个性质：
+$$
+\frac{\partial L (\eta)}{\partial \eta} = \sum T(x_i) - n A^{'}(\eta) =0 \\
+A^{'}(\eta) = \sum \frac{T(x_i)}{n} \\
+$$
+-	举个例子，高斯分布写成指数家族分布形式：
+$$
+p(x) = exp[- \frac{1}{2 \sigma ^2}x^2 + \frac{\mu}{\sigma ^2}x - \frac{\mu ^2}{2 \sigma ^2} - \frac 12 \log(2 \pi \sigma ^2)] \\
+=exp ( [x \ x^2] [\frac{\mu}{\sigma ^2} \ \frac{-1}{2 \sigma ^2}] ^T - \frac{\mu ^2}{2 \sigma ^2} - \frac 12 \log(2 \pi \sigma ^2) )
+$$
+-	用自然参数去替代方差和均值，写成指数家族分布形式：
+$$
+p(x) = exp( [x \ x^2] [ \eta _1 \ \eta _2] ^T + \frac{\eta _1 ^2}{4 \eta _2} + \frac 12 \log (-2 \eta _2 ) - \frac 12 \log (2 \pi))
+$$
+-	其中：
+	-	$T(x)$:$[x \ x^2]$
+	-	$\eta$:$[ \eta _1 \ \eta _2] ^T$
+	-	$-A(\eta)$:$\frac{\eta _1 ^2}{4 \eta _2} + \frac 12 \log (-2 \eta _2 )$
+-	接下来我们利用指数家族的性质来快速计算均值和方差
+$$
+A^{'}(\eta) = \sum \frac{T(x_i)}{n} \\
+[\frac{\partial A}{\eta _1} \ \frac{\partial A}{\eta _2}] = [\frac{- \eta _1}{2 \eta _2} \ \frac{\eta _1 ^2 }{2 \eta _2}-\frac{1}{2 \eta _2}] \\
+= [\frac{\sum x_i}{n} \ \frac{\sum x_i^2}{n}] \\
+= [\mu \ \mu ^2 + \sigma ^2] \\
+$$
