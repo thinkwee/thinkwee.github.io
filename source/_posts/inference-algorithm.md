@@ -10,7 +10,6 @@ tags:
   - em
 mathjax: true
 photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180828/BA94mibfCf.png?imageslim
-html: true
 ---
 
 记录Variational Inference、Expectation Maximization、Markov Chain Monte Carlo等用于概率机器学习中未知变量推断的算法的原理、推导。
@@ -34,6 +33,14 @@ html: true
 -	MCMC，前一个MC代表如何采样，使得采样点满足分布，后一个MC代表用随机采样来估计分布的参数
 -	吉布斯采样的一个动机：对于多个参数的联合分布，很难直接采样，但是如果固定其他参数作为条件，仅仅对一个参数的条件分布做采样，这时采样会简单许多，且可以证明收敛之后这样采样出来的样本满足联合分布
 -	明天再写
+
+## Sample
+
+## Importance Sampling
+
+## MCMC
+
+## Gibbs Sampling
 
 # Expectation Maximization
 ## 公式
@@ -150,13 +157,14 @@ $$
 $$
 -	两边对隐分布$q(z)$求期望
 $$
-\log p(x) = [ \int _z q(z) \log p(x,z)dz - \int _z q(z) \log q(z)dz ] + [- \int _z \log \frac{p(z|x)}{q(z)} q(z) dz ]\\
+\log p(x) = \\
+[ \int _z q(z) \log p(x,z)dz - \int _z q(z) \log q(z)dz ] + [- \int _z \log \frac{p(z|x)}{q(z)} q(z) dz ]\\
 = ELBO+KL(q||p(z|x)) \\
 $$
 -	我们希望推断隐变量$z$的后验分布$p(z|x)$，为此我们引入一个分布$q(z)$来近似这个后验。当目前观测量也就是对数似然确定的前提下，近似后验等价于使得$q(z)$和$p(z|x)$的KL散度最小，由上式可以看出，当ELBO最大时，KL散度最小。
 -	接下来就是讨论如何使得ELBO最大化
 
-## 第一种方法
+## 任意分布上的变分推断
 -	对任意分布使用，一次选取隐变量一个分量更新，比如第j个分量
 -	我们自己选取的$q(z)$当然要比近似的分布简单，这里假设分布是独立的，隐变量是$M$维的：
 $$
@@ -182,7 +190,7 @@ p_j^{'}(z_j) = exp \int _{i \neq j} \log p(z_1,...,z_i) d z_1 , d z_2 ,..., d z_
 $$
 -	这样part1用伪分布的形式可以改写成
 $$
-part1= \int _{z_j} \log \log p_j^{'}(x,z_j) \\
+part1= \int _{z_j} q_j(z_j) \log p_j^{'}(x,z_j) \\
 $$
 -	part2中因为隐变量各个分量独立，可以把函数的和在联合分布上的期望改写成各个函数在边缘分布上的期望的和，在这些和中我们关注第j个变量，其余看成常量：
 $$
@@ -194,7 +202,7 @@ $$
 $$
 ELBO = \int _{z_j} \log \log p_j^{'}(x,z_j) -  \int q_j(z_j) \log (q_j(z_j)) d z_j + const \\
 = \int _{z_j} q_j(z_j) \log \frac{p_j^{'}(x,z_j)}{q_j(z_j)} + const \\
-= - KL(p_j^{'}(x,z_j) || q_j(z_j)) \\
+= - KL(p_j^{'}(x,z_j) || q_j(z_j)) + const\\
 $$
 -	也就是将ELBO写成了伪分布和近似分布之间的负KL散度，最大化ELBO就是最小化这个KL散度
 -	何时这个KL散度最小？也就是：
@@ -204,8 +212,7 @@ q_j(z_j) = p_j^{'}(x,z_j) \\
 $$
 -	到此我们就得到了变分推断下对于隐变量单一分量的近似分布迭代公式，在计算第j个分量的概率时，用到了$\log (p(x,z))$在其他所有分量$q_i(z_i)$上的期望，之后这个新的第j个分量的概率就参与下一次迭代，计算出其他分量的概率。
 
-## 第二种方法
--	针对指数家族分布的变分推断
+## 指数家族分布
 -	定义指数家族分布：
 $$
 p(x | \theta)=h(x) exp(\eta (\theta) \cdot T(x)-A(\theta)) \\
@@ -252,4 +259,89 @@ A^{'}(\eta) = \sum \frac{T(x_i)}{n} \\
 [\frac{\partial A}{\eta _1} \ \frac{\partial A}{\eta _2}] = [\frac{- \eta _1}{2 \eta _2} \ \frac{\eta _1 ^2 }{2 \eta _2}-\frac{1}{2 \eta _2}] \\
 = [\frac{\sum x_i}{n} \ \frac{\sum x_i^2}{n}] \\
 = [\mu \ \mu ^2 + \sigma ^2] \\
+$$
+-	为什么$A(\eta)$叫做log normalizer？因为把概率密度的指数族分布积分有：
+$$
+\int _x \frac{h(x)exp(T(x)^T \eta)}{exp(A(\eta))} = 1 \\
+A(\eta) = \log \int _x h(x)exp(T(x)^T \eta) \\
+$$
+-	下面讨论指数族分布的共轭关系，假设似然和先验均是指数族分布：
+$$
+p(\beta | x) ∝ p(x | \beta) p(\beta) \\
+∝ h(x) exp(T(x) \beta ^T - A_l (\beta)) h(\beta) exp(T(\beta) \alpha ^T - A(\alpha)) \\
+$$
+-	用向量组的方式改写：
+$$
+T(\beta) = [\beta \ -g(\beta)] \\
+\alpha = [\alpha _1 \ \alpha _2] \\
+$$
+- 原式中关于$\beta$，$h(x)$和$A(\alpha)$都是常数，从正比式中消去，带入向量组有：
+$$
+∝ h(\beta) exp(T(x) \beta - A_l(\beta) + \alpha _1 \beta - \alpha _2 g(\beta)) \\
+$$
+-	我们注意到，如果令$-g(\beta)=-A_l (\beta)$，原式就可以写成：
+$$
+∝ h(\beta) exp((T(x)+\alpha _1)\beta - (1+\alpha _2) A_l (\beta)) \\
+∝ h(\beta) exp(\alpha _1 ^{'} \beta - \alpha _2 ^{'} A_l (\beta)) \\
+$$
+-	这样先验和后验形式一致，也就是共轭
+-	这样我们用统一的形式写下似然和先验
+$$
+p(\beta | x, \alpha) ∝ p(x | \beta) p(\beta | \alpha) \\
+∝ h(x)exp[T(x)^T\beta - A_l(\beta)] h(\beta) exp[T(\beta)^T\alpha - A_l(\alpha)] \\
+$$
+-	这里我们可以计算log normalizer关于参数求导的结果，注意，这是计算得到，不同于之前求指数族分布的最大似然估计得到的关于log normalizer和sufficient statistics的性质：
+$$
+\frac{\partial A_l(\beta)}{\partial \beta}=\int _x T(x) p(x | \beta)dx \\
+= E_{p(x|\beta)} [T(x)] \\
+$$
+-	上式可以通过指数族分布积分为1，积分对$\beta$求导为0，将这个等式变换证明。
+
+## 指数族分布下的变分推断
+-	接下来我们将ELBO中的参数后验写成指数族分布形式，可以看到最后的迭代公式相当简洁
+-	我们假定要优化的参数有两个，x和z，我们用$\lambda$和$\phi$来近似$\eta(z,x)$和$\eta(\beta ,x)$，依然是要使ELBO最大，这时调整的参数是$q(\lambda , \phi)$，实际上是$\lambda$和$\phi$
+-	我们采用固定一个参数，优化另一个参数的方法，相互迭代使得ELBO变大
+-	首先我们改写ELBO，注意$q(z,\beta)=q(z)q(\beta)$：
+$$
+ELBO=E_{q(z,\beta)}[\log p(x,z,\beta)] - E_{q(z,\beta)}[\log p(z,\beta)] \\
+= E_{q(z,\beta)}[\log p(\beta | x,z) + \log p(z | x) + \log p(x)] - E_{q(z,\beta)}[\log q(\beta)] - E_{q(z,\beta)}[\log q(z)] \\
+$$
+-	其中后验为指数家族分布，且q分布用简单的参数$\lambda$和$\phi$去近似：
+$$
+p(\beta | x,z) = h(\beta) exp [ T(\beta) ^T \eta (z,x) - A_g (\eta(z,x))] \\
+\approx q(\beta | \lambda) \\
+= h(\beta) exp [ T(\beta) ^T \eta (\lambda - A_g (\eta(\lambda))] \\
+p(z | x,\beta) = h(z) exp [ T(z) ^T \eta (\beta,x) - A_l (\eta(\beta,x))] \\
+\approx q(\beta | \phi) \\
+= h(z) exp [ T(z) ^T \eta (\phi - A_l (\eta(\phi))] \\
+$$
+-	现在我们固定$\phi$，优化$\lambda$，将ELBO中无关常量除去，有：
+$$
+ELBO_{\lambda} = E_{q(z,\beta)}[\log p(\beta | x,z)] - E_{q(z,\beta)}[\log q(\beta)] \\
+$$
+-	代入指数家族分布，消去无关常量$- E_{q(z)}[A_g(\eta(x,z))]$，化简得到：
+$$
+ELBO_{\lambda} = E_{q(\beta)}[T(\beta)^T] E_{q(z)}[\eta(z,x)]  -E_{q(\beta)} [T(\beta)^T \lambda] + A_g(\lambda) 
+$$
+-	利用之前log normalizer关于参数求导的结论，有:
+$$
+ELBO_{\lambda} = A_g^{'}(\lambda)^T[E_{q(z)}[\eta(z,x)]] - \lambda A_g^{'}(\lambda) ^T + A_g (\lambda)
+$$
+-	对上式求导，令其为0，有：
+$$
+A_g^{''}(\lambda)^T[E_{q(z)}[\eta(z,x)]] - A_g^{'}(\lambda)-\lambda A_g^{''}(\lambda) ^T + A_g^{} (\lambda) = 0 \\
+\lambda = E_{q(z)}[\eta(z,x)] \\
+$$
+-	我们就得到了$\lambda$的迭代式！同理可以得到：
+$$
+\phi = E_{q(\beta)}[\eta(\beta,x)] \\
+$$
+-	写完整应该是：
+$$
+\lambda = E_{q(z | \phi)}[\eta(z,x)] \\
+\phi = E_{q(\beta | \lambda)}[\eta(\beta,x)] \\
+$$
+-	观察这两个迭代式，变量更新的路径是:
+$$
+\lambda \rightarrow q(\beta | \lambda) \rightarrow \phi \rightarrow q(z | \phi) \rightarrow \lambda
 $$
