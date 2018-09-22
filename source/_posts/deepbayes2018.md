@@ -5,6 +5,7 @@ tags: [bayes,math,machinelearning]
 categories: 数学
 mathjax: true
 html: true
+photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180922/AjBm7il5d1.JPG
 ---
 
 Deep-Bayes 2018 Summer Camp
@@ -89,8 +90,7 @@ print(X[1,:,0])
     
 
 
-![png](task_em_files/task_em_9_1.png)
-
+![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180922/b1G9fGmDKC.png?imageslim)
 
 ### Goal and plan
 

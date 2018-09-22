@@ -1,5 +1,7 @@
 ﻿title: About Thinkwee
 html: true
+sidebar: false
+comments: false
 ---
 ***
 
