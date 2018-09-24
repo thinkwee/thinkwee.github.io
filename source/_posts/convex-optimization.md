@@ -6,6 +6,7 @@ tags:
   - convex optimization
   - math
 mathjax: true
+password: kengbi
 photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180804/Hk49mE6DDC.jpg?imageslim
 html: true
 ---

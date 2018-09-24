@@ -6,6 +6,7 @@ tags:
   - dpp
   - math
 mathjax: true
+password: kengbi
 photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180914/hJk7lgJGJb.JPG
 html: true
 ---

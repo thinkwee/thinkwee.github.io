@@ -98,3 +98,8 @@ sitemap:
 
 baidusitemap:
     path: baidusitemap.xml
+
+encrypt:
+    enable: true
+    default_abstract: 这个坑还没填完，正努力填坑中......</br>
+    default_message: 文章还没写完，稍后再读，或者输入kengbi看看草稿

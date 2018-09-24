@@ -7,6 +7,7 @@ tags:
   - math
   -	mcmc
 mathjax: true
+password: kengbi
 photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180903/J0jk0eb7Gh.PNG
 html: true
 ---

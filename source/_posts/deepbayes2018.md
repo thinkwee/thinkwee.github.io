@@ -5,14 +5,17 @@ tags: [bayes,math,machinelearning]
 categories: 数学
 mathjax: true
 html: true
+password: kengbi
 photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180922/AjBm7il5d1.JPG
 ---
 
-Deep-Bayes 2018 Summer Camp
-习题
+Deep-Bayes 2018 Summer Camp的习题
+发现自己代码能力果然弱......
 <!--more-->
 
 # Deep<span style="color:green">|</span>Bayes summer school. Practical session on EM algorithm
+- 第一题就是应用EM算法还原图像，人像和背景叠加在一起，灰度值的概率分布形式已知，设计人像在背景中的位置为隐变量，进行EM迭代推断。
+- 具体说明在官网和下面的notebook注释中有，实际上公式已经给出，想要完成作业就是把公式打上去，可以自己推一下公式。
 
 One of the school organisers decided to prank us and hid all games for our Thursday Game Night somewhere.
 
@@ -90,7 +93,8 @@ print(X[1,:,0])
     
 
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180922/b1G9fGmDKC.png?imageslim)
+![png](http://ojtdnrpmt.bkt.clouddn.com/blog/180924/2L2I5jDbKE.png?imageslim)
+
 
 ### Goal and plan
 
@@ -130,9 +134,9 @@ tq = tq / tq.sum(axis=0)[np.newaxis, :]
 For $k$-th image $X_k$ and some face position $d_k$:
 $$p(X_k  \mid d_k,\,F,\,B,\,s) = \prod_{ij}
     \begin{cases} 
-    	\mathcal{N}(X_k[i,j]\mid F[i,\,j-d_k],\,s^2), 
-    	& \text{if}\, (i,j)\in faceArea(d_k)\\
-    	\mathcal{N}(X_k[i,j]\mid B[i,j],\,s^2), & \text{else}
+      \mathcal{N}(X_k[i,j]\mid F[i,\,j-d_k],\,s^2), 
+      & \text{if}\, (i,j)\in faceArea(d_k)\\
+      \mathcal{N}(X_k[i,j]\mid B[i,j],\,s^2), & \text{else}
     \end{cases}$$
 
 Important notes:
@@ -164,6 +168,27 @@ def calculate_log_probability(X, F, B, s):
         that the prankster's face F is located at position dw
     """
     # your code here
+    H = X.shape[0]
+    W = X.shape[1]
+    K = X.shape[2]
+    w = F.shape[1]
+    ll = np.zeros((W-w+1,K))
+    for k in range(K):
+        X_minus_B = X[:,:,k]-B[:,:]
+        XB = np.multiply(X_minus_B,X_minus_B)
+        for dk in range(W-w+1):
+            F_temp = np.zeros((H,W))
+            F_temp[:,dk:dk+w] = F
+            X_minus_F = X[:,:,k] - F_temp[:,:]
+            XF = np.multiply(X_minus_F,X_minus_F)
+            XB_mask = np.ones((H,W))
+            XB_mask[:,dk:dk+w] = 0
+            XF_mask = 1-XB_mask
+            XB_temp = np.multiply(XB,XB_mask)
+            XF_temp = np.multiply(XF,XF_mask)   
+            Sum = (np.sum(XB_temp+XF_temp))*(-1/(2*s**2))-H*W*np.log(np.sqrt(2*np.pi)*s)
+            ll[dk][k]=Sum    
+    return ll
 ```
 
 
@@ -177,36 +202,8 @@ assert np.allclose(actual, expected)
 print("OK")
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-8-7e147f60fb2e> in <module>()
-          4        [-6141.69812064, -8541.69812064]])
-          5 actual = calculate_log_probability(tX, tF, tB, ts)
-    ----> 6 assert np.allclose(actual, expected)
-          7 print("OK")
+    OK
     
-
-    ~\Anaconda3\lib\site-packages\numpy\core\numeric.py in allclose(a, b, rtol, atol, equal_nan)
-       2254 
-       2255     """
-    -> 2256     res = all(isclose(a, b, rtol=rtol, atol=atol, equal_nan=equal_nan))
-       2257     return bool(res)
-       2258 
-    
-
-    ~\Anaconda3\lib\site-packages\numpy\core\numeric.py in isclose(a, b, rtol, atol, equal_nan)
-       2330     y = array(y, dtype=dt, copy=False, subok=True)
-       2331 
-    -> 2332     xfin = isfinite(x)
-       2333     yfin = isfinite(y)
-       2334     if all(xfin) and all(yfin):
-    
-
-    TypeError: ufunc 'isfinite' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
-
 
 #### 2. Implement calculate_lower_bound
 $$\mathcal{L}(q, \,F, \,B,\, s,\, a) = \sum_k \biggl (\mathbb{E} _ {q( d_k)}\bigl ( \log p(  X_{k}  \mid {d}_{k} , \,F,\,B,\,s) + 
@@ -248,6 +245,16 @@ def calculate_lower_bound(X, F, B, s, a, q):
         for the marginal log likelihood.
     """
     # your code here
+    K = X.shape[2]
+    ll = calculate_log_probability(X,F,B,s)
+    ll_expectation = np.multiply(ll,q)
+    q_expectation = np.multiply(np.log(q),q)
+    dk_expection = 0
+    for k in range(K):
+        dk_expection += np.multiply(np.log(a),q[:,k])
+    L = np.sum(ll_expectation)-np.sum(q_expectation)+np.sum(dk_expection)
+    
+    return L
 ```
 
 
@@ -259,36 +266,8 @@ assert np.allclose(actual, expected)
 print("OK")
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-10-eb49d6900e27> in <module>()
-          2 expected = -12761.1875
-          3 actual = calculate_lower_bound(tX, tF, tB, ts, ta, tq)
-    ----> 4 assert np.allclose(actual, expected)
-          5 print("OK")
+    OK
     
-
-    ~\Anaconda3\lib\site-packages\numpy\core\numeric.py in allclose(a, b, rtol, atol, equal_nan)
-       2254 
-       2255     """
-    -> 2256     res = all(isclose(a, b, rtol=rtol, atol=atol, equal_nan=equal_nan))
-       2257     return bool(res)
-       2258 
-    
-
-    ~\Anaconda3\lib\site-packages\numpy\core\numeric.py in isclose(a, b, rtol, atol, equal_nan)
-       2330     y = array(y, dtype=dt, copy=False, subok=True)
-       2331 
-    -> 2332     xfin = isfinite(x)
-       2333     yfin = isfinite(y)
-       2334     if all(xfin) and all(yfin):
-    
-
-    TypeError: ufunc 'isfinite' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
-
 
 #### 3. Implement E-step
 $$q(d_k) = p(d_k \mid X_k, \,F, \,B, \,s,\, a) = 
@@ -299,8 +278,8 @@ Important notes:
 * Use already implemented calculate_log_probability!
 * For computational stability, perform all computations with logarithmic values and apply exp only before return. Also, we recommend using this trick:
 $$\beta_i = \log{p_i(\dots)} \quad\rightarrow \quad
-	\frac{e^{\beta_i}}{\sum_k e^{\beta_k}} = 
-	\frac{e^{(\beta_i - \max_j \beta_j)}}{\sum_k e^{(\beta_k- \max_j \beta_j)}}$$
+  \frac{e^{\beta_i}}{\sum_k e^{\beta_k}} = 
+  \frac{e^{(\beta_i - \max_j \beta_j)}}{\sum_k e^{(\beta_k- \max_j \beta_j)}}$$
 * This implementation should not use cycles!
 
 
@@ -331,6 +310,16 @@ def run_e_step(X, F, B, s, a):
         of prankster's face given image Xk
     """
     # your code here
+    ll = calculate_log_probability(X,F,B,s)
+    K = X.shape[2]
+    for k in range(K):
+        max_ll = ll[:,k].max()
+        ll[:,k] -= max_ll
+        ll[:,k] = np.exp(ll[:,k])*a
+        denominator = np.sum(ll[:,k])
+        ll[:,k] /= denominator
+    q = ll
+    return q
 ```
 
 
@@ -344,44 +333,16 @@ assert np.allclose(actual, expected)
 print("OK")
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-12-98d2b4c2edac> in <module>()
-          4                    [ 0.,  0.]])
-          5 actual = run_e_step(tX, tF, tB, ts, ta)
-    ----> 6 assert np.allclose(actual, expected)
-          7 print("OK")
+    OK
     
-
-    ~\Anaconda3\lib\site-packages\numpy\core\numeric.py in allclose(a, b, rtol, atol, equal_nan)
-       2254 
-       2255     """
-    -> 2256     res = all(isclose(a, b, rtol=rtol, atol=atol, equal_nan=equal_nan))
-       2257     return bool(res)
-       2258 
-    
-
-    ~\Anaconda3\lib\site-packages\numpy\core\numeric.py in isclose(a, b, rtol, atol, equal_nan)
-       2330     y = array(y, dtype=dt, copy=False, subok=True)
-       2331 
-    -> 2332     xfin = isfinite(x)
-       2333     yfin = isfinite(y)
-       2334     if all(xfin) and all(yfin):
-    
-
-    TypeError: ufunc 'isfinite' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
-
 
 #### 4. Implement M-step
 $$a[j] = \frac{\sum_k q( d_k = j )}{\sum_{j'}  \sum_{k'} q( d_{k'} = j')}$$
 $$F[i, m] = \frac 1 K  \sum_k \sum_{d_k} q(d_k)\, X^k[i,\, m+d_k]$$
 $$B[i, j] = \frac {\sum_k \sum_{ d_k:\, (i, \,j) \,\not\in faceArea(d_k)} q(d_k)\, X^k[i, j]} 
-	  	{\sum_k \sum_{d_k: \,(i, \,j)\, \not\in faceArea(d_k)} q(d_k)}$$
+      {\sum_k \sum_{d_k: \,(i, \,j)\, \not\in faceArea(d_k)} q(d_k)}$$
 $$s^2 = \frac 1 {HWK}   \sum_k \sum_{d_k} q(d_k)
-	  	\sum_{i,\, j}  (X^k[i, \,j] - Model^{d_k}[i, \,j])^2$$
+      \sum_{i,\, j}  (X^k[i, \,j] - Model^{d_k}[i, \,j])^2$$
 
 where $Model^{d_k}[i, j]$ is an image composed from background and face located at $d_k$.
 
@@ -418,6 +379,48 @@ def run_m_step(X, q, w):
         Estimate of prior on position of face in any image.
     """
     # your code here
+    K = X.shape[2]
+    W = X.shape[1]
+    H = X.shape[0]
+    
+    a = np.sum(q,axis=1) / np.sum(q)
+
+    F = np.zeros((H,w))
+    for k in range(K):
+        for dk in range(W-w+1):
+            F+=q[dk][k]*X[:,dk:dk+w,k]
+    F = F / K
+            
+    
+    B = np.zeros((H,W))
+    denominator = np.zeros((H,W))
+    for k in range(K):
+        for dk in range(W-w+1):
+            mask = np.ones((H,W))
+            mask[:,dk:dk+w] = 0
+            B += np.multiply(q[dk][k]*X[:,:,k],mask)
+            denominator += q[dk][k]*mask
+    denominator = 1/denominator
+    B = B * denominator
+    
+    s = 0
+    for k in range(K):
+        for dk in range(W-w+1):
+            F_B = np.zeros((H,W))
+            F_B[:,dk:dk+w]=F
+            mask = np.ones((H,W))
+            mask[:,dk:dk+w] = 0
+            Model = F_B + np.multiply(B,mask)
+            temp = X[:,:,k]-Model[:,:]
+            temp = np.multiply(temp,temp)
+            temp = np.sum(temp)
+            temp *= q[dk][k]
+            s += temp
+    s = np.sqrt(s /(H*W*K))          
+    
+    return F,B,s,a
+    
+    
 ```
 
 
@@ -435,21 +438,8 @@ for a, e in zip(actual, expected):
 print("OK")
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-14-e44e2bfe2fd1> in <module>()
-          7  np.array([ 0.13888889,  0.33333333,  0.52777778])]
-          8 actual = run_m_step(tX, tq, tw)
-    ----> 9 for a, e in zip(actual, expected):
-         10     assert np.allclose(a, e)
-         11 print("OK")
+    OK
     
-
-    TypeError: zip argument #1 must support iteration
-
 
 #### 5. Implement EM_algorithm
 Initialize parameters, if they are not passed, and then repeat E- and M-steps till convergence.
@@ -504,33 +494,30 @@ def run_EM(X, w, F=None, B=None, s=None, a=None, tolerance=0.001,
     if s is None:
         s = np.random.rand()*pow(64,2)
     # your code here
+    LL = [-100000]
+    for i in range(max_iter):
+        q = run_e_step(X,F,B,s,a)
+        F,B,s,a = run_m_step(X,q,w)
+        LL.append(calculate_lower_bound(X,F,B,s,a,q))
+        if LL[-1]-LL[-2] < tolerance :
+            break
+    LL = np.array(LL)
+    return F,B,s,a,LL
+        
     
 ```
 
 
 ```python
 # run this cell to test your implementation
-res = run_EM(tX, tw, max_iter=3)
+res = run_EM(tX, tw, max_iter=10)
 LL = res[-1]
 assert np.alltrue(LL[1:] - LL[:-1] > 0)
 print("OK")
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-16-6b1860dc5143> in <module>()
-          1 # run this cell to test your implementation
-          2 res = run_EM(tX, tw, max_iter=3)
-    ----> 3 LL = res[-1]
-          4 assert np.alltrue(LL[1:] - LL[:-1] > 0)
-          5 print("OK")
+    OK
     
-
-    TypeError: 'NoneType' object is not subscriptable
-
 
 ### Who is the prankster?
 
@@ -564,22 +551,7 @@ for i, (l, it) in enumerate(zip(lens, iters)):
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-18-5c3ec9450804> in <module>()
-          5 plt.figure(figsize=(20, 5))
-          6 for i, (l, it) in enumerate(zip(lens, iters)):
-    ----> 7     F, B, s, a, _ = run_EM(X[:, :, :l], w, F, B, s, a, max_iter=it)
-          8     show(F, i+1, 5)
-    
-
-    TypeError: 'NoneType' object is not iterable
-
-
-
-    <Figure size 1440x360 with 0 Axes>
+![png](http://ojtdnrpmt.bkt.clouddn.com/blog/180924/KJ8A3g5k9C.png?imageslim)
 
 
 And this is the background:
@@ -590,58 +562,7 @@ show(B)
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-19-ba7381968102> in <module>()
-    ----> 1 show(B)
-    
-
-    <ipython-input-17-1c6656dd6e56> in show(F, i, n)
-          4     """
-          5     plt.subplot(1, n, i)
-    ----> 6     plt.imshow(F, cmap="Greys_r")
-          7     plt.axis("off")
-    
-
-    ~\Anaconda3\lib\site-packages\matplotlib\pyplot.py in imshow(X, cmap, norm, aspect, interpolation, alpha, vmin, vmax, origin, extent, shape, filternorm, filterrad, imlim, resample, url, hold, data, **kwargs)
-       3203                         filternorm=filternorm, filterrad=filterrad,
-       3204                         imlim=imlim, resample=resample, url=url, data=data,
-    -> 3205                         **kwargs)
-       3206     finally:
-       3207         ax._hold = washold
-    
-
-    ~\Anaconda3\lib\site-packages\matplotlib\__init__.py in inner(ax, *args, **kwargs)
-       1853                         "the Matplotlib list!)" % (label_namer, func.__name__),
-       1854                         RuntimeWarning, stacklevel=2)
-    -> 1855             return func(ax, *args, **kwargs)
-       1856 
-       1857         inner.__doc__ = _add_data_doc(inner.__doc__,
-    
-
-    ~\Anaconda3\lib\site-packages\matplotlib\axes\_axes.py in imshow(self, X, cmap, norm, aspect, interpolation, alpha, vmin, vmax, origin, extent, shape, filternorm, filterrad, imlim, resample, url, **kwargs)
-       5485                               resample=resample, **kwargs)
-       5486 
-    -> 5487         im.set_data(X)
-       5488         im.set_alpha(alpha)
-       5489         if im.get_clip_path() is None:
-    
-
-    ~\Anaconda3\lib\site-packages\matplotlib\image.py in set_data(self, A)
-        647         if (self._A.dtype != np.uint8 and
-        648                 not np.can_cast(self._A.dtype, float, "same_kind")):
-    --> 649             raise TypeError("Image data cannot be converted to float")
-        650 
-        651         if not (self._A.ndim == 2
-    
-
-    TypeError: Image data cannot be converted to float
-
-
-
-![png](task_em_files/task_em_35_1.png)
+![png](http://ojtdnrpmt.bkt.clouddn.com/blog/180924/E23FKdKe42.png?imageslim)
 
 
 ### Optional part: hard-EM
@@ -657,3 +578,4 @@ If you implement hard-EM, add binary flag hard_EM to the parameters of the follo
 * run_EM
 
 After implementation, compare overall computation time for EM and hard-EM till recognizable F.
+
