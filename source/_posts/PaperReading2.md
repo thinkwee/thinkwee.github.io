@@ -1,5 +1,5 @@
 ---
-title: 论文阅读笔记2018下半年待填坑
+title: 论文阅读笔记2018下半年
 date: 2018-07-03 15:18:52
 tags:
   - abstractive summarization
@@ -12,6 +12,7 @@ categories:
 author: Thinkwee
 mathjax: true
 html: true
+password: kengbi
 photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180804/E1lIhI4li1.jpg?imageslim
 ---
 
@@ -36,7 +37,7 @@ photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180804/E1lIhI4li1.jpg?imageslim
 - [ ]	generating sentences from a continuous space
 - [x]	generating news headlines with recurrent neural networks
 - [ ]	calculus on computational graphs: backpropagation
-- [ ]	convolutional sequence to sequence learning
+- [x]	convolutional sequence to sequence learning
 - [ ]	cutting-off redundant repeating generations for neural abstractive summarization
 - [ ]	attention and augmented recurrent neural networks
 - [x]	attention is all you need
@@ -44,7 +45,7 @@ photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180804/E1lIhI4li1.jpg?imageslim
 - [ ]	abstractive document summarization with a graph-based attentional neural model
 - [ ]	addressing the rare word problem in neural machine translation
 - [ ]	abstractive sentence summarization with attentive recurrent neural networks
-- [ ]	unsupervised machine translation using monolingual corpora only
+- [x]	unsupervised machine translation using monolingual corpora only
 - [x]	the nested chinese restaurant process and bayesian nonparametric inference of topic hierarchies
 - [ ] 	neural architecture search with reinforcement learning
 - [ ] 	an introduction to conditional random fields

@@ -89,7 +89,7 @@ html: true
 	min_{w,b} \frac 12 {||w||}^2 \\
 	s.t. y_i(w^Tx_i+b) \geq 1,i=1,2,...,m \\
 	$$
-	推导见:[线性可分支持向量机与硬间隔最大化](http://thinkwee.top/2017/02/12/StatisticalLearningNote/#%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E4%B8%8E%E7%A1%AC%E9%97%B4%E9%9A%94%E6%9C%80%E5%A4%A7%E5%8C%96)
+	推导见另两篇博文：机器学习笔记和统计学习方法笔记手写版
 -	对于这个最优化问题，它的拉格朗日方程是
 	$$
 	L(w,b,\alpha )=\frac 12 {||w||}^2+\sum _{i=1}^{m} \alpha _i (1-y_i(w^Tx_i+b))
@@ -101,4 +101,3 @@ html: true
 	\alpha _i \geq 0,i=1,2,...,m \\
 	$$
 	上式满足KTT条件，通过SMO算法求解
--	未完待续

@@ -1,5 +1,5 @@
 ---
-title: Algorithm 题解目录(Pinned)
+title: Algorithm 题解目录
 date: 2017-03-27 19:47:54
 tags:
 -	code
@@ -10,7 +10,6 @@ categories:
 -	算法
 photo: http://ojtdnrpmt.bkt.clouddn.com/blog/20170327/195153747.jpg
 mathjax: true
-top: true
 ---
 
 ***

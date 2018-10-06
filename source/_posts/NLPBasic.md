@@ -1,5 +1,5 @@
 ---
-title: 自然语言处理基础知识
+title: 自然语言处理|深度学习入门
 date: 2018-03-07 09:56:23
 tags:
   - abstractive summarization
@@ -13,7 +13,7 @@ author: Thinkwee
 mathjax: true
 photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180307/D16L2739kI.jpg?imageslim
 ---
-记录入门NLP中seq2seq模型时学习到的一些基础知识。
+记录入门NLP中seq2seq模型时学习到的一些深度学习基础知识。
 
 <!--more-->
 
