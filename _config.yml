@@ -82,6 +82,9 @@ deploy:
   repo: git@github.com:thinkwee/thinkwee.github.io.git
   branch: master
 - type: baidu_url_submitter
+- type: git
+  repo: git@git.coding.net:thinkwee/thinkwee.git
+  branch: master
 
     
 all_minifier: true
