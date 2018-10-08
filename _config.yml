@@ -14,7 +14,8 @@ timezone: Asia/Shanghai
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://thinkwee.top
 root: /
-permalink: :year/:month/:day/:title/
+#permalink: :year/:month/:day/:title/
+permalink: :title.html
 permalink_defaults:
 
 # Directory
@@ -76,10 +77,12 @@ theme: next-reloaded
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: 
-    github: git@github.com:thinkwee/thinkwee.github.io.git,master
+deploy: 
+- type: git
+  repo: git@github.com:thinkwee/thinkwee.github.io.git
+  branch: master
+- type: baidu_url_submitter
+
     
 all_minifier: true
 
@@ -103,3 +106,9 @@ encrypt:
     enable: true
     default_abstract: 这个坑还没填完，正努力填坑中......</br>
     default_message: 文章还没写完，稍后再读，或者输入kengbi看看草稿
+
+baidu_url_submit:
+  count: 30 ## 提交最新的一个链接
+  host: https://thinkwee.top ## 在百度站长平台中注册的域名
+  token: XGftmz9gMcWoi1vK ## 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!
+  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
