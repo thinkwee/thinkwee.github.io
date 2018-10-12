@@ -7,14 +7,15 @@ tags:
   - math
 mathjax: true
 password: kengbi
-photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180804/Hk49mE6DDC.jpg?imageslim
 html: true
 ---
 ***
 今日开一大坑，看毕业之前能不能填完。
 Convex Optimization By Stephen Boyd & Lieven Vandenberghe
-
+ 
 <!--more-->
+
+![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180804/Hk49mE6DDC.jpg?imageslim)
 
 # 简介
 

@@ -8,9 +8,8 @@ tags:
 mathjax: true
 html: true
 date: 2017-02-12 22:40:38
-photo: http://ojtdnrpmt.bkt.clouddn.com/blog/20170328/174921231.png
 ---
-
+ 
 ***
 记录机器学习中关于一些概念和算法的笔记，来源于:
 -	选修课模式识别(大三北邮选修课，模式识别，教材是张学工编著的《模式识别》，清华大学出版社)
@@ -26,6 +25,7 @@ photo: http://ojtdnrpmt.bkt.clouddn.com/blog/20170328/174921231.png
 -	2018-08-09 统计学习方法的内容已经贴在另一篇《统计学习方法手写版笔记》里了，估计不会更新了，之后可能更新《深度学习》里一些剩下的内容
 <!--more-->
 
+![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170328/174921231.png)
 # <font size=5 >统计学习方法概论</font>
 ## <font size=4 >统计学习，监督学习，三要素</font>
 -	如果一个系统能够通过执行某个过程改进它的性能，这就是学习

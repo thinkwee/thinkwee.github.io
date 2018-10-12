@@ -5,7 +5,6 @@ tags:
 -	python
 categories:
 -	Python
-photo: http://ojtdnrpmt.bkt.clouddn.com/blog/20170328/200539402.png
 ---
 ***
 Python的一些特性和语法
@@ -13,6 +12,8 @@ Python的一些特性和语法
 Python3.5
 
 <!--more-->
+
+![](http://ojtdnrpmt.bkt.clouddn.com/blog/20170328/200539402.png)
 
 # 对象皆引用
 -	不同于C++，Python只有传引用，不存在传值，在Python中，一切皆对象，变量只是对对象的引用

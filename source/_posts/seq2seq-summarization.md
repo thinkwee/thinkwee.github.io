@@ -13,13 +13,14 @@ categories:
   - 自然语言处理
 mathjax: true
 html: true
-photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180704/27AhFDi986.png?imageslim
 ---
 
 本科毕业设计是做一个基于seq2seq的短句文摘模型，并设计了一种情感融合机制
 现在对整个模型做一个简单的总结
 
 <!--more-->
+ 
+![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/27AhFDi986.png?imageslim)
 
 # 任务
 -	自动文摘是一类自然语言处理（Natural Language Processin，NLP）任务。对于一段较长的文本，产生一段能够覆盖原文核心意义的短文本，这段短文本就是原文本的摘要。自动文摘技术是指在计算机上构建数学模型，将长文本输入模型，通过计算之后模型能自动生成短摘要。根据需要产生摘要的语料规模和摘要的规模，可以将摘要分为多文本摘要、长文摘要、短文摘要。本文主要研究的是短文摘要：对于一句或者几句文本，生成一句短摘要，概括原文关键信息，且流畅可读，尽量达到人类作者撰写摘要的水平。

@@ -6,13 +6,15 @@ tags:
   - code
   - machinelearning
 mathjax: true
-photos: http://ojtdnrpmt.bkt.clouddn.com/blog/20170318/112133081.png
+photos: 
 html: true
 ---
 ***
 介绍拉格朗日乘子法及其推广KTT条件，以及它们在PCA和SVM中的应用
-图片来自wikipedia关于拉格朗日乘子法的形象介绍
 <!--more-->
+
+![](http://ojtdnrpmt.bkt.clouddn.com/blog/20170318/112133081.png)
+图片来自wikipedia关于拉格朗日乘子法的形象介绍
 
 # 拉格朗日乘子法
 -	拉格朗日乘子法是一种求约束条件下极值的方法，描述为

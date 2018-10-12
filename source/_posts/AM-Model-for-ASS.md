@@ -10,8 +10,7 @@ tags:
 categories:
   - 自然语言处理
 author: Thinkwee
-mathjax: true
-photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180307/G6AJc4Fe8L.png?imageslim
+mathjax: true 
 ---
 
 论文翻译：
@@ -22,6 +21,8 @@ photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180307/G6AJc4Fe8L.png?imageslim
 -	Sumit Chopra(Facebook AI Research)
 -	Jason Weston(Facebook AI Research)
 <!--more-->
+
+![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/G6AJc4Fe8L.png?imageslim)
 
 # 原文地址
 -	[A Neural Attention Model for Abstractive Sentence Summarization](https://arxiv.org/pdf/1509.00685.pdf)

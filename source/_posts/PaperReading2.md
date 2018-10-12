@@ -13,7 +13,6 @@ author: Thinkwee
 mathjax: true
 html: true
 password: kengbi
-photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180804/E1lIhI4li1.jpg?imageslim
 ---
 
 下半年待填坑列表
@@ -22,7 +21,9 @@ photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180804/E1lIhI4li1.jpg?imageslim
 读论文是不可能读完的，这辈子都不可能读完的。
 有时间再补上阅读笔记。
 
-<!--more-->
+<!--more--> 
+
+![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180804/E1lIhI4li1.jpg?imageslim)
 
 # TODO列表
 - [ ]	self-critical sequence training for image captioning

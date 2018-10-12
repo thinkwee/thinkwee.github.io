@@ -11,14 +11,12 @@ categories:
   - 自然语言处理
 author: Thinkwee
 mathjax: true
-photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180307/D16L2739kI.jpg?imageslim
 ---
 记录入门NLP中seq2seq模型时学习到的一些深度学习基础知识。
-
+  
 <!--more-->
 
-# 统计自然语言方法
--	读书笔记，待补充
+![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/D16L2739kI.jpg?imageslim)
 
 # 前馈神经网络相关
 -	数据维数很高时，样本空间容量可能远大于训练样本数目，导致维数灾难。

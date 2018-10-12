@@ -3,14 +3,15 @@ title: Android:Melodia客户端
 date: 2017-03-09 17:19:53
 tags: [code,android]
 categories: Android
-photos: http://ojtdnrpmt.bkt.clouddn.com/blog/20170309/172109957.gif
 ---
 ***
 学校大创项目简单的app
 实现功能，录制声音存为wav，利用json与服务器通信，上传wav到服务器，服务器转为midi文件，从服务器下载midi和乐谱并播放，同时电子琴改装后也可以与服务器通信，由手机给电子琴辅助参数，电子琴通过arduino从服务器上读取乐曲中间键值文件播放。
-封面图使用[qiao](https://github.com/qiao)的midi在线可视化工具[euphony](https://github.com/qiao/euphony)
 
 <!--more-->
+
+![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170309/172109957.gif)
+封面图使用[qiao](https://github.com/qiao)的midi在线可视化工具[euphony](https://github.com/qiao/euphony)
 
 # midi播放
 调用MediaPlayer类播放，因为不可抗因素，只能用android5.1，没有midi库，就做简单的播放

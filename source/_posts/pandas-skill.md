@@ -6,7 +6,9 @@ categories: Python
 ---
 ***
 以泰坦尼克号的数据为例介绍一下前期对数据的基础操作。
-数据在这：
+
+<!--more-->
+
 # 引入库
 ```python
 import csv as csv 
@@ -21,7 +23,7 @@ train = pd.read_csv(r"文件目录")
 ![](http://ojtdnrpmt.bkt.clouddn.com/blog/20170205/103436937.JPG)
 
 
-<!--more-->
+
 
 # 数据概览
 -	describe 显示整体数据常见属性

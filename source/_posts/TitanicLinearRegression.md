@@ -6,7 +6,6 @@ tags:
 mathjax: true
 date: 2017-02-07 21:57:22
 ---
-![](http://ojtdnrpmt.bkt.clouddn.com/17-1-15/62213897-file_1484471472044_c2cc.jpg)
 
 ***
 # 简介
@@ -14,13 +13,17 @@ date: 2017-02-07 21:57:22
 2016年11月的时候决定开始入坑机器学习
 首先照着Kaggle上第一个题目《泰坦尼克号生还者分析》的官方示例敲了一遍。
 
+
+<!--more-->
+
+![](http://ojtdnrpmt.bkt.clouddn.com/17-1-15/62213897-file_1484471472044_c2cc.jpg)
+
+
 2017年2月更新:用pandas重新整理了数据，计算了详细的正确率，试用了scikit-learn中的LinearRegression
 
 题目介绍在这：[Titanic: Machine Learning from Disaster](https://www.kaggle.com/c/titanic)
 
 下面是数据集表格样式，每个人有12个属性
-
-<!--more-->
 
 ![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170205/103436937.JPG)
 

@@ -11,12 +11,13 @@ categories:
   - 机器学习
 author: Thinkwee
 mathjax: true
-photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180307/14f9JEiGeI.jpg?imageslim
 ---
 
 论文阅读笔记
 主要关注自动文摘方向
-<!--more-->
+<!--more--> 
+
+![](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/14f9JEiGeI.jpg?imageslim)
 
 # Neural Machine Translation By Jointly Learning To Align And Translate
 -	发布于2015.5(ICLR2015)，作者Dzmitry Bahdanau。

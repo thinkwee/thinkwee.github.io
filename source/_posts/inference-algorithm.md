@@ -9,7 +9,6 @@ tags:
   - variational inference
   - em
 mathjax: true
-photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180828/BA94mibfCf.png?imageslim
 ---
 
 记录Variational Inference、Expectation Maximization、Markov Chain Monte Carlo等用于概率机器学习中未知变量推断的算法的原理、推导。
@@ -17,7 +16,8 @@ photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180828/BA94mibfCf.png?imageslim
 徐老师的课程讲义地址：[roboticcam/machine-learning-notes](https://github.com/roboticcam/machine-learning-notes)，如果不额外说明，一些截图和代码均来自徐老师的讲义。
 其他一些内容来自各种书或者tutorial，引用出处我会在文中说明。
 
-<!--more-->
+<!--more-->  
+![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180828/BA94mibfCf.png?imageslim)
 
 # Bayesian Inference
 -	在贝叶斯推断中，需要区别可观察量（数据）和未知变量（可能是统计参数、缺失数据、隐变量）

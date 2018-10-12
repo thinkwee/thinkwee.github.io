@@ -7,7 +7,6 @@ tags:
   - math
   -	mcmc
 mathjax: true
-photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180723/6740GFbJ1a.png?imageslim
 html: true
 ---
 ***
@@ -15,10 +14,11 @@ Latent Dirichlet Allocation 文档主题生成模型学习笔记
 主要摘录自《LDA数学八卦》，原文写的非常精彩，有许多抛砖引玉之处，本文梳理了其一步一步推出LDA的脉络，删除了不相关的一些扩展，并给出了一些总结。没有读过原文的同学建议先读原文过一遍。
 
 <!--more-->
+![](http://ojtdnrpmt.bkt.clouddn.com/blog/180723/6740GFbJ1a.png?imageslim)
 
 # 数学基础
 ## Gamma函数
--	定义
+-	定义 
 $$
 \Gamma (x) = \int _0 ^{\infty} t^{x-1} e^{-t} dt
 $$

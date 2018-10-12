@@ -7,11 +7,9 @@ tags:
   - math
 mathjax: true
 password: kengbi
-photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180914/hJk7lgJGJb.JPG
 html: true
 ---
 研究一下行列式点过程，这是一种广泛应用的确保diversity的一种数学方法
-估计从此以后封面就用这种老E灵魂画风
 DPP是结合了实分析、矩阵计算和概率计算的一种有效、优雅的算法，最广为流传的是Ben Taskar在2012作出的Determinantal point processes for machine learning，在videoslectures.net有一段半小时的视频，另外还有120页的pdf数学推导和一份250页的tutorial，可惜大神在2013年英年早逝，2017年在youtube上Wray Buntine教授根据这些材料有一段讲课视频，教授研究领域也是自动文摘，这份视频也值得推荐。
 参考：
 -	Determinantal point processes for machine learning ppt&pdf (Alex Kulesza , Ben Taskar)
@@ -21,7 +19,7 @@ DPP是结合了实分析、矩阵计算和概率计算的一种有效、优雅�
 -	On adding a list of numbers (and other one-dependent determinantal processes) (Alexei Borodin , Persi Diaconis , Jason Fulman)
 -	Determinantal point processes (Alexei Borodin)
 
-<!--more-->
+<!--more--> 
 
 # 一个例子：单依赖行列式点过程
 

@@ -3,13 +3,14 @@ title: Melodia服务器搭建
 date: 2017-05-26 19:18:01
 tags: [code,server,linux]
 categories: Python
-photo: http://ojtdnrpmt.bkt.clouddn.com/blog/20170526/191951436.jpg
 ---
 ***
 -	大创项目的服务器端，大创以及客户端介绍见[Melodia客户端](http://thinkwee.top/2017/03/09/dachuang/)
 -	我们大创项目的服务器承担的功能比较少，只与android设备收发文件，用Python写了一个简单的服务器端
 
 <!--more-->
+
+![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170526/191951436.jpg)
 
 # 功能
 -	从android客户端接收的数据都是json格式，base64编解码。以我们自定义的特殊字符串结尾，服务器在建立与一个终端的连接后开一个处理的线程

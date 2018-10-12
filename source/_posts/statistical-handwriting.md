@@ -9,15 +9,14 @@ tags:
 - math
 
 mathjax: true
-html: true
-photo: http://ojtdnrpmt.bkt.clouddn.com/blog/180809/8mFd81eem2.PNG
+html: true 
 ---
 ***
 把统计学习方法十大算法精简了一些手写了出来（虽然我觉得书本身已经很精简了）
 现在只有算法本身的流程，以后如果有什么新的理解再补充
 字太丑，自己都看不下去，发上来纯粹做个备份
 
-<!--more-->
+<!--more--> 
 # 概论
 ![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180809/1lg8jI0Bfe.jpg?imageslim)
 

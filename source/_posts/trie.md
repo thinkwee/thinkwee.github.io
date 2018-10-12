@@ -6,12 +6,13 @@ tags:
 -	python
 categories:
 -	Python
-photo: http://ojtdnrpmt.bkt.clouddn.com/blog/20170502/101155629.JPG
 ---
 ***
 在Python中有字典这一数据结构，因此用Python实现字典树很方便
 
 <!--more-->
+
+![](http://ojtdnrpmt.bkt.clouddn.com/blog/20170502/101155629.JPG)
 
 # 字典树(trie)
 -	字典树主要用于词频统计，前缀后缀相关的算法，树的根节点不存任何字符，每一条边代表一个字符，其他每一个节点代表从根节点到此节点的所有边上字符构成的单词，存的内容根据需求而定。

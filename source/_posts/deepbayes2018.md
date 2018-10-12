@@ -6,12 +6,11 @@ categories: 数学
 mathjax: true
 html: true
 password: kengbi
-photos: http://ojtdnrpmt.bkt.clouddn.com/blog/180922/AjBm7il5d1.JPG
 ---
 
 Deep-Bayes 2018 Summer Camp的习题
 发现自己代码能力果然弱......
-<!--more-->
+<!--more--> 
 
 # Deep<span style="color:green">|</span>Bayes summer school. Practical session on EM algorithm
 - 第一题就是应用EM算法还原图像，人像和背景叠加在一起，灰度值的概率分布形式已知，设计人像在背景中的位置为隐变量，进行EM迭代推断。

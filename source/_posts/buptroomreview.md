@@ -6,8 +6,6 @@ categories: Android
 ---
 ***
 
-![](http://ojtdnrpmt.bkt.clouddn.com/17-1-16/24437570-file_1484550130084_2fc4.png)
-
 # 简介
 写了一个查询学校空闲教室的APP
 拉取学校教务处网站的信息，分类显示,还加了一些杂七杂八的
@@ -20,6 +18,8 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
 总结一下这次写App的经过:
 
 <!--more-->
+
+![](http://ojtdnrpmt.bkt.clouddn.com/17-1-16/24437570-file_1484550130084_2fc4.png)
 
 # 整体结构
 
