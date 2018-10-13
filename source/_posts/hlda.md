@@ -16,7 +16,7 @@ Hierarchical Latent Dirichlet Allocation 层次文档主题生成模型学习笔
 
 <!--more-->
 
-# Dirichlet Process
+# Dirichlet Process 
 
 # Stick-breaking process and GEM Distribution
 

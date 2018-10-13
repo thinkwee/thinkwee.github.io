@@ -10,7 +10,7 @@ password: kengbi
 
 Deep-Bayes 2018 Summer Camp的习题
 发现自己代码能力果然弱......
-<!--more--> 
+<!--more-->  
 
 # Deep<span style="color:green">|</span>Bayes summer school. Practical session on EM algorithm
 - 第一题就是应用EM算法还原图像，人像和背景叠加在一起，灰度值的概率分布形式已知，设计人像在背景中的位置为隐变量，进行EM迭代推断。

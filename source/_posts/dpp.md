@@ -19,7 +19,7 @@ DPP是结合了实分析、矩阵计算和概率计算的一种有效、优雅�
 -	On adding a list of numbers (and other one-dependent determinantal processes) (Alexei Borodin , Persi Diaconis , Jason Fulman)
 -	Determinantal point processes (Alexei Borodin)
 
-<!--more--> 
+<!--more-->  
 
 # 一个例子：单依赖行列式点过程
 
