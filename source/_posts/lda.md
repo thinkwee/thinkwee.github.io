@@ -14,7 +14,7 @@ Latent Dirichlet Allocation 文档主题生成模型学习笔记
 主要摘录自《LDA数学八卦》，原文写的非常精彩，有许多抛砖引玉之处，本文梳理了其一步一步推出LDA的脉络，删除了不相关的一些扩展，并给出了一些总结。没有读过原文的同学建议先读原文过一遍。
 
 <!--more-->
-![](http://ojtdnrpmt.bkt.clouddn.com/blog/180723/6740GFbJ1a.png?imageslim)
+![i0oNlT.jpg](https://s1.ax1x.com/2018/10/20/i0oNlT.jpg)
 
 # 数学基础
 ## Gamma函数
@@ -138,7 +138,7 @@ $$
 -	LDA实际上是将文本生成建模为一个概率生成模型，具体而言是一个三层贝叶斯模型，并且针对文档-主题分布和主题-词语分布分别假设其先验分布为Dirichlet分布，用Dirichlet-Multinomial共轭来利用数据知识更新其后验，因此先介绍Gamma函数及其分布，Gamma函数将阶乘扩展到实数域，之后介绍了能估计分布的Beta函数，在引入了Gamma函数之后Beta分布的参数能扩展到实数域。之后介绍了Beta-Binomial共轭，这种共轭带来的好处是在用数据训练修正时，我们已经知道了后验分布的形式，之后将这种共轭关系扩展到高维（估计多个分布），就得到了Dirichlet-Multinomial共轭。
 -	为文档到主题和主题到词的两个多项式分布加入Dirichlet分布作为参数先验的好处是：将多项式参数作为变量，先验信息指导了参数在哪个范围内变动，而不是具体的值，使得模型在小训练样本内的泛化能力更强。根据Dirichlet的性质，其参数比例代表了[0,1]上的一个划分，决定了dirichlet分布高概率的位置，其参数大小决定了高概率的比例（陡峭），例如下图，多项式分布有三项，参数分别为$p_1,p_2,p_3$，他们的和为一且各项大于零，在三维空间内便是一个三角面，面上每一点代表一种多项式分布，红色区域概率高，蓝色区域概率低：
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180828/B5IBgB1kbK.PNG)
+![i0orkR.png](https://s1.ax1x.com/2018/10/20/i0orkR.png)
 
 -	$\alpha$控制了多项式分布参数的mean shape和sparsity。
 -	最左边，Dirichlet的三个参数$\alpha _1,\alpha _2,\alpha _3$相等，代表其红色区域位置居中，且三个$\alpha$的值均较大，红色区域较小，把热力图看成等高线图的话就代表红色区域较陡峭，说明Dirichlet非常确认多项式分布的参数会在居中的位置。对于三个多项式分布的参数$p_1,p_2,p_3$来说，较大可能取到三个p等值的情况。
@@ -285,8 +285,8 @@ $$
 		-	选择K个A分布中第z个，从这个A分布中抽样得到一个单词
 -	假设有$m$篇文档，$n$个词，$k$个主题，则$D+C$是$m$个独立的Dirichlet-Multinomial共轭，$B+A$是$k$个独立的Dirichlet-Multinomial共轭。两个dirichlet参数分别为1个k维向量($\alpha$)和1个n维向量($\beta$)。现在我们可以理解本文最开始的配图，我们将符号用其实际意义表述，与标题配图对应，这幅图实际上描述了LDA中这$m+k$个独立的Dirichlet-Multinomial共轭：
 
--	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180725/lb2HJm3i59.PNG)
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180723/6740GFbJ1a.png?imageslim)
+![i0oGYq.png](https://s1.ax1x.com/2018/10/20/i0oGYq.png)
+![i0oJf0.jpg](https://s1.ax1x.com/2018/10/20/i0oJf0.jpg)
 
 ## 建立分布
 -	现在我们可以用$m+k$个Dirichlet-Multinomial共轭对LDA主题模型建模了，借鉴之前推导Unigram模型时得到最终的文档生成分布，我们可以分别计算：
@@ -371,7 +371,7 @@ p(z_i=k|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w}^{\rightarrow})∝ (n_{m,¬ i}
 $$
 -	最后附上Parameter estimation for text analysis一文中吉布斯采样的伪算法图：
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180829/31jGjg0idC.png?imageslim)
+![i0oU6U.png](https://s1.ax1x.com/2018/10/20/i0oU6U.png)
 
 -	可以看到主要通过记录四个n值（两个矩阵两个向量）来计算条件概率，更新主题时也是更新四个n值进行增量更新。算法先通过随机均匀采样赋初值，然后按采样公式更新主题（先减去旧的主题分配，再加上新的主题分配），其中公式78即之前我们计算得到的$p(z_i=k|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w}^{\rightarrow})$，公式81和82分别为$\mathop{\vartheta _{mk}},\mathop{\varphi _{kt}}$，我们可以直接通过四个n值得到，不用考虑采样时的$¬ i$条件了，具体是：
 $$

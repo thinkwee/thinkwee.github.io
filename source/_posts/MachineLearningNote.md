@@ -25,7 +25,8 @@ date: 2017-02-12 22:40:38
 -	2018-08-09 统计学习方法的内容已经贴在另一篇《统计学习方法手写版笔记》里了，估计不会更新了，之后可能更新《深度学习》里一些剩下的内容
 <!--more-->
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170328/174921231.png)
+![i0H2cV.png](https://s1.ax1x.com/2018/10/20/i0H2cV.png)
+
 # <font size=5 >统计学习方法概论</font>
 ## <font size=4 >统计学习，监督学习，三要素</font>
 -	如果一个系统能够通过执行某个过程改进它的性能，这就是学习
@@ -197,42 +198,54 @@ $$
 # <font size=5 >概率论信息论</font>
 ## <font size=4 >Logistic Sigmoid</font>
 -	Logistic和sigmoid两种称呼经常混用，这个函数用于将实数压缩到(0,1)之间，代表二分类概率：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/cla6i1maiE.png?imageslim)
+	$$
+	\sigma (x) = \frac{1}{1+exp(-x)}
+	$$
 -	Softmax 是sigmoid的扩展版，是argmax函数的软化版本（argmax返回一个one hot 向量而softmax返回的是各种可能的概率），将二分类扩展到多分类（互斥）情况：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/KhILG09Ij4.png?imageslim)
--	两者在输入过大过小时都存在饱和现象，但将两个函数作为非线性激活单元引入神经网络时，因为代价函数是取负对数，可以消除这种饱和现象(?)。
+	$$
+	\sigma (z)_j = \frac{e^z j}{\sum _{k=1}^K e^z k}
+	$$
+-	两者在输入过大过小时都存在饱和现象，但将两个函数作为非线性激活单元引入神经网络时，因为代价函数是取负对数，可以消除这种饱和现象。
 -	Softmax函数因为包含指数函数，还存在上下溢出问题。当输入均匀分布且输入样本数量很大时，分母指数值接近于0，累加也可能接近于0，导致分母下溢。当指数函数参数很大时也会导致上溢。解决办法是将输入x处理为z=x-max(xi)，即向量的每个分量都减去最大分量，输入向量加减标量不会导致softmax函数值改变(softmax函数的冗余性），但此时输入经处理后最大值为0，排除上溢，经过指数函数后分母的累加项中至少存在一个1，排除下溢。
 -	利用softmax函数的冗余性也可以推出sigmoid是softmax的一种特例：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/aA4kidJj2d.png?imageslim)
--	整流线性单元使用函数:
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/CamKlC3dk8.png?imageslim)
--	其软化版本是softplus:
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/daC267kkFk.png?imageslim)
--	Sigmoid和softplus函数的一些性质：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/dJJb644g25.png?imageslim)
+	![i0HRXT.png](https://s1.ax1x.com/2018/10/20/i0HRXT.png)
 	
 ## <font size=4 >KL散度和交叉熵</font>
--	KL散度	用以衡量PQ两个分布之间的差异，非负且不对称：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/BDDchFGAAI.png?imageslim)
+-	KL散度：用以衡量PQ两个分布之间的差异，非负且不对称：
+	$$
+	D_{KL}(P||Q) = E_{x \sim P} [log \frac{P(x)}{Q(x)}] = E_{x \sim P} [log P(x) - log Q(x)]
+	$$
 -	交叉熵：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/BG2cdG0efL.png?imageslim)
+	$$
+	H(P,Q) = -E_{x \sim P} log Q(x)
+	$$
 -	交叉熵形式简单，而且针对Q（实际输出）最小化KL散度与散度公式中前一项无关系，因此最小化KL散度实际上可以看成最小化交叉熵，又因为KL散度代表PQ（实际输出和正确输出）之间的差异，即可以看作是损失函数
 -	在用logistic处理二分类问题中，q(x)即logistic函数,p(x)即实际数据的正确分布(0或者1)
 -	对q按照p求自信息期望即二元交叉熵(Logistic代价函数):
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/Ebg5CkFI9A.png?imageslim)
+	$$
+	J(\theta) = - \frac 1m [\sum _{i=1}^m y^{(i)} log h_{\theta} (x^{(i)}) + (1-y^{(i)}) log (1-h_{\theta}(x^{(i)}))]
+	$$
 -	同理可得多元交叉熵(Softmaxs代价函数):
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/Fhih6BdcbH.png?imageslim)
+	$$
+	J(\theta) = - \frac 1m [\sum _{i=1}^m \sum _{j=1}^k 1\{ y^{(i)}=j \} log \frac {e^{\theta _j ^T x^{(i)}}} {\sum _{l=1}^k e^{\theta _j ^T x^{(i)}}}]
+	$$
 
 ## <font size=4 >交叉熵与最大对数似然关系</font>	
 -	已知一个样本数据集X，分布为$P_{data}(x)$，我们希望得到一个模型$P_{model}(x,\theta)$，其分布尽可能接近$P_{data}(x)$。$P_model(x,\theta)$将任意x映射为实数来估计真实概率$P_{data}(x)$。
 在$P_{model}(x,\theta)$中，对$\theta$的最大似然估计为使样本数据通过模型得到概率之积最大的$\theta$：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/jlKK7jmHlG.png?imageslim)
+	$$
+	\theta _{ML} = \mathop{argmax}\limits_{\theta} p_{model} (X;\theta)
+	$$
 -	因为取对数和尺度变换不会改变argmax，取对数变累加并除以样本数量平均后得到：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/HIkh1LjjBH.png?imageslim)
+	$$
+	\theta _{ML} = \mathop{argmax}\limits_{\theta} E_{x \sim p_{data}} log p_{model}(x;\theta)
+	$$
 -	可以发现上式即交叉熵的相反数，当Pdata(x)=Pmodel(x,θ)时上式值最大，所以:
 -	最大似然=最小负对数似然=最小化交叉熵=最小化KL散度=最小化数据与模型之间的差距∈最小化代价函数
 -	最大似然估计可扩展到最大条件似然估计，构成了大多数监督学习基础：公式：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/L3E7HC8D8J.png?imageslim)
+	$$
+	\theta _{ML} = \mathop{argmax}\limits_{\theta} \sum_{i=1}^m log P(y^{(i)} | x^{(i)} ; \theta)
+	$$
 -	最大似然估计具有一致性。
 
 # <font size=5 >计算方法</font>
@@ -241,12 +254,11 @@ $$
 -	原理：将输入向导数的反方向移动一小步可以减小函数输出。
 -	将输入扩展到向量形式的参数，将函数看成代价函数，即得到基于梯度的优化算法。
 -	一阶优化算法：包括梯度下降，使用Jacobian矩阵（包含向量之间偏导数关系），通过梯度下降对参数的建议更新为：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/F3A336L1gH.png?imageslim)
+	![i0opQO.png](https://s1.ax1x.com/2018/10/20/i0opQO.png)
 
 ## <font size=4 >牛顿法</font>
 -	二阶优化算法：（求最优补偿，定性临界点）:一阶优化需要调整合适的学习率（步长），否则无法达到最优点或者会产生抖动，且在临界点（梯度为0）无法更新参数，这反映我们需要代价函数的二阶导数信息，例如函数向上凸出或向下凸出时基于梯度的预测值和真实的代价函数值之间有偏差。Hessian矩阵包含了二阶信息。牛顿法使用了Hessian矩阵的信息，利用泰勒二阶展开得到函数信息，利用下式更新参数：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/K9Bhe01f2l.png?imageslim)
-
+	![i0o9yD.png](https://s1.ax1x.com/2018/10/20/i0o9yD.png)
 ## <font size=4 >约束优化</font>
 -	只包含等式约束条件：Lagrange 
 -	包含不等式约束条件：KTT
@@ -255,14 +267,21 @@ $$
 ## <font size=4 >修改假设空间</font>
 -	机器学习算法应避免过拟合和欠拟合，可以通过调整模型容量（拟合各种函数的能力）来解决。
 -	调整模型容量的方案是选择合适的假设空间（假设输入而不是参数），例如之前只拟合多项式线性函数：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/aEGe5ge292.png?imageslim)
+	$$
+	y = b + wx
+	$$
 -	如果引入非线性单元，例如高次项，输出相对于参数仍然是线性分布：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/GK8AHej2Fe.png?imagesli此时就增加了模型的容量，但简化了生成的参数，适用于解决复杂的问题，然而容量太高也有可能过拟合。
+	$$
+	y= b + w_1 x + w_2 x^2
+	$$
+	此时就增加了模型的容量，但简化了生成的参数，适用于解决复杂的问题，然而容量太高也有可能过拟合。
 
 ## <font size=4 >正则化</font>
 -	没有免费午餐定理（在所有可能的数据生成分布上平均之后，每一个分类算法在未事先观测的点上都有相同的错误率）说明应在特定任务上设计机器学习算法，算法应该有偏好。将代价函数中加入正则化即引入偏好，使得学习到的参数偏向于使正则化项变小。
 -	一个例子是权重衰减，加入权重衰减正则化项的代价函数是：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/Bif507aI3F.png?imageslim)
+	$$
+	J(w) = MSE_{train} + \lambda w^T w
+	$$
 	λ控制偏好程度，生成的模型倾向于小参数，可以避免过拟合。
 
 

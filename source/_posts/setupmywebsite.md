@@ -29,7 +29,7 @@ Hexo由你的博客内容和自定义设置生成静态网页项目并上传到�
 -		2018.7.6更新一个比较全面的参考网址
 <!--more-->
 
-![](http://ojtdnrpmt.bkt.clouddn.com/17-1-16/64914668-file_1484548577493_a7af.png)
+![i07MIs.png](https://s1.ax1x.com/2018/10/20/i07MIs.png)
 
 # 前提
 -	安装好Node.js
@@ -105,7 +105,7 @@ Hexo博客的目录格式如下
 
 # Hexo写作的几种选择(Windows)
 -	**马克飞象**:这里推荐用马克飞象的chrome app版本，可以离线打开。**优点：界面简洁明了，编辑自由，预览功能完整，常见操作(加粗字体插入图片链接代码块引用)方便,可以绑定印象笔记给文章备份。缺点：操作麻烦一点，需要把文本拷回去。 多个文章打开不方便，免费试用10天，78元一年**,它长这个样子：
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170203/192945202.jpg)
+![i078zV.jpg](https://s1.ax1x.com/2018/10/20/i078zV.jpg)
 -	**hexo admin插件**:安装hexo-admin插件，可视化管理博客，安装方法：
 ```Github
 npm install --save hexo-admin
@@ -113,10 +113,10 @@ hexo server -d
 open http://localhost:4000/admin/
 ```
 *http://localhost:4000/admin/*就是一个网页管理界面，可以管理文章，同样也能写文章，实时预览，加标签什么的，相当于把部分功能提出来做成了GUI，**优点：多文章管理，操作方便，自动保存,编辑时根据md语法可以在编辑文本改字号字体。缺点：预览不是很完全。不支持mathjax数学公式预览，自定义程度不高,编辑有一点小bug,新建文章时文件名有点小问题，对中文支持不是很好**,它长这个样子：
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170203/192926032.jpg)
+![i073R0.jpg](https://s1.ax1x.com/2018/10/20/i073R0.jpg)
 -	推荐是两个都装上，写新文章或者写需要插入公式代码的文章用第三方编辑器，如果只是普通码字或者更新一下以前写过的文章可以用hexo admin。
 -	**Typora**:markdown写作软件有许多，大部分都是一边编辑一边预览，这里强推一款极简设计，提倡所见即所得概念的软件：**Typora**。**优点：所见即所得，桌面软件，功能完整，近似于word的便捷体验(尤其在插入表格图片方面很方便)。缺点:不支持同步备份，html需要单独划区域,编辑略不自由。**他长这个样子：
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170208/204701798.jpg)
+![i071Gq.jpg](https://s1.ax1x.com/2018/10/20/i071Gq.jpg)
 -	Mac系统网上推荐使用Mou或者Sublime，我没有用过，也不做评价。
 -	常备一个notepad++,出现什么问题没有notepad++解决不了的。
 
@@ -193,14 +193,6 @@ mathjax:
 
 # RSS
 -	使用hexo-generator-feed使用rss:[hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)
-
-# 完成之后的目录示意图
-
-hexo分支:
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170121/113838583.JPG)
-
-master分支
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170121/113915677.JPG)
 
 # 异地恢复
 -	最近重装系统，重新恢复了本地博客，但是从远程clone下来并在本地hexo操作之后发现了许多问题，总结如下

@@ -10,7 +10,7 @@ categories: Android
 
 <!--more-->
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170309/172109957.gif)
+![i0o26O.gif](https://s1.ax1x.com/2018/10/20/i0o26O.gif)
 封面图使用[qiao](https://github.com/qiao)的midi在线可视化工具[euphony](https://github.com/qiao/euphony)
 
 # midi播放

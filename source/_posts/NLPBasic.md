@@ -15,15 +15,16 @@ mathjax: true
 记录入门NLP中seq2seq模型时学习到的一些深度学习基础知识。
   
 <!--more-->
-
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/D16L2739kI.jpg?imageslim)
+![i0I5WV.jpg](https://s1.ax1x.com/2018/10/20/i0I5WV.jpg)
 
 # 前馈神经网络相关
 -	数据维数很高时，样本空间容量可能远大于训练样本数目，导致维数灾难。
 -	激活函数.用于表示神经网络中的非线性变换，没有激活函数而只有权重矩阵的话神经网络是线性变换的组合，依然是线性变换。利用非线性变换能提取出方便进行线性变换的特征，避免维数灾难(?)。
 -	Softmax和sigmoid的意义：具有最大熵，方便求导，万能近似定理（具有挤压性质）
 -	隐藏层可使用激活函数ReLU，即整流线性，缺陷是不能使用梯度学习使函数激活为0的样本，因此发展了三种扩展：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/6I6a2Eccce.png?imageslim)
+	$$
+	g(z,\alpha)_i = max(0,z_i) + \alpha _i min(0,z_i)
+	$$
 	绝对值整流：右边系数为-1
 	渗漏整流：右边系数固定为一个较小值
 	参数化整流：系数放到模型中学习
@@ -31,7 +32,7 @@ mathjax: true
 # 反向传播
 -	反向传播将输出的偏差通过梯度计算出参数的更新值，从输出层往输入层一层一层更新参数，传播的是上一层用到的梯度，利用向量的微积分链式法则。 每一层更新量=本层Jacobian矩阵*上一层梯度。
 -	神经网络中的反向传播：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/4c4HJ2L5Eg.png?imageslim)
+	![i0IIzT.png](https://s1.ax1x.com/2018/10/20/i0IIzT.png)
 	初始化梯度表
 	最后一层输出对输出求梯度，因此初始值为1
 	从后往前循环，本层的梯度表是本层Jacobian矩阵和上一层梯度表相乘（即链式求导）。
@@ -43,35 +44,44 @@ mathjax: true
 -	用双曲正切作为隐藏层激活函数
 -	输入x，x过权重矩阵经隐藏层激活后得到h，h过权重矩阵输出o，代价L，o经输出激活后得到y
 -	基本结构（展开和非展开）：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/6KB34Ef356.png?imageslim)
+	![i0I7yF.png](https://s1.ax1x.com/2018/10/20/i0I7yF.png)
 -	几种变式：
  -	每一个时间步均有输出，隐藏层之间有循环连接：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/FfDA7bJIce.png?imageslim)
+	![i0ITQU.png](https://s1.ax1x.com/2018/10/20/i0ITQU.png)
  -	每一个时间步均有输出，输出与隐藏层之间有循环连接：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/CDfgfKaH5d.png?imageslim)
+	![i0IqeJ.png](https://s1.ax1x.com/2018/10/20/i0IqeJ.png)
  -	读取整个序列后产生单个输出：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/GJ2CBjhGII.png?imageslim)
+	![i0oCOe.png](https://s1.ax1x.com/2018/10/20/i0oCOe.png)
 -	普通的前向传播，softmax处理输出，负对数似然作为损失函数，通过时间反向传播代价过大。
 	前馈过程：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/kj5bKAgKfc.png?imageslim)
+	$$
+	\alpha ^{(t)} = b + Wh^{(t-1)} + Ux^{(t)}, \\
+	h^{(t)} = tanh(a^{(t)}), \\
+	o^{(t)} = c + Vh^{(t)}, \\
+	y^{(t)} = softmax(o^{(t)}) \\
+	$$
 	代价函数：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/b0dL8g7clF.png?imageslim)
+	$$
+	L(\{ x^{(1)} , ... , x^{(\tau)}\},\{ y^{(1)} , ... , y^{(\tau)}\}) \\
+	=\sum _t L^{(t)} \\
+	= - \sum _t log p_{model} (y^{(t)}|\{ x^{(1)} , ... , x^{(\tau)}\}) \\
+	$$
 -	改为第二种RNN，使用输出到隐藏层的循环，消除了隐藏层到隐藏层的循环，解耦并行(?)，使用导师驱动模型（用正确输出训练到隐藏层的循环网络W，测试时用贴近正确输出的实际输出经过网络W）
 	导师驱动模型：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/jehilKjam9.png?imageslim)
+	![i0ILw9.png](https://s1.ax1x.com/2018/10/20/i0ILw9.png)
 
 ## 双向RNN
 -	考虑对未来信息的依赖，相当于两类隐藏层结合在一起
 
 ## 序列到序列
 -	采用编码器和解码器，可以让输入输出序列长度不同，生成表示（输入序列到向量），再由表示生成序列（一个向量输入映射到序列）。序列到序列是一类框架，编码解码器使用的具体模型可以自定。例如机器翻译，编码器和解码器都可以用LSTM。端到端的模型利用中间表示c，使得输出仅依赖于表示和之前输出的序列。
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/CdI13aLb2A.png?imageslim)
+	![i0IOoR.png](https://s1.ax1x.com/2018/10/20/i0IOoR.png)
 
 ## 深度RNN
 -	A.将循环状态加深，分解为多个具有层次的组，即横向加深（一次循环内隐藏层更新经过多次状态）
 -	B.在输入到隐藏，隐藏到输出，隐藏到隐藏之间引入神经网络，即对隐藏层状态不仅横向（时间步）加深，而且纵向（一次训练）加深
 -	C.引入跳跃连接来缓解加深网络后导致的路径延长效应
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/clfEmm1Kj5.png?imageslim)
+	![i0IjF1.png](https://s1.ax1x.com/2018/10/20/i0IjF1.png)
 
 ## RNN中的长期依赖问题
 -	长期依赖问题：模型变深，失去了学习到先前信息的能力
@@ -85,21 +95,21 @@ mathjax: true
 # LSTM
 -	LSTM：使自循环的权重视上下文而定（通过门控控制此循环的权重）
 -	LSTM将普通RNN中的隐藏层节点（细胞）改造，内部结构如下图：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/6iK5ld6Aij.png?imageslim)
+	![i0IvJx.png](https://s1.ax1x.com/2018/10/20/i0IvJx.png)
 -	可见除了RNN中细胞之间的循环之外，细胞内包含一个遗忘门控制（遗忘多少）的内循环。细胞有一个内部状态s，不同于不同时间步之间隐藏层更新用到的细胞输出h
 -	所有门控单元具有sigmoid非线性，输入单元是普通神经元，可以用任意非线性激活函数。
 -	三个门接受相同类型的输入，即当前输入x，前一时间步细胞输出（而不是细胞内部状态s）h，各自有独立的权重矩阵和偏置，输出都过一个sigmoid输出一个（0,1)之间的值，分别代表当前内部状态s对上一时间布内部状态的记忆程度、当前内部状态对当前输入的记忆程度、当前输出对当前细胞内部状态的依赖程度。
 -	内部状态更新s：根据两部分信息更新：由遗忘门控制的上一步内部状态，由输入门控制的输入和上一时间步细胞输出（未在图中画出？）之和。
 -	细胞输出h，内部状态过激活函数，由输出门控制。
 -	另一张更好理解的图：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/5f3GlGB9Ek.png?imageslim)
+	![i0IxW6.png](https://s1.ax1x.com/2018/10/20/i0IxW6.png)
 
 # 双向LSTM
 -	同双向RNN，每一个隐藏层节点都是lstm节点，且双向的两个隐藏层节点之间没有连接，需要将两个隐藏层全部更新完才能计算输出层，每一时间步的输出依赖w1到w6共6个权重矩阵。
 -	因为每一个输出层节点接受两个隐藏层节点的输出，需要做一个处理，有多种方式：
  -	直接连接(concat)	
  -	求和
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/B4FKeKIc7f.png?imageslim)
+	![i0oSSK.png](https://s1.ax1x.com/2018/10/20/i0oSSK.png)
 
 # 词嵌入、Word2Vec
 -	使用词的分布式表示（词嵌入或词向量）对自然语言序列建模，通过上下文-单词对(one-hot向量)的训练，得到神经网络，并将输入层到隐藏层的权重矩阵看成包含了词典中所有单词词向量，即词向量矩阵。此时再将单独的one-hot词向量通过神经网络，就可以借助权重矩阵（词向量矩阵）在隐藏层中得到这个词的低维词嵌入。因为词向量是通过上下文-单词对进行训练得到的副产品，因此这种词向量在空间上的距离具有实际意义，即语义上有联系的单词向量之间的距离较近。这种生成方法的一个问题是高维生成，因为神经网络中输出是词向量过softmax还原成一个one-hot向量，代表各个词的概率，词典容量非常大时会导致最后输出层计算量非常大。W2V是具有实用价值的产生词向量的方案，在使用NLM模型产生词向量的基础上进行优化，解决了高维问题，它利用了两套优化方案：

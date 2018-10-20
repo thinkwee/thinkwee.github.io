@@ -13,7 +13,7 @@ html: true
 ***
 
 <!--more-->
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170306/215446798.jpg)
+![i0onl8.jpg](https://s1.ax1x.com/2018/10/20/i0onl8.jpg)
 
 # 简介
 -   K-Means是简单的基于划分的聚类方法，要解决的问题是，现在有n个样本(点集X)，将他们的特征向量投射到高维空间中，根据空间分布可以大致划分成几个子空间，每个子空间中的点属于同一类，现在需要计算出每个点所在的类，大致思想就是随机选择k个点(中心点集C)作为中心点，其余的点自己站队：离k个中心点里哪个点最近就站那个点的队，即和那个中心点划分到同一类中，这样就能形成k个类，重复上过程，期间引入一个损失评估，比如以各个类中的点到这个类中心点距离的和作为评估指标，当指标小于某一程度或者指标变化小于某一程度就停止重复
@@ -32,7 +32,7 @@ html: true
 
 ## 数据检视
 -	Iris是鸢尾花分类数据集，150个样本，均匀分成3类，每一个样本有4个属性
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170316/143719952.JPG)
+	![i0otpV.jpg](https://s1.ax1x.com/2018/10/20/i0otpV.jpg)
 
 
 
@@ -188,21 +188,21 @@ html: true
 	平均精确率:89%
 	召回率:0.88
 	F1指标:0.88
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170316/143801503.JPG)
+	![i0o1Ts.jpg](https://s1.ax1x.com/2018/10/20/i0o1Ts.jpg)
 
 -	KNN程序输出
 	预测正确率:71.05%
 	平均精确率:86%
 	召回率:0.71
 	F1指标:0.70
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170316/143752944.JPG)
+	![i0oKOg.jpg](https://s1.ax1x.com/2018/10/20/i0oKOg.jpg)
 
 -	原始分类
 	可以看到这个数据集本身在空间上就比较方便聚类划分
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170307/203100875.gif)
+	![i0oQmQ.gif](https://s1.ax1x.com/2018/10/20/i0oQmQ.gif)
 
 -	预测分类
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170307/203121208.gif)
+	![i0o8kn.gif](https://s1.ax1x.com/2018/10/20/i0o8kn.gif)
 
 
 

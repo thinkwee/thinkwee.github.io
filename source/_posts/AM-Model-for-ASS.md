@@ -22,31 +22,31 @@ mathjax: true
 -	Jason Weston(Facebook AI Research)
 <!--more-->
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/G6AJc4Fe8L.png?imageslim)
+![i0IyQS.png](https://s1.ax1x.com/2018/10/20/i0IyQS.png)
 
 # 原文地址
 -	[A Neural Attention Model for Abstractive Sentence Summarization](https://arxiv.org/pdf/1509.00685.pdf)
 
 # 翻译
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/Ce57b735eC.JPG)
+![i0I0it.jpg](https://s1.ax1x.com/2018/10/20/i0I0it.jpg)
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/AJ01DbFcGa.JPG)
+![i0IdII.jpg](https://s1.ax1x.com/2018/10/20/i0IdII.jpg)
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/AdiCCclB88.JPG)
+![i0IBJP.jpg](https://s1.ax1x.com/2018/10/20/i0IBJP.jpg)
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/9lDk2jjmFB.JPG)
+![i0IadA.jpg](https://s1.ax1x.com/2018/10/20/i0IadA.jpg)
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/fHk47h6CdD.JPG)
+![i0Irz8.jpg](https://s1.ax1x.com/2018/10/20/i0Irz8.jpg)
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/CgEDiFd913.JPG)
+![i0IDRf.jpg](https://s1.ax1x.com/2018/10/20/i0IDRf.jpg)
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/KGD08gJ22E.JPG)
+![i0I2Zj.jpg](https://s1.ax1x.com/2018/10/20/i0I2Zj.jpg)
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/FkaFDDH8Db.JPG)
+![i0I6sg.jpg](https://s1.ax1x.com/2018/10/20/i0I6sg.jpg)
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/ekAkH14d34.JPG)
+![i0IcLQ.jpg](https://s1.ax1x.com/2018/10/20/i0IcLQ.jpg)
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/I4KLcIkGmL.JPG)
+![i0IRds.jpg](https://s1.ax1x.com/2018/10/20/i0IRds.jpg)
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180704/Ge10L0fLig.JPG)
+![i0IWon.jpg](https://s1.ax1x.com/2018/10/20/i0IWon.jpg)

@@ -92,7 +92,7 @@ print(X[1,:,0])
     
 
 
-![png](http://ojtdnrpmt.bkt.clouddn.com/blog/180924/2L2I5jDbKE.png?imageslim)
+![i0Ihiq.png](https://s1.ax1x.com/2018/10/20/i0Ihiq.png)
 
 
 ### Goal and plan
@@ -550,7 +550,7 @@ for i, (l, it) in enumerate(zip(lens, iters)):
 ```
 
 
-![png](http://ojtdnrpmt.bkt.clouddn.com/blog/180924/KJ8A3g5k9C.png?imageslim)
+![i0omSf.png](https://s1.ax1x.com/2018/10/20/i0omSf.png)
 
 
 And this is the background:
@@ -561,7 +561,7 @@ show(B)
 ```
 
 
-![png](http://ojtdnrpmt.bkt.clouddn.com/blog/180924/E23FKdKe42.png?imageslim)
+![i0I4J0.png](https://s1.ax1x.com/2018/10/20/i0I4J0.png)
 
 
 ### Optional part: hard-EM

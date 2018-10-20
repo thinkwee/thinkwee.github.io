@@ -19,11 +19,7 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
 
 <!--more-->
 
-![](http://ojtdnrpmt.bkt.clouddn.com/17-1-16/24437570-file_1484550130084_2fc4.png)
-
-# 整体结构
-
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170123/205417119.JPG)
+![i0IHL4.png](https://s1.ax1x.com/2018/10/20/i0IHL4.png)
 
 # 学习的内容
 -	Android基本架构，组件，生命周期

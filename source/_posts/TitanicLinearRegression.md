@@ -16,8 +16,6 @@ date: 2017-02-07 21:57:22
 
 <!--more-->
 
-![](http://ojtdnrpmt.bkt.clouddn.com/17-1-15/62213897-file_1484471472044_c2cc.jpg)
-
 
 2017年2月更新:用pandas重新整理了数据，计算了详细的正确率，试用了scikit-learn中的LinearRegression
 
@@ -25,7 +23,7 @@ date: 2017-02-07 21:57:22
 
 下面是数据集表格样式，每个人有12个属性
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170205/103436937.JPG)
+![i0TjxK.jpg](https://s1.ax1x.com/2018/10/20/i0TjxK.jpg)
 
 
 ***
@@ -252,7 +250,7 @@ date: 2017-02-07 21:57:22
 
 写的时候把年龄中缺失值全删除了，官方给了891条数据，我分了193条用于验证计算正确率，最后正确率是75.155280 %
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170207/220426082.JPG)
+![i0TzrD.jpg](https://s1.ax1x.com/2018/10/20/i0TzrD.jpg)
 
 代码如下
 
@@ -323,11 +321,11 @@ date: 2017-02-07 21:57:22
 # scikit-learn中的多元线性回归
 试了一下scikit,增加了几个属性，一样的数据，但是好像有些属性不太好，导致正确率下降至64.375000 %
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170207/220441164.JPG)
+![i0TxKO.jpg](https://s1.ax1x.com/2018/10/20/i0TxKO.jpg)
 
 如果再模型的fit阶段出现错误，请检查你fit的x,y数据集是否出现了空元素，无限大元素，或者各个属性的长度不一致，可以用info()做一个概览
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170210/093538631.JPG)
+![i07DRx.jpg](https://s1.ax1x.com/2018/10/20/i07DRx.jpg)
 
 ```Python
     train=train.dropna(subset=['Age','Embarked'],axis=0)

@@ -10,7 +10,6 @@ categories: Python
 
 <!--more-->
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170526/191951436.jpg)
 
 # 功能
 -	从android客户端接收的数据都是json格式，base64编解码。以我们自定义的特殊字符串结尾，服务器在建立与一个终端的连接后开一个处理的线程

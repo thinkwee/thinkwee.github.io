@@ -13,7 +13,7 @@ html: true
 介绍拉格朗日乘子法及其推广KTT条件，以及它们在PCA和SVM中的应用
 <!--more-->
 
-![](http://ojtdnrpmt.bkt.clouddn.com/blog/20170318/112133081.png)
+![i0olwj.png](https://s1.ax1x.com/2018/10/20/i0olwj.png)
 图片来自wikipedia关于拉格朗日乘子法的形象介绍
 
 # 拉格朗日乘子法

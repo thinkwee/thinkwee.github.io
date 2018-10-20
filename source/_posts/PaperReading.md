@@ -17,7 +17,7 @@ mathjax: true
 主要关注自动文摘方向
 <!--more--> 
 
-![](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/14f9JEiGeI.jpg?imageslim)
+![i0o00J.jpg](https://s1.ax1x.com/2018/10/20/i0o00J.jpg)
 
 # Neural Machine Translation By Jointly Learning To Align And Translate
 -	发布于2015.5(ICLR2015)，作者Dzmitry Bahdanau。
@@ -26,35 +26,42 @@ mathjax: true
 -	生成每一个单词时有不同的表示。
 -	权重由所有步编码隐藏层向量和前一步的解码隐藏层向量决定。
 -	对所有步编码隐藏层向量加权生成表示。
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/2a61D9C0bJ.png?imageslim)
+	![i0oB79.png](https://s1.ax1x.com/2018/10/20/i0oB79.png)
 
 # Effective Approaches to Attention-based Neural Machine Translation
 -	发布于2015.8，作者（Minh-Thang Luong）使用RNN编码器解码器模型，翻译任务。
 -	其中解码时是将包含注意力的表示和目标单词对应的解码隐藏层向量连接再经激活函数生成注意力向量：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/Jhd4h2ic23.png?imageslim)
+	$$
+	h_t = tanh(W_c[c_t;h_t])
+	$$
 	之后注意力向量过softmax生成概率分布。
 	
 ## 全局注意力
 -	文章先介绍全局注意力模型,即对全部编码隐藏层信息进行注意力加权生成表示,这样会导致对齐向量长度不定(对齐向量对输入信息加权,长度和输入句子的单词数相同).上文中Dzmitry Bahdanau提出的模型即全局注意力模型。本文中的全局注意力模型更为一般化：未使用双向RNN拼接输入向量而是普通的RNN；直接用当前步解码隐藏层向量计算权重，而不是前一步，避免了复杂计算。
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/aEl1fi1b3B.png?imageslim)
+	![i0oH9P.png](https://s1.ax1x.com/2018/10/20/i0oH9P.png)
 -	之后引入了两种Effective Approaches，即局部注意力和input-feeding。
 
 ## 局部注意力
 -	局部注意力：不使用全部输入信息，而是对每一个输出的单词先生成一个对齐位置，然后只对对齐位置附近窗内的输入信息注意力加权生成表示。文章给出了两种种生成对齐位置的方式：
  -	单调对齐：简单的将第i输出单词的对齐位置设为i,显然在文摘中这种方式不可取。
  -	预测对齐：训练对齐位置。
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/2km3e0C7Hl.png?imageslim)
-	其中ht是第t个生成单词的隐藏层向量
-	Wp和vp都是需要训练的权重
+	$$
+	p_t = S \cdots sigmoid(v_p^T tanh(W_ph_t)) \\
+	$$
+	其中$h_t$是第t个生成单词的隐藏层向量
+	$W_p$和$v_p$都是需要训练的权重
 	S是输入单词长度,与sigmoid相乘就得到输入句中任意位置
 -	另外为了使得对齐位置的权重最大，先以对齐位置为期望、半窗长为标准差生成高斯分布，再以此为基础生成权重。
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/Fk5dLHDFIf.png?imageslim)
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/HGb9LdgmKf.png?imageslim)
+	$$
+	a_t(s) = align(h_t,h_s)exp(-\frac{(s-p_t)^2}{2\sigma ^2})
+	$$
+	![i0ost1.png](https://s1.ax1x.com/2018/10/20/i0ost1.png)
+
 
 ## Input-feeding
 -	Input-feeding：生成对齐时还需要依赖过去的对齐，实际实现是将上一步的注意力向量作为下一步解码隐藏层的feed，好处在于模型可以完全了解之前的对齐决策，而且在水平层次和垂直层次上创造了一个非常深的网络。
 -	实验结果表明使用预测对齐的局部注意力模型表现最好。
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/6ag84hdbdg.png?imageslim)
+	![i0oyfx.png](https://s1.ax1x.com/2018/10/20/i0oyfx.png)
 
 # A Neural Attention Model for Abstractive Sentence Summarization
 -	发布于2015.9，作者Alexander M. Rush，解码器编码器模型，文摘任务。
@@ -63,7 +70,7 @@ mathjax: true
 -	使用全部输入信息,局部输出信息(yc)构建注意力权重。
 -	直接对平滑化的输入句子的词向量矩阵加权而不是RNN隐藏层向量。
 -	模型如下图:
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/1ihKc65elf.png?imageslim)
+	![i0ocp6.png](https://s1.ax1x.com/2018/10/20/i0ocp6.png)
 	
 # Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond
 -	发布于2016.8，作者Ramesh Nallapati。编码器解码器模型，使用RNN，注意力，文摘任务。
@@ -75,19 +82,18 @@ mathjax: true
 
 ## Feature-rich Encoder
 -	不使用简单的只表示语义距离的词向量，而是构建包含了实体信息等多种语义特征，分别构成向量并拼接起来形成新的词向量
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/ekCiaiiCK5.png?imageslim)
+	![i0og1K.png](https://s1.ax1x.com/2018/10/20/i0og1K.png)
 	
 ## Switching Generator-pointer
 -	解决罕见词，额外词问题。解码器的词典是固定的，如果测试文本中包含词典外的单词该如何解决。其提供的解决方案是给解码器加上一个开关，开关打开时就普通的使用自己词典生成，开关关上时，就产生一个指针指向输入文本中的一个单词，并将其复制入文摘。
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/8FK4CfIBmm.png?imageslim)
+	![i0oRXD.png](https://s1.ax1x.com/2018/10/20/i0oRXD.png))
 	Switching generator/pointer model
 	开关为G时就用传统方法生成文摘
 	开关为P时就从输入中拷贝单词到文摘中
 	
 ## 分层注意力
 -	传统的注意力是指关注句子中的关键词位置，分层还包括上一层，即文本中的关键句位置。使用两层双向RNN分别在词层次和句层次捕捉注意力。注意力机制同时运行在两个层次之上，词层次的注意力权重会被句层次的注意力权重重新加权调整。
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/JfLDj1G2Hb.png?imageslim)
-
+	![i0ofne.png](https://s1.ax1x.com/2018/10/20/i0ofne.png)
 # Recurrent Neural Network Regularization
 -	本文介绍了如何在循环神经网络中使用dropout来防止过拟合
 -	Dropout是指在深度神经网络当中，在每次训练时随机丢掉某些隐藏层的某些节点，测试时不丢弃节点但是将节点输出乘以丢弃概率。这种方法可以有效解决深度学习费时且容易过拟合的问题。
@@ -95,13 +101,13 @@ mathjax: true
 -	在RNN中不能直接按时间步丢弃隐藏层节点，因为这样会丢失RNN所需要的长期依赖信息，引入很大的噪声破坏了学习过程。
 -	作者提出的是按层丢弃节点，即使用多层RNN结构，即便丢失了一层中的某一时间步的节点，其他层的相同时间步的节点也能传递过来，不破坏序列的长期依赖信息
 -	效果如图:
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/ji48kaCe2H.png?imageslim)
+	![i0ov7j.png](https://s1.ax1x.com/2018/10/20/i0ov7j.png)
 
 # Building End-To-End Dialogue Systems Using Generative Hierarchical Neural Network Models
 -	本文介绍了使用完全数据驱动的分层RNN端到端模型来构建non-goal-driven的自然语言对话系统。
 -	训练数据是从电影字幕中提取的triples，即两个对话人按A-B-A的顺序完成三次表达。
 -	分层的结构不是简单的增加RNN隐藏层层数，而是分别在词水平和句水平构建两个RNN，如下图。
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/HkHJghaaa0.png?imageslim)
+	![i0TC90.png](https://s1.ax1x.com/2018/10/20/i0TC90.png)
 	三段式对话包含在两个词水平RNN端到端系统中
 	中间生成的句表示又作为更高层次即句水平RNN的隐藏层向量
 -	文章中使用了bootstrapping的技巧，即用一些预先训练好的数据作为模型的初始值。例如用w2v在大语料库中训练好词嵌入矩阵的初始值。本文中甚至将整个模型都预训练好了，原理是使用QA系统的二段式对话大语料库预训练整个模型，第三段设为空。在实际训练中，先预训练词嵌入完成词嵌入的初始化，然后预训练整个模型4个epoch，最后固定词嵌入不变接着预训练整个模型到最佳值。
@@ -125,12 +131,12 @@ mathjax: true
 -	作者认为现有的编码器中，使用RNN能很好的捕捉序列的顺序信息但是慢；使用纯注意力机制（就如同A Neural Attention Model for Abstractive Sentence Summarization中不使用RNN而是直接对词向量序列进行注意力加权）虽然能利用现有的分布式或者并行式计算框架加速运算，却丢失了序列的顺序信息。因此作者提出了一种能捕捉序列顺序信息的纯注意力编码器结构，结合了两者的优点。
 -	作者首先提出了三种注意力概念：多维度注意力，自注意力，有向注意力。
 -	传统的注意力是对一个句子中各个单词加权，权值是标量。而多维度注意力中权值是向量，维度和词向量维度相同。使用多维度的理由在于这样是对每一个词的每一个特征进行注意力加权，词向量本身具有一词多义性，传统的对整个词向量进行加权的注意力机制对同一个词在不同上下文环境中的情况不能很好区分，多维度是对词向量的每一个分量加权，它可以给能表示当前上下文环境的特征更多的注意力权重。我的理解是对词向量的分量进行注意力加权，这样相当于同一个词在不同的上下文环境中有略微不同的表示，可以用来区分。下图是传统注意力与多维度注意力的区别。
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/IkFjGiG4L8.png?imageslim)
+	![i0ojBQ.png](https://s1.ax1x.com/2018/10/20/i0ojBQ.png)
 	右边是多维度注意力
 	可以看到注意力权重变成了向量，与输入词向量维度数相同
 -	一般的注意力权重是编码输入和一个解码输出作为参数生成，权重与当前输出有关。自注意力与解码端无关，要么用本句子中的每一个词替代解码输出，要么用整个输入句子替代解码输出。前者与多维度结合形成token2token注意力，后者与多维度结合形成source2token。
 -	有向注意力即在生成token2token注意力时根据需要添加一个掩码矩阵，矩阵元素为0或者负无穷。矩阵可以为上三角或者下三角，代表两个方向的掩码，例如从i到j是0，从j到i是负无穷，则在token2token中词之间的注意力就有了方向，不正确方向的注意力过softmax之后会降到0，而正确方向的注意力不受影响。掩码矩阵还有第三种，无对角线矩阵，即对角线上的值为负无穷，这样token2token中一个单词对自己不会产生注意力。有向注意力如下图：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/km7mbBdDmC.png?imageslim)
+	![i0ozAs.png](https://s1.ax1x.com/2018/10/20/i0ozAs.png)
 -	最后有向自注意网络的构成利用了以上三种注意力，首先上下三角两种掩码搭配多维度token2token可以产生前向后向两个自注意力向量，类似blstm，然后将向量连接，过一个多维度source2token产生最终的编码输出。作者测试了这种编码能在自然语言推测和情感分析任务中达到最佳水平，也可以作为其他模型的一部分在其他任务中使用。
 
 # Neural Summarization by Extracting Sentences and Words
@@ -146,7 +152,7 @@ mathjax: true
 
 # A DEEP REINFORCED MODEL FOR ABSTRACTIVE SUMMARIZATION
 -	使用强化学习来优化当前的端到端生成式文摘模型
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/HIEJhaelI8.png?imageslim)
+	![i0TicT.png](https://s1.ax1x.com/2018/10/20/i0TicT.png)
 -	解决长文摘生成和重复短语问题
 -	强化学习需要外界给予模型反馈，这里作者使用人工对生成的文摘进行评价并反馈给模型，使得模型可以生成可读性更好的文摘
 -	模型的改进主要在两点：在编码端和解码端分别加入了内注意力，其中编码端是之前提出过的，本文主要引入解码端的内注意力机制；提出了一种新的目标函数，结合了交叉熵损失和来自强化学习的奖励
@@ -157,83 +163,24 @@ mathjax: true
 -	在搭建端到端模型时作者还采用了一些其他前人提出过的技巧，例如使用复制指针和开关解决稀疏词问题，编码解码共享词嵌入矩阵，另外还特别提出了一个小技巧：基于观察，一般文摘中不会出现重复的三词短语，因此在解码端束搜索中若出现了重复的三词短语就剪枝。
 -	之后作者分析了静态的监督学习在文摘评价标准中常常取不到理想结果的两个原因：一是exposure bias，即模型在训练时是接触到了正确的输出(ground truth)，但是在infer时是没有正确输出做矫正的，因此如果infer时错了一个词，之后错误会越积越大；二是文摘生成本身不是静态的，没有标准答案，而好的文摘有许多种可能（文摘评价标准中一般考虑了这些可能），但使用最大似然目标函数的静态的学习方法扼杀了这些可能。
 -	因此作者在监督学习之外为文摘任务引入了policy learning，一种策略搜索强化学习方式。在强化学习中模型不是以生成与标签最相似的输出为目标，而是以最大化某一种指标为目标。在这里作者借鉴了图像标注任务中的一种强化学习算法：self-critical policy gradient training algorithm：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/I631A6dL8J.png?imageslim)
+	$$
+	L_{rl} = (r(y)-r(y^s))\sum _{t=1}^n log p(y_t^s | y_1^s,...,y_{t-1}^s,x)
+	$$
 	r是人工评价奖励函数
 	两个r函数的参数：前者是最大化输出概率得到的基准句子，后者是根据每一步输出条件概率分布采样得到的句子
 	目标是最小化这个L目标函数，假如采样的句子得到的人工奖励比基准句子多，则这个最小化目标函数等价于最大化采样句子的条件概率（前面的两个r函数计算之后为负号）
 -	之后作者将监督学习和强化学习的两种目标函数结合起来：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/bbkcG52m3E.png?imageslim)
-
-# Thumbs up? Sentiment Classification using Machine Learning Techniques
--	较早的一篇概述用机器学习方法实现文本的情感分类
--	使用电影评论作为数据，因为容易获得标注
--	通过实验证明简单的人工添加情感关键词并不能做到很好的分类
--	为了证明情感分类是否是文本主题分类的一种二分类特殊情况，使用在文本主题分类中取得很好效果的三种方案来进行情感分类：朴素贝叶斯、最大熵分类、支持向量机
--	那时使用人工提取的特征，例如特殊的单词、词组。
--	使用朴素贝叶斯的话需假定各个特征在给定输入下条件独立
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/JAGd4Fm0md.png?imageslim)
-	d是输入文本，c是分类
-	d的各个特征条件独立下可以将公式化为：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/d2eaGg3lIg.png?imageslim)
-	f是特征，n是特征维度的值，这里是离散的整数值
--	因此对文章统计计算最大似然估计，乘以先验概率即可得到后验概率，使用了add-one smoothing（防止分母为0？）。因为是假设的特征独立，所以如果提取的特征独立性好的话贝叶斯能取得较好效果。
--	使用最大熵分类，相比朴素贝叶斯，最大熵使用了另一个公式估计后验概率：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180307/0KkljD37i9.png?imageslim)
-	其中Z(d)是规范化因子，F是特征函数，λ是特征权重
--	这是用拉格朗日乘子法求解有约束条件的最优化问题得到的解。其中约束条件：特征函数关于联合经验分布的期望与特征函数关于后验概率和边缘经验分布乘积的期望相同。而最优化：使定义在后验概率上的条件熵最大。其隐藏含义是我们应该选择这样的模型：在保持已有数据的一致性上，做出最少的假设（熵最大）。最大熵不需要假设特征相互独立，因此应该有更好的表现。
--	支持向量机的思想是找到一个超平面，不仅能够将数据分类，而且分类出来的间隔最大。
--	使用均匀分布（一半正一半负）的数据，进行三折交叉验证，将标点符号作为独立语法单位。
--	为了解决一种contextual effect of negation（即not very good与good意思恰恰相反），将两个否定词之间的每一个词、否定词后接的第一个标点符号都加上NOT_标签。
--	使用语料库中出现最多的前多少个一元、二元词组作为特征。
--	在最大熵中特征函数是presence的，即只有1和0的区别，而在svm和贝叶斯中特征值是定量的，假如将svm和贝叶斯中的特征值二值化会怎样呢？结果与主题分类相反，在情感分类任务中，将特征值二值化会使svm和贝叶斯表现提升，svm提升尤为明显。
--	作者还尝试为每一个词标注POS信息，但是效果有好有坏，贝叶斯的精确度略有提高，SVM下降，最大熵不变；只使用形容词作为特征，然而效果并不好，使用相同数量的最频繁的单词效果更好；为每一个词标注位置信息（段首，段中，段末）也没有特别改善结果。
--	结果：SVM最好，贝叶斯最差，一元单词特征最好，但整体结果比主题分类的效果差。作者指出了他使用的训练集（电影评论）中常出现欲扬先抑的现象，机器学习方法难以识别真正的情感。
-
-# 基于双重注意力模型的微博情感分析方法
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/E9jaE6AcFB.png?imageslim)
--	情感符号库和符号集合构建：先构建好情感符号库，包括情感词，表情符号，程度副词，否定词，网络用语。针对训练的每一条微博文本构建情感符号集合，先分词，对每一个词：在情感词库中则直接加入；程度副词加后接的情感词作为整体加入，删除重复情感词；否定词加情感词，否定词加程度副词加情感词，删除重复词组。
--	词向量表示层：在词嵌入构造时有一个词向量矩阵，对每一段文本有两个输入序列：原文本和仅包括情感符号的文本，所以对每一段文本，构造两个词向量：普通语义词向量和情感词向量。
--	语义获取层：对原文本使用BiLSTM+Attention模型，对情感符号文本采用全连接+attention。通过拼接正反两个方向的LSTM输出构造BiLSTM输出。作者认为微博文本中的情感符号较简单，每个情感符号仅具有情感加强或者减弱的作用，情感符号相互之间不存在较强的语义依赖关系。因此使用全连接网络。与标准Bahdanau Attention不同的是，情感分析是普通分类任务，不具有序列到序列模型，因此在构造注意力权重时参数只有输入端的词向量，作者为此引入了一个随机初始化的上下文向量A：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/Ej83dIEagl.png?imageslim)
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/4jDkmhKDh1.png?imageslim)
-	其中W、b、A均为训练学习到的参数，对原文本和情感符号文本分别设立A，
--	语义合成层：直接拼接两个词向量。
--	情感计算层：softmax分类，交叉熵损失，情感标签包括开心、喜欢、讨厌、生气、憎恶等等，使用NLPCC2013、2014数据集，相比非深度学习和无注意力深度学习方法结果有所改进。
-
-# 基于情感词向量的微博情感分类
--	本文在w2v训练出来的初始词向量上进行了情感调整，考虑了情感倾向信息。
--	首先用w2v训练出原始词向量，再针对每一个情感种子词（已知情感标签的词），使用一个改进的情感CBOW-W2V模型，训练出一个情感向量调整值，对种子词以及种子词的上下文进行调整。
--	对负采样CBOW模型进行改进，将输出层的softmax词分类改为情感标签分类，极大化公式为：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/A300DIhIDL.png?imageslim)
--	其中S是情感标签，取对数之后，针对每一个情感种子词，最大化目标函数可以写成：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/kl5JeLec9b.png?imageslim)
--	分别对Xw和THETAs求导，得到上下文词向量的平均调整量和中心词向量的调整量：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/8e88bi8Lh8.png?imageslim)
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/I0KBEGG94b.png?imageslim)
--	之后类似反向传播学习的方式进行学习（调整）：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/Le6A1e20bh.png?imageslim)
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/49aLkb5AH8.png?imageslim)
--	改进了词向量之后是完成情感分类的任务。文章使用了3种方案：SVM，logistics回归（情感只分正负类），CNN。
--	提到了两种由词向量得到文本向量的方法：使用TF-IDF值进行加权；对词向量序列使用CNN得到多个一维特征，再进行max-pooling下采样。
-
-# 用于微博情感分析的一种情感语义增强的深度学习模型
--	本文强调了表情符号比情感词在微博中更能起到指示文本情感的作用，借助词向量表示技术 ,为常用表情符号构建情感空间的特征表示矩阵 ;基于向量的语义合成计算原理 ,通过矩阵与词向量的乘积运算完成词义到情感空间的映射 ;
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/h5b728245A.png?imageslim)
--	第一层（词向量输入层）：为所有单词和符号构建词向量，对表情符号和文本词向量分别拼接形成向量序列
--	第二层（情感语义增强层）：得到表情符号向量序列Re和词向量序列Rm，基于向量的语义合成原理，将两个矩阵相乘（相同维度为向量维数），得到每条微博在情感空间的特征表示E，并提出了一种算法使得反向传播时词向量的L2范数保持不变。
--	第三层（卷积采样层）：对矩阵E进行卷积提取特征（在指定窗口内完成微博文本的语义合成）。再进行下采样。
--	第四层（情感得分层）：下采样之后的向量过MLP获得更高层的特征表示（融合各个卷积核卷积采样之后的结果？），过softmax得到情感标签分类概率。
--	作者认为词向量是矩阵乘积得到的，而不是简单的拼接增加维度，因此减少了模型复杂度，提高了计算效率。
 
 # Distributed Representations of Words and Phrases and their Compositionality
 -	介绍了w2v的负采样版本。
 -	以短语为基本单位训练而不是单词，这样能够更好的表示一些idiomatic phrase。
 -	用nce（噪声对比估计）替代分层softmax，nce近似最大化softmax的对数概率，在w2v中只关心学到好的表示，因此用简化版的nce，负采样，用下式替代输出的条件概率：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/FH1960aACj.png?imageslim)
+	$$
+	p(w_O | w_I) = \frac {exp(v_{w_O}^T v_{w_I})}{\sum _{w=1}^W exp(v_{w_O}^T v_{w_I})}
+	$$
 	被替换成
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/j1mjCDC8DI.png?imageslim)
+	$$
+	log \sigma (v_{w_O}^T v_{w_I}) + \sum _{i=1}^k E_{w_i \sim P_n(w)} [log \sigma (v_{w_O}^T v_{w_I})]
 -	每次在softmax输出层只激活目标label和k个噪声label（即非目标label），即对每一个单词，有k+1个样本，1个正样本，k个采样得到的负样本，进行logistic回归分类，上式即logistics回归的似然函数，其中Pn是噪声的概率分布。
--	对常见词进行降采样，因为常见词的向量表示容易稳定，再训练几百万次也不会发生大的改变，因此每一次对词的训练以下面的概率跳过：
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/180324/AgEkIaGCGJ.png?imageslim)
-	其中f是词频率，t是一个阈值
+-	对常见词进行降采样，因为常见词的向量表示容易稳定，再训练几百万次也不会发生大的改变，因此每一次对词的训练以一定概率跳过：
 -	这样训练出来的skip-gram模型具有很好的加法语义合成性（两个向量的逐分量相加），即俄国+河与伏尔加河相近，因为向量与输出层的概率对数相关，两个向量相加与两个上下文的乘积相关，这种乘积相当于逻辑与：高概率乘高概率为高概率，其余为低概率。因此具有这种简单的算术语义合成性。
