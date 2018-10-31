@@ -77,7 +77,7 @@ html: true
 
 ![i0bQg0.jpg](https://s1.ax1x.com/2018/10/20/i0bQg0.jpg)
 
--	用EM算法做高斯混合模型的推断时，需要推断的参数包括k个高斯模型的均值、方差、比例系数，隐变量代表第j个观测样本来自第k个高斯模型的可能，叫做responsibility，而$n_k$则是对第k个高斯模型在所有样本上的responsibility的总和，除以$$N$即以其均值来更新GMM比例系数，用responsibility加权样本来更新均值，方差同理。
+-	用EM算法做高斯混合模型的推断时，需要推断的参数包括k个高斯模型的均值、方差、比例系数，隐变量代表第j个观测样本来自第k个高斯模型的可能，叫做responsibility，而$n_k$则是对第k个高斯模型在所有样本上的responsibility的总和，除以$N$即以其均值来更新GMM比例系数，用responsibility加权样本来更新均值，方差同理。
 -	在更新完参数之后，再用这些参数重新计算responsibility，重新计算E步骤，再继续做M步骤，从而完成迭代。
 
 # 隐马尔可夫
