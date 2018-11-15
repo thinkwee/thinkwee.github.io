@@ -50,6 +50,7 @@ password: kengbi
 - [x]	the nested chinese restaurant process and bayesian nonparametric inference of topic hierarchies
 - [ ] 	neural architecture search with reinforcement learning
 - [ ] 	an introduction to conditional random fields
+- [ ]	A Joint Selective Mechanism for Abstractive Sentence Summarization
 
 # 一些文摘方面的SOTA
 -	结果从上到下依次是ROUGE-1,ROUGE-2,ROUGE-L
@@ -220,3 +221,30 @@ password: kengbi
 	PE_{(pos,2i)} = sin(pos/10000 ^{2i/d_{model}}) \\
 	PE_{(pos,2i+1)} = cos(pos/10000 ^{2i/d_{model}}) \\
 	$$
+
+# A Joint Selective Mechanism for Abstractive Sentence Summarization
+
+![ivQCE8.png](https://s1.ax1x.com/2018/11/15/ivQCE8.png)
+
+-	文摘不同于翻译，端到端框架应该对损失（信息压缩）建模，而不是和翻译一样单纯对对齐建模
+-	作者针对损失建模，做了两点改进：
+	-	在编码完成之后添加了一个门限用于裁剪编码信息
+	-	添加了一个选择损失，同时关注输入和输出，辅助门限工作
+-	选择门限同时考虑了编码之后的隐藏层状态和原始词嵌入，并作用于隐藏层状态之上，对隐层向量做裁剪，之后再经过注意力加权生成上下文。作者认为这个过程相当于让网络观察rnn处理前后的词嵌入，能够知道输入中的哪个单词对于产生文摘很重要：
+$$
+g_i = \sigma (W_g h_i + U_g u_i) \\
+h_i^{'} = h_i \cdot g_i \\
+$$
+-	而选择损失函数则是在解码端构造了一个回顾门限，考虑了编码端的隐层和原始输入，解码端的隐层和原始输入，解码端每一个位置的回顾门限是对编码端所有位置的回顾门限求平均：
+$$
+r_{i,t} = \sigma (W_r h_i + U_r u_i + V_r s_{t-1} + Q_r w_{t-1}) \\
+r_i = \frac 1m \sum _{t=2}^{m+1} r_{i,t} \\
+$$
+-	作者认为回顾门限的作用相当于让网络阅读产生的文摘，并回顾输入文本，使其知道学会如何挑选文摘。
+-	之后用选择门限和回顾门限的欧氏距离作为选择损失，加入总损失中:
+$$
+d(g,r) = \frac 1n \sum _{i=1}^n |r_i - g_i | \\
+L = -p(y|x,\theta) + \lambda d(g,r) \\
+$$
+-	作者并没有说明为什么将回顾门限和选择门限之间的欧式距离作为损失函数，也没有说明选择门限和注意力的区别，感觉就像是考虑了原始输入embedding的一种注意力机制，且在传统注意力加权之前先对隐层每一时间步做了裁剪。选出来的可视化特例也很精巧，恰恰说明了这个选择机制能识别句子中的转折，因而改变了选择的词，这还是和之前选择门限提出的原论文对比。原论文Selective Encoding for Abstractive Sentence Summarization 也没有说出这种设计的动机。
+
