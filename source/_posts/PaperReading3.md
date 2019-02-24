@@ -65,3 +65,7 @@ password: kengbi
 - [ ]	Stanford’s Graph-based Neural Dependency Parser at the CoNLL 2017 Shared Task
 - [ ]	A Copy-Augmented Sequence-to-Sequence Architecture Gives Good Performance on Task-Oriented Dialogue
 - [ ]	Sentences with Gapping: Parsing and Reconstructing Elided Predicates
+
+# Convolutional Sequence to Sequence Learning
+-	非常直白，编码器和解码器都使用卷积神经网络的序列到序列学习
+-	
