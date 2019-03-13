@@ -154,7 +154,7 @@ $$
 -	对于简单的分布，我们想要做参数推断，只需要做最大似然估计，先求对数似然：
 
 $$
-\theta=\mathop{argmax}_{\theta} L(\theta | X) \\
+\theta=\mathop{argmax}_{\theta} L(X | \theta) \\
 =\mathop{argmax}_{\theta} \log \prod p(x_i | \theta) \\
 =\mathop{argmax}_{\theta} \sum \log p(x_i | \theta) \\
 $$
