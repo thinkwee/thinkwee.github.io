@@ -16,56 +16,6 @@ html: true
 又是咕咕咕的一年
 <!--more--> 
 
-# TODO列表：2018遗留
-- [ ]	self-critical sequence training for image captioning
-- [x]	recurrent highway networks
-- [x]	recurrent convolutional neural networks for scene labeling
-- [ ]	neural word embedding as implicit matrix factorization
-- [ ]	hierarchically-attentive rnn for album summarization and storytelling
-- [ ]	learning phrase representations using rnn encoder-decoder for statistical machine translation
-- [ ]	incorporating copying mechanism in sequence-to-sequence learning
-- [ ]	generating sentences from a continuous space
-- [ ]	calculus on computational graphs: backpropagation
-- [ ]	cutting-off redundant repeating generations for neural abstractive summarization
-- [ ]	attention and augmented recurrent neural networks
-- [ ]	admissible stopping in viterbi beam search for unit selection in concatenative speech synthesis
-- [ ]	abstractive document summarization with a graph-based attentional neural model
-- [ ]	addressing the rare word problem in neural machine translation
-- [ ]	abstractive sentence summarization with attentive recurrent neural networks
-- [ ] 	neural architecture search with reinforcement learning
-- [ ] 	an introduction to conditional random fields
-- [x]	A Joint Selective Mechanism for Abstractive Sentence Summarization
-
-# TODO列表：桌面残留
-- [ ]	Research on Multi-Label Propagation Clustering Method for Microblog Hot Topic Detection
-- [ ]	An Introduction to Conditional Random Fields
-- [ ]	Bayesian Reasoning and Machine Learning
-- [ ]	Dynamic Routing Between Capsules
-- [ ]	dimension_reduction
-- [ ]	Contextual String Embeddings for Sequence Labeling
-- [ ]	Graphical Models, Exponential Families, and Variational Inference
-- [ ]	Learning to learn by gradient descent by gradient descent
-- [ ]	Information Theory, Inference, and Learning Algorithms
-- [ ]	DPP
-- [ ]	HLDA
-- [ ]	Infinite Mixture Models with Nonparametric Bayes and the Dirichlet Process
-- [ ]	Global Convergence of Stochastic Gradient Descent for Some Non-convex Matrix Problems
-- [ ]	The Need for Biases in Learning Generalizations
-- [ ]	Discovering Discrete Latent Topics with Neural Variational Inference
-- [ ]	Topic Memory Networks for Short Text Classification
-- [ ]	QuaSE Sequence Editing under Quantifiable Guidance
-- [ ]	Towards Less Generic Responses in Neural Conversation Models A Statistical Re-weighting Method
-- [ ]	Learning to Summarize Radiology Findings
-- [ ]	Graph Convolution over Pruned Dependency Trees Improves Relation Extraction
-- [ ]	COMPOSITIONAL ATTENTION NETWORKS FOR MACHINE REASONING
-- [ ]	Simpler but More Accurate Semantic Dependency Parsing
-- [ ]	Semi-Supervised Sequence Modeling with Cross-View Training
-- [ ]	HOTPOTQA: A Dataset for Diverse, Explainable Multi-hop Question Answering
-- [ ]	Position-aware Attention and Supervised Data Improve Slot Filling
-- [ ]	Stanford’s Graph-based Neural Dependency Parser at the CoNLL 2017 Shared Task
-- [ ]	A Copy-Augmented Sequence-to-Sequence Architecture Gives Good Performance on Task-Oriented Dialogue
-- [ ]	Sentences with Gapping: Parsing and Reconstructing Elided Predicates
-
 # Convolutional Sequence to Sequence Learning
 -	非常直白，编码器和解码器都使用卷积神经网络的序列到序列学习
 -	无论是transformer还是CNN作为encoder，都需要捕获整个句子的语义信息。就目前两者大幅领先RNN的现状开来，相比序列结构，树型结构更适合作为自然语言数据的先验结构。
@@ -75,7 +25,6 @@ html: true
 -	在本文中也引入了注意力，是传统的encoder-decoder间注意力，不同的地方在于
 	-	采用了多层注意力，虽然key依然是encoder最后一层的输出，但是对于decoder每一层都单独引入了注意力。然而作者自己也说decoder不需要太多层，两层足以，因此这个多层注意力可能也没充分利用。况且多层代表decode出每一个词所需要的上下文更多，看来CNN作为decoder并不需要太多上下文，或者说没有充分利用上比较长的上下文。
 	-	注意力的value不是和key一样，而是encoder最后一层的输出加上encoder输入的embedding，作者认为这样可以综合考虑具体和抽象的表示，实际效果也确实要好一些。
--	过了半年google就推出了attention is all you need来怼facebook这篇论文。两者都很犟的拒绝使用RNN作为decoder。我就想知道做了mask的transformer和CNN难道真的比RNN要快上许多、好上许多吗......就没有大牛突发奇想设计出非序列的decoder吗？比如hierarchical的.....
 -	作者提到了bytenet作为参考，但是不知道为啥并没有采用bytenet中的dilation convolution设计。
 
 # A robust self-learning method for fully unsupervised cross-lingual mappings of word embeddings
