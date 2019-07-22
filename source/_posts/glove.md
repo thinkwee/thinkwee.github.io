@@ -24,7 +24,7 @@ html: true
 # 发现
 -	定义：
 	-	$x$：为单个词。
-	-	$X_{ij}$：$x_j$出现在$x_i$的上下文中的次数。
+	-	$X_{ij}$：$x_j$ 出现在$x_i$的上下文中的次数。
 	-	$X_i = \sum _k x_{ik}$：所有词出现在$x_i$的上下文中的次数。
 	-	$P_{ij} = P(j|i) = \frac {x_{ij}} {X_i}$：$x_j$出现在$x_i$的上下文中的概率，即上下文出现频次计数概率化，论文中称之为"co-occurrence probabilities"。
 	-	$r = \frac {P_{ik}}{P_{jk}}$：引入中间词$x_k$，论文中叫"probe word"，通过引入这个$x_k$可以间接的衡量$x_i$和$x_j$的关系，通过$r$即ratio表示。
