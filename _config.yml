@@ -5,7 +5,7 @@
 # Site
 title: Thinkwee's Blog
 subtitle: "Too Stupid to Give Up Learning"
-description: From 0 to 1
+description: Failed Better
 author: Thinkwee
 language: zh-CN
 timezone: Asia/Shanghai
@@ -83,8 +83,60 @@ deploy:
   branch: master
 - type: baidu_url_submitter
 
-    
-all_minifier: true
+# hfc optimization
+hfc_useref:
+  enable: true
+  concat: true
+  exclude:
+
+hfc_html:
+  enable: true
+  exclude: 
+
+hfc_css:
+  enable: true
+  exclude: 
+    - '*.min.css'
+
+hfc_js:
+  enable: true
+  mangle: true
+  compress:
+  exclude: 
+    - '*.min.js'
+
+hfc_img:
+  enable: true
+  interlaced: false
+  multipass: false
+  optimizationLevel: 2
+  pngquant: false
+  progressive: false
+  webp: true
+  webpQuality: 75
+  gifslice: true
+  jpegtran: true
+  jpegrecompress: false
+  jpegrecompressQuality: 'medium'
+  optipng: true
+  svgo: true
+
+hfc_favicons:
+  enable: false
+  src: img/logo.png
+  target: img/
+  html: true
+  opts: false
+  icons:
+    android: true
+    appleIcon: true
+    appleStartup: false
+    coast: false
+    favicons: true
+    firefox: false
+    opengraph: false
+    windows: true
+    yandex: false
 
 search:
   path: search.xml
