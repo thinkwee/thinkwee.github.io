@@ -203,7 +203,8 @@ mathjax:
  *	发现其实之前的博客太花哨了，这次干脆把所有附加功能都整没了，专注写作
  *	上面那2张图已经过时了，可以去我的github里看博客的文件目录
  *	有很多module因为名字太长所以也没有完成备份，感觉还是百度云靠谱
- *  记得针对hexo公式渲染的问题修改转义字符，修改marked.js
+ *  升级mathjax到2.7.5
+ *  改用hexo-renderer-kramed，并修改inline.js转义
 
 # 这位大佬靠谱
 -	网址在这：[HEXO建站备忘录](https://www.vincentqin.tech/posts/build-a-website-using-hexo/)
