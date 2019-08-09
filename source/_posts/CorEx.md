@@ -7,7 +7,6 @@ tags:
   - machine learning
   -	topic model
 mathjax: true
-<!-- password: kengbi -->
 html: true
 ---
 ***
