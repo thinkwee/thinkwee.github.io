@@ -76,7 +76,7 @@ ACL/NAACL 2019 自动摘要相关论文选读
 -	这篇论文来自号称全球最大电信公司NTT的智能实验室，提出了一个多任务模型：阅读理解+自动摘要
 -	论文做了很多实验和分析，并且详细分析了在何种情况下他们的module works，对于摘要部分也利用了许多近年来提出的技巧，而不是简单的拼凑。
 -	这篇论文同样也是在HotpotQA数据集上做，和CogQA那一篇一样，但那一篇用的是full wiki setting，即没有gold evidence，而这篇需要gold evidence因此用了HotpotQA 的distractor setting。
--	对于HotpotQA的distractor setting，监督信号有两部分：answer和evidence，输入有两部分:queryh和context，其中evidence是context当中的句子。作者沿用了HotpotQA论文里的baseline:Simple and effective multi-paragraph reading comprehension，及上图中Query-Focused Extractor以外的部分。基本思想就是将query和context结合，加上一堆FC,attention，BiRNN提取特征，最终在answer部分输出一个answer type的分类和answer span的sequence labelling，而在evidence部分直接接BiRNN输出的结果对每个句子做二分类。
+-	对于HotpotQA的distractor setting，监督信号有两部分：answer和evidence，输入有两部分:query和context，其中evidence是context当中的句子。作者沿用了HotpotQA论文里的baseline:Simple and effective multi-paragraph reading comprehension，及上图中Query-Focused Extractor以外的部分。基本思想就是将query和context结合，加上一堆FC,attention，BiRNN提取特征，最终在answer部分输出一个answer type的分类和answer span的sequence labelling，而在evidence部分直接接BiRNN输出的结果对每个句子做二分类。
 ![mtXczq.png](https://s2.ax1x.com/2019/08/21/mtXczq.png)
 -	作者将evidence这边的监督任务细化为一个query based的summarization，就在BiRNN后面加了一个模块，称之为Query-Focused Extractor(QFE)，相比原始的简单二分类，QFE强调了evidence应该是在query条件下从context中抽取出来的summary，因满足：
 	-	summary内的句子之间应该不能冗余
@@ -87,8 +87,42 @@ ACL/NAACL 2019 自动摘要相关论文选读
 -	由于gold evidence的句子数目不固定，作者采用添加一个EOE的dummy sentence的方法来动态抽取，当抽取到EOE时，模型就不再接着抽取句子。
 -	在训练时，evidence这边的损失函数为：
 	$$
-	L_E = - \sum _{t=1}^{|E|} \log (max _{i \in E \ E^{t-1}} Pr(i;E^{t-1})) + \sum _i min(c_i^t, \alpha _i^t)
+	L_E = - \sum _{t=1}^{|E|} \log (max _{i \in E / E^{t-1}} Pr(i;E^{t-1})) + \sum _i min(c_i^t, \alpha _i^t)
 	$$
 	这里$E$是gold evidence的句子集合，$E^t$是QFE抽取出来的句子集合，$\alpha _i^t$是t时间步query里第i个词的注意力，这里的时间步和前文一致，是抽句子的时间步。而$c^t = \sum _{i=1}^{t-1} \alpha ^i$是coverage向量。
 	损失的前半部分指的是gold evidence的负对数似然损失，依次在抽取句子集合里找拥有最大QFE预测概率的gold sentence，算损失，然后排除这个句子接着找下一个最大的，直到gold sentence找完或者抽取句子集合里找不到gold sentence，后半部分是coverage机制的一个正则化应用，保证挑出来计算损失的句子不会在query上拥有过于重复（集中）的注意力。
 -	作者在HotpotQA和文本蕴含数据集FEVER上做了结果，evidence部分的指标远好于baseline，而answer部分的指标也有较大提升，但不如evidence部分明显，且与BERT模型部分相比还差一点，在full wiki setting的测试集上也被CogQA全面超过，这里作者说存在dataset shift问题。但至少本文仅仅在baseline上添加了一个小模块，就获得了answer部分的8个点的提升，说明精心设计的summarization部分在多任务学习中确实帮助到了answer的选取。 
+
+# BiSET: Bi-directional Selective Encoding with Template for Abstractive Summarization
+-	又是一篇将各个组件拼拼凑凑出来的一个模型，标题其实已经全写出来了：Bi-directional， selective encoding， template，共同组成了BiSET模块，另外两个前置过程：Retrieve和Fast Rerank也是沿用Retrieve, Rerank and Rewrite: Soft Template Based Neural
+Summarization这篇论文里的架构。应该大体是基于soft template的summarization，加上了selective encoding的机制，因此就把这两篇论文放在一起，讨论基于模板的生成式摘要及其改进。
+-	基于软模板的思想是，不要完全让模型来生成句子，而是人给出模板，模型只负责填词。然而完全人工设计模板那就退化到几十年前的方式了，作者的思路是，从已有的gold summary中自动提取模板。
+-	大体分为三步：
+	-	Retrieve：从训练语料中检索出候选软模板
+	-	Rerank：让seq2seq模型学习到template saliency measurement
+	-	Rewrite：让seq2seq模型学习到final summary generation
+-	这种方法应该比较适用于长句压缩，或者说单句生成式摘要，这样待压缩的长句可以作为query进行retrieve
+
+## Retrieve
+-	使用现成的Lucene搜索引擎，给定要压缩的一个长句作为query，从文档集中搜索出top 30篇文档的summary作为候选模板
+
+## Rerank
+-	经过搜索搜出来的摘要（soft template)是按照搜索相关度排序的，但我们需要的是按照摘要相似度排序，因此我们使用ROUGE值衡量soft template和gold summary之间的相似程度，这里的rerank并不是要真的排序出来，而是在生成摘要时综合考虑每个template的rank程度，之后在损失部分可以看出来。
+-	具体而言，先用一个BiLSTM编码器编码输入x和某一个候选模板r，这里是分别编码隐层状态，但是共用编码器，之后将两个隐层状态输入一个Bilinear网络预测出输入x对应的gold summary y和r之间的ROUGE值，相当于这是一个给定x，给r做出saliency prediction的网络：
+$$
+h_x = BiLSTM(x) \\
+h_r = BiLSTM(r) \\
+ROUGE(r,y) = sigmoid(h_r W_s h_x^T + b_s) \\
+$$
+-	这就完成了rerank的监督部分
+
+## Rewrite
+-	这部分就是普通的seq2seq，依然是利用之前编码好的$h_x, h_r$，将其拼接起来送入一个attentional RNN decoder生成摘要，计算损失
+
+## Jointly Learning
+-	模型的损失分为两部分，Rerank部分要保证编码出来的template和输入再经过bilinear之后能正确预测ROUGE值，Rewrite部分要保证生成正确的摘要，相当于在普通的seq2seq生成摘要之外，我还候选了一些其他的gold summary作为输入，这个候选是通过retrieve的方式粗筛选的，具体使用时通过Rerank部分保证encode出来的部分是summary里的template成分，即可以拿出来和gold summary比对的部分，从而辅助rewrite部分decoder的生成。
+
+## result
+-	我们知道做summarization，decoder通过注意力其实是很依赖encoder的输入的，这里的encoder输入既包含template，又包含原始输入，作者给出了几个比较理想的例子，即输出的summary基本上按照template的格式，但是在关键实体部分从原始输入中提取实体填到template summary当中。
+-	虽然如何提取soft template这方面使用了一个比较玄学的rerank loss的方式，但是template的作用确实很明显，模型实际上是找到和gold summary很接近的一个summary作为输入，在此基础上稍加更改(rewrite)，效率远比端到端的seq2seq好，作者还尝试了去掉retrieve，直接从整个语料中找ROUGE最高的summary作为template，最后模型出来的结果高达50的ROUGE-1，48的ROUGE-L】
+-	这种找输出作为输入的操作，其实是对decoder抽象能力不足的一种补偿，是对数据集观察得出的经验方法，能很实际的解决问题
