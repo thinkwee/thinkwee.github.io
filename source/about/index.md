@@ -8,7 +8,7 @@ comments: false
 
 # Works
 
-## DivCNN
+## DivCNN Seq2seq
 <img src="img/divcnn1.png">
 <img src="img/divcnn2.png">
 

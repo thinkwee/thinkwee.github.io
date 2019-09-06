@@ -94,8 +94,7 @@ ACL/NAACL 2019 自动摘要相关论文选读
 -	作者在HotpotQA和文本蕴含数据集FEVER上做了结果，evidence部分的指标远好于baseline，而answer部分的指标也有较大提升，但不如evidence部分明显，且与BERT模型部分相比还差一点，在full wiki setting的测试集上也被CogQA全面超过，这里作者说存在dataset shift问题。但至少本文仅仅在baseline上添加了一个小模块，就获得了answer部分的8个点的提升，说明精心设计的summarization部分在多任务学习中确实帮助到了answer的选取。 
 
 # BiSET: Bi-directional Selective Encoding with Template for Abstractive Summarization
--	又是一篇将各个组件拼拼凑凑出来的一个模型，标题其实已经全写出来了：Bi-directional， selective encoding， template，共同组成了BiSET模块，另外两个前置过程：Retrieve和Fast Rerank也是沿用Retrieve, Rerank and Rewrite: Soft Template Based Neural
-Summarization这篇论文里的架构。应该大体是基于soft template的summarization，加上了selective encoding的机制，因此就把这两篇论文放在一起，讨论基于模板的生成式摘要及其改进。
+-	又是一篇将各个组件拼拼凑凑出来的一个模型，标题其实已经全写出来了：Bi-directional， selective encoding， template，共同组成了BiSET模块，另外两个前置过程：Retrieve和Fast Rerank也是沿用Retrieve, Rerank and Rewrite: Soft Template Based Neural Summarization这篇论文里的架构。应该大体是基于soft template的summarization，加上了selective encoding的机制，因此就把这两篇论文放在一起，讨论基于模板的生成式摘要及其改进。
 -	基于软模板的思想是，不要完全让模型来生成句子，而是人给出模板，模型只负责填词。然而完全人工设计模板那就退化到几十年前的方式了，作者的思路是，从已有的gold summary中自动提取模板。
 -	大体分为三步：
 	-	Retrieve：从训练语料中检索出候选软模板
@@ -124,5 +123,8 @@ $$
 
 ## result
 -	我们知道做summarization，decoder通过注意力其实是很依赖encoder的输入的，这里的encoder输入既包含template，又包含原始输入，作者给出了几个比较理想的例子，即输出的summary基本上按照template的格式，但是在关键实体部分从原始输入中提取实体填到template summary当中。
--	虽然如何提取soft template这方面使用了一个比较玄学的rerank loss的方式，但是template的作用确实很明显，模型实际上是找到和gold summary很接近的一个summary作为输入，在此基础上稍加更改(rewrite)，效率远比端到端的seq2seq好，作者还尝试了去掉retrieve，直接从整个语料中找ROUGE最高的summary作为template，最后模型出来的结果高达50的ROUGE-1，48的ROUGE-L】
+-	虽然如何提取soft template这方面使用了一个比较玄学的rerank loss的方式，但是template的作用确实很明显，模型实际上是找到和gold summary很接近的一个summary作为输入，在此基础上稍加更改(rewrite)，效率远比端到端的seq2seq好，作者还尝试了去掉retrieve，直接从整个语料中找ROUGE最高的summary作为template，最后模型出来的结果高达50的ROUGE-1，48的ROUGE-L
 -	这种找输出作为输入的操作，其实是对decoder抽象能力不足的一种补偿，是对数据集观察得出的经验方法，能很实际的解决问题
+
+## biset
+-	
