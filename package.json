@@ -10,7 +10,7 @@
     "hexo": "^3.9.0",
     "hexo-asset-image": "^1.0.0",
     "hexo-baidu-url-submit": "0.0.6",
-    "hexo-blog-encrypt": "^2.2.3",
+    "hexo-blog-encrypt": "^2.2.4",
     "hexo-deployer-git": "^1.0.0",
     "hexo-filter-cleanup": "^1.2.2",
     "hexo-filter-sequence": "^1.0.3",
