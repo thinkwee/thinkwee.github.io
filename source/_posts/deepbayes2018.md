@@ -5,11 +5,10 @@ tags: [bayes,math,machinelearning]
 categories: 数学
 mathjax: true
 html: true
-password: kengbi
 ---
 
 Deep-Bayes 2018 Summer Camp的习题
-发现自己代码能力果然弱......
+填不动了，就到这吧
 <!--more-->  
 
 # Deep<span style="color:green">|</span>Bayes summer school. Practical session on EM algorithm
