@@ -101,6 +101,17 @@ $$
 -	将图转成句子
 -	AMR图并不好转成句子，因为图并不包含语法信息，一个图可能生成多句不合法的句子，作者两步走，先将AMR图转成PENMAN形式，然后用现有的AMR-to-text来将PENMAN转成句子
 
+# Towards a Neural Network Approach to Abstractive Multi-Document Summarization
+-	这篇论文是上篇论文的扩展，从单文档摘要扩展到多文档摘要，主要是如何将大规模单文档摘要数据集上预训练好的模型迁移到多文档摘要任务上
+-	相比单文档模型，编码端又加了一层文档级别的编码，文档之间并没有依存或者顺序关系，因此没必要用RNN，作者直接用了线性加权,值得注意的是这个加权的权重不应该是固定或者直接学习出来的，而应该根据文档本身决定，因此作者给权重加了一个依赖关系学习出来，依赖文档本身和文档集的关系：
+$$
+w_{m}=\frac{\mathbf{q}^{T}\left[\mathbf{d}_{m} ; \mathbf{d}_{\Sigma}\right]}{\sum_{m} \mathbf{q}^{T}\left[\mathbf{d}_{m} ; \mathbf{d}_{\Sigma}\right]}
+$$
+-	注意力的机制基本不变，decoder的初始状态从单文档变成多文档编码，注意力加权从单篇文档句子数量到多篇文档句子数量。这里带来的一个问题是多文档的句子数量太大了，很多注意力被分散的很均匀，加权之后包含的信息量太大。因此作者将global soft attention给截断了一下，只有top k个句子可以用权重加权，其余的句子直接在编码中被抛弃
+-	单文档到多文档的迁移其实并不是论文的重点，作者在CNN/DM上训练单文档的模型部分，之后在少量DUC数据集上训练多文档的部分，但是这两个数据集挺一致的，很多工作在CNNDM上训练在DUC上测试也能取得不错的效果。
+-	论文的ablation做的非常详细，对比了多种功能图模型方法下的效果，包括Textrank,Lexrank,Centroid
+-	值得注意的是作者使用了编辑距离来衡量文摘的抽象程度
+
 # Abstractive Document Summarization with a Graph-Based Attentional Neural Model
 -	万老师团队的一篇论文，想法非常的好，重要的部分在两点：
 	-	hierarchical encoder and decoder：由于需要在句子级别上做编解码以适应图打分的操作，所以采用了分层的seq2seq，无论编码解码都是word-level加sentence-level
@@ -121,16 +132,7 @@ $$
 -	本文的层次编解码其实起到了很关键的作用，作者并没有一股脑用单词级别的注意力，还是根据句子关系构件图并重排序，在beam search也充分利用了两个层次的信息
 -	从ablation来看，graph attention和sentence beam的效果其实不大，影响ROUGE分数最大的是考虑了bigram overlap的word-level beam search，这也暴露了ROUGE的问题，即我们之前工作中提到的OTR问题
 
-# Towards a Neural Network Approach to Abstractive Multi-Document Summarization
--	这篇论文是上篇论文的扩展，从单文档摘要扩展到多文档摘要，主要是如何将大规模单文档摘要数据集上预训练好的模型迁移到多文档摘要任务上
--	相比单文档模型，编码端又加了一层文档级别的编码，文档之间并没有依存或者顺序关系，因此没必要用RNN，作者直接用了线性加权,值得注意的是这个加权的权重不应该是固定或者直接学习出来的，而应该根据文档本身决定，因此作者给权重加了一个依赖关系学习出来，依赖文档本身和文档集的关系：
-$$
-w_{m}=\frac{\mathbf{q}^{T}\left[\mathbf{d}_{m} ; \mathbf{d}_{\Sigma}\right]}{\sum_{m} \mathbf{q}^{T}\left[\mathbf{d}_{m} ; \mathbf{d}_{\Sigma}\right]}
-$$
--	注意力的机制基本不变，decoder的初始状态从单文档变成多文档编码，注意力加权从单篇文档句子数量到多篇文档句子数量。这里带来的一个问题是多文档的句子数量太大了，很多注意力被分散的很均匀，加权之后包含的信息量太大。因此作者将global soft attention给截断了一下，只有top k个句子可以用权重加权，其余的句子直接在编码中被抛弃
--	单文档到多文档的迁移其实并不是论文的重点，作者在CNN/DM上训练单文档的模型部分，之后在少量DUC数据集上训练多文档的部分，但是这两个数据集挺一致的，很多工作在CNNDM上训练在DUC上测试也能取得不错的效果。
--	论文的ablation做的非常详细，对比了多种功能图模型方法下的效果，包括Textrank,Lexrank,Centroid
--	值得注意的是作者使用了编辑距离来衡量文摘的抽象程度
+
 
 # Topical Coherence for Graph-based Extractive Summarization
 -	基于主题建模构建图，使用ILP做抽取式摘要
