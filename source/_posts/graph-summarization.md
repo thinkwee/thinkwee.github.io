@@ -139,12 +139,6 @@ $$
 -	作者使用了二分图，一边是句子节点，一边是主题节点，两组节点之间用边连接，边的权值是句子中所有单词在某一主题下概率的对数和，除以句子长度做归一化
 -	使用HITS算法在二分图上计算句子的重要程度
 
-# Graph-Based Keyword Extraction for Single-Document Summarization
-
-# Multi-Document Abstractive Summarization Using ILP Based Multi-Sentence Compression
-
-# Integrating Importance, Non-Redundancy and Coherence in Graph-Based Extractive Summarization
-
 # Graph-based Neural Multi-Document Summarization
 -	用GCN做抽取式摘要，在这里GCN起到了一个特征补充的作用，原始的做法就是一个two-level GRU，documents cluster做一个embedding，其中每一个sentence有一个embedding，然后类似IR，拿sentence embedding和documents embedding做一个比较算出salience score，之后再用一个贪心的方法根据分数抽句子，大框架依然是打分-抽取的思路
 -	GCN加进了两层GRU之间，即句子的embedding在一个句子关系图下做了三层GCN，之后再由documents层次的GRU生成documents embedding
@@ -154,3 +148,7 @@ $$
 	-	Towards Coherent Multi-Document Summarization一文中的ADG
 	-	作者在ADG上改进的PDG
 -	之后直接套GCN传播就行了
+
+# Graph-Based Keyword Extraction for Single-Document Summarization
+
+# Integrating Importance, Non-Redundancy and Coherence in Graph-Based Extractive Summarization
