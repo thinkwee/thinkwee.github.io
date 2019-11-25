@@ -12,7 +12,7 @@ mathjax: true
 html: true
 ---
 
-临时抱佛脚，ACL/NAACL/EMNLP关于Knowledge Graph的Embedding、NLG方向论文选读。
+临时抱佛脚，一些关于Graph（大部分是KG）的Embedding、NLG、Matching方向论文选读。
 
 <!--more-->
 
@@ -147,6 +147,53 @@ html: true
 -	重点关注NLG task，作者测试了SQL2Text任务，首先将SQL Query建图，然后使用Graph2Seq。效果显著好于SQL Query到Text的Seq2seq
 
 -	另外在Aggregate的比对实验中发现，Mean Pooling的效果最好，对于Graph Embedding，Pooling based的效果显著好于Node based
+
+# Graph Matching Networks for Learning the Similarity of Graph Structured Objects
+-	google出品，实验和可视化结果一如既往的丰富
+-	两点贡献：
+	-	证明了GNN可以产生用于相似度计算的graph embedding
+	-	提出了attention based的Graph Matching Networks，并超越了baseline
+
+## Graph Embedding Model
+-	baseline:Graph Embedding Model，一个简单的encode-propagation-aggregate模型
+-	encode：将点和边的特征通过MLP编码得到embedding
+-	proprgation：将中心点，邻接点，邻接边的embedding传递到下一层的中心点embedding
+	$$
+	\begin{aligned} \mathbf{m}_{j \rightarrow i} &=f_{\text {message }}\left(\mathbf{h}_{i}^{(t)}, \mathbf{h}_{j}^{(t)}, \mathbf{e}_{i j}\right) \\ \mathbf{h}_{i}^{(t+1)} &=f_{\text {node }}\left(\mathbf{h}_{i}^{(t)}, \sum_{j:(j, i) \in E} \mathbf{m}_{j \rightarrow i}\right) \end{aligned}
+	$$
+-	aggregate：作者用门控的方式将各个节点的embedding加权求和得到最后的graph embedding
+	$$
+	\mathbf{h}_{G}=\operatorname{MLP}_{G}\left(\sum_{i \in V} \sigma\left(\operatorname{MLP}_{\operatorname{gate}}\left(\mathbf{h}_{i}^{(T)}\right)\right) \odot \operatorname{MLP}\left(\mathbf{h}_{i}^{(T)}\right)\right)
+	$$
+
+## Graph Matching Networks
+-	GMN并不像Baseline一样分别对两个图先生成embedding再match，而是接受两个图作为输入直接输出similarity score。
+	$$
+	\begin{aligned} \mathbf{m}_{j \rightarrow i} &=f_{\text {message }}\left(\mathbf{h}_{i}^{(t)}, \mathbf{h}_{j}^{(t)}, \mathbf{e}_{i j}\right), \forall(i, j) \in E_{1} \cup E_{2} \\ \boldsymbol{\mu}_{j \rightarrow i} &=f_{\text {match }}\left(\mathbf{h}_{i}^{(t)}, \mathbf{h}_{j}^{(t)}\right) \\ \forall i \in V_{1}, j & \in V_{2}, \text { or } i \in V_{2}, j \in V_{1} \\ \mathbf{h}_{i}^{(t+1)} &=f_{\text {node }}\left(\mathbf{h}_{i}^{(t)}, \sum_{j} \mathbf{m}_{j \rightarrow i}, \sum_{j^{\prime}} \mu_{j^{\prime} \rightarrow i}\right) \\ \mathbf{h}_{G_{1}} &=f_{G}\left(\left\{\mathbf{h}_{i}^{(T)}\right\}_{i \in V_{1}}\right) \\ \mathbf{h}_{G_{2}} &=f_{G}\left(\left\{\mathbf{h}_{i}^{(T)}\right\}_{i \in V_{2}}\right) \\ s &=f_{s}\left(\mathbf{h}_{G_{1}}, \mathbf{h}_{G_{2}}\right) \end{aligned}
+	$$
+-	从上面的公式可以看到，在propagation阶段，GMN做出了两点改动
+	-	因为一次性输入一对图，因此第一步的邻域节点是从两张图的范围内找。但是一般而言两张图之间是没有节点连接的，除非两张图里的相同节点共享邻域?
+	-	除了邻域信息的传递之外，作者还计算了两张图之间的match，这里用了一个最简单的attention机制，用待匹配两个节点embedding的距离加权两个节点embedding之间的差：
+	$$
+	\begin{aligned} a_{j \rightarrow i} &=\frac{\exp \left(s_{h}\left(\mathbf{h}_{i}^{(t)}, \mathbf{h}_{j}^{(t)}\right)\right)}{\sum_{j^{\prime}} \exp \left(s_{h}\left(\mathbf{h}_{i}^{(t)}, \mathbf{h}_{j^{\prime}}^{(t)}\right)\right)} \\ \boldsymbol{\mu}_{j \rightarrow i} &=a_{j \rightarrow i}\left(\mathbf{h}_{i}^{(t)}-\mathbf{h}_{j}^{(t)}\right) \end{aligned}
+	$$
+	-	这样在update到下一层节点embedding时，match的那部分实际上计算了a图某一结点与b图所有节点的加权距离：
+	$$
+	\sum_{j} \boldsymbol{\mu}_{j \rightarrow i}=\sum_{j} a_{j \rightarrow i}\left(\mathbf{h}_{i}^{(t)}-\mathbf{h}_{j}^{(t)}\right)=\mathbf{h}_{i}^{(t)}-\sum_{j} a_{j \rightarrow i} \mathbf{h}_{j}^{(t)}
+	$$
+	-	这样计算的复杂度就升到了$O(V(G_1)V(G_2))$，但正是这逐点的比较能够区分那些细微的变化，而且可视化更加具有可解释性。所以该算法的使用场景应该是小图且对区分精度要求高
+-	对于这样的匹配问题可以用pair 或者triplet loss，前者比较相似不相似，后者比较和两个候选相比跟哪个更相似，作者分别给出了两种形式下的margin loss：
+	$$
+	L_{\text {pair }}=\mathbb{E}_{\left(G_{1}, G_{2}, t\right)}\left[\max \left\{0, \gamma-t\left(1-d\left(G_{1}, G_{2}\right)\right)\right\}\right] \\
+	L_{\text {triplet }}=\mathbb{E}_{\left(G_{1}, G_{2}, G_{3}\right)}\left[\max \left\{0, d\left(G_{1}, G_{2}\right)-d\left(G_{1}, G_{3}\right)+\gamma\right\}\right] \\
+	$$
+-	作者还特意提到，为了加速运算，可以对Graph Embedding做二值化处理，这样在衡量距离的时候就是用汉明距离，牺牲掉了一些欧式空间的部分，具体做法是将整个向量过tanh并作平均内积用作训练时的图相似度，并设计损失将正样本对的汉明距离推向1，负样本对的汉明距离推向-1，假如在推断检索下使用汉明距离进行检索，这样的损失设计比margin loss更加稳定：
+	$$
+	s\left(G_{1}, G_{2}\right)=\frac{1}{H} \sum_{i=1}^{H} \tanh \left(h_{G_{1} i}\right) \cdot \tanh \left(h_{G_{2} i}\right) \\
+	L_{\text {pair }}=\mathbb{E}_{\left(G_{1}, G_{2}, t\right)}\left[\left(t-s\left(G_{1}, G_{2}\right)\right)^{2}\right] / 4 \\
+	\begin{aligned} L_{\text {triplet }}=\mathbb{E}_{\left(G_{1}, G_{2}, G_{3}\right)}\left[\left(s\left(G_{1}, G_{2}\right)-1\right)^{2}+\right.\\\left.\left(s\left(G_{1}, G_{3}\right)+1\right)^{2}\right] / 8 \end{aligned} \\
+	$$
+	其中除以4或者除以8是为了约束损失的范围在[0,1]区间内。
 
 # Integration of Knowledge Graph Embedding into Topic Modeling with Hierarchical Dirichlet Process
 

@@ -30,7 +30,9 @@ html: true
 	$$
 	(G(A_1,...,A_n))  \sim  Dir(\alpha H(A_1),...,\alpha H(A_n))
 	$$
-	$G$定义为Dirichlet Process的一个sample path/function/realization,即$G=DP(t,w_0) \sim \ DP(\alpha,H)$。Dirichelt Process的一个realization是一个概率测度，是一个函数。注意因为是无限维，因此不能预先设置$\alpha$的维数，只能设置为一样的$\alpha$，对比LDA，可以看到DP的超参$\alpha$是一个concentration parameter，只能控制G分布趋于均匀分布的确定性，而不能控制G分布趋于怎样的分布，趋于怎样的分布由划分$A$决定。
+	$G$定义为Dirichlet Process的一个sample path/function/realization,即$G=DP(t,w_0) \sim \ DP(\alpha,H)$。Dirichelt Process的一个realization是一个概率测度，是一个函数，定义域在度量空间$\theta$上，函数输出即概率。注意因为是无限维，因此不能预先设置$\alpha$的维数，只能设置为一样的$\alpha$，对比LDA，可以看到DP的超参$\alpha$是一个concentration parameter，只能控制G分布趋于均匀分布的确定性，而不能控制G分布趋于怎样的分布，趋于怎样的分布由划分$A$决定。
+
+-	这里可以看到和LDA使用Dir Distribution的区别：DP是直接采样生成了一个概率测度，可以进而生成离散的概率分布；而LDA中对Dir Distribution采样只能得到一个样本，但是这个样本作为了多项式分布的参数，确定了一个多项式分布（也是离散的）。
 
 -	DP可以用于描述混合模型，在混合组件数量不确定的情况下，通过DP来构造一个组件分配。放在GMM的场景里，假如有n个样本，但我不知道有几个GM来生成这n个样本，那么对样本i，我将其分配给某一个GM，称这个样本i所在GM的参数为$\theta _i$，那么这个$\theta$服从一个基分布$H(\theta)$，假如$H$是连续分布，那么两个样本取到相同的$\theta$的概率趋于零，相当于n个样本对应n个GM，那么我们可以把这个$H$离散化为G，离散的方式为$G \sim DP(\alpha,H)$，$\alpha$越小越离散，越大则$G$越趋近于$H$。注意$H$也可以是离散的。
 
@@ -118,7 +120,7 @@ html: true
 
 -	这里的k个类的概率是符合Dirichlet Distribution的，假设这里的Base Distribution是均匀分布，则
 	$$
-	= \frac {\int _{p_1...p_k} p(z_i=m, z_{not \ i}|p_1...p_k)Dir(\frac {\alpha}{k} ... \frac {\alpha}{k})}{\int _{p_1...p_k} p(z_{not \ i}|p_1...p_k)p(\frac {\alpha}{k} ... \frac{\alpha}{k})}
+	= \frac {\int _{p_1...p_k} p(z_i=m, z_{not \ i}|p_1...p_k)Dir(\frac {\alpha}{k} ... \frac {\alpha}{k})}{\int _{p_1...p_k} p(z_{not \ i}|p_1...p_k)Dir(\frac {\alpha}{k} ... \frac{\alpha}{k})}
 	$$
 
 -	上面无论分子分母，积分内其实都是一个多项式分布乘以一个Dirichlet分布，根据共轭我们知道后验应该还是一个Dirichlet分布，我们推导一下多项式分布与Dirichlet分布相乘的积分：
