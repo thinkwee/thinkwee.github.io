@@ -8,7 +8,15 @@ tags:
 mathjax: true
 html: true
 ---
-不行了，挖坑是一种病，治不了了。
+极简风格
+-	Q-learning
+-	Sarsa
+-	Sarsa($\lambda$)
+-	DQN
+-	Double DQN
+-	DQN with Prioritized Experience replay
+-	Dueling DQN
+-	Policy Gradient
 
 <!--more-->
 

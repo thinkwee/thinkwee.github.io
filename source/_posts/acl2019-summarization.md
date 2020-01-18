@@ -12,6 +12,11 @@ html: true
 ---
 
 ACL/NAACL 2019 自动摘要相关论文选读
+-	DPPs 相似度度量改进
+-	STRASS：抽取式摘要的反向传播
+-	先翻译再生成摘要
+-	阅读理解+自动摘要
+-	BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based
 <!--more-->
 
 # Improving the Similarity Measure of Determinantal Point Processes for Extractive Multi-Document Summarization

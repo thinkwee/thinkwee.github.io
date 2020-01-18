@@ -13,7 +13,9 @@ author: Thinkwee
 mathjax: true
 html: true
 ---
-又是咕咕咕的一年
+
+-	卷积序列到序列
+-	鲁棒的无监督跨语言词嵌入映射
 <!--more--> 
 
 # Convolutional Sequence to Sequence Learning

@@ -12,6 +12,9 @@ html: true
 ---
 
 基于图的自动摘要相关论文选读
+-	AMR，生成式摘要
+-	AMR 多文档摘要
+-	pagerank in encoder attention
 <!--more-->
 
 
@@ -148,7 +151,3 @@ $$
 	-	Towards Coherent Multi-Document Summarization一文中的ADG
 	-	作者在ADG上改进的PDG
 -	之后直接套GCN传播就行了
-
-# Graph-Based Keyword Extraction for Single-Document Summarization
-
-# Integrating Importance, Non-Redundancy and Coherence in Graph-Based Extractive Summarization

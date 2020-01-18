@@ -13,8 +13,16 @@ author: Thinkwee
 mathjax: true
 ---
 
-论文阅读笔记
-主要关注自动文摘方向
+-	attention开山作（机器翻译）
+-	Luong attention，全局与局部注意力、
+-	attention开山作（自动文摘）
+-	生成式摘要技巧集合：LVT，开关网络，层次注意力
+-	对话系统，端到端的层次RNN
+-	微博摘要，补充micropoints
+-	disan，有向的transformer，注意力掩码
+-	注意力抽取器
+-	基于强化学习的生成式摘要
+-	w2v，负采样
 <!--more--> 
 
 ![i0o00J.jpg](https://s1.ax1x.com/2018/10/20/i0o00J.jpg)

@@ -12,7 +12,14 @@ mathjax: true
 html: true
 ---
 
-临时抱佛脚，一些关于Graph（大部分是KG）的Embedding、NLG、Matching方向论文选读。
+知识图谱专辑
+-	跨语言知识图谱中的实体对齐
+-	Knowledge Graph Language Model
+-	动态知识图谱对话生成
+-	Graph2Seq
+-	Graph Matching Network
+-	动态更新知识图谱
+-	Attention-based Embeddings for Relation Prediction
 
 <!--more-->
 
@@ -195,8 +202,73 @@ html: true
 	$$
 	其中除以4或者除以8是为了约束损失的范围在[0,1]区间内。
 
-# Integration of Knowledge Graph Embedding into Topic Modeling with Hierarchical Dirichlet Process
+# Learning to Update Knowledge Graphs by Reading News
+-	EMNLP2019的一项工作，作者肯定是个篮球迷，举了一个很恰当的NBA转会的例子来说明本文要解决的问题：知识图谱更新
+-	比如发生了球员转俱乐部，则相关的两个俱乐部的球员图谱就会发生变化，作者提出了两个重点，如文中图1所示：
+	-	知识图谱的更新只发生在text subgraph而不是1-hop subgraph
+	-	传统方法不能从文本中获取隐藏的图谱更新信息，例如球员转会之后，这个球员的队友就会发生变化，这是文中没提但是可以推断出来的
+-	整体的结构是一个基于R-GCN和GAT的encoder和一个基于DistMult的decoder，基本上就是把RGCN改成了attention based，decoder依然不变，做链接预测任务
 
-# Learning to Update Knowledge Graphs by Reading News 
+## encoder
+-	encoder:RGCN+GAT=RGAT，在RGCN中前向过程为：
+$$
+\mathbf{H}^{l+1}=\sigma\left(\sum_{r \in \mathbf{R}} \hat{\mathbf{A}}_{r}^{l} \mathbf{H}^{l} \mathbf{W}_{r}^{l}\right)
+$$
+-	即对异构的边分给予一个参数矩阵，独立的计算之后求和再激活。 将邻接矩阵改为注意力矩阵，注意力计算为：
+$$
+a_{i j}^{l r}=\left\{\begin{array}{ll}{\frac{\exp \left(a t t^{l r}\left(\mathbf{h}_{i}^{l}, \mathbf{h}_{j}^{l}\right)\right)}{\sum_{k \in \mathcal{N}_{i}^{r}} \exp \left(a t t^{l} r\left(\mathbf{h}_{i}^{l}, \mathbf{h}_{k}^{l}\right)\right)}} & {, j \in \mathcal{N}_{i}^{r}} \\ {0} & {, \text { otherwise }}\end{array}\right. 
+$$
+-	其中注意力函数$attn$基于文本计算
+	-	首先用双向GRU对序列编码$u$
+	-	再利用序列注意力得到上下文表示
+	$$
+	b_{t}^{l r}=\frac{\exp \left(\mathbf{u}_{t}^{T} \mathbf{g}_{t e x t}^{l r}\right)}{\sum_{k=1}^{|S|} \exp \left(\mathbf{u}_{k}^{T} \mathbf{g}_{t e x t}^{l r}\right)} \\
+	\mathbf{c}^{l r}=\sum_{t=1}^{|S|} b_{t}^{l r} \mathbf{u}_{t} \\
+	$$
+	-	之后利用注意力的时候，trainable guidance vector$g$就利用了这个上下文表示，利用一个简单的线性插值引入
+	$$
+	\mathbf{g}_{f i n}^{l r}=\alpha^{l r} \mathbf{g}_{g r a p h}^{l r}+\left(1-\alpha^{l r}\right) \mathbf{U}^{l r} \mathbf{c}^{l r} \\
+	a t t^{l r}(\mathbf{h}_{i}^{l}, \mathbf{h}_{j}^{l}) =\mathbf{g}_{f i n}^{l r}[\mathbf{h}_{i}^{l} | \mathbf{h}_{j}^{l}]  \\
+	$$
+-	在实际应用到作者想要完成的kg update任务中，作者还引入了几个小技巧
+	-	RGCN/RGAT中的参数量随着边(关系)的类别数量成线性增长，为了减少参数量，作者利用了basis-decomposition，也就是k类关系，存在k套参数，这k套参数用b套参数线性组合而成，而b小于k，这样来减少参数
+	-	实际数据集里实体之间的关系很稀疏，一两层的RGAT聚合不到消息，因此在构造数据集时首先对图中所有实体之间人为添加一个叫SHORTCUT的关系，并使用现成的信息抽取工具将SHORTCUT细化为add,delete和other，用来初步的判定人员的转会（从一个俱乐部delete，add到另一个俱乐部）关系
+
+## decoder
+-	在EMBEDDING ENTITIES AND RELATIONS FOR LEARNING AND INFERENCE IN KNOWLEDGE BASES一文中总结了知识图谱中的关系embedding学习问题，可以归结为不同的线性/双线性参数矩阵搭配不同的打分函数，计算margin triplet loss：
+[![lzxTht.md.jpg](https://s2.ax1x.com/2020/01/17/lzxTht.md.jpg)](https://imgchr.com/i/lzxTht)
+-	DistMult即最简单的，将双线性参数矩阵换成对角阵，即最后的分数是两个实体embedding逐元素相乘并加权求和得到，权重与关系相关，在本文中的具体实现为：
+$$
+P(y)=\operatorname{sigmoid}\left(\mathbf{h}_{i}^{T}\left(\mathbf{r}_{k} \circ \mathbf{h}_{j}\right)\right)
+$$
+
+## result
+-	对比几个Baseline：RGCN,PCNN，感觉作者使用了GRU这样data-hungry的网络提取语义计算相似度，数据集偏小，当然最后结果还是很好看，可以看到数据集明显不平衡，但是在add和delete这些小样本类上RGAT比RGCN提升了一倍的准确率。
+-	值得称赞的是论文将链接预测问题包装的很好，一个update突出了持续学习持续更新的想法，最后简化问题为链接预测，模型没有太多改进，但是效果达到了。
+
 
 # Learning Attention-based Embeddings for Relation Prediction in Knowledge Graphs
+-	依然是做链接预测，依然是基于GAT
+-	作者认为在KG当中关系非常重要，但是又不好给边加特征，因此就曲线救国，将边的特征融入到节点的特征当中
+-	一图胜千言
+[![1SLmi6.md.png](https://s2.ax1x.com/2020/01/18/1SLmi6.md.png)](https://imgchr.com/i/1SLmi6)
+-	从左到右
+	-	输入，依然是节点特征输入GAT，只不过每个节点特征是与其相关的三元组特征做self attention得到，而三元组特征由节点和关系特征拼接得到，绿色为输入关系特征，黄色为输入节点特征：
+	$$
+	c_{i j k}=\mathbf{W}_{1}\left[\vec{h}_{i}\left\|\vec{h}_{j}\right\| \vec{g}_{k}\right] \\
+	\begin{aligned} \alpha_{i j k} &=\operatorname{softmax}_{j k}\left(b_{i j k}\right) \\ &=\frac{\exp \left(b_{i j k}\right)}{\sum_{n \in \mathcal{N}_{i}} \sum_{r \in \mathcal{R}_{i n}} \exp \left(b_{i n r}\right)} \end{aligned} \\
+	\overrightarrow{h_{i}^{\prime}}=\|_{m=1}^{M} \sigma\left(\sum_{j \in \mathcal{N}_{i}} \alpha_{i j k}^{m} c_{i j k}^{m}\right) \\
+	$$
+	-	之后经过GAT，得到灰色的中间层节点特征，两个3维灰色拼接是指GAT里multi-head attention的拼接，之后两个6维灰色与绿色做变换之后拼接是指依然用三元组表示每个节点
+	-	最后一层，不做拼接了，做average pooling，并且加入了输入节点特征，再拼接上关系特征，计算损失
+	-	损失依然用三元组距离，即subject+predicate-object，margin triplet loss，负采样时随机替换subject或者object
+-	以上是encoder部分，decoder用ConvKB
+	$$
+	f\left(t_{i j}^{k}\right)=\left(\prod_{m=1}^{\Omega} \operatorname{ReLU}\left(\left[\vec{h}_{i}, \vec{g}_{k}, \vec{h}_{j}\right] * \omega^{m}\right)\right) \mathbf{. W} \\
+	$$
+-	损失为soft-margin loss（好像1和-1写反了？）
+	$$
+	\begin{array}{l}{\mathcal{L}=\sum_{t_{i j}^{k} \in\left\{S \cup S^{\prime}\right\}} \log \left(1+\exp \left(l_{t_{i j}^{k}} * f\left(t_{i j}^{k}\right)\right)\right)+\frac{\lambda}{2}\|\mathbf{W}\|_{2}^{2}} \\ {\text { where } l_{t_{i j}^{k}}=\left\{\begin{array}{ll}{1} & {\text { for } t_{i j}^{k} \in S} \\ {-1} & {\text { for } t_{i j}^{k} \in S^{\prime}}\end{array}\right.}\end{array}
+	$$
+-	另外作者还为2跳距离的节点之间加入了边
+-	结果非常好，在FB15K-237和WN18RR上取得了SOTA。作者并没有试图将边的特征直接整合进GAT的message passing，而是就把特征当成待训练的输入，用encoder专注于训练特征，并且在模型的每一层都直接输入的初始特征来保证梯度能够传递到原始输入。

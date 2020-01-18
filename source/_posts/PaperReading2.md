@@ -13,8 +13,13 @@ author: Thinkwee
 mathjax: true
 html: true
 ---
-读论文是不可能读完的，这辈子都不可能读完的。
-没错，基本上没读论文，读了也来不及写笔记了。
+
+-	分散注意力机制
+-	外部信息注意力
+-	指针复制网络PGNet
+-	基于RNN的抽取式摘要
+-	Transformer
+-	选择门机制
 
 <!--more--> 
 
