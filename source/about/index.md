@@ -34,7 +34,7 @@ comments: false
 <img width=400 src="img/multi_view.png">
 
 ## Bert Based Tagging(RANLP 2019 MultiLing workshop)
--	[Multi-lingualWikipedia Summarization and Title Generation On Low Resource Corpus](https://www.researchgate.net/publication/338245915_Multi-lingualWikipedia_Summarization_and_Title_Generation_On_Low_Resource_Corpus)
+-	[Multi-lingualWikipedia Summarization and Title Generation On Low Resource Corpus](https://www.aclweb.org/anthology/W19-8904.pdf)
 <img width=400 src="img/bert_crf.png"><img width=400 src="img/bert_nmt.png">
 
 ## CIST@CLSciSumm19(SIGIR 2019 BIRNDL workshop)
