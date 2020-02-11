@@ -1,7 +1,7 @@
 ---
 title: Numpy Cookbook
 date: 2017-01-23 20:12:40
-tags: [math,machinelearning,python,code]
+tags: [math,machine learning,python,code]
 categories: Python
 ---
 Cookbook网址：[Numpy Cookbook](https://docs.scipy.org/doc/numpy-dev/user/quickstart.html)

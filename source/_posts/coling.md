@@ -3,7 +3,7 @@ title: 计算语言学笔记
 date: 2018-11-16 10:15:34
 tags:
   - math
-  - machinelearning
+  - machine learning
   -	theory
   -	nlp
 categories:

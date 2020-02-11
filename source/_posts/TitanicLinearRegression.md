@@ -2,7 +2,7 @@ title: '机器学习入门:Coding基础与线性回归'
 categories: 机器学习
 tags:
   - code
-  - machinelearning
+  - machine learning
 mathjax: true
 date: 2017-02-07 21:57:22
 ---

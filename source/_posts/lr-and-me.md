@@ -1,7 +1,7 @@
 ---
 title: Logistic回归与最大熵
 date: 2018-10-14 20:38:59
-tags: [logistic regression,math,machinelearning]
+tags: [logistic regression,math,machine learning]
 categories: 机器学习
 mathjax: true
 html: true

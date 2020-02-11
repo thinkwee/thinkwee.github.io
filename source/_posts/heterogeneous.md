@@ -5,7 +5,6 @@ categories: 自然语言处理
 tags:
   - graph neural network
   - heterogeneous information network
-  - machine learning
   - deep learning
   -	natural language processing
 mathjax: true

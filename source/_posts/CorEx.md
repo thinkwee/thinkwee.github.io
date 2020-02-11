@@ -4,6 +4,7 @@ date: 2019-07-29 11:17:11
 categories: 机器学习
 tags:
   - corex
+  - math
   - machine learning
   -	topic model
 mathjax: true

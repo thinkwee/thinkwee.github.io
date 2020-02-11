@@ -4,7 +4,7 @@ date: 2018-07-04 15:58:59
 tags:
   - abstractive summarization
   - seq2seq
-  - machinelearning
+  - machine learning
   -	rnn
   -	nlp
   - lstm

@@ -5,7 +5,6 @@ categories: 机器学习
 tags:
   - lda
   - math
-  -	mcmc
   - topic model
 mathjax: true
 html: true

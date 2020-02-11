@@ -4,7 +4,7 @@ date: 2017-03-18 11:20:35
 categories: 机器学习
 tags:
   - code
-  - machinelearning
+  - machine learning
 mathjax: true
 photos: 
 html: true

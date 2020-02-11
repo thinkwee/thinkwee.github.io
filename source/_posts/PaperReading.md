@@ -4,7 +4,7 @@ date: 2018-03-07 10:20:14
 tags:
   - abstractive summarization
   - math
-  - machinelearning
+  - machine learning
   -	theory
   -	nlp
 categories:

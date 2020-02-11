@@ -3,7 +3,6 @@ title: ACL/NAACL 2019 自动摘要相关论文选读
 date: 2019-08-15 10:51:37
 categories: 自然语言处理
 tags:
-  - acl
   - deep learning
   - summarization
   -	natural language processing

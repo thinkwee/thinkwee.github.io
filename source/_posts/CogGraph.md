@@ -3,7 +3,6 @@ title: 认知图谱学习笔记
 date: 2019-08-13 14:22:49
 categories: 自然语言处理
 tags:
-  - acl
   - machine learning
   - gnn
   - bert

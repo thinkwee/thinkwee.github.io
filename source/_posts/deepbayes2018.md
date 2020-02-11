@@ -1,7 +1,7 @@
 ---
 title: 深度贝叶斯习题
 date: 2018-09-22 10:26:48
-tags: [bayes,math,machinelearning]
+tags: [bayes,math,machine learning]
 categories: 数学
 mathjax: true
 html: true

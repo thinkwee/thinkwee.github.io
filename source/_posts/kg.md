@@ -3,7 +3,6 @@ title: 知识图谱应用论文选读
 date: 2019-11-13 09:36:19
 categories: 自然语言处理
 tags:
-  - acl
   - machine learning
   - deep learning
   -	natural language processing
