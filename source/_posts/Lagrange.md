@@ -1,5 +1,5 @@
 ---
-title: Lagrange,KTT,PCA,SVM
+title: Lagrange,KKT,PCA,SVM
 date: 2017-03-18 11:20:35
 categories: 机器学习
 tags:
@@ -10,7 +10,7 @@ photos:
 html: true
 ---
 ***
-介绍拉格朗日乘子法及其推广KTT条件，以及它们在PCA和SVM中的应用
+介绍拉格朗日乘子法及其推广KKT条件，以及它们在PCA和SVM中的应用
 <!--more-->
 
 ![i0olwj.png](https://s1.ax1x.com/2018/10/20/i0olwj.png)
@@ -34,7 +34,7 @@ html: true
 -	拉格朗日系数的含义是最大增长值，$-\frac{\partial \Lambda}{\partial {c_k}} = \lambda_k$
 
 # 卡罗需-库恩-塔克条件
--	如果约束条件不仅仅是等式，还包括不等约束条件，这就需将拉格朗日乘子法推广到KTT条件
+-	如果约束条件不仅仅是等式，还包括不等约束条件，这就需将拉格朗日乘子法推广到KKT条件
 -	包含不等约束的极值问题描述为
 	$$
 	在约束条件: \\
@@ -46,7 +46,7 @@ html: true
 	$$
 	L(X,\lambda ,\mu)=f(X)+\sum _{j=1}^p \lambda _j h_j(X) + \sum _{k=1}^q \mu g_k(X)
 	$$
--	KTT条件为:
+-	KKT条件为:
 	$$
 	\frac{dL}{dX}=0 \\
 	\lambda _j \neq 0 \\
@@ -126,4 +126,4 @@ def PCA(X, dims):
 	s.t. \sum _{i=1}^m \alpha _i y_i=0, \\
 	\alpha _i \geq 0,i=1,2,...,m \\
 	$$
-	上式满足KTT条件，通过SMO算法求解
+	上式满足KKT条件，通过SMO算法求解
