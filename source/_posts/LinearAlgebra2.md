@@ -108,10 +108,10 @@ $$
 -	为什么叫做左零空间？
 $$
 rref\begin{bmatrix}
-A_{m\*n} & I_{m\*n}
+A_{m*n} & I_{m*n}
 \end{bmatrix}\rightarrow
 \begin{bmatrix}
-R_{m\*n} & E_{m\*n}
+R_{m*n} & E_{m*n}
 \end{bmatrix} \\
 $$
 -	易得rref=E，即EA=R 
@@ -337,7 +337,6 @@ $$
 # 第十四讲：子空间投影
 ## 投影
 
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170228/203158686.JPG)
 -	在二维情况下讨论投影
 -	一个点b到另一条直线a的投影，即从这个点做垂直于a的垂线段交a于p点，p即b在a上的投影点，以p为终点的向量即投影p，垂线段即误差e，e=b-p
 -	p在a的一维子空间里，是a的x倍，即p=xa
@@ -423,11 +422,9 @@ e=(I-P)b \\
 $$
 -	所以左零空间的投影矩阵为$(I-P)$ 
 
-	![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170301/192923067.JPG)
 	
 ## 最小二乘法
 -	回到上一讲的例子，找到一条最优直线接近三个点，最小化误差，如图
-![mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170301/195536899.JPG)
 -	设直线为$y=C+Dt$，代入三个点坐标得到一个方程组
 $$
 C+D=1 \\
