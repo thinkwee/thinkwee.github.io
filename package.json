@@ -35,7 +35,7 @@
     "markdown-it-emoji": "^1.4.0",
     "markdown-it-mathjax": "^2.0.0",
     "pandoc": "^0.2.0",
-    "snyk": "^1.290.2"
+    "snyk": "^1.291.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
