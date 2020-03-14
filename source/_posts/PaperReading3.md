@@ -63,12 +63,12 @@ html: true
 ## 鲁棒的自学习过程
 -	计算正交映射以最大化当前$D$矩阵的相似度
 	$$
-	argmax_{W_x,W_z} \sum _i \sum _j D_{ij}((X_{i\*}W_X) \cdot (Z_{j\*}W_Z)) \\
+	argmax_{W_x,W_z} \sum _i \sum _j D_{ij}((X_{i^*}W_X) \cdot (Z_{j^*}W_Z)) \\
 	$$
 	最优解可以直接计算得到：$W_X=U,W_Z=V$，其中$U,V$来自$USV^T$，是$X^TDZ$的奇异值分解
 -	将两个语言的词嵌入映射到跨语言词嵌入空间（分别映射，依然是两个词嵌入矩阵，只不过在同一个跨语言空间内）后，对A语言的每一个词，在跨语言词嵌入空间内找其最近的B语言的词，建立映射关系，更新$D$矩阵。
 	$$
-	D_{ij} = 1 \ \ \ if  \ \ j = argmax _k (X_{i\*}W_X) \cdot (Z_{j\*}W_Z) \\
+	D_{ij} = 1 \ \ \ if  \ \ j = argmax _k (X_{i^*}W_X) \cdot (Z_{j^*}W_Z) \\
 	else \ \ D_{ij} = 0 \\
 	$$
 -	反复迭代，$W_X,W_Z \rightarrow D \rightarrow W_X,W_Z \rightarrow D \rightarrow W_X,W_Z \rightarrow D \rightarrow W_X,W_Z$
