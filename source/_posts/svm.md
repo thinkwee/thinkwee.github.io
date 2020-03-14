@@ -72,7 +72,7 @@ $$
 	-	原始问题约束
 	-	拉格朗日乘子非负
 	$$
-	\begin{aligned} \nabla_{\overrightarrow{\mathrm{w}}} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \overrightarrow{\mathrm{w}}^{*}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i} \overrightarrow{\mathrm{x}}_{i}=0 \\ \nabla_{b} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}=0 \\ \alpha_{i}^{*}\left[\tilde{w}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1\right]=0, i=1,2, \cdots, N \\ \tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1 \geq 0, i=1,2, \cdots, N \\ \alpha_{i}^{*} \geq 0, i=1,2, \cdots, N \end{aligned}
+	\begin{aligned} \nabla_{\overrightarrow{\mathrm{w}}} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \overrightarrow{\mathrm{w}}^{*}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i} \overrightarrow{\mathrm{x}}_{i}=0 \\ \nabla_{b} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}=0 \\ \alpha_{i}^{*}\left[\tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1\right]=0, i=1,2, \cdots, N \\ \tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1 \geq 0, i=1,2, \cdots, N \\ \alpha_{i}^{*} \geq 0, i=1,2, \cdots, N \end{aligned}
 	$$
 -	由KKT条件，我们可以用$\alpha$表示$w$（之前求导时也已经得到过），我们知道$w$代表分类超平面的方向，$b$代表偏置，由支持向量决定，因此那些$\alpha _j$不为0对应的
 $$
