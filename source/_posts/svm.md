@@ -64,6 +64,11 @@ $$
 # 求解
 -	转换为对偶问题之后，先对$w,b$求导令其为0，之后将得到的$w,b$回代入对偶问题得到：
 $$
+带入对偶问题：L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot \overrightarrow{\mathbf{x}}_{i}+b\right)+\sum_{i=1}^{N} \alpha_{i} \\
+\begin{aligned} L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} & \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left[\left(\sum_{j=1}^{N} \alpha_{j} \tilde{y}_{j} \overrightarrow{\mathbf{x}}_{j}\right) \cdot \overrightarrow{\mathbf{x}}_{i}+b\right]+\sum_{i=1}^{N} \alpha_{i} \\ &=-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \end{aligned} \\
+$$
+-	这里第一项系数为1/2，第二项中b的部分为0，剩余部分其实和第一项相同，只不过系数为1，因此相减得到-1/2。最后得到外层的max优化目标
+$$
 \begin{aligned} \max _{\vec{\alpha}}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \\ s . t . \quad \sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}=0 \\ \alpha_{i} \geq 0, i=1,2, \cdots, N \end{aligned}
 $$
 -	其中等式约束条件是对$b$求导为0得到的。之前说到SVM的目标函数和约束条件满足强对偶关系，强对偶关系的充要条件是KKT条件，因此上式应该也满足KKT条件，即
