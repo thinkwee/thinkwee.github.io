@@ -12,9 +12,7 @@ html: true
 ---
 ***
 Latent Dirichlet Allocation 文档主题生成模型学习笔记
-主要摘录自《LDA数学八卦》，原文写的非常精彩，有许多抛砖引玉之处，本文梳理了其一步一步推出LDA的脉络，删除了不相关的一些扩展，并给出了一些总结。没有读过原文的同学建议先读原文过一遍。
-虽然说明了整个算法的流程，但是其原理依然还有一点点没弄懂，可能还得系统的补补概率图模型把。
-主要问题是：LDA里的gibbs采样，不像一般的MCMC，转移概率是变的，也是随机初始化的，每一步是在上一步得到的联合概率分布下计算完全条件概率，那为可以保证收敛？。。。难道每一步采样都是针对某一个样本$x=vocab_{token},z=topic_x$做一次EM算法？
+本文主要归纳自《LDA数学八卦》，原文写的非常精彩（建议先阅读原文），有许多抛砖引玉之处，本文梳理了其一步一步推出LDA的脉络，删除了不相关的一些扩展，比较大白话的总结一下LDA。
 
 <!--more-->
 ![i0oNlT.jpg](https://s1.ax1x.com/2018/10/20/i0oNlT.jpg)
@@ -26,7 +24,41 @@ Latent Dirichlet Allocation 文档主题生成模型学习笔记
 - 	PLSA提出了隐变量应该是主题，可以把文档表示为主题向量，而主题定义为在词典上的某一种多项式分布，这样PLSA中包含了两层多项式分布：文档到主题的多项式分布（文档中各个主题的混合比例，即文档的特征向量），主题到词的多项式分布（在整个词典上的概率分布，表示不同主题下各个词出现的概率）
 -	LDA则对这两个多项式分布的参数制定了迪利克雷先验，为PLSA引入贝叶斯框架
 
-# 数学基础
+# 贝叶斯模型
+-	LDA是一种贝叶斯模型
+-	给定训练数据，贝叶斯模型怎么学习参数(参数的分布）：贝叶斯估计
+	-	先给参数一个先验分布$p(\theta)$
+	-	给定数据，计算似然$p(X|\theta)$和evidence$P(X)$，根据贝叶斯公式计算参数的后验分布
+	-	后验分布就是学习到的参数分布
+	$$
+	p(\vartheta | X)=\frac{p(X | \vartheta) \cdot p(\vartheta)}{p(\mathcal{X})}
+	$$
+-	可能数据太多，那就分批更新，上一次更新后得到的后验作为下一次更新的先验，类似于随机梯度下降中的思想
+-	对于新数据的似然，不像最大似然估计或者最大后验估计，两者是点估计，直接算$p(x_{new}|\theta _{ML})$,$p(x_{new}|\theta _{MAP})$，贝叶斯估计需要对参数分布求积分：
+	$$
+	\begin{aligned}
+	p(\tilde{x} | X) &=\int_{\vartheta \in \Theta} p(\tilde{x} | \vartheta) p(\vartheta | X) \mathrm{d} \vartheta \\
+	&=\int_{\vartheta \in \Theta} p(\tilde{x} | \vartheta) \frac{p(X | \vartheta) p(\vartheta)}{p(X)} \mathrm{d} \vartheta
+	\end{aligned}
+	$$
+-	贝叶斯估计里常常出现两个问题
+	-	有了先验，有了似然，计算出的后验很复杂
+	-	evidence很难算
+-	因此共轭和gibbs sampling分别解决这两个问题
+	-	共轭：给定似然，找一个先验，使得后验的形式和先验一致
+	-	gibbs sampling：利用MCMC的思路去近似后验，而不用显式的计算evidence
+-	假如是带隐变量的贝叶斯模型，那么有
+	$$
+	p(\vartheta|x) = \int_{z} p(\vartheta|z)p(z|x)
+	$$
+-	在LDA当中，隐变量z就是词所属的主题（词的主题分配），那么$p(\vartheta|z)$自然是很好求的，那么剩下的$p(z|x)$，就再套上面贝叶斯推断的公式:
+	$$
+	p(z | X)=\frac{p(X | z) \cdot p(z)}{p(\mathcal{X})}
+	$$
+-	在介绍LDA之前，介绍了其他两个模型，带贝叶斯的unigram以及plsa，前者可以看成是没有主题层的LDA，后者可以看成是没有贝叶斯的LDA
+-	接下来就分别介绍共轭、gibbs sampling、带贝叶斯的unigram/plsa，最后介绍LDA
+
+# 共轭
 ## Gamma函数
 -	定义 
 $$
@@ -151,10 +183,8 @@ $$
 	上式中的参数均是向量，对应多维情况。
 -	无论是Beta分布还是Dirichlet分布，都有一个很重要的性质，即他们的均值可以用参数的比例表示，例如对于Beta分布，$E(p)=\frac{\alpha}{\alpha+\beta}$，对于Dirichlet分布，均值是一个向量，对应于各个参数比例组成的向量。
 
-## 总结
--	总结一下共轭：设有分布A，A的参数分布（或者叫分布的分布）为B，若B的先验在获得A的数据知识之后得到的后验与先验属于同一类分布，则A与B共轭，B称为A的参数共轭分布（或者叫先验共轭） ，在上文提到的例子里，Beta分布是二项分布的参数共轭分布，Dirichlet分布是多项式分布的参数共轭分布。
--	LDA实际上是将文本生成建模为一个概率生成模型，具体而言是一个三层贝叶斯模型，并且针对文档-主题分布和主题-词语分布分别假设其先验分布为Dirichlet分布，用Dirichlet-Multinomial共轭来利用数据知识更新其后验，因此先介绍Gamma函数及其分布，Gamma函数将阶乘扩展到实数域，之后介绍了能估计分布的Beta函数，在引入了Gamma函数之后Beta分布的参数能扩展到实数域。之后介绍了Beta-Binomial共轭，这种共轭带来的好处是在用数据训练修正时，我们已经知道了后验分布的形式，之后将这种共轭关系扩展到高维（估计多个分布），就得到了Dirichlet-Multinomial共轭。
--	为文档到主题和主题到词的两个多项式分布加入Dirichlet分布作为参数先验的好处是：将多项式参数作为变量，先验信息指导了参数在哪个范围内变动，而不是具体的值，使得模型在小训练样本内的泛化能力更强。根据Dirichlet的性质，其参数比例代表了[0,1]上的一个划分，决定了dirichlet分布高概率的位置，其参数大小决定了高概率的比例（陡峭），例如下图，多项式分布有三项，参数分别为$p_1,p_2,p_3$，他们的和为一且各项大于零，在三维空间内便是一个三角面，面上每一点代表一种多项式分布，红色区域概率高，蓝色区域概率低：
+## Dirichlet分析
+-	根据Dirichlet的性质，其参数比例代表了[0,1]上的一个划分，决定了dirichlet分布高概率的位置，其参数大小决定了高概率的比例（陡峭），例如下图，多项式分布有三项，参数分别为$p_1,p_2,p_3$，他们的和为一且各项大于零，在三维空间内便是一个三角面，面上每一点代表一种多项式分布，红色区域概率高，蓝色区域概率低：
 
 ![i0orkR.png](https://s1.ax1x.com/2018/10/20/i0orkR.png)
 
@@ -170,10 +200,16 @@ The concentration parameter
 Dirichlet distributions are very often used as prior distributions in Bayesian inference. The simplest and perhaps most common type of Dirichlet prior is the symmetric Dirichlet distribution, where all parameters are equal. This corresponds to the case where you have no prior information to favor one component over any other. As described above, the single value α to which all parameters are set is called the concentration parameter. If the sample space of the Dirichlet distribution is interpreted as a discrete probability distribution, then intuitively the concentration parameter can be thought of as determining how "concentrated" the probability mass of a sample from a Dirichlet distribution is likely to be. With a value much less than 1, the mass will be highly concentrated in a few components, and all the rest will have almost no mass. With a value much greater than 1, the mass will be dispersed almost equally among all the components. See the article on the concentration parameter for further discussion.
 {% endblockquote %}
 -	当$\alpha$远小于1时，概率密度会主要堆积在一个或少数几个项上，也就是红色区域聚集在三个角的情况，这时Dirichlet分布抽样得到的多项式分布大概率在角上，也就是概率密度堆积在一个项上，其余两个项概率近似为0。$\alpha$远大于1时，概率密度会分散到各个部分，就是对应三图中最左边的图，三个项概率相差不大的可能性比较大。
+
+## Role in LDA
+-	总结一下共轭：设有分布A，A的参数分布（或者叫分布的分布）为B，若B的先验在获得A的数据知识之后得到的后验与先验属于同一类分布，则A与B共轭，B称为A的参数共轭分布（或者叫先验共轭） ，在上文提到的例子里，Beta分布是二项分布的参数共轭分布，Dirichlet分布是多项式分布的参数共轭分布。
+-	LDA实际上是将文本生成建模为一个概率生成模型，具体而言是一个三层贝叶斯模型，并且针对文档-主题和主题-词语两个multinomial分布都假设其参数先验为Dirichlet分布，用Dirichlet-Multinomial共轭来利用数据知识更新其后验。
+-	为了介绍Dirichlet-Multinomial共轭，先介绍Gamma函数及其分布，Gamma函数将阶乘扩展到实数域，之后介绍了能估计分布的Beta函数，在引入了Gamma函数之后Beta分布的参数能扩展到实数域。之后介绍了Beta-Binomial共轭，这种共轭带来的好处是在用数据训练修正时，我们已经知道了后验分布的形式，之后将这种共轭关系扩展到高维（估计多个分布），就得到了Dirichlet-Multinomial共轭。
+-	为文档到主题和主题到词的两个多项式分布加入Dirichlet分布作为参数先验的好处是：将多项式参数作为变量，先验信息指导了参数在哪个范围内变动，而不是具体的值，使得模型在小训练样本内的泛化能力更强。
 -	在Dirichlet Process中$\alpha$的大小体现了Dirichlet分布拟合Base Measure时的离散程度，$\alpha$越大，越不离散，各个项均能得到差不多的概率。
 -	对应到LDA模型中，这种离散程度就代表了文档是集中在某几个主题上还是在所有主题上较均匀的分布，或者主题是集中在少数词上还是在整体的词上较均匀的分布。
 
-# 马尔可夫链蒙特卡洛和吉步斯采样
+# 吉步斯采样
 ## 随机模拟
 -	即蒙特卡洛的含义，用于已知分布，需要生成一系列满足此分布的随机样本，并用这些样本的统计量来估计原分布一些不好直接解析计算的参数。
 -	马尔可夫是指产生随机样本的方法依赖于马氏链的性质，通过构造马氏链当中的转移矩阵，使得马氏链收敛时能够产生满足给定分布的样本序列。
@@ -221,13 +257,15 @@ $$
 -	等到所有维度都转移了一次，就得到了一个新的样本。等到马氏链收敛之后形成的样本序列就是我们所需要的随机生成样本序列。状态的转移可以是坐标轴轮流变换的，即这次水平转换，下次垂直转换，也可以每次随机选择坐标轴。虽然每次随机选择坐标轴会导致中途计算出来的新的维度值不一样，但是平稳条件没有打破，最终能够收敛到一样的给定分布。
 -	同样，上述算法也可以推广到多维。扩展到多维时，在$x$轴上构建的的转移概率就是$Q=p(x|¬ x)$。值得注意的是，上述得到的采样样本并不是相互独立的，只是符合给定的概率分布。
 
-## 总结
+## Role in LDA
 -	首先明确，MCMC方法是产生已知分布的样本，但是gibbs采样只需要使用完全条件概率，产生了满足联合分布的样本，而不像一般采样方法直接从联合分布中采样
 -	gibbs采样这种特性就使其可以在不知道联合概率的情况下去推断参数，进一步推出联合概率分布
--	应用于LDA中，其采样的是每个token分配的主题，这样的样本序列可以得到每个主题下各个词的统计量，以及每篇文档下各个主题的统计量，用这两个统计量来估计主题分布和词分布两个多项式分布的参数，其巧妙的地方在于gibbs采样主题分配的完全条件概率里，避开了主题分布和词分布两个多项式分布（这两个是未知的，要推断的，当然不能从未知分布中采样），利用迪利克雷分布的性质，即使用两个迪利克雷分布的参数比例值来替换两个多项式分布的参数，这样完全条件概率中只包含了人为设定好的迪利克雷参数（超参），以及要迭代的统计量，符合gibbs采样用于推断的要求。
--	gibbs采样中在不断更新参数，例如本次迭代更新$p(x_1^{t+1})=p(x_1|x_2^t,x_3^t)$，则下一次迭代为$p(x_2^{t+1})=p(x_2|x_1^{t+1},x_3^t)$，即使用更新之后的$x_1^{t+1}$来计算。在LDA中，这一过程通过更新被采样单词的主题实现。
+-	但是在LDA中，并没有用gibbs sampling去直接推断参数，而是用其去近似后验，完成用数据知识更新先验这一步。而且由于LDA存在着主题这一隐变量，gibbs采样的联合分布并不是文档的主题分布或者主题的词分布，和LDA模型的参数没有直接挂钩。Gibbs sampling在LDA中采样的是token的主题分配，即隐变量的分布。
+-	但是所有token主题分配确定之后，LDA模型的参数就确定了，通过古典概型（最大似然估计）就可以得到两个multinomial分布（参数），对应的dirichelt分布（参数后验分布）也得到更新。且由于引入了主题分解了文档-单词矩阵，实际上我们不需要维护$Document \* word$矩阵，而是维护$Document \* topic + topic \* word$即可。
+-	gibbs采样词的主题分配，实际上是在计算隐变量分布的后验，进而得到参数分布的后验。
+-	gibbs采样中在不断更新参数，例如本次迭代更新$p(x_1^{t+1})=p(x_1|x_2^t,x_3^t)$，则下一次迭代为$p(x_2^{t+1})=p(x_2|x_1^{t+1},x_3^t)$，即使用更新之后的$x_1^{t+1}$来计算。在LDA中，这一过程通过更新被采样单词的主题实现。贝叶斯推断中将数据分批，用后验更新先验的迭代，在这里被进一步细化到了gibbs sampling的每一次坐标更新。
 -	下文可以看到gibbs采样公式，可以解释为根据其他词的主题分配情况决定自己的主题分配，迭代更新所有词的主题分配；具体如何决定，包含了两个部分，这两个部分类似于tf和idf提供的信息。
--	通过采样出来的词的主题分配，用统计量估计参数，这里就是实现了模型的参数推断。
+-	当根据采样公式计算出主题分配的后验时，我们并没有直接得到参数的后验分布，但是当根据主题分配后验采样出新主题，更新了统计量之后，由于gibbs sampling公式里本身包含了统计量，这里相当于计算后验和用后验更新先验一步完成。或者也可以理解成，LDA里一直做的是主题分配分布（隐变量）的贝叶斯推断，即$p(topic|word,doc)$，做完之后根据主题分配，做一次最大似然估计（古典概型）就能得到模型的参数。
 
 # 文本建模
 -	接下来讨论如何对文本进行概率建模，基本思想是我们假设一个文档中所有的词是按照一种预先设置的概率分布生成的，我们希望找到这个概率分布。具体而言分为以下两个任务：
@@ -279,31 +317,31 @@ $$
 
 ## PLSA模型
 -	PLSA即概率隐含语义分析模型，这个模型认为文档到词之间存在一个隐含的主题层次，文档包含多个主题，每个主题对应一种词的分布，生成词时，先选主题，再从主题中选词生成（实际计算时是各个主题的概率叠加）。
--	事实上这种模型就是将Unigram中词生成分布对应成主题，在往上加了一层文档到主题的分布。
--	PLSA模型可以用EM算法迭代学习到参数。
+-	与没有贝叶斯的unigram模型相比，plsa在文档和词之间加了一层，主题。
+-	PLSA没有引入贝叶斯，只是一个包含隐变量的模型，做最大似然估计，那么可以用EM算法迭代学习到参数，具体的计算在这里就略过了。
 
-## 总结
+## Role in LDA
 -	现在整理一下，Unigram模型中主要包含两部分
 	-	词生成概率分布
-	-	词生成概率分布的分布
+	-	词生成概率分布的参数分布
 -	PLSA模型主要包含两部分
 	-	词生成概率分布
 	-	主题生成概率分布
--	Unigram模型展示了分布的分布，即为词分布引入参数先验的意义：使得词的分布是一个变量，从掷色子选出一个词变成了先选一个色子，再掷色子选词。至于引入先验究竟有没有用是贝叶斯学派和频率学派之间争吵的话题了
--	PLSA模型为人类语言生成提供了一个很直观的建模，引入了话题作为隐含语义，提出了主题代表词的分布，一篇文章包含多个主题的观点。
+-	Unigram模型展示了分布的分布，即为词分布引入参数先验的意义：使得词的分布是一个变量，从掷色子选出一个词变成了先选一个色子，再掷色子选词。至于引入先验究竟有没有用是贝叶斯学派和频率学派之间争吵的话题了。
+-	PLSA模型为人类语言生成提供了一个很直观的建模，引入了主题作为隐含语义，并定义了主题代表词的分布，将文章看成是主题的混合。
 
 # LDA文本建模
 ## 模型概述
--	LDA整合了两种观Unigram和PLSA的优点，对于词和主题这两个骰子分别加上了Dirichlet先验假设
+-	LDA整合了Unigram和PLSA的优点，对于词和主题这两个骰子分别加上了Dirichlet先验假设
 	-	词生成概率分布（暂记A）
-	-	词生成概率分布的分布（暂记B）
+	-	词生成概率分布的参数分布（暂记B）
 	-	主题生成概率分布（暂记C）
-	-	主题生成概率分布的分布（暂记D）
--	这里有一个坑需要避免，即主题生成概率分布并不是词生成概率分布的分布！也就是区分LDA模型中的层次关系和各个层次里共轭关系。另外主题和词并不是一对多的层次关系，两者是多对多的关系，事实上，在LDA模型中一篇文档是这么生成的（假设有K个主题)：
+	-	主题生成概率分布的参数分布（暂记D）
+-	这里初学容易混淆的是，主题生成概率分布并不是词生成概率分布的参数分布，要区分LDA模型中的层次关系和各个层次里共轭关系。另外主题和词并不是一对多的层次关系，两者是多对多的关系，事实上，在LDA模型中一篇文档是这么生成的（假设有K个主题)：
 	-	先在B分布条件下抽样得到K个A分布
-	-	对每一篇文档，在符合D分布条件下抽取一个C分布，重复如下过程生成词：
+	-	对每一篇文档，在符合D分布条件下抽取得到一个C分布，重复如下过程生成词：
 		-	从C分布中抽样得到一个主题z
-		-	选择K个A分布中第z个，从这个A分布中抽样得到一个单词
+		-	从第z个A分布中抽样得到一个单词
 -	假设有$m$篇文档，$n$个词，$k$个主题，则$D+C$是$m$个独立的Dirichlet-Multinomial共轭，$B+A$是$k$个独立的Dirichlet-Multinomial共轭。两个dirichlet参数分别为1个k维向量($\alpha$)和1个n维向量($\beta$)。现在我们可以理解本文最开始的配图，我们将符号用其实际意义表述，与标题配图对应，这幅图实际上描述了LDA中这$m+k$个独立的Dirichlet-Multinomial共轭：
 
 ![i0oGYq.png](https://s1.ax1x.com/2018/10/20/i0oGYq.png)
@@ -324,7 +362,8 @@ $$
 
 
 ## 采样
--	首先我们需要推导出采样公式，即$p(z_i=k|\mathop{w}^{\rightarrow})$，$z_i$代表第i个词的主题（这里下标i代表第m篇文档第n个词），而向量w代表我们现在观察到的所有词。
+-	在前面说了，我们按照贝叶斯推断的框架估计模型参数，需要直到主题分配的后验概率，这里就需要gibbs sampling来帮忙对后验做一个近似
+-	按照gibbs sampling的定义，我们需要主题分配的完全条件概率$p(z_i=k|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w}^{\rightarrow})$去采样，进而近似$p(z_i=k|\mathop{w}^{\rightarrow})$，$z_i$代表第i个词的主题（这里下标i代表第m篇文档第n个词），而向量w代表我们现在观察到的所有词。
 -	在建立了整个概率模型之后，我们通过以下方法训练：设定好超参，随机初始化各个词频统计（包括文章m下主题k的词数，词汇t属于主题k的词数，文章m的总词数，主题k的总词数），然后对语料中所有词，依次进行吉布斯采样，采样其主题，并分配给该词这个主题，并更新四个词频（即利用共轭更新后验），循环采样直到收敛，即采样之后的主题分布基本符合后验概率下的模型产生的主题分布，数据已经不能提供给模型更多的知识（不再进行更新）。
 	-	其中吉布斯采样是需要限定某一维，按照其他维度的条件概率进行采样，在文本主题建模中维度就是词语，按其他维度的条件概率计算就是在四个词频中除去当前词语及其主题的计数。
 	-	采样后主题后将这个主题分配给词语，四个词频计数增加，如果已经收敛，则采样前后主题相同，词频没有改变，则相当于后验没有从数据知识中获得更新。
@@ -354,7 +393,7 @@ $$
 $$
 \int p(z_i=k|\mathop{\vartheta _m}^{\rightarrow})p(\mathop{\vartheta _m}^{\rightarrow}|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w_{¬ i}}^{\rightarrow})d\mathop{\vartheta _m}^{\rightarrow} \cdot \int p(w_i=t|\mathop{\varphi _k}^{\rightarrow})p(\mathop{\varphi _k}^{\rightarrow}|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w_{¬ i}}^{\rightarrow})d\mathop{\varphi _k}^{\rightarrow}
 $$
--	已知主题分布和词分布，求第i个词为t的概率和第i个词对应主题为k的概率，那么显然：
+-	已知第m篇文档的主题分布和第k个主题词分布，求第i个词为t的概率和第i个词对应主题为k的概率，那么显然：
 $$
 p(z_i=k|\mathop{\vartheta _m}^{\rightarrow})=\mathop{\vartheta _{mk}} \\
 p(w_i=t|\mathop{\varphi _k}^{\rightarrow})=\mathop{\varphi _{kt}} \\
@@ -364,19 +403,18 @@ $$
 p(\mathop{\vartheta _m}^{\rightarrow}|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w_{¬ i}}^{\rightarrow})=Dir(\mathop{\vartheta _m}^{\rightarrow}|\mathop{n_{m,¬ i}}^{\rightarrow}+\mathop{\alpha}^{\rightarrow}) \\
 p(\mathop{\varphi _k}^{\rightarrow}|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w_{¬ i}}^{\rightarrow})=Dir(\mathop{\varphi _k}^{\rightarrow}|\mathop{n_{k,¬ i}}^{\rightarrow}+\mathop{\beta}^{\rightarrow}) \\
 $$
--	因此整个式子可以看作$\mathop{\vartheta _{mk}},\mathop{\varphi _{kt}}$分别在两个Dirichlet分布上的期望相乘。而根据之前Dirichlet的性质，易得这两个期望是按Dirichlet参数比例得到的分式，因此最后的概率计算出来就是（注意是正比于）：
+-	因此整个式子可以看作是两个Dirichlet分布的期望向量的第k项和第t项相乘。而根据之前Dirichlet的性质，易得这两个期望是按Dirichlet参数比例得到的分式，因此最后的概率计算出来就是（注意是正比于）：
 $$
 p(z_i=k|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w}^{\rightarrow})∝\frac{n_{m,¬ i}^{(k)}+\alpha _k}{\sum _{k=1}^K (n_{m,¬ i}^{(k)}+\alpha _k)} \cdot \frac{n_{k,¬ i}^{(t)}+\beta _t}{\sum _{t=1}^V (n_{k,¬ i}^{(t)}+\beta _t)}
+$$
+-	这个概率可以理解为（排除当前这第i个token以外）：
+$$
+(文档m中主题k所占的比例) * (主题k中词t所占的比例） 
 $$
 -	注意到第一项的分母是对主题求和，实际上和k无关，因此可以写成：
 $$
 p(z_i=k|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w}^{\rightarrow})∝ (n_{m,¬ i}^{(k)}+\alpha _k) \cdot \frac{n_{k,¬ i}^{(t)}+\beta _t}{\sum _{t=1}^V (n_{k,¬ i}^{(t)}+\beta _t)}
 $$
--	这个概率可以理解为（排除当前这第i个token以外）：
-$$
-(文档d_i中词汇w_i已经被分配到主题j的比例) * (词汇w_i已经被分配到主题j的比例） 
-$$
--	其中$w_i$代表第i个token对应的词，$d_i$代表第i个token所在的文档。
 -	我们再看看基于联合分布如何推导
 -	之前我们已经得到词和主题的联合分布：
 $$
@@ -385,7 +423,7 @@ $$
 -	根据贝叶斯公式有
 $$
 p(z_i=k|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w}^{\rightarrow})=\frac{p(\mathop{w}^{\rightarrow},\mathop{z}^{\rightarrow})}{p(\mathop{w}^{\rightarrow},\mathop{z_{¬ i}}^{\rightarrow})} \\
-=\frac{p(\mathop{w}^{\rightarrow}|\mathop{z}^{\rightarrow})} {p(\mathop{w_{¬ i}}^{\rightarrow}|\mathop{z_{¬ i}}^{\rightarrow})p(w_i)} \cdot \frac{p(\mathop{z}^{\rightarrow})} {\mathop{z_{¬ i}}^{\rightarrow}} \\
+=\frac{p(\mathop{w}^{\rightarrow}|\mathop{z}^{\rightarrow})} {p(\mathop{w_{¬ i}}^{\rightarrow}|\mathop{z_{¬ i}}^{\rightarrow})p(w_i)} \cdot \frac{p(\mathop{z}^{\rightarrow})} {\mathop{p(z_{¬ i})}^{\rightarrow}} \\
 $$
 -	因为$p(w_i)$是可观测变量，我们省略它，得到一个正比于的式子，将这个式子用之前的$\Delta$形式表示（分式除以分式，分母相同抵消了）：
 $$
@@ -406,7 +444,7 @@ $$
 $$
 
 ## 训练与测试
--	接下来我们使用共轭关系和Gibbs采样两大工具来训练LDA模型，首先对LDA的Dir参数随机初始化（先验），然后使用文本进行数据知识补充，得到最终正确的后验，训练是一个迭代过程：
+-	接下来我们来训练LDA模型，首先对LDA的Dir参数随机初始化（先验），然后使用文本进行数据知识补充，得到最终正确的后验，训练是一个迭代过程：
 	-	迭代什么？采样并更新词对应的主题
 	-	根据什么迭代？gibbs采样的完全条件概率
 	-	迭代之后的效果？主题分配改变、统计量改变、下一次gibbs采样的完全条件概率改变
@@ -424,3 +462,25 @@ Can be set to an 1D array of length equal to the number of expected topics that 
 ’default’: Learns an asymmetric prior from the corpus.
 {% endblockquote %}
 -	gensim中没有暴露$\beta$给用户，用户只能设置$\alpha$，可以自定义，也可以设置对称或者不对称。其中对称设置即全为1，不对称设置则拟合了zipf law（？），可能$\beta$的默认设置就是不对称。
+
+# More
+-	Parameter estimation for text analysis 一文指出了隐主题实际上来自词与词之间的高阶共现关系
+-	LDA用于document query，其中LDA在candidates上训练，新来一个query就进行一次测试
+	-	基于similarity ranking的方法，使用JS距离或者KL散度计算candidate与query之间topic distribution的相似度，并排序
+	-	基于Predictive likelihood ranking的方法，计算给定query，每个candidate出现的概率，基于主题z分解：
+	$$
+	\begin{aligned}
+	p\left(\vec{w}_{m} | \tilde{\vec{w}}_{\tilde{m}}\right) &=\sum_{k=1}^{K} p\left(\vec{w}_{m} | z=k\right) p\left(z=k | \tilde{\vec{w}}_{\tilde{m}}\right) \\
+	&=\sum_{k=1}^{K} \frac{p\left(z=k | \vec{w}_{m}\right) p\left(\vec{w}_{m}\right)}{p(z=k)} p\left(z=k | \tilde{\vec{w}}_{\tilde{m}}\right) \\
+	&=\sum_{k=1}^{K} \vartheta_{m, k} \frac{n_{m}}{n_{k}} \vartheta_{\tilde{m}, k}
+	\end{aligned}
+	$$
+-	LDA用于聚类
+	-	事实上主题分布就是对文档的一种软聚类划分，假如把每篇文档划分到拥有最大概率的主题上的话，那就是一种硬划分。
+	-	或者利用topic distribution作为文档的特征向量，再进一步使用各种聚类算法聚类
+	-	聚类结果的评估，可以利用一个已知聚类划分的结果作为参考，利用Variation of Information distance进行评估
+-	LDA的评价指标，困惑度，其定义为模型在验证集上测出的似然的reciprocal geometric mean：
+	$$
+	\mathrm{P}(\tilde{\boldsymbol{W}} | \boldsymbol{M})=\prod_{m=1}^{M} p\left(\tilde{\vec{w}}_{\tilde{m}} | \mathcal{M}\right)^{-\frac{1}{N}}=\exp -\frac{\sum_{m=1}^{M} \log p\left(\tilde{\bar{w}}_{\tilde{m}} | \mathcal{M}\right)}{\sum_{m=1}^{M} N_{m}}
+	$$
+-	假定验证集和训练集分布一致，那么LDA在验证集上的困惑度高，代表熵越大，不确定性大，模型还没有学到一个稳定的参数。
