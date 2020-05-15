@@ -16,7 +16,7 @@ html: true
 <!--more-->
 
 # BERT embeddings
--	BERT作为一个NLG编码器，其生成的embedding是上下文相关的，关于embedding的研究有
+-	BERT作为一个NLU编码器，其生成的embedding是上下文相关的，关于embedding的研究有
 	-	BERT embedding形成了明显的聚类，与word sense相关
 	-	也有人发现，相同单词的embedding随着Position不同有差别，且该现象貌似与NSP任务有关
 	-	有人研究了同一单词在不同层的representation，发现高层的表示更加与上下文相关，且越高层，embedding在高维空间中越密集（occupy a narrow cone in the vector space），在各向同性的情况下，两个随机单词之间的cosine距离比想象中的更为接近
