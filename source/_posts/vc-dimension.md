@@ -79,6 +79,14 @@ $$
 \forall g \in \mathcal{H}, \mathbb{P}\left[\left|E_{i n}(g)-E_{o u t}(g)\right|>\epsilon\right] \leq 4(2 N)^{V C(\mathcal{H})} \exp \left(-\frac{1}{8} \epsilon^{2} N\right)
 $$
 
+# 衡量量化能力
+-	由VC界的不等式可以看到，经验误差与泛化误差之间的差距（衡量泛化能力）和不等式右边即bad case发生的概率相关联，假如我们给定了bad case发生的概率，设为$	4(2 N)^{V C(\mathcal{H})} \exp \left(-\frac{1}{8} \epsilon^{2} N\right)=\delta$，那么可以反过来算出衡量泛化能力的差距$\epsilon=\sqrt{\frac{8}{N} \ln \left(\frac{4(2 N)^{V C(\mathcal{H})}}{\delta}\right)}$
+-	所以在机器学习基石和技法当中，老师惊颤写出一个VC bound用来估计泛化误差的公式：
+	$$
+	E_{\text {out }}(\mathbf{w}) \leq E_{\text {in }}(\mathbf{w})+\Omega(\mathcal{H})
+	$$
+-	其中的$\Omega(\mathcal{H})$即$\sqrt{\frac{8}{N} \ln \left(\frac{4(2 N)^{V C(\mathcal{H})}}{\delta}\right)}$
+
 
 # 参考
 -	https://zhuanlan.zhihu.com/p/59113933
