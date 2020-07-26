@@ -23,6 +23,8 @@ comments: false
 -	Sina Weibo(Intern)
 	-	Text Classification(Bert Finetune & Data Augment)
 	-	Document Keywords Scoring(DUET improvement)
+-	Tencent(Intern)
+	-	KeyPhrase Ranking(BERT improvement)
 
 # Papers
 ## DivCNN Seq2seq(CoNLL 2019)
@@ -34,12 +36,12 @@ comments: false
 <img width=700 src="img/multi_view.png">
 
 ## SubjGCN
--	under review@IJCAI 2020
-
-## Graph Decoder
--	In preparation
+-	under review@COLING 2020
 
 # Workshops
+## PLM Finetune(LongSumm 2020)
+-	Under review
+
 ## Bert Based Tagging(RANLP 2019 MultiLing workshop)
 -	[Multi-lingual Wikipedia Summarization and Title Generation On Low Resource Corpus](https://www.aclweb.org/anthology/W19-8904.pdf)
 <img width=700 src="img/multiling2019.png">
