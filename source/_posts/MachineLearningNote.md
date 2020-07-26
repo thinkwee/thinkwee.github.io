@@ -231,7 +231,7 @@ $$
 	$$
 
 ## <font size=4 >交叉熵与最大对数似然关系</font>	
--	已知一个样本数据集X，分布为$P_{data}(x)$，我们希望得到一个模型$P_{model}(x,\theta)$，其分布尽可能接近$P_{data}(x)$。$P_model(x,\theta)$将任意x映射为实数来估计真实概率$P_{data}(x)$。
+-	已知一个样本数据集X，分布为$P_{data}(x)$，我们希望得到一个模型$P_{model}(x,\theta)$，其分布尽可能接近$P_{data}(x)$。$P_{model}(x,\theta)$将任意x映射为实数来估计真实概率$P_{data}(x)$。
 在$P_{model}(x,\theta)$中，对$\theta$的最大似然估计为使样本数据通过模型得到概率之积最大的$\theta$：
 	$$
 	\theta _{ML} = \mathop{argmax}\limits_{\theta} p_{model} (X;\theta)
