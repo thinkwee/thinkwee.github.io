@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="第十七讲：行列式及其性质 行列式  矩阵A的行列式是与矩阵相关的一个数，记作\(detA或者|A|\) 行列式的性质 \(detI&#x3D;1\) 交换行，行列式的值的符号会相反 一个置换矩阵的行列式是1或-1，取决于交换行次数的奇偶 两行相等使得行列式为0(由性质二可以直接推出) 矩阵消元不改变其行列式(证明见下) 某一行为0，行列式为0(与0相乘等价于某一行为0，结果为0)">
@@ -898,10 +898,10 @@ A=Q\Lambda Q^{-1}=Q\Lambda Q^T \\
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2017\01\21\LinearAlgebra1\" rel="bookmark">MIT线性代数笔记1</a></div>
+      <div class="popular-posts-title"><a href="\2017\01\21\LinearAlgebra2\" rel="bookmark">MIT线性代数笔记2</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2017\01\21\LinearAlgebra2\" rel="bookmark">MIT线性代数笔记2</a></div>
+      <div class="popular-posts-title"><a href="\2017\01\21\LinearAlgebra1\" rel="bookmark">MIT线性代数笔记1</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2017\12\27\AM-Model-for-ASS\" rel="bookmark">论文翻译：用于生成式自动文摘的一种神经注意力模型</a></div>
@@ -1086,6 +1086,7 @@ A=Q\Lambda Q^{-1}=Q\Lambda Q^T \\
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

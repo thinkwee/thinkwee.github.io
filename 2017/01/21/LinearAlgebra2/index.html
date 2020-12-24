@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="第九讲：线性相关性、基、维数 线性相关性  背景知识:假设一个矩阵A，m&lt;n，即未知数个数大于方程数，因此在零空间内除了零向量之外还有别的向量，最多m个主元，存在n-m个自由向量，整个方程存在非零解。 什么条件下，\(x_1,x_2,x_3...x_n\)线性无关?存在一个系数不全为零的组合，使得线性相加结果为0,则为线性相关，反之为线性无关。 如果向量组里存在一个零向量，则这">
@@ -780,10 +780,10 @@ q_2^Ta &amp; q_2^Tb \\
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2017\01\21\LinearAlgebra1\" rel="bookmark">MIT线性代数笔记1</a></div>
+      <div class="popular-posts-title"><a href="\2017\01\22\LinearAlgebra3\" rel="bookmark">MIT线性代数笔记3</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2017\01\22\LinearAlgebra3\" rel="bookmark">MIT线性代数笔记3</a></div>
+      <div class="popular-posts-title"><a href="\2017\01\21\LinearAlgebra1\" rel="bookmark">MIT线性代数笔记1</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2017\12\27\AM-Model-for-ASS\" rel="bookmark">论文翻译：用于生成式自动文摘的一种神经注意力模型</a></div>
@@ -968,6 +968,7 @@ q_2^Ta &amp; q_2^Tb \\
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
