@@ -192,7 +192,7 @@ social:
 social_icons:
   enable: true
   icons_only: false
-  transition: false
+  transition: true
 
 # Blog rolls
 links_settings:
@@ -537,7 +537,7 @@ pangu: true
 # For more information: https://github.com/GoogleChromeLabs/quicklink
 # Front-matter (unsupport home archive).
 quicklink:
-  enable: false
+  enable: true
 
   # Home page and archive page can be controlled through home and archive options below.
   # This configuration item is independent of `enable`.
@@ -616,14 +616,14 @@ valine:
   appkey:  1nA1tNVxeeSlAumHogP0PvSd # your leancloud application appkey
   notify: false # Mail notifier
   verify: false # Verification code
-  placeholder: Just go go # Comment box placeholder
-  avatar: We should just try # Gravatar style
+  placeholder: just write something to me # Comment box placeholder
+  avatar:  # Gravatar style
   guest_info: nick,mail,link # Custom comment header
   pageSize: 10 # Pagination size
   language: # Language, available values: en, zh-cn
   visitor: true # Article reading statistic
   comment_count: true # If false, comment count will only be displayed in post page, not in home page
-  recordIP: false # Whether to record the commenter IP
+  recordIP: true # Whether to record the commenter IP
   serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
   #post_meta_order: 0
 
@@ -655,13 +655,13 @@ gitalk:
 # Star rating support to each article.
 # To get your ID visit https://widgetpack.com
 rating:
-  enable: false
-  id:     # <app_id>
+  enable: true
+  id: 13961    # <app_id>
   color:  fc6423
 
 # AddThis Share. See: https://www.addthis.com
 # Go to https://www.addthis.com/dashboard to customize your tools.
-add_this_id:
+add_this_id: ra-5fe4397df53716a2
 
 
 # ---------------------------------------------------------------
