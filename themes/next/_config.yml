@@ -17,7 +17,7 @@ cache:
   enable: true
 
 # Remove unnecessary files after hexo generate.
-minify: false
+minify: true
 
 # Define custom file paths.
 # Create your custom files in site directory `source/_data` and uncomment needed files below.
@@ -129,7 +129,7 @@ menu:
 # Enable / Disable menu icons / item badges.
 menu_settings:
   icons: true
-  badges: false
+  badges: true
 
 
 # ---------------------------------------------------------------
@@ -180,7 +180,9 @@ site_state: true
 social:
   GitHub: https://github.com/thinkwee || fab fa-github
   E-Mail: mailto:thinkwee2767@gmail.com || fa fa-envelope
-  Twitter: https://twitter.com/thinkwee || fab fa-twitter
+  # Twitter: https://twitter.com/thinkwee || fab fa-twitter
+  Linkedin: https://www.linkedin.com/in/thinkwee/ || fab fa-linkedin
+  GScholar: https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ || fa fa-graduation-cap
   #FB Page: https://www.facebook.com/yourname || fab fa-facebook
   #StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow
   #YouTube: https://youtube.com/yourname || fab fa-youtube
