@@ -424,35 +424,7 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/abstractive-summarization/</loc>
-    <lastmod>2020-12-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/math/</loc>
-    <lastmod>2020-12-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://thinkwee.top/tags/machine-learning/</loc>
-    <lastmod>2020-12-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/theory/</loc>
-    <lastmod>2020-12-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/nlp/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -473,6 +445,41 @@
   </url>
   
   <url>
+    <loc>https://thinkwee.top/tags/abstractive-summarization/</loc>
+    <lastmod>2020-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/math/</loc>
+    <lastmod>2020-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/theory/</loc>
+    <lastmod>2020-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/nlp/</loc>
+    <lastmod>2020-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/code/</loc>
+    <lastmod>2020-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkwee.top/tags/corex/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
@@ -481,13 +488,6 @@
   
   <url>
     <loc>https://thinkwee.top/tags/topic-model/</loc>
-    <lastmod>2020-12-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/code/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -529,13 +529,6 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/reinforcement-learning/</loc>
-    <lastmod>2020-12-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://thinkwee.top/tags/server/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
@@ -544,6 +537,13 @@
   
   <url>
     <loc>https://thinkwee.top/tags/linux/</loc>
+    <lastmod>2020-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/reinforcement-learning/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -571,14 +571,14 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/lda/</loc>
+    <loc>https://thinkwee.top/tags/heterogeneous-information-network/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/heterogeneous-information-network/</loc>
+    <loc>https://thinkwee.top/tags/lda/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -606,6 +606,13 @@
   </url>
   
   <url>
+    <loc>https://thinkwee.top/tags/logistic-regression/</loc>
+    <lastmod>2020-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkwee.top/tags/c/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
@@ -614,13 +621,6 @@
   
   <url>
     <loc>https://thinkwee.top/tags/algorithm/</loc>
-    <lastmod>2020-12-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/logistic-regression/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -683,6 +683,13 @@
   </url>
   
   <url>
+    <loc>https://thinkwee.top/tags/statistical-learning/</loc>
+    <lastmod>2020-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkwee.top/tags/svm/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
@@ -690,7 +697,7 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/statistical-learning/</loc>
+    <loc>https://thinkwee.top/tags/vc-dimension/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -705,13 +712,6 @@
   
   <url>
     <loc>https://thinkwee.top/tags/mcmc/</loc>
-    <lastmod>2020-12-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/vc-dimension/</loc>
     <lastmod>2020-12-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
