@@ -125,11 +125,16 @@ html: true
 -	上面无论分子分母，积分内其实都是一个多项式分布乘以一个Dirichlet分布，根据共轭我们知道后验应该还是一个Dirichlet分布，我们推导一下多项式分布与Dirichlet分布相乘的积分：
 	$$
 	\int _{p_1...p_k} p(n_1...n_k|p_1...p_k) p(p_1...p_k|\alpha _1 ... \alpha _k) \\
+	$$
+	$$
 	= \int _{p_1...p_k} Mul(n_1...n_k|p_1...p_k) Dir(p_1...p_k|\alpha _1 ... \alpha _k) \\
+	$$
+	$$
 	= \int _{p_1...p_k} (\frac {n!}{n_1!...n_k!} \prod _{i=1}^k p_i ^{n_i}) \frac {\Gamma(\sum \alpha _i)}{\prod \Gamma (\alpha _i)} \prod _{i=1}^k p_i^{\alpha _i -1} \\
+	$$
+	$$
 	= \frac {n!}{n_1!...n_k!} \frac {\Gamma(\sum \alpha _i)}{\prod \Gamma (\alpha _i)} \int _{p_1...p_k} \prod _{i=1}^k  p_i^{n_i+\alpha _i -1} \\
 	$$
-
 -	其中积分式内实际上是一个Dirichelt Distribution$Dir(\alpha _1 + n_1 ... \alpha _k + n_k)$排除了常数部分，因此积分的结果就是1/常数，即：
 	$$
 	= \frac {n!}{n_1!...n_k!} \frac {\Gamma(\sum \alpha _i)}{\prod \Gamma (\alpha _i)} \frac { \prod \Gamma (\alpha _i + n_i)}{\Gamma (n + \sum \alpha _i)}
@@ -140,7 +145,11 @@ html: true
 -	首先定义一个辅助变量$n_{l , not \ i} = Count(z_{not \ i} == l)$，那么：
 	$$
 	n_1 = n_{1,not \ i} \\
+	$$
+	$$
 	... \\
+	$$
+	$$
 	n_k = n_{k,not \ i} \\
 	$$
 
