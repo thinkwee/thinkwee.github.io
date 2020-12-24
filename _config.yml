@@ -127,7 +127,7 @@ search:
   field: post
 
 baidu_url_submit:
-  count: 30
+  count: 50
   host: https://thinkwee.top
   token: XGftmz9gMcWoi1vK
   path: baidu_urls.txt
