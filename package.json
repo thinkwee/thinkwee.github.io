@@ -17,9 +17,11 @@
     "hexo": "^5.0.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
+    "hexo-generator-baidu-sitemap": "^0.1.9",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-index": "^2.0.0",
     "hexo-generator-searchdb": "^1.3.3",
+    "hexo-generator-sitemap": "^2.1.0",
     "hexo-generator-tag": "^1.0.0",
     "hexo-git-backup": "^0.1.3",
     "hexo-related-popular-posts": "^5.0.1",
@@ -29,7 +31,8 @@
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-server": "^2.0.0",
     "hexo-theme-landscape": "^0.0.3",
-    "snyk": "^1.437.3"
+    "snyk": "^1.437.3",
+    "synk": "0.0.2"
   },
   "snyk": true
 }

@@ -29,7 +29,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render: novel/*
+skip_render: novel/* baidu_verify_code-tcgBaZGbAl.html
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -114,9 +114,18 @@ backup:
     repository:
         github: git@github.com:thinkwee/thinkwee.github.io.git,hexo
 
+baidusitemap:
+  path: baidusitemap.xml
+
 sitemap:
-    path: sitemap.xml
+  path: sitemap.xml
 
 search:
   path: search.xml
   field: post
+
+baidu_url_submit:
+  count: 5
+  host: your_site
+  token: your_token
+  path: baidu_urls.txt

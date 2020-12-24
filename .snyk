@@ -1,20 +1,109 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.19.0
-ignore: {}
+version: v1.14.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-JS-BL-608877:
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > bl:
+        reason: None given
+        expires: '2021-01-23T04:57:40.920Z'
+  SNYK-JS-HIGHLIGHTJS-1048676:
+    - hexo-deployer-git > hexo-util > highlight.js:
+        reason: None given
+        expires: '2021-01-23T04:57:40.921Z'
+    - hexo-git-backup > hexo > hexo-util > highlight.js:
+        reason: None given
+        expires: '2021-01-23T04:57:40.921Z'
+    - hexo-git-backup > hexo > hexo-cli > hexo-util > highlight.js:
+        reason: None given
+        expires: '2021-01-23T04:57:40.921Z'
+  SNYK-JS-LODASH-450202:
+    - hexo-related-popular-posts > ga-analytics > lodash:
+        reason: None given
+        expires: '2021-01-23T04:57:40.921Z'
+  SNYK-JS-LODASH-567746:
+    - hexo-related-popular-posts > ga-analytics > lodash:
+        reason: None given
+        expires: '2021-01-23T04:57:40.921Z'
+  SNYK-JS-LODASH-590103:
+    - hexo-related-popular-posts > ga-analytics > lodash:
+        reason: None given
+        expires: '2021-01-23T04:57:40.921Z'
+  SNYK-JS-LODASH-608086:
+    - hexo-related-popular-posts > ga-analytics > lodash:
+        reason: None given
+        expires: '2021-01-23T04:57:40.921Z'
+  SNYK-JS-LODASH-73638:
+    - hexo-related-popular-posts > ga-analytics > lodash:
+        reason: None given
+        expires: '2021-01-23T04:57:40.922Z'
+  SNYK-JS-LODASH-73639:
+    - hexo-related-popular-posts > ga-analytics > lodash:
+        reason: None given
+        expires: '2021-01-23T04:57:40.922Z'
+  'npm:lodash:20180130':
+    - hexo-related-popular-posts > ga-analytics > lodash:
+        reason: None given
+        expires: '2021-01-23T04:57:40.922Z'
+  SNYK-JS-MARKDOWN-560793:
+    - hexo-git-backup > hexo > swig-extras > markdown:
+        reason: None given
+        expires: '2021-01-23T04:57:40.922Z'
+  SNYK-JS-MARKDOWN-597156:
+    - hexo-git-backup > hexo > swig-extras > markdown:
+        reason: None given
+        expires: '2021-01-23T04:57:40.922Z'
+  SNYK-JS-MINIMIST-559764:
+    - hexo-deployer-git > swig-templates > optimist > minimist:
+        reason: None given
+        expires: '2021-01-23T04:57:40.922Z'
+    - hexo-git-backup > swig > optimist > minimist:
+        reason: None given
+        expires: '2021-01-23T04:57:40.922Z'
+    - hexo-git-backup > hexo > swig-templates > optimist > minimist:
+        reason: None given
+        expires: '2021-01-23T04:57:40.922Z'
+  'npm:base64url:20180511':
+    - hexo-related-popular-posts > ga-analytics > googleapis > gapitoken > jws > base64url:
+        reason: None given
+        expires: '2021-01-23T04:57:40.923Z'
+    - hexo-related-popular-posts > ga-analytics > googleapis > gapitoken > jws > jwa > base64url:
+        reason: None given
+        expires: '2021-01-23T04:57:40.923Z'
+  'npm:braces:20180219':
+    - hexo-related-popular-posts > hexo-fs > chokidar > anymatch > micromatch > braces:
+        reason: None given
+        expires: '2021-01-23T04:57:40.923Z'
+  'npm:hoek:20180212':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > hawk > hoek:
+        reason: None given
+        expires: '2021-01-23T04:57:40.924Z'
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > hawk > boom > hoek:
+        reason: None given
+        expires: '2021-01-23T04:57:40.924Z'
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > hawk > sntp > hoek:
+        reason: None given
+        expires: '2021-01-23T04:57:40.924Z'
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > hawk > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2021-01-23T04:57:40.924Z'
+  'npm:qs:20170213':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > qs:
+        reason: None given
+        expires: '2021-01-23T04:57:40.924Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   'npm:hawk:20160119':
     - hexo-related-popular-posts > ga-analytics > googleapis > request > hawk:
-        patched: '2020-12-23T11:42:39.477Z'
+        patched: '2020-12-24T04:56:53.270Z'
   'npm:http-signature:20150122':
     - hexo-related-popular-posts > ga-analytics > googleapis > request > http-signature:
-        patched: '2020-12-23T11:42:39.477Z'
+        patched: '2020-12-24T04:56:53.270Z'
   'npm:request:20160119':
     - hexo-related-popular-posts > ga-analytics > googleapis > request:
-        patched: '2020-12-23T11:42:39.477Z'
+        patched: '2020-12-24T04:56:53.270Z'
   'npm:tunnel-agent:20170305':
     - hexo-related-popular-posts > ga-analytics > googleapis > request > tunnel-agent:
-        patched: '2020-12-23T11:42:39.477Z'
+        patched: '2020-12-24T04:56:53.270Z'
   'npm:uglify-js:20151024':
     - hexo-git-backup > swig > uglify-js:
-        patched: '2020-12-23T11:42:39.477Z'
+        patched: '2020-12-24T04:56:53.270Z'
