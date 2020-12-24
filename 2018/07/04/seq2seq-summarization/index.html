@@ -309,7 +309,21 @@
     </a>
   </span>
   
-  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -444,14 +458,15 @@
 
 
       <footer class="post-footer">
+          
           <div class="post-tags">
-              <a href="/tags/abstractive-summarization/" rel="tag"># abstractive summarization</a>
-              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
-              <a href="/tags/nlp/" rel="tag"># nlp</a>
-              <a href="/tags/seq2seq/" rel="tag"># seq2seq</a>
-              <a href="/tags/rnn/" rel="tag"># rnn</a>
-              <a href="/tags/lstm/" rel="tag"># lstm</a>
-              <a href="/tags/gru/" rel="tag"># gru</a>
+              <a href="/tags/abstractive-summarization/" rel="tag"><i class="fa fa-tag"></i> abstractive summarization</a>
+              <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
+              <a href="/tags/nlp/" rel="tag"><i class="fa fa-tag"></i> nlp</a>
+              <a href="/tags/seq2seq/" rel="tag"><i class="fa fa-tag"></i> seq2seq</a>
+              <a href="/tags/rnn/" rel="tag"><i class="fa fa-tag"></i> rnn</a>
+              <a href="/tags/lstm/" rel="tag"><i class="fa fa-tag"></i> lstm</a>
+              <a href="/tags/gru/" rel="tag"><i class="fa fa-tag"></i> gru</a>
           </div>
 
         
@@ -598,6 +613,16 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">352k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:20</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
@@ -683,6 +708,19 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   
