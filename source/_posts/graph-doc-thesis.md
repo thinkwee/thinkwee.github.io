@@ -120,8 +120,14 @@ $$
 \text { subject to } & \sum_{i=1}^{M} T_{i j}=\beta_{j}^{\prime} \quad 1 \leq j \leq N^{\prime} \\
 & \sum_{j=1}^{N} T_{i j}=\alpha_{i}^{\prime} \quad 1 \leq i \leq M^{\prime}
 \end{array} \\
+$$
+$$
 I(T)=\sum_{i=1}^{M^{\prime}} \sum_{j=1}^{N^{\prime}} \frac{T_{i j}}{\left(\frac{i}{M^{\prime}}-\frac{j}{N^{\prime}}\right)^{2}+1} \\
+$$
+$$
 P_{i j}=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{l^{2}(i, j)}{2 \sigma^{2}}} \\
+$$
+$$
 l(i, j)=\frac{\left|i / M^{\prime}-j / N^{\prime}\right|}{\sqrt{1 / M^{\prime 2}+1 / N^{\prime 2}}} \\
 $$
 -	通过上述方法就能得到针对两个句子AMR表示的OWMD距离，完成无监督的文本相似度计算。也可以充分利用AMR Tree来完成监督学习。

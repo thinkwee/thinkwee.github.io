@@ -63,15 +63,25 @@ $$
 -	作者采取的思路并不是完全照搬[变分推断](https://thinkwee.top/2018/08/28/inference-algorithm/#more)，在VAE中也采用了$q$分布来近似后验分布$p(z|x)$，并将观测量的对数似然拆分成ELBO和KL(q||p(z|x))，不同的是变分推断中用EM的方式得到q，而在VAE中用神经网络的方式拟合q（神经网络输入为$z$，因此$q$本身也是后验分布$q(z|x)$。完整写下来：
 $$
 \log p(x|\theta) = \log p(x,z|\theta) - \log p(z|x,\theta) \\
+$$
+$$
 = \log \frac{p(x,z|\theta)}{q(z|x,\phi)} - \log \frac{p(z|x,\theta)}{q(z|x,\phi)} \\
+$$
+$$
 = \log p(x,z|\theta) - \log q(z|x,\phi) - \log \frac{p(z|x,\theta)}{q(z|x,\phi)} \\
+$$
+$$
 = [ \int _z q(z|x,\phi) \log p(x,z|\theta)dz - \int _z q(z|x,\phi) \log q(z|x,\phi)dz ] + [- \int _z \log \frac{p(z|x,\theta)}{q(z|x,\phi)} q(z|x,\phi) dz ]\\
 $$
 - 	注意，我们实际希望得到的是使得观测量对数似然最大的参数$\theta$和$\phi$，而隐变量$z$可以在输入确定的情况下随模型得到。
 -	可以看到，在观测量即对数似然确定的情况下，前一个中括号内即ELBO值越大，则后面的KL散度，即后验$q(z|x,\phi)$分布和后验真实分布$p(z|x,\theta)$越相近。这个后验分布，即已知$x$得到$z$实际上就是编码器，因此这个KL散度越小则编码器效果越好，既然如此我们就应该最大化ELBO，ELBO可以改写成：
 $$
 ELBO = \int _z q(z|x,\phi) \log p(x,z|\theta)dz - \int _z q(z|x,\phi) \log q(z|x,\phi)dz \\
+$$
+$$
 = E_{q(z|x,\phi)}[\log p(x,z|\theta)-\log q(z|x,\phi)] \\
+$$
+$$
 = E_{q(z|x,\phi)}[\log p(x|z,\theta)]-KL(q(z|x,\phi)||(p(z|\theta))) \\
 $$
 -	又出现了一个KL散度！这个KL散度是编码器编码出的隐变量后验分布和隐变量先验分布之间的KL散度。而前半部分，$p(x|z,\theta)$，已知隐变量求出观测量的分布，实际上就是解码器。因此$\phi$和$\theta$分别对应编码器和解码器的参数，实际上即神经网络的参数。前者称为variational parameter，后者称为generative parameter
@@ -84,8 +94,14 @@ $$
 -	在mnist实验中，作者设置隐变量的先验、q分布、reparameterization中的基础分布$\epsilon$、观测量的后验分布分别为：
 $$
 p(z) = N(z|0,I) \\
+$$
+$$
 q(z|x,\phi) = N(z|\mu _e , diag(\sigma _e)) \\
+$$
+$$
 \epsilon \sim N(0,I) \\
+$$
+$$
 p(x|z,\theta) = \prod _{i=1}^D \mu _{d_i}^{x_i} (1-\mu _{d_i})^{1-x_i} \\
 $$
 -	其中模型参数$\phi = [\mu_e , \sigma _e]$,$\theta=\mu _d$通过神经网络学习得到

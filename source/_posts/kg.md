@@ -123,7 +123,8 @@ html: true
 
 -	至于如何产生实体候选列表，就是在知识图谱上做reasoning，不同于一般的attention based graph embedding的做法，作者采用了multi-hop reasoning
 	
-	-		首先将path matrix和adjacency matrix合成transition matrix，其中的path matrix是指用$d_t$学习到的每个实体选择每一种关系的概率，之后依概率选择受体节点：
+	-	首先将path matrix和adjacency matrix合成transition matrix，其中的path matrix是指用$d_t$学习到的每个实体选择每一种关系的概率，之后依概率选择受体节点：
+	
 	$$
 	\begin{aligned} \mathbf{R}_{t} &=\operatorname{softmax}\left(\theta\left(\mathbf{d}_{t}\right)\right) \\ \mathbf{A}_{i, j, \gamma} &=\left\{\begin{array}{ll}{1,} & {\left(h_{i}, r_{j}, t_{\gamma}\right) \in \mathcal{K}} \\ {0,} & {\left(h_{i}, r_{j}, t_{\gamma}\right) \notin \mathcal{K}}\end{array}\right.\\ \mathbf{T}_{t}=\mathbf{R}_{t} \mathbf{A} \end{aligned}
 	$$

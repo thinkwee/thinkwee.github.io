@@ -138,10 +138,20 @@ $$
 -	接下来看看gibbs的接受率
 $$
 \alpha _{gibbs} =  min(1,\frac{\pi (x^{'}) \pi (x_i | x_{¬i}^{'})}{\pi (x) (x_i ^{'} | x_{¬i})}) \\
+$$
+$$
 = min(1,\frac{\pi (x^{'}) \pi (x_i | x_{¬i})}{\pi (x) (x_i ^{'} | x_{¬i})}) \\
+$$
+$$
 = min(1,\frac{\pi (x^{'} |  x_{¬i}^{'}) \pi( x_{¬i}^{'}) \pi (x_i | x_{¬i})}{\pi (x_i | x_{¬i}) \pi( x_{¬i}) (x_i ^{'} | x_{¬i})}) \\
+$$
+$$
 = min(1,\frac{\pi (x^{'} |  x_{¬i}) \pi( x_{¬i}) \pi (x_i | x_{¬i})}{\pi (x_i | x_{¬i}) \pi( x_{¬i}) (x_i ^{'} | x_{¬i})}) \\
+$$
+$$
 = min(1,1) \\
+$$
+$$
 = 1 \\
 $$
 
@@ -188,11 +198,23 @@ $$
 -	我们先计算，假如H部分的$\theta$不变，直接用上一次的$\theta ^{(t)}$带入，即$H(\theta ^{(t)},\theta ^{(t)})$
 $$
 H(\theta ^{(t)},\theta ^{(t)})-H(\theta,\theta ^{(t)})= \\
+$$
+$$
 \int _z \log p(z|x,\theta ^{(t)}) p(z|x,\theta ^{(t)}) dz - \int _z \log p(z|x,\theta) p(z|x,\theta ^{(t)}) dz \\
+$$
+$$
 = \int _z \log (\frac {p(z|x,\theta ^{(t)})} {p(z|x,\theta)} ) p(z|x,\theta ^{(t)}) dz \\
+$$
+$$
 = - \int _z \log (\frac {p(z|x,\theta)} {p(z|x,\theta ^{(t)})} ) p(z|x,\theta ^{(t)}) dz \\
+$$
+$$
 \geq - \log \int _z  (\frac {p(z|x,\theta)} {p(z|x,\theta ^{(t)})} ) p(z|x,\theta ^{(t)}) dz \\
+$$
+$$
 = - \log 1 \\
+$$
+$$
 = 0 \\
 $$
 -	其中那个不等式是利用了Jensen不等式。也就是说，直接用上一次的$\theta ^{(t)}$作为$\theta$代入H，就是H的最大值!那么无论新的由argmax Q部分得到的$\theta ^{(t+1)}$是多少，带入	H,H部分都会减小（小于等于）！被减数变大，减数变小，那么得到的结果就是对数似然肯定变大，也就证明了EM算法的有效性
@@ -202,9 +224,17 @@ $$
 -	在之前改写对数似然时我们得到了两个式子$p(x,z|\theta)$和$p(z|x,\theta)$，我们引入隐变量的一个分布$q(z)$，对这个两个式子做其与$q(z)$之间的KL散度，可以证明对数似然是这两个KL散度之差：
 $$
 KL(q(z)||p(z|x,\theta)) = \int q(z) [\log q(z) - \log p(z|x,\theta)] dz \\
+$$
+$$
 = \int q(z) [\log q(z) - \log p(x|z,\theta) - \log (z|\theta) + \log p(x|\theta)] dz \\
+$$
+$$
 = \int q(z) [\log q(z) - \log p(x|z,\theta) - \log (z|\theta)] dz + \log p(x|\theta) \\
+$$
+$$
 = \int q(z) [\log q(z) - \log p(x,z|\theta)] dz + \log p(x|\theta) \\
+$$
+$$
 = KL(q(z)||p(x,z|\theta)) + \log p(x|\theta) \\
 $$
 -	也就是
@@ -220,7 +250,11 @@ $$
 -	q取什么值时ELBO最大？显然当KL散度为0时，ELBO取到最大值，也就是下界达到对数似然本身，这时$q(z)=p(z|x,\theta ^{(t-1)})$，接下来我们固定$q$，求使ELBO最大的$\theta$，先把ELBO的定义式改写：
 $$
 ELBO = - KL(q(z)||p(x,z|\theta)) \\
+$$
+$$
 = \int q^{(t)}(z) [ \log p(x,z|\theta) - \log q^{(t)}(z)] dz \\
+$$
+$$
 = - \int q^{(t)}(z) \log p(x,z|\theta) - q^{(t)}(z) \log q^{(t)}(z) dz \\
 $$
 -	其中第二项与$\theta$无关，因此：
@@ -262,9 +296,17 @@ $$
 -	引入隐变量之后，令第i个样本$x_i$对应的示性函数为$z_i$，这是一个k维one-hot向量，代表第i个样本属于k个高斯模型中哪一个，假设属于第m个模型，则$z_i^m$等于1，其余等于0。现在最大似然估计是：
 $$
 \log \prod _{i=1}^N p(x_i,z_i) \\
+$$
+$$
 = \log \prod _{i=1}^N p(z_i) \prod _{k=1}^K N(x_i | \mu _k , \Sigma _k)^{z_i^k} \\
+$$
+$$
 = \log \prod _{i=1}^N  \prod _{k=1}^K \pi _k ^{z_i^k} \prod _{k=1}^K N(x_i | \mu _k , \Sigma _k)^{z_i^k} \\
+$$
+$$
 = \log \prod _{i=1}^N  \prod _{k=1}^K ( \pi _k N(x_i | \mu _k , \Sigma _k)) ^{z_i^k} \\
+$$
+$$
 = \sum _{i=1}^N \sum _{k=1}^K z_i^k(\log \pi _k + \log N(x_i | \mu _k , \Sigma _k)) \\
 $$
 
@@ -333,14 +375,24 @@ $$
 -	其中part1可以写成对隐变量各个维度求多重积分的形式，我们挑出第j个维度将其改写成
 $$
 part1=\int \prod q_i(z_i) \log p(x,z) dz \\
+$$
+$$
 = \int _{z_1} \int _{z_2} ... \int _{z_M} \prod _{i=1}^M q_i(z_i) \log p(x,z) d z_1 , d z_2 , ... ,d z_M \\
+$$
+$$
 = \int _{z_j} q_j(z_j) ( \int _{z_{i \neq j}} \log (p(x,z)) \prod _{z_{i \neq j}} q_i(z_i) d z_i) d z_j \\
+$$
+$$
 = \int _{z_j}  q_j(z_j) [E_{i \neq j} [\log (p(x,z))]] d z_j \\
 $$
 -	在此我们定义一种伪分布的形式，一种分布的伪分布就是对其对数求积分再求指数：
 $$
 p_j(z_j) = \int _{i \neq j} p(z_1,...,z_i) d z_1 , d z_2 ,..., d z_i \\
+$$
+$$
 p_j^{'}(z_j) = exp \int _{i \neq j} \log p(z_1,...,z_i) d z_1 , d z_2 ,..., d z_i \\
+$$
+$$
 \log p_j^{'}(z_j)  = \int _{i \neq j} \log p(z_1,...,z_i) d z_1 , d z_2 ,..., d z_i \\
 $$
 -	这样part1用伪分布的形式可以改写成
@@ -350,13 +402,21 @@ $$
 -	part2中因为隐变量各个分量独立，可以把函数的和在联合分布上的期望改写成各个函数在边缘分布上的期望的和，在这些和中我们关注第j个变量，其余看成常量：
 $$
 part2=\int \prod q_j(z_j) \sum \log q_j(z_j) dz \\
+$$
+$$
 = \sum ( \int q_i(z_i) \log (q_i(z_i)) d z_i ) \\
+$$
+$$
 = \int q_j(z_j) \log (q_j(z_j)) d z_j + const \\
 $$
 -	再把part1和part2合起来，得到ELBO关于分量j的形式：
 $$
 ELBO = \int _{z_j} \log \log p_j^{'}(x,z_j) -  \int q_j(z_j) \log (q_j(z_j)) d z_j + const \\
+$$
+$$
 = \int _{z_j} q_j(z_j) \log \frac{p_j^{'}(x,z_j)}{q_j(z_j)} + const \\
+$$
+$$
 = - KL(p_j^{'}(x,z_j) || q_j(z_j)) + const\\
 $$
 -	也就是将ELBO写成了伪分布和近似分布之间的负KL散度，最大化ELBO就是最小化这个KL散度
@@ -385,19 +445,31 @@ $$
 -	当我们把概率密度函数写成指数家族形式，求最大对数似然时，有：
 $$
 \eta = \mathop{argmax} _ {\eta} [\log p(X | \eta)] \\
+$$
+$$
 = \mathop{argmax} _ {\eta} [\log \prod p(x_i | \eta)] \\
+$$
+$$
 = \mathop{argmax} _ {\eta} [\log [\prod h(x_i) exp [(\sum T(x_i))^T \eta - n A(\eta)]]] \\
+$$
+$$
 = \mathop{argmax} _ {\eta} (\sum T(x_i))^T \eta - n A(\eta)] \\
+$$
+$$
 = \mathop{argmax} _ {\eta} L(\eta) \\
 $$
 -	继续求极值，我们就可以得到指数家族分布关于log normalizer和sufficient statistics的很重要的一个性质：
 $$
 \frac{\partial L (\eta)}{\partial \eta} = \sum T(x_i) - n A^{'}(\eta) =0 \\
+$$
+$$
 A^{'}(\eta) = \sum \frac{T(x_i)}{n} \\
 $$
 -	举个例子，高斯分布写成指数家族分布形式：
 $$
 p(x) = exp[- \frac{1}{2 \sigma ^2}x^2 + \frac{\mu}{\sigma ^2}x - \frac{\mu ^2}{2 \sigma ^2} - \frac 12 \log(2 \pi \sigma ^2)] \\
+$$
+$$
 =exp ( [x \ x^2] [\frac{\mu}{\sigma ^2} \ \frac{-1}{2 \sigma ^2}] ^T - \frac{\mu ^2}{2 \sigma ^2} - \frac 12 \log(2 \pi \sigma ^2) )
 $$
 -	用自然参数去替代方差和均值，写成指数家族分布形式：
@@ -411,23 +483,35 @@ $$
 -	接下来我们利用指数家族的性质来快速计算均值和方差
 $$
 A^{'}(\eta) = \sum \frac{T(x_i)}{n} \\
+$$
+$$
 [\frac{\partial A}{\eta _1} \ \frac{\partial A}{\eta _2}] = [\frac{- \eta _1}{2 \eta _2} \ \frac{\eta _1 ^2 }{2 \eta _2}-\frac{1}{2 \eta _2}] \\
+$$
+$$
 = [\frac{\sum x_i}{n} \ \frac{\sum x_i^2}{n}] \\
+$$
+$$
 = [\mu \ \mu ^2 + \sigma ^2] \\
 $$
 -	为什么$A(\eta)$叫做log normalizer？因为把概率密度的指数族分布积分有：
 $$
 \int _x \frac{h(x)exp(T(x)^T \eta)}{exp(A(\eta))} = 1 \\
+$$
+$$
 A(\eta) = \log \int _x h(x)exp(T(x)^T \eta) \\
 $$
 -	下面讨论指数族分布的共轭关系，假设似然和先验均是指数族分布：
 $$
 p(\beta | x) ∝ p(x | \beta) p(\beta) \\
+$$
+$$
 ∝ h(x) exp(T(x) \beta ^T - A_l (\beta)) h(\beta) exp(T(\beta) \alpha ^T - A(\alpha)) \\
 $$
 -	用向量组的方式改写：
 $$
 T(\beta) = [\beta \ -g(\beta)] \\
+$$
+$$
 \alpha = [\alpha _1 \ \alpha _2] \\
 $$
 - 原式中关于$\beta$，$h(x)$和$A(\alpha)$都是常数，从正比式中消去，带入向量组有：
@@ -437,17 +521,23 @@ $$
 -	我们注意到，如果令$-g(\beta)=-A_l (\beta)$，原式就可以写成：
 $$
 ∝ h(\beta) exp((T(x)+\alpha _1)\beta - (1+\alpha _2) A_l (\beta)) \\
+$$
+$$
 ∝ h(\beta) exp(\alpha _1 ^{'} \beta - \alpha _2 ^{'} A_l (\beta)) \\
 $$
 -	这样先验和后验形式一致，也就是共轭
 -	这样我们用统一的形式写下似然和先验
 $$
 p(\beta | x, \alpha) ∝ p(x | \beta) p(\beta | \alpha) \\
+$$
+$$
 ∝ h(x)exp[T(x)^T\beta - A_l(\beta)] h(\beta) exp[T(\beta)^T\alpha - A_l(\alpha)] \\
 $$
 -	这里我们可以计算log normalizer关于参数求导的结果，注意，这是计算得到，不同于之前求指数族分布的最大似然估计得到的关于log normalizer和sufficient statistics的性质：
 $$
 \frac{\partial A_l(\beta)}{\partial \beta}=\int _x T(x) p(x | \beta)dx \\
+$$
+$$
 = E_{p(x|\beta)} [T(x)] \\
 $$
 -	上式可以通过指数族分布积分为1，积分对$\beta$求导为0，将这个等式变换证明。
@@ -459,15 +549,27 @@ $$
 -	首先我们改写ELBO，注意$q(z,\beta)=q(z)q(\beta)$：
 $$
 ELBO=E_{q(z,\beta)}[\log p(x,z,\beta)] - E_{q(z,\beta)}[\log p(z,\beta)] \\
+$$
+$$
 = E_{q(z,\beta)}[\log p(\beta | x,z) + \log p(z | x) + \log p(x)] - E_{q(z,\beta)}[\log q(\beta)] - E_{q(z,\beta)}[\log q(z)] \\
 $$
 -	其中后验为指数家族分布，且q分布用简单的参数$\lambda$和$\phi$去近似：
 $$
 p(\beta | x,z) = h(\beta) exp [ T(\beta) ^T \eta (z,x) - A_g (\eta(z,x))] \\
+$$
+$$
 \approx q(\beta | \lambda) \\
+$$
+$$
 = h(\beta) exp [ T(\beta) ^T \eta (\lambda - A_g (\eta(\lambda))] \\
+$$
+$$
 p(z | x,\beta) = h(z) exp [ T(z) ^T \eta (\beta,x) - A_l (\eta(\beta,x))] \\
+$$
+$$
 \approx q(\beta | \phi) \\
+$$
+$$
 = h(z) exp [ T(z) ^T \eta (\phi - A_l (\eta(\phi))] \\
 $$
 -	现在我们固定$\phi$，优化$\lambda$，将ELBO中无关常量除去，有：

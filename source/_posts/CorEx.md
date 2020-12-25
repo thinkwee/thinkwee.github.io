@@ -192,7 +192,11 @@ $$
 -	模型的迭代依然是这几步：
 $$
 p_t(y_j) = \sum _{\overline{x}} p_t(y_j | \overline{x})p(\overline{x}) \\
+$$
+$$
 p_t(x_i | y_j) = \sum _{\overline{x}} p_t(y_j|\overline{x})p(\overline{x}) \mathbb{I} [\overline{x}_i = x_i]/p_t(y_j) \\
+$$
+$$
 \log p_{t+1} (y_j | x^l) = \log p_t(y_j) + \sum _{i=1}^n \alpha _{i,j}^t \log \frac{p_t(x_i^l | y_j)}{p(x_i^l)} - \log \mathbb{Z} _j (x^l) \\
 $$
 -	由于我们利用的是词袋信息，处理的是稀疏矩阵，因此边缘概率和条件概率计算都非常快，迭代中最慢的一步是第三个式子，即计算所有文档的主题分布。我们重写这个式子中累加的对数项：

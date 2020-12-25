@@ -63,8 +63,14 @@ $$
 -	seq2seq中的encoder至少要提供两点信息：token representation 和 context representation。token级别的已经拿到了，即GNN之后的节点 embedding，context级别即图的表示，这里作者除了沿用GGNN里门控算权重求和各节点之外，还拼接了输入图之前、RNN编码之后的hidden state，看代码貌似是把所有节点输入图前后的hidden state拼接起来，作为最终的节点embedding；把RNN的输出直接和图embedding表示拼接起来再过一个线性层。这里注意RNN的输出实际上是对图（整个序列）的一个表示，和graph embedding是同一级别的，所以直接拼接：
 	$$
 	\left[\mathbf{e}_{1}^{\prime} \ldots \mathbf{e}_{N}^{\prime}\right]=\operatorname{GNN}\left(\left(S,\left[R_{1} \ldots R_{K}\right],\left[\mathbf{e}_{1} \ldots \mathbf{e}_{N}\right]\right)\right) \\
+	$$
+	$$
 	\sigma\left(w\left(\boldsymbol{h}_{v}^{(T)}\right)\right) \in[0,1] \\
+	$$
+	$$
 	\hat{\mathbf{e}}=\sum_{1<i<N} \sigma\left(w\left(\mathbf{e}_{i}^{\prime}\right)\right) \cdot \aleph\left(\mathbf{e}_{i}^{\prime}\right) \\
+	$$
+	$$
 	Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\
 	$$
 -	在实际工程实现中，不同大小的图打包成batch不方便，作者也是采用了两个trick
