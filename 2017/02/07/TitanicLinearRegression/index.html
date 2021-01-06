@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="简介 2016年11月的时候决定开始入坑机器学习 首先照着Kaggle上第一个题目《泰坦尼克号生还者分析》的官方示例敲了一遍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习入门:Coding基础与线性回归">
+<meta property="og:url" content="https://thinkwee.top/2017/02/07/TitanicLinearRegression/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="简介 2016年11月的时候决定开始入坑机器学习 首先照着Kaggle上第一个题目《泰坦尼克号生还者分析》的官方示例敲了一遍。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TjxK.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TzrD.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TxKO.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i07DRx.jpg">
+<meta property="article:published_time" content="2017-02-07T13:57:22.000Z">
+<meta property="article:modified_time" content="2020-02-11T14:03:31.497Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/20/i0TjxK.jpg">
+
+<link rel="canonical" href="https://thinkwee.top/2017/02/07/TitanicLinearRegression/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>机器学习入门:Coding基础与线性回归 | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-96114782-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Thinkwee's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">51</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a>
+
+  </li>
+        <li class="menu-item menu-item-novel">
+
+    <a href="/novel/" rel="section"><i class="fa fa-book fa-fw"></i>novel</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2017/02/07/TitanicLinearRegression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/me.jpg">
+      <meta itemprop="name" content="Thinkwee">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习入门:Coding基础与线性回归
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-02-07 21:57:22" itemprop="dateCreated datePublished" datetime="2017-02-07T21:57:22+08:00">2017-02-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-11 22:03:31" itemprop="dateModified" datetime="2020-02-11T22:03:31+08:00">2020-02-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2017/02/07/TitanicLinearRegression/" class="post-meta-item leancloud_visitors" data-flag-title="机器学习入门:Coding基础与线性回归" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2017/02/07/TitanicLinearRegression/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2017/02/07/TitanicLinearRegression/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr />
+<h1 id="简介">简介</h1>
+<p>2016年11月的时候决定开始入坑机器学习 首先照着Kaggle上第一个题目《泰坦尼克号生还者分析》的官方示例敲了一遍。</p>
+<a id="more"></a>
+<p>2017年2月更新:用pandas重新整理了数据，计算了详细的正确率，试用了scikit-learn中的LinearRegression</p>
+<p>题目介绍在这：<a target="_blank" rel="noopener" href="https://www.kaggle.com/c/titanic">Titanic: Machine Learning from Disaster</a></p>
+<p>下面是数据集表格样式，每个人有12个属性</p>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TjxK.jpg" alt="" /><figcaption>i0TjxK.jpg</figcaption>
+</figure>
+<hr />
+<h1 id="不是算法的算法">不是算法的算法</h1>
+<p>官方示例就是按几个属性分类，比如年龄，性别，票价(.....) 然后对每个属性内所有人的生还数据（0或者1）加一起求平均。 英文注释都是官方文档的说明 我就当入门教程学了，也全打了上去 代码如下： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Created on Sun Oct 30 15:28:22 2016</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@author: thinkwee</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> csv <span class="keyword">as</span> csv </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> glue <span class="keyword">import</span> qglue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">test_file=(<span class="built_in">open</span>(<span class="string">r&#x27;文件目录略&#x27;</span>, <span class="string">&#x27;r&#x27;</span>))</span><br><span class="line">test_file_object = csv.reader(<span class="built_in">open</span>(<span class="string">r&#x27;文件目录略&#x27;</span>, <span class="string">&#x27;r&#x27;</span>))</span><br><span class="line">testheader = <span class="built_in">next</span>(test_file_object)</span><br><span class="line">predictions_file = <span class="built_in">open</span>(<span class="string">r&quot;文件目录略&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line">predictions_file_object = csv.writer(predictions_file)</span><br><span class="line">p = csv.writer(predictions_file)</span><br><span class="line">p.writerow([<span class="string">&quot;PassengerId&quot;</span>, <span class="string">&quot;Survived&quot;</span>])</span><br><span class="line">csv_file_object = csv.reader(<span class="built_in">open</span>(<span class="string">r&#x27;文件目录略&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)) </span><br><span class="line">trainheader = <span class="built_in">next</span>(csv_file_object)  <span class="comment"># The next() command just skips the </span></span><br><span class="line">						 <span class="comment"># first line which is a header</span></span><br><span class="line">data=[]                          	 <span class="comment"># Create a variable called &#x27;data&#x27;.</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> csv_file_object:      	 <span class="comment"># Run through each row in the csv file,</span></span><br><span class="line">    data.append(row)             	 <span class="comment"># adding each row to the data variable</span></span><br><span class="line">print(<span class="built_in">type</span>(data))</span><br><span class="line">data = np.array(data) 	         	 <span class="comment"># Then convert from a list to an array</span></span><br><span class="line">						 <span class="comment"># Be aware that each item is currently</span></span><br><span class="line">						 <span class="comment"># a string in this format</span></span><br><span class="line"></span><br><span class="line">number_passengers = np.size(data[<span class="number">0</span>::,<span class="number">1</span>].astype(np.<span class="built_in">float</span>))</span><br><span class="line">number_survived = np.<span class="built_in">sum</span>(data[<span class="number">0</span>::,<span class="number">1</span>].astype(np.<span class="built_in">float</span>))</span><br><span class="line">proportion_survivors = number_survived / number_passengers</span><br><span class="line"></span><br><span class="line">women_only_stats = data[<span class="number">0</span>::,<span class="number">4</span>] == <span class="string">&quot;female&quot;</span> <span class="comment"># This finds where all </span></span><br><span class="line">                                           <span class="comment"># the elements in the gender</span></span><br><span class="line">                                           <span class="comment"># column that equals “female”</span></span><br><span class="line">men_only_stats = data[<span class="number">0</span>::,<span class="number">4</span>] != <span class="string">&quot;female&quot;</span>   <span class="comment"># This finds where all the </span></span><br><span class="line">                                           <span class="comment"># elements do not equal </span></span><br><span class="line">                                           <span class="comment"># female (i.e. male)</span></span><br><span class="line">                                           </span><br><span class="line"><span class="comment"># Using the index from above we select the females and males separately</span></span><br><span class="line">women_onboard = data[women_only_stats,<span class="number">1</span>].astype(np.<span class="built_in">float</span>)     </span><br><span class="line">men_onboard = data[men_only_stats,<span class="number">1</span>].astype(np.<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Then we finds the proportions of them that survived</span></span><br><span class="line">proportion_women_survived = \</span><br><span class="line">                       np.<span class="built_in">sum</span>(women_onboard) / np.size(women_onboard)  </span><br><span class="line">proportion_men_survived = \</span><br><span class="line">                       np.<span class="built_in">sum</span>(men_onboard) / np.size(men_onboard) </span><br><span class="line"></span><br><span class="line"><span class="comment"># and then print it out</span></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;Proportion of women who survived is %s&#x27;</span> % proportion_women_survived)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;Proportion of men who survived is %s&#x27;</span> % proportion_men_survived)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># The script will systematically will loop through each combination </span></span><br><span class="line"><span class="comment"># and use the &#x27;where&#x27; function in python to search the passengers that fit that combination of variables. </span></span><br><span class="line"><span class="comment"># Just like before, you can ask what indices in your data equals female, 1st class, and paid more than $30. </span></span><br><span class="line"><span class="comment"># The problem is that looping through requires bins of equal sizes, i.e. $0-9,  $10-19,  $20-29,  $30-39.  </span></span><br><span class="line"><span class="comment"># For the sake of binning let&#x27;s say everything equal to and above 40 &quot;equals&quot; 39 so it falls in this bin. </span></span><br><span class="line"><span class="comment"># So then you can set the bins</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># So we add a ceiling</span></span><br><span class="line">fare_ceiling = <span class="number">40</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># then modify the data in the Fare column to = 39, if it is greater or equal to the ceiling</span></span><br><span class="line">data[ data[<span class="number">0</span>::,<span class="number">9</span>].astype(np.<span class="built_in">float</span>) &gt;= fare_ceiling, <span class="number">9</span> ] = fare_ceiling - <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">fare_bracket_size = <span class="number">10</span></span><br><span class="line">number_of_price_brackets = fare_ceiling // fare_bracket_size</span><br><span class="line"></span><br><span class="line"><span class="comment"># Take the length of an array of unique values in column index 2</span></span><br><span class="line">number_of_classes = <span class="built_in">len</span>(np.unique(data[<span class="number">0</span>::,<span class="number">2</span>]))</span><br><span class="line"></span><br><span class="line">number_of_age_brackets=<span class="number">8</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize the survival table with all zeros</span></span><br><span class="line">survival_table = np.zeros((<span class="number">2</span>, number_of_classes, </span><br><span class="line">						   number_of_price_brackets,</span><br><span class="line">						   number_of_age_brackets))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#Now that these are set up, </span></span><br><span class="line"><span class="comment">#you can loop through each variable </span></span><br><span class="line"><span class="comment">#and find all those passengers that agree with the statements</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(number_of_classes):       		<span class="comment">#loop through each class</span></span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(number_of_price_brackets):   	<span class="comment">#loop through each price bin</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(number_of_age_brackets):     <span class="comment">#loop through each age bin</span></span><br><span class="line">        women_only_stats_plus = data[                 <span class="comment">#Which element           </span></span><br><span class="line">                        (data[<span class="number">0</span>::,<span class="number">4</span>] == <span class="string">&quot;female&quot;</span>)     <span class="comment">#is a female</span></span><br><span class="line">                       &amp;(data[<span class="number">0</span>::,<span class="number">2</span>].astype(np.<span class="built_in">float</span>) <span class="comment">#and was ith class</span></span><br><span class="line">                             == i+<span class="number">1</span>)                        </span><br><span class="line">                       &amp;(data[<span class="number">0</span>:,<span class="number">9</span>].astype(np.<span class="built_in">float</span>)  <span class="comment">#was greater </span></span><br><span class="line">                            &gt;= j*fare_bracket_size)   <span class="comment">#than this bin              </span></span><br><span class="line">                       &amp;(data[<span class="number">0</span>:,<span class="number">9</span>].astype(np.<span class="built_in">float</span>)  <span class="comment">#and less than</span></span><br><span class="line">                            &lt; (j+<span class="number">1</span>)*fare_bracket_size)</span><br><span class="line">                       &amp;(data[<span class="number">0</span>:,<span class="number">5</span>].astype(np.<span class="built_in">float</span>)&gt;=k*<span class="number">10</span>)</span><br><span class="line">                       &amp;(data[<span class="number">0</span>:,<span class="number">5</span>].astype(np.<span class="built_in">float</span>)&lt;(k+<span class="number">1</span>)*<span class="number">10</span>)<span class="comment">#the next bin</span></span><br><span class="line">                       </span><br><span class="line">                          , <span class="number">1</span>]                        <span class="comment">#in the 2nd col                           </span></span><br><span class="line"> 						                                    									</span><br><span class="line"></span><br><span class="line">        men_only_stats_plus = data[                   <span class="comment">#Which element           </span></span><br><span class="line">                         (data[<span class="number">0</span>::,<span class="number">4</span>] != <span class="string">&quot;female&quot;</span>)    <span class="comment">#is a male</span></span><br><span class="line">                       &amp;(data[<span class="number">0</span>::,<span class="number">2</span>].astype(np.<span class="built_in">float</span>) <span class="comment">#and was ith class</span></span><br><span class="line">                             == i+<span class="number">1</span>)                                       </span><br><span class="line">                       &amp;(data[<span class="number">0</span>:,<span class="number">9</span>].astype(np.<span class="built_in">float</span>)  <span class="comment">#was greater </span></span><br><span class="line">                            &gt;= j*fare_bracket_size)   <span class="comment">#than this bin              </span></span><br><span class="line">                       &amp;(data[<span class="number">0</span>:,<span class="number">9</span>].astype(np.<span class="built_in">float</span>)  <span class="comment">#and less than</span></span><br><span class="line">                            &lt; (j+<span class="number">1</span>)*fare_bracket_size)<span class="comment">#the next bin</span></span><br><span class="line">                       &amp;(data[<span class="number">0</span>:,<span class="number">5</span>].astype(np.<span class="built_in">float</span>)&gt;=k*<span class="number">10</span>)</span><br><span class="line">                       &amp;(data[<span class="number">0</span>:,<span class="number">5</span>].astype(np.<span class="built_in">float</span>)&lt;(k+<span class="number">1</span>)*<span class="number">10</span>)</span><br><span class="line">                          , <span class="number">1</span>]</span><br><span class="line">                          </span><br><span class="line">        survival_table[<span class="number">0</span>,i,j,k] = np.mean(women_only_stats_plus.astype(np.<span class="built_in">float</span>)) </span><br><span class="line">        survival_table[<span class="number">1</span>,i,j,k] = np.mean(men_only_stats_plus.astype(np.<span class="built_in">float</span>))</span><br><span class="line">		</span><br><span class="line">		<span class="comment">#if nan then the type will change to string from float so this sentence can set nan to 0. </span></span><br><span class="line">        survival_table[ survival_table != survival_table ] = <span class="number">0.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Notice that  data[ where function, 1]  means </span></span><br><span class="line"><span class="comment">#it is finding the Survived column for the conditional criteria which is being called. </span></span><br><span class="line"><span class="comment">#As the loop starts with i=0 and j=0, </span></span><br><span class="line"><span class="comment">#the first loop will return the Survived values for all the 1st-class females (i + 1) </span></span><br><span class="line"><span class="comment">#who paid less than 10 ((j+1)*fare_bracket_size) </span></span><br><span class="line"><span class="comment">#and similarly all the 1st-class males who paid less than 10.  </span></span><br><span class="line"><span class="comment">#Before resetting to the top of the loop, </span></span><br><span class="line"><span class="comment">#we can calculate the proportion of survivors for this particular </span></span><br><span class="line"><span class="comment">#combination of criteria and record it to our survival table</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="comment">#官方示例中将概率大于0.5的视为生还，这里我们略过</span></span><br><span class="line"><span class="comment">#直接打印详细概率</span></span><br><span class="line"><span class="comment">#survival_table[ survival_table &lt; 0.5 ] = 0</span></span><br><span class="line"><span class="comment">#survival_table[ survival_table &gt;= 0.5 ] = 1 </span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment">#Then we can make the prediction</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> test_file_object:                  <span class="comment"># We are going to loop</span></span><br><span class="line">                                              <span class="comment"># through each passenger</span></span><br><span class="line">                                              <span class="comment"># in the test set                     </span></span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(number_of_price_brackets):   <span class="comment"># For each passenger we</span></span><br><span class="line">                                              <span class="comment"># loop thro each price bin</span></span><br><span class="line">    <span class="keyword">try</span>:                                      <span class="comment"># Some passengers have no</span></span><br><span class="line">                                              <span class="comment"># Fare data so try to make</span></span><br><span class="line">      row[<span class="number">8</span>] = <span class="built_in">float</span>(row[<span class="number">8</span>])                  <span class="comment"># a float</span></span><br><span class="line">    <span class="keyword">except</span>:                                   <span class="comment"># If fails: no data, so </span></span><br><span class="line">      bin_fare = <span class="number">3</span> - <span class="built_in">float</span>(row[<span class="number">1</span>])            <span class="comment"># bin the fare according Pclass</span></span><br><span class="line">      <span class="keyword">break</span>                                   <span class="comment"># Break from the loop</span></span><br><span class="line">    <span class="keyword">if</span> row[<span class="number">8</span>] &gt; fare_ceiling:              	  <span class="comment"># If there is data see if</span></span><br><span class="line">                                              <span class="comment"># it is greater than fare</span></span><br><span class="line">                                              <span class="comment"># ceiling we set earlier</span></span><br><span class="line">      bin_fare = number_of_price_brackets-<span class="number">1</span>   <span class="comment"># If so set to highest bin</span></span><br><span class="line">      <span class="keyword">break</span>                                   <span class="comment"># And then break loop</span></span><br><span class="line">    <span class="keyword">if</span> row[<span class="number">8</span>] &gt;= j * fare_bracket_size\</span><br><span class="line">       <span class="keyword">and</span> row[<span class="number">8</span>] &lt; \</span><br><span class="line">       (j+<span class="number">1</span>) * fare_bracket_size:             <span class="comment"># If passed these tests </span></span><br><span class="line">                                              <span class="comment"># then loop through each bin </span></span><br><span class="line">      bin_fare = j                            <span class="comment"># then assign index</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(number_of_age_brackets): </span><br><span class="line">                                             </span><br><span class="line">    <span class="keyword">try</span>:                                    </span><br><span class="line">                                            </span><br><span class="line">      row[<span class="number">4</span>] = <span class="built_in">float</span>(row[<span class="number">4</span>])              </span><br><span class="line">    <span class="keyword">except</span>:                                   </span><br><span class="line">      bin_age = -<span class="number">1</span>      </span><br><span class="line">      <span class="keyword">break</span>                                  </span><br><span class="line">                               </span><br><span class="line">    <span class="keyword">if</span> row[<span class="number">4</span>] &gt;= j * <span class="number">10</span>\</span><br><span class="line">       <span class="keyword">and</span> row[<span class="number">4</span>] &lt; \</span><br><span class="line">       (j+<span class="number">1</span>) * <span class="number">10</span>:             <span class="comment"># If passed these tests </span></span><br><span class="line">                               <span class="comment"># then loop through each bin </span></span><br><span class="line">      bin_age = j              <span class="comment"># then assign index</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> row[<span class="number">3</span>] == <span class="string">&#x27;female&#x27;</span>:       <span class="comment">#If the passenger is female</span></span><br><span class="line">        p.writerow([row[<span class="number">0</span>], <span class="string">&quot;%f %%&quot;</span> % \</span><br><span class="line">                   (survival_table[<span class="number">0</span>, <span class="built_in">int</span>(row[<span class="number">1</span>])-<span class="number">1</span>, bin_fare,bin_age]*<span class="number">100</span>)])</span><br><span class="line">  <span class="keyword">else</span>:                        <span class="comment">#else if male</span></span><br><span class="line">        p.writerow([row[<span class="number">0</span>], <span class="string">&quot;%f %%&quot;</span> % \</span><br><span class="line">                   (survival_table[<span class="number">1</span>, <span class="built_in">int</span>(row[<span class="number">1</span>])-<span class="number">1</span>, bin_fare,bin_age]*<span class="number">100</span>)])</span><br><span class="line">     </span><br><span class="line"><span class="comment"># Close out the files.</span></span><br><span class="line">test_file.close() </span><br><span class="line">predictions_file.close()</span><br></pre></td></tr></table></figure></p>
+<hr />
+<h1 id="多元线性回归">多元线性回归</h1>
+<p>之后买了西瓜书，我把这个例题改成了线性回归模型： 假设每一个人生还可能与这个人的性别，价位，舱位，年龄四个属性成线性关系， 我们就利用最小二乘法找到一组线性系数，是所有样本到这个线性函数直线上的距离最小 用均方误差作为性能度量，均方误差是线性系数的函数 对线性系数w求导，可以得到w最优解的闭式</p>
+<p>关键公式是 ** <span class="math display">\[ w^*=(X^TX)^{-1}X^Ty \]</span> **</p>
+<ul>
+<li>X:数据集矩阵，每一行对应一个人的数据，每一行最后添加一个1， 假如训练集有m个人，n个属性，则矩阵大小为m*(n+1)</li>
+<li>w:线性系数</li>
+<li>y:生还结果 <span class="math display">\[ y=w^T*x \]</span></li>
+</ul>
+<p>写的时候把年龄中缺失值全删除了，官方给了891条数据，我分了193条用于验证计算正确率，最后正确率是75.155280 %</p>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TzrD.jpg" alt="" /><figcaption>i0TzrD.jpg</figcaption>
+</figure>
+<p>代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">    train1=train.dropna(subset=([<span class="string">&#x27;Age&#x27;</span>]),axis=<span class="number">0</span>)</span><br><span class="line">vali1=vali.dropna(subset=([<span class="string">&#x27;Age&#x27;</span>]),axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">validata=np.array(vali1)</span><br><span class="line">data=np.array(train1)</span><br><span class="line"></span><br><span class="line">fare_ceiling = <span class="number">40</span></span><br><span class="line">data[data[<span class="number">0</span>::,<span class="number">9</span>].astype(np.<span class="built_in">float</span>)&gt;=fare_ceiling,<span class="number">9</span>] = fare_ceiling - <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">train = np.column_stack((data[<span class="number">0</span>::,<span class="number">9</span>],data[<span class="number">0</span>::,<span class="number">2</span>],data[<span class="number">0</span>::,<span class="number">5</span>],data[<span class="number">0</span>::,<span class="number">4</span>]))</span><br><span class="line">predict=np.column_stack((validata[<span class="number">0</span>::,<span class="number">9</span>],validata[<span class="number">0</span>::,<span class="number">2</span>],validata[<span class="number">0</span>::,<span class="number">5</span>],validata[<span class="number">0</span>::,<span class="number">4</span>]))</span><br><span class="line">survive = np.column_stack((data[<span class="number">0</span>::,<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(train.shape[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">if</span> (train[i][<span class="number">3</span>]==<span class="string">&#x27;male&#x27;</span>):</span><br><span class="line">        train[i][<span class="number">3</span>]=<span class="number">0.00</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        train[i][<span class="number">3</span>]=<span class="number">1.00</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(predict.shape[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">if</span> (predict[i][<span class="number">3</span>]==<span class="string">&#x27;male&#x27;</span>):</span><br><span class="line">        predict[i][<span class="number">3</span>]=<span class="number">0.00</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        predict[i][<span class="number">3</span>]=<span class="number">1.00</span></span><br><span class="line"></span><br><span class="line">x0=np.ones((train.shape[<span class="number">0</span>],<span class="number">1</span>))</span><br><span class="line">train=np.concatenate((train,x0),axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">x0=np.ones((predict.shape[<span class="number">0</span>],<span class="number">1</span>))</span><br><span class="line">predict=np.concatenate((predict,x0),axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&#x27;raw data finish&#x27;</span>)</span><br><span class="line"></span><br><span class="line">survive=survive.T.astype(np.<span class="built_in">float</span>)</span><br><span class="line">traint=train.T.astype(np.<span class="built_in">float</span>)</span><br><span class="line">w0=traint.dot(train.astype(np.<span class="built_in">float</span>))</span><br><span class="line">w1=(np.linalg.inv(w0))  </span><br><span class="line">w2=w1.dot(traint)</span><br><span class="line">w=w2.dot(survive)  <span class="comment">#w=(Xt*X)^-1*Xt*y</span></span><br><span class="line">print(<span class="string">&#x27;w calc finish&#x27;</span>)</span><br><span class="line"></span><br><span class="line">feature=[<span class="string">&#x27;Fare&#x27;</span>,<span class="string">&#x27;Pclass&#x27;</span>,<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Sex&#x27;</span>,<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">zip</span>(feature,w):</span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">valipredict_file_object.writerow([<span class="string">&quot;PassengerName&quot;</span>, <span class="string">&quot;Actual Survived&quot;</span>,<span class="string">&quot;Predict Survived&quot;</span>,<span class="string">&quot;XO&quot;</span>])</span><br><span class="line">count=<span class="number">0.0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(predict.shape[<span class="number">0</span>]):</span><br><span class="line">    temp=predict[i,<span class="number">0</span>::].T.astype(<span class="built_in">float</span>)</span><br><span class="line">    answer=temp.dot(w)</span><br><span class="line">    answer=answer[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> ((answer&gt;<span class="number">0.5</span> <span class="keyword">and</span> validata[i][<span class="number">1</span>]==<span class="number">1</span>) <span class="keyword">or</span> (answer&lt;<span class="number">0.5</span> <span class="keyword">and</span> validata[i][<span class="number">1</span>]==<span class="number">0</span>)):</span><br><span class="line">        flag=<span class="string">&quot;Correct&quot;</span></span><br><span class="line">        count=count+<span class="number">1.0</span>;</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag=<span class="string">&quot;Error&quot;</span></span><br><span class="line">    valipredict_file_object.writerow([validata[i][<span class="number">3</span>],validata[i][<span class="number">1</span>],answer,flag])</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;prediction finish&quot;</span>)</span><br><span class="line">print(<span class="string">&quot;prediction ratio:&quot;</span>,<span class="string">&quot;%f %%&quot;</span>%(count/predict.shape[<span class="number">0</span>]*<span class="number">100</span>))  </span><br></pre></td></tr></table></figure>
+<hr />
+<h1 id="scikit-learn中的多元线性回归">scikit-learn中的多元线性回归</h1>
+<p>试了一下scikit,增加了几个属性，一样的数据，但是好像有些属性不太好，导致正确率下降至64.375000 %</p>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TxKO.jpg" alt="" /><figcaption>i0TxKO.jpg</figcaption>
+</figure>
+<p>如果再模型的fit阶段出现错误，请检查你fit的x,y数据集是否出现了空元素，无限大元素，或者各个属性的长度不一致，可以用info()做一个概览</p>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i07DRx.jpg" alt="" /><figcaption>i07DRx.jpg</figcaption>
+</figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">train=train.dropna(subset=[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Embarked&#x27;</span>],axis=<span class="number">0</span>)</span><br><span class="line">vali=vali.dropna(subset=([<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Embarked&#x27;</span>]),axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">train.loc[train[<span class="string">&quot;Sex&quot;</span>]==<span class="string">&quot;male&quot;</span>,<span class="string">&quot;Sex&quot;</span>]=<span class="number">0</span></span><br><span class="line">train.loc[train[<span class="string">&quot;Sex&quot;</span>]==<span class="string">&quot;female&quot;</span>,<span class="string">&quot;Sex&quot;</span>]=<span class="number">1</span></span><br><span class="line">train.loc[train[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;S&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">0</span></span><br><span class="line">train.loc[train[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;C&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">1</span></span><br><span class="line">train.loc[train[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;Q&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">2</span></span><br><span class="line">trainx=train.reindex(index=train.index[:],columns=[<span class="string">&#x27;Age&#x27;</span>]+[<span class="string">&#x27;Sex&#x27;</span>]+[<span class="string">&#x27;Parch&#x27;</span>]+[<span class="string">&#x27;Fare&#x27;</span>]+[<span class="string">&#x27;Embarked&#x27;</span>]+[<span class="string">&#x27;SibSp&#x27;</span>])</span><br><span class="line"></span><br><span class="line">vali.loc[vali[<span class="string">&quot;Sex&quot;</span>]==<span class="string">&quot;male&quot;</span>,<span class="string">&quot;Sex&quot;</span>]=<span class="number">0</span></span><br><span class="line">vali.loc[vali[<span class="string">&quot;Sex&quot;</span>]==<span class="string">&quot;female&quot;</span>,<span class="string">&quot;Sex&quot;</span>]=<span class="number">1</span></span><br><span class="line">vali.loc[vali[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;S&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">0</span></span><br><span class="line">vali.loc[vali[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;C&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">1</span></span><br><span class="line">vali.loc[vali[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;Q&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">2</span></span><br><span class="line">vali1=vali.reindex(index=vali.index[:],columns=[<span class="string">&#x27;Age&#x27;</span>]+[<span class="string">&#x27;Sex&#x27;</span>]+[<span class="string">&#x27;Parch&#x27;</span>]+[<span class="string">&#x27;Fare&#x27;</span>]+[<span class="string">&#x27;Embarked&#x27;</span>]+[<span class="string">&#x27;SibSp&#x27;</span>])</span><br><span class="line"></span><br><span class="line">survive=vali.reindex(index=vali.index[:],columns=[<span class="string">&#x27;Survived&#x27;</span>])</span><br><span class="line">survive=np.array(survive)</span><br><span class="line"></span><br><span class="line">feature=[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Sex&#x27;</span>,<span class="string">&#x27;Parch&#x27;</span>,<span class="string">&#x27;Fare&#x27;</span>,<span class="string">&#x27;Embarked&#x27;</span>,<span class="string">&#x27;SibSp&#x27;</span>]</span><br><span class="line"></span><br><span class="line">trainy=train.reindex(index=train.index[:],columns=[<span class="string">&#x27;Survived&#x27;</span>])  </span><br><span class="line">trainy=trainy.Survived</span><br><span class="line"></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(trainx, trainy, random_state=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model=LinearRegression()</span><br><span class="line">model.fit(X_train,y_train)</span><br><span class="line">print(model)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">zip</span>(feature,model.coef_):</span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line">predict=model.predict(vali1)</span><br><span class="line"></span><br><span class="line">count=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(predict)):</span><br><span class="line">    <span class="keyword">if</span> (predict[i]&gt;<span class="number">1</span> <span class="keyword">and</span> survive[i] == <span class="number">1</span>) <span class="keyword">or</span>  (predict[i]&lt;<span class="number">1</span> <span class="keyword">and</span> survive [i]== <span class="number">0</span> ):</span><br><span class="line">        count=count+<span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;prediction finish&quot;</span>)</span><br><span class="line">print(<span class="string">&quot;prediction ratio:&quot;</span>,<span class="string">&quot;%f %%&quot;</span>%(count/<span class="built_in">len</span>(predict)*<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2017\03\18\Lagrange\" rel="bookmark">Lagrange,KKT,PCA,SVM</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2017\03\16\kmeans\" rel="bookmark">机器学习入门:K-Means和KNN</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2017\01\23\numpycookbook\" rel="bookmark">Numpy Cookbook</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2017\02\04\pandas-skill\" rel="bookmark">pandas 数据处理基础</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2018\08\09\statistical-handwriting\" rel="bookmark">统计学习方法手写版笔记</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
+              <a href="/tags/code/" rel="tag"><i class="fa fa-tag"></i> code</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/02/04/pandas-skill/" rel="prev" title="pandas 数据处理基础">
+      <i class="fa fa-chevron-left"></i> pandas 数据处理基础
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/02/12/MachineLearningNote/" rel="next" title="机器学习笔记">
+      机器学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E6%98%AF%E7%AE%97%E6%B3%95%E7%9A%84%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">不是算法的算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-number">3.</span> <span class="nav-text">多元线性回归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scikit-learn%E4%B8%AD%E7%9A%84%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-number">4.</span> <span class="nav-text">scikit-learn中的多元线性回归</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Thinkwee"
+      src="/img/me.jpg">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/thinkwee/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;thinkwee&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">352k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:20</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5fe4397df53716a2" async="async"></script>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three.min.js"></script>
+    <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/canvas_lines.min.js"></script>
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 13961,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://thinkwee.top/2017/02/07/TitanicLinearRegression/',]
+      });
+      });
+  </script>
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'g58NgfMJBlwTyftr6hizdozq-gzGzoHsz',
+      appKey     : '1nA1tNVxeeSlAumHogP0PvSd',
+      placeholder: "just write something to me",
+      avatar     : '',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
