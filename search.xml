@@ -694,104 +694,6 @@ L(\{ x^{(1)} , ... , x^{(\tau)}\},\{ y^{(1)} , ... , y^{(\tau)}\}) \\
       </tags>
   </entry>
   <entry>
-    <title>论文阅读笔记2019上半年</title>
-    <url>/2019/01/03/PaperReading3/</url>
-    <content><![CDATA[<ul>
-<li>卷积序列到序列</li>
-<li>鲁棒的无监督跨语言词嵌入映射 <a id="more"></a></li>
-</ul>
-<h1 id="convolutional-sequence-to-sequence-learning">Convolutional Sequence to Sequence Learning</h1>
-<ul>
-<li>非常直白，编码器和解码器都使用卷积神经网络的序列到序列学习</li>
-<li>无论是transformer还是CNN作为encoder，都需要捕获整个句子的语义信息。就目前两者大幅领先RNN的现状开来，相比序列结构，树型结构更适合作为自然语言数据的先验结构。</li>
-<li>transformer直接在第一层建模所谓的自注意力，我个人觉得这个自注意力是在建模句子的parse关系，针对所有剖析对（一个词到本句所有其他词）、所有维度（可能是成分剖析、可能是实体关系、可能是共指消解、可能是依存剖析）进行建模，利用注意力的机制对无用的关系筛选，之后再过一层全连接层进行重组。这样剖析+重组的block迭代多层，逐步抽象特征，再加上batch normalization和residual这些深层网络设计常用的结构，就构成了transformer。因此transformer是一次性构建全局剖析关系，再逐步重组、抽象、筛选。</li>
-<li>CNN的结构则更符合常规句法剖析的套路，依然是针对了各个维度建模，但是不是一次性构建全局关系，而是在底层先剖析局部关系（kernal size大小的ngram)，然后通过叠加层对局部关系进行汇总、抽象。</li>
-<li>Facebook在本论文中采用的CNN block采用了普通的一维卷积，但是使用了gated linear unit，即多卷积出一倍的channel来作为门结构输入，利用门结构过滤信息、构建非线性关系，类似LSTM的门控设计，同时也起到了类似自注意力的效果，放弃了pooling的设计。而在decoder端，也使用了CNN（我感觉其实没有很大必要），decoder依然是一个从左往右逐字顺序生成的过程。为了保证这种顺序关系，对decoder的输入做了mask，而我现在还没弄懂具体代码是怎么实现的......这样做mask然后一步一步生成其实并没有充分利用CNN的加速。</li>
-<li>在本文中也引入了注意力，是传统的encoder-decoder间注意力，不同的地方在于
-<ul>
-<li>采用了多层注意力，虽然key依然是encoder最后一层的输出，但是对于decoder每一层都单独引入了注意力。然而作者自己也说decoder不需要太多层，两层足以，因此这个多层注意力可能也没充分利用。况且多层代表decode出每一个词所需要的上下文更多，看来CNN作为decoder并不需要太多上下文，或者说没有充分利用上比较长的上下文。</li>
-<li>注意力的value不是和key一样，而是encoder最后一层的输出加上encoder输入的embedding，作者认为这样可以综合考虑具体和抽象的表示，实际效果也确实要好一些。</li>
-</ul></li>
-<li>作者提到了bytenet作为参考，但是不知道为啥并没有采用bytenet中的dilation convolution设计。</li>
-</ul>
-<h1 id="a-robust-self-learning-method-for-fully-unsupervised-cross-lingual-mappings-of-word-embeddings">A robust self-learning method for fully unsupervised cross-lingual mappings of word embeddings</h1>
-<ul>
-<li>完全无监督的跨语言词嵌入映射</li>
-<li>跨语言词嵌入，即多种语言共用相同的词嵌入矩阵，这样可以将大规模预训练词嵌入和或者语言模型进行跨语言的模型迁移</li>
-<li>一般的做法是利用两个语言的词嵌入矩阵，映射到同一个跨语言的词嵌入空间，并且建立两种语言的词对应关系</li>
-<li>这类研究最近很火，其催生的最知名的一个下游应用应该就是Facebook18年的无监督机器翻译</li>
-<li>之前的方法分三种：
-<ul>
-<li>有监督的，使用双语词典，构建几千个监督词对，将学习映射看成回归问题：用最小均方目标函数建模，之后催生了各种方法：canonical correlation analysis；正交方法；最大间隔方法。这些方法都可以归为将两类语言的词嵌入矩阵做线性变化映射到同一个空间。</li>
-<li>半监督的，通过seed dictionary和bootstrap来做，这类方法依赖好的seed且容易陷入局部最优；</li>
-<li>另一类是无监督的生成式方法，但是已有的方法太过依赖特定任务，泛化能力不佳，针对语言系统不同的两种语言很难达到很好效果。</li>
-</ul></li>
-<li>本文采用无监督的生成式方法，基于一个观察：在一种语言中，每个词都有一个在这种语言词典上的相似度分布，不同语言中等价的词应该具有相似的相似度分布。基于这种观察，本文建立了初始的seed dictionary，并采用一种更鲁棒的self learning方式来改进学习到的映射。</li>
-<li><img data-src="https://s2.ax1x.com/2019/03/11/APCWNT.png" title="fig:" alt="APCWNT.png" /></li>
-</ul>
-<h2 id="模型">模型</h2>
-<ul>
-<li>令<span class="math inline">\(X\)</span>和<span class="math inline">\(Z\)</span>分别为两种语言的词嵌入矩阵，目标是学习到线性变换矩阵<span class="math inline">\(W_x\)</span>和<span class="math inline">\(W_z\)</span>，使得映射后两种语言的矩阵在同一个跨语言空间,形成新的跨语言词嵌入矩阵</li>
-<li>模型的迭代更新依赖一个对齐矩阵<span class="math inline">\(D\)</span>，<span class="math inline">\(D_{ij}=1\)</span>当且仅当A语言的第<span class="math inline">\(i\)</span>个词对应着B语言的第<span class="math inline">\(j\)</span>个词，该矩阵反映的对齐关系是单向的</li>
-<li>模型分四步：预处理、完全无监督的初始化、一种鲁棒的自学习过程、通过对称权重重分配进一步改善结果</li>
-</ul>
-<h2 id="预处理">预处理</h2>
-<ul>
-<li>对词嵌入做长度归一化</li>
-<li>再针对每一维做去均值</li>
-<li>前两个预处理在作者之前的论文Learning principled bilingual mappings of word embeddings while preserving monolingual invariance中提到过，目的分别是简化问题为求余弦相似度和求最大协方差。这篇论文讲的是有监督方法，待阅读</li>
-<li>再做一次长度归一化，保证每一个词嵌入都拥有单位长度，使得两个词嵌入的内积等价于cos距离</li>
-</ul>
-<h2 id="完全无监督的初始化">完全无监督的初始化</h2>
-<ul>
-<li>初始化很难做，因为两种语言的词嵌入矩阵，两个维度（每个词、嵌入的每一维）都不对齐</li>
-<li>本文的做法是，先构造两个矩阵<span class="math inline">\(X^{&#39;}\)</span>和<span class="math inline">\(Z^{&#39;}\)</span>，这两个矩阵的词嵌入每一维是对齐的</li>
-<li><span class="math inline">\(X^{&#39;}\)</span>和<span class="math inline">\(Z^{&#39;}\)</span>分别通过计算原词嵌入矩阵的相似矩阵开方得到，即<span class="math inline">\(X^{&#39;} = \sqrt sorted{XX^T}\)</span>，<span class="math inline">\(Z^{&#39;} = \sqrt sorted{ZZ^T}\)</span>。自己乘自己的转置即同一语言下的相似度矩阵（因为之前做了预处理）。根据之前的观察，表示同一词义的两种语言下的两个词，应该有相似的单语言相似度分布，那么我们将两种语言的相似度矩阵的每一行单独排序，从大到小排，则假如两个词有相同词义，他们在自己语言中的已排序相似度矩阵中的对应行，应该有相似的分布</li>
-<li><img data-src="https://s2.ax1x.com/2019/03/13/Ak0cYd.png" title="fig:" alt="Ak0cYd.png" /></li>
-<li>这样就跳过了词嵌入每个维度上的直接对齐，转换为词典相似度的对齐，之后只要做词的对齐，即对相似度矩阵每一行单独排序，建立行分布相似的词之间的对应关系即可。</li>
-<li>建立了词语的对齐，即建立了初始化的<span class="math inline">\(D\)</span>矩阵</li>
-</ul>
-<h2 id="鲁棒的自学习过程">鲁棒的自学习过程</h2>
-<ul>
-<li>计算正交映射以最大化当前<span class="math inline">\(D\)</span>矩阵的相似度 <span class="math display">\[
-argmax_{W_x,W_z} \sum _i \sum _j D_{ij}((X_{i^*}W_X) \cdot (Z_{j^*}W_Z)) \\
-\]</span> 最优解可以直接计算得到：<span class="math inline">\(W_X=U,W_Z=V\)</span>，其中<span class="math inline">\(U,V\)</span>来自<span class="math inline">\(USV^T\)</span>，是<span class="math inline">\(X^TDZ\)</span>的奇异值分解</li>
-<li>将两个语言的词嵌入映射到跨语言词嵌入空间（分别映射，依然是两个词嵌入矩阵，只不过在同一个跨语言空间内）后，对A语言的每一个词，在跨语言词嵌入空间内找其最近的B语言的词，建立映射关系，更新<span class="math inline">\(D\)</span>矩阵。 <span class="math display">\[
-D_{ij} = 1 \ \ \ if  \ \ j = argmax _k (X_{i^*}W_X) \cdot (Z_{j^*}W_Z) \\
-else \ \ D_{ij} = 0 \\
-\]</span></li>
-<li>反复迭代，<span class="math inline">\(W_X,W_Z \rightarrow D \rightarrow W_X,W_Z \rightarrow D \rightarrow W_X,W_Z \rightarrow D \rightarrow W_X,W_Z\)</span></li>
-<li>使用完全无监督的初始化<span class="math inline">\(D\)</span>矩阵比随机初始化效果要好，但是依然会陷入局部最优，因此作者针对迭代的第二步，即更新<span class="math inline">\(D\)</span>矩阵时提了几个小trick使得学习更为鲁棒
-<ul>
-<li>随机词典归纳：每次迭代以一定概率将D矩阵模型元素设为0，迫使模型探索更多可能</li>
-<li>基于词频的词典截断：每次词典归纳时只更新前k个最频繁的词，避免低频词带来的噪音，截断上限为20000</li>
-<li>CSLS检索：之前的方法是对每一个i,找一个映射到跨语言词嵌入空间后距离最相近的j，更新<span class="math inline">\(D_{ij}\)</span>为1，这种最近邻方法受维度灾难影响，效果并不好（具体引起的现象叫hubs，即词语发生聚类，hubs词是许多词的最近邻，差异度不大）。CSLS即跨领域相似度局部放缩，惩罚了这些hubs词语</li>
-<li>双向词典归纳，不仅针对i找j，也针对j找i</li>
-<li>这些trick对初始化构建的矩阵有所差别，不做随机归纳，词典截断上限为4000</li>
-</ul></li>
-</ul>
-<h2 id="通过对称权重重分配进一步改善结果">通过对称权重重分配进一步改善结果</h2>
-<ul>
-<li>即迭代完成之后计算 <span class="math display">\[
-W_X = US^{\frac 12} \\
-W_Z = UV^{\frac 12} \\
-\]</span></li>
-<li>比起之前的论文，在每一次迭代前后做白化和去白化的方法，这种方法鼓励模型探索更多搜索空间，且对方向不敏感</li>
-<li>重新分配权重的原因在之前的论文中提到，待阅读</li>
-</ul>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>abstractive summarization</tag>
-        <tag>math</tag>
-        <tag>machine learning</tag>
-        <tag>theory</tag>
-        <tag>nlp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>论文阅读笔记2018下半年</title>
     <url>/2018/07/03/PaperReading2/</url>
     <content><![CDATA[<ul>
@@ -988,6 +890,104 @@ d(g,r) = \frac 1n \sum _{i=1}^n |r_i - g_i | \\
 L = -p(y|x,\theta) + \lambda d(g,r) \\
 \]</span></li>
 <li>作者并没有说明为什么将回顾门限和选择门限之间的欧式距离作为损失函数，也没有说明选择门限和注意力的区别，感觉就像是考虑了原始输入embedding的一种注意力机制，且在传统注意力加权之前先对隐层每一时间步做了裁剪。选出来的可视化特例也很精巧，恰恰说明了这个选择机制能识别句子中的转折，因而改变了选择的词，这还是和之前选择门限提出的原论文对比。原论文Selective Encoding for Abstractive Sentence Summarization 也没有说出这种设计的动机。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>abstractive summarization</tag>
+        <tag>math</tag>
+        <tag>machine learning</tag>
+        <tag>theory</tag>
+        <tag>nlp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>论文阅读笔记2019上半年</title>
+    <url>/2019/01/03/PaperReading3/</url>
+    <content><![CDATA[<ul>
+<li>卷积序列到序列</li>
+<li>鲁棒的无监督跨语言词嵌入映射 <a id="more"></a></li>
+</ul>
+<h1 id="convolutional-sequence-to-sequence-learning">Convolutional Sequence to Sequence Learning</h1>
+<ul>
+<li>非常直白，编码器和解码器都使用卷积神经网络的序列到序列学习</li>
+<li>无论是transformer还是CNN作为encoder，都需要捕获整个句子的语义信息。就目前两者大幅领先RNN的现状开来，相比序列结构，树型结构更适合作为自然语言数据的先验结构。</li>
+<li>transformer直接在第一层建模所谓的自注意力，我个人觉得这个自注意力是在建模句子的parse关系，针对所有剖析对（一个词到本句所有其他词）、所有维度（可能是成分剖析、可能是实体关系、可能是共指消解、可能是依存剖析）进行建模，利用注意力的机制对无用的关系筛选，之后再过一层全连接层进行重组。这样剖析+重组的block迭代多层，逐步抽象特征，再加上batch normalization和residual这些深层网络设计常用的结构，就构成了transformer。因此transformer是一次性构建全局剖析关系，再逐步重组、抽象、筛选。</li>
+<li>CNN的结构则更符合常规句法剖析的套路，依然是针对了各个维度建模，但是不是一次性构建全局关系，而是在底层先剖析局部关系（kernal size大小的ngram)，然后通过叠加层对局部关系进行汇总、抽象。</li>
+<li>Facebook在本论文中采用的CNN block采用了普通的一维卷积，但是使用了gated linear unit，即多卷积出一倍的channel来作为门结构输入，利用门结构过滤信息、构建非线性关系，类似LSTM的门控设计，同时也起到了类似自注意力的效果，放弃了pooling的设计。而在decoder端，也使用了CNN（我感觉其实没有很大必要），decoder依然是一个从左往右逐字顺序生成的过程。为了保证这种顺序关系，对decoder的输入做了mask，而我现在还没弄懂具体代码是怎么实现的......这样做mask然后一步一步生成其实并没有充分利用CNN的加速。</li>
+<li>在本文中也引入了注意力，是传统的encoder-decoder间注意力，不同的地方在于
+<ul>
+<li>采用了多层注意力，虽然key依然是encoder最后一层的输出，但是对于decoder每一层都单独引入了注意力。然而作者自己也说decoder不需要太多层，两层足以，因此这个多层注意力可能也没充分利用。况且多层代表decode出每一个词所需要的上下文更多，看来CNN作为decoder并不需要太多上下文，或者说没有充分利用上比较长的上下文。</li>
+<li>注意力的value不是和key一样，而是encoder最后一层的输出加上encoder输入的embedding，作者认为这样可以综合考虑具体和抽象的表示，实际效果也确实要好一些。</li>
+</ul></li>
+<li>作者提到了bytenet作为参考，但是不知道为啥并没有采用bytenet中的dilation convolution设计。</li>
+</ul>
+<h1 id="a-robust-self-learning-method-for-fully-unsupervised-cross-lingual-mappings-of-word-embeddings">A robust self-learning method for fully unsupervised cross-lingual mappings of word embeddings</h1>
+<ul>
+<li>完全无监督的跨语言词嵌入映射</li>
+<li>跨语言词嵌入，即多种语言共用相同的词嵌入矩阵，这样可以将大规模预训练词嵌入和或者语言模型进行跨语言的模型迁移</li>
+<li>一般的做法是利用两个语言的词嵌入矩阵，映射到同一个跨语言的词嵌入空间，并且建立两种语言的词对应关系</li>
+<li>这类研究最近很火，其催生的最知名的一个下游应用应该就是Facebook18年的无监督机器翻译</li>
+<li>之前的方法分三种：
+<ul>
+<li>有监督的，使用双语词典，构建几千个监督词对，将学习映射看成回归问题：用最小均方目标函数建模，之后催生了各种方法：canonical correlation analysis；正交方法；最大间隔方法。这些方法都可以归为将两类语言的词嵌入矩阵做线性变化映射到同一个空间。</li>
+<li>半监督的，通过seed dictionary和bootstrap来做，这类方法依赖好的seed且容易陷入局部最优；</li>
+<li>另一类是无监督的生成式方法，但是已有的方法太过依赖特定任务，泛化能力不佳，针对语言系统不同的两种语言很难达到很好效果。</li>
+</ul></li>
+<li>本文采用无监督的生成式方法，基于一个观察：在一种语言中，每个词都有一个在这种语言词典上的相似度分布，不同语言中等价的词应该具有相似的相似度分布。基于这种观察，本文建立了初始的seed dictionary，并采用一种更鲁棒的self learning方式来改进学习到的映射。</li>
+<li><img data-src="https://s2.ax1x.com/2019/03/11/APCWNT.png" title="fig:" alt="APCWNT.png" /></li>
+</ul>
+<h2 id="模型">模型</h2>
+<ul>
+<li>令<span class="math inline">\(X\)</span>和<span class="math inline">\(Z\)</span>分别为两种语言的词嵌入矩阵，目标是学习到线性变换矩阵<span class="math inline">\(W_x\)</span>和<span class="math inline">\(W_z\)</span>，使得映射后两种语言的矩阵在同一个跨语言空间,形成新的跨语言词嵌入矩阵</li>
+<li>模型的迭代更新依赖一个对齐矩阵<span class="math inline">\(D\)</span>，<span class="math inline">\(D_{ij}=1\)</span>当且仅当A语言的第<span class="math inline">\(i\)</span>个词对应着B语言的第<span class="math inline">\(j\)</span>个词，该矩阵反映的对齐关系是单向的</li>
+<li>模型分四步：预处理、完全无监督的初始化、一种鲁棒的自学习过程、通过对称权重重分配进一步改善结果</li>
+</ul>
+<h2 id="预处理">预处理</h2>
+<ul>
+<li>对词嵌入做长度归一化</li>
+<li>再针对每一维做去均值</li>
+<li>前两个预处理在作者之前的论文Learning principled bilingual mappings of word embeddings while preserving monolingual invariance中提到过，目的分别是简化问题为求余弦相似度和求最大协方差。这篇论文讲的是有监督方法，待阅读</li>
+<li>再做一次长度归一化，保证每一个词嵌入都拥有单位长度，使得两个词嵌入的内积等价于cos距离</li>
+</ul>
+<h2 id="完全无监督的初始化">完全无监督的初始化</h2>
+<ul>
+<li>初始化很难做，因为两种语言的词嵌入矩阵，两个维度（每个词、嵌入的每一维）都不对齐</li>
+<li>本文的做法是，先构造两个矩阵<span class="math inline">\(X^{&#39;}\)</span>和<span class="math inline">\(Z^{&#39;}\)</span>，这两个矩阵的词嵌入每一维是对齐的</li>
+<li><span class="math inline">\(X^{&#39;}\)</span>和<span class="math inline">\(Z^{&#39;}\)</span>分别通过计算原词嵌入矩阵的相似矩阵开方得到，即<span class="math inline">\(X^{&#39;} = \sqrt sorted{XX^T}\)</span>，<span class="math inline">\(Z^{&#39;} = \sqrt sorted{ZZ^T}\)</span>。自己乘自己的转置即同一语言下的相似度矩阵（因为之前做了预处理）。根据之前的观察，表示同一词义的两种语言下的两个词，应该有相似的单语言相似度分布，那么我们将两种语言的相似度矩阵的每一行单独排序，从大到小排，则假如两个词有相同词义，他们在自己语言中的已排序相似度矩阵中的对应行，应该有相似的分布</li>
+<li><img data-src="https://s2.ax1x.com/2019/03/13/Ak0cYd.png" title="fig:" alt="Ak0cYd.png" /></li>
+<li>这样就跳过了词嵌入每个维度上的直接对齐，转换为词典相似度的对齐，之后只要做词的对齐，即对相似度矩阵每一行单独排序，建立行分布相似的词之间的对应关系即可。</li>
+<li>建立了词语的对齐，即建立了初始化的<span class="math inline">\(D\)</span>矩阵</li>
+</ul>
+<h2 id="鲁棒的自学习过程">鲁棒的自学习过程</h2>
+<ul>
+<li>计算正交映射以最大化当前<span class="math inline">\(D\)</span>矩阵的相似度 <span class="math display">\[
+argmax_{W_x,W_z} \sum _i \sum _j D_{ij}((X_{i^*}W_X) \cdot (Z_{j^*}W_Z)) \\
+\]</span> 最优解可以直接计算得到：<span class="math inline">\(W_X=U,W_Z=V\)</span>，其中<span class="math inline">\(U,V\)</span>来自<span class="math inline">\(USV^T\)</span>，是<span class="math inline">\(X^TDZ\)</span>的奇异值分解</li>
+<li>将两个语言的词嵌入映射到跨语言词嵌入空间（分别映射，依然是两个词嵌入矩阵，只不过在同一个跨语言空间内）后，对A语言的每一个词，在跨语言词嵌入空间内找其最近的B语言的词，建立映射关系，更新<span class="math inline">\(D\)</span>矩阵。 <span class="math display">\[
+D_{ij} = 1 \ \ \ if  \ \ j = argmax _k (X_{i^*}W_X) \cdot (Z_{j^*}W_Z) \\
+else \ \ D_{ij} = 0 \\
+\]</span></li>
+<li>反复迭代，<span class="math inline">\(W_X,W_Z \rightarrow D \rightarrow W_X,W_Z \rightarrow D \rightarrow W_X,W_Z \rightarrow D \rightarrow W_X,W_Z\)</span></li>
+<li>使用完全无监督的初始化<span class="math inline">\(D\)</span>矩阵比随机初始化效果要好，但是依然会陷入局部最优，因此作者针对迭代的第二步，即更新<span class="math inline">\(D\)</span>矩阵时提了几个小trick使得学习更为鲁棒
+<ul>
+<li>随机词典归纳：每次迭代以一定概率将D矩阵模型元素设为0，迫使模型探索更多可能</li>
+<li>基于词频的词典截断：每次词典归纳时只更新前k个最频繁的词，避免低频词带来的噪音，截断上限为20000</li>
+<li>CSLS检索：之前的方法是对每一个i,找一个映射到跨语言词嵌入空间后距离最相近的j，更新<span class="math inline">\(D_{ij}\)</span>为1，这种最近邻方法受维度灾难影响，效果并不好（具体引起的现象叫hubs，即词语发生聚类，hubs词是许多词的最近邻，差异度不大）。CSLS即跨领域相似度局部放缩，惩罚了这些hubs词语</li>
+<li>双向词典归纳，不仅针对i找j，也针对j找i</li>
+<li>这些trick对初始化构建的矩阵有所差别，不做随机归纳，词典截断上限为4000</li>
+</ul></li>
+</ul>
+<h2 id="通过对称权重重分配进一步改善结果">通过对称权重重分配进一步改善结果</h2>
+<ul>
+<li>即迭代完成之后计算 <span class="math display">\[
+W_X = US^{\frac 12} \\
+W_Z = UV^{\frac 12} \\
+\]</span></li>
+<li>比起之前的论文，在每一次迭代前后做白化和去白化的方法，这种方法鼓励模型探索更多搜索空间，且对方向不敏感</li>
+<li>重新分配权重的原因在之前的论文中提到，待阅读</li>
 </ul>
 ]]></content>
       <categories>
@@ -1406,51 +1406,6 @@ ROUGE(r,y) = sigmoid(h_r W_s h_x^T + b_s) \\
       </tags>
   </entry>
   <entry>
-    <title>计算未来沙龙-阅读理解专场</title>
-    <url>/2018/10/13/compute-future/</url>
-    <content><![CDATA[<p>去清华的FIT听了一次轻沙龙，介绍了关于机器阅读理解的一些进展，有趣的是上午九点演讲的博士还说有一个还没公开的工作：BERT，很牛逼，很有钱，八块p100训一年，结果十点半机器之心就发了报道，下午就知乎满天飞了，说NLP新的时代到来了...... 这个沙龙是一个系列，之后可能会有机器翻译、深度贝叶斯、迁移学习和知识图谱啥的，要是有时间的话再听再记录吧</p>
-<a id="more"></a>
-<h1 id="机器阅读理解">2018.10.13 机器阅读理解</h1>
-<ul>
-<li>三场演讲，第一场是概述；第二场是当时在SQuAD2.0上拿到第一名的nlnet作者的presentation，国防科大和微软合作的成果；第三场是一位清华的博士，介绍了他关于开放领域问答中噪声过滤和信息集合的研究。</li>
-</ul>
-<h2 id="概述">概述</h2>
-<ul>
-<li>现在的阅读理解和人们所期望的人工智能阅读理解差了太多，研究者把阅读理解的过程分解成了任务，例如选词、选span、生成短文本。深度学习兴起之前都是一些手工设计特征，一些Pipiline的操作，使用深度学习之后就专注于输入到输出的端到端研究，绕过了很多阅读理解过程所需要的东西。</li>
-<li>以前的关于阅读理解的研究可以作为一个测试方法，检验模型对于词法、修辞、利用知识的能力。</li>
-<li>目前的大规模机器阅读理解数据集处于很低级的推断阶段，提到了一篇论文：Efficient and Robust Question Answering from Minimal Context over Documents。里面讲到如果用深度学习，只用你找出的span来训练，砍掉上下文，其实结果不会差很多，因此端到端的学习并没有“通读全文掌握大意”的过程，而是“你问什么我答什么，别问我为什么这么答，背的”。提到了东京大学一份工作，建立了对模型阅读理解能力的评价指标，30多项，包括消除歧义、指代消解等等，大而简单的数据集无法体现这些特征，而设计巧妙的数据集规模不够大。</li>
-<li>还提到了一篇关于衡量模型推断能力的论文，TOWARDS AI-COMPLETE QUESTION ANSWERING:A SET OF PREREQUISITE TOY TASKS。</li>
-<li>工业上使用阅读理解所需要解决的问题：简化模型或者加速模型，介绍了诸如SKIM-RNN之类的技巧，虽然训练的时候会变复杂，但推断时能加速。论文：NEURAL SPEED READING VIA SKIM-RNN</li>
-<li>现在NLP的迁移学习，预训练词嵌入或者预训练语言模型，用的最多最广泛的，比如Glove和Elmo，然后就提到了BERT，4亿参数，无监督，最重要的是其模型是双向设计，且充分训练了上层参数：BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding.另外一种迁移学习是直接将某一任务中训练好的模块做其他任务，例如直接将seq2seq中训练好的encoder拿出来计算语义表示（深度学习本来就是表示学习），记得fast Disan就直接一个函数返回句子的向量表示，也是类似的思想。</li>
-<li>最新的研究领域：open domain question-answering和learning to ask。前者实际上是加了一个信息检索的过程，阅读理解所需要的相关语料是通过提问检索到的。后者是将回答任务反过来做提问，演讲者提到反向可以辅助阅读理解，且有一个工业上比较有用的设计：做检索时不用query和文档（或者文档关键词）相比较，而是和针对文档生成的提问相比较，相当于两个提问之间计算相似度。</li>
-<li>演讲者提到了他关于attention的一个观点：attention是从模型中筛选信息，不代表原模型没有表示出此信息的能力。</li>
-<li>介绍了当前比较流行的几个数据集，2015之前用MCTest、ProcessBank，15到17年之间用CNNDM、SQuAD、MS MARCO，17年之后用TriviaQA、SQuAD2.0、CoQA、QuAC、HotpotQA。（然而文摘还在用CNNDM......）</li>
-</ul>
-<h2 id="nlnet">NLNet</h2>
-<ul>
-<li>论文：Squad上可以看到，但是好像还没发？</li>
-<li>NLNet的设计初衷是为了解决阅读理解问题中的鲁棒性和有效性，都是针对集成模型说的，所以NLNet是在集成模型的基础上加了一个蒸馏的过程，使用单模型提升效率，另外还有一个read and verify的过程来提升鲁棒性，所以在加入了对抗样本的SQuAD2.0数据集上表现优异，目前第一。在1.0上落后于四处碾压的BERT，但其实落后也不多。不过1.0版本中nlnet的ensemble版本要好于单模型版本，2.0中没有提交ensemble版本，就很迷......</li>
-<li>蒸馏的意思没太听明白，效果是12个模型压缩成一个模型，模型的结构完全相同，但是初始化不同。不是简单的选最优，单一的模型是训练出来的，论文里叫那12个模型为teacher，单一模型为student，student使用teacher训练的结果来指导训练。</li>
-<li>设计了一个read and verify机制，在抽取出span回答问题之后还会根据该回答和问题计算一个置信度，置信度太低就认为是没有答案，也就是squad2.0里对抗样本的情况。感觉听下来就是有问题就加loss。</li>
-<li>听说一些选取特征的细节没有在论文中表出，而且最后用强化学习优化了一下模型？</li>
-</ul>
-<h2 id="open-domain-qa噪声过滤和信息集合">Open Domain QA噪声过滤和信息集合</h2>
-<ul>
-<li>论文（ACL 2018）：Denoising Distantly Supervised Open-Domain Question Answering</li>
-<li>这个噪声是指在检索文档的过程搜到了很多相关但提供的不是正确答案的文档，是对文档的过滤。这一步的过滤本来应该放在检索的过程里，但是作者最后也是用深度学习算概率加loss的方式解决了。</li>
-<li>去噪过程是一个document selector，然后阅读理解是一个reader，作者认为对应于人做阅读理解的fast skimming 和careful reading &amp; summarizing。</li>
-<li>信息集合没太注意听，就是充分利用多篇文档的信息提取出答案</li>
-</ul>
-]]></content>
-      <categories>
-        <category>自然语言处理</category>
-      </categories>
-      <tags>
-        <tag>comprehension</tag>
-        <tag>NLI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CLSciSumm总结</title>
     <url>/2020/03/27/clscisumm/</url>
     <content><![CDATA[<p>总结一下实验室参加的CLSciSumm Workshop，主要是方法，实验分析论文里很详细 论文： - <a href="http://ceur-ws.org/Vol-1610/paper18.pdf">2016</a> - <a href="http://ceur-ws.org/Vol-2002/cistclscisumm2017.pdf">2017</a> - <a href="http://ceur-ws.org/Vol-2132/paper8.pdf">2018</a> - <a href="http://ceur-ws.org/Vol-2414/paper20.pdf">2019</a> <a id="more"></a></p>
@@ -1585,6 +1540,51 @@ ROUGE(r,y) = sigmoid(h_r W_s h_x^T + b_s) \\
       </tags>
   </entry>
   <entry>
+    <title>计算未来沙龙-阅读理解专场</title>
+    <url>/2018/10/13/compute-future/</url>
+    <content><![CDATA[<p>去清华的FIT听了一次轻沙龙，介绍了关于机器阅读理解的一些进展，有趣的是上午九点演讲的博士还说有一个还没公开的工作：BERT，很牛逼，很有钱，八块p100训一年，结果十点半机器之心就发了报道，下午就知乎满天飞了，说NLP新的时代到来了...... 这个沙龙是一个系列，之后可能会有机器翻译、深度贝叶斯、迁移学习和知识图谱啥的，要是有时间的话再听再记录吧</p>
+<a id="more"></a>
+<h1 id="机器阅读理解">2018.10.13 机器阅读理解</h1>
+<ul>
+<li>三场演讲，第一场是概述；第二场是当时在SQuAD2.0上拿到第一名的nlnet作者的presentation，国防科大和微软合作的成果；第三场是一位清华的博士，介绍了他关于开放领域问答中噪声过滤和信息集合的研究。</li>
+</ul>
+<h2 id="概述">概述</h2>
+<ul>
+<li>现在的阅读理解和人们所期望的人工智能阅读理解差了太多，研究者把阅读理解的过程分解成了任务，例如选词、选span、生成短文本。深度学习兴起之前都是一些手工设计特征，一些Pipiline的操作，使用深度学习之后就专注于输入到输出的端到端研究，绕过了很多阅读理解过程所需要的东西。</li>
+<li>以前的关于阅读理解的研究可以作为一个测试方法，检验模型对于词法、修辞、利用知识的能力。</li>
+<li>目前的大规模机器阅读理解数据集处于很低级的推断阶段，提到了一篇论文：Efficient and Robust Question Answering from Minimal Context over Documents。里面讲到如果用深度学习，只用你找出的span来训练，砍掉上下文，其实结果不会差很多，因此端到端的学习并没有“通读全文掌握大意”的过程，而是“你问什么我答什么，别问我为什么这么答，背的”。提到了东京大学一份工作，建立了对模型阅读理解能力的评价指标，30多项，包括消除歧义、指代消解等等，大而简单的数据集无法体现这些特征，而设计巧妙的数据集规模不够大。</li>
+<li>还提到了一篇关于衡量模型推断能力的论文，TOWARDS AI-COMPLETE QUESTION ANSWERING:A SET OF PREREQUISITE TOY TASKS。</li>
+<li>工业上使用阅读理解所需要解决的问题：简化模型或者加速模型，介绍了诸如SKIM-RNN之类的技巧，虽然训练的时候会变复杂，但推断时能加速。论文：NEURAL SPEED READING VIA SKIM-RNN</li>
+<li>现在NLP的迁移学习，预训练词嵌入或者预训练语言模型，用的最多最广泛的，比如Glove和Elmo，然后就提到了BERT，4亿参数，无监督，最重要的是其模型是双向设计，且充分训练了上层参数：BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding.另外一种迁移学习是直接将某一任务中训练好的模块做其他任务，例如直接将seq2seq中训练好的encoder拿出来计算语义表示（深度学习本来就是表示学习），记得fast Disan就直接一个函数返回句子的向量表示，也是类似的思想。</li>
+<li>最新的研究领域：open domain question-answering和learning to ask。前者实际上是加了一个信息检索的过程，阅读理解所需要的相关语料是通过提问检索到的。后者是将回答任务反过来做提问，演讲者提到反向可以辅助阅读理解，且有一个工业上比较有用的设计：做检索时不用query和文档（或者文档关键词）相比较，而是和针对文档生成的提问相比较，相当于两个提问之间计算相似度。</li>
+<li>演讲者提到了他关于attention的一个观点：attention是从模型中筛选信息，不代表原模型没有表示出此信息的能力。</li>
+<li>介绍了当前比较流行的几个数据集，2015之前用MCTest、ProcessBank，15到17年之间用CNNDM、SQuAD、MS MARCO，17年之后用TriviaQA、SQuAD2.0、CoQA、QuAC、HotpotQA。（然而文摘还在用CNNDM......）</li>
+</ul>
+<h2 id="nlnet">NLNet</h2>
+<ul>
+<li>论文：Squad上可以看到，但是好像还没发？</li>
+<li>NLNet的设计初衷是为了解决阅读理解问题中的鲁棒性和有效性，都是针对集成模型说的，所以NLNet是在集成模型的基础上加了一个蒸馏的过程，使用单模型提升效率，另外还有一个read and verify的过程来提升鲁棒性，所以在加入了对抗样本的SQuAD2.0数据集上表现优异，目前第一。在1.0上落后于四处碾压的BERT，但其实落后也不多。不过1.0版本中nlnet的ensemble版本要好于单模型版本，2.0中没有提交ensemble版本，就很迷......</li>
+<li>蒸馏的意思没太听明白，效果是12个模型压缩成一个模型，模型的结构完全相同，但是初始化不同。不是简单的选最优，单一的模型是训练出来的，论文里叫那12个模型为teacher，单一模型为student，student使用teacher训练的结果来指导训练。</li>
+<li>设计了一个read and verify机制，在抽取出span回答问题之后还会根据该回答和问题计算一个置信度，置信度太低就认为是没有答案，也就是squad2.0里对抗样本的情况。感觉听下来就是有问题就加loss。</li>
+<li>听说一些选取特征的细节没有在论文中表出，而且最后用强化学习优化了一下模型？</li>
+</ul>
+<h2 id="open-domain-qa噪声过滤和信息集合">Open Domain QA噪声过滤和信息集合</h2>
+<ul>
+<li>论文（ACL 2018）：Denoising Distantly Supervised Open-Domain Question Answering</li>
+<li>这个噪声是指在检索文档的过程搜到了很多相关但提供的不是正确答案的文档，是对文档的过滤。这一步的过滤本来应该放在检索的过程里，但是作者最后也是用深度学习算概率加loss的方式解决了。</li>
+<li>去噪过程是一个document selector，然后阅读理解是一个reader，作者认为对应于人做阅读理解的fast skimming 和careful reading &amp; summarizing。</li>
+<li>信息集合没太注意听，就是充分利用多篇文档的信息提取出答案</li>
+</ul>
+]]></content>
+      <categories>
+        <category>自然语言处理</category>
+      </categories>
+      <tags>
+        <tag>comprehension</tag>
+        <tag>NLI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Melodia服务器搭建</title>
     <url>/2017/05/26/dachuangserver/</url>
     <content><![CDATA[<hr />
@@ -1608,125 +1608,6 @@ ROUGE(r,y) = sigmoid(h_r W_s h_x^T + b_s) \\
         <tag>code</tag>
         <tag>server</tag>
         <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>简洁到自己都看不懂的强化学习笔记</title>
-    <url>/2019/09/23/easyrl/</url>
-    <content><![CDATA[<p>极简风格 - Q-learning - Sarsa - Sarsa(<span class="math inline">\(\lambda\)</span>) - DQN - Double DQN - DQN with Prioritized Experience replay - Dueling DQN - Policy Gradient</p>
-<a id="more"></a>
-<h1 id="定义">定义</h1>
-<ul>
-<li>agent：智能体，智能体处在某一状态下，依据某种策略(policy)，采取一个动作，到达下一个状态</li>
-<li>s:status，状态</li>
-<li>a:action，动作</li>
-<li>r:reward，奖励</li>
-<li>s,a：可以称之为一步。智能体的行为可以描述为一系列步。强化学习里agent的行为可以用DP（决策过程）表示，s是DP里的节点状态，a是状态之间的转移路径</li>
-<li>Q：Q表，Q(s,a)即状态s下执行动作a的价值（infer时的可能性），用奖励期望来估计</li>
-</ul>
-<h1 id="q-learning">Q-learning</h1>
-<ul>
-<li>随机Q表，初始化状态，开始迭代，<span class="math inline">\(\epsilon\)</span>贪心</li>
-<li>在状态s采取动作a，观察到奖励r和状态<span class="math inline">\(s \prime\)</span></li>
-<li>关键迭代公式： <span class="math display">\[
-Q(s,a) = Q(s,a) + \alpha [r + \gamma max_{a \prime}Q(s \prime,a \prime) - Q(s,a)] \\
-\]</span></li>
-<li>Q的更新包括两部分，一部分自然是奖励（假如这一步得到奖励的话），另一部分是时间差值，即TD-error，是现实和估计之间的差值。这里的现实是在新状态采取了最好动作后得到的奖励，这里的估计是指我们所有的奖励，除了最终步得到的真实奖励，其余中间步都是用Q表值来估计现实奖励，因此Q表的更新应该是加上（现实-估计），即让Q表更加贴近现实。</li>
-<li>值得注意的是，只有最后一步得到奖励时（假如我们只有终点一个奖励），现实才真的是现实的奖励，否则还是用Q表估计的。</li>
-<li>这里Q表的更新只与未来的状态和动作有关，在最开始，应该除了真正有奖励的最后一步，其余步骤的更新都是不确定的（因为现实也是用Q表估计的，只有最后一步现实才是现实），但第一次迭代之后最后一步的价值更新是确定的（在宝藏边上还是知道怎么走向宝藏），且与LSTM那种时间序列不同，它不是从最后一个时间步往前BPTT，而是更新了一个状态的转移价值（取哪个动作好），这个状态可能出现在每一次迭代的多个时间步上（或者说和时间步无关），接下来与该状态相邻的状态更新时，用Q表估计的现实就会准确一些，慢慢的整个算法达到收敛。</li>
-</ul>
-<h1 id="sarsa">Sarsa</h1>
-<ul>
-<li>Q-learning是off-policy的，因为存在着现实和估计的差距，我们朝着现实优化，而实际采取的是根据Q表估计的现实，即异步的(off)。</li>
-<li>Sarsa是on-policy的，与Q-learning在算法上的区别：
-<ul>
-<li>Q-learning:根据Q表选动作-执行动作观察到奖励和新状态-更新Q表-更新状态</li>
-<li>Sarsa：执行动作观察到奖励和新状态-更新状态-根据Q表在新状态上选动作，在迭代之前先来一次根据Q表选动作</li>
-</ul></li>
-<li>可以看到Sarsa更改了学习算法的步骤顺序，这种更改带来了什么效果？效果就是将新状态和新动作的选取提前到Q表更新之前，这样Q表更新时，差距里现实的部分不用<span class="math inline">\(max_{a \prime}Q(s \prime,a \prime)\)</span>来估计，而直接用新状态和新动作： <span class="math display">\[
-Q(s,a) = Q(s,a) + \alpha [r + \gamma Q(s \prime,a \prime) - Q(s,a)] \\
-\]</span></li>
-<li>也就是说现实和估计采用的是同一策略（确定的动作，而不是给定状态选最大价值），然后依然使用这个差距来更新。</li>
-<li>在更新的过程中，sarsa说到做到（因为现实采用的就是新状态和新动作，agent一定会按照这样更新），而Q-learning则比较乐观（因为现实采用的是新状态下的最大价值，但实际走不一定会采取最大价值的行动，有<span class="math inline">\(\epsilon\)</span>的扰动）。Sarsa更为保守（每一步都想走好），而Q-learning更为激进（先rush到再说）。</li>
-</ul>
-<h1 id="sarsalambda">Sarsa(<span class="math inline">\(\lambda\)</span>)</h1>
-<ul>
-<li>naive版本的Sarsa可以看成是Sarsa(0)，因为每走一步就更新了Q表，即<span class="math inline">\(Q(s \prime,a \prime)\)</span>只会带来上一步<span class="math inline">\(Q(s,a)\)</span>的价值更新。假如我们考虑对所有步的更新，且离最终奖励近的步权重大，离最终奖励远的步权重小，那么调整这个权重的超参就是<span class="math inline">\(\lambda\)</span>，权重为0就是不考虑之前的步数，即naive Sarsa。</li>
-<li>具体实现是添加一个trace矩阵E（矩阵中每一个元素对应一步(s,a)）保存所有步在该次路径中的权重，离最终奖励越近，权重越大，因此每走一步，执行的那一步元素对应矩阵值加1，然后用对应的trace矩阵值作为权重乘到奖励上来更新Q表（这里是所有的步和整个E矩阵乘起来），之后矩阵值会衰减一下，乘以更新衰减因子<span class="math inline">\(\gamma\)</span>和权重超参<span class="math inline">\(\lambda\)</span>。显然<span class="math inline">\(\gamma\)</span>为1时，就是所有的状态得到了一样的更新（因为是所有步和整个E矩阵相乘）；当<span class="math inline">\(\gamma\)</span>为0时，除了执行步元素加了1，然后整个E矩阵都置0，因此只有执行步得到了更新，即naive Sarsa。将E矩阵的迭代展开，就可以得到与naive sarsa一样的展开，只不过衰减的时候加了一个E(s,a)来记录某一步距离奖励的距离。 <span class="math display">\[
-\delta = r + \gamma Q(s \prime,a \prime) - Q(s,a) \\
-E(s,a) = E(s,a) + 1 \\
-Q = Q + \alpha \delta E \\
-E = \gamma \lambda E \\
-update  \ \ s,a \\
-\]</span></li>
-<li>这个E矩阵就是eligibility trace。对于某一步，如果被执行了，就增加一点值，之后慢慢衰减，直到又被执行。假如短期内被执行多次，就会上升到过高值，这时可以设置阈值来限制eligibility的增加。这个值可以解释为该步在该次迭代中对于找到最终奖励的贡献程度。</li>
-</ul>
-<h1 id="dqn">DQN</h1>
-<ul>
-<li>Q-learning + deep neural network</li>
-<li>神经网络用于把Q-table的更新过程参数化，输入一个状态向量，神经网络输出所有动作的价值，用神经网络的训练来替代简单的迭代更新。这样可以解决状态数过多导致的维度灾难问题。</li>
-<li>直接这么替换不容易训练，DQN引入两个技巧
-<ul>
-<li>experience replay</li>
-<li>fix q</li>
-</ul></li>
-<li>先看神经网络的输入输出和损失
-<ul>
-<li>有两个神经网络，一个网络参与训练（评价网络），一个网络只复制另一个网络训练得到的参数，用来生成ground truth，即目标网络</li>
-<li>参与训练的网络输入是状态，表示为s维特征向量，输出是各个动作获得的a维价值向量，损失是这个向量和ground truth的a维向量之间的均方误差。</li>
-</ul></li>
-<li>DQN还包含一个记忆矩阵，维度是[记忆条数，$ 2 * s + 2$ ]，每一条包含奖励、动作，老状态和新状态，即一步的所有信息。记忆只保存最近记忆条数次执行步。</li>
-<li>之后神经网络的输入输出从哪里来？其实是从记忆中采样一个Batch的数据，将老状态输入评价网络得到model output，将新状态输入目标网络得到ground truth，之后计算损失。</li>
-<li>每隔一段时间目标网络才会复制评价网络，在此期间目标网络都是固定不变的，即fix q</li>
-<li>而输入是从最近的记忆当中抽取的，即experience replay</li>
-<li>值得注意的是我们并不直接把评价网络输出价值向量用于计算损失，因为还没有采取动作。因此我们要先根据网络输出的价值向量采取动作，将价值向量里这些动作对应的价值用奖励更新，之后这个更新过的价值向量再参与损失计算。</li>
-</ul>
-<h1 id="double-dqn">Double DQN</h1>
-<ul>
-<li>Double DQN解决DQN over estimate的问题</li>
-<li>与DQN不同之处在于，评价网络不仅接受老状态产生一个输出<span class="math inline">\(q_{eval}\)</span>，还接受新状态产生一个输出<span class="math inline">\(q_{eval4next}\)</span>，之后依据<span class="math inline">\(q_{eval4next}\)</span>选取动作更新<span class="math inline">\(q_{eval}\)</span>，而不是根据<span class="math inline">\(q_{eval}\)</span>本身选取动作来更新。</li>
-</ul>
-<h1 id="dqn-with-prioritized-experience-replay">DQN with Prioritized Experience replay</h1>
-<ul>
-<li>之前是从记忆库中随机采样一段记忆，这个随机采样会导致模型训练步数过多（随机很难保证到达最终奖励）</li>
-<li>那么自然而然想到记忆应该分配优先级，优先级高的采样概率大</li>
-<li>优先级可以用TD-error值来衡量，error大的自然要多采样多优化</li>
-<li>已知优先级分布，希望得到满足该优先级分布的一个采样序列，那么这就是一个蒙特卡洛问题了，可以用MCMC，可以用Importance sampling，也可以用论文里提到的SumTree</li>
-</ul>
-<h1 id="dueling-dqn">Dueling DQN</h1>
-<ul>
-<li>Dueling DQN细化了原始DQN的内部网络输入输出关系： <span class="math display">\[
-Q(s,a;\theta,\alpha,\beta) = Value(s;\theta,\beta) + Advantage(s,a;\theta,\alpha)
-\]</span></li>
-<li>即拆分成了状态带来的价值和动作在该状态上带来的价值（advantage）</li>
-<li>为什么要单独考虑状态？因为有些状态是与动作无关的，无论采取什么动作都不会带来价值的改变</li>
-</ul>
-<h1 id="policy-gradient">Policy Gradient</h1>
-<ul>
-<li>之前介绍的都是基于值的强化学习方法，即在某状态查询各个动作带来的价值，选择最大价值动作执行</li>
-<li>policy gradient（策略梯度）通过策略网络输入状态，直接输出动作，跳过了计算价值的步骤，是基于策略的方法</li>
-<li>策略网络并不计算某种损失进行反向传播，而是依据奖励来反向传播，更新的算法如下： <span class="math display">\[
-\theta = \theta + \alpha \nabla _{\theta} \log \pi _{\theta} (s_t, a_t) v_t \\
-\]</span></li>
-<li>需要注意以下几个关键点：
-<ul>
-<li>这里的PG算法神经网络只负责接收状态作为输入，奖励作为梯度调整值，实际执行的动作作为gold label，输出一个action vector，整个网络本身就是一个策略<span class="math inline">\(\pi\)</span>（输入状态，输出动作概率分布）</li>
-<li>之后整个模型依然像DQN那样，借助策略（网络）按动作概率（网络输出）选择动作，转移状态，观察环境得到奖励</li>
-<li>那么第一个问题，这个策略梯度是怎么来的？可以看到梯度依然是损失对参数求导的形式，<span class="math inline">\(- \nabla _{\theta} \log \pi _{\theta} (s_t, a_t) v_t\)</span>，哪来的损失？实际上是执行动作的概率乘以奖励，可以看作是动作概率分布和执行动作one-hot向量之间的交叉熵（交叉熵本来就有类似look up的效果）乘以奖励。我们就看其本来的含义：执行动作的概率乘以奖励，网络本身只是一个策略，什么样的策略是好策略？假如通过这个策略选出来的动作执行之后得到了好的奖励，那么这是一个好的策略网络，也就是能选出好动作的策略网络是好网络，显然网络的目标函数就应该是执行动作的概率（网络认可的动作）乘以奖励（奖励认可的好动作）。</li>
-<li>第二个问题，对于随时能给出奖励的环境，agent可以走一步，根据奖励更新一次策略网络，那对于那些只有最后一步能够得到奖励的该咋办？事实上我们采取的是回合更新，无论是每一步都能给出奖励的环境还是只有最后一步有奖励的环境，我们都将一个回合内的所有步(s,a,r)都记录下来（除了最后一步，其余步的奖励都是0或者-1），之后每一步的奖励替换成累加奖励，并乘以一个衰减系数使得奖励随episode steps衰减。注意不同于离散的基于值的学习，基于策略的PG在没有得到奖励的那些步也能算出一个动作概率来计算损失，因此即便是无奖励（或者负奖励），也能使得策略网络优化去让不好的动作概率降低。</li>
-</ul></li>
-</ul>
-<h1 id="actor-critic">Actor Critic</h1>
-<ul>
-<li>显然基于策略的方法抛弃了值，获得了优势（连续动作），也带来了劣势（每执行一步之后没得值可以用来估计即时奖励，只能进行回合更新），那么一个自然而然的想法就是结合这两点，选择一个基于策略的网络作为actor，训练出策略；选择一个基于值的网络作为critic，用来给策略网络提供值，估计即时奖励。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>自然语言处理</category>
-      </categories>
-      <tags>
-        <tag>deep learning</tag>
-        <tag>reinforcement learning</tag>
       </tags>
   </entry>
   <entry>
@@ -1855,6 +1736,272 @@ J = \sum _{i,j} X_i (log P_{ij} - log Q_{ij})^2 \\
         <tag>math</tag>
         <tag>glove</tag>
         <tag>word embedding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简洁到自己都看不懂的强化学习笔记</title>
+    <url>/2019/09/23/easyrl/</url>
+    <content><![CDATA[<p>极简风格 - Q-learning - Sarsa - Sarsa(<span class="math inline">\(\lambda\)</span>) - DQN - Double DQN - DQN with Prioritized Experience replay - Dueling DQN - Policy Gradient</p>
+<a id="more"></a>
+<h1 id="定义">定义</h1>
+<ul>
+<li>agent：智能体，智能体处在某一状态下，依据某种策略(policy)，采取一个动作，到达下一个状态</li>
+<li>s:status，状态</li>
+<li>a:action，动作</li>
+<li>r:reward，奖励</li>
+<li>s,a：可以称之为一步。智能体的行为可以描述为一系列步。强化学习里agent的行为可以用DP（决策过程）表示，s是DP里的节点状态，a是状态之间的转移路径</li>
+<li>Q：Q表，Q(s,a)即状态s下执行动作a的价值（infer时的可能性），用奖励期望来估计</li>
+</ul>
+<h1 id="q-learning">Q-learning</h1>
+<ul>
+<li>随机Q表，初始化状态，开始迭代，<span class="math inline">\(\epsilon\)</span>贪心</li>
+<li>在状态s采取动作a，观察到奖励r和状态<span class="math inline">\(s \prime\)</span></li>
+<li>关键迭代公式： <span class="math display">\[
+Q(s,a) = Q(s,a) + \alpha [r + \gamma max_{a \prime}Q(s \prime,a \prime) - Q(s,a)] \\
+\]</span></li>
+<li>Q的更新包括两部分，一部分自然是奖励（假如这一步得到奖励的话），另一部分是时间差值，即TD-error，是现实和估计之间的差值。这里的现实是在新状态采取了最好动作后得到的奖励，这里的估计是指我们所有的奖励，除了最终步得到的真实奖励，其余中间步都是用Q表值来估计现实奖励，因此Q表的更新应该是加上（现实-估计），即让Q表更加贴近现实。</li>
+<li>值得注意的是，只有最后一步得到奖励时（假如我们只有终点一个奖励），现实才真的是现实的奖励，否则还是用Q表估计的。</li>
+<li>这里Q表的更新只与未来的状态和动作有关，在最开始，应该除了真正有奖励的最后一步，其余步骤的更新都是不确定的（因为现实也是用Q表估计的，只有最后一步现实才是现实），但第一次迭代之后最后一步的价值更新是确定的（在宝藏边上还是知道怎么走向宝藏），且与LSTM那种时间序列不同，它不是从最后一个时间步往前BPTT，而是更新了一个状态的转移价值（取哪个动作好），这个状态可能出现在每一次迭代的多个时间步上（或者说和时间步无关），接下来与该状态相邻的状态更新时，用Q表估计的现实就会准确一些，慢慢的整个算法达到收敛。</li>
+</ul>
+<h1 id="sarsa">Sarsa</h1>
+<ul>
+<li>Q-learning是off-policy的，因为存在着现实和估计的差距，我们朝着现实优化，而实际采取的是根据Q表估计的现实，即异步的(off)。</li>
+<li>Sarsa是on-policy的，与Q-learning在算法上的区别：
+<ul>
+<li>Q-learning:根据Q表选动作-执行动作观察到奖励和新状态-更新Q表-更新状态</li>
+<li>Sarsa：执行动作观察到奖励和新状态-更新状态-根据Q表在新状态上选动作，在迭代之前先来一次根据Q表选动作</li>
+</ul></li>
+<li>可以看到Sarsa更改了学习算法的步骤顺序，这种更改带来了什么效果？效果就是将新状态和新动作的选取提前到Q表更新之前，这样Q表更新时，差距里现实的部分不用<span class="math inline">\(max_{a \prime}Q(s \prime,a \prime)\)</span>来估计，而直接用新状态和新动作： <span class="math display">\[
+Q(s,a) = Q(s,a) + \alpha [r + \gamma Q(s \prime,a \prime) - Q(s,a)] \\
+\]</span></li>
+<li>也就是说现实和估计采用的是同一策略（确定的动作，而不是给定状态选最大价值），然后依然使用这个差距来更新。</li>
+<li>在更新的过程中，sarsa说到做到（因为现实采用的就是新状态和新动作，agent一定会按照这样更新），而Q-learning则比较乐观（因为现实采用的是新状态下的最大价值，但实际走不一定会采取最大价值的行动，有<span class="math inline">\(\epsilon\)</span>的扰动）。Sarsa更为保守（每一步都想走好），而Q-learning更为激进（先rush到再说）。</li>
+</ul>
+<h1 id="sarsalambda">Sarsa(<span class="math inline">\(\lambda\)</span>)</h1>
+<ul>
+<li>naive版本的Sarsa可以看成是Sarsa(0)，因为每走一步就更新了Q表，即<span class="math inline">\(Q(s \prime,a \prime)\)</span>只会带来上一步<span class="math inline">\(Q(s,a)\)</span>的价值更新。假如我们考虑对所有步的更新，且离最终奖励近的步权重大，离最终奖励远的步权重小，那么调整这个权重的超参就是<span class="math inline">\(\lambda\)</span>，权重为0就是不考虑之前的步数，即naive Sarsa。</li>
+<li>具体实现是添加一个trace矩阵E（矩阵中每一个元素对应一步(s,a)）保存所有步在该次路径中的权重，离最终奖励越近，权重越大，因此每走一步，执行的那一步元素对应矩阵值加1，然后用对应的trace矩阵值作为权重乘到奖励上来更新Q表（这里是所有的步和整个E矩阵乘起来），之后矩阵值会衰减一下，乘以更新衰减因子<span class="math inline">\(\gamma\)</span>和权重超参<span class="math inline">\(\lambda\)</span>。显然<span class="math inline">\(\gamma\)</span>为1时，就是所有的状态得到了一样的更新（因为是所有步和整个E矩阵相乘）；当<span class="math inline">\(\gamma\)</span>为0时，除了执行步元素加了1，然后整个E矩阵都置0，因此只有执行步得到了更新，即naive Sarsa。将E矩阵的迭代展开，就可以得到与naive sarsa一样的展开，只不过衰减的时候加了一个E(s,a)来记录某一步距离奖励的距离。 <span class="math display">\[
+\delta = r + \gamma Q(s \prime,a \prime) - Q(s,a) \\
+E(s,a) = E(s,a) + 1 \\
+Q = Q + \alpha \delta E \\
+E = \gamma \lambda E \\
+update  \ \ s,a \\
+\]</span></li>
+<li>这个E矩阵就是eligibility trace。对于某一步，如果被执行了，就增加一点值，之后慢慢衰减，直到又被执行。假如短期内被执行多次，就会上升到过高值，这时可以设置阈值来限制eligibility的增加。这个值可以解释为该步在该次迭代中对于找到最终奖励的贡献程度。</li>
+</ul>
+<h1 id="dqn">DQN</h1>
+<ul>
+<li>Q-learning + deep neural network</li>
+<li>神经网络用于把Q-table的更新过程参数化，输入一个状态向量，神经网络输出所有动作的价值，用神经网络的训练来替代简单的迭代更新。这样可以解决状态数过多导致的维度灾难问题。</li>
+<li>直接这么替换不容易训练，DQN引入两个技巧
+<ul>
+<li>experience replay</li>
+<li>fix q</li>
+</ul></li>
+<li>先看神经网络的输入输出和损失
+<ul>
+<li>有两个神经网络，一个网络参与训练（评价网络），一个网络只复制另一个网络训练得到的参数，用来生成ground truth，即目标网络</li>
+<li>参与训练的网络输入是状态，表示为s维特征向量，输出是各个动作获得的a维价值向量，损失是这个向量和ground truth的a维向量之间的均方误差。</li>
+</ul></li>
+<li>DQN还包含一个记忆矩阵，维度是[记忆条数，$ 2 * s + 2$ ]，每一条包含奖励、动作，老状态和新状态，即一步的所有信息。记忆只保存最近记忆条数次执行步。</li>
+<li>之后神经网络的输入输出从哪里来？其实是从记忆中采样一个Batch的数据，将老状态输入评价网络得到model output，将新状态输入目标网络得到ground truth，之后计算损失。</li>
+<li>每隔一段时间目标网络才会复制评价网络，在此期间目标网络都是固定不变的，即fix q</li>
+<li>而输入是从最近的记忆当中抽取的，即experience replay</li>
+<li>值得注意的是我们并不直接把评价网络输出价值向量用于计算损失，因为还没有采取动作。因此我们要先根据网络输出的价值向量采取动作，将价值向量里这些动作对应的价值用奖励更新，之后这个更新过的价值向量再参与损失计算。</li>
+</ul>
+<h1 id="double-dqn">Double DQN</h1>
+<ul>
+<li>Double DQN解决DQN over estimate的问题</li>
+<li>与DQN不同之处在于，评价网络不仅接受老状态产生一个输出<span class="math inline">\(q_{eval}\)</span>，还接受新状态产生一个输出<span class="math inline">\(q_{eval4next}\)</span>，之后依据<span class="math inline">\(q_{eval4next}\)</span>选取动作更新<span class="math inline">\(q_{eval}\)</span>，而不是根据<span class="math inline">\(q_{eval}\)</span>本身选取动作来更新。</li>
+</ul>
+<h1 id="dqn-with-prioritized-experience-replay">DQN with Prioritized Experience replay</h1>
+<ul>
+<li>之前是从记忆库中随机采样一段记忆，这个随机采样会导致模型训练步数过多（随机很难保证到达最终奖励）</li>
+<li>那么自然而然想到记忆应该分配优先级，优先级高的采样概率大</li>
+<li>优先级可以用TD-error值来衡量，error大的自然要多采样多优化</li>
+<li>已知优先级分布，希望得到满足该优先级分布的一个采样序列，那么这就是一个蒙特卡洛问题了，可以用MCMC，可以用Importance sampling，也可以用论文里提到的SumTree</li>
+</ul>
+<h1 id="dueling-dqn">Dueling DQN</h1>
+<ul>
+<li>Dueling DQN细化了原始DQN的内部网络输入输出关系： <span class="math display">\[
+Q(s,a;\theta,\alpha,\beta) = Value(s;\theta,\beta) + Advantage(s,a;\theta,\alpha)
+\]</span></li>
+<li>即拆分成了状态带来的价值和动作在该状态上带来的价值（advantage）</li>
+<li>为什么要单独考虑状态？因为有些状态是与动作无关的，无论采取什么动作都不会带来价值的改变</li>
+</ul>
+<h1 id="policy-gradient">Policy Gradient</h1>
+<ul>
+<li>之前介绍的都是基于值的强化学习方法，即在某状态查询各个动作带来的价值，选择最大价值动作执行</li>
+<li>policy gradient（策略梯度）通过策略网络输入状态，直接输出动作，跳过了计算价值的步骤，是基于策略的方法</li>
+<li>策略网络并不计算某种损失进行反向传播，而是依据奖励来反向传播，更新的算法如下： <span class="math display">\[
+\theta = \theta + \alpha \nabla _{\theta} \log \pi _{\theta} (s_t, a_t) v_t \\
+\]</span></li>
+<li>需要注意以下几个关键点：
+<ul>
+<li>这里的PG算法神经网络只负责接收状态作为输入，奖励作为梯度调整值，实际执行的动作作为gold label，输出一个action vector，整个网络本身就是一个策略<span class="math inline">\(\pi\)</span>（输入状态，输出动作概率分布）</li>
+<li>之后整个模型依然像DQN那样，借助策略（网络）按动作概率（网络输出）选择动作，转移状态，观察环境得到奖励</li>
+<li>那么第一个问题，这个策略梯度是怎么来的？可以看到梯度依然是损失对参数求导的形式，<span class="math inline">\(- \nabla _{\theta} \log \pi _{\theta} (s_t, a_t) v_t\)</span>，哪来的损失？实际上是执行动作的概率乘以奖励，可以看作是动作概率分布和执行动作one-hot向量之间的交叉熵（交叉熵本来就有类似look up的效果）乘以奖励。我们就看其本来的含义：执行动作的概率乘以奖励，网络本身只是一个策略，什么样的策略是好策略？假如通过这个策略选出来的动作执行之后得到了好的奖励，那么这是一个好的策略网络，也就是能选出好动作的策略网络是好网络，显然网络的目标函数就应该是执行动作的概率（网络认可的动作）乘以奖励（奖励认可的好动作）。</li>
+<li>第二个问题，对于随时能给出奖励的环境，agent可以走一步，根据奖励更新一次策略网络，那对于那些只有最后一步能够得到奖励的该咋办？事实上我们采取的是回合更新，无论是每一步都能给出奖励的环境还是只有最后一步有奖励的环境，我们都将一个回合内的所有步(s,a,r)都记录下来（除了最后一步，其余步的奖励都是0或者-1），之后每一步的奖励替换成累加奖励，并乘以一个衰减系数使得奖励随episode steps衰减。注意不同于离散的基于值的学习，基于策略的PG在没有得到奖励的那些步也能算出一个动作概率来计算损失，因此即便是无奖励（或者负奖励），也能使得策略网络优化去让不好的动作概率降低。</li>
+</ul></li>
+</ul>
+<h1 id="actor-critic">Actor Critic</h1>
+<ul>
+<li>显然基于策略的方法抛弃了值，获得了优势（连续动作），也带来了劣势（每执行一步之后没得值可以用来估计即时奖励，只能进行回合更新），那么一个自然而然的想法就是结合这两点，选择一个基于策略的网络作为actor，训练出策略；选择一个基于值的网络作为critic，用来给策略网络提供值，估计即时奖励。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>自然语言处理</category>
+      </categories>
+      <tags>
+        <tag>deep learning</tag>
+        <tag>reinforcement learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于图结构表示的自然语言处理阅读笔记</title>
+    <url>/2020/04/05/graph-doc-thesis/</url>
+    <content><![CDATA[<p>阅读来自University of Alberta 的Bang Liu博士的论文Natural Language Processing and Text Mining with Graph-Structured Representations，做一些笔记 <a id="more"></a></p>
+<h1 id="基于图结构表示的自然语言处理">基于图结构表示的自然语言处理</h1>
+<ul>
+<li>论文主要囊括了主要包含四个方向的工作：
+<ul>
+<li>事件抽取、故事生成</li>
+<li>语义匹配</li>
+<li>推荐</li>
+<li>阅读理解</li>
+</ul></li>
+</ul>
+<h1 id="相关领域及方法论">相关领域及方法论</h1>
+<ul>
+<li>在NLP当中构图的相关工作</li>
+<li>词作为节点
+<ul>
+<li>syntactic信息作为边：Learning substructures of document semantic graphs for document summarization</li>
+<li>共现信息作为边： Graph-of-word and tw-idf: new approach to ad hoc ir； Shortest-path graph kernels for document similarity；Directional skip-gram: Explicitly distinguishing left and right context for word embeddings；</li>
+</ul></li>
+<li>句子、段落、文档作为节点
+<ul>
+<li>词共现、位置作为边：Textrank: Bringing order into texts；</li>
+<li>相似度作为边：Evaluating text coherence based on semantic similarity graph；</li>
+<li>链接作为边：Pagerank</li>
+<li>混合：Graph methods for multilingual framenets</li>
+</ul></li>
+<li>方法论
+<ul>
+<li>明确输入输出、决定语义的细粒度、构图（定义节点和边，抽取节点和边的特征）、基于图的表示重构问题、进行实验</li>
+<li>在NLP中引入图的关键是引入结构信息和关系信息。</li>
+<li>基于图的表示重构问题，例如
+<ul>
+<li>语义匹配：树或者图的匹配</li>
+<li>事件发现：社区发现</li>
+<li>phrase挖掘：节点分类和排序</li>
+<li>ontology creation： 关系鉴别</li>
+<li>问题生成：节点选择 <img data-src="https://s1.ax1x.com/2020/04/02/GG2kes.png" alt="GG2kes.png" /></li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="事件抽取及故事生成">事件抽取及故事生成</h1>
+<h2 id="相关工作">相关工作</h2>
+<ul>
+<li>文本聚类
+<ul>
+<li>基于相似度的方法，需要指定聚类数目</li>
+<li>基于密度的方法，不太适合文本这样的高维稀疏空间</li>
+<li>基于非负矩阵分解的方法（谱聚类）</li>
+<li>基于概率模型，例如PLSA，LDA，GMM</li>
+</ul></li>
+<li>故事结构生成
+<ul>
+<li>持续的将新事件归类到已有聚类当中</li>
+<li>想要为一系列时序事件生成故事总结，传统的基于summarization的方法不能持续生成，现在多采用基于贝叶斯模型的方法，但是gibbs sampling太耗时</li>
+</ul></li>
+<li>作者提出了EventX方法，构建了Story Forest系统，与以上两个路线相关，做的是开放域新闻文档事件抽取</li>
+</ul>
+<h2 id="story-forest-extracting-events-and-telling-stories-from-breaking-newstkdd">Story Forest: Extracting Events and Telling Stories from Breaking News(TKDD)</h2>
+<ul>
+<li>Story Forest：从新闻中抽取事件，生成故事</li>
+<li>定义：一个topic相当于一个story forest，包含多个story tree；每个story tree的节点是一个event，event作为最小处理单元，实际上是关于某一个event的多篇新闻文档。本系统假设每篇文章只报道一个event</li>
+<li>整体架构： <img data-src="https://s1.ax1x.com/2020/04/05/GrQJun.png" alt="GrQJun.png" /></li>
+<li>主要关注EventX中如何做cluster events，是一个两层聚类
+<ul>
+<li>构建一个keyword co-occurrence graph，节点是keyword，建边考虑两点：单篇文档内的相关性，即同一篇文档内共现次数超过阈值就建边；语料上的相关性，即条件概率超过阈值： <span class="math display">\[
+\operatorname{Pr}\left\{w_{i} | w_{j}\right\}=\frac{D F_{i, j}}{D F_{j}}
+\]</span></li>
+<li>在这个keyword graph上做community detection，将keyword做一次聚类，认为每个类的Keyword描述同一个topic。这样每个topic是一系列keywords的集合，相当于一个文档（bag of words）</li>
+<li>计算每篇文档和每个topic之间的相似度，将文档分配给具有最大相似度的topic，这样就完成了第一层：文档按主题聚类</li>
+<li>将文档按topic分开之后，每个topic下还要细分event，这就是第二层聚类，event cluster的大小通常严重不均衡，作者提出了一种基于监督学习指导的聚类方法</li>
+<li>现在将每篇文档看成节点，希望谈论同一个event的文档之间建边，这里不太好人为设计规则，就使用了监督学习，训练了一个SVM来判断是否描述同一个event，获得document graph之后接着做community detection，完成第二层聚类</li>
+</ul></li>
+</ul>
+<h1 id="语义匹配">语义匹配</h1>
+<h2 id="相关工作-1">相关工作</h2>
+<ul>
+<li>文档级别的语义匹配，相关工作：文本匹配、文档图结构表示</li>
+<li>文本匹配
+<ul>
+<li>交互放在最后，先通过孪生网络提取embedding，然后待匹配的embedding pair进行score</li>
+<li>交互提前，先提取pair-wise的交互作为特征，然后通过神经网络聚合交互，最后score</li>
+</ul></li>
+<li>文档图结构表示
+<ul>
+<li>word graph:通过句法剖析得到spo三元组构图，还可以通过wordnet扩展合并；基于窗口的方法，nodes represent unique terms and directed edges represent co-occurrences between the terms within a fixed-size sliding window；将依存关系作为边；基于超链接的构图；</li>
+<li>text graph:节点是句子、段落、文档，边基于词级别的相似度、位置、共现建立。</li>
+<li>concept graph:基于知识图谱，提取文档中的实体作为节点，例如DBpedia，然后通过最多两跳在知识图谱中进行dfs，找出outgoing relation and entity，构图；或者基于wordnet,verbnet，找出semantic role，用semantic/syntactic relation建边</li>
+<li>hybrid graph:即异构图，多种节点以及多种边，lexical，tokens, syntactic structure nodes, part of speech nodes</li>
+</ul></li>
+</ul>
+<h2 id="matching-article-pairs-with-graphical-decomposition-and-convolutionsacl-2019">Matching Article Pairs with Graphical Decomposition and Convolutions(ACL 2019)</h2>
+<ul>
+<li>作者在文本匹配和文档图结构表示方向的工作是提出了一种文档建图的方式，然后用GCN提取文档特征，进行文档级别的匹配</li>
+<li>这一部分可以改进上一个工作中两篇文档是否讨论同一个event的部分。</li>
+<li>整体流程： <img data-src="https://s1.ax1x.com/2020/04/05/GrQUEV.png" alt="GrQUEV.png" /></li>
+<li>构图：Concept Interaction Graph
+<ul>
+<li>先构建key graph，抽取文章中的keywords和实体作为节点，假如两个节点出现在同一句中就建边</li>
+<li>可以将key graph中的节点直接作为concept，也可以在key graph上做一个overlapping community detection,将Key graph切分成多个相交的子图，子图作为concept节点，相交就建边</li>
+<li>现在concept 和 sentence都是bag of words，就可以计算相似度，将句子分配到concept</li>
+<li>现在concept是句子的集合，将其看成bag of words，concept之间就可以根据句子集合之间的tfidf vector similarity建边</li>
+<li>很关键的一点，由于是做matching，输入是句子对，在这一步变成了图对，作者将两个CIG合并成一个大CIG，将描述同一个concept的两篇文章的句子集合放在一个concept 节点中</li>
+</ul></li>
+<li>构建matching network with GCN
+<ul>
+<li>得到一个大的CIG之后，两篇文档之间的matching变成了大CIG当中每一个节点里来自两篇文档的sentence set之间的matching</li>
+<li>构建了一个端到端的流程：用孪生网络提取节点特征、用GCN做节点直接的特征交互、聚合所有特征做预测</li>
+<li>这里每个节点包含了两个句子集，将其拼接成两个长句，进孪生网络，分别用bilstm或者cnn提取到特征，再进行一个特征的聚合： <span class="math display">\[
+\mathbf{m}_{A B}(v)=\left(\left|\mathbf{c}_{A}(v)-\mathbf{c}_{B}(v)\right|, \mathbf{c}_{A}(v) \circ \mathbf{c}_{B}(v)\right)
+\]</span></li>
+<li>这样就得到每个节点上的matching vector，可以理解为在该节点(concept)上两篇文档的相似度相关特征。此外作者还提取了一些传统特征相似度（tfidf,bm25,jaccard,Ochiai）的值拼接到matching vector当中</li>
+<li>接下来过GCN</li>
+<li>聚合所有节点特征就是一个简单的mean pooling，然后过一个线性层做分类（0，1）</li>
+</ul></li>
+<li>在长篇新闻语料上（avg 734 token)，graph matching的效果远好于传统的双塔模型(DUET,DSSM,ARC都在50~60的f1，graph model达到了70~80)</li>
+</ul>
+<h2 id="matching-natural-language-sentences-with-hierarchical-sentence-factorizationwww-2018">Matching Natural Language Sentences with Hierarchical Sentence Factorization(WWW 2018)</h2>
+<p><img data-src="https://s1.ax1x.com/2020/04/05/GrQrv9.png" alt="GrQrv9.png" /> - 句子对语义匹配任务，主要利用的是AMR剖析得到的句子结构 - 五个步骤 - AMR parsing and alignment：AMR将句子表示为有向无环图，如果将有多个父节点的节点复制拆分，则可以将有向无环图转换为树。AMR的叶子节点代表一个概念，其余的是关系，代表概念之间的关联或者某个概念是另外一个概念的参数。得到AMR图之后还需要对齐，将句子中具体的token和概念建立连接。作者使用了现有的工具JAMR - AMR purification：一个token可能与多个概念建立连接，作者只选择最浅层的概念建立连接，之后将关系的内容删去，只保留边不保留边的label，得到简化之后的AMR tree，如上图所示 - Index mapping：加入root节点，重设节点坐标 - Node completion：类似于padding，保证两个句子的树的深度一样 - Node traversal：做一次dfs,使得每个非叶子节点的内容拼接了其子树的内容 - 这样root节点就得到原句子的一个重新组织方式，类似于predicate-argument的形式，即谓语接谓语操作的词，类似于最初始的AMR purification得到的只保留概念的N叉树先做后序遍历再逆序，作者的意思大致是这样可以统一的表达两个句子，避免原文表示中各种因词序和其他不那么重要的词（助词介词）的现象导致接下来语义匹配中产生错误。 - 接下来使用Ordered Word Mover Distance。如下式，D代表传输的cost(embedding距离），T代表传输量(词占比），<span class="math inline">\(\alpha,\beta\)</span>代表两个句子中各个词的词频向量，这里作者直接用均匀分布替代。传统的WMD没有考虑词的顺序，作者引入了两个惩罚项，当T主要集中在对角线上时I较大，P是T的一个理想分布，其第i行第j列个元素满足i,j到对角线位置的距离的标准高斯分布，也是希望T是一个对角阵。对角阵的意义就是会在传输时考虑顺序，不发生相对距离较远的传输。 <span class="math display">\[
+\begin{array}{ll}
+\underset{T \in \mathbb{R}_{+}^{M \mathrm{XN}}}{\operatorname{minimize}} &amp; \sum_{i, j} T_{i j} D_{i j}-\lambda_{1} I(T)+\lambda_{2} K L(T \| P) \\
+\text { subject to } &amp; \sum_{i=1}^{M} T_{i j}=\beta_{j}^{\prime} \quad 1 \leq j \leq N^{\prime} \\
+&amp; \sum_{j=1}^{N} T_{i j}=\alpha_{i}^{\prime} \quad 1 \leq i \leq M^{\prime}
+\end{array} \\
+\]</span> <span class="math display">\[
+I(T)=\sum_{i=1}^{M^{\prime}} \sum_{j=1}^{N^{\prime}} \frac{T_{i j}}{\left(\frac{i}{M^{\prime}}-\frac{j}{N^{\prime}}\right)^{2}+1} \\
+\]</span> <span class="math display">\[
+P_{i j}=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{l^{2}(i, j)}{2 \sigma^{2}}} \\
+\]</span> <span class="math display">\[
+l(i, j)=\frac{\left|i / M^{\prime}-j / N^{\prime}\right|}{\sqrt{1 / M^{\prime 2}+1 / N^{\prime 2}}} \\
+\]</span> - 通过上述方法就能得到针对两个句子AMR表示的OWMD距离，完成无监督的文本相似度计算。也可以充分利用AMR Tree来完成监督学习。 - 注意到在AMR树中，不同层的节点其实代表了整句不同粒度的语义切分，例如第0层是整句，第一层是短句"Jerry little",第二层是单一的概念"Jerry"，作者选取前三层，将每一层不同粒度的语义单元之间输入context layer，同一语义单元内的token embedding相加作为单一embedding，并假设每一层的子节点最多k个，不足的padding。 <img data-src="https://s1.ax1x.com/2020/04/11/GbgQUA.png" alt="GbgQUA.png" /></p>
+<h1 id="推荐">推荐</h1>
+<h2 id="相关工作-2">相关工作</h2>
+<h2 id="a-user-centered-concept-mining-system-for-query-and-document-understanding-at-tencentkdd-2019">A User-Centered Concept Mining System for Query and Document Understanding at Tencent(KDD 2019)</h2>
+<h2 id="scalable-creation-of-a-web-scale-ontologysigmod-2020">Scalable Creation of a Web-scale Ontology(SIGMOD 2020)</h2>
+<h1 id="阅读理解">阅读理解</h1>
+<h2 id="learning-to-generate-questions-by-learning-what-not-to-generatewww-2019">Learning to Generate Questions by Learning What not to Generate(WWW 2019)</h2>
+<h2 id="asking-questions-the-human-way-scalable-question-answer-generation-from-text-corpuswww-2020">Asking Questions the Human Way: Scalable Question-Answer Generation from Text Corpus(WWW 2020)</h2>
+]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>gnn</tag>
+        <tag>graph</tag>
       </tags>
   </entry>
   <entry>
@@ -2021,254 +2168,6 @@ w_{m}=\frac{\mathbf{q}^{T}\left[\mathbf{d}_{m} ; \mathbf{d}_{\Sigma}\right]}{\su
         <tag>deep learning</tag>
         <tag>summarization</tag>
         <tag>natural language processing</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于图结构表示的自然语言处理阅读笔记</title>
-    <url>/2020/04/05/graph-doc-thesis/</url>
-    <content><![CDATA[<p>阅读来自University of Alberta 的Bang Liu博士的论文Natural Language Processing and Text Mining with Graph-Structured Representations，做一些笔记 <a id="more"></a></p>
-<h1 id="基于图结构表示的自然语言处理">基于图结构表示的自然语言处理</h1>
-<ul>
-<li>论文主要囊括了主要包含四个方向的工作：
-<ul>
-<li>事件抽取、故事生成</li>
-<li>语义匹配</li>
-<li>推荐</li>
-<li>阅读理解</li>
-</ul></li>
-</ul>
-<h1 id="相关领域及方法论">相关领域及方法论</h1>
-<ul>
-<li>在NLP当中构图的相关工作</li>
-<li>词作为节点
-<ul>
-<li>syntactic信息作为边：Learning substructures of document semantic graphs for document summarization</li>
-<li>共现信息作为边： Graph-of-word and tw-idf: new approach to ad hoc ir； Shortest-path graph kernels for document similarity；Directional skip-gram: Explicitly distinguishing left and right context for word embeddings；</li>
-</ul></li>
-<li>句子、段落、文档作为节点
-<ul>
-<li>词共现、位置作为边：Textrank: Bringing order into texts；</li>
-<li>相似度作为边：Evaluating text coherence based on semantic similarity graph；</li>
-<li>链接作为边：Pagerank</li>
-<li>混合：Graph methods for multilingual framenets</li>
-</ul></li>
-<li>方法论
-<ul>
-<li>明确输入输出、决定语义的细粒度、构图（定义节点和边，抽取节点和边的特征）、基于图的表示重构问题、进行实验</li>
-<li>在NLP中引入图的关键是引入结构信息和关系信息。</li>
-<li>基于图的表示重构问题，例如
-<ul>
-<li>语义匹配：树或者图的匹配</li>
-<li>事件发现：社区发现</li>
-<li>phrase挖掘：节点分类和排序</li>
-<li>ontology creation： 关系鉴别</li>
-<li>问题生成：节点选择 <img data-src="https://s1.ax1x.com/2020/04/02/GG2kes.png" alt="GG2kes.png" /></li>
-</ul></li>
-</ul></li>
-</ul>
-<h1 id="事件抽取及故事生成">事件抽取及故事生成</h1>
-<h2 id="相关工作">相关工作</h2>
-<ul>
-<li>文本聚类
-<ul>
-<li>基于相似度的方法，需要指定聚类数目</li>
-<li>基于密度的方法，不太适合文本这样的高维稀疏空间</li>
-<li>基于非负矩阵分解的方法（谱聚类）</li>
-<li>基于概率模型，例如PLSA，LDA，GMM</li>
-</ul></li>
-<li>故事结构生成
-<ul>
-<li>持续的将新事件归类到已有聚类当中</li>
-<li>想要为一系列时序事件生成故事总结，传统的基于summarization的方法不能持续生成，现在多采用基于贝叶斯模型的方法，但是gibbs sampling太耗时</li>
-</ul></li>
-<li>作者提出了EventX方法，构建了Story Forest系统，与以上两个路线相关，做的是开放域新闻文档事件抽取</li>
-</ul>
-<h2 id="story-forest-extracting-events-and-telling-stories-from-breaking-newstkdd">Story Forest: Extracting Events and Telling Stories from Breaking News(TKDD)</h2>
-<ul>
-<li>Story Forest：从新闻中抽取事件，生成故事</li>
-<li>定义：一个topic相当于一个story forest，包含多个story tree；每个story tree的节点是一个event，event作为最小处理单元，实际上是关于某一个event的多篇新闻文档。本系统假设每篇文章只报道一个event</li>
-<li>整体架构： <img data-src="https://s1.ax1x.com/2020/04/05/GrQJun.png" alt="GrQJun.png" /></li>
-<li>主要关注EventX中如何做cluster events，是一个两层聚类
-<ul>
-<li>构建一个keyword co-occurrence graph，节点是keyword，建边考虑两点：单篇文档内的相关性，即同一篇文档内共现次数超过阈值就建边；语料上的相关性，即条件概率超过阈值： <span class="math display">\[
-\operatorname{Pr}\left\{w_{i} | w_{j}\right\}=\frac{D F_{i, j}}{D F_{j}}
-\]</span></li>
-<li>在这个keyword graph上做community detection，将keyword做一次聚类，认为每个类的Keyword描述同一个topic。这样每个topic是一系列keywords的集合，相当于一个文档（bag of words）</li>
-<li>计算每篇文档和每个topic之间的相似度，将文档分配给具有最大相似度的topic，这样就完成了第一层：文档按主题聚类</li>
-<li>将文档按topic分开之后，每个topic下还要细分event，这就是第二层聚类，event cluster的大小通常严重不均衡，作者提出了一种基于监督学习指导的聚类方法</li>
-<li>现在将每篇文档看成节点，希望谈论同一个event的文档之间建边，这里不太好人为设计规则，就使用了监督学习，训练了一个SVM来判断是否描述同一个event，获得document graph之后接着做community detection，完成第二层聚类</li>
-</ul></li>
-</ul>
-<h1 id="语义匹配">语义匹配</h1>
-<h2 id="相关工作-1">相关工作</h2>
-<ul>
-<li>文档级别的语义匹配，相关工作：文本匹配、文档图结构表示</li>
-<li>文本匹配
-<ul>
-<li>交互放在最后，先通过孪生网络提取embedding，然后待匹配的embedding pair进行score</li>
-<li>交互提前，先提取pair-wise的交互作为特征，然后通过神经网络聚合交互，最后score</li>
-</ul></li>
-<li>文档图结构表示
-<ul>
-<li>word graph:通过句法剖析得到spo三元组构图，还可以通过wordnet扩展合并；基于窗口的方法，nodes represent unique terms and directed edges represent co-occurrences between the terms within a fixed-size sliding window；将依存关系作为边；基于超链接的构图；</li>
-<li>text graph:节点是句子、段落、文档，边基于词级别的相似度、位置、共现建立。</li>
-<li>concept graph:基于知识图谱，提取文档中的实体作为节点，例如DBpedia，然后通过最多两跳在知识图谱中进行dfs，找出outgoing relation and entity，构图；或者基于wordnet,verbnet，找出semantic role，用semantic/syntactic relation建边</li>
-<li>hybrid graph:即异构图，多种节点以及多种边，lexical，tokens, syntactic structure nodes, part of speech nodes</li>
-</ul></li>
-</ul>
-<h2 id="matching-article-pairs-with-graphical-decomposition-and-convolutionsacl-2019">Matching Article Pairs with Graphical Decomposition and Convolutions(ACL 2019)</h2>
-<ul>
-<li>作者在文本匹配和文档图结构表示方向的工作是提出了一种文档建图的方式，然后用GCN提取文档特征，进行文档级别的匹配</li>
-<li>这一部分可以改进上一个工作中两篇文档是否讨论同一个event的部分。</li>
-<li>整体流程： <img data-src="https://s1.ax1x.com/2020/04/05/GrQUEV.png" alt="GrQUEV.png" /></li>
-<li>构图：Concept Interaction Graph
-<ul>
-<li>先构建key graph，抽取文章中的keywords和实体作为节点，假如两个节点出现在同一句中就建边</li>
-<li>可以将key graph中的节点直接作为concept，也可以在key graph上做一个overlapping community detection,将Key graph切分成多个相交的子图，子图作为concept节点，相交就建边</li>
-<li>现在concept 和 sentence都是bag of words，就可以计算相似度，将句子分配到concept</li>
-<li>现在concept是句子的集合，将其看成bag of words，concept之间就可以根据句子集合之间的tfidf vector similarity建边</li>
-<li>很关键的一点，由于是做matching，输入是句子对，在这一步变成了图对，作者将两个CIG合并成一个大CIG，将描述同一个concept的两篇文章的句子集合放在一个concept 节点中</li>
-</ul></li>
-<li>构建matching network with GCN
-<ul>
-<li>得到一个大的CIG之后，两篇文档之间的matching变成了大CIG当中每一个节点里来自两篇文档的sentence set之间的matching</li>
-<li>构建了一个端到端的流程：用孪生网络提取节点特征、用GCN做节点直接的特征交互、聚合所有特征做预测</li>
-<li>这里每个节点包含了两个句子集，将其拼接成两个长句，进孪生网络，分别用bilstm或者cnn提取到特征，再进行一个特征的聚合： <span class="math display">\[
-\mathbf{m}_{A B}(v)=\left(\left|\mathbf{c}_{A}(v)-\mathbf{c}_{B}(v)\right|, \mathbf{c}_{A}(v) \circ \mathbf{c}_{B}(v)\right)
-\]</span></li>
-<li>这样就得到每个节点上的matching vector，可以理解为在该节点(concept)上两篇文档的相似度相关特征。此外作者还提取了一些传统特征相似度（tfidf,bm25,jaccard,Ochiai）的值拼接到matching vector当中</li>
-<li>接下来过GCN</li>
-<li>聚合所有节点特征就是一个简单的mean pooling，然后过一个线性层做分类（0，1）</li>
-</ul></li>
-<li>在长篇新闻语料上（avg 734 token)，graph matching的效果远好于传统的双塔模型(DUET,DSSM,ARC都在50~60的f1，graph model达到了70~80)</li>
-</ul>
-<h2 id="matching-natural-language-sentences-with-hierarchical-sentence-factorizationwww-2018">Matching Natural Language Sentences with Hierarchical Sentence Factorization(WWW 2018)</h2>
-<p><img data-src="https://s1.ax1x.com/2020/04/05/GrQrv9.png" alt="GrQrv9.png" /> - 句子对语义匹配任务，主要利用的是AMR剖析得到的句子结构 - 五个步骤 - AMR parsing and alignment：AMR将句子表示为有向无环图，如果将有多个父节点的节点复制拆分，则可以将有向无环图转换为树。AMR的叶子节点代表一个概念，其余的是关系，代表概念之间的关联或者某个概念是另外一个概念的参数。得到AMR图之后还需要对齐，将句子中具体的token和概念建立连接。作者使用了现有的工具JAMR - AMR purification：一个token可能与多个概念建立连接，作者只选择最浅层的概念建立连接，之后将关系的内容删去，只保留边不保留边的label，得到简化之后的AMR tree，如上图所示 - Index mapping：加入root节点，重设节点坐标 - Node completion：类似于padding，保证两个句子的树的深度一样 - Node traversal：做一次dfs,使得每个非叶子节点的内容拼接了其子树的内容 - 这样root节点就得到原句子的一个重新组织方式，类似于predicate-argument的形式，即谓语接谓语操作的词，类似于最初始的AMR purification得到的只保留概念的N叉树先做后序遍历再逆序，作者的意思大致是这样可以统一的表达两个句子，避免原文表示中各种因词序和其他不那么重要的词（助词介词）的现象导致接下来语义匹配中产生错误。 - 接下来使用Ordered Word Mover Distance。如下式，D代表传输的cost(embedding距离），T代表传输量(词占比），<span class="math inline">\(\alpha,\beta\)</span>代表两个句子中各个词的词频向量，这里作者直接用均匀分布替代。传统的WMD没有考虑词的顺序，作者引入了两个惩罚项，当T主要集中在对角线上时I较大，P是T的一个理想分布，其第i行第j列个元素满足i,j到对角线位置的距离的标准高斯分布，也是希望T是一个对角阵。对角阵的意义就是会在传输时考虑顺序，不发生相对距离较远的传输。 <span class="math display">\[
-\begin{array}{ll}
-\underset{T \in \mathbb{R}_{+}^{M \mathrm{XN}}}{\operatorname{minimize}} &amp; \sum_{i, j} T_{i j} D_{i j}-\lambda_{1} I(T)+\lambda_{2} K L(T \| P) \\
-\text { subject to } &amp; \sum_{i=1}^{M} T_{i j}=\beta_{j}^{\prime} \quad 1 \leq j \leq N^{\prime} \\
-&amp; \sum_{j=1}^{N} T_{i j}=\alpha_{i}^{\prime} \quad 1 \leq i \leq M^{\prime}
-\end{array} \\
-\]</span> <span class="math display">\[
-I(T)=\sum_{i=1}^{M^{\prime}} \sum_{j=1}^{N^{\prime}} \frac{T_{i j}}{\left(\frac{i}{M^{\prime}}-\frac{j}{N^{\prime}}\right)^{2}+1} \\
-\]</span> <span class="math display">\[
-P_{i j}=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{l^{2}(i, j)}{2 \sigma^{2}}} \\
-\]</span> <span class="math display">\[
-l(i, j)=\frac{\left|i / M^{\prime}-j / N^{\prime}\right|}{\sqrt{1 / M^{\prime 2}+1 / N^{\prime 2}}} \\
-\]</span> - 通过上述方法就能得到针对两个句子AMR表示的OWMD距离，完成无监督的文本相似度计算。也可以充分利用AMR Tree来完成监督学习。 - 注意到在AMR树中，不同层的节点其实代表了整句不同粒度的语义切分，例如第0层是整句，第一层是短句"Jerry little",第二层是单一的概念"Jerry"，作者选取前三层，将每一层不同粒度的语义单元之间输入context layer，同一语义单元内的token embedding相加作为单一embedding，并假设每一层的子节点最多k个，不足的padding。 <img data-src="https://s1.ax1x.com/2020/04/11/GbgQUA.png" alt="GbgQUA.png" /></p>
-<h1 id="推荐">推荐</h1>
-<h2 id="相关工作-2">相关工作</h2>
-<h2 id="a-user-centered-concept-mining-system-for-query-and-document-understanding-at-tencentkdd-2019">A User-Centered Concept Mining System for Query and Document Understanding at Tencent(KDD 2019)</h2>
-<h2 id="scalable-creation-of-a-web-scale-ontologysigmod-2020">Scalable Creation of a Web-scale Ontology(SIGMOD 2020)</h2>
-<h1 id="阅读理解">阅读理解</h1>
-<h2 id="learning-to-generate-questions-by-learning-what-not-to-generatewww-2019">Learning to Generate Questions by Learning What not to Generate(WWW 2019)</h2>
-<h2 id="asking-questions-the-human-way-scalable-question-answer-generation-from-text-corpuswww-2020">Asking Questions the Human Way: Scalable Question-Answer Generation from Text Corpus(WWW 2020)</h2>
-]]></content>
-      <tags>
-        <tag>math</tag>
-        <tag>gnn</tag>
-        <tag>graph</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>异构信息网络的一些处理</title>
-    <url>/2019/10/30/heterogeneous/</url>
-    <content><![CDATA[<p>记录近年来对于异构信息网络的一些处理 - PathSim - HGNN - HGAN - HGAN for text classification - 带属性，Attributed Multiplex Heterogeneous Network - Meta-graph Guided Random Walks - TBD</p>
-<a id="more"></a>
-<h1 id="pathsim-meta-path-based-top-k-similarity-search-in-heterogeneous-information-networks">PathSim: Meta Path-Based Top-K Similarity Search in Heterogeneous Information Networks</h1>
-<ul>
-<li>较早的一篇论文（作者都是大神），定义清楚了meta path中的很多概念，提出了衡量异构信息网络中节点相似度的一种方法。</li>
-<li>传统的相似度衡量方法存在偏差，基于路径数统计和随机游走的方法存在偏差，偏向度数较多的节点；pair-wise的随机游走偏向具有较多离群点邻居的节点</li>
-<li>PathSim的想法是，两个相似的节点不仅仅应该相互强链接，还需要share comparable visibility</li>
-<li>在给定对称的meta path <span class="math inline">\(P\)</span>下，两个同类型节点<span class="math inline">\(x,y\)</span>的PathSim定义为： <span class="math display">\[
-s(x, y)=\frac{2 \times\left|\left\{p_{x \leadsto y}: p_{x \sim y} \in \mathcal{P}\right\}\right|}{\left|\left\{p_{x \leadsto x}: p_{x \hookrightarrow x} \in \mathcal{P}\right\}\right|+\left|\left\{p_{y \leadsto y}: p_{y \leadsto y} \in \mathcal{P}\right\}\right|}
-\]</span></li>
-<li>实际分母的节点回归概率就是visibility，作者在传统的pathcount上除以visibility，所有的路径都由edge weight累乘得到。</li>
-<li>类似于对节点的度做了对称归一化。</li>
-</ul>
-<h1 id="heterogeneous-graph-neural-network">Heterogeneous Graph Neural Network</h1>
-<ul>
-<li>任务：图表示学习</li>
-<li>异构类型：节点异构、边异构、节点多属性</li>
-<li>解决办法：
-<ul>
-<li>四步走：异构邻居采样、多属性编码、同类型邻居聚合、不同类型聚合</li>
-<li>异构邻居采样：基于重启的随机游走，先随机游走，且有一定概率p返回初始节点（重启），直到采样了一定数量的邻域节点。每种类型的邻域节点有上限值以确保所有类型的邻居都能采样到。再等比例缩小，对每个邻域节点类型<span class="math inline">\(t\)</span>，只取<span class="math inline">\(K_t\)</span>个邻域节点，分好组。</li>
-<li>多属性编码：根据多模态内容，预先编好码，例如文本用paragraph2vec，图像用CNN，同一邻域节点的不同属性信息用BiLSTM编码</li>
-<li>同类型邻居聚合：用BiLSTM聚合同类型下多个邻域节点的特征</li>
-<li>不同类型聚合：再用一个注意力机制聚合不同类型的特征</li>
-</ul></li>
-</ul>
-<h1 id="heterogeneous-graph-attention-network">Heterogeneous Graph Attention Network</h1>
-<ul>
-<li>任务：图表示学习</li>
-<li>异构类型：节点异构</li>
-<li>解决办法：
-<ul>
-<li>实现node-level和metapath-level的双层注意力。</li>
-<li>需要在所有的metapath neighbour里加上自身，类似于GCN里的内环。</li>
-<li>node-level注意力，对一条metapath上的不同节点进行注意力加权。因为不同类型的节点特征表示空间不同，因此针对每一种类型对应一个特征转换矩阵，将不同类型节点映射到同一空间，之后通过自注意力机制对节点进行注意力的计算和加权(其中<span class="math inline">\(\phi\)</span>代表metapath)： <span class="math display">\[
-h_i^{\prime} = M_{\phi _i} \cdot h_i \\
-e^{\phi}_{ij} = attn_{node}(h^{\prime}_i,h^{\prime}_j;\phi) \\
-\]</span> 在计算attention需要做mask，只对邻域节点计算attention并做softmax。值得注意的是这里的自注意力的非对称性对异构图来说很重要，因为在一个节点对里，两个节点的邻域不同，相互的影响不是等量的。简单来说，对某一个节点，计算其在某一类metapath下所有邻域节点的注意力权重,输入是两个节点的h以及metapath specific的一个参数向量，输出注意力权重，然后对某一节点，加权求和其某一类metapath下所有邻域节点的h，得到该节点的某一metapath的表示。 <span class="math display">\[
-\alpha_{i j}^{\Phi}=\operatorname{softmax}_{j}\left(e_{i j}^{\Phi}\right)=\frac{\exp \left(\sigma\left(\mathbf{a}_{\Phi}^{\mathrm{T}} \cdot\left[\mathbf{h}_{i}^{\prime} \| \mathbf{h}_{j}^{\prime}\right]\right)\right)}{\sum_{k \in \mathcal{N}_{i}^{\mathrm{\Phi}}} \exp \left(\sigma\left(\mathbf{a}_{\Phi}^{\mathrm{T}} \cdot\left[\mathbf{h}_{i}^{\prime} \| \mathbf{h}_{k}^{\prime}\right]\right)\right)} \\
-\]</span> 计算出注意力之后对变换后的metapath邻域节点特征加权： <span class="math display">\[
-\mathbf{z}_{i}^{\Phi}=\sigma\left(\sum_{j \in \mathcal{N}_{i}^{\Phi}} \alpha_{i j}^{\Phi} \cdot \mathbf{h}_{j}^{\prime}\right)
-\]</span></li>
-<li>在实际加权的时候作者参考了multi-head的做法，计算了k个attention加权特征并拼接起来</li>
-<li>metapath-level的attention即对某一节点所有不同类的metapath embedding进行加权。先将每一条metapath的embedding变换到同一隐空间，然后参数化计算出注意力权重并softmax。需要注意的是softmax之前的attention logit是在所有节点上计算某一类型metapath的平均，分母是节点数，分子是包含该类型metapath的节点的metapath embedding累加，而之前的node-level是针对某一节点某一metapath下所有的邻域节点平均： <span class="math display">\[
-w_{\Phi_{i}}=\frac{1}{|\mathcal{V}|} \sum_{i \in \mathcal{V}} \mathbf{q}^{\mathrm{T}} \cdot \tanh \left(\mathbf{W} \cdot \mathbf{z}_{i}^{\Phi}+\mathbf{b}\right)
-\]</span></li>
-<li>之后再在所有metapath类型上做softmax，得到权重，加权每个节点不同metapath embedding得到最终embedding</li>
-<li>整个双层attention的logit以及softmax的范围有点绕，时而局部时而全局，需要仔细考虑清楚。</li>
-</ul></li>
-<li>可以看到整个过程是可以在节点层次并行化计算的</li>
-<li>从结果来看效果达到了SOTA，而且可视化的结果可以看到节点embedding的聚类效果更好，attention也带来了一定可解释性。</li>
-</ul>
-<h1 id="heterogeneous-graph-attention-networks-for-semi-supervised-short-text-classification">Heterogeneous Graph Attention Networks for Semi-supervised Short Text Classification</h1>
-<ul>
-<li>任务：节点分类</li>
-<li>异构类型：节点异构，包含三类节点，文本、实体、主题</li>
-<li>解决办法：
-<ul>
-<li>最朴素：扩充节点的特征空间，将三类节点的特征向量拼接起来，对于具体的某一节点，其不包含的特征向量位置全设为0</li>
-<li>异构图卷积：将相同节点类型的子图分离，每个子图单独做卷积，不同的子图通过参数变换矩阵投影到相同隐空间并相加激活作为下一层，具体而言，原始GCN为： <span class="math display">\[
-H^{(l+1)}=\sigma\left(\tilde{A} \cdot H^{(l)} \cdot W^{(l)}\right)
-\]</span> 而异构GCN为： <span class="math display">\[
-H^{(l+1)}=\sigma\left(\sum_{\tau \in \mathcal{T}} \tilde{A}_{\tau} \cdot H_{\tau}^{(l)} \cdot W_{\tau}^{(l)}\right)
-\]</span> 其中<span class="math inline">\(\tilde{A}_{\tau}\)</span>的行是所有节点，列是某一类型的所有节点，这样就抽离出了同构的连接子图，即对于每个节点，我们分别考虑他的邻域里类型a的节点，做信息聚合得到编码a，再考虑邻域里类型b的节点，做信息聚合得到编码b，编码a和b通过各自的变换矩阵变换到同一隐空间再相加。这样的设计是符合逻辑的。</li>
-<li>作者还考虑了以下情况：对于某一节点，不同类型的邻域节点的贡献不一样，同一类型下不同的邻域节点贡献也不一样。显然这里需要注意力。作者就提出了对偶注意力(即双层注意力)，一层是type level的，一层是node level的，先用某一类型邻域节点embedding的均值作为type embedding，然后根据当前节点embedding与type embedding 计算出type attention weight，同理用具体的邻域节点embedding和当前节点embedding再加上type attention得到node attention，利用计算出的node attention替换GCN里的对称归一化邻接矩阵。</li>
-</ul></li>
-</ul>
-<h1 id="representation-learning-for-attributed-multiplex-heterogeneous-network">Representation Learning for Attributed Multiplex Heterogeneous Network</h1>
-<ul>
-<li>任务：图表示学习</li>
-<li>异构类型：节点异构、边异构、节点多属性</li>
-<li>解决办法：
-<ul>
-<li>考虑某一节点在不同类型边连接下有不同的embedding，将节点总的overall embedding拆成与边无关的base embedding和与边相关的edge embedding</li>
-<li>edge embedding与边类型相关，通过相同类型的边相连的邻域节点aggregate得到，这里的aggreagator function可以采用GraphSage里的做法。</li>
-<li>经过k层聚合之后，对于每个节点都得到了k种边类型的edge embedding，通过self attention将这些edge embedding加权求和，乘上比例再加上base embedding就得到了最终的overall embedding</li>
-<li>以上是直推式(transductive)模型，对于未观测数据，需要归纳式(inductive)的方法。具体做法很简单，将base embedding和edge embedding参数化为节点attribute的函数，而不是随机初始化之后完全根据已有的图学习。这样即便有图中没看见的节点，只要节点有属性，一样可以进行overall embedding的提取</li>
-<li>最后做基于meta-path的random walk得到训练对，使用skip gram训练，加入了负采样。</li>
-</ul></li>
-</ul>
-<h1 id="semi-supervised-learning-over-heterogeneous-information-networks-by-ensemble-of-meta-graph-guided-random-walks">Semi-supervised Learning over Heterogeneous Information Networks by Ensemble of Meta-graph Guided Random Walks</h1>
-<ul>
-<li>任务：节点分类</li>
-<li>异构类型：节点异构，包含三类节点，文本、实体、主题</li>
-<li>解决办法：meta-path guided random walk</li>
-</ul>
-<h1 id="joint-embedding-of-meta-path-and-meta-graph-for-heterogeneous-information-networks">Joint Embedding of Meta-Path and Meta-Graph for Heterogeneous Information Networks</h1>
-]]></content>
-      <categories>
-        <category>自然语言处理</category>
-      </categories>
-      <tags>
-        <tag>graph neural network</tag>
-        <tag>deep learning</tag>
-        <tag>natural language processing</tag>
-        <tag>heterogeneous information network</tag>
       </tags>
   </entry>
   <entry>
@@ -2450,6 +2349,107 @@ p\left(\mathbf{w}_{m} | \mathbf{c}, \mathbf{w}_{-m}, \mathbf{z}\right)=\prod_{\e
         <tag>math</tag>
         <tag>topic model</tag>
         <tag>lda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>异构信息网络的一些处理</title>
+    <url>/2019/10/30/heterogeneous/</url>
+    <content><![CDATA[<p>记录近年来对于异构信息网络的一些处理 - PathSim - HGNN - HGAN - HGAN for text classification - 带属性，Attributed Multiplex Heterogeneous Network - Meta-graph Guided Random Walks - TBD</p>
+<a id="more"></a>
+<h1 id="pathsim-meta-path-based-top-k-similarity-search-in-heterogeneous-information-networks">PathSim: Meta Path-Based Top-K Similarity Search in Heterogeneous Information Networks</h1>
+<ul>
+<li>较早的一篇论文（作者都是大神），定义清楚了meta path中的很多概念，提出了衡量异构信息网络中节点相似度的一种方法。</li>
+<li>传统的相似度衡量方法存在偏差，基于路径数统计和随机游走的方法存在偏差，偏向度数较多的节点；pair-wise的随机游走偏向具有较多离群点邻居的节点</li>
+<li>PathSim的想法是，两个相似的节点不仅仅应该相互强链接，还需要share comparable visibility</li>
+<li>在给定对称的meta path <span class="math inline">\(P\)</span>下，两个同类型节点<span class="math inline">\(x,y\)</span>的PathSim定义为： <span class="math display">\[
+s(x, y)=\frac{2 \times\left|\left\{p_{x \leadsto y}: p_{x \sim y} \in \mathcal{P}\right\}\right|}{\left|\left\{p_{x \leadsto x}: p_{x \hookrightarrow x} \in \mathcal{P}\right\}\right|+\left|\left\{p_{y \leadsto y}: p_{y \leadsto y} \in \mathcal{P}\right\}\right|}
+\]</span></li>
+<li>实际分母的节点回归概率就是visibility，作者在传统的pathcount上除以visibility，所有的路径都由edge weight累乘得到。</li>
+<li>类似于对节点的度做了对称归一化。</li>
+</ul>
+<h1 id="heterogeneous-graph-neural-network">Heterogeneous Graph Neural Network</h1>
+<ul>
+<li>任务：图表示学习</li>
+<li>异构类型：节点异构、边异构、节点多属性</li>
+<li>解决办法：
+<ul>
+<li>四步走：异构邻居采样、多属性编码、同类型邻居聚合、不同类型聚合</li>
+<li>异构邻居采样：基于重启的随机游走，先随机游走，且有一定概率p返回初始节点（重启），直到采样了一定数量的邻域节点。每种类型的邻域节点有上限值以确保所有类型的邻居都能采样到。再等比例缩小，对每个邻域节点类型<span class="math inline">\(t\)</span>，只取<span class="math inline">\(K_t\)</span>个邻域节点，分好组。</li>
+<li>多属性编码：根据多模态内容，预先编好码，例如文本用paragraph2vec，图像用CNN，同一邻域节点的不同属性信息用BiLSTM编码</li>
+<li>同类型邻居聚合：用BiLSTM聚合同类型下多个邻域节点的特征</li>
+<li>不同类型聚合：再用一个注意力机制聚合不同类型的特征</li>
+</ul></li>
+</ul>
+<h1 id="heterogeneous-graph-attention-network">Heterogeneous Graph Attention Network</h1>
+<ul>
+<li>任务：图表示学习</li>
+<li>异构类型：节点异构</li>
+<li>解决办法：
+<ul>
+<li>实现node-level和metapath-level的双层注意力。</li>
+<li>需要在所有的metapath neighbour里加上自身，类似于GCN里的内环。</li>
+<li>node-level注意力，对一条metapath上的不同节点进行注意力加权。因为不同类型的节点特征表示空间不同，因此针对每一种类型对应一个特征转换矩阵，将不同类型节点映射到同一空间，之后通过自注意力机制对节点进行注意力的计算和加权(其中<span class="math inline">\(\phi\)</span>代表metapath)： <span class="math display">\[
+h_i^{\prime} = M_{\phi _i} \cdot h_i \\
+e^{\phi}_{ij} = attn_{node}(h^{\prime}_i,h^{\prime}_j;\phi) \\
+\]</span> 在计算attention需要做mask，只对邻域节点计算attention并做softmax。值得注意的是这里的自注意力的非对称性对异构图来说很重要，因为在一个节点对里，两个节点的邻域不同，相互的影响不是等量的。简单来说，对某一个节点，计算其在某一类metapath下所有邻域节点的注意力权重,输入是两个节点的h以及metapath specific的一个参数向量，输出注意力权重，然后对某一节点，加权求和其某一类metapath下所有邻域节点的h，得到该节点的某一metapath的表示。 <span class="math display">\[
+\alpha_{i j}^{\Phi}=\operatorname{softmax}_{j}\left(e_{i j}^{\Phi}\right)=\frac{\exp \left(\sigma\left(\mathbf{a}_{\Phi}^{\mathrm{T}} \cdot\left[\mathbf{h}_{i}^{\prime} \| \mathbf{h}_{j}^{\prime}\right]\right)\right)}{\sum_{k \in \mathcal{N}_{i}^{\mathrm{\Phi}}} \exp \left(\sigma\left(\mathbf{a}_{\Phi}^{\mathrm{T}} \cdot\left[\mathbf{h}_{i}^{\prime} \| \mathbf{h}_{k}^{\prime}\right]\right)\right)} \\
+\]</span> 计算出注意力之后对变换后的metapath邻域节点特征加权： <span class="math display">\[
+\mathbf{z}_{i}^{\Phi}=\sigma\left(\sum_{j \in \mathcal{N}_{i}^{\Phi}} \alpha_{i j}^{\Phi} \cdot \mathbf{h}_{j}^{\prime}\right)
+\]</span></li>
+<li>在实际加权的时候作者参考了multi-head的做法，计算了k个attention加权特征并拼接起来</li>
+<li>metapath-level的attention即对某一节点所有不同类的metapath embedding进行加权。先将每一条metapath的embedding变换到同一隐空间，然后参数化计算出注意力权重并softmax。需要注意的是softmax之前的attention logit是在所有节点上计算某一类型metapath的平均，分母是节点数，分子是包含该类型metapath的节点的metapath embedding累加，而之前的node-level是针对某一节点某一metapath下所有的邻域节点平均： <span class="math display">\[
+w_{\Phi_{i}}=\frac{1}{|\mathcal{V}|} \sum_{i \in \mathcal{V}} \mathbf{q}^{\mathrm{T}} \cdot \tanh \left(\mathbf{W} \cdot \mathbf{z}_{i}^{\Phi}+\mathbf{b}\right)
+\]</span></li>
+<li>之后再在所有metapath类型上做softmax，得到权重，加权每个节点不同metapath embedding得到最终embedding</li>
+<li>整个双层attention的logit以及softmax的范围有点绕，时而局部时而全局，需要仔细考虑清楚。</li>
+</ul></li>
+<li>可以看到整个过程是可以在节点层次并行化计算的</li>
+<li>从结果来看效果达到了SOTA，而且可视化的结果可以看到节点embedding的聚类效果更好，attention也带来了一定可解释性。</li>
+</ul>
+<h1 id="heterogeneous-graph-attention-networks-for-semi-supervised-short-text-classification">Heterogeneous Graph Attention Networks for Semi-supervised Short Text Classification</h1>
+<ul>
+<li>任务：节点分类</li>
+<li>异构类型：节点异构，包含三类节点，文本、实体、主题</li>
+<li>解决办法：
+<ul>
+<li>最朴素：扩充节点的特征空间，将三类节点的特征向量拼接起来，对于具体的某一节点，其不包含的特征向量位置全设为0</li>
+<li>异构图卷积：将相同节点类型的子图分离，每个子图单独做卷积，不同的子图通过参数变换矩阵投影到相同隐空间并相加激活作为下一层，具体而言，原始GCN为： <span class="math display">\[
+H^{(l+1)}=\sigma\left(\tilde{A} \cdot H^{(l)} \cdot W^{(l)}\right)
+\]</span> 而异构GCN为： <span class="math display">\[
+H^{(l+1)}=\sigma\left(\sum_{\tau \in \mathcal{T}} \tilde{A}_{\tau} \cdot H_{\tau}^{(l)} \cdot W_{\tau}^{(l)}\right)
+\]</span> 其中<span class="math inline">\(\tilde{A}_{\tau}\)</span>的行是所有节点，列是某一类型的所有节点，这样就抽离出了同构的连接子图，即对于每个节点，我们分别考虑他的邻域里类型a的节点，做信息聚合得到编码a，再考虑邻域里类型b的节点，做信息聚合得到编码b，编码a和b通过各自的变换矩阵变换到同一隐空间再相加。这样的设计是符合逻辑的。</li>
+<li>作者还考虑了以下情况：对于某一节点，不同类型的邻域节点的贡献不一样，同一类型下不同的邻域节点贡献也不一样。显然这里需要注意力。作者就提出了对偶注意力(即双层注意力)，一层是type level的，一层是node level的，先用某一类型邻域节点embedding的均值作为type embedding，然后根据当前节点embedding与type embedding 计算出type attention weight，同理用具体的邻域节点embedding和当前节点embedding再加上type attention得到node attention，利用计算出的node attention替换GCN里的对称归一化邻接矩阵。</li>
+</ul></li>
+</ul>
+<h1 id="representation-learning-for-attributed-multiplex-heterogeneous-network">Representation Learning for Attributed Multiplex Heterogeneous Network</h1>
+<ul>
+<li>任务：图表示学习</li>
+<li>异构类型：节点异构、边异构、节点多属性</li>
+<li>解决办法：
+<ul>
+<li>考虑某一节点在不同类型边连接下有不同的embedding，将节点总的overall embedding拆成与边无关的base embedding和与边相关的edge embedding</li>
+<li>edge embedding与边类型相关，通过相同类型的边相连的邻域节点aggregate得到，这里的aggreagator function可以采用GraphSage里的做法。</li>
+<li>经过k层聚合之后，对于每个节点都得到了k种边类型的edge embedding，通过self attention将这些edge embedding加权求和，乘上比例再加上base embedding就得到了最终的overall embedding</li>
+<li>以上是直推式(transductive)模型，对于未观测数据，需要归纳式(inductive)的方法。具体做法很简单，将base embedding和edge embedding参数化为节点attribute的函数，而不是随机初始化之后完全根据已有的图学习。这样即便有图中没看见的节点，只要节点有属性，一样可以进行overall embedding的提取</li>
+<li>最后做基于meta-path的random walk得到训练对，使用skip gram训练，加入了负采样。</li>
+</ul></li>
+</ul>
+<h1 id="semi-supervised-learning-over-heterogeneous-information-networks-by-ensemble-of-meta-graph-guided-random-walks">Semi-supervised Learning over Heterogeneous Information Networks by Ensemble of Meta-graph Guided Random Walks</h1>
+<ul>
+<li>任务：节点分类</li>
+<li>异构类型：节点异构，包含三类节点，文本、实体、主题</li>
+<li>解决办法：meta-path guided random walk</li>
+</ul>
+<h1 id="joint-embedding-of-meta-path-and-meta-graph-for-heterogeneous-information-networks">Joint Embedding of Meta-Path and Meta-Graph for Heterogeneous Information Networks</h1>
+]]></content>
+      <categories>
+        <category>自然语言处理</category>
+      </categories>
+      <tags>
+        <tag>graph neural network</tag>
+        <tag>deep learning</tag>
+        <tag>natural language processing</tag>
+        <tag>heterogeneous information network</tag>
       </tags>
   </entry>
   <entry>
@@ -2638,6 +2638,34 @@ p\left(\mathbf{w}_{m} | \mathbf{c}, \mathbf{w}_{-m}, \mathbf{z}\right)=\prod_{\e
       </tags>
   </entry>
   <entry>
+    <title>Numpy Cookbook</title>
+    <url>/2017/01/23/numpycookbook/</url>
+    <content><![CDATA[<p>Cookbook网址：<a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html">Numpy Cookbook</a> Numpy的一些语法查询和总结 持续更新</p>
+<a id="more"></a>
+<ul>
+<li><p>shape() shape是numpy函数库中的方法，用于查看矩阵或者数组的维素 shape(array) 若矩阵有m行n列，则返回(m,n) array.shape[0] 返回矩阵的行数m，参数为1的话返回列数n</p></li>
+<li><p>tile() tile是numpy函数库中的方法，用法如下: tile(A,(m,n)) 将数组A作为元素构造出m行n列的数组</p></li>
+<li><p>sum() sum()是numpy函数库中的方法 array.sum(axis=1)按行累加，axis=0为按列累加</p></li>
+<li><p>argsort() argsort()是numpy中的方法，得到矩阵中每个元素的排序序号 A=array.argsort() A[0]表示排序后 排在第一个的那个数在原来数组中的下标</p></li>
+<li><p>dict.get(key,x) Python中字典的方法，get(key,x)从字典中获取key对应的value，字典中没有key的话返回0</p></li>
+<li><p>sorted()</p></li>
+<li><p>numpy中有min()、max()方法，用法如下 array.min(0) 返回一个数组，数组中每个数都是它所在列的所有数的最小值 array.min(1) 返回一个数组，数组中每个数都是它所在行的所有数的最小值</p></li>
+<li><p>listdir('str') strlist=listdir('str') 读取目录str下的所有文件名，返回一个字符串列表</p></li>
+<li><p>split() python中的方法，切片函数 string.split('str')以字符str为分隔符切片，返回list</p></li>
+<li><p>zeros a=np.zeros((m,n), dtype=np.int) #创建数据类型为int型的大小为m*n的零矩阵</p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>math</tag>
+        <tag>machine learning</tag>
+        <tag>code</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Logistic回归与最大熵</title>
     <url>/2018/10/14/lr-and-me/</url>
     <content><![CDATA[<p>翻译John Mount的<em>The equivalence of logistic regression and maximum entropy models</em> 一文，并说明了这种证明是在统计学习方法中介绍最大熵模型的通用导出证明的一个特例</p>
@@ -2770,85 +2798,6 @@ P^{*} (x,y) \in \{0,\frac 1N \} \\
         <tag>math</tag>
         <tag>machine learning</tag>
         <tag>logistic regression</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Numpy Cookbook</title>
-    <url>/2017/01/23/numpycookbook/</url>
-    <content><![CDATA[<p>Cookbook网址：<a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html">Numpy Cookbook</a> Numpy的一些语法查询和总结 持续更新</p>
-<a id="more"></a>
-<ul>
-<li><p>shape() shape是numpy函数库中的方法，用于查看矩阵或者数组的维素 shape(array) 若矩阵有m行n列，则返回(m,n) array.shape[0] 返回矩阵的行数m，参数为1的话返回列数n</p></li>
-<li><p>tile() tile是numpy函数库中的方法，用法如下: tile(A,(m,n)) 将数组A作为元素构造出m行n列的数组</p></li>
-<li><p>sum() sum()是numpy函数库中的方法 array.sum(axis=1)按行累加，axis=0为按列累加</p></li>
-<li><p>argsort() argsort()是numpy中的方法，得到矩阵中每个元素的排序序号 A=array.argsort() A[0]表示排序后 排在第一个的那个数在原来数组中的下标</p></li>
-<li><p>dict.get(key,x) Python中字典的方法，get(key,x)从字典中获取key对应的value，字典中没有key的话返回0</p></li>
-<li><p>sorted()</p></li>
-<li><p>numpy中有min()、max()方法，用法如下 array.min(0) 返回一个数组，数组中每个数都是它所在列的所有数的最小值 array.min(1) 返回一个数组，数组中每个数都是它所在行的所有数的最小值</p></li>
-<li><p>listdir('str') strlist=listdir('str') 读取目录str下的所有文件名，返回一个字符串列表</p></li>
-<li><p>split() python中的方法，切片函数 string.split('str')以字符str为分隔符切片，返回list</p></li>
-<li><p>zeros a=np.zeros((m,n), dtype=np.int) #创建数据类型为int型的大小为m*n的零矩阵</p></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>math</tag>
-        <tag>machine learning</tag>
-        <tag>code</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pandas 数据处理基础</title>
-    <url>/2017/02/04/pandas-skill/</url>
-    <content><![CDATA[<hr />
-<p>以泰坦尼克号的数据为例介绍一下前期对数据的基础操作。</p>
-<a id="more"></a>
-<h1 id="引入库">引入库</h1>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> csv <span class="keyword">as</span> csv </span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
-<h1 id="读取文件">读取文件</h1>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">r&quot;文件目录&quot;</span>) </span><br></pre></td></tr></table></figure>
-<p>此时数据的样式是： <img data-src="https://s1.ax1x.com/2018/10/20/i0Tn41.jpg" alt="i0Tn41.jpg" /></p>
-<h1 id="数据概览">数据概览</h1>
-<ul>
-<li>describe 显示整体数据常见属性 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.describe())</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TP3V.jpg" alt="i0TP3V.jpg" /></li>
-<li>head tail 显示首尾一些数据 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.head(<span class="number">5</span>))</span><br><span class="line">print(train.tail(<span class="number">3</span>))</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TFjU.jpg" alt="i0TFjU.jpg" /></li>
-<li>index：索引，默认自建整型索引；columns：列；values：数据数值 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.index)</span><br><span class="line">print(train.columns)</span><br><span class="line">print(train.values)</span><br></pre></td></tr></table></figure> # 数据操作</li>
-<li>T：数据的转置 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.T)</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TAuF.jpg" alt="i0TAuF.jpg" /></li>
-<li>sort：可以按索引或者值进行排序，axis选择维度(行还是列),ascending选择升序或者降序,Nan永远排在最后，无论升序降序 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.sort_index(axis=<span class="number">0</span>,ascending=<span class="literal">True</span>))</span><br><span class="line">print(train.sort_values(by=<span class="string">&quot;Age&quot;</span>,ascending=<span class="literal">False</span>))</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TEB4.jpg" alt="i0TEB4.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TmNR.jpg" alt="i0TmNR.jpg" /></li>
-</ul>
-<h1 id="数据选择">数据选择</h1>
-<ul>
-<li>按照标签选择，选择列，行切片 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train[<span class="string">&#x27;Age&#x27;</span>])</span><br><span class="line">print(train[<span class="number">0</span>:<span class="number">9</span>])</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TVHJ.jpg" alt="i0TVHJ.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TeE9.jpg" alt="i0TeE9.jpg" /></li>
-<li>利用loc自由选择某些行某些列，可以用at替代 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.loc[train.index[<span class="number">4</span>:<span class="number">6</span>]])</span><br><span class="line">print(train.loc[:,[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Fare&#x27;</span>]])</span><br><span class="line">print(train.loc[<span class="number">3</span>:<span class="number">5</span>,[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Fare&#x27;</span>]])</span><br><span class="line">print(train.loc[<span class="number">4</span>,<span class="string">&#x27;Age&#x27;</span>])</span><br><span class="line">print(train.at[<span class="number">4</span>,<span class="string">&#x27;Age&#x27;</span>])</span><br></pre></td></tr></table></figure></li>
-<li>利用iloc按照位置进行选择 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.iloc[<span class="number">5</span>])</span><br><span class="line">print(train.iloc[<span class="number">3</span>:<span class="number">5</span>,<span class="number">2</span>:<span class="number">4</span>])</span><br><span class="line">print(train.iloc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>],[<span class="number">2</span>,<span class="number">5</span>]])</span><br><span class="line">print(train.iloc[<span class="number">3</span>,<span class="number">3</span>])</span><br></pre></td></tr></table></figure></li>
-<li>布尔选择 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print( train[ (train[<span class="string">&#x27;Age&#x27;</span>]&gt;<span class="number">40</span>) &amp; (train[<span class="string">&#x27;Age&#x27;</span>]&lt;<span class="number">50</span>) ] )</span><br><span class="line">print(train[train[<span class="string">&#x27;Parch&#x27;</span>].isin([<span class="number">1</span>,<span class="number">2</span>])])</span><br><span class="line">print(train[pd.isnull(train[<span class="string">&#x27;Age&#x27;</span>])==<span class="literal">True</span>])</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TK9x.jpg" alt="i0TK9x.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TM36.jpg" alt="i0TM36.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TljO.jpg" alt="i0TljO.jpg" /></li>
-</ul>
-<h1 id="缺失值处理">缺失值处理</h1>
-<ul>
-<li>利用reindex选择部分数据进行拷贝，并进行缺失值处理。一些函数会自动过滤掉缺失值，比如mean() <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train1=train.reindex(index=train.index[<span class="number">0</span>:<span class="number">5</span>],columns=[<span class="string">&#x27;PassengerId&#x27;</span>]+[<span class="string">&#x27;Age&#x27;</span>]+[<span class="string">&#x27;Sex&#x27;</span>])<span class="comment">#选择前5行，只取选定的三列</span></span><br><span class="line">print(train1)</span><br><span class="line">print(train1.dropna(axis=<span class="number">0</span>)) <span class="comment">#删除存在nan值的行</span></span><br><span class="line">print(train1.dropna(subset=[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Sex&#x27;</span>])) <span class="comment">#删除年龄性别列中存在nan值的行</span></span><br><span class="line">print(pd.isnull(train1)) <span class="comment">#nan值改为true，其余值改为false</span></span><br><span class="line">print(train1.fillna(value=<span class="number">2333</span>)) <span class="comment">#缺失值替换为2333</span></span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TcUs.jpg" alt="i0TcUs.jpg" /> # 应用函数</li>
-<li>可以自己写函数并应用到数据的行或者列，通过axis参数选择行列 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#写函数统计包含nan值的行数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">null_count</span>(<span class="params">column</span>):</span></span><br><span class="line">    column_null=pd.isnull(column)</span><br><span class="line">    null=column[column_null == <span class="literal">True</span>]</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(null)</span><br><span class="line">print(train.apply(null_count))</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TQgK.jpg" alt="i0TQgK.jpg" /> <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#写函数对年龄列进行分类</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">judge</span>(<span class="params">row</span>):</span></span><br><span class="line">    <span class="keyword">if</span> pd.isnull(row[<span class="string">&#x27;Age&#x27;</span>]) ==<span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;unknown&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;youngth&#x27;</span> <span class="keyword">if</span> row[<span class="string">&#x27;Age&#x27;</span>]&lt;<span class="number">18</span> <span class="keyword">else</span> <span class="string">&#x27;adult&#x27;</span></span><br><span class="line">print(train.apply(judge,axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i07jFs.jpg" alt="i07jFs.jpg" /> # 数据透视表</li>
-<li>自选分类和值进行数据透视，比如按照pclass和sex分类，统计age和fare的平均值 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.pivot_table(index=[<span class="string">&quot;Pclass&quot;</span>,<span class="string">&quot;Sex&quot;</span>], values=[<span class="string">&quot;Age&quot;</span>, <span class="string">&quot;Fare&quot;</span>], aggfunc=np.mean))</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0T3uD.jpg" alt="i0T3uD.jpg" /></li>
-</ul>
-<h1 id="数据合并">数据合并</h1>
-<ul>
-<li><p>数据合并的一些操作，待补全</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data1 = pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>]&#125;)</span><br><span class="line"> </span><br><span class="line">data2=pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber&#x27;</span>:[<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">10</span>]&#125;)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;merge:\n&quot;</span>,pd.merge(data1,data2),<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">data3 = pd.DataFrame(&#123;<span class="string">&#x27;level1&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber1&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>]&#125;)</span><br><span class="line">data4 = pd.DataFrame(&#123;<span class="string">&#x27;level2&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber2&#x27;</span>:[<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">10</span>]&#125;)</span><br><span class="line">print(<span class="string">&quot;merge with left_on,right_on: \n&quot;</span>,pd.merge(data3,data4,left_on=<span class="string">&#x27;level1&#x27;</span>,right_on=<span class="string">&#x27;level2&#x27;</span>),<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;concat: \n&quot;</span>,pd.concat([data1,data2]),<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">data3 = pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber1&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,np.nan]&#125;)</span><br><span class="line">data4=pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber2&#x27;</span>:[<span class="number">2</span>,np.nan,<span class="number">6</span>,<span class="number">10</span>]&#125;)</span><br><span class="line">print(<span class="string">&quot;combine: \n&quot;</span>,data3.combine_first(data4),<span class="string">&quot;\n&quot;</span>)</span><br></pre></td></tr></table></figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0T8De.jpg" alt="" /><figcaption>i0T8De.jpg</figcaption>
-</figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>math</tag>
-        <tag>machine learning</tag>
-        <tag>code</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -3003,6 +2952,57 @@ min(f(2n+2)+1,f(2n)+1) &amp; x=2n+1 \\
         <tag>python</tag>
         <tag>c++</tag>
         <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pandas 数据处理基础</title>
+    <url>/2017/02/04/pandas-skill/</url>
+    <content><![CDATA[<hr />
+<p>以泰坦尼克号的数据为例介绍一下前期对数据的基础操作。</p>
+<a id="more"></a>
+<h1 id="引入库">引入库</h1>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> csv <span class="keyword">as</span> csv </span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<h1 id="读取文件">读取文件</h1>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">r&quot;文件目录&quot;</span>) </span><br></pre></td></tr></table></figure>
+<p>此时数据的样式是： <img data-src="https://s1.ax1x.com/2018/10/20/i0Tn41.jpg" alt="i0Tn41.jpg" /></p>
+<h1 id="数据概览">数据概览</h1>
+<ul>
+<li>describe 显示整体数据常见属性 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.describe())</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TP3V.jpg" alt="i0TP3V.jpg" /></li>
+<li>head tail 显示首尾一些数据 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.head(<span class="number">5</span>))</span><br><span class="line">print(train.tail(<span class="number">3</span>))</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TFjU.jpg" alt="i0TFjU.jpg" /></li>
+<li>index：索引，默认自建整型索引；columns：列；values：数据数值 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.index)</span><br><span class="line">print(train.columns)</span><br><span class="line">print(train.values)</span><br></pre></td></tr></table></figure> # 数据操作</li>
+<li>T：数据的转置 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.T)</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TAuF.jpg" alt="i0TAuF.jpg" /></li>
+<li>sort：可以按索引或者值进行排序，axis选择维度(行还是列),ascending选择升序或者降序,Nan永远排在最后，无论升序降序 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.sort_index(axis=<span class="number">0</span>,ascending=<span class="literal">True</span>))</span><br><span class="line">print(train.sort_values(by=<span class="string">&quot;Age&quot;</span>,ascending=<span class="literal">False</span>))</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TEB4.jpg" alt="i0TEB4.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TmNR.jpg" alt="i0TmNR.jpg" /></li>
+</ul>
+<h1 id="数据选择">数据选择</h1>
+<ul>
+<li>按照标签选择，选择列，行切片 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train[<span class="string">&#x27;Age&#x27;</span>])</span><br><span class="line">print(train[<span class="number">0</span>:<span class="number">9</span>])</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TVHJ.jpg" alt="i0TVHJ.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TeE9.jpg" alt="i0TeE9.jpg" /></li>
+<li>利用loc自由选择某些行某些列，可以用at替代 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.loc[train.index[<span class="number">4</span>:<span class="number">6</span>]])</span><br><span class="line">print(train.loc[:,[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Fare&#x27;</span>]])</span><br><span class="line">print(train.loc[<span class="number">3</span>:<span class="number">5</span>,[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Fare&#x27;</span>]])</span><br><span class="line">print(train.loc[<span class="number">4</span>,<span class="string">&#x27;Age&#x27;</span>])</span><br><span class="line">print(train.at[<span class="number">4</span>,<span class="string">&#x27;Age&#x27;</span>])</span><br></pre></td></tr></table></figure></li>
+<li>利用iloc按照位置进行选择 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.iloc[<span class="number">5</span>])</span><br><span class="line">print(train.iloc[<span class="number">3</span>:<span class="number">5</span>,<span class="number">2</span>:<span class="number">4</span>])</span><br><span class="line">print(train.iloc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>],[<span class="number">2</span>,<span class="number">5</span>]])</span><br><span class="line">print(train.iloc[<span class="number">3</span>,<span class="number">3</span>])</span><br></pre></td></tr></table></figure></li>
+<li>布尔选择 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print( train[ (train[<span class="string">&#x27;Age&#x27;</span>]&gt;<span class="number">40</span>) &amp; (train[<span class="string">&#x27;Age&#x27;</span>]&lt;<span class="number">50</span>) ] )</span><br><span class="line">print(train[train[<span class="string">&#x27;Parch&#x27;</span>].isin([<span class="number">1</span>,<span class="number">2</span>])])</span><br><span class="line">print(train[pd.isnull(train[<span class="string">&#x27;Age&#x27;</span>])==<span class="literal">True</span>])</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TK9x.jpg" alt="i0TK9x.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TM36.jpg" alt="i0TM36.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TljO.jpg" alt="i0TljO.jpg" /></li>
+</ul>
+<h1 id="缺失值处理">缺失值处理</h1>
+<ul>
+<li>利用reindex选择部分数据进行拷贝，并进行缺失值处理。一些函数会自动过滤掉缺失值，比如mean() <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train1=train.reindex(index=train.index[<span class="number">0</span>:<span class="number">5</span>],columns=[<span class="string">&#x27;PassengerId&#x27;</span>]+[<span class="string">&#x27;Age&#x27;</span>]+[<span class="string">&#x27;Sex&#x27;</span>])<span class="comment">#选择前5行，只取选定的三列</span></span><br><span class="line">print(train1)</span><br><span class="line">print(train1.dropna(axis=<span class="number">0</span>)) <span class="comment">#删除存在nan值的行</span></span><br><span class="line">print(train1.dropna(subset=[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Sex&#x27;</span>])) <span class="comment">#删除年龄性别列中存在nan值的行</span></span><br><span class="line">print(pd.isnull(train1)) <span class="comment">#nan值改为true，其余值改为false</span></span><br><span class="line">print(train1.fillna(value=<span class="number">2333</span>)) <span class="comment">#缺失值替换为2333</span></span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TcUs.jpg" alt="i0TcUs.jpg" /> # 应用函数</li>
+<li>可以自己写函数并应用到数据的行或者列，通过axis参数选择行列 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#写函数统计包含nan值的行数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">null_count</span>(<span class="params">column</span>):</span></span><br><span class="line">    column_null=pd.isnull(column)</span><br><span class="line">    null=column[column_null == <span class="literal">True</span>]</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(null)</span><br><span class="line">print(train.apply(null_count))</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0TQgK.jpg" alt="i0TQgK.jpg" /> <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#写函数对年龄列进行分类</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">judge</span>(<span class="params">row</span>):</span></span><br><span class="line">    <span class="keyword">if</span> pd.isnull(row[<span class="string">&#x27;Age&#x27;</span>]) ==<span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;unknown&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;youngth&#x27;</span> <span class="keyword">if</span> row[<span class="string">&#x27;Age&#x27;</span>]&lt;<span class="number">18</span> <span class="keyword">else</span> <span class="string">&#x27;adult&#x27;</span></span><br><span class="line">print(train.apply(judge,axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i07jFs.jpg" alt="i07jFs.jpg" /> # 数据透视表</li>
+<li>自选分类和值进行数据透视，比如按照pclass和sex分类，统计age和fare的平均值 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(train.pivot_table(index=[<span class="string">&quot;Pclass&quot;</span>,<span class="string">&quot;Sex&quot;</span>], values=[<span class="string">&quot;Age&quot;</span>, <span class="string">&quot;Fare&quot;</span>], aggfunc=np.mean))</span><br></pre></td></tr></table></figure> <img data-src="https://s1.ax1x.com/2018/10/20/i0T3uD.jpg" alt="i0T3uD.jpg" /></li>
+</ul>
+<h1 id="数据合并">数据合并</h1>
+<ul>
+<li><p>数据合并的一些操作，待补全</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data1 = pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>]&#125;)</span><br><span class="line"> </span><br><span class="line">data2=pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber&#x27;</span>:[<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">10</span>]&#125;)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;merge:\n&quot;</span>,pd.merge(data1,data2),<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">data3 = pd.DataFrame(&#123;<span class="string">&#x27;level1&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber1&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>]&#125;)</span><br><span class="line">data4 = pd.DataFrame(&#123;<span class="string">&#x27;level2&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber2&#x27;</span>:[<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">10</span>]&#125;)</span><br><span class="line">print(<span class="string">&quot;merge with left_on,right_on: \n&quot;</span>,pd.merge(data3,data4,left_on=<span class="string">&#x27;level1&#x27;</span>,right_on=<span class="string">&#x27;level2&#x27;</span>),<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;concat: \n&quot;</span>,pd.concat([data1,data2]),<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">data3 = pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber1&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,np.nan]&#125;)</span><br><span class="line">data4=pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber2&#x27;</span>:[<span class="number">2</span>,np.nan,<span class="number">6</span>,<span class="number">10</span>]&#125;)</span><br><span class="line">print(<span class="string">&quot;combine: \n&quot;</span>,data3.combine_first(data4),<span class="string">&quot;\n&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0T8De.jpg" alt="" /><figcaption>i0T8De.jpg</figcaption>
+</figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>math</tag>
+        <tag>machine learning</tag>
+        <tag>code</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -3381,6 +3381,43 @@ Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\
       </tags>
   </entry>
   <entry>
+    <title>用Python实现字典树</title>
+    <url>/2017/05/02/trie/</url>
+    <content><![CDATA[<hr />
+<p>在Python中有字典这一数据结构，因此用Python实现字典树很方便</p>
+<a id="more"></a>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i07rz6.jpg" alt="" /><figcaption>i07rz6.jpg</figcaption>
+</figure>
+<h1 id="字典树trie">字典树(trie)</h1>
+<ul>
+<li>字典树主要用于词频统计，前缀后缀相关的算法，树的根节点不存任何字符，每一条边代表一个字符，其他每一个节点代表从根节点到此节点的所有边上字符构成的单词，存的内容根据需求而定。</li>
+<li>字典树快的原因就是充分利用的单词的共同前缀，如果前缀都不一样，就不需要继续查找</li>
+<li>一个单词不一定在叶子节点，因为它可能构成其他更长单词的前缀，因此如果用于词频统计，则可以插入完一个单词后在此单词最后一个节点中count++。如果仅仅用于判断某个词是否在字典树构成的字典中，则可以在插入完一个单词后，在最后一个节点中添加一个None节点，内容为单词本身</li>
+</ul>
+<h1 id="例子">例子</h1>
+<ul>
+<li>以leetcode472为例，当中需要判断某个序列中某个单词是否能由它前面的单词构成</li>
+<li>初始化trie <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">trie = &#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li>trie中插入单词 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span>(<span class="params">trie, w</span>):</span></span><br><span class="line">	<span class="keyword">for</span> c <span class="keyword">in</span> w:</span><br><span class="line">		trie = trie.setdefault(c, &#123;&#125;)  <span class="comment"># if c not in trie then set trie[c]=&#123;&#125;</span></span><br><span class="line">	trie[<span class="literal">None</span>] = w</span><br></pre></td></tr></table></figure> 对每一个字符串，依次按字母索引，当索引不到时就对当前字母建立新节点 遍历完单词后建立None节点存放单词(因为题目需要返回所有单词，因此此处存放单词,也可以存放出现次数 这样一棵树最终完成时就如标题图所示，其中前四行是加入["cat", "cats","dog", "rat"]之后树的内容</li>
+<li>trie中查找某一个单词 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prefixs</span>(<span class="params">trie, w, lo</span>):</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(lo, <span class="built_in">len</span>(w)):</span><br><span class="line">		trie = trie.get(w[i])</span><br><span class="line">		<span class="keyword">if</span> trie <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		prefix = trie.get(<span class="literal">None</span>)</span><br><span class="line">	<span class="keyword">if</span> prefix:</span><br><span class="line">		<span class="keyword">yield</span> i + <span class="number">1</span>, prefix</span><br></pre></td></tr></table></figure> 因为题目需要，利用了生成器，这段函数是查找单词w中i从lo位置开始，i到单词尾这一段构成的字符串，是否在trie的字典集合中，返回所有符合结果的i+1。查找的方式与插入相同 特别说明的是，trie的一大优势便是支持插入与查找同时进行</li>
+</ul>
+<h1 id="后缀树">后缀树</h1>
+<ul>
+<li>如果将一个单词，长度为l，拆分成l个子单词插入到trie中，每个子单词都是这个单词的[i:l]构成的后缀，则这样的字典树称之为后缀树。</li>
+<li>简单按上述方法建立后缀树会存在许多冗余信息，在空间上还可以进行优化</li>
+<li>待续</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>统计学习方法手写版笔记</title>
     <url>/2018/08/09/statistical-handwriting/</url>
     <content><![CDATA[<hr />
@@ -3500,43 +3537,6 @@ Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\
       </tags>
   </entry>
   <entry>
-    <title>用Python实现字典树</title>
-    <url>/2017/05/02/trie/</url>
-    <content><![CDATA[<hr />
-<p>在Python中有字典这一数据结构，因此用Python实现字典树很方便</p>
-<a id="more"></a>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i07rz6.jpg" alt="" /><figcaption>i07rz6.jpg</figcaption>
-</figure>
-<h1 id="字典树trie">字典树(trie)</h1>
-<ul>
-<li>字典树主要用于词频统计，前缀后缀相关的算法，树的根节点不存任何字符，每一条边代表一个字符，其他每一个节点代表从根节点到此节点的所有边上字符构成的单词，存的内容根据需求而定。</li>
-<li>字典树快的原因就是充分利用的单词的共同前缀，如果前缀都不一样，就不需要继续查找</li>
-<li>一个单词不一定在叶子节点，因为它可能构成其他更长单词的前缀，因此如果用于词频统计，则可以插入完一个单词后在此单词最后一个节点中count++。如果仅仅用于判断某个词是否在字典树构成的字典中，则可以在插入完一个单词后，在最后一个节点中添加一个None节点，内容为单词本身</li>
-</ul>
-<h1 id="例子">例子</h1>
-<ul>
-<li>以leetcode472为例，当中需要判断某个序列中某个单词是否能由它前面的单词构成</li>
-<li>初始化trie <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">trie = &#123;&#125;</span><br></pre></td></tr></table></figure></li>
-<li>trie中插入单词 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span>(<span class="params">trie, w</span>):</span></span><br><span class="line">	<span class="keyword">for</span> c <span class="keyword">in</span> w:</span><br><span class="line">		trie = trie.setdefault(c, &#123;&#125;)  <span class="comment"># if c not in trie then set trie[c]=&#123;&#125;</span></span><br><span class="line">	trie[<span class="literal">None</span>] = w</span><br></pre></td></tr></table></figure> 对每一个字符串，依次按字母索引，当索引不到时就对当前字母建立新节点 遍历完单词后建立None节点存放单词(因为题目需要返回所有单词，因此此处存放单词,也可以存放出现次数 这样一棵树最终完成时就如标题图所示，其中前四行是加入["cat", "cats","dog", "rat"]之后树的内容</li>
-<li>trie中查找某一个单词 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prefixs</span>(<span class="params">trie, w, lo</span>):</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(lo, <span class="built_in">len</span>(w)):</span><br><span class="line">		trie = trie.get(w[i])</span><br><span class="line">		<span class="keyword">if</span> trie <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		prefix = trie.get(<span class="literal">None</span>)</span><br><span class="line">	<span class="keyword">if</span> prefix:</span><br><span class="line">		<span class="keyword">yield</span> i + <span class="number">1</span>, prefix</span><br></pre></td></tr></table></figure> 因为题目需要，利用了生成器，这段函数是查找单词w中i从lo位置开始，i到单词尾这一段构成的字符串，是否在trie的字典集合中，返回所有符合结果的i+1。查找的方式与插入相同 特别说明的是，trie的一大优势便是支持插入与查找同时进行</li>
-</ul>
-<h1 id="后缀树">后缀树</h1>
-<ul>
-<li>如果将一个单词，长度为l，拆分成l个子单词插入到trie中，每个子单词都是这个单词的[i:l]构成的后缀，则这样的字典树称之为后缀树。</li>
-<li>简单按上述方法建立后缀树会存在许多冗余信息，在空间上还可以进行优化</li>
-<li>待续</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>code</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>支持向量机一些细节补充</title>
     <url>/2020/02/13/svm/</url>
     <content><![CDATA[<p>一些推导关键步骤</p>
@@ -3620,6 +3620,102 @@ b^{*}=\tilde{y}_{j}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}\left(\overrighta
         <tag>math</tag>
         <tag>machine learning</tag>
         <tag>svm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VC维学习笔记</title>
+    <url>/2020/05/15/vc-dimension/</url>
+    <content><![CDATA[<p>简单的梳理VC维。所有讨论基于二分类这一简单情况出发。</p>
+<a id="more"></a>
+<h1 id="hoeffding不等式">Hoeffding不等式</h1>
+<ul>
+<li>机器学习的一个大假设就是，训练集上训练出的模型能够泛化到测试集，详细一点说即我们用算法A和训练集D，在假设空间H里中找到一个假设g，使得该假设g和需要学习的目标假设f近似。令g在训练集上的误差（经验误差）为<span class="math inline">\(E_{in}(g)\)</span>，在除了训练集外所有可能样本上的误差（泛化误差，期望误差）为<span class="math inline">\(E_{out}(g)\)</span>。</li>
+<li>已知<span class="math inline">\(E_{out}(f) = 0\)</span>，我们也希望得到的g满足<span class="math inline">\(E_{out}(g) = 0\)</span>，这里包含了两点信息
+<ul>
+<li>需要<span class="math inline">\(E_{in}(g) \approx E_{out}(g)\)</span></li>
+<li>需要<span class="math inline">\(E_{in}(g) \approx 0\)</span></li>
+</ul></li>
+<li>第二点<span class="math inline">\(E_{in}(g) \approx 0\)</span>就是我们训练模型所做的事，在训练集上减小误差，而第一点<span class="math inline">\(E_{in}(g) \approx E_{out}(g)\)</span>，即如何保证模型的泛化能力，这是VC所衡量的事情。</li>
+<li>训练集可以看成是样本空间的一个采样，从采样上计算一些量来估计整个样本空间的量，我们有Hoeffding不等式 <span class="math display">\[
+\mathbb{P}[|\nu-\mu|&gt;\epsilon] \leq 2 \exp \left(-2 \epsilon^{2} N\right)
+\]</span></li>
+<li>其中<span class="math inline">\(\nu\)</span>是训练集上的计算量，<span class="math inline">\(\mu\)</span>是整个样本空间上对应的量。我们自然可以把误差（损失）看成是一种计算量，得到： <span class="math display">\[
+\mathbb{P}\left[\left|E_{i n}(h)-E_{o u t}(h)\right|&gt;\epsilon\right] \leq 2 \exp \left(-2 \epsilon^{2} N\right)
+\]</span></li>
+<li>其中h是某一假设（任意一个，不是我们通过训练挑出的最好假设g），左边即训练和真实损失差距大于某个相差阈值的概率，可以用来衡量泛化能力，而右侧发现只和相差阈值和训练集容量N相关。这符合我们的直觉，即训练集越大，泛化能力越强。</li>
+<li>但问题是以上情况是针对固定的一个假设h，我们称经验误差和泛化误差相差很多的情况为bad case，那上述不等式说明了对于固定的一个h，bad case出现的概率很小。但是我们的算法A是在整个假设空间H里挑选假设，我们更关注对于所有h，其中任意一个h都不出现bad case出现的概率，即 <span class="math display">\[
+\begin{array}{c}
+\mathbb{P}\left[\mathbf{E}\left(h_{1}\right)&gt;\epsilon \cup \mathbf{E}\left(h_{2}\right)&gt;\epsilon \ldots \cup \mathbf{E}\left(h_{M}\right)&gt;\epsilon\right] \\
+\leq \mathbb{P}\left[\mathbf{E}\left(h_{1}\right)&gt;\epsilon\right]+\mathbb{P}\left[\mathbf{E}\left(h_{2}\right)&gt;\epsilon\right] \ldots+\mathbb{P}\left[\mathbf{E}\left(h_{M}\right)&gt;\epsilon\right] \\
+\leq 2 M \exp \left(-2 \epsilon^{2} N\right)
+\end{array}
+\]</span></li>
+<li>其中<span class="math inline">\(\mathbf{E}\)</span>即经验误差和泛化误差的差距，这里我们进一步放缩了这个上界，考虑最大的情况，也就是各个h经验误差和泛化误差的差距大于某个阈值的事件相互独立，事件的并的概率是各个事件概率之和，最终得到了针对所有h，bad case的上限是<span class="math inline">\(2 M \exp (-2 \epsilon^{2} N)\)</span></li>
+<li>这下就出了问题，之前由于只有N存在于负指数项中，所以只要训练集容量足够大，这个上限是有限的，我们就对机器学习的泛化能力有信心；现在前面乘了一个M，即假设空间的容量，这下上限就不一定是有限（存在）的了。这也符合直觉，想象一下，假设空间越大，就需要越多的数据来训练，使得算法挑选出一个好的假设；假如数据量一定，假设空间越大，就越难挑出一个和真实假设f相近的g</li>
+</ul>
+<h1 id="有效的假设">有效的假设</h1>
+<ul>
+<li>接下来正式进入VC维的探讨。首先我们讨论有效假设数。考虑到上面的不等式，我们其实做了一个很大的放缩，即假定各个h经验误差和泛化误差的差距大于某个阈值的事件相互独立，事件的并的概率是各个事件概率之和。但实际上并不是这样的。例如对于二维线性可分的数据，存在分离间隔，那么分离间隔中的几个能正确分类训练集的几个相互平行且相差不远的分离面（直线），他们其实非常相近，对于绝大多数数据点而言在这两个分离面下的结果相同，同样泛化能力出现差距的概率分布也有很大重叠，将其视为相互独立是不合适的。</li>
+<li>我们再回头看看不等式中的M，其字面意思就是假设空间的容量，实际上是假设空间表达能力的一种度量，在一定量的训练集下，假设空间表达能力越丰富，学习算法就越难找到一个好的假设。假设空间的容量，是所有假设的和，其中一个假设可以看成是确定模型下的一组参数。有没有其他的更为有效的衡量假设空间表达能力的量？</li>
+<li>假如我们不看模型参数本身，而是看模型对数据的分类结果呢？例如，之前是相同的参数（相同的直线）视为相同的假设，现在用相同的分类结果（不同的直线，把点做了相同的分类）的参数视为相同的假设。这样看来似乎更加合理，因为表达能力最终落实在对数据的所有可能分类结果的处理，而无论经验误差还是泛化误差也都是通过误分类点来衡量。</li>
+<li>这里引入了几个术语：
+<ul>
+<li>对分(dichotomy)：记为<span class="math inline">\(h\left(X_{1}, X_{2}, \ldots, X_{N}\right)\)</span>。N个点的对分即N个点的一种分类结果，显然对于二分类问题，N个点最多有<span class="math inline">\(2^N\)</span>个dichotomy。</li>
+<li>假设空间H在训练集D里N个点上的对分，记为<span class="math inline">\(\mathcal{H}\left(X_{1}, X_{2}, \ldots, X_{N}\right)\)</span>，这里对分的个数除了和数据集相关，还和假设空间H相关，因为假设空间并不一定能取到所有的dichotomy，例如四个点组成正方形，对角线的标签一样，那么一条直线的假设空间就取不到这种对分。</li>
+<li>增长函数(growth function)：假设空间在训练集上的对分个数不仅与训练集大小相关，还与具体的训练集相关，例如抽出来的训练集不包含（四个点组成正方形，对角线的标签一样）这种对分，那么可能直线在该训练集上取到的对分数量就和该训练集最多可能的对分数量一样。因此为了排除具体的训练集影响，我们设在所有大小为N的可能训练集上假设空间H能取到的最大对分数量为增长函数，定为：<span class="math inline">\(m_{\mathcal{H}}(N)=\max _{X_{1}, X 2, \ldots, X_{N} \in \mathcal{X}}\left|\mathcal{H}\left(X_{1}, X_{2}, \ldots, X_{N}\right)\right|\)</span></li>
+<li>打散(shatter)：即增长函数取到了理论上最大的对分数<span class="math inline">\(2^N\)</span>，这里的含义就是这个假设空间对于大小为N的数据集（该任务设定下任意一个大小为N数据集）来说足够好了，能够考虑到所有情况，针对任何一种分类结果给出对应的假设。也即对于该任务，总容量为N的数据集，该模型有能力取到完美解。</li>
+<li>break point：显然N越小，越容易打散；N越大，越不容易打散。那么从N=1开始逐渐增加，直到某个临界点N=k时，假设空间无法打散这k个点了，我们就称k为该假设空间的break point。可以证明N&gt;k的情况都无法打散</li>
+</ul></li>
+<li>可以看到其实到增长函数这里，这就是一个假设空间表达能力的一种衡量指标了。VC维考虑的就是用这种衡量指标替换Hoeffding不等式中的假设空间容量。当然不能直接替换，具体而言，是 <span class="math display">\[
+\forall g \in \mathcal{H}, \mathbb{P}\left[\left|E_{i n}(g)-E_{o u t}(g)\right|&gt;\epsilon\right] \leq 4 m_{\mathcal{H}}(2 N) \exp \left(-\frac{1}{8} \epsilon^{2} N\right)
+\]</span></li>
+<li>上式右边即VC界，证明比较复杂略。那么这样我们再考虑上界是不是有限的。可以看到最重要的M被换成了<span class="math inline">\(m_H\)</span>，即增长函数，假如增长函数有界或者说随N的增加速率低于指数部分的缩减速率，那么我们就可以说经验误差和泛化误差的差值上界是有限的。实际上，假如break point k存在，那么有 <span class="math display">\[
+m_{\mathcal{H}}(N) \leq B(N, k) \leq \sum_{i=0}^{k-1}\left(\begin{array}{c}
+N \\
+i
+\end{array}\right) \leq N^{k-1}
+\]</span></li>
+<li>其中B(N, k)就是break point为k时增长函数的上界，可以发现增长函数上界的上界是多项式级别的(k-1次方)，那么增长函数最多是多项式级别，而VC界中的<span class="math inline">\(\exp \left(-2 \epsilon^{2} N\right)\)</span>是指数级别，显然VC界是存在的，有限的。</li>
+<li>那么终于，对于break point存在的情况，我们可以说泛化能力是有保证的，机器学习是有保证的。</li>
+</ul>
+<h1 id="vc维">VC维</h1>
+<ul>
+<li>VC界保证了学习的可行性，而VC维考虑的是假设空间的表达能力。前面说到增长函数是对于假设空间表达能力的一种衡量，两者也存在密切关联。</li>
+<li>VC维定义为，给定假设空间H，其break point存在，那么其VC维是能够打散的最大数据集的大小，即 <span class="math display">\[
+V C(\mathcal{H})=\max \left\{N: m_{\mathcal{H}}(N)=2^{N}\right\}
+\]</span></li>
+<li>回忆VC维定义中的两个概念：增长函数和打散。增长函数定义了假设空间解决对分的能力，打散代表着假设空间有能力解决一定量的数据集，对于每一种可能的对分都有对应假设，那么VC维就是从数据集的量来衡量假设空间的能力，假设空间越复杂，表达能力越强，就能打散更大的数据集，有足够多的假设解决更大数据集上的每一种上可能的对分——注意，不是每一种理论上可能的对分，因为VC维取的是能够达到的最大数据集容量，是存在而不是任意，即最大存在大小为VC维的数据集能够被该假设空间打散。</li>
+<li>那么VC维具体是多少呢？其实之前我们定义过了，就是k-1，即容量小于break point的数据集都能被打散，那么能被打散的数据集容量最大就是break point - 1</li>
+<li>注意到这个k-1不就是VC界中增长函数上界中的多项式次数吗，因此VC界又可以写成： <span class="math display">\[
+\forall g \in \mathcal{H}, \mathbb{P}\left[\left|E_{i n}(g)-E_{o u t}(g)\right|&gt;\epsilon\right] \leq 4(2 N)^{V C(\mathcal{H})} \exp \left(-\frac{1}{8} \epsilon^{2} N\right)
+\]</span></li>
+</ul>
+<h1 id="衡量量化能力">衡量量化能力</h1>
+<ul>
+<li>由VC界的不等式可以看到，经验误差与泛化误差之间的差距（衡量泛化能力）和不等式右边即bad case发生的概率相关联，假如我们给定了bad case发生的概率，设为： <span class="math display">\[
+4(2 N)^{V C(\mathcal{H})} \exp \left(-\frac{1}{8} \epsilon^{2} N\right)=\delta
+\]</span> 那么可以反过来算出衡量泛化能力的差距 <span class="math display">\[
+\epsilon=\sqrt{\frac{8}{N} \ln \left(\frac{4(2 N)^{V C(\mathcal{H})}}{\delta}\right)}
+\]</span></li>
+<li>所以在机器学习基石和技法当中，老师经常写出一个VC bound用来估计泛化误差的公式： <span class="math display">\[
+E_{\text {out }}(\mathbf{w}) \leq E_{\text {in }}(\mathbf{w})+\Omega(\mathcal{H})
+\]</span></li>
+<li>其中的<span class="math inline">\(\Omega(\mathcal{H})\)</span>即<span class="math inline">\(\sqrt{\frac{8}{N} \ln \left(\frac{4(2 N)^{V C(\mathcal{H})}}{\delta}\right)}\)</span></li>
+</ul>
+<h1 id="参考">参考</h1>
+<ul>
+<li>https://zhuanlan.zhihu.com/p/59113933</li>
+<li>https://www.coursera.org/learn/ntumlone-mathematicalfoundations</li>
+</ul>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>math</tag>
+        <tag>machine learning</tag>
+        <tag>statistical learning</tag>
+        <tag>vc dimension</tag>
       </tags>
   </entry>
   <entry>
@@ -3747,710 +3843,6 @@ ELBO = -重构误差损失-正则惩罚
         <tag>math</tag>
         <tag>vae</tag>
         <tag>mcmc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VC维学习笔记</title>
-    <url>/2020/05/15/vc-dimension/</url>
-    <content><![CDATA[<p>简单的梳理VC维。所有讨论基于二分类这一简单情况出发。</p>
-<a id="more"></a>
-<h1 id="hoeffding不等式">Hoeffding不等式</h1>
-<ul>
-<li>机器学习的一个大假设就是，训练集上训练出的模型能够泛化到测试集，详细一点说即我们用算法A和训练集D，在假设空间H里中找到一个假设g，使得该假设g和需要学习的目标假设f近似。令g在训练集上的误差（经验误差）为<span class="math inline">\(E_{in}(g)\)</span>，在除了训练集外所有可能样本上的误差（泛化误差，期望误差）为<span class="math inline">\(E_{out}(g)\)</span>。</li>
-<li>已知<span class="math inline">\(E_{out}(f) = 0\)</span>，我们也希望得到的g满足<span class="math inline">\(E_{out}(g) = 0\)</span>，这里包含了两点信息
-<ul>
-<li>需要<span class="math inline">\(E_{in}(g) \approx E_{out}(g)\)</span></li>
-<li>需要<span class="math inline">\(E_{in}(g) \approx 0\)</span></li>
-</ul></li>
-<li>第二点<span class="math inline">\(E_{in}(g) \approx 0\)</span>就是我们训练模型所做的事，在训练集上减小误差，而第一点<span class="math inline">\(E_{in}(g) \approx E_{out}(g)\)</span>，即如何保证模型的泛化能力，这是VC所衡量的事情。</li>
-<li>训练集可以看成是样本空间的一个采样，从采样上计算一些量来估计整个样本空间的量，我们有Hoeffding不等式 <span class="math display">\[
-\mathbb{P}[|\nu-\mu|&gt;\epsilon] \leq 2 \exp \left(-2 \epsilon^{2} N\right)
-\]</span></li>
-<li>其中<span class="math inline">\(\nu\)</span>是训练集上的计算量，<span class="math inline">\(\mu\)</span>是整个样本空间上对应的量。我们自然可以把误差（损失）看成是一种计算量，得到： <span class="math display">\[
-\mathbb{P}\left[\left|E_{i n}(h)-E_{o u t}(h)\right|&gt;\epsilon\right] \leq 2 \exp \left(-2 \epsilon^{2} N\right)
-\]</span></li>
-<li>其中h是某一假设（任意一个，不是我们通过训练挑出的最好假设g），左边即训练和真实损失差距大于某个相差阈值的概率，可以用来衡量泛化能力，而右侧发现只和相差阈值和训练集容量N相关。这符合我们的直觉，即训练集越大，泛化能力越强。</li>
-<li>但问题是以上情况是针对固定的一个假设h，我们称经验误差和泛化误差相差很多的情况为bad case，那上述不等式说明了对于固定的一个h，bad case出现的概率很小。但是我们的算法A是在整个假设空间H里挑选假设，我们更关注对于所有h，其中任意一个h都不出现bad case出现的概率，即 <span class="math display">\[
-\begin{array}{c}
-\mathbb{P}\left[\mathbf{E}\left(h_{1}\right)&gt;\epsilon \cup \mathbf{E}\left(h_{2}\right)&gt;\epsilon \ldots \cup \mathbf{E}\left(h_{M}\right)&gt;\epsilon\right] \\
-\leq \mathbb{P}\left[\mathbf{E}\left(h_{1}\right)&gt;\epsilon\right]+\mathbb{P}\left[\mathbf{E}\left(h_{2}\right)&gt;\epsilon\right] \ldots+\mathbb{P}\left[\mathbf{E}\left(h_{M}\right)&gt;\epsilon\right] \\
-\leq 2 M \exp \left(-2 \epsilon^{2} N\right)
-\end{array}
-\]</span></li>
-<li>其中<span class="math inline">\(\mathbf{E}\)</span>即经验误差和泛化误差的差距，这里我们进一步放缩了这个上界，考虑最大的情况，也就是各个h经验误差和泛化误差的差距大于某个阈值的事件相互独立，事件的并的概率是各个事件概率之和，最终得到了针对所有h，bad case的上限是<span class="math inline">\(2 M \exp (-2 \epsilon^{2} N)\)</span></li>
-<li>这下就出了问题，之前由于只有N存在于负指数项中，所以只要训练集容量足够大，这个上限是有限的，我们就对机器学习的泛化能力有信心；现在前面乘了一个M，即假设空间的容量，这下上限就不一定是有限（存在）的了。这也符合直觉，想象一下，假设空间越大，就需要越多的数据来训练，使得算法挑选出一个好的假设；假如数据量一定，假设空间越大，就越难挑出一个和真实假设f相近的g</li>
-</ul>
-<h1 id="有效的假设">有效的假设</h1>
-<ul>
-<li>接下来正式进入VC维的探讨。首先我们讨论有效假设数。考虑到上面的不等式，我们其实做了一个很大的放缩，即假定各个h经验误差和泛化误差的差距大于某个阈值的事件相互独立，事件的并的概率是各个事件概率之和。但实际上并不是这样的。例如对于二维线性可分的数据，存在分离间隔，那么分离间隔中的几个能正确分类训练集的几个相互平行且相差不远的分离面（直线），他们其实非常相近，对于绝大多数数据点而言在这两个分离面下的结果相同，同样泛化能力出现差距的概率分布也有很大重叠，将其视为相互独立是不合适的。</li>
-<li>我们再回头看看不等式中的M，其字面意思就是假设空间的容量，实际上是假设空间表达能力的一种度量，在一定量的训练集下，假设空间表达能力越丰富，学习算法就越难找到一个好的假设。假设空间的容量，是所有假设的和，其中一个假设可以看成是确定模型下的一组参数。有没有其他的更为有效的衡量假设空间表达能力的量？</li>
-<li>假如我们不看模型参数本身，而是看模型对数据的分类结果呢？例如，之前是相同的参数（相同的直线）视为相同的假设，现在用相同的分类结果（不同的直线，把点做了相同的分类）的参数视为相同的假设。这样看来似乎更加合理，因为表达能力最终落实在对数据的所有可能分类结果的处理，而无论经验误差还是泛化误差也都是通过误分类点来衡量。</li>
-<li>这里引入了几个术语：
-<ul>
-<li>对分(dichotomy)：记为<span class="math inline">\(h\left(X_{1}, X_{2}, \ldots, X_{N}\right)\)</span>。N个点的对分即N个点的一种分类结果，显然对于二分类问题，N个点最多有<span class="math inline">\(2^N\)</span>个dichotomy。</li>
-<li>假设空间H在训练集D里N个点上的对分，记为<span class="math inline">\(\mathcal{H}\left(X_{1}, X_{2}, \ldots, X_{N}\right)\)</span>，这里对分的个数除了和数据集相关，还和假设空间H相关，因为假设空间并不一定能取到所有的dichotomy，例如四个点组成正方形，对角线的标签一样，那么一条直线的假设空间就取不到这种对分。</li>
-<li>增长函数(growth function)：假设空间在训练集上的对分个数不仅与训练集大小相关，还与具体的训练集相关，例如抽出来的训练集不包含（四个点组成正方形，对角线的标签一样）这种对分，那么可能直线在该训练集上取到的对分数量就和该训练集最多可能的对分数量一样。因此为了排除具体的训练集影响，我们设在所有大小为N的可能训练集上假设空间H能取到的最大对分数量为增长函数，定为：<span class="math inline">\(m_{\mathcal{H}}(N)=\max _{X_{1}, X 2, \ldots, X_{N} \in \mathcal{X}}\left|\mathcal{H}\left(X_{1}, X_{2}, \ldots, X_{N}\right)\right|\)</span></li>
-<li>打散(shatter)：即增长函数取到了理论上最大的对分数<span class="math inline">\(2^N\)</span>，这里的含义就是这个假设空间对于大小为N的数据集（该任务设定下任意一个大小为N数据集）来说足够好了，能够考虑到所有情况，针对任何一种分类结果给出对应的假设。也即对于该任务，总容量为N的数据集，该模型有能力取到完美解。</li>
-<li>break point：显然N越小，越容易打散；N越大，越不容易打散。那么从N=1开始逐渐增加，直到某个临界点N=k时，假设空间无法打散这k个点了，我们就称k为该假设空间的break point。可以证明N&gt;k的情况都无法打散</li>
-</ul></li>
-<li>可以看到其实到增长函数这里，这就是一个假设空间表达能力的一种衡量指标了。VC维考虑的就是用这种衡量指标替换Hoeffding不等式中的假设空间容量。当然不能直接替换，具体而言，是 <span class="math display">\[
-\forall g \in \mathcal{H}, \mathbb{P}\left[\left|E_{i n}(g)-E_{o u t}(g)\right|&gt;\epsilon\right] \leq 4 m_{\mathcal{H}}(2 N) \exp \left(-\frac{1}{8} \epsilon^{2} N\right)
-\]</span></li>
-<li>上式右边即VC界，证明比较复杂略。那么这样我们再考虑上界是不是有限的。可以看到最重要的M被换成了<span class="math inline">\(m_H\)</span>，即增长函数，假如增长函数有界或者说随N的增加速率低于指数部分的缩减速率，那么我们就可以说经验误差和泛化误差的差值上界是有限的。实际上，假如break point k存在，那么有 <span class="math display">\[
-m_{\mathcal{H}}(N) \leq B(N, k) \leq \sum_{i=0}^{k-1}\left(\begin{array}{c}
-N \\
-i
-\end{array}\right) \leq N^{k-1}
-\]</span></li>
-<li>其中B(N, k)就是break point为k时增长函数的上界，可以发现增长函数上界的上界是多项式级别的(k-1次方)，那么增长函数最多是多项式级别，而VC界中的<span class="math inline">\(\exp \left(-2 \epsilon^{2} N\right)\)</span>是指数级别，显然VC界是存在的，有限的。</li>
-<li>那么终于，对于break point存在的情况，我们可以说泛化能力是有保证的，机器学习是有保证的。</li>
-</ul>
-<h1 id="vc维">VC维</h1>
-<ul>
-<li>VC界保证了学习的可行性，而VC维考虑的是假设空间的表达能力。前面说到增长函数是对于假设空间表达能力的一种衡量，两者也存在密切关联。</li>
-<li>VC维定义为，给定假设空间H，其break point存在，那么其VC维是能够打散的最大数据集的大小，即 <span class="math display">\[
-V C(\mathcal{H})=\max \left\{N: m_{\mathcal{H}}(N)=2^{N}\right\}
-\]</span></li>
-<li>回忆VC维定义中的两个概念：增长函数和打散。增长函数定义了假设空间解决对分的能力，打散代表着假设空间有能力解决一定量的数据集，对于每一种可能的对分都有对应假设，那么VC维就是从数据集的量来衡量假设空间的能力，假设空间越复杂，表达能力越强，就能打散更大的数据集，有足够多的假设解决更大数据集上的每一种上可能的对分——注意，不是每一种理论上可能的对分，因为VC维取的是能够达到的最大数据集容量，是存在而不是任意，即最大存在大小为VC维的数据集能够被该假设空间打散。</li>
-<li>那么VC维具体是多少呢？其实之前我们定义过了，就是k-1，即容量小于break point的数据集都能被打散，那么能被打散的数据集容量最大就是break point - 1</li>
-<li>注意到这个k-1不就是VC界中增长函数上界中的多项式次数吗，因此VC界又可以写成： <span class="math display">\[
-\forall g \in \mathcal{H}, \mathbb{P}\left[\left|E_{i n}(g)-E_{o u t}(g)\right|&gt;\epsilon\right] \leq 4(2 N)^{V C(\mathcal{H})} \exp \left(-\frac{1}{8} \epsilon^{2} N\right)
-\]</span></li>
-</ul>
-<h1 id="衡量量化能力">衡量量化能力</h1>
-<ul>
-<li>由VC界的不等式可以看到，经验误差与泛化误差之间的差距（衡量泛化能力）和不等式右边即bad case发生的概率相关联，假如我们给定了bad case发生的概率，设为$ 4(2 N)^{V C()} (- ^{2} N)=<span class="math inline">\(，那么可以反过来算出衡量泛化能力的差距\)</span>=$</li>
-<li>所以在机器学习基石和技法当中，老师惊颤写出一个VC bound用来估计泛化误差的公式： <span class="math display">\[
-E_{\text {out }}(\mathbf{w}) \leq E_{\text {in }}(\mathbf{w})+\Omega(\mathcal{H})
-\]</span></li>
-<li>其中的<span class="math inline">\(\Omega(\mathcal{H})\)</span>即<span class="math inline">\(\sqrt{\frac{8}{N} \ln \left(\frac{4(2 N)^{V C(\mathcal{H})}}{\delta}\right)}\)</span></li>
-</ul>
-<h1 id="参考">参考</h1>
-<ul>
-<li>https://zhuanlan.zhihu.com/p/59113933</li>
-<li>https://www.coursera.org/learn/ntumlone-mathematicalfoundations</li>
-</ul>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>math</tag>
-        <tag>machine learning</tag>
-        <tag>statistical learning</tag>
-        <tag>vc dimension</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MIT线性代数笔记3</title>
-    <url>/2017/01/22/LinearAlgebra3/</url>
-    <content><![CDATA[<hr />
-<h1 id="第十七讲行列式及其性质">第十七讲：行列式及其性质</h1>
-<h2 id="行列式">行列式</h2>
-<ul>
-<li>矩阵A的行列式是与矩阵相关的一个数，记作<span class="math inline">\(detA或者|A|\)</span></li>
-<li>行列式的性质</li>
-<li><span class="math inline">\(detI=1\)</span></li>
-<li>交换行，行列式的值的符号会相反</li>
-<li>一个置换矩阵的行列式是1或-1，取决于交换行次数的奇偶</li>
-<li>两行相等使得行列式为0(由性质二可以直接推出)</li>
-<li>矩阵消元不改变其行列式(证明见下)</li>
-<li>某一行为0，行列式为0(与0相乘等价于某一行为0，结果为0)</li>
-<li><span class="math inline">\(detA=0\)</span>当且仅当A是奇异矩阵</li>
-<li><span class="math inline">\(det(A+B) \neq detA+detB \\ detAB=(detA)(detB)\)</span></li>
-<li><span class="math inline">\(detA^{-1}detA=1\)</span></li>
-<li><span class="math inline">\(detA^2=(detA)^2\)</span></li>
-<li><span class="math inline">\(det2A=2^n detA\)</span></li>
-<li><span class="math inline">\(detA^T=detA\)</span>(证明见下) <a id="more"></a></li>
-<li>行列式按行是线性的，但行列式本身不是线性的 <span class="math display">\[
-\begin{vmatrix}
-1 &amp; 0 \\
-0 &amp; 1 \\
-\end{vmatrix}=1 \\
-\begin{vmatrix}
-0 &amp; 1 \\
-1 &amp; 0 \\
-\end{vmatrix}=-1 \\
-\begin{vmatrix}
-ta &amp; tb \\
-c &amp; d \\
-\end{vmatrix}=
-t\begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
-\end{vmatrix} \\
-\begin{vmatrix}
-t+a &amp; t+b \\
-c &amp; d \\
-\end{vmatrix}=
-\begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
-\end{vmatrix}+
-\begin{vmatrix}
-t &amp; t \\
-c &amp; d \\
-\end{vmatrix}
-\]</span></li>
-<li>证明消元不改变行列式 <span class="math display">\[
-\begin{vmatrix}
-a &amp; b \\
-c-la &amp; d-lb \\
-\end{vmatrix}=
-\begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
-\end{vmatrix}-l
-\begin{vmatrix}
-a &amp; b \\
-a &amp; b \\
-\end{vmatrix}=
-\begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
-\end{vmatrix}
-\]</span></li>
-<li>证明转置不改变行列式 <span class="math display">\[
-A=LU \\
-\]</span></li>
-<li>即证 <span class="math inline">\(|U^TL^T|=|LU|\)</span> <span class="math display">\[
-|U^T||L^T|=|L||U|
-\]</span></li>
-<li>以上四个矩阵都是三角矩阵，行列式等于对角线乘积，转置没有影响，所以相等</li>
-</ul>
-<h2 id="三角阵行列式">三角阵行列式</h2>
-<ul>
-<li>对三角阵U的行列式,值为对角线上元素乘积(主元乘积)</li>
-<li>为什么三角阵其他元素不起作用？因为通过消元我们可以得到只有对角元素的矩阵，而消元不改变行列式</li>
-<li>为什么是对角线元素的乘积？因为可以消元后可以依次把对角元素提出来，即得到<span class="math inline">\(d_1d_2d_3...d_nI\)</span>，其中单位矩阵的行列式为1</li>
-<li>奇异矩阵行列式为0，存在全0行；可逆矩阵行列式不为0，能化成三角阵，行列式是三角矩阵对角元素乘积</li>
-</ul>
-<h2 id="a-little-more">A little more</h2>
-<ul>
-<li>进行奇数次置换和偶数次置换得到的行列式肯定不一样(符号不同)，这意味着进行奇数次置换和偶数次置换后的矩阵不会一样，即置换是严格区分奇偶的</li>
-</ul>
-<h1 id="第十八讲行列式公式和代数余子式">第十八讲：行列式公式和代数余子式</h1>
-<h2 id="行列式公式">行列式公式</h2>
-<ul>
-<li>推导2*2行列式 <span class="math display">\[
-\begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
-\end{vmatrix}=
-\begin{vmatrix}
-a &amp; 0 \\
-c &amp; d \\
-\end{vmatrix}+
-\begin{vmatrix}
-0 &amp; b \\
-c &amp; d \\
-\end{vmatrix}=
-\begin{vmatrix}
-a &amp; 0 \\
-c &amp; 0 \\
-\end{vmatrix}+
-\begin{vmatrix}
-a &amp; 0 \\
-0 &amp; d \\
-\end{vmatrix}+
-\begin{vmatrix}
-0 &amp; b \\
-c &amp; 0 \\
-\end{vmatrix}+
-\begin{vmatrix}
-0 &amp; b \\
-0 &amp; d \\
-\end{vmatrix} \\
-=0+ad-bc+0
-\]</span> 我们可以发现这种方法是一次取一行，将这一行拆解(行列式按行是线性的)，再提取出因子，通过行交换得到单位矩阵，通过性质一和性质二得到答案</li>
-<li>如果扩展到3*3矩阵，则第一行分解成三部分，每部分针对第二行又分解成三部分，所以最后得到27部分，其中不为0的部分是那些各行各列均有元素的矩阵。</li>
-<li>例如 <span class="math display">\[
-\begin{vmatrix}
-a &amp; 0 &amp; 0\\
-0 &amp; 0 &amp; b\\
-0 &amp; c &amp; 0\\
-\end{vmatrix}
-\]</span> 先提取出因子，得到<span class="math inline">\(abc\)</span>，交换第二行第三行得到单位矩阵，于是答案就是<span class="math inline">\(abc*detI=abc\)</span>，又因为进行了一次行交换，所以答案是负的，<span class="math inline">\(-abc\)</span></li>
-<li>n*n的矩阵可以分成<span class="math inline">\(n!\)</span>个部分，因为第一行分成n个部分，第二行不能重复，选择n-1行，一次重复，所以得到<span class="math inline">\(n!\)</span>部分</li>
-<li>行列式公式就是这<span class="math inline">\(n!\)</span>个部分加起来</li>
-</ul>
-<h2 id="代数余子式">代数余子式</h2>
-<ul>
-<li><span class="math inline">\(det=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(....)+a_{13}(....)\)</span></li>
-<li>提取出一个因子，由剩余的因子即括号内的内容组成的就是余子式</li>
-<li>从矩阵上看，选择一个元素，它的代数余子式就是排除这个元素所在行和列剩下的矩阵的行列式</li>
-<li><span class="math inline">\(a_{ij}\)</span>的代数余子式记作<span class="math inline">\(c_{ij}\)</span></li>
-<li>注意代数余子式的正负，与<span class="math inline">\(i+j\)</span>的奇偶性有关，偶数取正，奇数取负，这里的符号是指代数余子式对应的子矩阵正常计算出行列式后前面的符号</li>
-<li><span class="math inline">\(detA=a_{11}C_{11}+a_{12}C_{12}+....+a_{1n}C_{1n}\)</span></li>
-</ul>
-<h1 id="第十九讲克拉默法则逆矩阵体积">第十九讲：克拉默法则，逆矩阵，体积</h1>
-<h2 id="逆矩阵">逆矩阵</h2>
-<ul>
-<li>只有行列式不为0时，矩阵才是可逆的</li>
-<li>逆矩阵公式 <span class="math display">\[
-A^{-1}=\frac{1}{detA}C^T
-\]</span> 其中<span class="math inline">\(C_{ij}\)</span>是<span class="math inline">\(A_{ij}\)</span>的代数余子式</li>
-<li>证明：即证<span class="math inline">\(AC^T=(detA)I\)</span> <span class="math display">\[
-\begin{bmatrix}
-a_{11} &amp; ... &amp; a_{1n} \\
-a_{n1} &amp; ... &amp; a_{nn} \\
-\end{bmatrix}
-\begin{bmatrix}
-c_{11} &amp; ... &amp; c_{n1} \\
-c_{1n} &amp; ... &amp; c_{nn} \\
-\end{bmatrix}=
-\begin{bmatrix}
-detA &amp; 0 &amp; 0 \\
-0 &amp; detA &amp; 0 \\
-0 &amp; 0 &amp; detA \\
-\end{bmatrix}
-\]</span> 对角线上都是行列式，因为<span class="math inline">\(det=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(....)+a_{13}(....)\)</span> 其他位置都是0，因为行a乘以行b的代数余子式相当于求一个矩阵的行列式，这个矩阵行a与行b相等，行列式为0</li>
-</ul>
-<h2 id="克拉默法则">克拉默法则</h2>
-<ul>
-<li>解Ax=b <span class="math display">\[
-Ax=b \\
-x=A^{-1}b \\
-x=\frac{1}{detA}C^Tb \\
- \\
-x_1=\frac{detB_1}{detA} \\
-x_3=\frac{detB_2}{detA} \\
-... \\
-\]</span></li>
-<li>克拉默法则即发现矩阵<span class="math inline">\(B_i\)</span>就是矩阵<span class="math inline">\(A\)</span>的第i列换成b，其余不变</li>
-</ul>
-<h2 id="体积">体积</h2>
-<ul>
-<li>A的行列式可以代表一个体积，例如3*3矩阵的行列式代表一个三维空间内的体积</li>
-<li>矩阵的每一行代表一个盒子的一条边(从同一顶点连出的)，行列式就是这个盒子的体积，行列式的正负代表左手或者右手系。</li>
-<li>(1)单位矩阵对应单位立方体，体积为1</li>
-<li>对正交矩阵Q, <span class="math display">\[
-QQ^T=I \\
-|QQ^T|=|I| \\
-|Q||Q^T|=1 \\
-{|Q|}^2=1 \\
-|Q|=1 \\
-\]</span> Q对应的盒子是单位矩阵对应的单位立方体在空间中旋转过一个角度</li>
-<li>(3a)如果矩阵的某一行翻倍，即盒子一组边翻倍，体积也翻倍，从行列式角度可以把倍数提出来，因此行列式也是翻倍</li>
-<li>(2)交换矩阵两行，盒子的体积不变</li>
-<li>(3b)矩阵某一行拆分，盒子也相应切分为两部分</li>
-<li>以上，行列式的三条性质(1,2,3a,3b)均可以在体积上验证</li>
-</ul>
-<h1 id="第二十讲特征值和特征向量">第二十讲：特征值和特征向量</h1>
-<h2 id="特征向量">特征向量</h2>
-<ul>
-<li>给定矩阵A，矩阵A可以看成一个函数，作用在一个向量x上，得到向量Ax</li>
-<li>当Ax平行于x时，即<span class="math inline">\(Ax=\lambda x\)</span>，我们称<span class="math inline">\(x\)</span>为特征向量，<span class="math inline">\(\lambda\)</span>为特征值</li>
-<li>如果A是奇异矩阵，<span class="math inline">\(\lambda = 0\)</span>是一个特征值</li>
-</ul>
-<h2 id="几个例子">几个例子</h2>
-<ul>
-<li>如果A是投影矩阵，可以发现它的特征向量就是投影平面上的任意向量，因为<span class="math inline">\(Ax\)</span>即投影到平面上，平面上的所有向量投影后不变，自然平行，同时特征值就是1。如果向量垂直于平面，<span class="math inline">\(Ax=0\)</span>，特征值为0.因此投影矩阵A的特征向量就分以上两种情况，特征值为1或0.</li>
-<li>再举一例 <span class="math display">\[
-A=
-\begin{bmatrix}
-0 &amp; 1 \\
-1 &amp; 0 \\
-\end{bmatrix} \\
-\lambda =1, x=
-\begin{bmatrix}
-1 \\
-1 \\
-\end{bmatrix}
-Ax=
-\begin{bmatrix}
-1 \\
-1 \\
-\end{bmatrix} \\
-\lambda =-1, x=
-\begin{bmatrix}
--1 \\
-1 \\
-\end{bmatrix}
-Ax=
-\begin{bmatrix}
-1 \\
--1 \\
-\end{bmatrix} \\    
-\]</span></li>
-<li>n*n矩阵有n个特征值</li>
-<li>特征值的和等于对角线元素和，这个和称为迹(trace)，</li>
-<li>如何求解<span class="math inline">\(Ax=\lambda x\)</span> <span class="math display">\[
-(A-\lambda I)x=0 \\
-\]</span></li>
-<li>可见方程有非零解，<span class="math inline">\((A-\lambda I)\)</span>必须是奇异的 即: <span class="math display">\[
-det(A-\lambda I)=0 \\
-\]</span></li>
-<li><span class="math display">\[
-If \qquad Ax=\lambda x \\
-Then \qquad (A+3I)x=(\lambda +3)x \\
-\]</span></li>
-<li>因为加上单位矩阵，特征向量不变依然为x，特征值加上单位矩阵的系数即<span class="math inline">\((\lambda +3)\)</span></li>
-<li>A+B的特征值不一定是A的特征值加上B的特征值，因为他们的特征向量不一定相同。同理AB的特征值也不一定是他们的特征值的乘积</li>
-<li>再举一例，对旋转矩阵Q <span class="math display">\[
-Q=
-\begin{bmatrix}
-0 &amp; -1 \\
-1 &amp; 0 \\
-\end{bmatrix} \\
-trace=0=\lambda _1 +\lambda _2 \\
-det=1=\lambda _1 \lambda _2 \\
-\]</span></li>
-<li>但是可以看出 <span class="math inline">\(\lambda _1，\lambda _2\)</span>无实数解</li>
-<li>再看看更加糟糕的情况(矩阵更加不对称，更难得到实数解的特征值) <span class="math display">\[
-A=
-\begin{bmatrix}
-3 &amp; 1 \\
-0 &amp; 3 \\
-\end{bmatrix} \\
-det(A-\lambda I)=
-\begin{vmatrix}
-3-\lambda &amp; 1 \\
-0 &amp; 3-\lambda \\
-\end{vmatrix}
-==(3-\lambda )^2=0 \\
-\lambda _1=\lambda _2=3 \\
-x_1=
-\begin{bmatrix}
-1 \\
-0 \\
-\end{bmatrix}
-\]</span></li>
-</ul>
-<h1 id="第二十一讲对角化和a的幂">第二十一讲：对角化和A的幂</h1>
-<h2 id="对角化">对角化</h2>
-<ul>
-<li><p>假设A有n个线性无关特征向量，按列组成矩阵S，即特征向量矩阵</p></li>
-<li><p>以下所有关于矩阵对角化的讨论都在S可逆，即n个特征向量线性无关的前提下</p></li>
-<li><p><span class="math display">\[
-AS=A[x_1,x_2...x_n]=[\lambda _1 x_1,....\lambda _n x_n] \\
-=[x_1,x_2,...x_n]
-\begin{bmatrix}
-\lambda _1 &amp; 0 &amp; ... &amp; 0 \\
-0 &amp; \lambda _2 &amp; ... &amp; 0 \\
-... &amp; ... &amp; ... &amp; ... \\
-0 &amp; 0  &amp; 0 &amp; \lambda _n \\
-\end{bmatrix} \\
-=S \Lambda \\
-\]</span></p></li>
-<li><p>假设S可逆，即n个特征向量无关，此时可以得到 <span class="math display">\[
-S^{-1}AS=\Lambda \\
-A=S\Lambda S^{-1} \\
-\]</span></p></li>
-<li><p><span class="math inline">\(\Lambda\)</span>是对角矩阵，这里我们得到了除了<span class="math inline">\(A=LU\)</span>和<span class="math inline">\(A=QR\)</span>之外的一种矩阵分解</p></li>
-<li><p><span class="math display">\[
-if \qquad Ax=\lambda x \\
-A^2 x=\lambda AX=\lambda ^2 x \\
-A^2=S\Lambda S^{-1} S \Lambda S^{-1}=S \Lambda ^2 S^{-1} \\
-\]</span></p></li>
-<li><p>上面关于<span class="math inline">\(A^2\)</span>的两式说明平方后特征向量不变，特征值平方，K次方同理</p></li>
-<li><p>特征值和特征向量帮助我们理解矩阵幂，当计算矩阵幂时，我们可以把矩阵分解成特征向量矩阵和对角阵相乘的形式，K个相乘两两可以抵消，如上式</p></li>
-<li><p>什么样的矩阵的幂趋向于0(稳定) <span class="math display">\[
-A^K \rightarrow 0 \quad as \quad K \rightarrow \infty \\
-if \quad all |\lambda _i|&lt;1 \\ 
-\]</span></p></li>
-<li><p>哪些矩阵可以对角化？ 如果所有特征值不同，则A可以对角化</p></li>
-<li><p>如果矩阵A已经是对角阵，则<span class="math inline">\(\Lambda\)</span>与A相同</p></li>
-<li><p>特征值重复的次数称为代数重度，对三角阵，如 <span class="math display">\[
-A=
-\begin{bmatrix}
-2 &amp; 1 \\
-0 &amp; 2 \\
-\end{bmatrix} \\
-det(A-\lambda I)=
-\begin{vmatrix}
-2-\lambda &amp; 1 \\
-0 &amp; 2-\lambda \\
-\end{vmatrix}=0 \\
-\lambda =2 \\
-A-\lambda I=
-\begin{bmatrix}
-0 &amp; 1 \\
-0 &amp; 0 \\
-\end{bmatrix} \\
-\]</span></p></li>
-<li><p>对<span class="math inline">\(A-\lambda I\)</span>，几何重数是1，而特征值的代数重度是2</p></li>
-<li><p>特征向量只有(1,0)，因此对于三角阵，它不可以对角化，不存在两个线性无关的特征向量。</p></li>
-</ul>
-<h2 id="a的幂">A的幂</h2>
-<ul>
-<li>多数矩阵拥有互相线性无关的一组特征值，可以对角化。假如可以对角化，我们需要关注如何求解A的幂</li>
-<li><span class="math display">\[
-give \quad u_0 \\
-u_{k+1}=Au_k \\
-u_k=A^ku_0 \\
-how \quad to \quad solve \quad u_k \\
-u_0=c_1x_1+c_2x_2+...+c_nx_n=SC \\
-Au_0=c_1 \lambda _1 x_1 + c_2 \lambda _2 x_2 +...+c_n \lambda _n x_n \\
-A^{100}u_0=c_1 \lambda _1^{100} x_1 + c_2 \lambda _2^{100} x_2 +...+c_n \lambda _n^{100} x_n \\
-=S\Lambda ^{100} C \\
-=u_{100} \\
-\]</span></li>
-<li>因为n个特征向量互相不线性相关，因此它们可以作为一组基覆盖整个n维空间，自然<span class="math inline">\(u_0\)</span>可以用特征向量的线性组合表示，C是线性系数向量。上式得出了矩阵幂的解法，接下来以斐波那契数列为例 <span class="math display">\[
-F_0=0 \\
-F_1=1 \\
-F_2=1 \\
-F_3=2 \\
-F_4=3 \\
-F_5=5 \\
-..... \\
-F_{100}=? \\
-\]</span></li>
-<li>斐波那契数列的增长速度有多快?由特征值决定，我们尝试构造向量，来找到斐波那契数列迭代的矩阵关系 <span class="math display">\[
-F_{k+2}=F_{k+1}+F_k \\
-F_{k+1}=F_{k+1} \\
-\]</span></li>
-<li>定义向量 <span class="math display">\[
-u_k=
-\begin{bmatrix}
-F_{k+1} \\
-F_k \\
-\end{bmatrix} \\
-\]</span></li>
-<li>利用这个向量可以将前两个等式写成矩阵形式 <span class="math display">\[
-u_{k+1}=
-\begin{bmatrix}
-1 &amp; 1 \\
-1 &amp; 0 \\
-\end{bmatrix}
-u_k \\
-A=
-\begin{bmatrix}
-1 &amp; 1 \\
-1 &amp; 0 \\
-\end{bmatrix} \\
-\lambda =\frac {1 \pm \sqrt 5}2 \\
-\]</span></li>
-<li>得到两个特征值，我们很容易得到特征向量</li>
-<li>回到斐波那契数列，斐波那契数列的增长速率由我们构造的"数列更新矩阵"的特征值决定，而且由<span class="math inline">\(A^{100}u_0=c_1 \lambda _1^100 x_1 + c_2 \lambda _2^100 x_2 +...+c_n \lambda _n^100 x_n\)</span>可以看出增长率主要由由较大的特征值决定，因此<span class="math inline">\(F_{100}\)</span>可以写成如下形式 <span class="math display">\[
-F_{100} \approx c_1 {\frac {1 + \sqrt 5}2}^{100} \\
-\]</span></li>
-<li>再有初始值有 <span class="math display">\[
-u_0=
-\begin{bmatrix}
-F_1 \\
-F_0 \\
-\end{bmatrix}=
-\begin{bmatrix}
-1 \\
-0 \\
-\end{bmatrix}
-=c_1x_1+c_2x_2
-\]</span></li>
-<li>其中<span class="math inline">\(x_1,x_2\)</span>是两个特征向量，线性系数可求，代入公式可求<span class="math inline">\(F_{100}\)</span>的近似值</li>
-</ul>
-<h2 id="总结">总结</h2>
-<ul>
-<li>我们发现在A可逆的情况下，A可以分解成<span class="math inline">\(S\Lambda S^{-1}\)</span>的形式</li>
-<li>这种形式有一个特点，方便求A的幂，即分解后可以看出A的幂的特征值单位矩阵是A的特征值单位矩阵的幂</li>
-<li>我们在求解斐波那契数列中尝试运用此特点，首先将数列的更新转换为矩阵形式</li>
-<li>求出矩阵的特征值，特征向量</li>
-<li>由A的幂的展开式可以看出A的幂主要由较大的特征值决定，因此<span class="math inline">\(F_{100}\)</span>可以写成<span class="math inline">\(F_{100} \approx c_1 {(\frac {1 + \sqrt 5}2)}^{100}\)</span>的形式</li>
-<li>由初始值<span class="math inline">\(F_0\)</span>求出线性系数，代入上式，得到<span class="math inline">\(F_{100}\)</span>的近似值</li>
-<li>以上是差分方程的一个例子，下一节将讨论微分方程</li>
-</ul>
-<h1 id="第二十二讲微分方程和expat">第二十二讲：微分方程和exp(At)</h1>
-<h2 id="微分方程">微分方程</h2>
-<ul>
-<li>常系数线性方程的解是指数形式的，如果微分方程的解是指数形式，只需利用线代求出指数，系数，就可以求出解</li>
-<li>举个例子 <span class="math display">\[
-\frac{du_1}{dt}=-u_1+2u_2 \\
-\frac{du_2}{dt}=u_1-2u_2 \\
-u(0)=
-\begin{bmatrix}
-1 \\
-0 \\
-\end{bmatrix} \\
-\]</span></li>
-<li>首先我们列出系数矩阵，并找出矩阵的特征值和特征向量 <span class="math display">\[
-A=
-\begin{bmatrix}
--1 &amp; 2 \\
-1 &amp; -2 \\
-\end{bmatrix}
-\]</span></li>
-<li>易得<span class="math inline">\(\lambda=0\)</span>是这个奇异矩阵的一个解，由迹可以看出第二个特征值是<span class="math inline">\(\lambda=-3\)</span>，并得到两个特征向量 <span class="math display">\[
-x_1=
-\begin{bmatrix}
-2 \\
-1 \\
-\end{bmatrix} \\
-x_2=
-\begin{bmatrix}
-1 \\
--1 \\
-\end{bmatrix}
-\]</span></li>
-<li>微分方程解的通解形式将是 <span class="math display">\[
-u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2
-\]</span></li>
-<li>为什么？ <span class="math display">\[
-\frac{du}{dt} \\
-=c_1 \lambda _1 e^{\lambda _1 t}x_1 \\
-=A c_1 e^{\lambda _1 t}x_1 \\
-because \quad A x_1=\lambda _1 x_1 \\
-\]</span></li>
-<li>在差分方程<span class="math inline">\(u_{k+1}=Au_k\)</span>当中，解的形式是<span class="math inline">\(c_1\lambda _1 ^k x_1+c_2 \lambda _2 ^k x_2\)</span></li>
-<li>在微分方程<span class="math inline">\(\frac {du}{dt}=Au\)</span>当中，解的形式是<span class="math inline">\(u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2\)</span></li>
-<li><span class="math inline">\(c_1,c_2\)</span>由初始值解出，即系数矩阵C乘特征向量矩阵S得到初始值</li>
-<li>可以看出t趋于无穷时，例子方程的解只剩下稳态部分，即<span class="math inline">\((\frac 23,\frac 13)\)</span></li>
-<li>什么时候解趋向于0？存在负数特征值，因为<span class="math inline">\(e^{\lambda t}\)</span>需要趋向于0</li>
-<li>如果特征值是复数呢？虚数部分的模值是1，所以如果复数的实数部分是负数，解依然趋向于0</li>
-<li>什么时候存在稳态？特征值中只存在0和负数，就如上面的例子</li>
-<li>什么时候解无法收敛？任何特征值的实数部分大于0</li>
-<li>改变系数矩阵的符号，特征值也改变符号，稳态的解依然稳态，收敛的解就会变成发散</li>
-<li>如何从矩阵直接判断解是否收敛？即特征值的实数部分都小于0？</li>
-<li>矩阵的迹应该小于0，但对角线之和为0依然不一定收敛，如 <span class="math display">\[
-\begin{bmatrix}
--2 &amp; 0 \\
-0 &amp; 1 \\
-\end{bmatrix}
-\]</span></li>
-<li>因此还需要另一个条件：行列式的值是特征值乘积，因此行列式的值应该大于0</li>
-</ul>
-<h2 id="expat">exp(At)</h2>
-<ul>
-<li>是否可以把解表示成<span class="math inline">\(S,\Lambda\)</span>的形式</li>
-<li>矩阵A表示<span class="math inline">\(u_1,u_2\)</span>耦合，首先我们需要将u对角化，解耦</li>
-<li><span class="math display">\[
-\frac{du}{dt} = Au \\
-set \quad u=Sv \\
-S \frac{dv}{dt} = ASv \\
-\frac{dv}{dt}=S^{-1}ASv=\Lambda v \\
-v(t)=e^{\Lambda t}v(0) \\
-u(t)=Se^{\Lambda t}S^{-1}u(0) \\
-\]</span></li>
-</ul>
-<h1 id="第二十一讲马尔科夫矩阵傅立叶级数">第二十一讲：马尔科夫矩阵;傅立叶级数</h1>
-<h2 id="马尔科夫矩阵">马尔科夫矩阵</h2>
-<ul>
-<li><p>一个典型的马尔科夫矩阵 <span class="math display">\[
-\begin{bmatrix}
-0.1 &amp; 0.01 &amp; 0.3 \\
-0.2 &amp; 0.99 &amp; 0.3 \\
-0.7 &amp; 0 &amp; 0.4 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>每一个元素大于等于0，每一列之和为1，马尔科夫矩阵的幂都是马尔科夫矩阵</p></li>
-<li><p><span class="math inline">\(\lambda=1\)</span>是一个特征值，其余的特征值的绝对值都小于1</p></li>
-<li><p>在上一讲中我们谈到矩阵的幂可以分解为 <span class="math display">\[
-u_k=A^ku_0=c_1\lambda _1 ^kx_1+c_2\lambda _2 ^kx_2+.....
-\]</span></p></li>
-<li><p>当A是马尔科夫矩阵时，只有一个特征值为1，其余特征值小于1，随着k的变大，小于1的特征值所在项趋向于0，只保留特征值为1的那一项，同时对应的特征向量的元素都大于0</p></li>
-<li><p>当每一列和为1时，必然存在一个特征值<span class="math inline">\(\lambda =1\)</span></p></li>
-<li><p>证明： <span class="math display">\[
-A-I=
-\begin{bmatrix}
--0.9 &amp; 0.01 &amp; 0.3 \\
-0.2 &amp; -0.01 &amp; 0.3 \\
-0.7 &amp; 0 &amp; -0.6 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>若1是一个特征值，则<span class="math inline">\(A-I\)</span>应该是奇异的，可以看到<span class="math inline">\(A-I\)</span>每一列和为0，即说明行向量线性相关，即矩阵奇异,同时全1向量在左零空间。</p></li>
-<li><p>对于马尔科夫矩阵A，我们研究<span class="math inline">\(u_{k+1}=Au_k\)</span></p></li>
-<li><p>一个例子，u是麻省和加州的人数，A是人口流动矩阵 <span class="math display">\[
-\begin{bmatrix}
-u_{cal} \\
-u_{mass} \\
-\end{bmatrix}_{t=k+1}
-=
-\begin{bmatrix}
-0.9 &amp; 0.2 \\
-0.1 &amp; 0.8 \\
-\end{bmatrix}
-\begin{bmatrix}
-u_{cal} \\
-u_{mass} \\
-\end{bmatrix}_{t=k}
-\]</span></p></li>
-<li><p>可以看到每一年(k)80%的人留在麻省，20%的人前往加州，加州那边也有10%移居麻省</p></li>
-<li><p>对马尔科夫矩阵A <span class="math display">\[
-\begin{bmatrix}
-0.9 &amp; 0.2 \\
-0.1 &amp; 0.8 \\
-\end{bmatrix} \\
-\lambda _1 =1 \\
-\lambda _2 =0.7 \\
-\]</span></p></li>
-<li><p>对特征值为1的项，容易求出特征向量为<span class="math inline">\((2,1)\)</span>，对特征值为0.7的项，特征向量为(-1,1)</p></li>
-<li><p>得到我们要研究的公式 <span class="math display">\[
-u_k=c_1*1^k*
-\begin{bmatrix}
-2 \\
-1 \\
-\end{bmatrix}
-+c_2*(0.7)^k*
-\begin{bmatrix}
--1 \\
-1 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>假设一开始加州有0人，麻省有1000人，即<span class="math inline">\(u_0\)</span>，代入公式可以得到<span class="math inline">\(c_1,c_2\)</span>，可以看到很多年之后，加州和麻省的人数将稳定，各占1000人中的三分之一和三分之二。</p></li>
-<li><p>行向量为和为1是另外一种定义马尔科夫矩阵的方式</p></li>
-</ul>
-<h2 id="傅里叶级数">傅里叶级数</h2>
-<ul>
-<li>先讨论带有标准正交基的投影问题</li>
-<li>假设<span class="math inline">\(q_1....q_n\)</span>是一组标准正交基，任何向量<span class="math inline">\(v\)</span>都是这组基的线性组合</li>
-<li>现在我们要求出线性组合系数<span class="math inline">\(x_1....x_n\)</span> <span class="math inline">\(v=x_1q_1+x_2q_2+...x_nq_n\)</span> 一种方法是将<span class="math inline">\(v\)</span>与<span class="math inline">\(q_i\)</span>做内积，逐一求出系数 <span class="math display">\[
-q_1^Tv=x_1q_1^Tq_1+0+0+0....+0=x_1 \\
-\]</span></li>
-<li>写成矩阵形式 <span class="math display">\[
-\begin{bmatrix}
-q_1 &amp; q_2 &amp; ... &amp; q_n \\
-\end{bmatrix}
-\begin{bmatrix}
-x_1 \\
-x_2 \\
-... \\
-x_n \\
-\end{bmatrix}=
-v \\
-Qx=v \\
-x=Q^{-1}v=Q^Tv \\
-\]</span></li>
-<li>现在讨论傅里叶级数</li>
-<li>我们希望将函数分解 <span class="math display">\[
-f(x)=a_0+a_1cosx+b_1sinx+a_2cos2x+b_2cos2x+.......
-\]</span></li>
-<li>关键是，在这种分解中，<span class="math inline">\(coskx,sinkx\)</span>构成一组函数空间的无穷正交基，即这些函数内积为0(向量的内积是离散的值累加，函数的内积是连续的值积分)。</li>
-<li>如何求出傅里叶系数？</li>
-<li>利用之前的向量例子来求</li>
-<li>将<span class="math inline">\(f(x)\)</span>逐一与正交基元素内积，得到这个正交基元素对应的系数乘<span class="math inline">\(\pi\)</span>，例如 <span class="math display">\[
-\int _0 ^{2\pi} f(x)cosx dx=0+ a_1 \int _0^{2\pi}(cosx)^2dx+0+0...+0=\pi a_1 \\
-\]</span></li>
-</ul>
-<h1 id="第二十二讲对称矩阵及其正定性">第二十二讲：对称矩阵及其正定性</h1>
-<h2 id="对称矩阵">对称矩阵</h2>
-<ul>
-<li>对称矩阵的特征值是实数，不重复的特征值对应的特征向量互相正交</li>
-<li>对一般矩阵<span class="math inline">\(A=S\Lambda S^{-1}\)</span>，S为特征向量矩阵</li>
-<li>对对称矩阵<span class="math inline">\(A=Q\Lambda Q^{-1}=Q\Lambda Q^T\)</span>，Q为标准正交的特征向量矩阵</li>
-<li>为什么特征值都是实数？</li>
-<li><span class="math inline">\(Ax=\lambda x\)</span>对左右同时取共轭，因为我们现在只考虑实数矩阵A，<span class="math inline">\(Ax^{*}=\lambda ^{*} x^{*}\)</span></li>
-<li>即<span class="math inline">\(\lambda\)</span>和它的共轭都是特征值，现在再对等式两边取转置，$x<sup>{* T}A</sup>T=x^{* T} ^{* T} $</li>
-<li>上式中<span class="math inline">\(A=A^T\)</span>，且两边同乘以<span class="math inline">\(x\)</span>，与<span class="math inline">\(x^{* T}A\lambda x^{* T}x\)</span>对比可得<span class="math inline">\(\lambda ^{*}=\lambda\)</span>，即特征值是实数</li>
-<li>可见，对于复数矩阵，需要<span class="math inline">\(A=A^{* T}\)</span>才满足对称</li>
-<li>对于对称矩阵 <span class="math display">\[
-A=Q\Lambda Q^{-1}=Q\Lambda Q^T \\
-=\lambda _1 q_1 q_1^T+\lambda _2 q_2 q_2^T+.... \\
-\]</span></li>
-<li>所以每一个对称矩阵都是一些互相垂直的投影矩阵的组合</li>
-<li>对于对称矩阵，正主元的个数等于正特征值的个数，且主元的乘积等于特征值的乘积等于矩阵的行列式</li>
-</ul>
-<h2 id="正定性">正定性</h2>
-<ul>
-<li>正定矩阵都是对称矩阵，是对称矩阵的一个子类，其所有特征值为正数，所有主元为正数，所有的子行列式都是正数</li>
-<li>特征值的符号与稳定性有关</li>
-<li>主元、行列式、特征值三位一体，线性代数将其统一</li>
-</ul>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>math</tag>
-        <tag>linearalgebra</tag>
       </tags>
   </entry>
   <entry>
@@ -5461,6 +4853,618 @@ q_2^Ta &amp; q_2^Tb \\
 <li>其中，因为<span class="math inline">\(QQ^T=I\)</span></li>
 <li>所以<span class="math inline">\(R=Q^TA\)</span></li>
 <li><span class="math inline">\(q_2\)</span>与<span class="math inline">\(q_1\)</span>正交，而<span class="math inline">\(q_1\)</span>只是<span class="math inline">\(a\)</span>的单位化，所以<span class="math inline">\(q_2^Ta=0\)</span>，即<span class="math inline">\(R\)</span>是上三角矩阵</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>math</tag>
+        <tag>linearalgebra</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MIT线性代数笔记3</title>
+    <url>/2017/01/22/LinearAlgebra3/</url>
+    <content><![CDATA[<hr />
+<h1 id="第十七讲行列式及其性质">第十七讲：行列式及其性质</h1>
+<h2 id="行列式">行列式</h2>
+<ul>
+<li>矩阵A的行列式是与矩阵相关的一个数，记作<span class="math inline">\(detA或者|A|\)</span></li>
+<li>行列式的性质</li>
+<li><span class="math inline">\(detI=1\)</span></li>
+<li>交换行，行列式的值的符号会相反</li>
+<li>一个置换矩阵的行列式是1或-1，取决于交换行次数的奇偶</li>
+<li>两行相等使得行列式为0(由性质二可以直接推出)</li>
+<li>矩阵消元不改变其行列式(证明见下)</li>
+<li>某一行为0，行列式为0(与0相乘等价于某一行为0，结果为0)</li>
+<li><span class="math inline">\(detA=0\)</span>当且仅当A是奇异矩阵</li>
+<li><span class="math inline">\(det(A+B) \neq detA+detB \\ detAB=(detA)(detB)\)</span></li>
+<li><span class="math inline">\(detA^{-1}detA=1\)</span></li>
+<li><span class="math inline">\(detA^2=(detA)^2\)</span></li>
+<li><span class="math inline">\(det2A=2^n detA\)</span></li>
+<li><span class="math inline">\(detA^T=detA\)</span>(证明见下) <a id="more"></a></li>
+<li>行列式按行是线性的，但行列式本身不是线性的 <span class="math display">\[
+\begin{vmatrix}
+1 &amp; 0 \\
+0 &amp; 1 \\
+\end{vmatrix}=1 \\
+\begin{vmatrix}
+0 &amp; 1 \\
+1 &amp; 0 \\
+\end{vmatrix}=-1 \\
+\begin{vmatrix}
+ta &amp; tb \\
+c &amp; d \\
+\end{vmatrix}=
+t\begin{vmatrix}
+a &amp; b \\
+c &amp; d \\
+\end{vmatrix} \\
+\begin{vmatrix}
+t+a &amp; t+b \\
+c &amp; d \\
+\end{vmatrix}=
+\begin{vmatrix}
+a &amp; b \\
+c &amp; d \\
+\end{vmatrix}+
+\begin{vmatrix}
+t &amp; t \\
+c &amp; d \\
+\end{vmatrix}
+\]</span></li>
+<li>证明消元不改变行列式 <span class="math display">\[
+\begin{vmatrix}
+a &amp; b \\
+c-la &amp; d-lb \\
+\end{vmatrix}=
+\begin{vmatrix}
+a &amp; b \\
+c &amp; d \\
+\end{vmatrix}-l
+\begin{vmatrix}
+a &amp; b \\
+a &amp; b \\
+\end{vmatrix}=
+\begin{vmatrix}
+a &amp; b \\
+c &amp; d \\
+\end{vmatrix}
+\]</span></li>
+<li>证明转置不改变行列式 <span class="math display">\[
+A=LU \\
+\]</span></li>
+<li>即证 <span class="math inline">\(|U^TL^T|=|LU|\)</span> <span class="math display">\[
+|U^T||L^T|=|L||U|
+\]</span></li>
+<li>以上四个矩阵都是三角矩阵，行列式等于对角线乘积，转置没有影响，所以相等</li>
+</ul>
+<h2 id="三角阵行列式">三角阵行列式</h2>
+<ul>
+<li>对三角阵U的行列式,值为对角线上元素乘积(主元乘积)</li>
+<li>为什么三角阵其他元素不起作用？因为通过消元我们可以得到只有对角元素的矩阵，而消元不改变行列式</li>
+<li>为什么是对角线元素的乘积？因为可以消元后可以依次把对角元素提出来，即得到<span class="math inline">\(d_1d_2d_3...d_nI\)</span>，其中单位矩阵的行列式为1</li>
+<li>奇异矩阵行列式为0，存在全0行；可逆矩阵行列式不为0，能化成三角阵，行列式是三角矩阵对角元素乘积</li>
+</ul>
+<h2 id="a-little-more">A little more</h2>
+<ul>
+<li>进行奇数次置换和偶数次置换得到的行列式肯定不一样(符号不同)，这意味着进行奇数次置换和偶数次置换后的矩阵不会一样，即置换是严格区分奇偶的</li>
+</ul>
+<h1 id="第十八讲行列式公式和代数余子式">第十八讲：行列式公式和代数余子式</h1>
+<h2 id="行列式公式">行列式公式</h2>
+<ul>
+<li>推导2*2行列式 <span class="math display">\[
+\begin{vmatrix}
+a &amp; b \\
+c &amp; d \\
+\end{vmatrix}=
+\begin{vmatrix}
+a &amp; 0 \\
+c &amp; d \\
+\end{vmatrix}+
+\begin{vmatrix}
+0 &amp; b \\
+c &amp; d \\
+\end{vmatrix}=
+\begin{vmatrix}
+a &amp; 0 \\
+c &amp; 0 \\
+\end{vmatrix}+
+\begin{vmatrix}
+a &amp; 0 \\
+0 &amp; d \\
+\end{vmatrix}+
+\begin{vmatrix}
+0 &amp; b \\
+c &amp; 0 \\
+\end{vmatrix}+
+\begin{vmatrix}
+0 &amp; b \\
+0 &amp; d \\
+\end{vmatrix} \\
+=0+ad-bc+0
+\]</span> 我们可以发现这种方法是一次取一行，将这一行拆解(行列式按行是线性的)，再提取出因子，通过行交换得到单位矩阵，通过性质一和性质二得到答案</li>
+<li>如果扩展到3*3矩阵，则第一行分解成三部分，每部分针对第二行又分解成三部分，所以最后得到27部分，其中不为0的部分是那些各行各列均有元素的矩阵。</li>
+<li>例如 <span class="math display">\[
+\begin{vmatrix}
+a &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; b\\
+0 &amp; c &amp; 0\\
+\end{vmatrix}
+\]</span> 先提取出因子，得到<span class="math inline">\(abc\)</span>，交换第二行第三行得到单位矩阵，于是答案就是<span class="math inline">\(abc*detI=abc\)</span>，又因为进行了一次行交换，所以答案是负的，<span class="math inline">\(-abc\)</span></li>
+<li>n*n的矩阵可以分成<span class="math inline">\(n!\)</span>个部分，因为第一行分成n个部分，第二行不能重复，选择n-1行，一次重复，所以得到<span class="math inline">\(n!\)</span>部分</li>
+<li>行列式公式就是这<span class="math inline">\(n!\)</span>个部分加起来</li>
+</ul>
+<h2 id="代数余子式">代数余子式</h2>
+<ul>
+<li><span class="math inline">\(det=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(....)+a_{13}(....)\)</span></li>
+<li>提取出一个因子，由剩余的因子即括号内的内容组成的就是余子式</li>
+<li>从矩阵上看，选择一个元素，它的代数余子式就是排除这个元素所在行和列剩下的矩阵的行列式</li>
+<li><span class="math inline">\(a_{ij}\)</span>的代数余子式记作<span class="math inline">\(c_{ij}\)</span></li>
+<li>注意代数余子式的正负，与<span class="math inline">\(i+j\)</span>的奇偶性有关，偶数取正，奇数取负，这里的符号是指代数余子式对应的子矩阵正常计算出行列式后前面的符号</li>
+<li><span class="math inline">\(detA=a_{11}C_{11}+a_{12}C_{12}+....+a_{1n}C_{1n}\)</span></li>
+</ul>
+<h1 id="第十九讲克拉默法则逆矩阵体积">第十九讲：克拉默法则，逆矩阵，体积</h1>
+<h2 id="逆矩阵">逆矩阵</h2>
+<ul>
+<li>只有行列式不为0时，矩阵才是可逆的</li>
+<li>逆矩阵公式 <span class="math display">\[
+A^{-1}=\frac{1}{detA}C^T
+\]</span> 其中<span class="math inline">\(C_{ij}\)</span>是<span class="math inline">\(A_{ij}\)</span>的代数余子式</li>
+<li>证明：即证<span class="math inline">\(AC^T=(detA)I\)</span> <span class="math display">\[
+\begin{bmatrix}
+a_{11} &amp; ... &amp; a_{1n} \\
+a_{n1} &amp; ... &amp; a_{nn} \\
+\end{bmatrix}
+\begin{bmatrix}
+c_{11} &amp; ... &amp; c_{n1} \\
+c_{1n} &amp; ... &amp; c_{nn} \\
+\end{bmatrix}=
+\begin{bmatrix}
+detA &amp; 0 &amp; 0 \\
+0 &amp; detA &amp; 0 \\
+0 &amp; 0 &amp; detA \\
+\end{bmatrix}
+\]</span> 对角线上都是行列式，因为<span class="math inline">\(det=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(....)+a_{13}(....)\)</span> 其他位置都是0，因为行a乘以行b的代数余子式相当于求一个矩阵的行列式，这个矩阵行a与行b相等，行列式为0</li>
+</ul>
+<h2 id="克拉默法则">克拉默法则</h2>
+<ul>
+<li>解Ax=b <span class="math display">\[
+Ax=b \\
+x=A^{-1}b \\
+x=\frac{1}{detA}C^Tb \\
+ \\
+x_1=\frac{detB_1}{detA} \\
+x_3=\frac{detB_2}{detA} \\
+... \\
+\]</span></li>
+<li>克拉默法则即发现矩阵<span class="math inline">\(B_i\)</span>就是矩阵<span class="math inline">\(A\)</span>的第i列换成b，其余不变</li>
+</ul>
+<h2 id="体积">体积</h2>
+<ul>
+<li>A的行列式可以代表一个体积，例如3*3矩阵的行列式代表一个三维空间内的体积</li>
+<li>矩阵的每一行代表一个盒子的一条边(从同一顶点连出的)，行列式就是这个盒子的体积，行列式的正负代表左手或者右手系。</li>
+<li>(1)单位矩阵对应单位立方体，体积为1</li>
+<li>对正交矩阵Q, <span class="math display">\[
+QQ^T=I \\
+|QQ^T|=|I| \\
+|Q||Q^T|=1 \\
+{|Q|}^2=1 \\
+|Q|=1 \\
+\]</span> Q对应的盒子是单位矩阵对应的单位立方体在空间中旋转过一个角度</li>
+<li>(3a)如果矩阵的某一行翻倍，即盒子一组边翻倍，体积也翻倍，从行列式角度可以把倍数提出来，因此行列式也是翻倍</li>
+<li>(2)交换矩阵两行，盒子的体积不变</li>
+<li>(3b)矩阵某一行拆分，盒子也相应切分为两部分</li>
+<li>以上，行列式的三条性质(1,2,3a,3b)均可以在体积上验证</li>
+</ul>
+<h1 id="第二十讲特征值和特征向量">第二十讲：特征值和特征向量</h1>
+<h2 id="特征向量">特征向量</h2>
+<ul>
+<li>给定矩阵A，矩阵A可以看成一个函数，作用在一个向量x上，得到向量Ax</li>
+<li>当Ax平行于x时，即<span class="math inline">\(Ax=\lambda x\)</span>，我们称<span class="math inline">\(x\)</span>为特征向量，<span class="math inline">\(\lambda\)</span>为特征值</li>
+<li>如果A是奇异矩阵，<span class="math inline">\(\lambda = 0\)</span>是一个特征值</li>
+</ul>
+<h2 id="几个例子">几个例子</h2>
+<ul>
+<li>如果A是投影矩阵，可以发现它的特征向量就是投影平面上的任意向量，因为<span class="math inline">\(Ax\)</span>即投影到平面上，平面上的所有向量投影后不变，自然平行，同时特征值就是1。如果向量垂直于平面，<span class="math inline">\(Ax=0\)</span>，特征值为0.因此投影矩阵A的特征向量就分以上两种情况，特征值为1或0.</li>
+<li>再举一例 <span class="math display">\[
+A=
+\begin{bmatrix}
+0 &amp; 1 \\
+1 &amp; 0 \\
+\end{bmatrix} \\
+\lambda =1, x=
+\begin{bmatrix}
+1 \\
+1 \\
+\end{bmatrix}
+Ax=
+\begin{bmatrix}
+1 \\
+1 \\
+\end{bmatrix} \\
+\lambda =-1, x=
+\begin{bmatrix}
+-1 \\
+1 \\
+\end{bmatrix}
+Ax=
+\begin{bmatrix}
+1 \\
+-1 \\
+\end{bmatrix} \\    
+\]</span></li>
+<li>n*n矩阵有n个特征值</li>
+<li>特征值的和等于对角线元素和，这个和称为迹(trace)，</li>
+<li>如何求解<span class="math inline">\(Ax=\lambda x\)</span> <span class="math display">\[
+(A-\lambda I)x=0 \\
+\]</span></li>
+<li>可见方程有非零解，<span class="math inline">\((A-\lambda I)\)</span>必须是奇异的 即: <span class="math display">\[
+det(A-\lambda I)=0 \\
+\]</span></li>
+<li><span class="math display">\[
+If \qquad Ax=\lambda x \\
+Then \qquad (A+3I)x=(\lambda +3)x \\
+\]</span></li>
+<li>因为加上单位矩阵，特征向量不变依然为x，特征值加上单位矩阵的系数即<span class="math inline">\((\lambda +3)\)</span></li>
+<li>A+B的特征值不一定是A的特征值加上B的特征值，因为他们的特征向量不一定相同。同理AB的特征值也不一定是他们的特征值的乘积</li>
+<li>再举一例，对旋转矩阵Q <span class="math display">\[
+Q=
+\begin{bmatrix}
+0 &amp; -1 \\
+1 &amp; 0 \\
+\end{bmatrix} \\
+trace=0=\lambda _1 +\lambda _2 \\
+det=1=\lambda _1 \lambda _2 \\
+\]</span></li>
+<li>但是可以看出 <span class="math inline">\(\lambda _1，\lambda _2\)</span>无实数解</li>
+<li>再看看更加糟糕的情况(矩阵更加不对称，更难得到实数解的特征值) <span class="math display">\[
+A=
+\begin{bmatrix}
+3 &amp; 1 \\
+0 &amp; 3 \\
+\end{bmatrix} \\
+det(A-\lambda I)=
+\begin{vmatrix}
+3-\lambda &amp; 1 \\
+0 &amp; 3-\lambda \\
+\end{vmatrix}
+==(3-\lambda )^2=0 \\
+\lambda _1=\lambda _2=3 \\
+x_1=
+\begin{bmatrix}
+1 \\
+0 \\
+\end{bmatrix}
+\]</span></li>
+</ul>
+<h1 id="第二十一讲对角化和a的幂">第二十一讲：对角化和A的幂</h1>
+<h2 id="对角化">对角化</h2>
+<ul>
+<li><p>假设A有n个线性无关特征向量，按列组成矩阵S，即特征向量矩阵</p></li>
+<li><p>以下所有关于矩阵对角化的讨论都在S可逆，即n个特征向量线性无关的前提下</p></li>
+<li><p><span class="math display">\[
+AS=A[x_1,x_2...x_n]=[\lambda _1 x_1,....\lambda _n x_n] \\
+=[x_1,x_2,...x_n]
+\begin{bmatrix}
+\lambda _1 &amp; 0 &amp; ... &amp; 0 \\
+0 &amp; \lambda _2 &amp; ... &amp; 0 \\
+... &amp; ... &amp; ... &amp; ... \\
+0 &amp; 0  &amp; 0 &amp; \lambda _n \\
+\end{bmatrix} \\
+=S \Lambda \\
+\]</span></p></li>
+<li><p>假设S可逆，即n个特征向量无关，此时可以得到 <span class="math display">\[
+S^{-1}AS=\Lambda \\
+A=S\Lambda S^{-1} \\
+\]</span></p></li>
+<li><p><span class="math inline">\(\Lambda\)</span>是对角矩阵，这里我们得到了除了<span class="math inline">\(A=LU\)</span>和<span class="math inline">\(A=QR\)</span>之外的一种矩阵分解</p></li>
+<li><p><span class="math display">\[
+if \qquad Ax=\lambda x \\
+A^2 x=\lambda AX=\lambda ^2 x \\
+A^2=S\Lambda S^{-1} S \Lambda S^{-1}=S \Lambda ^2 S^{-1} \\
+\]</span></p></li>
+<li><p>上面关于<span class="math inline">\(A^2\)</span>的两式说明平方后特征向量不变，特征值平方，K次方同理</p></li>
+<li><p>特征值和特征向量帮助我们理解矩阵幂，当计算矩阵幂时，我们可以把矩阵分解成特征向量矩阵和对角阵相乘的形式，K个相乘两两可以抵消，如上式</p></li>
+<li><p>什么样的矩阵的幂趋向于0(稳定) <span class="math display">\[
+A^K \rightarrow 0 \quad as \quad K \rightarrow \infty \\
+if \quad all |\lambda _i|&lt;1 \\ 
+\]</span></p></li>
+<li><p>哪些矩阵可以对角化？ 如果所有特征值不同，则A可以对角化</p></li>
+<li><p>如果矩阵A已经是对角阵，则<span class="math inline">\(\Lambda\)</span>与A相同</p></li>
+<li><p>特征值重复的次数称为代数重度，对三角阵，如 <span class="math display">\[
+A=
+\begin{bmatrix}
+2 &amp; 1 \\
+0 &amp; 2 \\
+\end{bmatrix} \\
+det(A-\lambda I)=
+\begin{vmatrix}
+2-\lambda &amp; 1 \\
+0 &amp; 2-\lambda \\
+\end{vmatrix}=0 \\
+\lambda =2 \\
+A-\lambda I=
+\begin{bmatrix}
+0 &amp; 1 \\
+0 &amp; 0 \\
+\end{bmatrix} \\
+\]</span></p></li>
+<li><p>对<span class="math inline">\(A-\lambda I\)</span>，几何重数是1，而特征值的代数重度是2</p></li>
+<li><p>特征向量只有(1,0)，因此对于三角阵，它不可以对角化，不存在两个线性无关的特征向量。</p></li>
+</ul>
+<h2 id="a的幂">A的幂</h2>
+<ul>
+<li>多数矩阵拥有互相线性无关的一组特征值，可以对角化。假如可以对角化，我们需要关注如何求解A的幂</li>
+<li><span class="math display">\[
+give \quad u_0 \\
+u_{k+1}=Au_k \\
+u_k=A^ku_0 \\
+how \quad to \quad solve \quad u_k \\
+u_0=c_1x_1+c_2x_2+...+c_nx_n=SC \\
+Au_0=c_1 \lambda _1 x_1 + c_2 \lambda _2 x_2 +...+c_n \lambda _n x_n \\
+A^{100}u_0=c_1 \lambda _1^{100} x_1 + c_2 \lambda _2^{100} x_2 +...+c_n \lambda _n^{100} x_n \\
+=S\Lambda ^{100} C \\
+=u_{100} \\
+\]</span></li>
+<li>因为n个特征向量互相不线性相关，因此它们可以作为一组基覆盖整个n维空间，自然<span class="math inline">\(u_0\)</span>可以用特征向量的线性组合表示，C是线性系数向量。上式得出了矩阵幂的解法，接下来以斐波那契数列为例 <span class="math display">\[
+F_0=0 \\
+F_1=1 \\
+F_2=1 \\
+F_3=2 \\
+F_4=3 \\
+F_5=5 \\
+..... \\
+F_{100}=? \\
+\]</span></li>
+<li>斐波那契数列的增长速度有多快?由特征值决定，我们尝试构造向量，来找到斐波那契数列迭代的矩阵关系 <span class="math display">\[
+F_{k+2}=F_{k+1}+F_k \\
+F_{k+1}=F_{k+1} \\
+\]</span></li>
+<li>定义向量 <span class="math display">\[
+u_k=
+\begin{bmatrix}
+F_{k+1} \\
+F_k \\
+\end{bmatrix} \\
+\]</span></li>
+<li>利用这个向量可以将前两个等式写成矩阵形式 <span class="math display">\[
+u_{k+1}=
+\begin{bmatrix}
+1 &amp; 1 \\
+1 &amp; 0 \\
+\end{bmatrix}
+u_k \\
+A=
+\begin{bmatrix}
+1 &amp; 1 \\
+1 &amp; 0 \\
+\end{bmatrix} \\
+\lambda =\frac {1 \pm \sqrt 5}2 \\
+\]</span></li>
+<li>得到两个特征值，我们很容易得到特征向量</li>
+<li>回到斐波那契数列，斐波那契数列的增长速率由我们构造的"数列更新矩阵"的特征值决定，而且由<span class="math inline">\(A^{100}u_0=c_1 \lambda _1^100 x_1 + c_2 \lambda _2^100 x_2 +...+c_n \lambda _n^100 x_n\)</span>可以看出增长率主要由由较大的特征值决定，因此<span class="math inline">\(F_{100}\)</span>可以写成如下形式 <span class="math display">\[
+F_{100} \approx c_1 {\frac {1 + \sqrt 5}2}^{100} \\
+\]</span></li>
+<li>再有初始值有 <span class="math display">\[
+u_0=
+\begin{bmatrix}
+F_1 \\
+F_0 \\
+\end{bmatrix}=
+\begin{bmatrix}
+1 \\
+0 \\
+\end{bmatrix}
+=c_1x_1+c_2x_2
+\]</span></li>
+<li>其中<span class="math inline">\(x_1,x_2\)</span>是两个特征向量，线性系数可求，代入公式可求<span class="math inline">\(F_{100}\)</span>的近似值</li>
+</ul>
+<h2 id="总结">总结</h2>
+<ul>
+<li>我们发现在A可逆的情况下，A可以分解成<span class="math inline">\(S\Lambda S^{-1}\)</span>的形式</li>
+<li>这种形式有一个特点，方便求A的幂，即分解后可以看出A的幂的特征值单位矩阵是A的特征值单位矩阵的幂</li>
+<li>我们在求解斐波那契数列中尝试运用此特点，首先将数列的更新转换为矩阵形式</li>
+<li>求出矩阵的特征值，特征向量</li>
+<li>由A的幂的展开式可以看出A的幂主要由较大的特征值决定，因此<span class="math inline">\(F_{100}\)</span>可以写成<span class="math inline">\(F_{100} \approx c_1 {(\frac {1 + \sqrt 5}2)}^{100}\)</span>的形式</li>
+<li>由初始值<span class="math inline">\(F_0\)</span>求出线性系数，代入上式，得到<span class="math inline">\(F_{100}\)</span>的近似值</li>
+<li>以上是差分方程的一个例子，下一节将讨论微分方程</li>
+</ul>
+<h1 id="第二十二讲微分方程和expat">第二十二讲：微分方程和exp(At)</h1>
+<h2 id="微分方程">微分方程</h2>
+<ul>
+<li>常系数线性方程的解是指数形式的，如果微分方程的解是指数形式，只需利用线代求出指数，系数，就可以求出解</li>
+<li>举个例子 <span class="math display">\[
+\frac{du_1}{dt}=-u_1+2u_2 \\
+\frac{du_2}{dt}=u_1-2u_2 \\
+u(0)=
+\begin{bmatrix}
+1 \\
+0 \\
+\end{bmatrix} \\
+\]</span></li>
+<li>首先我们列出系数矩阵，并找出矩阵的特征值和特征向量 <span class="math display">\[
+A=
+\begin{bmatrix}
+-1 &amp; 2 \\
+1 &amp; -2 \\
+\end{bmatrix}
+\]</span></li>
+<li>易得<span class="math inline">\(\lambda=0\)</span>是这个奇异矩阵的一个解，由迹可以看出第二个特征值是<span class="math inline">\(\lambda=-3\)</span>，并得到两个特征向量 <span class="math display">\[
+x_1=
+\begin{bmatrix}
+2 \\
+1 \\
+\end{bmatrix} \\
+x_2=
+\begin{bmatrix}
+1 \\
+-1 \\
+\end{bmatrix}
+\]</span></li>
+<li>微分方程解的通解形式将是 <span class="math display">\[
+u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2
+\]</span></li>
+<li>为什么？ <span class="math display">\[
+\frac{du}{dt} \\
+=c_1 \lambda _1 e^{\lambda _1 t}x_1 \\
+=A c_1 e^{\lambda _1 t}x_1 \\
+because \quad A x_1=\lambda _1 x_1 \\
+\]</span></li>
+<li>在差分方程<span class="math inline">\(u_{k+1}=Au_k\)</span>当中，解的形式是<span class="math inline">\(c_1\lambda _1 ^k x_1+c_2 \lambda _2 ^k x_2\)</span></li>
+<li>在微分方程<span class="math inline">\(\frac {du}{dt}=Au\)</span>当中，解的形式是<span class="math inline">\(u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2\)</span></li>
+<li><span class="math inline">\(c_1,c_2\)</span>由初始值解出，即系数矩阵C乘特征向量矩阵S得到初始值</li>
+<li>可以看出t趋于无穷时，例子方程的解只剩下稳态部分，即<span class="math inline">\((\frac 23,\frac 13)\)</span></li>
+<li>什么时候解趋向于0？存在负数特征值，因为<span class="math inline">\(e^{\lambda t}\)</span>需要趋向于0</li>
+<li>如果特征值是复数呢？虚数部分的模值是1，所以如果复数的实数部分是负数，解依然趋向于0</li>
+<li>什么时候存在稳态？特征值中只存在0和负数，就如上面的例子</li>
+<li>什么时候解无法收敛？任何特征值的实数部分大于0</li>
+<li>改变系数矩阵的符号，特征值也改变符号，稳态的解依然稳态，收敛的解就会变成发散</li>
+<li>如何从矩阵直接判断解是否收敛？即特征值的实数部分都小于0？</li>
+<li>矩阵的迹应该小于0，但对角线之和为0依然不一定收敛，如 <span class="math display">\[
+\begin{bmatrix}
+-2 &amp; 0 \\
+0 &amp; 1 \\
+\end{bmatrix}
+\]</span></li>
+<li>因此还需要另一个条件：行列式的值是特征值乘积，因此行列式的值应该大于0</li>
+</ul>
+<h2 id="expat">exp(At)</h2>
+<ul>
+<li>是否可以把解表示成<span class="math inline">\(S,\Lambda\)</span>的形式</li>
+<li>矩阵A表示<span class="math inline">\(u_1,u_2\)</span>耦合，首先我们需要将u对角化，解耦</li>
+<li><span class="math display">\[
+\frac{du}{dt} = Au \\
+set \quad u=Sv \\
+S \frac{dv}{dt} = ASv \\
+\frac{dv}{dt}=S^{-1}ASv=\Lambda v \\
+v(t)=e^{\Lambda t}v(0) \\
+u(t)=Se^{\Lambda t}S^{-1}u(0) \\
+\]</span></li>
+</ul>
+<h1 id="第二十一讲马尔科夫矩阵傅立叶级数">第二十一讲：马尔科夫矩阵;傅立叶级数</h1>
+<h2 id="马尔科夫矩阵">马尔科夫矩阵</h2>
+<ul>
+<li><p>一个典型的马尔科夫矩阵 <span class="math display">\[
+\begin{bmatrix}
+0.1 &amp; 0.01 &amp; 0.3 \\
+0.2 &amp; 0.99 &amp; 0.3 \\
+0.7 &amp; 0 &amp; 0.4 \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>每一个元素大于等于0，每一列之和为1，马尔科夫矩阵的幂都是马尔科夫矩阵</p></li>
+<li><p><span class="math inline">\(\lambda=1\)</span>是一个特征值，其余的特征值的绝对值都小于1</p></li>
+<li><p>在上一讲中我们谈到矩阵的幂可以分解为 <span class="math display">\[
+u_k=A^ku_0=c_1\lambda _1 ^kx_1+c_2\lambda _2 ^kx_2+.....
+\]</span></p></li>
+<li><p>当A是马尔科夫矩阵时，只有一个特征值为1，其余特征值小于1，随着k的变大，小于1的特征值所在项趋向于0，只保留特征值为1的那一项，同时对应的特征向量的元素都大于0</p></li>
+<li><p>当每一列和为1时，必然存在一个特征值<span class="math inline">\(\lambda =1\)</span></p></li>
+<li><p>证明： <span class="math display">\[
+A-I=
+\begin{bmatrix}
+-0.9 &amp; 0.01 &amp; 0.3 \\
+0.2 &amp; -0.01 &amp; 0.3 \\
+0.7 &amp; 0 &amp; -0.6 \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>若1是一个特征值，则<span class="math inline">\(A-I\)</span>应该是奇异的，可以看到<span class="math inline">\(A-I\)</span>每一列和为0，即说明行向量线性相关，即矩阵奇异,同时全1向量在左零空间。</p></li>
+<li><p>对于马尔科夫矩阵A，我们研究<span class="math inline">\(u_{k+1}=Au_k\)</span></p></li>
+<li><p>一个例子，u是麻省和加州的人数，A是人口流动矩阵 <span class="math display">\[
+\begin{bmatrix}
+u_{cal} \\
+u_{mass} \\
+\end{bmatrix}_{t=k+1}
+=
+\begin{bmatrix}
+0.9 &amp; 0.2 \\
+0.1 &amp; 0.8 \\
+\end{bmatrix}
+\begin{bmatrix}
+u_{cal} \\
+u_{mass} \\
+\end{bmatrix}_{t=k}
+\]</span></p></li>
+<li><p>可以看到每一年(k)80%的人留在麻省，20%的人前往加州，加州那边也有10%移居麻省</p></li>
+<li><p>对马尔科夫矩阵A <span class="math display">\[
+\begin{bmatrix}
+0.9 &amp; 0.2 \\
+0.1 &amp; 0.8 \\
+\end{bmatrix} \\
+\lambda _1 =1 \\
+\lambda _2 =0.7 \\
+\]</span></p></li>
+<li><p>对特征值为1的项，容易求出特征向量为<span class="math inline">\((2,1)\)</span>，对特征值为0.7的项，特征向量为(-1,1)</p></li>
+<li><p>得到我们要研究的公式 <span class="math display">\[
+u_k=c_1*1^k*
+\begin{bmatrix}
+2 \\
+1 \\
+\end{bmatrix}
++c_2*(0.7)^k*
+\begin{bmatrix}
+-1 \\
+1 \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>假设一开始加州有0人，麻省有1000人，即<span class="math inline">\(u_0\)</span>，代入公式可以得到<span class="math inline">\(c_1,c_2\)</span>，可以看到很多年之后，加州和麻省的人数将稳定，各占1000人中的三分之一和三分之二。</p></li>
+<li><p>行向量为和为1是另外一种定义马尔科夫矩阵的方式</p></li>
+</ul>
+<h2 id="傅里叶级数">傅里叶级数</h2>
+<ul>
+<li>先讨论带有标准正交基的投影问题</li>
+<li>假设<span class="math inline">\(q_1....q_n\)</span>是一组标准正交基，任何向量<span class="math inline">\(v\)</span>都是这组基的线性组合</li>
+<li>现在我们要求出线性组合系数<span class="math inline">\(x_1....x_n\)</span> <span class="math inline">\(v=x_1q_1+x_2q_2+...x_nq_n\)</span> 一种方法是将<span class="math inline">\(v\)</span>与<span class="math inline">\(q_i\)</span>做内积，逐一求出系数 <span class="math display">\[
+q_1^Tv=x_1q_1^Tq_1+0+0+0....+0=x_1 \\
+\]</span></li>
+<li>写成矩阵形式 <span class="math display">\[
+\begin{bmatrix}
+q_1 &amp; q_2 &amp; ... &amp; q_n \\
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+... \\
+x_n \\
+\end{bmatrix}=
+v \\
+Qx=v \\
+x=Q^{-1}v=Q^Tv \\
+\]</span></li>
+<li>现在讨论傅里叶级数</li>
+<li>我们希望将函数分解 <span class="math display">\[
+f(x)=a_0+a_1cosx+b_1sinx+a_2cos2x+b_2cos2x+.......
+\]</span></li>
+<li>关键是，在这种分解中，<span class="math inline">\(coskx,sinkx\)</span>构成一组函数空间的无穷正交基，即这些函数内积为0(向量的内积是离散的值累加，函数的内积是连续的值积分)。</li>
+<li>如何求出傅里叶系数？</li>
+<li>利用之前的向量例子来求</li>
+<li>将<span class="math inline">\(f(x)\)</span>逐一与正交基元素内积，得到这个正交基元素对应的系数乘<span class="math inline">\(\pi\)</span>，例如 <span class="math display">\[
+\int _0 ^{2\pi} f(x)cosx dx=0+ a_1 \int _0^{2\pi}(cosx)^2dx+0+0...+0=\pi a_1 \\
+\]</span></li>
+</ul>
+<h1 id="第二十二讲对称矩阵及其正定性">第二十二讲：对称矩阵及其正定性</h1>
+<h2 id="对称矩阵">对称矩阵</h2>
+<ul>
+<li>对称矩阵的特征值是实数，不重复的特征值对应的特征向量互相正交</li>
+<li>对一般矩阵<span class="math inline">\(A=S\Lambda S^{-1}\)</span>，S为特征向量矩阵</li>
+<li>对对称矩阵<span class="math inline">\(A=Q\Lambda Q^{-1}=Q\Lambda Q^T\)</span>，Q为标准正交的特征向量矩阵</li>
+<li>为什么特征值都是实数？</li>
+<li><span class="math inline">\(Ax=\lambda x\)</span>对左右同时取共轭，因为我们现在只考虑实数矩阵A，<span class="math inline">\(Ax^{*}=\lambda ^{*} x^{*}\)</span></li>
+<li>即<span class="math inline">\(\lambda\)</span>和它的共轭都是特征值，现在再对等式两边取转置，$x<sup>{* T}A</sup>T=x^{* T} ^{* T} $</li>
+<li>上式中<span class="math inline">\(A=A^T\)</span>，且两边同乘以<span class="math inline">\(x\)</span>，与<span class="math inline">\(x^{* T}A\lambda x^{* T}x\)</span>对比可得<span class="math inline">\(\lambda ^{*}=\lambda\)</span>，即特征值是实数</li>
+<li>可见，对于复数矩阵，需要<span class="math inline">\(A=A^{* T}\)</span>才满足对称</li>
+<li>对于对称矩阵 <span class="math display">\[
+A=Q\Lambda Q^{-1}=Q\Lambda Q^T \\
+=\lambda _1 q_1 q_1^T+\lambda _2 q_2 q_2^T+.... \\
+\]</span></li>
+<li>所以每一个对称矩阵都是一些互相垂直的投影矩阵的组合</li>
+<li>对于对称矩阵，正主元的个数等于正特征值的个数，且主元的乘积等于特征值的乘积等于矩阵的行列式</li>
+</ul>
+<h2 id="正定性">正定性</h2>
+<ul>
+<li>正定矩阵都是对称矩阵，是对称矩阵的一个子类，其所有特征值为正数，所有主元为正数，所有的子行列式都是正数</li>
+<li>特征值的符号与稳定性有关</li>
+<li>主元、行列式、特征值三位一体，线性代数将其统一</li>
 </ul>
 ]]></content>
       <categories>
