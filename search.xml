@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>论文翻译：用于生成式自动文摘的一种神经注意力模型</title>
+    <url>/2017/12/27/AM-Model-for-ASS/</url>
+    <content><![CDATA[<p>论文翻译： - A Neural Attention Model for Abstractive Sentence Summarization</p>
+<p>作者： - Alexander M. Rush(Facebook AI Research / Harvard SEAS) - Sumit Chopra(Facebook AI Research) - Jason Weston(Facebook AI Research) <a id="more"></a></p>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0IyQS.png" alt="" /><figcaption>i0IyQS.png</figcaption>
+</figure>
+<h1 id="原文地址">原文地址</h1>
+<ul>
+<li><a href="https://arxiv.org/pdf/1509.00685.pdf">A Neural Attention Model for Abstractive Sentence Summarization</a></li>
+</ul>
+<h1 id="翻译">翻译</h1>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0I0it.jpg" alt="" /><figcaption>i0I0it.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0IdII.jpg" alt="" /><figcaption>i0IdII.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0IBJP.jpg" alt="" /><figcaption>i0IBJP.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0IadA.jpg" alt="" /><figcaption>i0IadA.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0Irz8.jpg" alt="" /><figcaption>i0Irz8.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0IDRf.jpg" alt="" /><figcaption>i0IDRf.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0I2Zj.jpg" alt="" /><figcaption>i0I2Zj.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0I6sg.jpg" alt="" /><figcaption>i0I6sg.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0IcLQ.jpg" alt="" /><figcaption>i0IcLQ.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0IRds.jpg" alt="" /><figcaption>i0IRds.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0IWon.jpg" alt="" /><figcaption>i0IWon.jpg</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>自然语言处理</category>
+      </categories>
+      <tags>
+        <tag>abstractive summarization</tag>
+        <tag>math</tag>
+        <tag>machine learning</tag>
+        <tag>theory</tag>
+        <tag>nlp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2019-2020的阅读</title>
     <url>/2019/12/16/201912/</url>
     <content><![CDATA[<p>跨年读论文。 - 边池化 - Discourse-Aware，抽取式摘要 - Discourse-Aware，生成式摘要 - 孪生BERT - 巨型Chatbot</p>
@@ -98,64 +156,6 @@ p\left(y_{i} | \mathbf{x}, \theta\right)=\operatorname{softmax}\left(\mathbf{W}_
         <tag>deep learning</tag>
         <tag>summarization</tag>
         <tag>natural language processing</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>论文翻译：用于生成式自动文摘的一种神经注意力模型</title>
-    <url>/2017/12/27/AM-Model-for-ASS/</url>
-    <content><![CDATA[<p>论文翻译： - A Neural Attention Model for Abstractive Sentence Summarization</p>
-<p>作者： - Alexander M. Rush(Facebook AI Research / Harvard SEAS) - Sumit Chopra(Facebook AI Research) - Jason Weston(Facebook AI Research) <a id="more"></a></p>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0IyQS.png" alt="" /><figcaption>i0IyQS.png</figcaption>
-</figure>
-<h1 id="原文地址">原文地址</h1>
-<ul>
-<li><a href="https://arxiv.org/pdf/1509.00685.pdf">A Neural Attention Model for Abstractive Sentence Summarization</a></li>
-</ul>
-<h1 id="翻译">翻译</h1>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0I0it.jpg" alt="" /><figcaption>i0I0it.jpg</figcaption>
-</figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0IdII.jpg" alt="" /><figcaption>i0IdII.jpg</figcaption>
-</figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0IBJP.jpg" alt="" /><figcaption>i0IBJP.jpg</figcaption>
-</figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0IadA.jpg" alt="" /><figcaption>i0IadA.jpg</figcaption>
-</figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0Irz8.jpg" alt="" /><figcaption>i0Irz8.jpg</figcaption>
-</figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0IDRf.jpg" alt="" /><figcaption>i0IDRf.jpg</figcaption>
-</figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0I2Zj.jpg" alt="" /><figcaption>i0I2Zj.jpg</figcaption>
-</figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0I6sg.jpg" alt="" /><figcaption>i0I6sg.jpg</figcaption>
-</figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0IcLQ.jpg" alt="" /><figcaption>i0IcLQ.jpg</figcaption>
-</figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0IRds.jpg" alt="" /><figcaption>i0IRds.jpg</figcaption>
-</figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0IWon.jpg" alt="" /><figcaption>i0IWon.jpg</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>自然语言处理</category>
-      </categories>
-      <tags>
-        <tag>abstractive summarization</tag>
-        <tag>math</tag>
-        <tag>machine learning</tag>
-        <tag>theory</tag>
-        <tag>nlp</tag>
       </tags>
   </entry>
   <entry>
@@ -290,110 +290,10 @@ X^1 = \sigma (XW_2 + \Delta) \\
         <category>自然语言处理</category>
       </categories>
       <tags>
-        <tag>natural language processing</tag>
         <tag>machine learning</tag>
+        <tag>natural language processing</tag>
         <tag>gnn</tag>
         <tag>bert</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lagrange,KKT,PCA,SVM</title>
-    <url>/2017/03/18/Lagrange/</url>
-    <content><![CDATA[<hr />
-<p>介绍拉格朗日乘子法及其推广KKT条件，以及它们在PCA和SVM中的应用 <a id="more"></a></p>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0olwj.png" alt="i0olwj.png" /> 图片来自wikipedia关于拉格朗日乘子法的形象介绍</p>
-<h1 id="拉格朗日乘子法">拉格朗日乘子法</h1>
-<ul>
-<li>拉格朗日乘子法是一种求约束条件下极值的方法，描述为 <span class="math display">\[
-在约束条件g(x,y)=c下 \\
-求函数f(x,y)的极值 \\
-\]</span> 其主要思想是将约束条件和原函数合成一个函数，转换为无约束条件，进而求偏导得到极值。</li>
-<li>由图可以看出，f函数值相等的点可以构成类似等高线的蓝色环，约束条件是绿色的路径。问题可以转换为，我们沿着绿色路径走，走到哪一点时这个点所在的蓝色环最靠中心或者最靠外沿(极大极小值)。</li>
-<li>显然，在绿色路径与蓝色环相切的点取得极值，此时它们的梯度(箭头)平行，描述为 <span class="math display">\[
-\nabla f (x, y) = \nabla (\lambda \left(g \left(x, y \right) - c \right))
-\]</span> <span class="math inline">\(\lambda\)</span>是拉格朗日乘数，在这个式子中代表两个平行梯度的大小倍数，正负代表两个梯度方向相反。拉格朗日乘数不为0。 拉格朗日方程即$ F(x,y)=$</li>
-<li>求解上面的式子，就得到一组<span class="math inline">\((x,y,\lambda)\)</span>，即极值点和达到极值时的拉格朗日乘数。此时拉格朗日方程<span class="math inline">\(F(x,y)=f(x,y)\)</span>，因为取得极值时约束条件部分一定为0(我们是沿着约束条件走找相切点，相切点在约束路径上)。</li>
-<li>拉格朗日系数的含义是最大增长值，<span class="math inline">\(-\frac{\partial \Lambda}{\partial {c_k}} = \lambda_k\)</span></li>
-</ul>
-<h1 id="卡罗需-库恩-塔克条件">卡罗需-库恩-塔克条件</h1>
-<ul>
-<li>如果约束条件不仅仅是等式，还包括不等约束条件，这就需将拉格朗日乘子法推广到KKT条件</li>
-<li>包含不等约束的极值问题描述为 <span class="math display">\[
-在约束条件: \\
-h_j(X)=0 j=1,2,...,p \\
-g_k(X)\leq 0 k=1,2,...q \\
-求函数f(X)的极值 \\
-\]</span></li>
-<li>拉格朗日函数为 <span class="math display">\[
-L(X,\lambda ,\mu)=f(X)+\sum _{j=1}^p \lambda _j h_j(X) + \sum _{k=1}^q \mu g_k(X)
-\]</span></li>
-<li>KKT条件为: <span class="math display">\[
-\frac{dL}{dX}=0 \\
-\lambda _j \neq 0 \\
-\mu _k \geq 0 \\
-\mu _k g_k(X)=0 \\
-h_j(X)=0 \\
-g_k(X) \leq 0\\
-\]</span></li>
-</ul>
-<h1 id="pca">PCA</h1>
-<ul>
-<li>PCA即Principal Component Analysis，主成分分析，将数据原本的维度进行优化，形成一组新的维度，它们是原有维度的线性组合且互不相关，按重要性大小排序，一个维度可以理解为数据矩阵中一列，一行代表一个样本</li>
-<li>记<span class="math inline">\(x_1,...,x_p\)</span>为原始p个维度，新维度是<span class="math inline">\(\xi _1,....,\xi _p\)</span></li>
-<li>新维度是原始维度的线性组合，表示为 <span class="math display">\[
-\xi _i = \sum _{j=1}^{p}  \alpha _{ij} x_j = \alpha _i^T x
-\]</span></li>
-<li>为了各个新维度统一尺度，另每个新维度的线性组合系数的向量长度都为1，即 <span class="math display">\[
-\alpha _i^T \alpha _i=1
-\]</span></li>
-<li>令A为特征变换矩阵，由各个新维度的线性组合系数向量构成，则需要求解一个最优的正交变换A，使得新维度的方差达到极值。其中正交变换即保证各个新维度不相关，方差越大则样本在新维度上具有区分度，方便我们进行数据的分类</li>
-<li>此时问题就转化为具有约束条件的极值问题，约束条件为<span class="math inline">\(\alpha _i^T \alpha _i=1\)</span>，求<span class="math inline">\(var(\xi _i)\)</span>的极值，可以用拉格朗日乘子法求解</li>
-<li>当i=1时，我们求出来第一个也是重要性最大(方差最大)的新维度，再令i=2,并加入约束条件<span class="math inline">\(E[\xi _2 \xi _1\-E[\xi _1][\xi _2]]=0\)</span>即两个新维度不相关，求出第二个新维度</li>
-<li>依次求出p个新维度</li>
-<li>PCA能够优化原始数据，找出具有区分度的维度，更重要的是如果原始数据的维度存在相关性，PCA能消除这些相关性，即便原始数据相关性很低，如果我们只取前k(k&lt;q)个新维度，就可以在损失较小精确度的情况下进行降维，大大缩短数据的训练时间</li>
-<li>如果我们取了前k个新维度，再对他们进行PCA的逆运算，就可以实现数据的降噪，因为重要性很低的新维度一般反应了数据中的随机噪声，抛弃它们并恢复原始数据时就实现了噪音的去除</li>
-<li>PCA是非监督的，没有考虑样本本身的类别或者标签，在监督学习中不一定是最优解，可以利用K-L变换实现针对分类的目标进行特征提取</li>
-</ul>
-<h1 id="pca-using-covariance-matrix">PCA using Covariance Matrix</h1>
-<ul>
-<li>上述求解PCA的方法太过于麻烦，在实际中可以通过协方差矩阵来求解（因为有高效的矩阵特征分解算法）</li>
-<li>PCA的优化目标是，重新选取一组基（特征），使得数据在这组基表示下，不同特征之间的协方差为0，同一特征内的数据方差最大化</li>
-<li>可以将问题转述为，对数据张量X，按特征列（共m个特征）零均值化（化简协方差的计算），计算协方差矩阵<span class="math inline">\(C=\frac 1m X^T X\)</span>，希望求得一组基P，使得特征变换后的数据<span class="math inline">\(Y=PX\)</span>的协方差矩阵D是对角阵，非对角元素（协方差）为0.若对角元素（方差）按从大到小排列，这时我们取P矩阵的前k行就可以将特征维度从m降到k。易得<span class="math inline">\(D=PCP^T\)</span>，且C为实对称阵，那么问题就转变为对实对称C对角化，我们需要的新的一组基就是特征向量组。</li>
-<li>算法：
-<ul>
-<li>有m条n维数据，排成n行m列矩阵X</li>
-<li>将X的每一行进行零均值化</li>
-<li>求出协方差矩阵C</li>
-<li>求出协方差矩阵的特征值和特征向量</li>
-<li>将特征向量按特征值大小对应从大到小按行排列，组成新的基矩阵P</li>
-<li>如果需要将为，取P的前k行即可，降维后的数据为<span class="math inline">\(Y=PX\)</span> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def PCA(X, dims):</span><br><span class="line">    m &#x3D; len(X)</span><br><span class="line">    mean &#x3D; np.mean(X, axis&#x3D;0)</span><br><span class="line">    X &#x3D; X - mean</span><br><span class="line">    C &#x3D; np.dot(X.T, X) &#x2F; m</span><br><span class="line">    Eigen_Value, Eigen_Vector &#x3D; np.linalg.eig(C)</span><br><span class="line">    index &#x3D; np.argsort(Eigen_Value)[-1:-dims - 1:-1]</span><br><span class="line">    PCA_Vector &#x3D; Eigen_Vector[index]</span><br><span class="line">    X_PCA &#x3D; np.dot(PCA_Vector, X.T)</span><br><span class="line">    return X_PCA.T</span><br></pre></td></tr></table></figure> # SVM</li>
-</ul></li>
-<li>在分类学习中，我们需要找到一个划分超平面，将不同类别的样本分开，而最好的划分超平面显然是离所分各个样本类尽量远，即对训练样本局部扰动容忍性最好的超平面</li>
-<li>划分超平面通过方程<span class="math inline">\(w^Tx+b=0\)</span>描述，其中w为法向量，决定了超平面方向，b为超平面到远点的位移</li>
-<li>求解一个SVM，即找到满足约束 <span class="math display">\[
-\begin{cases}
-w^Tx_i+b \geq +1, y_i=+1 \\
-w^Tx_i+b \leq -1, y_i=-1 \\
-\end{cases}
-\]</span> 的条件下，使得两个异类支持向量到超平面的距离<span class="math inline">\(\frac{2}{||w||}\)</span>最大 这可以重写为最优化问题 <span class="math display">\[
-min_{w,b} \frac 12 {||w||}^2 \\
-s.t. y_i(w^Tx_i+b) \geq 1,i=1,2,...,m \\
-\]</span> 推导见另两篇博文：机器学习笔记和统计学习方法笔记手写版</li>
-<li>对于这个最优化问题，它的拉格朗日方程是 <span class="math display">\[
-L(w,b,\alpha )=\frac 12 {||w||}^2+\sum _{i=1}^{m} \alpha _i (1-y_i(w^Tx_i+b))
-\]</span> 其中<span class="math inline">\(\alpha\)</span>是拉格朗日乘子，令方程分别对w,b求偏导，得到对偶问题 <span class="math display">\[
-max _{\alpha } \sum _{i=1}^m \alpha _i -\frac 12 \sum _{i=1}^m \sum _{j=1}^m \alpha _i \alpha _j y_i y_j x_i^T x_j \\
-s.t. \sum _{i=1}^m \alpha _i y_i=0, \\
-\alpha _i \geq 0,i=1,2,...,m \\
-\]</span> 上式满足KKT条件，通过SMO算法求解</li>
-</ul>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>machine learning</tag>
-        <tag>code</tag>
       </tags>
   </entry>
   <entry>
@@ -581,6 +481,106 @@ p_t(x_i | y_j) = \sum _{\overline{x}} p_t(y_j|\overline{x})p(\overline{x}) \math
         <tag>machine learning</tag>
         <tag>corex</tag>
         <tag>topic model</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lagrange,KKT,PCA,SVM</title>
+    <url>/2017/03/18/Lagrange/</url>
+    <content><![CDATA[<hr />
+<p>介绍拉格朗日乘子法及其推广KKT条件，以及它们在PCA和SVM中的应用 <a id="more"></a></p>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0olwj.png" alt="i0olwj.png" /> 图片来自wikipedia关于拉格朗日乘子法的形象介绍</p>
+<h1 id="拉格朗日乘子法">拉格朗日乘子法</h1>
+<ul>
+<li>拉格朗日乘子法是一种求约束条件下极值的方法，描述为 <span class="math display">\[
+在约束条件g(x,y)=c下 \\
+求函数f(x,y)的极值 \\
+\]</span> 其主要思想是将约束条件和原函数合成一个函数，转换为无约束条件，进而求偏导得到极值。</li>
+<li>由图可以看出，f函数值相等的点可以构成类似等高线的蓝色环，约束条件是绿色的路径。问题可以转换为，我们沿着绿色路径走，走到哪一点时这个点所在的蓝色环最靠中心或者最靠外沿(极大极小值)。</li>
+<li>显然，在绿色路径与蓝色环相切的点取得极值，此时它们的梯度(箭头)平行，描述为 <span class="math display">\[
+\nabla f (x, y) = \nabla (\lambda \left(g \left(x, y \right) - c \right))
+\]</span> <span class="math inline">\(\lambda\)</span>是拉格朗日乘数，在这个式子中代表两个平行梯度的大小倍数，正负代表两个梯度方向相反。拉格朗日乘数不为0。 拉格朗日方程即$ F(x,y)=$</li>
+<li>求解上面的式子，就得到一组<span class="math inline">\((x,y,\lambda)\)</span>，即极值点和达到极值时的拉格朗日乘数。此时拉格朗日方程<span class="math inline">\(F(x,y)=f(x,y)\)</span>，因为取得极值时约束条件部分一定为0(我们是沿着约束条件走找相切点，相切点在约束路径上)。</li>
+<li>拉格朗日系数的含义是最大增长值，<span class="math inline">\(-\frac{\partial \Lambda}{\partial {c_k}} = \lambda_k\)</span></li>
+</ul>
+<h1 id="卡罗需-库恩-塔克条件">卡罗需-库恩-塔克条件</h1>
+<ul>
+<li>如果约束条件不仅仅是等式，还包括不等约束条件，这就需将拉格朗日乘子法推广到KKT条件</li>
+<li>包含不等约束的极值问题描述为 <span class="math display">\[
+在约束条件: \\
+h_j(X)=0 j=1,2,...,p \\
+g_k(X)\leq 0 k=1,2,...q \\
+求函数f(X)的极值 \\
+\]</span></li>
+<li>拉格朗日函数为 <span class="math display">\[
+L(X,\lambda ,\mu)=f(X)+\sum _{j=1}^p \lambda _j h_j(X) + \sum _{k=1}^q \mu g_k(X)
+\]</span></li>
+<li>KKT条件为: <span class="math display">\[
+\frac{dL}{dX}=0 \\
+\lambda _j \neq 0 \\
+\mu _k \geq 0 \\
+\mu _k g_k(X)=0 \\
+h_j(X)=0 \\
+g_k(X) \leq 0\\
+\]</span></li>
+</ul>
+<h1 id="pca">PCA</h1>
+<ul>
+<li>PCA即Principal Component Analysis，主成分分析，将数据原本的维度进行优化，形成一组新的维度，它们是原有维度的线性组合且互不相关，按重要性大小排序，一个维度可以理解为数据矩阵中一列，一行代表一个样本</li>
+<li>记<span class="math inline">\(x_1,...,x_p\)</span>为原始p个维度，新维度是<span class="math inline">\(\xi _1,....,\xi _p\)</span></li>
+<li>新维度是原始维度的线性组合，表示为 <span class="math display">\[
+\xi _i = \sum _{j=1}^{p}  \alpha _{ij} x_j = \alpha _i^T x
+\]</span></li>
+<li>为了各个新维度统一尺度，另每个新维度的线性组合系数的向量长度都为1，即 <span class="math display">\[
+\alpha _i^T \alpha _i=1
+\]</span></li>
+<li>令A为特征变换矩阵，由各个新维度的线性组合系数向量构成，则需要求解一个最优的正交变换A，使得新维度的方差达到极值。其中正交变换即保证各个新维度不相关，方差越大则样本在新维度上具有区分度，方便我们进行数据的分类</li>
+<li>此时问题就转化为具有约束条件的极值问题，约束条件为<span class="math inline">\(\alpha _i^T \alpha _i=1\)</span>，求<span class="math inline">\(var(\xi _i)\)</span>的极值，可以用拉格朗日乘子法求解</li>
+<li>当i=1时，我们求出来第一个也是重要性最大(方差最大)的新维度，再令i=2,并加入约束条件<span class="math inline">\(E[\xi _2 \xi _1\-E[\xi _1][\xi _2]]=0\)</span>即两个新维度不相关，求出第二个新维度</li>
+<li>依次求出p个新维度</li>
+<li>PCA能够优化原始数据，找出具有区分度的维度，更重要的是如果原始数据的维度存在相关性，PCA能消除这些相关性，即便原始数据相关性很低，如果我们只取前k(k&lt;q)个新维度，就可以在损失较小精确度的情况下进行降维，大大缩短数据的训练时间</li>
+<li>如果我们取了前k个新维度，再对他们进行PCA的逆运算，就可以实现数据的降噪，因为重要性很低的新维度一般反应了数据中的随机噪声，抛弃它们并恢复原始数据时就实现了噪音的去除</li>
+<li>PCA是非监督的，没有考虑样本本身的类别或者标签，在监督学习中不一定是最优解，可以利用K-L变换实现针对分类的目标进行特征提取</li>
+</ul>
+<h1 id="pca-using-covariance-matrix">PCA using Covariance Matrix</h1>
+<ul>
+<li>上述求解PCA的方法太过于麻烦，在实际中可以通过协方差矩阵来求解（因为有高效的矩阵特征分解算法）</li>
+<li>PCA的优化目标是，重新选取一组基（特征），使得数据在这组基表示下，不同特征之间的协方差为0，同一特征内的数据方差最大化</li>
+<li>可以将问题转述为，对数据张量X，按特征列（共m个特征）零均值化（化简协方差的计算），计算协方差矩阵<span class="math inline">\(C=\frac 1m X^T X\)</span>，希望求得一组基P，使得特征变换后的数据<span class="math inline">\(Y=PX\)</span>的协方差矩阵D是对角阵，非对角元素（协方差）为0.若对角元素（方差）按从大到小排列，这时我们取P矩阵的前k行就可以将特征维度从m降到k。易得<span class="math inline">\(D=PCP^T\)</span>，且C为实对称阵，那么问题就转变为对实对称C对角化，我们需要的新的一组基就是特征向量组。</li>
+<li>算法：
+<ul>
+<li>有m条n维数据，排成n行m列矩阵X</li>
+<li>将X的每一行进行零均值化</li>
+<li>求出协方差矩阵C</li>
+<li>求出协方差矩阵的特征值和特征向量</li>
+<li>将特征向量按特征值大小对应从大到小按行排列，组成新的基矩阵P</li>
+<li>如果需要将为，取P的前k行即可，降维后的数据为<span class="math inline">\(Y=PX\)</span> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def PCA(X, dims):</span><br><span class="line">    m &#x3D; len(X)</span><br><span class="line">    mean &#x3D; np.mean(X, axis&#x3D;0)</span><br><span class="line">    X &#x3D; X - mean</span><br><span class="line">    C &#x3D; np.dot(X.T, X) &#x2F; m</span><br><span class="line">    Eigen_Value, Eigen_Vector &#x3D; np.linalg.eig(C)</span><br><span class="line">    index &#x3D; np.argsort(Eigen_Value)[-1:-dims - 1:-1]</span><br><span class="line">    PCA_Vector &#x3D; Eigen_Vector[index]</span><br><span class="line">    X_PCA &#x3D; np.dot(PCA_Vector, X.T)</span><br><span class="line">    return X_PCA.T</span><br></pre></td></tr></table></figure> # SVM</li>
+</ul></li>
+<li>在分类学习中，我们需要找到一个划分超平面，将不同类别的样本分开，而最好的划分超平面显然是离所分各个样本类尽量远，即对训练样本局部扰动容忍性最好的超平面</li>
+<li>划分超平面通过方程<span class="math inline">\(w^Tx+b=0\)</span>描述，其中w为法向量，决定了超平面方向，b为超平面到远点的位移</li>
+<li>求解一个SVM，即找到满足约束 <span class="math display">\[
+\begin{cases}
+w^Tx_i+b \geq +1, y_i=+1 \\
+w^Tx_i+b \leq -1, y_i=-1 \\
+\end{cases}
+\]</span> 的条件下，使得两个异类支持向量到超平面的距离<span class="math inline">\(\frac{2}{||w||}\)</span>最大 这可以重写为最优化问题 <span class="math display">\[
+min_{w,b} \frac 12 {||w||}^2 \\
+s.t. y_i(w^Tx_i+b) \geq 1,i=1,2,...,m \\
+\]</span> 推导见另两篇博文：机器学习笔记和统计学习方法笔记手写版</li>
+<li>对于这个最优化问题，它的拉格朗日方程是 <span class="math display">\[
+L(w,b,\alpha )=\frac 12 {||w||}^2+\sum _{i=1}^{m} \alpha _i (1-y_i(w^Tx_i+b))
+\]</span> 其中<span class="math inline">\(\alpha\)</span>是拉格朗日乘子，令方程分别对w,b求偏导，得到对偶问题 <span class="math display">\[
+max _{\alpha } \sum _{i=1}^m \alpha _i -\frac 12 \sum _{i=1}^m \sum _{j=1}^m \alpha _i \alpha _j y_i y_j x_i^T x_j \\
+s.t. \sum _{i=1}^m \alpha _i y_i=0, \\
+\alpha _i \geq 0,i=1,2,...,m \\
+\]</span> 上式满足KKT条件，通过SMO算法求解</li>
+</ul>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>machine learning</tag>
+        <tag>code</tag>
       </tags>
   </entry>
   <entry>
@@ -904,6 +904,60 @@ L = -p(y|x,\theta) + \lambda d(g,r) \\
       </tags>
   </entry>
   <entry>
+    <title>Python特性拾零</title>
+    <url>/2017/03/28/PythonNotes/</url>
+    <content><![CDATA[<hr />
+<p>Python的一些特性和语法 总结一些自己跳过的坑 Python3.5</p>
+<a id="more"></a>
+<h1 id="对象皆引用">对象皆引用</h1>
+<ul>
+<li>不同于C++，Python只有传引用，不存在传值，在Python中，一切皆对象，变量只是对对象的引用</li>
+<li>Python中不需要声明变量类型也是基于此 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=<span class="number">3</span></span><br><span class="line">b=a</span><br></pre></td></tr></table></figure> a和b都只是引用一个整型值3，修改b，a的引用值也会变化</li>
+<li>如果要拷贝，可以用b=a[:]</li>
+</ul>
+<h1 id="string是常量">string是常量</h1>
+<ul>
+<li>字符串不能更改，只能在原先字符串上更改后赋给一个新字符串，原字符串依然不变</li>
+</ul>
+<h1 id="lambda匿名函数">lambda匿名函数</h1>
+<ul>
+<li>简化函数书写，lambda 参量:计算式</li>
+<li>主要用于排序或者reduce</li>
+<li>lambda的参数是自由变量，是运行时绑定值，而不是定义时绑定值，如果要实现定义时绑定值，则定义之后在lambda中设置默认参数 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">	x=<span class="number">10</span></span><br><span class="line">	a=<span class="keyword">lambda</span> y,x=x:x+y</span><br><span class="line">	x=<span class="number">20</span></span><br><span class="line">	print(a(<span class="number">10</span>))</span><br><span class="line">	</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">20</span></span><br></pre></td></tr></table></figure> 如果不设置默认参数，上面的运行结果就是30</li>
+</ul>
+<h1 id="迭代器与生成器">迭代器与生成器</h1>
+<ul>
+<li>通过重写对象的__iter__方法实现自定义迭代器，生成器yield实现迭代器的next方法 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Countdown</span>:</span></span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, start</span>):</span></span><br><span class="line">			self.start = start</span><br><span class="line">	</span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">__iter__</span>(<span class="params">self</span>):</span></span><br><span class="line">			n = self.start</span><br><span class="line">			<span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">				<span class="keyword">yield</span> n</span><br><span class="line">				n -= <span class="number">1</span></span><br><span class="line">   </span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">__reversed__</span>(<span class="params">self</span>):</span></span><br><span class="line">			n = <span class="number">1</span></span><br><span class="line">			<span class="keyword">while</span> n &lt;= self.start:</span><br><span class="line">				n += <span class="number">1</span></span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">	<span class="keyword">for</span> rr <span class="keyword">in</span> (Countdown(<span class="number">3</span>)):</span><br><span class="line">		print(rr)</span><br><span class="line">	</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">3</span></span><br><span class="line">    <span class="number">2</span></span><br><span class="line">    <span class="number">1</span></span><br></pre></td></tr></table></figure> # enumerate</li>
+<li>同时输出迭代对象和索引，参数为索引开始号 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> idx,val <span class="keyword">in</span> <span class="built_in">enumerate</span>(my_list,<span class="number">1</span>):</span><br><span class="line">	print(idx,val)</span><br></pre></td></tr></table></figure> # 函数</li>
+<li>接收任意个参数 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">avg</span>(<span class="params">first,*rest</span>):</span></span><br><span class="line">	<span class="keyword">return</span> (first+<span class="built_in">sum</span>(rest))/(<span class="number">1</span>+<span class="built_in">len</span>(rest))</span><br></pre></td></tr></table></figure> *接任意数量的位置参数，也可以用**接一个字典，代表任意数量的关键字参数，也可以混用*和** 顺序(任意个位置参数，*，最后一个位置参数，其他参数，**)</li>
+<li>函数返回多个值 直接return a,b,c，实际上返回的是一个元祖</li>
+</ul>
+<h1 id="装饰器">装饰器</h1>
+<ul>
+<li>一个装饰器就是一个函数，它接收一个函数作为参数并返回一个新的函数 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">	<span class="keyword">import</span> time</span><br><span class="line">	<span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">timethis</span>(<span class="params">func</span>):</span></span><br><span class="line"><span class="meta">		@wraps(<span class="params">func</span>)</span></span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">wrapper</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">			start = time.time()</span><br><span class="line">			result = func(*args, **kwargs)</span><br><span class="line">			end = time.time()</span><br><span class="line">			print(func.__name__, end - start)</span><br><span class="line">			<span class="keyword">return</span> result</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">return</span> wrapper</span><br><span class="line">	</span><br><span class="line"><span class="meta">	@timethis</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">loop</span>(<span class="params">n</span>):</span></span><br><span class="line">		<span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">			n -= <span class="number">1</span></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	loop(<span class="number">100000</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>loop <span class="number">0.03971695899963379</span></span><br></pre></td></tr></table></figure> 在上例中，timethis是包装器，其定义中func是被包装的函数，args和kwargs是任意数量的位置参数和关键字参数，来保证被包装的函数能正确接收参数执行 可以看到包装器中实现了一个wrapper装饰器函数，它运行了作为参数的func函数并计算打印了运行时间，一般装饰器函数返回原函数的执行结果</li>
+<li>可以看到timethis中的@wraps本身也是一个装饰器，它用来注解底层包装函数，这样能够保留原函数的元信息，还能通过装饰器返回函数的__wrapped__属性直接访问到被装饰的函数，用来解除装饰</li>
+</ul>
+<h1 id="逗号的特殊作用">逗号的特殊作用</h1>
+<ul>
+<li>输出时换行变空格</li>
+<li>转换类型为元组</li>
+</ul>
+<h1 id="filter">filter</h1>
+<ul>
+<li>接收一个函数和序列，将函数作用于序列中每一个元素上，根据返回值决定是否删除该元素 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_odd</span>(<span class="params">n</span>):</span></span><br><span class="line">	<span class="keyword">return</span> n % <span class="number">2</span> == <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">filter</span>(is_odd, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">15</span>])</span><br></pre></td></tr></table></figure> # any</li>
+<li>原型： <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">any</span>(<span class="params">iterable</span>):</span></span><br><span class="line">   <span class="keyword">for</span> element <span class="keyword">in</span> iterable:</span><br><span class="line">	   <span class="keyword">if</span>  element:</span><br><span class="line">		   <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">   <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure> # yield</li>
+<li>一个带有yield的函数就是一个generator，它和普通函数不同，生成一个generator看起来像函数调用，但不会执行任何函数代码，直到对其调用next()（在for循环中会自动调用next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个yield语句就会中断，并返回一个迭代值，下次执行时从yield的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield中断了数次，每次中断都会通过 yield 返回当前的迭代值。 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">n</span>):</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">yield</span> i **<span class="number">2</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> g(<span class="number">5</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span> i,<span class="string">&quot;:&quot;</span>,</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span> : <span class="number">1</span> : <span class="number">4</span> : <span class="number">9</span> : <span class="number">16</span> :</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>论文阅读笔记2019上半年</title>
     <url>/2019/01/03/PaperReading3/</url>
     <content><![CDATA[<ul>
@@ -999,60 +1053,6 @@ W_Z = UV^{\frac 12} \\
         <tag>machine learning</tag>
         <tag>theory</tag>
         <tag>nlp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python特性拾零</title>
-    <url>/2017/03/28/PythonNotes/</url>
-    <content><![CDATA[<hr />
-<p>Python的一些特性和语法 总结一些自己跳过的坑 Python3.5</p>
-<a id="more"></a>
-<h1 id="对象皆引用">对象皆引用</h1>
-<ul>
-<li>不同于C++，Python只有传引用，不存在传值，在Python中，一切皆对象，变量只是对对象的引用</li>
-<li>Python中不需要声明变量类型也是基于此 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=<span class="number">3</span></span><br><span class="line">b=a</span><br></pre></td></tr></table></figure> a和b都只是引用一个整型值3，修改b，a的引用值也会变化</li>
-<li>如果要拷贝，可以用b=a[:]</li>
-</ul>
-<h1 id="string是常量">string是常量</h1>
-<ul>
-<li>字符串不能更改，只能在原先字符串上更改后赋给一个新字符串，原字符串依然不变</li>
-</ul>
-<h1 id="lambda匿名函数">lambda匿名函数</h1>
-<ul>
-<li>简化函数书写，lambda 参量:计算式</li>
-<li>主要用于排序或者reduce</li>
-<li>lambda的参数是自由变量，是运行时绑定值，而不是定义时绑定值，如果要实现定义时绑定值，则定义之后在lambda中设置默认参数 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">	x=<span class="number">10</span></span><br><span class="line">	a=<span class="keyword">lambda</span> y,x=x:x+y</span><br><span class="line">	x=<span class="number">20</span></span><br><span class="line">	print(a(<span class="number">10</span>))</span><br><span class="line">	</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">20</span></span><br></pre></td></tr></table></figure> 如果不设置默认参数，上面的运行结果就是30</li>
-</ul>
-<h1 id="迭代器与生成器">迭代器与生成器</h1>
-<ul>
-<li>通过重写对象的__iter__方法实现自定义迭代器，生成器yield实现迭代器的next方法 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Countdown</span>:</span></span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, start</span>):</span></span><br><span class="line">			self.start = start</span><br><span class="line">	</span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">__iter__</span>(<span class="params">self</span>):</span></span><br><span class="line">			n = self.start</span><br><span class="line">			<span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">				<span class="keyword">yield</span> n</span><br><span class="line">				n -= <span class="number">1</span></span><br><span class="line">   </span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">__reversed__</span>(<span class="params">self</span>):</span></span><br><span class="line">			n = <span class="number">1</span></span><br><span class="line">			<span class="keyword">while</span> n &lt;= self.start:</span><br><span class="line">				n += <span class="number">1</span></span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">	<span class="keyword">for</span> rr <span class="keyword">in</span> (Countdown(<span class="number">3</span>)):</span><br><span class="line">		print(rr)</span><br><span class="line">	</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">3</span></span><br><span class="line">    <span class="number">2</span></span><br><span class="line">    <span class="number">1</span></span><br></pre></td></tr></table></figure> # enumerate</li>
-<li>同时输出迭代对象和索引，参数为索引开始号 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> idx,val <span class="keyword">in</span> <span class="built_in">enumerate</span>(my_list,<span class="number">1</span>):</span><br><span class="line">	print(idx,val)</span><br></pre></td></tr></table></figure> # 函数</li>
-<li>接收任意个参数 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">avg</span>(<span class="params">first,*rest</span>):</span></span><br><span class="line">	<span class="keyword">return</span> (first+<span class="built_in">sum</span>(rest))/(<span class="number">1</span>+<span class="built_in">len</span>(rest))</span><br></pre></td></tr></table></figure> *接任意数量的位置参数，也可以用**接一个字典，代表任意数量的关键字参数，也可以混用*和** 顺序(任意个位置参数，*，最后一个位置参数，其他参数，**)</li>
-<li>函数返回多个值 直接return a,b,c，实际上返回的是一个元祖</li>
-</ul>
-<h1 id="装饰器">装饰器</h1>
-<ul>
-<li>一个装饰器就是一个函数，它接收一个函数作为参数并返回一个新的函数 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">	<span class="keyword">import</span> time</span><br><span class="line">	<span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">timethis</span>(<span class="params">func</span>):</span></span><br><span class="line"><span class="meta">		@wraps(<span class="params">func</span>)</span></span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">wrapper</span>(<span class="params">*args, **kwargs</span>):</span></span><br><span class="line">			start = time.time()</span><br><span class="line">			result = func(*args, **kwargs)</span><br><span class="line">			end = time.time()</span><br><span class="line">			print(func.__name__, end - start)</span><br><span class="line">			<span class="keyword">return</span> result</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">return</span> wrapper</span><br><span class="line">	</span><br><span class="line"><span class="meta">	@timethis</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">loop</span>(<span class="params">n</span>):</span></span><br><span class="line">		<span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">			n -= <span class="number">1</span></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	loop(<span class="number">100000</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>loop <span class="number">0.03971695899963379</span></span><br></pre></td></tr></table></figure> 在上例中，timethis是包装器，其定义中func是被包装的函数，args和kwargs是任意数量的位置参数和关键字参数，来保证被包装的函数能正确接收参数执行 可以看到包装器中实现了一个wrapper装饰器函数，它运行了作为参数的func函数并计算打印了运行时间，一般装饰器函数返回原函数的执行结果</li>
-<li>可以看到timethis中的@wraps本身也是一个装饰器，它用来注解底层包装函数，这样能够保留原函数的元信息，还能通过装饰器返回函数的__wrapped__属性直接访问到被装饰的函数，用来解除装饰</li>
-</ul>
-<h1 id="逗号的特殊作用">逗号的特殊作用</h1>
-<ul>
-<li>输出时换行变空格</li>
-<li>转换类型为元组</li>
-</ul>
-<h1 id="filter">filter</h1>
-<ul>
-<li>接收一个函数和序列，将函数作用于序列中每一个元素上，根据返回值决定是否删除该元素 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_odd</span>(<span class="params">n</span>):</span></span><br><span class="line">	<span class="keyword">return</span> n % <span class="number">2</span> == <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">filter</span>(is_odd, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">15</span>])</span><br></pre></td></tr></table></figure> # any</li>
-<li>原型： <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">any</span>(<span class="params">iterable</span>):</span></span><br><span class="line">   <span class="keyword">for</span> element <span class="keyword">in</span> iterable:</span><br><span class="line">	   <span class="keyword">if</span>  element:</span><br><span class="line">		   <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">   <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure> # yield</li>
-<li>一个带有yield的函数就是一个generator，它和普通函数不同，生成一个generator看起来像函数调用，但不会执行任何函数代码，直到对其调用next()（在for循环中会自动调用next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个yield语句就会中断，并返回一个迭代值，下次执行时从yield的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield中断了数次，每次中断都会通过 yield 返回当前的迭代值。 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">g</span>(<span class="params">n</span>):</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">yield</span> i **<span class="number">2</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> g(<span class="number">5</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span> i,<span class="string">&quot;:&quot;</span>,</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span> : <span class="number">1</span> : <span class="number">4</span> : <span class="number">9</span> : <span class="number">16</span> :</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>code</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -1534,8 +1534,8 @@ ROUGE(r,y) = sigmoid(h_r W_s h_x^T + b_s) \\
         <category>自然语言处理</category>
       </categories>
       <tags>
-        <tag>natural language processing</tag>
         <tag>machine learning</tag>
+        <tag>natural language processing</tag>
         <tag>workshop</tag>
       </tags>
   </entry>
@@ -1608,6 +1608,125 @@ ROUGE(r,y) = sigmoid(h_r W_s h_x^T + b_s) \\
         <tag>code</tag>
         <tag>server</tag>
         <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简洁到自己都看不懂的强化学习笔记</title>
+    <url>/2019/09/23/easyrl/</url>
+    <content><![CDATA[<p>极简风格 - Q-learning - Sarsa - Sarsa(<span class="math inline">\(\lambda\)</span>) - DQN - Double DQN - DQN with Prioritized Experience replay - Dueling DQN - Policy Gradient</p>
+<a id="more"></a>
+<h1 id="定义">定义</h1>
+<ul>
+<li>agent：智能体，智能体处在某一状态下，依据某种策略(policy)，采取一个动作，到达下一个状态</li>
+<li>s:status，状态</li>
+<li>a:action，动作</li>
+<li>r:reward，奖励</li>
+<li>s,a：可以称之为一步。智能体的行为可以描述为一系列步。强化学习里agent的行为可以用DP（决策过程）表示，s是DP里的节点状态，a是状态之间的转移路径</li>
+<li>Q：Q表，Q(s,a)即状态s下执行动作a的价值（infer时的可能性），用奖励期望来估计</li>
+</ul>
+<h1 id="q-learning">Q-learning</h1>
+<ul>
+<li>随机Q表，初始化状态，开始迭代，<span class="math inline">\(\epsilon\)</span>贪心</li>
+<li>在状态s采取动作a，观察到奖励r和状态<span class="math inline">\(s \prime\)</span></li>
+<li>关键迭代公式： <span class="math display">\[
+Q(s,a) = Q(s,a) + \alpha [r + \gamma max_{a \prime}Q(s \prime,a \prime) - Q(s,a)] \\
+\]</span></li>
+<li>Q的更新包括两部分，一部分自然是奖励（假如这一步得到奖励的话），另一部分是时间差值，即TD-error，是现实和估计之间的差值。这里的现实是在新状态采取了最好动作后得到的奖励，这里的估计是指我们所有的奖励，除了最终步得到的真实奖励，其余中间步都是用Q表值来估计现实奖励，因此Q表的更新应该是加上（现实-估计），即让Q表更加贴近现实。</li>
+<li>值得注意的是，只有最后一步得到奖励时（假如我们只有终点一个奖励），现实才真的是现实的奖励，否则还是用Q表估计的。</li>
+<li>这里Q表的更新只与未来的状态和动作有关，在最开始，应该除了真正有奖励的最后一步，其余步骤的更新都是不确定的（因为现实也是用Q表估计的，只有最后一步现实才是现实），但第一次迭代之后最后一步的价值更新是确定的（在宝藏边上还是知道怎么走向宝藏），且与LSTM那种时间序列不同，它不是从最后一个时间步往前BPTT，而是更新了一个状态的转移价值（取哪个动作好），这个状态可能出现在每一次迭代的多个时间步上（或者说和时间步无关），接下来与该状态相邻的状态更新时，用Q表估计的现实就会准确一些，慢慢的整个算法达到收敛。</li>
+</ul>
+<h1 id="sarsa">Sarsa</h1>
+<ul>
+<li>Q-learning是off-policy的，因为存在着现实和估计的差距，我们朝着现实优化，而实际采取的是根据Q表估计的现实，即异步的(off)。</li>
+<li>Sarsa是on-policy的，与Q-learning在算法上的区别：
+<ul>
+<li>Q-learning:根据Q表选动作-执行动作观察到奖励和新状态-更新Q表-更新状态</li>
+<li>Sarsa：执行动作观察到奖励和新状态-更新状态-根据Q表在新状态上选动作，在迭代之前先来一次根据Q表选动作</li>
+</ul></li>
+<li>可以看到Sarsa更改了学习算法的步骤顺序，这种更改带来了什么效果？效果就是将新状态和新动作的选取提前到Q表更新之前，这样Q表更新时，差距里现实的部分不用<span class="math inline">\(max_{a \prime}Q(s \prime,a \prime)\)</span>来估计，而直接用新状态和新动作： <span class="math display">\[
+Q(s,a) = Q(s,a) + \alpha [r + \gamma Q(s \prime,a \prime) - Q(s,a)] \\
+\]</span></li>
+<li>也就是说现实和估计采用的是同一策略（确定的动作，而不是给定状态选最大价值），然后依然使用这个差距来更新。</li>
+<li>在更新的过程中，sarsa说到做到（因为现实采用的就是新状态和新动作，agent一定会按照这样更新），而Q-learning则比较乐观（因为现实采用的是新状态下的最大价值，但实际走不一定会采取最大价值的行动，有<span class="math inline">\(\epsilon\)</span>的扰动）。Sarsa更为保守（每一步都想走好），而Q-learning更为激进（先rush到再说）。</li>
+</ul>
+<h1 id="sarsalambda">Sarsa(<span class="math inline">\(\lambda\)</span>)</h1>
+<ul>
+<li>naive版本的Sarsa可以看成是Sarsa(0)，因为每走一步就更新了Q表，即<span class="math inline">\(Q(s \prime,a \prime)\)</span>只会带来上一步<span class="math inline">\(Q(s,a)\)</span>的价值更新。假如我们考虑对所有步的更新，且离最终奖励近的步权重大，离最终奖励远的步权重小，那么调整这个权重的超参就是<span class="math inline">\(\lambda\)</span>，权重为0就是不考虑之前的步数，即naive Sarsa。</li>
+<li>具体实现是添加一个trace矩阵E（矩阵中每一个元素对应一步(s,a)）保存所有步在该次路径中的权重，离最终奖励越近，权重越大，因此每走一步，执行的那一步元素对应矩阵值加1，然后用对应的trace矩阵值作为权重乘到奖励上来更新Q表（这里是所有的步和整个E矩阵乘起来），之后矩阵值会衰减一下，乘以更新衰减因子<span class="math inline">\(\gamma\)</span>和权重超参<span class="math inline">\(\lambda\)</span>。显然<span class="math inline">\(\gamma\)</span>为1时，就是所有的状态得到了一样的更新（因为是所有步和整个E矩阵相乘）；当<span class="math inline">\(\gamma\)</span>为0时，除了执行步元素加了1，然后整个E矩阵都置0，因此只有执行步得到了更新，即naive Sarsa。将E矩阵的迭代展开，就可以得到与naive sarsa一样的展开，只不过衰减的时候加了一个E(s,a)来记录某一步距离奖励的距离。 <span class="math display">\[
+\delta = r + \gamma Q(s \prime,a \prime) - Q(s,a) \\
+E(s,a) = E(s,a) + 1 \\
+Q = Q + \alpha \delta E \\
+E = \gamma \lambda E \\
+update  \ \ s,a \\
+\]</span></li>
+<li>这个E矩阵就是eligibility trace。对于某一步，如果被执行了，就增加一点值，之后慢慢衰减，直到又被执行。假如短期内被执行多次，就会上升到过高值，这时可以设置阈值来限制eligibility的增加。这个值可以解释为该步在该次迭代中对于找到最终奖励的贡献程度。</li>
+</ul>
+<h1 id="dqn">DQN</h1>
+<ul>
+<li>Q-learning + deep neural network</li>
+<li>神经网络用于把Q-table的更新过程参数化，输入一个状态向量，神经网络输出所有动作的价值，用神经网络的训练来替代简单的迭代更新。这样可以解决状态数过多导致的维度灾难问题。</li>
+<li>直接这么替换不容易训练，DQN引入两个技巧
+<ul>
+<li>experience replay</li>
+<li>fix q</li>
+</ul></li>
+<li>先看神经网络的输入输出和损失
+<ul>
+<li>有两个神经网络，一个网络参与训练（评价网络），一个网络只复制另一个网络训练得到的参数，用来生成ground truth，即目标网络</li>
+<li>参与训练的网络输入是状态，表示为s维特征向量，输出是各个动作获得的a维价值向量，损失是这个向量和ground truth的a维向量之间的均方误差。</li>
+</ul></li>
+<li>DQN还包含一个记忆矩阵，维度是[记忆条数，$ 2 * s + 2$ ]，每一条包含奖励、动作，老状态和新状态，即一步的所有信息。记忆只保存最近记忆条数次执行步。</li>
+<li>之后神经网络的输入输出从哪里来？其实是从记忆中采样一个Batch的数据，将老状态输入评价网络得到model output，将新状态输入目标网络得到ground truth，之后计算损失。</li>
+<li>每隔一段时间目标网络才会复制评价网络，在此期间目标网络都是固定不变的，即fix q</li>
+<li>而输入是从最近的记忆当中抽取的，即experience replay</li>
+<li>值得注意的是我们并不直接把评价网络输出价值向量用于计算损失，因为还没有采取动作。因此我们要先根据网络输出的价值向量采取动作，将价值向量里这些动作对应的价值用奖励更新，之后这个更新过的价值向量再参与损失计算。</li>
+</ul>
+<h1 id="double-dqn">Double DQN</h1>
+<ul>
+<li>Double DQN解决DQN over estimate的问题</li>
+<li>与DQN不同之处在于，评价网络不仅接受老状态产生一个输出<span class="math inline">\(q_{eval}\)</span>，还接受新状态产生一个输出<span class="math inline">\(q_{eval4next}\)</span>，之后依据<span class="math inline">\(q_{eval4next}\)</span>选取动作更新<span class="math inline">\(q_{eval}\)</span>，而不是根据<span class="math inline">\(q_{eval}\)</span>本身选取动作来更新。</li>
+</ul>
+<h1 id="dqn-with-prioritized-experience-replay">DQN with Prioritized Experience replay</h1>
+<ul>
+<li>之前是从记忆库中随机采样一段记忆，这个随机采样会导致模型训练步数过多（随机很难保证到达最终奖励）</li>
+<li>那么自然而然想到记忆应该分配优先级，优先级高的采样概率大</li>
+<li>优先级可以用TD-error值来衡量，error大的自然要多采样多优化</li>
+<li>已知优先级分布，希望得到满足该优先级分布的一个采样序列，那么这就是一个蒙特卡洛问题了，可以用MCMC，可以用Importance sampling，也可以用论文里提到的SumTree</li>
+</ul>
+<h1 id="dueling-dqn">Dueling DQN</h1>
+<ul>
+<li>Dueling DQN细化了原始DQN的内部网络输入输出关系： <span class="math display">\[
+Q(s,a;\theta,\alpha,\beta) = Value(s;\theta,\beta) + Advantage(s,a;\theta,\alpha)
+\]</span></li>
+<li>即拆分成了状态带来的价值和动作在该状态上带来的价值（advantage）</li>
+<li>为什么要单独考虑状态？因为有些状态是与动作无关的，无论采取什么动作都不会带来价值的改变</li>
+</ul>
+<h1 id="policy-gradient">Policy Gradient</h1>
+<ul>
+<li>之前介绍的都是基于值的强化学习方法，即在某状态查询各个动作带来的价值，选择最大价值动作执行</li>
+<li>policy gradient（策略梯度）通过策略网络输入状态，直接输出动作，跳过了计算价值的步骤，是基于策略的方法</li>
+<li>策略网络并不计算某种损失进行反向传播，而是依据奖励来反向传播，更新的算法如下： <span class="math display">\[
+\theta = \theta + \alpha \nabla _{\theta} \log \pi _{\theta} (s_t, a_t) v_t \\
+\]</span></li>
+<li>需要注意以下几个关键点：
+<ul>
+<li>这里的PG算法神经网络只负责接收状态作为输入，奖励作为梯度调整值，实际执行的动作作为gold label，输出一个action vector，整个网络本身就是一个策略<span class="math inline">\(\pi\)</span>（输入状态，输出动作概率分布）</li>
+<li>之后整个模型依然像DQN那样，借助策略（网络）按动作概率（网络输出）选择动作，转移状态，观察环境得到奖励</li>
+<li>那么第一个问题，这个策略梯度是怎么来的？可以看到梯度依然是损失对参数求导的形式，<span class="math inline">\(- \nabla _{\theta} \log \pi _{\theta} (s_t, a_t) v_t\)</span>，哪来的损失？实际上是执行动作的概率乘以奖励，可以看作是动作概率分布和执行动作one-hot向量之间的交叉熵（交叉熵本来就有类似look up的效果）乘以奖励。我们就看其本来的含义：执行动作的概率乘以奖励，网络本身只是一个策略，什么样的策略是好策略？假如通过这个策略选出来的动作执行之后得到了好的奖励，那么这是一个好的策略网络，也就是能选出好动作的策略网络是好网络，显然网络的目标函数就应该是执行动作的概率（网络认可的动作）乘以奖励（奖励认可的好动作）。</li>
+<li>第二个问题，对于随时能给出奖励的环境，agent可以走一步，根据奖励更新一次策略网络，那对于那些只有最后一步能够得到奖励的该咋办？事实上我们采取的是回合更新，无论是每一步都能给出奖励的环境还是只有最后一步有奖励的环境，我们都将一个回合内的所有步(s,a,r)都记录下来（除了最后一步，其余步的奖励都是0或者-1），之后每一步的奖励替换成累加奖励，并乘以一个衰减系数使得奖励随episode steps衰减。注意不同于离散的基于值的学习，基于策略的PG在没有得到奖励的那些步也能算出一个动作概率来计算损失，因此即便是无奖励（或者负奖励），也能使得策略网络优化去让不好的动作概率降低。</li>
+</ul></li>
+</ul>
+<h1 id="actor-critic">Actor Critic</h1>
+<ul>
+<li>显然基于策略的方法抛弃了值，获得了优势（连续动作），也带来了劣势（每执行一步之后没得值可以用来估计即时奖励，只能进行回合更新），那么一个自然而然的想法就是结合这两点，选择一个基于策略的网络作为actor，训练出策略；选择一个基于值的网络作为critic，用来给策略网络提供值，估计即时奖励。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>自然语言处理</category>
+      </categories>
+      <tags>
+        <tag>deep learning</tag>
+        <tag>reinforcement learning</tag>
       </tags>
   </entry>
   <entry>
@@ -1736,272 +1855,6 @@ J = \sum _{i,j} X_i (log P_{ij} - log Q_{ij})^2 \\
         <tag>math</tag>
         <tag>glove</tag>
         <tag>word embedding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>简洁到自己都看不懂的强化学习笔记</title>
-    <url>/2019/09/23/easyrl/</url>
-    <content><![CDATA[<p>极简风格 - Q-learning - Sarsa - Sarsa(<span class="math inline">\(\lambda\)</span>) - DQN - Double DQN - DQN with Prioritized Experience replay - Dueling DQN - Policy Gradient</p>
-<a id="more"></a>
-<h1 id="定义">定义</h1>
-<ul>
-<li>agent：智能体，智能体处在某一状态下，依据某种策略(policy)，采取一个动作，到达下一个状态</li>
-<li>s:status，状态</li>
-<li>a:action，动作</li>
-<li>r:reward，奖励</li>
-<li>s,a：可以称之为一步。智能体的行为可以描述为一系列步。强化学习里agent的行为可以用DP（决策过程）表示，s是DP里的节点状态，a是状态之间的转移路径</li>
-<li>Q：Q表，Q(s,a)即状态s下执行动作a的价值（infer时的可能性），用奖励期望来估计</li>
-</ul>
-<h1 id="q-learning">Q-learning</h1>
-<ul>
-<li>随机Q表，初始化状态，开始迭代，<span class="math inline">\(\epsilon\)</span>贪心</li>
-<li>在状态s采取动作a，观察到奖励r和状态<span class="math inline">\(s \prime\)</span></li>
-<li>关键迭代公式： <span class="math display">\[
-Q(s,a) = Q(s,a) + \alpha [r + \gamma max_{a \prime}Q(s \prime,a \prime) - Q(s,a)] \\
-\]</span></li>
-<li>Q的更新包括两部分，一部分自然是奖励（假如这一步得到奖励的话），另一部分是时间差值，即TD-error，是现实和估计之间的差值。这里的现实是在新状态采取了最好动作后得到的奖励，这里的估计是指我们所有的奖励，除了最终步得到的真实奖励，其余中间步都是用Q表值来估计现实奖励，因此Q表的更新应该是加上（现实-估计），即让Q表更加贴近现实。</li>
-<li>值得注意的是，只有最后一步得到奖励时（假如我们只有终点一个奖励），现实才真的是现实的奖励，否则还是用Q表估计的。</li>
-<li>这里Q表的更新只与未来的状态和动作有关，在最开始，应该除了真正有奖励的最后一步，其余步骤的更新都是不确定的（因为现实也是用Q表估计的，只有最后一步现实才是现实），但第一次迭代之后最后一步的价值更新是确定的（在宝藏边上还是知道怎么走向宝藏），且与LSTM那种时间序列不同，它不是从最后一个时间步往前BPTT，而是更新了一个状态的转移价值（取哪个动作好），这个状态可能出现在每一次迭代的多个时间步上（或者说和时间步无关），接下来与该状态相邻的状态更新时，用Q表估计的现实就会准确一些，慢慢的整个算法达到收敛。</li>
-</ul>
-<h1 id="sarsa">Sarsa</h1>
-<ul>
-<li>Q-learning是off-policy的，因为存在着现实和估计的差距，我们朝着现实优化，而实际采取的是根据Q表估计的现实，即异步的(off)。</li>
-<li>Sarsa是on-policy的，与Q-learning在算法上的区别：
-<ul>
-<li>Q-learning:根据Q表选动作-执行动作观察到奖励和新状态-更新Q表-更新状态</li>
-<li>Sarsa：执行动作观察到奖励和新状态-更新状态-根据Q表在新状态上选动作，在迭代之前先来一次根据Q表选动作</li>
-</ul></li>
-<li>可以看到Sarsa更改了学习算法的步骤顺序，这种更改带来了什么效果？效果就是将新状态和新动作的选取提前到Q表更新之前，这样Q表更新时，差距里现实的部分不用<span class="math inline">\(max_{a \prime}Q(s \prime,a \prime)\)</span>来估计，而直接用新状态和新动作： <span class="math display">\[
-Q(s,a) = Q(s,a) + \alpha [r + \gamma Q(s \prime,a \prime) - Q(s,a)] \\
-\]</span></li>
-<li>也就是说现实和估计采用的是同一策略（确定的动作，而不是给定状态选最大价值），然后依然使用这个差距来更新。</li>
-<li>在更新的过程中，sarsa说到做到（因为现实采用的就是新状态和新动作，agent一定会按照这样更新），而Q-learning则比较乐观（因为现实采用的是新状态下的最大价值，但实际走不一定会采取最大价值的行动，有<span class="math inline">\(\epsilon\)</span>的扰动）。Sarsa更为保守（每一步都想走好），而Q-learning更为激进（先rush到再说）。</li>
-</ul>
-<h1 id="sarsalambda">Sarsa(<span class="math inline">\(\lambda\)</span>)</h1>
-<ul>
-<li>naive版本的Sarsa可以看成是Sarsa(0)，因为每走一步就更新了Q表，即<span class="math inline">\(Q(s \prime,a \prime)\)</span>只会带来上一步<span class="math inline">\(Q(s,a)\)</span>的价值更新。假如我们考虑对所有步的更新，且离最终奖励近的步权重大，离最终奖励远的步权重小，那么调整这个权重的超参就是<span class="math inline">\(\lambda\)</span>，权重为0就是不考虑之前的步数，即naive Sarsa。</li>
-<li>具体实现是添加一个trace矩阵E（矩阵中每一个元素对应一步(s,a)）保存所有步在该次路径中的权重，离最终奖励越近，权重越大，因此每走一步，执行的那一步元素对应矩阵值加1，然后用对应的trace矩阵值作为权重乘到奖励上来更新Q表（这里是所有的步和整个E矩阵乘起来），之后矩阵值会衰减一下，乘以更新衰减因子<span class="math inline">\(\gamma\)</span>和权重超参<span class="math inline">\(\lambda\)</span>。显然<span class="math inline">\(\gamma\)</span>为1时，就是所有的状态得到了一样的更新（因为是所有步和整个E矩阵相乘）；当<span class="math inline">\(\gamma\)</span>为0时，除了执行步元素加了1，然后整个E矩阵都置0，因此只有执行步得到了更新，即naive Sarsa。将E矩阵的迭代展开，就可以得到与naive sarsa一样的展开，只不过衰减的时候加了一个E(s,a)来记录某一步距离奖励的距离。 <span class="math display">\[
-\delta = r + \gamma Q(s \prime,a \prime) - Q(s,a) \\
-E(s,a) = E(s,a) + 1 \\
-Q = Q + \alpha \delta E \\
-E = \gamma \lambda E \\
-update  \ \ s,a \\
-\]</span></li>
-<li>这个E矩阵就是eligibility trace。对于某一步，如果被执行了，就增加一点值，之后慢慢衰减，直到又被执行。假如短期内被执行多次，就会上升到过高值，这时可以设置阈值来限制eligibility的增加。这个值可以解释为该步在该次迭代中对于找到最终奖励的贡献程度。</li>
-</ul>
-<h1 id="dqn">DQN</h1>
-<ul>
-<li>Q-learning + deep neural network</li>
-<li>神经网络用于把Q-table的更新过程参数化，输入一个状态向量，神经网络输出所有动作的价值，用神经网络的训练来替代简单的迭代更新。这样可以解决状态数过多导致的维度灾难问题。</li>
-<li>直接这么替换不容易训练，DQN引入两个技巧
-<ul>
-<li>experience replay</li>
-<li>fix q</li>
-</ul></li>
-<li>先看神经网络的输入输出和损失
-<ul>
-<li>有两个神经网络，一个网络参与训练（评价网络），一个网络只复制另一个网络训练得到的参数，用来生成ground truth，即目标网络</li>
-<li>参与训练的网络输入是状态，表示为s维特征向量，输出是各个动作获得的a维价值向量，损失是这个向量和ground truth的a维向量之间的均方误差。</li>
-</ul></li>
-<li>DQN还包含一个记忆矩阵，维度是[记忆条数，$ 2 * s + 2$ ]，每一条包含奖励、动作，老状态和新状态，即一步的所有信息。记忆只保存最近记忆条数次执行步。</li>
-<li>之后神经网络的输入输出从哪里来？其实是从记忆中采样一个Batch的数据，将老状态输入评价网络得到model output，将新状态输入目标网络得到ground truth，之后计算损失。</li>
-<li>每隔一段时间目标网络才会复制评价网络，在此期间目标网络都是固定不变的，即fix q</li>
-<li>而输入是从最近的记忆当中抽取的，即experience replay</li>
-<li>值得注意的是我们并不直接把评价网络输出价值向量用于计算损失，因为还没有采取动作。因此我们要先根据网络输出的价值向量采取动作，将价值向量里这些动作对应的价值用奖励更新，之后这个更新过的价值向量再参与损失计算。</li>
-</ul>
-<h1 id="double-dqn">Double DQN</h1>
-<ul>
-<li>Double DQN解决DQN over estimate的问题</li>
-<li>与DQN不同之处在于，评价网络不仅接受老状态产生一个输出<span class="math inline">\(q_{eval}\)</span>，还接受新状态产生一个输出<span class="math inline">\(q_{eval4next}\)</span>，之后依据<span class="math inline">\(q_{eval4next}\)</span>选取动作更新<span class="math inline">\(q_{eval}\)</span>，而不是根据<span class="math inline">\(q_{eval}\)</span>本身选取动作来更新。</li>
-</ul>
-<h1 id="dqn-with-prioritized-experience-replay">DQN with Prioritized Experience replay</h1>
-<ul>
-<li>之前是从记忆库中随机采样一段记忆，这个随机采样会导致模型训练步数过多（随机很难保证到达最终奖励）</li>
-<li>那么自然而然想到记忆应该分配优先级，优先级高的采样概率大</li>
-<li>优先级可以用TD-error值来衡量，error大的自然要多采样多优化</li>
-<li>已知优先级分布，希望得到满足该优先级分布的一个采样序列，那么这就是一个蒙特卡洛问题了，可以用MCMC，可以用Importance sampling，也可以用论文里提到的SumTree</li>
-</ul>
-<h1 id="dueling-dqn">Dueling DQN</h1>
-<ul>
-<li>Dueling DQN细化了原始DQN的内部网络输入输出关系： <span class="math display">\[
-Q(s,a;\theta,\alpha,\beta) = Value(s;\theta,\beta) + Advantage(s,a;\theta,\alpha)
-\]</span></li>
-<li>即拆分成了状态带来的价值和动作在该状态上带来的价值（advantage）</li>
-<li>为什么要单独考虑状态？因为有些状态是与动作无关的，无论采取什么动作都不会带来价值的改变</li>
-</ul>
-<h1 id="policy-gradient">Policy Gradient</h1>
-<ul>
-<li>之前介绍的都是基于值的强化学习方法，即在某状态查询各个动作带来的价值，选择最大价值动作执行</li>
-<li>policy gradient（策略梯度）通过策略网络输入状态，直接输出动作，跳过了计算价值的步骤，是基于策略的方法</li>
-<li>策略网络并不计算某种损失进行反向传播，而是依据奖励来反向传播，更新的算法如下： <span class="math display">\[
-\theta = \theta + \alpha \nabla _{\theta} \log \pi _{\theta} (s_t, a_t) v_t \\
-\]</span></li>
-<li>需要注意以下几个关键点：
-<ul>
-<li>这里的PG算法神经网络只负责接收状态作为输入，奖励作为梯度调整值，实际执行的动作作为gold label，输出一个action vector，整个网络本身就是一个策略<span class="math inline">\(\pi\)</span>（输入状态，输出动作概率分布）</li>
-<li>之后整个模型依然像DQN那样，借助策略（网络）按动作概率（网络输出）选择动作，转移状态，观察环境得到奖励</li>
-<li>那么第一个问题，这个策略梯度是怎么来的？可以看到梯度依然是损失对参数求导的形式，<span class="math inline">\(- \nabla _{\theta} \log \pi _{\theta} (s_t, a_t) v_t\)</span>，哪来的损失？实际上是执行动作的概率乘以奖励，可以看作是动作概率分布和执行动作one-hot向量之间的交叉熵（交叉熵本来就有类似look up的效果）乘以奖励。我们就看其本来的含义：执行动作的概率乘以奖励，网络本身只是一个策略，什么样的策略是好策略？假如通过这个策略选出来的动作执行之后得到了好的奖励，那么这是一个好的策略网络，也就是能选出好动作的策略网络是好网络，显然网络的目标函数就应该是执行动作的概率（网络认可的动作）乘以奖励（奖励认可的好动作）。</li>
-<li>第二个问题，对于随时能给出奖励的环境，agent可以走一步，根据奖励更新一次策略网络，那对于那些只有最后一步能够得到奖励的该咋办？事实上我们采取的是回合更新，无论是每一步都能给出奖励的环境还是只有最后一步有奖励的环境，我们都将一个回合内的所有步(s,a,r)都记录下来（除了最后一步，其余步的奖励都是0或者-1），之后每一步的奖励替换成累加奖励，并乘以一个衰减系数使得奖励随episode steps衰减。注意不同于离散的基于值的学习，基于策略的PG在没有得到奖励的那些步也能算出一个动作概率来计算损失，因此即便是无奖励（或者负奖励），也能使得策略网络优化去让不好的动作概率降低。</li>
-</ul></li>
-</ul>
-<h1 id="actor-critic">Actor Critic</h1>
-<ul>
-<li>显然基于策略的方法抛弃了值，获得了优势（连续动作），也带来了劣势（每执行一步之后没得值可以用来估计即时奖励，只能进行回合更新），那么一个自然而然的想法就是结合这两点，选择一个基于策略的网络作为actor，训练出策略；选择一个基于值的网络作为critic，用来给策略网络提供值，估计即时奖励。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>自然语言处理</category>
-      </categories>
-      <tags>
-        <tag>deep learning</tag>
-        <tag>reinforcement learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于图结构表示的自然语言处理阅读笔记</title>
-    <url>/2020/04/05/graph-doc-thesis/</url>
-    <content><![CDATA[<p>阅读来自University of Alberta 的Bang Liu博士的论文Natural Language Processing and Text Mining with Graph-Structured Representations，做一些笔记 <a id="more"></a></p>
-<h1 id="基于图结构表示的自然语言处理">基于图结构表示的自然语言处理</h1>
-<ul>
-<li>论文主要囊括了主要包含四个方向的工作：
-<ul>
-<li>事件抽取、故事生成</li>
-<li>语义匹配</li>
-<li>推荐</li>
-<li>阅读理解</li>
-</ul></li>
-</ul>
-<h1 id="相关领域及方法论">相关领域及方法论</h1>
-<ul>
-<li>在NLP当中构图的相关工作</li>
-<li>词作为节点
-<ul>
-<li>syntactic信息作为边：Learning substructures of document semantic graphs for document summarization</li>
-<li>共现信息作为边： Graph-of-word and tw-idf: new approach to ad hoc ir； Shortest-path graph kernels for document similarity；Directional skip-gram: Explicitly distinguishing left and right context for word embeddings；</li>
-</ul></li>
-<li>句子、段落、文档作为节点
-<ul>
-<li>词共现、位置作为边：Textrank: Bringing order into texts；</li>
-<li>相似度作为边：Evaluating text coherence based on semantic similarity graph；</li>
-<li>链接作为边：Pagerank</li>
-<li>混合：Graph methods for multilingual framenets</li>
-</ul></li>
-<li>方法论
-<ul>
-<li>明确输入输出、决定语义的细粒度、构图（定义节点和边，抽取节点和边的特征）、基于图的表示重构问题、进行实验</li>
-<li>在NLP中引入图的关键是引入结构信息和关系信息。</li>
-<li>基于图的表示重构问题，例如
-<ul>
-<li>语义匹配：树或者图的匹配</li>
-<li>事件发现：社区发现</li>
-<li>phrase挖掘：节点分类和排序</li>
-<li>ontology creation： 关系鉴别</li>
-<li>问题生成：节点选择 <img data-src="https://s1.ax1x.com/2020/04/02/GG2kes.png" alt="GG2kes.png" /></li>
-</ul></li>
-</ul></li>
-</ul>
-<h1 id="事件抽取及故事生成">事件抽取及故事生成</h1>
-<h2 id="相关工作">相关工作</h2>
-<ul>
-<li>文本聚类
-<ul>
-<li>基于相似度的方法，需要指定聚类数目</li>
-<li>基于密度的方法，不太适合文本这样的高维稀疏空间</li>
-<li>基于非负矩阵分解的方法（谱聚类）</li>
-<li>基于概率模型，例如PLSA，LDA，GMM</li>
-</ul></li>
-<li>故事结构生成
-<ul>
-<li>持续的将新事件归类到已有聚类当中</li>
-<li>想要为一系列时序事件生成故事总结，传统的基于summarization的方法不能持续生成，现在多采用基于贝叶斯模型的方法，但是gibbs sampling太耗时</li>
-</ul></li>
-<li>作者提出了EventX方法，构建了Story Forest系统，与以上两个路线相关，做的是开放域新闻文档事件抽取</li>
-</ul>
-<h2 id="story-forest-extracting-events-and-telling-stories-from-breaking-newstkdd">Story Forest: Extracting Events and Telling Stories from Breaking News(TKDD)</h2>
-<ul>
-<li>Story Forest：从新闻中抽取事件，生成故事</li>
-<li>定义：一个topic相当于一个story forest，包含多个story tree；每个story tree的节点是一个event，event作为最小处理单元，实际上是关于某一个event的多篇新闻文档。本系统假设每篇文章只报道一个event</li>
-<li>整体架构： <img data-src="https://s1.ax1x.com/2020/04/05/GrQJun.png" alt="GrQJun.png" /></li>
-<li>主要关注EventX中如何做cluster events，是一个两层聚类
-<ul>
-<li>构建一个keyword co-occurrence graph，节点是keyword，建边考虑两点：单篇文档内的相关性，即同一篇文档内共现次数超过阈值就建边；语料上的相关性，即条件概率超过阈值： <span class="math display">\[
-\operatorname{Pr}\left\{w_{i} | w_{j}\right\}=\frac{D F_{i, j}}{D F_{j}}
-\]</span></li>
-<li>在这个keyword graph上做community detection，将keyword做一次聚类，认为每个类的Keyword描述同一个topic。这样每个topic是一系列keywords的集合，相当于一个文档（bag of words）</li>
-<li>计算每篇文档和每个topic之间的相似度，将文档分配给具有最大相似度的topic，这样就完成了第一层：文档按主题聚类</li>
-<li>将文档按topic分开之后，每个topic下还要细分event，这就是第二层聚类，event cluster的大小通常严重不均衡，作者提出了一种基于监督学习指导的聚类方法</li>
-<li>现在将每篇文档看成节点，希望谈论同一个event的文档之间建边，这里不太好人为设计规则，就使用了监督学习，训练了一个SVM来判断是否描述同一个event，获得document graph之后接着做community detection，完成第二层聚类</li>
-</ul></li>
-</ul>
-<h1 id="语义匹配">语义匹配</h1>
-<h2 id="相关工作-1">相关工作</h2>
-<ul>
-<li>文档级别的语义匹配，相关工作：文本匹配、文档图结构表示</li>
-<li>文本匹配
-<ul>
-<li>交互放在最后，先通过孪生网络提取embedding，然后待匹配的embedding pair进行score</li>
-<li>交互提前，先提取pair-wise的交互作为特征，然后通过神经网络聚合交互，最后score</li>
-</ul></li>
-<li>文档图结构表示
-<ul>
-<li>word graph:通过句法剖析得到spo三元组构图，还可以通过wordnet扩展合并；基于窗口的方法，nodes represent unique terms and directed edges represent co-occurrences between the terms within a fixed-size sliding window；将依存关系作为边；基于超链接的构图；</li>
-<li>text graph:节点是句子、段落、文档，边基于词级别的相似度、位置、共现建立。</li>
-<li>concept graph:基于知识图谱，提取文档中的实体作为节点，例如DBpedia，然后通过最多两跳在知识图谱中进行dfs，找出outgoing relation and entity，构图；或者基于wordnet,verbnet，找出semantic role，用semantic/syntactic relation建边</li>
-<li>hybrid graph:即异构图，多种节点以及多种边，lexical，tokens, syntactic structure nodes, part of speech nodes</li>
-</ul></li>
-</ul>
-<h2 id="matching-article-pairs-with-graphical-decomposition-and-convolutionsacl-2019">Matching Article Pairs with Graphical Decomposition and Convolutions(ACL 2019)</h2>
-<ul>
-<li>作者在文本匹配和文档图结构表示方向的工作是提出了一种文档建图的方式，然后用GCN提取文档特征，进行文档级别的匹配</li>
-<li>这一部分可以改进上一个工作中两篇文档是否讨论同一个event的部分。</li>
-<li>整体流程： <img data-src="https://s1.ax1x.com/2020/04/05/GrQUEV.png" alt="GrQUEV.png" /></li>
-<li>构图：Concept Interaction Graph
-<ul>
-<li>先构建key graph，抽取文章中的keywords和实体作为节点，假如两个节点出现在同一句中就建边</li>
-<li>可以将key graph中的节点直接作为concept，也可以在key graph上做一个overlapping community detection,将Key graph切分成多个相交的子图，子图作为concept节点，相交就建边</li>
-<li>现在concept 和 sentence都是bag of words，就可以计算相似度，将句子分配到concept</li>
-<li>现在concept是句子的集合，将其看成bag of words，concept之间就可以根据句子集合之间的tfidf vector similarity建边</li>
-<li>很关键的一点，由于是做matching，输入是句子对，在这一步变成了图对，作者将两个CIG合并成一个大CIG，将描述同一个concept的两篇文章的句子集合放在一个concept 节点中</li>
-</ul></li>
-<li>构建matching network with GCN
-<ul>
-<li>得到一个大的CIG之后，两篇文档之间的matching变成了大CIG当中每一个节点里来自两篇文档的sentence set之间的matching</li>
-<li>构建了一个端到端的流程：用孪生网络提取节点特征、用GCN做节点直接的特征交互、聚合所有特征做预测</li>
-<li>这里每个节点包含了两个句子集，将其拼接成两个长句，进孪生网络，分别用bilstm或者cnn提取到特征，再进行一个特征的聚合： <span class="math display">\[
-\mathbf{m}_{A B}(v)=\left(\left|\mathbf{c}_{A}(v)-\mathbf{c}_{B}(v)\right|, \mathbf{c}_{A}(v) \circ \mathbf{c}_{B}(v)\right)
-\]</span></li>
-<li>这样就得到每个节点上的matching vector，可以理解为在该节点(concept)上两篇文档的相似度相关特征。此外作者还提取了一些传统特征相似度（tfidf,bm25,jaccard,Ochiai）的值拼接到matching vector当中</li>
-<li>接下来过GCN</li>
-<li>聚合所有节点特征就是一个简单的mean pooling，然后过一个线性层做分类（0，1）</li>
-</ul></li>
-<li>在长篇新闻语料上（avg 734 token)，graph matching的效果远好于传统的双塔模型(DUET,DSSM,ARC都在50~60的f1，graph model达到了70~80)</li>
-</ul>
-<h2 id="matching-natural-language-sentences-with-hierarchical-sentence-factorizationwww-2018">Matching Natural Language Sentences with Hierarchical Sentence Factorization(WWW 2018)</h2>
-<p><img data-src="https://s1.ax1x.com/2020/04/05/GrQrv9.png" alt="GrQrv9.png" /> - 句子对语义匹配任务，主要利用的是AMR剖析得到的句子结构 - 五个步骤 - AMR parsing and alignment：AMR将句子表示为有向无环图，如果将有多个父节点的节点复制拆分，则可以将有向无环图转换为树。AMR的叶子节点代表一个概念，其余的是关系，代表概念之间的关联或者某个概念是另外一个概念的参数。得到AMR图之后还需要对齐，将句子中具体的token和概念建立连接。作者使用了现有的工具JAMR - AMR purification：一个token可能与多个概念建立连接，作者只选择最浅层的概念建立连接，之后将关系的内容删去，只保留边不保留边的label，得到简化之后的AMR tree，如上图所示 - Index mapping：加入root节点，重设节点坐标 - Node completion：类似于padding，保证两个句子的树的深度一样 - Node traversal：做一次dfs,使得每个非叶子节点的内容拼接了其子树的内容 - 这样root节点就得到原句子的一个重新组织方式，类似于predicate-argument的形式，即谓语接谓语操作的词，类似于最初始的AMR purification得到的只保留概念的N叉树先做后序遍历再逆序，作者的意思大致是这样可以统一的表达两个句子，避免原文表示中各种因词序和其他不那么重要的词（助词介词）的现象导致接下来语义匹配中产生错误。 - 接下来使用Ordered Word Mover Distance。如下式，D代表传输的cost(embedding距离），T代表传输量(词占比），<span class="math inline">\(\alpha,\beta\)</span>代表两个句子中各个词的词频向量，这里作者直接用均匀分布替代。传统的WMD没有考虑词的顺序，作者引入了两个惩罚项，当T主要集中在对角线上时I较大，P是T的一个理想分布，其第i行第j列个元素满足i,j到对角线位置的距离的标准高斯分布，也是希望T是一个对角阵。对角阵的意义就是会在传输时考虑顺序，不发生相对距离较远的传输。 <span class="math display">\[
-\begin{array}{ll}
-\underset{T \in \mathbb{R}_{+}^{M \mathrm{XN}}}{\operatorname{minimize}} &amp; \sum_{i, j} T_{i j} D_{i j}-\lambda_{1} I(T)+\lambda_{2} K L(T \| P) \\
-\text { subject to } &amp; \sum_{i=1}^{M} T_{i j}=\beta_{j}^{\prime} \quad 1 \leq j \leq N^{\prime} \\
-&amp; \sum_{j=1}^{N} T_{i j}=\alpha_{i}^{\prime} \quad 1 \leq i \leq M^{\prime}
-\end{array} \\
-\]</span> <span class="math display">\[
-I(T)=\sum_{i=1}^{M^{\prime}} \sum_{j=1}^{N^{\prime}} \frac{T_{i j}}{\left(\frac{i}{M^{\prime}}-\frac{j}{N^{\prime}}\right)^{2}+1} \\
-\]</span> <span class="math display">\[
-P_{i j}=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{l^{2}(i, j)}{2 \sigma^{2}}} \\
-\]</span> <span class="math display">\[
-l(i, j)=\frac{\left|i / M^{\prime}-j / N^{\prime}\right|}{\sqrt{1 / M^{\prime 2}+1 / N^{\prime 2}}} \\
-\]</span> - 通过上述方法就能得到针对两个句子AMR表示的OWMD距离，完成无监督的文本相似度计算。也可以充分利用AMR Tree来完成监督学习。 - 注意到在AMR树中，不同层的节点其实代表了整句不同粒度的语义切分，例如第0层是整句，第一层是短句"Jerry little",第二层是单一的概念"Jerry"，作者选取前三层，将每一层不同粒度的语义单元之间输入context layer，同一语义单元内的token embedding相加作为单一embedding，并假设每一层的子节点最多k个，不足的padding。 <img data-src="https://s1.ax1x.com/2020/04/11/GbgQUA.png" alt="GbgQUA.png" /></p>
-<h1 id="推荐">推荐</h1>
-<h2 id="相关工作-2">相关工作</h2>
-<h2 id="a-user-centered-concept-mining-system-for-query-and-document-understanding-at-tencentkdd-2019">A User-Centered Concept Mining System for Query and Document Understanding at Tencent(KDD 2019)</h2>
-<h2 id="scalable-creation-of-a-web-scale-ontologysigmod-2020">Scalable Creation of a Web-scale Ontology(SIGMOD 2020)</h2>
-<h1 id="阅读理解">阅读理解</h1>
-<h2 id="learning-to-generate-questions-by-learning-what-not-to-generatewww-2019">Learning to Generate Questions by Learning What not to Generate(WWW 2019)</h2>
-<h2 id="asking-questions-the-human-way-scalable-question-answer-generation-from-text-corpuswww-2020">Asking Questions the Human Way: Scalable Question-Answer Generation from Text Corpus(WWW 2020)</h2>
-]]></content>
-      <tags>
-        <tag>math</tag>
-        <tag>gnn</tag>
-        <tag>graph</tag>
       </tags>
   </entry>
   <entry>
@@ -2168,6 +2021,153 @@ w_{m}=\frac{\mathbf{q}^{T}\left[\mathbf{d}_{m} ; \mathbf{d}_{\Sigma}\right]}{\su
         <tag>deep learning</tag>
         <tag>summarization</tag>
         <tag>natural language processing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于图结构表示的自然语言处理阅读笔记</title>
+    <url>/2020/04/05/graph-doc-thesis/</url>
+    <content><![CDATA[<p>阅读来自University of Alberta 的Bang Liu博士的论文Natural Language Processing and Text Mining with Graph-Structured Representations，做一些笔记 <a id="more"></a></p>
+<h1 id="基于图结构表示的自然语言处理">基于图结构表示的自然语言处理</h1>
+<ul>
+<li>论文主要囊括了主要包含四个方向的工作：
+<ul>
+<li>事件抽取、故事生成</li>
+<li>语义匹配</li>
+<li>推荐</li>
+<li>阅读理解</li>
+</ul></li>
+</ul>
+<h1 id="相关领域及方法论">相关领域及方法论</h1>
+<ul>
+<li>在NLP当中构图的相关工作</li>
+<li>词作为节点
+<ul>
+<li>syntactic信息作为边：Learning substructures of document semantic graphs for document summarization</li>
+<li>共现信息作为边： Graph-of-word and tw-idf: new approach to ad hoc ir； Shortest-path graph kernels for document similarity；Directional skip-gram: Explicitly distinguishing left and right context for word embeddings；</li>
+</ul></li>
+<li>句子、段落、文档作为节点
+<ul>
+<li>词共现、位置作为边：Textrank: Bringing order into texts；</li>
+<li>相似度作为边：Evaluating text coherence based on semantic similarity graph；</li>
+<li>链接作为边：Pagerank</li>
+<li>混合：Graph methods for multilingual framenets</li>
+</ul></li>
+<li>方法论
+<ul>
+<li>明确输入输出、决定语义的细粒度、构图（定义节点和边，抽取节点和边的特征）、基于图的表示重构问题、进行实验</li>
+<li>在NLP中引入图的关键是引入结构信息和关系信息。</li>
+<li>基于图的表示重构问题，例如
+<ul>
+<li>语义匹配：树或者图的匹配</li>
+<li>事件发现：社区发现</li>
+<li>phrase挖掘：节点分类和排序</li>
+<li>ontology creation： 关系鉴别</li>
+<li>问题生成：节点选择 <img data-src="https://s1.ax1x.com/2020/04/02/GG2kes.png" alt="GG2kes.png" /></li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="事件抽取及故事生成">事件抽取及故事生成</h1>
+<h2 id="相关工作">相关工作</h2>
+<ul>
+<li>文本聚类
+<ul>
+<li>基于相似度的方法，需要指定聚类数目</li>
+<li>基于密度的方法，不太适合文本这样的高维稀疏空间</li>
+<li>基于非负矩阵分解的方法（谱聚类）</li>
+<li>基于概率模型，例如PLSA，LDA，GMM</li>
+</ul></li>
+<li>故事结构生成
+<ul>
+<li>持续的将新事件归类到已有聚类当中</li>
+<li>想要为一系列时序事件生成故事总结，传统的基于summarization的方法不能持续生成，现在多采用基于贝叶斯模型的方法，但是gibbs sampling太耗时</li>
+</ul></li>
+<li>作者提出了EventX方法，构建了Story Forest系统，与以上两个路线相关，做的是开放域新闻文档事件抽取</li>
+</ul>
+<h2 id="story-forest-extracting-events-and-telling-stories-from-breaking-newstkdd">Story Forest: Extracting Events and Telling Stories from Breaking News(TKDD)</h2>
+<ul>
+<li>Story Forest：从新闻中抽取事件，生成故事</li>
+<li>定义：一个topic相当于一个story forest，包含多个story tree；每个story tree的节点是一个event，event作为最小处理单元，实际上是关于某一个event的多篇新闻文档。本系统假设每篇文章只报道一个event</li>
+<li>整体架构： <img data-src="https://s1.ax1x.com/2020/04/05/GrQJun.png" alt="GrQJun.png" /></li>
+<li>主要关注EventX中如何做cluster events，是一个两层聚类
+<ul>
+<li>构建一个keyword co-occurrence graph，节点是keyword，建边考虑两点：单篇文档内的相关性，即同一篇文档内共现次数超过阈值就建边；语料上的相关性，即条件概率超过阈值： <span class="math display">\[
+\operatorname{Pr}\left\{w_{i} | w_{j}\right\}=\frac{D F_{i, j}}{D F_{j}}
+\]</span></li>
+<li>在这个keyword graph上做community detection，将keyword做一次聚类，认为每个类的Keyword描述同一个topic。这样每个topic是一系列keywords的集合，相当于一个文档（bag of words）</li>
+<li>计算每篇文档和每个topic之间的相似度，将文档分配给具有最大相似度的topic，这样就完成了第一层：文档按主题聚类</li>
+<li>将文档按topic分开之后，每个topic下还要细分event，这就是第二层聚类，event cluster的大小通常严重不均衡，作者提出了一种基于监督学习指导的聚类方法</li>
+<li>现在将每篇文档看成节点，希望谈论同一个event的文档之间建边，这里不太好人为设计规则，就使用了监督学习，训练了一个SVM来判断是否描述同一个event，获得document graph之后接着做community detection，完成第二层聚类</li>
+</ul></li>
+</ul>
+<h1 id="语义匹配">语义匹配</h1>
+<h2 id="相关工作-1">相关工作</h2>
+<ul>
+<li>文档级别的语义匹配，相关工作：文本匹配、文档图结构表示</li>
+<li>文本匹配
+<ul>
+<li>交互放在最后，先通过孪生网络提取embedding，然后待匹配的embedding pair进行score</li>
+<li>交互提前，先提取pair-wise的交互作为特征，然后通过神经网络聚合交互，最后score</li>
+</ul></li>
+<li>文档图结构表示
+<ul>
+<li>word graph:通过句法剖析得到spo三元组构图，还可以通过wordnet扩展合并；基于窗口的方法，nodes represent unique terms and directed edges represent co-occurrences between the terms within a fixed-size sliding window；将依存关系作为边；基于超链接的构图；</li>
+<li>text graph:节点是句子、段落、文档，边基于词级别的相似度、位置、共现建立。</li>
+<li>concept graph:基于知识图谱，提取文档中的实体作为节点，例如DBpedia，然后通过最多两跳在知识图谱中进行dfs，找出outgoing relation and entity，构图；或者基于wordnet,verbnet，找出semantic role，用semantic/syntactic relation建边</li>
+<li>hybrid graph:即异构图，多种节点以及多种边，lexical，tokens, syntactic structure nodes, part of speech nodes</li>
+</ul></li>
+</ul>
+<h2 id="matching-article-pairs-with-graphical-decomposition-and-convolutionsacl-2019">Matching Article Pairs with Graphical Decomposition and Convolutions(ACL 2019)</h2>
+<ul>
+<li>作者在文本匹配和文档图结构表示方向的工作是提出了一种文档建图的方式，然后用GCN提取文档特征，进行文档级别的匹配</li>
+<li>这一部分可以改进上一个工作中两篇文档是否讨论同一个event的部分。</li>
+<li>整体流程： <img data-src="https://s1.ax1x.com/2020/04/05/GrQUEV.png" alt="GrQUEV.png" /></li>
+<li>构图：Concept Interaction Graph
+<ul>
+<li>先构建key graph，抽取文章中的keywords和实体作为节点，假如两个节点出现在同一句中就建边</li>
+<li>可以将key graph中的节点直接作为concept，也可以在key graph上做一个overlapping community detection,将Key graph切分成多个相交的子图，子图作为concept节点，相交就建边</li>
+<li>现在concept 和 sentence都是bag of words，就可以计算相似度，将句子分配到concept</li>
+<li>现在concept是句子的集合，将其看成bag of words，concept之间就可以根据句子集合之间的tfidf vector similarity建边</li>
+<li>很关键的一点，由于是做matching，输入是句子对，在这一步变成了图对，作者将两个CIG合并成一个大CIG，将描述同一个concept的两篇文章的句子集合放在一个concept 节点中</li>
+</ul></li>
+<li>构建matching network with GCN
+<ul>
+<li>得到一个大的CIG之后，两篇文档之间的matching变成了大CIG当中每一个节点里来自两篇文档的sentence set之间的matching</li>
+<li>构建了一个端到端的流程：用孪生网络提取节点特征、用GCN做节点直接的特征交互、聚合所有特征做预测</li>
+<li>这里每个节点包含了两个句子集，将其拼接成两个长句，进孪生网络，分别用bilstm或者cnn提取到特征，再进行一个特征的聚合： <span class="math display">\[
+\mathbf{m}_{A B}(v)=\left(\left|\mathbf{c}_{A}(v)-\mathbf{c}_{B}(v)\right|, \mathbf{c}_{A}(v) \circ \mathbf{c}_{B}(v)\right)
+\]</span></li>
+<li>这样就得到每个节点上的matching vector，可以理解为在该节点(concept)上两篇文档的相似度相关特征。此外作者还提取了一些传统特征相似度（tfidf,bm25,jaccard,Ochiai）的值拼接到matching vector当中</li>
+<li>接下来过GCN</li>
+<li>聚合所有节点特征就是一个简单的mean pooling，然后过一个线性层做分类（0，1）</li>
+</ul></li>
+<li>在长篇新闻语料上（avg 734 token)，graph matching的效果远好于传统的双塔模型(DUET,DSSM,ARC都在50~60的f1，graph model达到了70~80)</li>
+</ul>
+<h2 id="matching-natural-language-sentences-with-hierarchical-sentence-factorizationwww-2018">Matching Natural Language Sentences with Hierarchical Sentence Factorization(WWW 2018)</h2>
+<p><img data-src="https://s1.ax1x.com/2020/04/05/GrQrv9.png" alt="GrQrv9.png" /> - 句子对语义匹配任务，主要利用的是AMR剖析得到的句子结构 - 五个步骤 - AMR parsing and alignment：AMR将句子表示为有向无环图，如果将有多个父节点的节点复制拆分，则可以将有向无环图转换为树。AMR的叶子节点代表一个概念，其余的是关系，代表概念之间的关联或者某个概念是另外一个概念的参数。得到AMR图之后还需要对齐，将句子中具体的token和概念建立连接。作者使用了现有的工具JAMR - AMR purification：一个token可能与多个概念建立连接，作者只选择最浅层的概念建立连接，之后将关系的内容删去，只保留边不保留边的label，得到简化之后的AMR tree，如上图所示 - Index mapping：加入root节点，重设节点坐标 - Node completion：类似于padding，保证两个句子的树的深度一样 - Node traversal：做一次dfs,使得每个非叶子节点的内容拼接了其子树的内容 - 这样root节点就得到原句子的一个重新组织方式，类似于predicate-argument的形式，即谓语接谓语操作的词，类似于最初始的AMR purification得到的只保留概念的N叉树先做后序遍历再逆序，作者的意思大致是这样可以统一的表达两个句子，避免原文表示中各种因词序和其他不那么重要的词（助词介词）的现象导致接下来语义匹配中产生错误。 - 接下来使用Ordered Word Mover Distance。如下式，D代表传输的cost(embedding距离），T代表传输量(词占比），<span class="math inline">\(\alpha,\beta\)</span>代表两个句子中各个词的词频向量，这里作者直接用均匀分布替代。传统的WMD没有考虑词的顺序，作者引入了两个惩罚项，当T主要集中在对角线上时I较大，P是T的一个理想分布，其第i行第j列个元素满足i,j到对角线位置的距离的标准高斯分布，也是希望T是一个对角阵。对角阵的意义就是会在传输时考虑顺序，不发生相对距离较远的传输。 <span class="math display">\[
+\begin{array}{ll}
+\underset{T \in \mathbb{R}_{+}^{M \mathrm{XN}}}{\operatorname{minimize}} &amp; \sum_{i, j} T_{i j} D_{i j}-\lambda_{1} I(T)+\lambda_{2} K L(T \| P) \\
+\text { subject to } &amp; \sum_{i=1}^{M} T_{i j}=\beta_{j}^{\prime} \quad 1 \leq j \leq N^{\prime} \\
+&amp; \sum_{j=1}^{N} T_{i j}=\alpha_{i}^{\prime} \quad 1 \leq i \leq M^{\prime}
+\end{array} \\
+\]</span> <span class="math display">\[
+I(T)=\sum_{i=1}^{M^{\prime}} \sum_{j=1}^{N^{\prime}} \frac{T_{i j}}{\left(\frac{i}{M^{\prime}}-\frac{j}{N^{\prime}}\right)^{2}+1} \\
+\]</span> <span class="math display">\[
+P_{i j}=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{l^{2}(i, j)}{2 \sigma^{2}}} \\
+\]</span> <span class="math display">\[
+l(i, j)=\frac{\left|i / M^{\prime}-j / N^{\prime}\right|}{\sqrt{1 / M^{\prime 2}+1 / N^{\prime 2}}} \\
+\]</span> - 通过上述方法就能得到针对两个句子AMR表示的OWMD距离，完成无监督的文本相似度计算。也可以充分利用AMR Tree来完成监督学习。 - 注意到在AMR树中，不同层的节点其实代表了整句不同粒度的语义切分，例如第0层是整句，第一层是短句"Jerry little",第二层是单一的概念"Jerry"，作者选取前三层，将每一层不同粒度的语义单元之间输入context layer，同一语义单元内的token embedding相加作为单一embedding，并假设每一层的子节点最多k个，不足的padding。 <img data-src="https://s1.ax1x.com/2020/04/11/GbgQUA.png" alt="GbgQUA.png" /></p>
+<h1 id="推荐">推荐</h1>
+<h2 id="相关工作-2">相关工作</h2>
+<h2 id="a-user-centered-concept-mining-system-for-query-and-document-understanding-at-tencentkdd-2019">A User-Centered Concept Mining System for Query and Document Understanding at Tencent(KDD 2019)</h2>
+<h2 id="scalable-creation-of-a-web-scale-ontologysigmod-2020">Scalable Creation of a Web-scale Ontology(SIGMOD 2020)</h2>
+<h1 id="阅读理解">阅读理解</h1>
+<h2 id="learning-to-generate-questions-by-learning-what-not-to-generatewww-2019">Learning to Generate Questions by Learning What not to Generate(WWW 2019)</h2>
+<h2 id="asking-questions-the-human-way-scalable-question-answer-generation-from-text-corpuswww-2020">Asking Questions the Human Way: Scalable Question-Answer Generation from Text Corpus(WWW 2020)</h2>
+]]></content>
+      <tags>
+        <tag>math</tag>
+        <tag>gnn</tag>
+        <tag>graph</tag>
       </tags>
   </entry>
   <entry>
@@ -2550,8 +2550,8 @@ H^{(l+1)}=\sigma\left(\sum_{\tau \in \mathcal{T}} \tilde{A}_{\tau} \cdot H_{\tau
         <category>面试</category>
       </categories>
       <tags>
-        <tag>natural language processing</tag>
         <tag>machine learning</tag>
+        <tag>natural language processing</tag>
         <tag>interview</tag>
       </tags>
   </entry>
@@ -2635,34 +2635,6 @@ H^{(l+1)}=\sigma\left(\sum_{\tau \in \mathcal{T}} \tilde{A}_{\tau} \cdot H_{\tau
       <tags>
         <tag>machine learning</tag>
         <tag>code</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Numpy Cookbook</title>
-    <url>/2017/01/23/numpycookbook/</url>
-    <content><![CDATA[<p>Cookbook网址：<a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html">Numpy Cookbook</a> Numpy的一些语法查询和总结 持续更新</p>
-<a id="more"></a>
-<ul>
-<li><p>shape() shape是numpy函数库中的方法，用于查看矩阵或者数组的维素 shape(array) 若矩阵有m行n列，则返回(m,n) array.shape[0] 返回矩阵的行数m，参数为1的话返回列数n</p></li>
-<li><p>tile() tile是numpy函数库中的方法，用法如下: tile(A,(m,n)) 将数组A作为元素构造出m行n列的数组</p></li>
-<li><p>sum() sum()是numpy函数库中的方法 array.sum(axis=1)按行累加，axis=0为按列累加</p></li>
-<li><p>argsort() argsort()是numpy中的方法，得到矩阵中每个元素的排序序号 A=array.argsort() A[0]表示排序后 排在第一个的那个数在原来数组中的下标</p></li>
-<li><p>dict.get(key,x) Python中字典的方法，get(key,x)从字典中获取key对应的value，字典中没有key的话返回0</p></li>
-<li><p>sorted()</p></li>
-<li><p>numpy中有min()、max()方法，用法如下 array.min(0) 返回一个数组，数组中每个数都是它所在列的所有数的最小值 array.min(1) 返回一个数组，数组中每个数都是它所在行的所有数的最小值</p></li>
-<li><p>listdir('str') strlist=listdir('str') 读取目录str下的所有文件名，返回一个字符串列表</p></li>
-<li><p>split() python中的方法，切片函数 string.split('str')以字符str为分隔符切片，返回list</p></li>
-<li><p>zeros a=np.zeros((m,n), dtype=np.int) #创建数据类型为int型的大小为m*n的零矩阵</p></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>math</tag>
-        <tag>machine learning</tag>
-        <tag>code</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -2798,6 +2770,34 @@ P^{*} (x,y) \in \{0,\frac 1N \} \\
         <tag>math</tag>
         <tag>machine learning</tag>
         <tag>logistic regression</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Numpy Cookbook</title>
+    <url>/2017/01/23/numpycookbook/</url>
+    <content><![CDATA[<p>Cookbook网址：<a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html">Numpy Cookbook</a> Numpy的一些语法查询和总结 持续更新</p>
+<a id="more"></a>
+<ul>
+<li><p>shape() shape是numpy函数库中的方法，用于查看矩阵或者数组的维素 shape(array) 若矩阵有m行n列，则返回(m,n) array.shape[0] 返回矩阵的行数m，参数为1的话返回列数n</p></li>
+<li><p>tile() tile是numpy函数库中的方法，用法如下: tile(A,(m,n)) 将数组A作为元素构造出m行n列的数组</p></li>
+<li><p>sum() sum()是numpy函数库中的方法 array.sum(axis=1)按行累加，axis=0为按列累加</p></li>
+<li><p>argsort() argsort()是numpy中的方法，得到矩阵中每个元素的排序序号 A=array.argsort() A[0]表示排序后 排在第一个的那个数在原来数组中的下标</p></li>
+<li><p>dict.get(key,x) Python中字典的方法，get(key,x)从字典中获取key对应的value，字典中没有key的话返回0</p></li>
+<li><p>sorted()</p></li>
+<li><p>numpy中有min()、max()方法，用法如下 array.min(0) 返回一个数组，数组中每个数都是它所在列的所有数的最小值 array.min(1) 返回一个数组，数组中每个数都是它所在行的所有数的最小值</p></li>
+<li><p>listdir('str') strlist=listdir('str') 读取目录str下的所有文件名，返回一个字符串列表</p></li>
+<li><p>split() python中的方法，切片函数 string.split('str')以字符str为分隔符切片，返回list</p></li>
+<li><p>zeros a=np.zeros((m,n), dtype=np.int) #创建数据类型为int型的大小为m*n的零矩阵</p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>math</tag>
+        <tag>machine learning</tag>
+        <tag>code</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -3006,50 +3006,6 @@ min(f(2n+2)+1,f(2n)+1) &amp; x=2n+1 \\
       </tags>
   </entry>
   <entry>
-    <title>Reformer论文解读</title>
-    <url>/2020/02/07/reformer/</url>
-    <content><![CDATA[<p>Reformer论文解读</p>
-<a id="more"></a>
-<h1 id="多快好省">多快好省</h1>
-<ul>
-<li>作者主要提出了两点操作来降低Transformer，尤其是在处理超长序列时的内存占用，减少了大量运算，提升了速度。</li>
-</ul>
-<h1 id="lsh-attention">LSH Attention</h1>
-<p><a href="https://imgchr.com/i/39Y8pt"><img data-src="https://s2.ax1x.com/2020/02/16/39Y8pt.png" alt="39Y8pt.png" /></a> - 这一部分最原始的想法就是，Transformer当中的self attention，每一个token作为query时，要把序列中所有token当成key去计算注意力，再在所有token上加权得到当前token的一个表示，但我们知道注意力一般是非常稀疏的，权重就集中于少数几个token上，那不如只在这几个token上计算权重并加权，这样就大大减少了self attention里<span class="math inline">\(O(N^2)\)</span>的计算量和内存占用量。 - 那么怎么才知道那少数几个token是哪几个？假如要完全靠注意力计算出来才能得到的话，怎么可能在计算注意力之前就知道哪几个token权重大？是不可能，但是在self attention里，query和key计算权重，就是简单的内积，和query相似的key权重大。模型学习到注意力，是指学习到生成正确的query以及key的表示，在计算注意力时只需要比对query和key就可以了。 - 所以问题转换成，对每一个query，我先找到相近的几个key计算注意力就好了。怎么找？当然不是全部算一遍取top k，那就与我们减少计算量的初衷相悖，在这里作者用到了Local Sensitive Hashing(LSH)，局部敏感哈希，大意就是相近的向量，映射到同一哈希值的概率较大，多个相近的、映射到同一哈希值的向量相当于装进了同一个桶里(bucket)，那么我们只需要对每个桶里的向量计算self attention。详细一点的描述是，两个向量<span class="math inline">\(q_1,q_2\)</span>，满足LSH的哈希函数<span class="math inline">\(h\)</span>能做到 <span class="math display">\[
-    for \ dis(q_1,q_2) &lt;= d_1 , \ p(h(q_1)==h(q_2)) &gt;= p_1 \\
-    for \ dis(q_1,q_2) &gt;= d_2 , \ p(h(q_1)==h(q_2)) &lt;= p_2 \\
-    \]</span> - 相关领域已经有很多研究，对于不同的距离度量<span class="math inline">\(dis\)</span>，有不同的<span class="math inline">\(h\)</span>满足LSH。显然在这里我们的距离度量是cosine距离，对应的LSH哈希是球形投影，即将向量投影到一个b维超球面上，该球面被分成了<span class="math inline">\(n_{buckets}\)</span>个象限，投影到同一象限的向量即在同一个桶中，该投影哈希具体写出来是： <span class="math display">\[
-    h(x) = argmax[xR;-xR] \\
-    \]</span> <span class="math inline">\(R\)</span>是一个<span class="math inline">\([d_k,b/2]\)</span>的随机投影矩阵 - 接下来的一个问题是，一个桶里面，query和key的数量不一定相等，而且有可能一个桶里许多query，没有key。于是作者干脆share QK，即令query和key相同，都是embedding从同一个线性变换出来的，只不过key做了归一化操作<span class="math inline">\(k_{j}=\frac{q_{j}}{\left\|q_{j}\right\|}\)</span> - chunk操作：接下来作者并不是让每个桶里分别做self attention，而是做了分段，即把同一个桶里的放在一起，重新排成一个序列，然后等长切成若干个段，段内做self attention，相邻的段也做一次attention。这里其实有点疑问，论文的图画的非常理想，每个桶的大小差不多，可能差了一两个可以通过相邻段做attention来弥补，但是实际情况并不知道每个桶的大小。也许是因为attention本身也是学习出来的，作者这么人为设置，是不是相当于给了一个每个桶大小都趋于相同且等于段长的先验限制了attention的学习。 - Multi-round lsh：lsh是讲概率的，有概率就有误差，作者构造了一个巧妙的实验来验证lsh对原始attention的还原度，发现单轮的效果并不好。因此就多次hash来保证概率，取多轮hash的并集来保证相似的向量能落到同一个桶里。这里取并集而不是交集，个人理解是桶一多，hash其实很稀疏，不相似的向量落在同一个桶的概率远小于相似的向量落在不同桶的概率。这里还有一些细节待补充 - casual masking：正常的transformer在decoder端是要做时序掩码的，这里lsh把序列顺序打乱了，因此也要做对应的处理，保证时序掩码的正确性。 - 值得一提的是大部分self attention的实现，value包括了自身，但是在lsh里不能包含自身，因为key和value共享值，自身永远是最相似的。</p>
-<h1 id="reversible-transformer">Reversible Transformer</h1>
-<ul>
-<li>这一部分的想法参照了论文：The Reversible Residual Network: Backpropagation Without Storing Activations。</li>
-<li>基本思想就是，将残差结构改为可逆残差结构，从而节省了显存。网络在做方向传播的时候，需要存储每一层的激活值，带入自动微分计算每一层的导数，再链式求导，其中存储每一层的激活值占了很大的显存。可逆残差的思想就是，通过将channel一分为二，做成两路，互相残差，更改计算图的拓扑结构，使得两路的激活值能够通过上一层的激活值计算出来，如图：<br />
-<img data-src="https://s2.ax1x.com/2020/02/16/39l0tP.png" alt="39l0tP.png" /></li>
-<li>前向传播过程为： <span class="math display">\[
-\begin{array}{l}{y_{1}=x_{1}+\mathcal{F}\left(x_{2}\right)} \\ {y_{2}=x_{2}+\mathcal{G}\left(y_{1}\right)}\end{array}
-\]</span></li>
-<li>反向传播为： <span class="math display">\[
-\begin{array}{l}{x_{2}=y_{2}-\mathcal{G}\left(y_{1}\right)} \\ {x_{1}=y_{1}-\mathcal{F}\left(x_{2}\right)}\end{array}
-\]</span></li>
-<li>可以看到计算<span class="math inline">\(x_2\)</span>时只用了上一层的激活值<span class="math inline">\(y_1,y_2\)</span>，计算<span class="math inline">\(x_1\)</span>时用了上一步计算出来的<span class="math inline">\(x_1\)</span>，因此不需要存储这两个激活值。虽然节省了空间，但是激活函数需要重新算一遍，相当于用时间换空间。</li>
-<li>原始论文用在resnet里，节约显存可以换得更大的batch_size，在transformer中就可以用来训练更长的sequence</li>
-<li>reformer中把两个函数<span class="math inline">\(\mathcal{F}\)</span>和<span class="math inline">\(\mathcal{G}\)</span>分别改成了自注意力层和全连接层，这样就对应了transformer的可逆结构</li>
-<li>可逆结构虽然消除了层数对于空间复杂度的影响，但是transformer里占显存最大的FFN，其依然受序列长度影响，为了减少这一部分显存占用，作者有一次采用了chunking，因为FFN这里是不存在序列依赖的，完全可以拆成几段计算，相应的，可逆结构的输入输出也拆成几段计算，又一次用时间换空间。此外，对于词典较大的应用场景，作者在计算损失log-probabilities时也是分段的。</li>
-<li>作者还额外提到，这样节省的是反向传播计算梯度时用到的中间临时变量，并不会节省参数量，节省参数量在GPU的消耗可以通过将其转到CPU内存来解决，通常这样的操作得不偿失，因为在CPU和GPU之间传输数据非常耗时，但是由于reformer在每次转换时可以处理更多的数据，就“得能尝失”了。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>自然语言处理</category>
-      </categories>
-      <tags>
-        <tag>deep learning</tag>
-        <tag>natural language processing</tag>
-        <tag>local sensitive hashing</tag>
-        <tag>transformer</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>基于端到端模型的生成式自动文摘研究</title>
     <url>/2018/07/04/seq2seq-summarization/</url>
     <content><![CDATA[<p>本科毕业设计是做一个基于seq2seq的短句文摘模型，并设计了一种情感融合机制 现在对整个模型做一个简单的总结</p>
@@ -3160,6 +3116,50 @@ min(f(2n+2)+1,f(2n)+1) &amp; x=2n+1 \\
         <tag>rnn</tag>
         <tag>lstm</tag>
         <tag>gru</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Reformer论文解读</title>
+    <url>/2020/02/07/reformer/</url>
+    <content><![CDATA[<p>Reformer论文解读</p>
+<a id="more"></a>
+<h1 id="多快好省">多快好省</h1>
+<ul>
+<li>作者主要提出了两点操作来降低Transformer，尤其是在处理超长序列时的内存占用，减少了大量运算，提升了速度。</li>
+</ul>
+<h1 id="lsh-attention">LSH Attention</h1>
+<p><a href="https://imgchr.com/i/39Y8pt"><img data-src="https://s2.ax1x.com/2020/02/16/39Y8pt.png" alt="39Y8pt.png" /></a> - 这一部分最原始的想法就是，Transformer当中的self attention，每一个token作为query时，要把序列中所有token当成key去计算注意力，再在所有token上加权得到当前token的一个表示，但我们知道注意力一般是非常稀疏的，权重就集中于少数几个token上，那不如只在这几个token上计算权重并加权，这样就大大减少了self attention里<span class="math inline">\(O(N^2)\)</span>的计算量和内存占用量。 - 那么怎么才知道那少数几个token是哪几个？假如要完全靠注意力计算出来才能得到的话，怎么可能在计算注意力之前就知道哪几个token权重大？是不可能，但是在self attention里，query和key计算权重，就是简单的内积，和query相似的key权重大。模型学习到注意力，是指学习到生成正确的query以及key的表示，在计算注意力时只需要比对query和key就可以了。 - 所以问题转换成，对每一个query，我先找到相近的几个key计算注意力就好了。怎么找？当然不是全部算一遍取top k，那就与我们减少计算量的初衷相悖，在这里作者用到了Local Sensitive Hashing(LSH)，局部敏感哈希，大意就是相近的向量，映射到同一哈希值的概率较大，多个相近的、映射到同一哈希值的向量相当于装进了同一个桶里(bucket)，那么我们只需要对每个桶里的向量计算self attention。详细一点的描述是，两个向量<span class="math inline">\(q_1,q_2\)</span>，满足LSH的哈希函数<span class="math inline">\(h\)</span>能做到 <span class="math display">\[
+    for \ dis(q_1,q_2) &lt;= d_1 , \ p(h(q_1)==h(q_2)) &gt;= p_1 \\
+    for \ dis(q_1,q_2) &gt;= d_2 , \ p(h(q_1)==h(q_2)) &lt;= p_2 \\
+    \]</span> - 相关领域已经有很多研究，对于不同的距离度量<span class="math inline">\(dis\)</span>，有不同的<span class="math inline">\(h\)</span>满足LSH。显然在这里我们的距离度量是cosine距离，对应的LSH哈希是球形投影，即将向量投影到一个b维超球面上，该球面被分成了<span class="math inline">\(n_{buckets}\)</span>个象限，投影到同一象限的向量即在同一个桶中，该投影哈希具体写出来是： <span class="math display">\[
+    h(x) = argmax[xR;-xR] \\
+    \]</span> <span class="math inline">\(R\)</span>是一个<span class="math inline">\([d_k,b/2]\)</span>的随机投影矩阵 - 接下来的一个问题是，一个桶里面，query和key的数量不一定相等，而且有可能一个桶里许多query，没有key。于是作者干脆share QK，即令query和key相同，都是embedding从同一个线性变换出来的，只不过key做了归一化操作<span class="math inline">\(k_{j}=\frac{q_{j}}{\left\|q_{j}\right\|}\)</span> - chunk操作：接下来作者并不是让每个桶里分别做self attention，而是做了分段，即把同一个桶里的放在一起，重新排成一个序列，然后等长切成若干个段，段内做self attention，相邻的段也做一次attention。这里其实有点疑问，论文的图画的非常理想，每个桶的大小差不多，可能差了一两个可以通过相邻段做attention来弥补，但是实际情况并不知道每个桶的大小。也许是因为attention本身也是学习出来的，作者这么人为设置，是不是相当于给了一个每个桶大小都趋于相同且等于段长的先验限制了attention的学习。 - Multi-round lsh：lsh是讲概率的，有概率就有误差，作者构造了一个巧妙的实验来验证lsh对原始attention的还原度，发现单轮的效果并不好。因此就多次hash来保证概率，取多轮hash的并集来保证相似的向量能落到同一个桶里。这里取并集而不是交集，个人理解是桶一多，hash其实很稀疏，不相似的向量落在同一个桶的概率远小于相似的向量落在不同桶的概率。这里还有一些细节待补充 - casual masking：正常的transformer在decoder端是要做时序掩码的，这里lsh把序列顺序打乱了，因此也要做对应的处理，保证时序掩码的正确性。 - 值得一提的是大部分self attention的实现，value包括了自身，但是在lsh里不能包含自身，因为key和value共享值，自身永远是最相似的。</p>
+<h1 id="reversible-transformer">Reversible Transformer</h1>
+<ul>
+<li>这一部分的想法参照了论文：The Reversible Residual Network: Backpropagation Without Storing Activations。</li>
+<li>基本思想就是，将残差结构改为可逆残差结构，从而节省了显存。网络在做方向传播的时候，需要存储每一层的激活值，带入自动微分计算每一层的导数，再链式求导，其中存储每一层的激活值占了很大的显存。可逆残差的思想就是，通过将channel一分为二，做成两路，互相残差，更改计算图的拓扑结构，使得两路的激活值能够通过上一层的激活值计算出来，如图：<br />
+<img data-src="https://s2.ax1x.com/2020/02/16/39l0tP.png" alt="39l0tP.png" /></li>
+<li>前向传播过程为： <span class="math display">\[
+\begin{array}{l}{y_{1}=x_{1}+\mathcal{F}\left(x_{2}\right)} \\ {y_{2}=x_{2}+\mathcal{G}\left(y_{1}\right)}\end{array}
+\]</span></li>
+<li>反向传播为： <span class="math display">\[
+\begin{array}{l}{x_{2}=y_{2}-\mathcal{G}\left(y_{1}\right)} \\ {x_{1}=y_{1}-\mathcal{F}\left(x_{2}\right)}\end{array}
+\]</span></li>
+<li>可以看到计算<span class="math inline">\(x_2\)</span>时只用了上一层的激活值<span class="math inline">\(y_1,y_2\)</span>，计算<span class="math inline">\(x_1\)</span>时用了上一步计算出来的<span class="math inline">\(x_1\)</span>，因此不需要存储这两个激活值。虽然节省了空间，但是激活函数需要重新算一遍，相当于用时间换空间。</li>
+<li>原始论文用在resnet里，节约显存可以换得更大的batch_size，在transformer中就可以用来训练更长的sequence</li>
+<li>reformer中把两个函数<span class="math inline">\(\mathcal{F}\)</span>和<span class="math inline">\(\mathcal{G}\)</span>分别改成了自注意力层和全连接层，这样就对应了transformer的可逆结构</li>
+<li>可逆结构虽然消除了层数对于空间复杂度的影响，但是transformer里占显存最大的FFN，其依然受序列长度影响，为了减少这一部分显存占用，作者有一次采用了chunking，因为FFN这里是不存在序列依赖的，完全可以拆成几段计算，相应的，可逆结构的输入输出也拆成几段计算，又一次用时间换空间。此外，对于词典较大的应用场景，作者在计算损失log-probabilities时也是分段的。</li>
+<li>作者还额外提到，这样节省的是反向传播计算梯度时用到的中间临时变量，并不会节省参数量，节省参数量在GPU的消耗可以通过将其转到CPU内存来解决，通常这样的操作得不偿失，因为在CPU和GPU之间传输数据非常耗时，但是由于reformer在每次转换时可以处理更多的数据，就“得能尝失”了。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>自然语言处理</category>
+      </categories>
+      <tags>
+        <tag>deep learning</tag>
+        <tag>natural language processing</tag>
+        <tag>local sensitive hashing</tag>
+        <tag>transformer</tag>
       </tags>
   </entry>
   <entry>
@@ -3381,43 +3381,6 @@ Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\
       </tags>
   </entry>
   <entry>
-    <title>用Python实现字典树</title>
-    <url>/2017/05/02/trie/</url>
-    <content><![CDATA[<hr />
-<p>在Python中有字典这一数据结构，因此用Python实现字典树很方便</p>
-<a id="more"></a>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i07rz6.jpg" alt="" /><figcaption>i07rz6.jpg</figcaption>
-</figure>
-<h1 id="字典树trie">字典树(trie)</h1>
-<ul>
-<li>字典树主要用于词频统计，前缀后缀相关的算法，树的根节点不存任何字符，每一条边代表一个字符，其他每一个节点代表从根节点到此节点的所有边上字符构成的单词，存的内容根据需求而定。</li>
-<li>字典树快的原因就是充分利用的单词的共同前缀，如果前缀都不一样，就不需要继续查找</li>
-<li>一个单词不一定在叶子节点，因为它可能构成其他更长单词的前缀，因此如果用于词频统计，则可以插入完一个单词后在此单词最后一个节点中count++。如果仅仅用于判断某个词是否在字典树构成的字典中，则可以在插入完一个单词后，在最后一个节点中添加一个None节点，内容为单词本身</li>
-</ul>
-<h1 id="例子">例子</h1>
-<ul>
-<li>以leetcode472为例，当中需要判断某个序列中某个单词是否能由它前面的单词构成</li>
-<li>初始化trie <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">trie = &#123;&#125;</span><br></pre></td></tr></table></figure></li>
-<li>trie中插入单词 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span>(<span class="params">trie, w</span>):</span></span><br><span class="line">	<span class="keyword">for</span> c <span class="keyword">in</span> w:</span><br><span class="line">		trie = trie.setdefault(c, &#123;&#125;)  <span class="comment"># if c not in trie then set trie[c]=&#123;&#125;</span></span><br><span class="line">	trie[<span class="literal">None</span>] = w</span><br></pre></td></tr></table></figure> 对每一个字符串，依次按字母索引，当索引不到时就对当前字母建立新节点 遍历完单词后建立None节点存放单词(因为题目需要返回所有单词，因此此处存放单词,也可以存放出现次数 这样一棵树最终完成时就如标题图所示，其中前四行是加入["cat", "cats","dog", "rat"]之后树的内容</li>
-<li>trie中查找某一个单词 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prefixs</span>(<span class="params">trie, w, lo</span>):</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(lo, <span class="built_in">len</span>(w)):</span><br><span class="line">		trie = trie.get(w[i])</span><br><span class="line">		<span class="keyword">if</span> trie <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		prefix = trie.get(<span class="literal">None</span>)</span><br><span class="line">	<span class="keyword">if</span> prefix:</span><br><span class="line">		<span class="keyword">yield</span> i + <span class="number">1</span>, prefix</span><br></pre></td></tr></table></figure> 因为题目需要，利用了生成器，这段函数是查找单词w中i从lo位置开始，i到单词尾这一段构成的字符串，是否在trie的字典集合中，返回所有符合结果的i+1。查找的方式与插入相同 特别说明的是，trie的一大优势便是支持插入与查找同时进行</li>
-</ul>
-<h1 id="后缀树">后缀树</h1>
-<ul>
-<li>如果将一个单词，长度为l，拆分成l个子单词插入到trie中，每个子单词都是这个单词的[i:l]构成的后缀，则这样的字典树称之为后缀树。</li>
-<li>简单按上述方法建立后缀树会存在许多冗余信息，在空间上还可以进行优化</li>
-<li>待续</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>code</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>统计学习方法手写版笔记</title>
     <url>/2018/08/09/statistical-handwriting/</url>
     <content><![CDATA[<hr />
@@ -3537,6 +3500,43 @@ Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\
       </tags>
   </entry>
   <entry>
+    <title>用Python实现字典树</title>
+    <url>/2017/05/02/trie/</url>
+    <content><![CDATA[<hr />
+<p>在Python中有字典这一数据结构，因此用Python实现字典树很方便</p>
+<a id="more"></a>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i07rz6.jpg" alt="" /><figcaption>i07rz6.jpg</figcaption>
+</figure>
+<h1 id="字典树trie">字典树(trie)</h1>
+<ul>
+<li>字典树主要用于词频统计，前缀后缀相关的算法，树的根节点不存任何字符，每一条边代表一个字符，其他每一个节点代表从根节点到此节点的所有边上字符构成的单词，存的内容根据需求而定。</li>
+<li>字典树快的原因就是充分利用的单词的共同前缀，如果前缀都不一样，就不需要继续查找</li>
+<li>一个单词不一定在叶子节点，因为它可能构成其他更长单词的前缀，因此如果用于词频统计，则可以插入完一个单词后在此单词最后一个节点中count++。如果仅仅用于判断某个词是否在字典树构成的字典中，则可以在插入完一个单词后，在最后一个节点中添加一个None节点，内容为单词本身</li>
+</ul>
+<h1 id="例子">例子</h1>
+<ul>
+<li>以leetcode472为例，当中需要判断某个序列中某个单词是否能由它前面的单词构成</li>
+<li>初始化trie <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">trie = &#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li>trie中插入单词 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span>(<span class="params">trie, w</span>):</span></span><br><span class="line">	<span class="keyword">for</span> c <span class="keyword">in</span> w:</span><br><span class="line">		trie = trie.setdefault(c, &#123;&#125;)  <span class="comment"># if c not in trie then set trie[c]=&#123;&#125;</span></span><br><span class="line">	trie[<span class="literal">None</span>] = w</span><br></pre></td></tr></table></figure> 对每一个字符串，依次按字母索引，当索引不到时就对当前字母建立新节点 遍历完单词后建立None节点存放单词(因为题目需要返回所有单词，因此此处存放单词,也可以存放出现次数 这样一棵树最终完成时就如标题图所示，其中前四行是加入["cat", "cats","dog", "rat"]之后树的内容</li>
+<li>trie中查找某一个单词 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prefixs</span>(<span class="params">trie, w, lo</span>):</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(lo, <span class="built_in">len</span>(w)):</span><br><span class="line">		trie = trie.get(w[i])</span><br><span class="line">		<span class="keyword">if</span> trie <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		prefix = trie.get(<span class="literal">None</span>)</span><br><span class="line">	<span class="keyword">if</span> prefix:</span><br><span class="line">		<span class="keyword">yield</span> i + <span class="number">1</span>, prefix</span><br></pre></td></tr></table></figure> 因为题目需要，利用了生成器，这段函数是查找单词w中i从lo位置开始，i到单词尾这一段构成的字符串，是否在trie的字典集合中，返回所有符合结果的i+1。查找的方式与插入相同 特别说明的是，trie的一大优势便是支持插入与查找同时进行</li>
+</ul>
+<h1 id="后缀树">后缀树</h1>
+<ul>
+<li>如果将一个单词，长度为l，拆分成l个子单词插入到trie中，每个子单词都是这个单词的[i:l]构成的后缀，则这样的字典树称之为后缀树。</li>
+<li>简单按上述方法建立后缀树会存在许多冗余信息，在空间上还可以进行优化</li>
+<li>待续</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>code</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>支持向量机一些细节补充</title>
     <url>/2020/02/13/svm/</url>
     <content><![CDATA[<p>一些推导关键步骤</p>
@@ -3620,102 +3620,6 @@ b^{*}=\tilde{y}_{j}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}\left(\overrighta
         <tag>math</tag>
         <tag>machine learning</tag>
         <tag>svm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VC维学习笔记</title>
-    <url>/2020/05/15/vc-dimension/</url>
-    <content><![CDATA[<p>简单的梳理VC维。所有讨论基于二分类这一简单情况出发。</p>
-<a id="more"></a>
-<h1 id="hoeffding不等式">Hoeffding不等式</h1>
-<ul>
-<li>机器学习的一个大假设就是，训练集上训练出的模型能够泛化到测试集，详细一点说即我们用算法A和训练集D，在假设空间H里中找到一个假设g，使得该假设g和需要学习的目标假设f近似。令g在训练集上的误差（经验误差）为<span class="math inline">\(E_{in}(g)\)</span>，在除了训练集外所有可能样本上的误差（泛化误差，期望误差）为<span class="math inline">\(E_{out}(g)\)</span>。</li>
-<li>已知<span class="math inline">\(E_{out}(f) = 0\)</span>，我们也希望得到的g满足<span class="math inline">\(E_{out}(g) = 0\)</span>，这里包含了两点信息
-<ul>
-<li>需要<span class="math inline">\(E_{in}(g) \approx E_{out}(g)\)</span></li>
-<li>需要<span class="math inline">\(E_{in}(g) \approx 0\)</span></li>
-</ul></li>
-<li>第二点<span class="math inline">\(E_{in}(g) \approx 0\)</span>就是我们训练模型所做的事，在训练集上减小误差，而第一点<span class="math inline">\(E_{in}(g) \approx E_{out}(g)\)</span>，即如何保证模型的泛化能力，这是VC所衡量的事情。</li>
-<li>训练集可以看成是样本空间的一个采样，从采样上计算一些量来估计整个样本空间的量，我们有Hoeffding不等式 <span class="math display">\[
-\mathbb{P}[|\nu-\mu|&gt;\epsilon] \leq 2 \exp \left(-2 \epsilon^{2} N\right)
-\]</span></li>
-<li>其中<span class="math inline">\(\nu\)</span>是训练集上的计算量，<span class="math inline">\(\mu\)</span>是整个样本空间上对应的量。我们自然可以把误差（损失）看成是一种计算量，得到： <span class="math display">\[
-\mathbb{P}\left[\left|E_{i n}(h)-E_{o u t}(h)\right|&gt;\epsilon\right] \leq 2 \exp \left(-2 \epsilon^{2} N\right)
-\]</span></li>
-<li>其中h是某一假设（任意一个，不是我们通过训练挑出的最好假设g），左边即训练和真实损失差距大于某个相差阈值的概率，可以用来衡量泛化能力，而右侧发现只和相差阈值和训练集容量N相关。这符合我们的直觉，即训练集越大，泛化能力越强。</li>
-<li>但问题是以上情况是针对固定的一个假设h，我们称经验误差和泛化误差相差很多的情况为bad case，那上述不等式说明了对于固定的一个h，bad case出现的概率很小。但是我们的算法A是在整个假设空间H里挑选假设，我们更关注对于所有h，其中任意一个h都不出现bad case出现的概率，即 <span class="math display">\[
-\begin{array}{c}
-\mathbb{P}\left[\mathbf{E}\left(h_{1}\right)&gt;\epsilon \cup \mathbf{E}\left(h_{2}\right)&gt;\epsilon \ldots \cup \mathbf{E}\left(h_{M}\right)&gt;\epsilon\right] \\
-\leq \mathbb{P}\left[\mathbf{E}\left(h_{1}\right)&gt;\epsilon\right]+\mathbb{P}\left[\mathbf{E}\left(h_{2}\right)&gt;\epsilon\right] \ldots+\mathbb{P}\left[\mathbf{E}\left(h_{M}\right)&gt;\epsilon\right] \\
-\leq 2 M \exp \left(-2 \epsilon^{2} N\right)
-\end{array}
-\]</span></li>
-<li>其中<span class="math inline">\(\mathbf{E}\)</span>即经验误差和泛化误差的差距，这里我们进一步放缩了这个上界，考虑最大的情况，也就是各个h经验误差和泛化误差的差距大于某个阈值的事件相互独立，事件的并的概率是各个事件概率之和，最终得到了针对所有h，bad case的上限是<span class="math inline">\(2 M \exp (-2 \epsilon^{2} N)\)</span></li>
-<li>这下就出了问题，之前由于只有N存在于负指数项中，所以只要训练集容量足够大，这个上限是有限的，我们就对机器学习的泛化能力有信心；现在前面乘了一个M，即假设空间的容量，这下上限就不一定是有限（存在）的了。这也符合直觉，想象一下，假设空间越大，就需要越多的数据来训练，使得算法挑选出一个好的假设；假如数据量一定，假设空间越大，就越难挑出一个和真实假设f相近的g</li>
-</ul>
-<h1 id="有效的假设">有效的假设</h1>
-<ul>
-<li>接下来正式进入VC维的探讨。首先我们讨论有效假设数。考虑到上面的不等式，我们其实做了一个很大的放缩，即假定各个h经验误差和泛化误差的差距大于某个阈值的事件相互独立，事件的并的概率是各个事件概率之和。但实际上并不是这样的。例如对于二维线性可分的数据，存在分离间隔，那么分离间隔中的几个能正确分类训练集的几个相互平行且相差不远的分离面（直线），他们其实非常相近，对于绝大多数数据点而言在这两个分离面下的结果相同，同样泛化能力出现差距的概率分布也有很大重叠，将其视为相互独立是不合适的。</li>
-<li>我们再回头看看不等式中的M，其字面意思就是假设空间的容量，实际上是假设空间表达能力的一种度量，在一定量的训练集下，假设空间表达能力越丰富，学习算法就越难找到一个好的假设。假设空间的容量，是所有假设的和，其中一个假设可以看成是确定模型下的一组参数。有没有其他的更为有效的衡量假设空间表达能力的量？</li>
-<li>假如我们不看模型参数本身，而是看模型对数据的分类结果呢？例如，之前是相同的参数（相同的直线）视为相同的假设，现在用相同的分类结果（不同的直线，把点做了相同的分类）的参数视为相同的假设。这样看来似乎更加合理，因为表达能力最终落实在对数据的所有可能分类结果的处理，而无论经验误差还是泛化误差也都是通过误分类点来衡量。</li>
-<li>这里引入了几个术语：
-<ul>
-<li>对分(dichotomy)：记为<span class="math inline">\(h\left(X_{1}, X_{2}, \ldots, X_{N}\right)\)</span>。N个点的对分即N个点的一种分类结果，显然对于二分类问题，N个点最多有<span class="math inline">\(2^N\)</span>个dichotomy。</li>
-<li>假设空间H在训练集D里N个点上的对分，记为<span class="math inline">\(\mathcal{H}\left(X_{1}, X_{2}, \ldots, X_{N}\right)\)</span>，这里对分的个数除了和数据集相关，还和假设空间H相关，因为假设空间并不一定能取到所有的dichotomy，例如四个点组成正方形，对角线的标签一样，那么一条直线的假设空间就取不到这种对分。</li>
-<li>增长函数(growth function)：假设空间在训练集上的对分个数不仅与训练集大小相关，还与具体的训练集相关，例如抽出来的训练集不包含（四个点组成正方形，对角线的标签一样）这种对分，那么可能直线在该训练集上取到的对分数量就和该训练集最多可能的对分数量一样。因此为了排除具体的训练集影响，我们设在所有大小为N的可能训练集上假设空间H能取到的最大对分数量为增长函数，定为：<span class="math inline">\(m_{\mathcal{H}}(N)=\max _{X_{1}, X 2, \ldots, X_{N} \in \mathcal{X}}\left|\mathcal{H}\left(X_{1}, X_{2}, \ldots, X_{N}\right)\right|\)</span></li>
-<li>打散(shatter)：即增长函数取到了理论上最大的对分数<span class="math inline">\(2^N\)</span>，这里的含义就是这个假设空间对于大小为N的数据集（该任务设定下任意一个大小为N数据集）来说足够好了，能够考虑到所有情况，针对任何一种分类结果给出对应的假设。也即对于该任务，总容量为N的数据集，该模型有能力取到完美解。</li>
-<li>break point：显然N越小，越容易打散；N越大，越不容易打散。那么从N=1开始逐渐增加，直到某个临界点N=k时，假设空间无法打散这k个点了，我们就称k为该假设空间的break point。可以证明N&gt;k的情况都无法打散</li>
-</ul></li>
-<li>可以看到其实到增长函数这里，这就是一个假设空间表达能力的一种衡量指标了。VC维考虑的就是用这种衡量指标替换Hoeffding不等式中的假设空间容量。当然不能直接替换，具体而言，是 <span class="math display">\[
-\forall g \in \mathcal{H}, \mathbb{P}\left[\left|E_{i n}(g)-E_{o u t}(g)\right|&gt;\epsilon\right] \leq 4 m_{\mathcal{H}}(2 N) \exp \left(-\frac{1}{8} \epsilon^{2} N\right)
-\]</span></li>
-<li>上式右边即VC界，证明比较复杂略。那么这样我们再考虑上界是不是有限的。可以看到最重要的M被换成了<span class="math inline">\(m_H\)</span>，即增长函数，假如增长函数有界或者说随N的增加速率低于指数部分的缩减速率，那么我们就可以说经验误差和泛化误差的差值上界是有限的。实际上，假如break point k存在，那么有 <span class="math display">\[
-m_{\mathcal{H}}(N) \leq B(N, k) \leq \sum_{i=0}^{k-1}\left(\begin{array}{c}
-N \\
-i
-\end{array}\right) \leq N^{k-1}
-\]</span></li>
-<li>其中B(N, k)就是break point为k时增长函数的上界，可以发现增长函数上界的上界是多项式级别的(k-1次方)，那么增长函数最多是多项式级别，而VC界中的<span class="math inline">\(\exp \left(-2 \epsilon^{2} N\right)\)</span>是指数级别，显然VC界是存在的，有限的。</li>
-<li>那么终于，对于break point存在的情况，我们可以说泛化能力是有保证的，机器学习是有保证的。</li>
-</ul>
-<h1 id="vc维">VC维</h1>
-<ul>
-<li>VC界保证了学习的可行性，而VC维考虑的是假设空间的表达能力。前面说到增长函数是对于假设空间表达能力的一种衡量，两者也存在密切关联。</li>
-<li>VC维定义为，给定假设空间H，其break point存在，那么其VC维是能够打散的最大数据集的大小，即 <span class="math display">\[
-V C(\mathcal{H})=\max \left\{N: m_{\mathcal{H}}(N)=2^{N}\right\}
-\]</span></li>
-<li>回忆VC维定义中的两个概念：增长函数和打散。增长函数定义了假设空间解决对分的能力，打散代表着假设空间有能力解决一定量的数据集，对于每一种可能的对分都有对应假设，那么VC维就是从数据集的量来衡量假设空间的能力，假设空间越复杂，表达能力越强，就能打散更大的数据集，有足够多的假设解决更大数据集上的每一种上可能的对分——注意，不是每一种理论上可能的对分，因为VC维取的是能够达到的最大数据集容量，是存在而不是任意，即最大存在大小为VC维的数据集能够被该假设空间打散。</li>
-<li>那么VC维具体是多少呢？其实之前我们定义过了，就是k-1，即容量小于break point的数据集都能被打散，那么能被打散的数据集容量最大就是break point - 1</li>
-<li>注意到这个k-1不就是VC界中增长函数上界中的多项式次数吗，因此VC界又可以写成： <span class="math display">\[
-\forall g \in \mathcal{H}, \mathbb{P}\left[\left|E_{i n}(g)-E_{o u t}(g)\right|&gt;\epsilon\right] \leq 4(2 N)^{V C(\mathcal{H})} \exp \left(-\frac{1}{8} \epsilon^{2} N\right)
-\]</span></li>
-</ul>
-<h1 id="衡量量化能力">衡量量化能力</h1>
-<ul>
-<li>由VC界的不等式可以看到，经验误差与泛化误差之间的差距（衡量泛化能力）和不等式右边即bad case发生的概率相关联，假如我们给定了bad case发生的概率，设为： <span class="math display">\[
-4(2 N)^{V C(\mathcal{H})} \exp \left(-\frac{1}{8} \epsilon^{2} N\right)=\delta
-\]</span> 那么可以反过来算出衡量泛化能力的差距 <span class="math display">\[
-\epsilon=\sqrt{\frac{8}{N} \ln \left(\frac{4(2 N)^{V C(\mathcal{H})}}{\delta}\right)}
-\]</span></li>
-<li>所以在机器学习基石和技法当中，老师经常写出一个VC bound用来估计泛化误差的公式： <span class="math display">\[
-E_{\text {out }}(\mathbf{w}) \leq E_{\text {in }}(\mathbf{w})+\Omega(\mathcal{H})
-\]</span></li>
-<li>其中的<span class="math inline">\(\Omega(\mathcal{H})\)</span>即<span class="math inline">\(\sqrt{\frac{8}{N} \ln \left(\frac{4(2 N)^{V C(\mathcal{H})}}{\delta}\right)}\)</span></li>
-</ul>
-<h1 id="参考">参考</h1>
-<ul>
-<li>https://zhuanlan.zhihu.com/p/59113933</li>
-<li>https://www.coursera.org/learn/ntumlone-mathematicalfoundations</li>
-</ul>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>math</tag>
-        <tag>machine learning</tag>
-        <tag>statistical learning</tag>
-        <tag>vc dimension</tag>
       </tags>
   </entry>
   <entry>
@@ -3843,6 +3747,102 @@ ELBO = -重构误差损失-正则惩罚
         <tag>math</tag>
         <tag>vae</tag>
         <tag>mcmc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VC维学习笔记</title>
+    <url>/2020/05/15/vc-dimension/</url>
+    <content><![CDATA[<p>简单的梳理VC维。所有讨论基于二分类这一简单情况出发。</p>
+<a id="more"></a>
+<h1 id="hoeffding不等式">Hoeffding不等式</h1>
+<ul>
+<li>机器学习的一个大假设就是，训练集上训练出的模型能够泛化到测试集，详细一点说即我们用算法A和训练集D，在假设空间H里中找到一个假设g，使得该假设g和需要学习的目标假设f近似。令g在训练集上的误差（经验误差）为<span class="math inline">\(E_{in}(g)\)</span>，在除了训练集外所有可能样本上的误差（泛化误差，期望误差）为<span class="math inline">\(E_{out}(g)\)</span>。</li>
+<li>已知<span class="math inline">\(E_{out}(f) = 0\)</span>，我们也希望得到的g满足<span class="math inline">\(E_{out}(g) = 0\)</span>，这里包含了两点信息
+<ul>
+<li>需要<span class="math inline">\(E_{in}(g) \approx E_{out}(g)\)</span></li>
+<li>需要<span class="math inline">\(E_{in}(g) \approx 0\)</span></li>
+</ul></li>
+<li>第二点<span class="math inline">\(E_{in}(g) \approx 0\)</span>就是我们训练模型所做的事，在训练集上减小误差，而第一点<span class="math inline">\(E_{in}(g) \approx E_{out}(g)\)</span>，即如何保证模型的泛化能力，这是VC所衡量的事情。</li>
+<li>训练集可以看成是样本空间的一个采样，从采样上计算一些量来估计整个样本空间的量，我们有Hoeffding不等式 <span class="math display">\[
+\mathbb{P}[|\nu-\mu|&gt;\epsilon] \leq 2 \exp \left(-2 \epsilon^{2} N\right)
+\]</span></li>
+<li>其中<span class="math inline">\(\nu\)</span>是训练集上的计算量，<span class="math inline">\(\mu\)</span>是整个样本空间上对应的量。我们自然可以把误差（损失）看成是一种计算量，得到： <span class="math display">\[
+\mathbb{P}\left[\left|E_{i n}(h)-E_{o u t}(h)\right|&gt;\epsilon\right] \leq 2 \exp \left(-2 \epsilon^{2} N\right)
+\]</span></li>
+<li>其中h是某一假设（任意一个，不是我们通过训练挑出的最好假设g），左边即训练和真实损失差距大于某个相差阈值的概率，可以用来衡量泛化能力，而右侧发现只和相差阈值和训练集容量N相关。这符合我们的直觉，即训练集越大，泛化能力越强。</li>
+<li>但问题是以上情况是针对固定的一个假设h，我们称经验误差和泛化误差相差很多的情况为bad case，那上述不等式说明了对于固定的一个h，bad case出现的概率很小。但是我们的算法A是在整个假设空间H里挑选假设，我们更关注对于所有h，其中任意一个h都不出现bad case出现的概率，即 <span class="math display">\[
+\begin{array}{c}
+\mathbb{P}\left[\mathbf{E}\left(h_{1}\right)&gt;\epsilon \cup \mathbf{E}\left(h_{2}\right)&gt;\epsilon \ldots \cup \mathbf{E}\left(h_{M}\right)&gt;\epsilon\right] \\
+\leq \mathbb{P}\left[\mathbf{E}\left(h_{1}\right)&gt;\epsilon\right]+\mathbb{P}\left[\mathbf{E}\left(h_{2}\right)&gt;\epsilon\right] \ldots+\mathbb{P}\left[\mathbf{E}\left(h_{M}\right)&gt;\epsilon\right] \\
+\leq 2 M \exp \left(-2 \epsilon^{2} N\right)
+\end{array}
+\]</span></li>
+<li>其中<span class="math inline">\(\mathbf{E}\)</span>即经验误差和泛化误差的差距，这里我们进一步放缩了这个上界，考虑最大的情况，也就是各个h经验误差和泛化误差的差距大于某个阈值的事件相互独立，事件的并的概率是各个事件概率之和，最终得到了针对所有h，bad case的上限是<span class="math inline">\(2 M \exp (-2 \epsilon^{2} N)\)</span></li>
+<li>这下就出了问题，之前由于只有N存在于负指数项中，所以只要训练集容量足够大，这个上限是有限的，我们就对机器学习的泛化能力有信心；现在前面乘了一个M，即假设空间的容量，这下上限就不一定是有限（存在）的了。这也符合直觉，想象一下，假设空间越大，就需要越多的数据来训练，使得算法挑选出一个好的假设；假如数据量一定，假设空间越大，就越难挑出一个和真实假设f相近的g</li>
+</ul>
+<h1 id="有效的假设">有效的假设</h1>
+<ul>
+<li>接下来正式进入VC维的探讨。首先我们讨论有效假设数。考虑到上面的不等式，我们其实做了一个很大的放缩，即假定各个h经验误差和泛化误差的差距大于某个阈值的事件相互独立，事件的并的概率是各个事件概率之和。但实际上并不是这样的。例如对于二维线性可分的数据，存在分离间隔，那么分离间隔中的几个能正确分类训练集的几个相互平行且相差不远的分离面（直线），他们其实非常相近，对于绝大多数数据点而言在这两个分离面下的结果相同，同样泛化能力出现差距的概率分布也有很大重叠，将其视为相互独立是不合适的。</li>
+<li>我们再回头看看不等式中的M，其字面意思就是假设空间的容量，实际上是假设空间表达能力的一种度量，在一定量的训练集下，假设空间表达能力越丰富，学习算法就越难找到一个好的假设。假设空间的容量，是所有假设的和，其中一个假设可以看成是确定模型下的一组参数。有没有其他的更为有效的衡量假设空间表达能力的量？</li>
+<li>假如我们不看模型参数本身，而是看模型对数据的分类结果呢？例如，之前是相同的参数（相同的直线）视为相同的假设，现在用相同的分类结果（不同的直线，把点做了相同的分类）的参数视为相同的假设。这样看来似乎更加合理，因为表达能力最终落实在对数据的所有可能分类结果的处理，而无论经验误差还是泛化误差也都是通过误分类点来衡量。</li>
+<li>这里引入了几个术语：
+<ul>
+<li>对分(dichotomy)：记为<span class="math inline">\(h\left(X_{1}, X_{2}, \ldots, X_{N}\right)\)</span>。N个点的对分即N个点的一种分类结果，显然对于二分类问题，N个点最多有<span class="math inline">\(2^N\)</span>个dichotomy。</li>
+<li>假设空间H在训练集D里N个点上的对分，记为<span class="math inline">\(\mathcal{H}\left(X_{1}, X_{2}, \ldots, X_{N}\right)\)</span>，这里对分的个数除了和数据集相关，还和假设空间H相关，因为假设空间并不一定能取到所有的dichotomy，例如四个点组成正方形，对角线的标签一样，那么一条直线的假设空间就取不到这种对分。</li>
+<li>增长函数(growth function)：假设空间在训练集上的对分个数不仅与训练集大小相关，还与具体的训练集相关，例如抽出来的训练集不包含（四个点组成正方形，对角线的标签一样）这种对分，那么可能直线在该训练集上取到的对分数量就和该训练集最多可能的对分数量一样。因此为了排除具体的训练集影响，我们设在所有大小为N的可能训练集上假设空间H能取到的最大对分数量为增长函数，定为：<span class="math inline">\(m_{\mathcal{H}}(N)=\max _{X_{1}, X 2, \ldots, X_{N} \in \mathcal{X}}\left|\mathcal{H}\left(X_{1}, X_{2}, \ldots, X_{N}\right)\right|\)</span></li>
+<li>打散(shatter)：即增长函数取到了理论上最大的对分数<span class="math inline">\(2^N\)</span>，这里的含义就是这个假设空间对于大小为N的数据集（该任务设定下任意一个大小为N数据集）来说足够好了，能够考虑到所有情况，针对任何一种分类结果给出对应的假设。也即对于该任务，总容量为N的数据集，该模型有能力取到完美解。</li>
+<li>break point：显然N越小，越容易打散；N越大，越不容易打散。那么从N=1开始逐渐增加，直到某个临界点N=k时，假设空间无法打散这k个点了，我们就称k为该假设空间的break point。可以证明N&gt;k的情况都无法打散</li>
+</ul></li>
+<li>可以看到其实到增长函数这里，这就是一个假设空间表达能力的一种衡量指标了。VC维考虑的就是用这种衡量指标替换Hoeffding不等式中的假设空间容量。当然不能直接替换，具体而言，是 <span class="math display">\[
+\forall g \in \mathcal{H}, \mathbb{P}\left[\left|E_{i n}(g)-E_{o u t}(g)\right|&gt;\epsilon\right] \leq 4 m_{\mathcal{H}}(2 N) \exp \left(-\frac{1}{8} \epsilon^{2} N\right)
+\]</span></li>
+<li>上式右边即VC界，证明比较复杂略。那么这样我们再考虑上界是不是有限的。可以看到最重要的M被换成了<span class="math inline">\(m_H\)</span>，即增长函数，假如增长函数有界或者说随N的增加速率低于指数部分的缩减速率，那么我们就可以说经验误差和泛化误差的差值上界是有限的。实际上，假如break point k存在，那么有 <span class="math display">\[
+m_{\mathcal{H}}(N) \leq B(N, k) \leq \sum_{i=0}^{k-1}\left(\begin{array}{c}
+N \\
+i
+\end{array}\right) \leq N^{k-1}
+\]</span></li>
+<li>其中B(N, k)就是break point为k时增长函数的上界，可以发现增长函数上界的上界是多项式级别的(k-1次方)，那么增长函数最多是多项式级别，而VC界中的<span class="math inline">\(\exp \left(-2 \epsilon^{2} N\right)\)</span>是指数级别，显然VC界是存在的，有限的。</li>
+<li>那么终于，对于break point存在的情况，我们可以说泛化能力是有保证的，机器学习是有保证的。</li>
+</ul>
+<h1 id="vc维">VC维</h1>
+<ul>
+<li>VC界保证了学习的可行性，而VC维考虑的是假设空间的表达能力。前面说到增长函数是对于假设空间表达能力的一种衡量，两者也存在密切关联。</li>
+<li>VC维定义为，给定假设空间H，其break point存在，那么其VC维是能够打散的最大数据集的大小，即 <span class="math display">\[
+V C(\mathcal{H})=\max \left\{N: m_{\mathcal{H}}(N)=2^{N}\right\}
+\]</span></li>
+<li>回忆VC维定义中的两个概念：增长函数和打散。增长函数定义了假设空间解决对分的能力，打散代表着假设空间有能力解决一定量的数据集，对于每一种可能的对分都有对应假设，那么VC维就是从数据集的量来衡量假设空间的能力，假设空间越复杂，表达能力越强，就能打散更大的数据集，有足够多的假设解决更大数据集上的每一种上可能的对分——注意，不是每一种理论上可能的对分，因为VC维取的是能够达到的最大数据集容量，是存在而不是任意，即最大存在大小为VC维的数据集能够被该假设空间打散。</li>
+<li>那么VC维具体是多少呢？其实之前我们定义过了，就是k-1，即容量小于break point的数据集都能被打散，那么能被打散的数据集容量最大就是break point - 1</li>
+<li>注意到这个k-1不就是VC界中增长函数上界中的多项式次数吗，因此VC界又可以写成： <span class="math display">\[
+\forall g \in \mathcal{H}, \mathbb{P}\left[\left|E_{i n}(g)-E_{o u t}(g)\right|&gt;\epsilon\right] \leq 4(2 N)^{V C(\mathcal{H})} \exp \left(-\frac{1}{8} \epsilon^{2} N\right)
+\]</span></li>
+</ul>
+<h1 id="衡量量化能力">衡量量化能力</h1>
+<ul>
+<li>由VC界的不等式可以看到，经验误差与泛化误差之间的差距（衡量泛化能力）和不等式右边即bad case发生的概率相关联，假如我们给定了bad case发生的概率，设为： <span class="math display">\[
+4(2 N)^{V C(\mathcal{H})} \exp \left(-\frac{1}{8} \epsilon^{2} N\right)=\delta
+\]</span> 那么可以反过来算出衡量泛化能力的差距 <span class="math display">\[
+\epsilon=\sqrt{\frac{8}{N} \ln \left(\frac{4(2 N)^{V C(\mathcal{H})}}{\delta}\right)}
+\]</span></li>
+<li>所以在机器学习基石和技法当中，老师经常写出一个VC bound用来估计泛化误差的公式： <span class="math display">\[
+E_{\text {out }}(\mathbf{w}) \leq E_{\text {in }}(\mathbf{w})+\Omega(\mathcal{H})
+\]</span></li>
+<li>其中的<span class="math inline">\(\Omega(\mathcal{H})\)</span>即<span class="math inline">\(\sqrt{\frac{8}{N} \ln \left(\frac{4(2 N)^{V C(\mathcal{H})}}{\delta}\right)}\)</span></li>
+</ul>
+<h1 id="参考">参考</h1>
+<ul>
+<li>https://zhuanlan.zhihu.com/p/59113933</li>
+<li>https://www.coursera.org/learn/ntumlone-mathematicalfoundations</li>
+</ul>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>math</tag>
+        <tag>machine learning</tag>
+        <tag>statistical learning</tag>
+        <tag>vc dimension</tag>
       </tags>
   </entry>
   <entry>
@@ -6090,9 +6090,9 @@ S^* = \text{argmax}_S \theta _I = \text{argmin} _S KL(S || P_{\frac DK})
         <category>自然语言处理</category>
       </categories>
       <tags>
+        <tag>machine learning</tag>
         <tag>deep learning</tag>
         <tag>natural language processing</tag>
-        <tag>machine learning</tag>
       </tags>
   </entry>
   <entry>
@@ -6741,9 +6741,9 @@ f\left(t_{i j}^{k}\right)=\left(\prod_{m=1}^{\Omega} \operatorname{ReLU}\left(\l
         <category>自然语言处理</category>
       </categories>
       <tags>
+        <tag>machine learning</tag>
         <tag>deep learning</tag>
         <tag>natural language processing</tag>
-        <tag>machine learning</tag>
         <tag>knowledge graph</tag>
       </tags>
   </entry>
