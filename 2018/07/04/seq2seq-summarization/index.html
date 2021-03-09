@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本科毕业设计是做一个基于seq2seq的短句文摘模型，并设计了一种情感融合机制 现在对整个模型做一个简单的总结">
+  <meta name="description" content="本科毕业设计是做一个基于seq2seq的短句文摘模型，并设计了一种情感融合机制现在对整个模型做一个简单的总结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于端到端模型的生成式自动文摘研究">
 <meta property="og:url" content="https://thinkwee.top/2018/07/04/seq2seq-summarization/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="本科毕业设计是做一个基于seq2seq的短句文摘模型，并设计了一种情感融合机制 现在对整个模型做一个简单的总结">
+<meta property="og:description" content="本科毕业设计是做一个基于seq2seq的短句文摘模型，并设计了一种情感融合机制现在对整个模型做一个简单的总结">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TGHH.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TYEd.jpg">
@@ -56,8 +56,8 @@
 <meta property="article:published_time" content="2018-07-04T07:58:59.000Z">
 <meta property="article:modified_time" content="2020-02-11T14:03:50.921Z">
 <meta property="article:author" content="Thinkwee">
-<meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="abstractive summarization">
+<meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="nlp">
 <meta property="article:tag" content="seq2seq">
 <meta property="article:tag" content="rnn">
@@ -334,93 +334,77 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>本科毕业设计是做一个基于seq2seq的短句文摘模型，并设计了一种情感融合机制 现在对整个模型做一个简单的总结</p>
+        <p>本科毕业设计是做一个基于seq2seq的短句文摘模型，并设计了一种情感融合机制<br>现在对整个模型做一个简单的总结</p>
 <a id="more"></a>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0TGHH.png" alt="" /><figcaption>i0TGHH.png</figcaption>
-</figure>
-<h1 id="任务">任务</h1>
-<ul>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TGHH.png" alt="i0TGHH.png"></p>
+<h1 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h1><ul>
 <li>自动文摘是一类自然语言处理（Natural Language Processin，NLP）任务。对于一段较长的文本，产生一段能够覆盖原文核心意义的短文本，这段短文本就是原文本的摘要。自动文摘技术是指在计算机上构建数学模型，将长文本输入模型，通过计算之后模型能自动生成短摘要。根据需要产生摘要的语料规模和摘要的规模，可以将摘要分为多文本摘要、长文摘要、短文摘要。本文主要研究的是短文摘要：对于一句或者几句文本，生成一句短摘要，概括原文关键信息，且流畅可读，尽量达到人类作者撰写摘要的水平。</li>
 <li>自动文摘分抽取式和生成式，前者是抽取原文句子构成文摘，后者是通过深度学习模型逐字生成文摘。本文主要研究生成文摘，并将问题抽象成对一个平均长度为28词的长句生成一个平均长度为8词的短句。</li>
 </ul>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0TYEd.jpg" alt="" /><figcaption>i0TYEd.jpg</figcaption>
-</figure>
-<h1 id="预备知识">预备知识</h1>
-<h2 id="循环神经网络">循环神经网络</h2>
-<ul>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TYEd.jpg" alt="i0TYEd.jpg"></p>
+<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><h2 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h2><ul>
 <li>循环神经网络（Recurrent Neural Network，RNN），是神经网络的一种变形，能够有效处理序列型数据，其所有的隐藏层共享参数，每一隐藏层不仅依赖当前时刻的输入还依赖上一时刻的隐藏层状态，数据流并不是如传统神经网络那样在网络层之间传播，而是作为状态在自身网络中循环传递。</li>
-<li>不展开时形式如下： <img data-src="https://s1.ax1x.com/2018/10/20/i0TtUA.jpg" alt="i0TtUA.jpg" /></li>
-<li>按时间步展开之后： <img data-src="https://s1.ax1x.com/2018/10/20/i0TN4I.jpg" alt="i0TN4I.jpg" /></li>
+<li>不展开时形式如下：<br><img data-src="https://s1.ax1x.com/2018/10/20/i0TtUA.jpg" alt="i0TtUA.jpg"></li>
+<li>按时间步展开之后：<br><img data-src="https://s1.ax1x.com/2018/10/20/i0TN4I.jpg" alt="i0TN4I.jpg"></li>
 </ul>
-<h2 id="lstm和gru">LSTM和GRU</h2>
-<ul>
+<h2 id="LSTM和GRU"><a href="#LSTM和GRU" class="headerlink" title="LSTM和GRU"></a>LSTM和GRU</h2><ul>
 <li>循环神经网络能够有效捕捉序列数据的顺序信息且能够构造很深的神经网络而不产生大量需要学习的参数；但也因为参数共享，梯度通过时间步进行链式求导时相当于进行矩阵幂运算，若参数矩阵的特征值过小会造成梯度弥散，特征值过大会造成梯度爆炸，影响反向传播过程，即RNN的长期依赖问题。在处理长序列数据时长期依赖问题会导致序列的长期记忆信息丢失，虽然人们通过引入梯度截断和跳跃链接技术试图缓解此问题，但效果并不显著，直到长短期记忆神经网络和门控循环神经网络作为 RNN 的扩展形式的出现，有效地解决了这个问题。</li>
-<li>LSTM即长短期记忆神经网络。为了捕捉长期记忆信息，LSTM在其节点中引入了门控单元，作为网络参数的一部分参与训练。门控单元控制了当前隐藏层节点记忆（遗忘）过去信息，接受当前输入新记忆的程度。 <img data-src="https://s1.ax1x.com/2018/10/20/i0TaCt.jpg" alt="i0TaCt.jpg" /></li>
-<li>GRU即门控神经网络，与LSTM不同的是，GRU 将遗忘门和输入门整合为重置门，遗忘门的门控值和输入门的门控值和为 1，因此 GRU 在 LSTM 的基础上简化了参数，从而使得模型能够更快得收敛。 <img data-src="https://s1.ax1x.com/2018/10/20/i0Td8P.jpg" alt="i0Td8P.jpg" /> ## 词嵌入</li>
+<li>LSTM即长短期记忆神经网络。为了捕捉长期记忆信息，LSTM在其节点中引入了门控单元，作为网络参数的一部分参与训练。门控单元控制了当前隐藏层节点记忆（遗忘）过去信息，接受当前输入新记忆的程度。<br><img data-src="https://s1.ax1x.com/2018/10/20/i0TaCt.jpg" alt="i0TaCt.jpg"></li>
+<li>GRU即门控神经网络，与LSTM不同的是，GRU 将遗忘门和输入门整合为重置门，遗忘门的门控值和输入门的门控值和为 1，因此 GRU 在 LSTM 的基础上简化了参数，从而使得模型能够更快得收敛。<br><img data-src="https://s1.ax1x.com/2018/10/20/i0Td8P.jpg" alt="i0Td8P.jpg"><h2 id="词嵌入"><a href="#词嵌入" class="headerlink" title="词嵌入"></a>词嵌入</h2></li>
 <li>深度学习的一大好处就是能自动学习特征，在自然语言处理中，我们专门用word2vec之类的技术学习词语的特征表示，即词嵌入。</li>
-<li>词向量（Word Vector）表示，又称词嵌入（Word Embedding），指以连续值向量形式表示（Distributed Representation）词语，而不是用离散的方式表示（One-hot Representation）。在传统的离散表示中，一个词用一个长度为 V 的向量表示，其中 V 是词典大小。向量中只有一个元素为 1，其余元素为 0，元素 1的位置代表这个词在词典中的下标。用离散的方式存储单词效率低下，且向量无法反映单词的语义语法特征，而词向量可以解决以上问题。词向量将向量的维 度从 V 降低到 <span class="math inline">\(\sqrt[k] V\)</span>（一般 k 取 4），每个元素的值不再是 1 和 0，而是连续值。词向量是建立神经网络语言模型 (Neural Network Language Model，NNLM)对语料进行监督学习得到的副产物，此模型的提出基于一个语言学上的假设：具有相近语义的词有相似的上下文，即 NNLM 模型能够在给定上下文环境的条件下求出相应中心词。</li>
-<li>下图展示了word2vec中的skipgram模型： <img data-src="https://s1.ax1x.com/2018/10/20/i0Twgf.jpg" alt="i0Twgf.jpg" /></li>
-<li>得到的词嵌入矩阵如下： <img data-src="https://s1.ax1x.com/2018/10/20/i0T0v8.jpg" alt="i0T0v8.jpg" /></li>
+<li>词向量（Word Vector）表示，又称词嵌入（Word Embedding），指以连续值向量形式表示（Distributed Representation）词语，而不是用离散的方式表示（One-hot Representation）。在传统的离散表示中，一个词用一个长度为 V 的向量表示，其中 V 是词典大小。向量中只有一个元素为 1，其余元素为 0，元素 1的位置代表这个词在词典中的下标。用离散的方式存储单词效率低下，且向量无法反映单词的语义语法特征，而词向量可以解决以上问题。词向量将向量的维<br>度从 V 降低到 $\sqrt[k] V$（一般 k 取 4），每个元素的值不再是 1 和 0，而是连续值。词向量是建立神经网络语言模型 (Neural Network Language Model，NNLM)对语料进行监督学习得到的副产物，此模型的提出基于一个语言学上的假设：具有相近语义的词有相似的上下文，即 NNLM 模型能够在给定上下文环境的条件下求出相应中心词。</li>
+<li>下图展示了word2vec中的skipgram模型：<br><img data-src="https://s1.ax1x.com/2018/10/20/i0Twgf.jpg" alt="i0Twgf.jpg"></li>
+<li>得到的词嵌入矩阵如下：<br><img data-src="https://s1.ax1x.com/2018/10/20/i0T0v8.jpg" alt="i0T0v8.jpg"></li>
 <li>Mikolov等人在NNLM基础上提出了 Word2Vec 模型，此模型进行监督学习的输入输出分别为中心词与上下文（即 Skip Gram 模型) 或者上下文与中心词（即 CBOW 模型）。两种方式均能有效训练出高质量的词向量，但是 CBOW 模型是根据上下文求中心词，训练速度快，适合在大语料上训练；Skip Gram 模型能充分利用训练语料，其本身含义为“跳跃的语法模型”，不仅使用相邻词构成中心词的上下文环境，隔一个词的跳跃词也构成上下文环境，以图 2-1 为例，语料中的一个中心词的上下文包括四个词，假如语料中有 Wtotal 个词语，则 Skip Gram 模型能计算 4 · Wtotal 次损失并进行反向传播学习，对于语料的学习次数是 CBOW 模型的四倍，因此该模型适合于充分利用小语料训练词向量。</li>
 <li>Word2Vec 模型训练完成时，输入层与隐藏层之间的权重矩阵即词嵌入矩阵（Word Embedding Matrix）。离散表示单词的向量与矩阵相乘即得到词向量，这项操作实际上等效于在词嵌入矩阵中查找对应词向量（Embedding Look Up）。词向量能够有效表示词的语义关系，其本质是为机器学习模型提供了一种提取文本信息特征的方法，方便将单词数值化输入模型进行处理。传统的语言模型训练词向量在输出 Softmax 层开销太大，</li>
 <li>而 Word2Vec 模型采用了分层 Softmax（Hierarchical Softmax）和噪声对比估计（Noise Contrastive Estimation）两种技术，大大加速了训练，使得在自然语言处理中使用大规模语料训练出的优质词向量成为可能。</li>
 </ul>
-<h2 id="注意力">注意力</h2>
-<ul>
-<li>在 NLP 任务中注意力机制最早应用于机器翻译，即引入一个权重矩阵代表编码器序列中各个元素对解码器生成的每一个词的贡献程度。在实际实现时注意力机制会生成一个注意力权重，对各个编码器元素的隐藏层状态进行注意力加权生成中间表示，而不是简单的采用最后一个元素的隐藏层状态。最简单的注意力即解码器对编码器的注意力，分为全局和局部注意力。全局注意力生成对整个编码器序列的注意力权重，而局部注意力先训练出一个注意力对齐位置，再对此位置附近取一个窗口，仅对窗口内的序列加权，使得注意力更加精确、集中。注意力机制带来的一个副产品即词与词之间的对齐Alignment）。在机器翻译中，对齐关系可以理解为词到翻译词的关联程度。在自动文摘中采用注意力机制，可以有效缓解长序列经过编码器编码成中间表示时的信息损失问题。 <img data-src="https://s1.ax1x.com/2018/10/20/i0TDKS.jpg" alt="i0TDKS.jpg" /></li>
+<h2 id="注意力"><a href="#注意力" class="headerlink" title="注意力"></a>注意力</h2><ul>
+<li>在 NLP 任务中注意力机制最早应用于机器翻译，即引入一个权重矩阵代表编码器序列中各个元素对解码器生成的每一个词的贡献程度。在实际实现时注意力机制会生成一个注意力权重，对各个编码器元素的隐藏层状态进行注意力加权生成中间表示，而不是简单的采用最后一个元素的隐藏层状态。最简单的注意力即解码器对编码器的注意力，分为全局和局部注意力。全局注意力生成对整个编码器序列的注意力权重，而局部注意力先训练出一个注意力对齐位置，再对此位置附近取一个窗口，仅对窗口内的序列加权，使得注意力更加精确、集中。注意力机制带来的一个副产品即词与词之间的对齐Alignment）。在机器翻译中，对齐关系可以理解为词到翻译词的关联程度。在自动文摘中采用注意力机制，可以有效缓解长序列经过编码器编码成中间表示时的信息损失问题。<br><img data-src="https://s1.ax1x.com/2018/10/20/i0TDKS.jpg" alt="i0TDKS.jpg"></li>
 </ul>
-<h2 id="序列到序列">序列到序列</h2>
-<ul>
-<li>seq2seq模型，即使用一个RNN作为编码器，编码输入的序列数据得到中间语义表示，再利用另外一个RNN作为解码器，利用中间语义表示得到序列化的输出。广义的序列到序列以及端到端学习不一定使用RNN，也可以用CNN或者纯注意力机制。 <img data-src="https://s1.ax1x.com/2018/10/20/i0TrDg.jpg" alt="i0TrDg.jpg" /></li>
-<li>对于序列到序列模型的一些个人理解：
-<ul>
+<h2 id="序列到序列"><a href="#序列到序列" class="headerlink" title="序列到序列"></a>序列到序列</h2><ul>
+<li>seq2seq模型，即使用一个RNN作为编码器，编码输入的序列数据得到中间语义表示，再利用另外一个RNN作为解码器，利用中间语义表示得到序列化的输出。广义的序列到序列以及端到端学习不一定使用RNN，也可以用CNN或者纯注意力机制。<br><img data-src="https://s1.ax1x.com/2018/10/20/i0TrDg.jpg" alt="i0TrDg.jpg"></li>
+<li>对于序列到序列模型的一些个人理解：<ul>
 <li>（信息论）如果不考虑编码器和解码器的具体实现形式，只认为编码器可以将序列数据转化为中间表示，解码器可以将中间表示转化为序列数据，则整个序列到序列模型相当于对文摘信息的一次编码解码，由于中间表示的维度远小于编码器的总维度，因此这种编码是有损编码。序列到序列模型要使得有损编码的结果是提取原文中的文摘信息，因此训练网络的目标是让损失的部分为文摘不需要的冗余信息。解码器相当于编码器的逆过程，从包含文摘信息的中间表示中还原出文摘的序列形式数据。</li>
 <li>（学习与应用）将整个模型比作人类的大脑，则编码器的隐藏层状态相当于大脑内存储的知识，解码器则是利用这些知识解决问题，即编码器是一个学习过程而解码器是一个应用过程。这种比喻能够形象地解释后来对序列到序列模型的各种改进：时间步上的学习对应现实时间线上的学习，越早学习的知识在大脑中越容易忘记（靠前的时间步隐藏层信息传递到最终步时信息丢失严重），且大脑的容量一定（中间表示的信息存储容量一定），因此学习时我们选择性记忆和忘记信息（LSTM 和 GRU 的应用），并且在记忆的过程中划重点（注意力机制），甚至还可以借助向外界环境查询信息，不完全靠自己的记忆解决问题（记忆网络）。</li>
 <li>（循环神经网络）完全从数据流和网络结构的角度看，整个序列到序列模型可以看作一个长的、限定了某些时间步输入输出的 RNN，以图 3-1 为例，模型就是一个具有 8 个时间步的 RNN，前 5 时间步没有输出，后 3 个时间步将输出传递到下一时间步指导状态变化。编码器和解码器联合训练即相当于对这个大型RNN 进行训练。这种只在部分节点进行输入输出的 RNN 从结构上就适合处理序列到序列任务。</li>
-</ul></li>
 </ul>
-<h2 id="序列损失">序列损失</h2>
-<ul>
+</li>
+</ul>
+<h2 id="序列损失"><a href="#序列损失" class="headerlink" title="序列损失"></a>序列损失</h2><ul>
 <li>解码器每一步解码出来的实际上时词典的概率分布，取最大概率的词输出（或者做束搜索），损失是每一步的概率和这一步标准词语的01分布做交叉熵，求和再平均。实际上还要应用一个mask来解决句子长度不一定的问题。</li>
 </ul>
-<h1 id="基本模型">基本模型</h1>
-<ul>
-<li>预处理：应用序列到序列模型需要对数据进行一定的预处理，除了常用的去停用词加UNK，以及padding之外，还需要设计解码的开始与结束符号，如下： <img data-src="https://s1.ax1x.com/2018/10/20/i0TsbQ.jpg" alt="i0TsbQ.jpg" /></li>
-<li>训练好词嵌入之后，对输入做一个embedding lookup的操作得到特征 <img data-src="https://s1.ax1x.com/2018/10/20/i0T6Ej.jpg" alt="i0T6Ej.jpg" /></li>
-<li>特征输入编码器得到中间表示 <img data-src="https://s1.ax1x.com/2018/10/20/i0Tg5n.png" alt="i0Tg5n.png" /></li>
-<li>拿到中间表示和输出文摘(相当于label)，输入解码器进行解码 <img data-src="https://s1.ax1x.com/2018/10/20/i0TIrF.png" alt="i0TIrF.png" /></li>
-<li>加入注意力机制后完整的序列到序列模型结构如下： <img data-src="https://s1.ax1x.com/2018/10/20/i0TRCq.jpg" alt="i0TRCq.jpg" /></li>
+<h1 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h1><ul>
+<li>预处理：应用序列到序列模型需要对数据进行一定的预处理，除了常用的去停用词加UNK，以及padding之外，还需要设计解码的开始与结束符号，如下：<br><img data-src="https://s1.ax1x.com/2018/10/20/i0TsbQ.jpg" alt="i0TsbQ.jpg"></li>
+<li>训练好词嵌入之后，对输入做一个embedding lookup的操作得到特征<br><img data-src="https://s1.ax1x.com/2018/10/20/i0T6Ej.jpg" alt="i0T6Ej.jpg"></li>
+<li>特征输入编码器得到中间表示<br><img data-src="https://s1.ax1x.com/2018/10/20/i0Tg5n.png" alt="i0Tg5n.png"></li>
+<li>拿到中间表示和输出文摘(相当于label)，输入解码器进行解码<br><img data-src="https://s1.ax1x.com/2018/10/20/i0TIrF.png" alt="i0TIrF.png"></li>
+<li>加入注意力机制后完整的序列到序列模型结构如下：<br><img data-src="https://s1.ax1x.com/2018/10/20/i0TRCq.jpg" alt="i0TRCq.jpg"></li>
 </ul>
-<h1 id="情感融合机制">情感融合机制</h1>
-<ul>
+<h1 id="情感融合机制"><a href="#情感融合机制" class="headerlink" title="情感融合机制"></a>情感融合机制</h1><ul>
 <li>情感机制主要是为文本补充了情感特征，通过查找情感词典的方式手动构造了一个六维的特征，未来希望能够用自动构造特征的方式来进行这方面工作。</li>
-<li>先训练情感分类器，对原语料进行了筛选形成情感语料，在情感语料和普通语料上都测试了模型 <img data-src="https://s1.ax1x.com/2018/10/20/i0TW80.jpg" alt="i0TW80.jpg" /></li>
-<li>查找词典得到情感向量（即情感特征） <img data-src="https://s1.ax1x.com/2018/10/20/i0Tf2V.jpg" alt="i0Tf2V.jpg" /></li>
-<li>将情感特征直接拼接在中间表示之后，输入解码器 <img data-src="https://s1.ax1x.com/2018/10/20/i0ThvT.jpg" alt="i0ThvT.jpg" /></li>
+<li>先训练情感分类器，对原语料进行了筛选形成情感语料，在情感语料和普通语料上都测试了模型<br><img data-src="https://s1.ax1x.com/2018/10/20/i0TW80.jpg" alt="i0TW80.jpg"></li>
+<li>查找词典得到情感向量（即情感特征）<br><img data-src="https://s1.ax1x.com/2018/10/20/i0Tf2V.jpg" alt="i0Tf2V.jpg"></li>
+<li>将情感特征直接拼接在中间表示之后，输入解码器<br><img data-src="https://s1.ax1x.com/2018/10/20/i0ThvT.jpg" alt="i0ThvT.jpg"></li>
 </ul>
-<h1 id="结果">结果</h1>
-<ul>
-<li>结果由ROUGE-F1值形式记录，情感语料下各种方法对比 <img data-src="https://s1.ax1x.com/2018/10/20/i0T5KU.png" alt="i0T5KU.png" /></li>
-<li>普通语料下情感融合方案对比 <img data-src="https://s1.ax1x.com/2018/10/20/i0Tb5R.png" alt="i0Tb5R.png" /></li>
-<li>情感分类准确率，作为参考，之前训练的情感分类器准确率为74% <img data-src="https://s1.ax1x.com/2018/10/20/i0Tob4.png" alt="i0Tob4.png" /></li>
-<li>因为是大语料小batch训练，只训练了十次迭代，各个迭代的测试集效果 <img data-src="https://s1.ax1x.com/2018/10/20/i0T7VJ.png" alt="i0T7VJ.png" /></li>
+<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><ul>
+<li>结果由ROUGE-F1值形式记录，情感语料下各种方法对比<br><img data-src="https://s1.ax1x.com/2018/10/20/i0T5KU.png" alt="i0T5KU.png"></li>
+<li>普通语料下情感融合方案对比<br><img data-src="https://s1.ax1x.com/2018/10/20/i0Tb5R.png" alt="i0Tb5R.png"></li>
+<li>情感分类准确率，作为参考，之前训练的情感分类器准确率为74%<br><img data-src="https://s1.ax1x.com/2018/10/20/i0Tob4.png" alt="i0Tob4.png"></li>
+<li>因为是大语料小batch训练，只训练了十次迭代，各个迭代的测试集效果<br><img data-src="https://s1.ax1x.com/2018/10/20/i0T7VJ.png" alt="i0T7VJ.png"></li>
 </ul>
-<h1 id="问题">问题</h1>
-<ul>
-<li>unk替换问题：在很多文献中都提到了使用指针开关技术解决生成文摘中的罕见词（unk)，即从原文中挑选词语替换掉文摘中的unk，但是由于ROUGE评测的是词的共现程度，因此只要替换了原文的词，哪怕位置、词语不对，都有可能是ROUGE值上升，造成评测结果偏高，本文设计了对比试验，发现即便是没有采用任何机制的随机替换都能提高ROUGE值 <img data-src="https://s1.ax1x.com/2018/10/20/i0THa9.png" alt="i0THa9.png" /></li>
-<li>语料重复问题：在检查语料时我们发现了大量短文本不同但短文摘相同的语料，重复的语料来自于对于相同事件的不同描述，或者一些功能性的文字，翻译过来例如“...... 周三...... 黄金价格上涨”和“......周四......黄金价格上涨”均生成相同的文摘“黄金价格上涨”。短文摘重复的语料会导致模型在解码端学到一些不应该固化的短语，而如果训练集和测试集中有重复的相同的文摘，则固化的文摘反而会导致生成文摘正确率虚高。对于这类文本，本文进行了四组实验：
-<ul>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ul>
+<li>unk替换问题：在很多文献中都提到了使用指针开关技术解决生成文摘中的罕见词（unk)，即从原文中挑选词语替换掉文摘中的unk，但是由于ROUGE评测的是词的共现程度，因此只要替换了原文的词，哪怕位置、词语不对，都有可能是ROUGE值上升，造成评测结果偏高，本文设计了对比试验，发现即便是没有采用任何机制的随机替换都能提高ROUGE值<br><img data-src="https://s1.ax1x.com/2018/10/20/i0THa9.png" alt="i0THa9.png"></li>
+<li>语料重复问题：在检查语料时我们发现了大量短文本不同但短文摘相同的语料，重复的语料来自于对于相同事件的不同描述，或者一些功能性的文字，翻译过来例如“…… 周三…… 黄金价格上涨”和“……周四……黄金价格上涨”均生成相同的文摘“黄金价格上涨”。短文摘重复的语料会导致模型在解码端学到一些不应该固化的短语，而如果训练集和测试集中有重复的相同的文摘，则固化的文摘反而会导致生成文摘正确率虚高。对于这类文本，本文进行了四组实验：<ul>
 <li>不去重：保留原文本，不去重，进行训练和测试</li>
 <li>去重：删除语料中所有重复文摘对应的的短文本-短文摘对。</li>
 <li>训练去重：部分去重，只将训练语料中的重复数据删除，即学习好的模型已经没有受到重复文本的影响。</li>
-<li>测试去重：部分去重，只将测试集中与训练集重复的部分删除，学习好的模型受到了重复文本的影响，但测试集中没有与重复文本中相对应的数据。 重复的语料训练下 ROUGE-1 和 ROUGE-L 都突破了 30，远超正常训练的模型，去重之后便恢复到正常水平。两种部分去重的结果则分别表明：训练去重时，没有受重复语料影响的模型对于测试集中的重复数据没有明显的反应，与完全去重的普通模型近似；测试去重时，虽然模型受到了重复语料影响，但是测试集中没有重复的数据让其利用学习到的固化的文摘，因此结果也不会虚高，且由于学习到了不同短文对应相同文摘的模式，编码端实际上结构更加灵活，导致 ROUGE 指标高于训练去重的结果。 <img data-src="https://s1.ax1x.com/2018/10/20/i0TLP1.png" alt="i0TLP1.png" /></li>
-</ul></li>
+<li>测试去重：部分去重，只将测试集中与训练集重复的部分删除，学习好的模型受到了重复文本的影响，但测试集中没有与重复文本中相对应的数据。<br>重复的语料训练下 ROUGE-1 和 ROUGE-L 都突破了 30，远超正常训练的模型，去重之后便恢复到正常水平。两种部分去重的结果则分别表明：训练去重时，没有受重复语料影响的模型对于测试集中的重复数据没有明显的反应，与完全去重的普通模型近似；测试去重时，虽然模型受到了重复语料影响，但是测试集中没有重复的数据让其利用学习到的固化的文摘，因此结果也不会虚高，且由于学习到了不同短文对应相同文摘的模式，编码端实际上结构更加灵活，导致 ROUGE 指标高于训练去重的结果。<br><img data-src="https://s1.ax1x.com/2018/10/20/i0TLP1.png" alt="i0TLP1.png"></li>
 </ul>
-<h1 id="实现环境">实现环境</h1>
-<ul>
-<li>这里是github地址：- <a target="_blank" rel="noopener" href="https://github.com/thinkwee/Abstract_Summarization_Tensorflow">Abstract_Summarization_Tensorflow</a></li>
+</li>
+</ul>
+<h1 id="实现环境"><a href="#实现环境" class="headerlink" title="实现环境"></a>实现环境</h1><ul>
+<li>这里是github地址：-    <a target="_blank" rel="noopener" href="https://github.com/thinkwee/Abstract_Summarization_Tensorflow">Abstract_Summarization_Tensorflow</a></li>
 <li>Ubuntu 16.04</li>
 <li>Tensorflow 1.6</li>
 <li>CUDA 9.0</li>
@@ -428,8 +412,7 @@
 <li>Gigawords数据集，训练了部分数据，约30万</li>
 <li>GTX1066，训练时间3到4个小时</li>
 </ul>
-<h1 id="参考文献">参考文献</h1>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TX26.jpg" alt="i0TX26.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TO8x.jpg" alt="i0TO8x.jpg" /></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><img data-src="https://s1.ax1x.com/2018/10/20/i0TX26.jpg" alt="i0TX26.jpg"><br><img data-src="https://s1.ax1x.com/2018/10/20/i0TO8x.jpg" alt="i0TO8x.jpg"></p>
 
     </div>
 
@@ -443,13 +426,13 @@
       <div class="popular-posts-title"><a href="\2017\12\27\AM-Model-for-ASS\" rel="bookmark">论文翻译：用于生成式自动文摘的一种神经注意力模型</a></div>
     </li>
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2019\01\03\PaperReading3\" rel="bookmark">论文阅读笔记2019上半年</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2018\03\07\NLPBasic\" rel="bookmark">自然语言处理|深度学习入门</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2018\07\03\PaperReading2\" rel="bookmark">论文阅读笔记2018下半年</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2019\01\03\PaperReading3\" rel="bookmark">论文阅读笔记2019上半年</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2018\03\07\PaperReading\" rel="bookmark">论文阅读笔记2018上半年</a></div>
@@ -460,8 +443,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
               <a href="/tags/abstractive-summarization/" rel="tag"><i class="fa fa-tag"></i> abstractive summarization</a>
+              <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
               <a href="/tags/nlp/" rel="tag"><i class="fa fa-tag"></i> nlp</a>
               <a href="/tags/seq2seq/" rel="tag"><i class="fa fa-tag"></i> seq2seq</a>
               <a href="/tags/rnn/" rel="tag"><i class="fa fa-tag"></i> rnn</a>
@@ -546,7 +529,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.1.</span> <span class="nav-text">循环神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lstm%E5%92%8Cgru"><span class="nav-number">2.2.</span> <span class="nav-text">LSTM和GRU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="nav-number">2.3.</span> <span class="nav-text">注意力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%88%B0%E5%BA%8F%E5%88%97"><span class="nav-number">2.4.</span> <span class="nav-text">序列到序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E6%8D%9F%E5%A4%B1"><span class="nav-number">2.5.</span> <span class="nav-text">序列损失</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">基本模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%83%85%E6%84%9F%E8%9E%8D%E5%90%88%E6%9C%BA%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">情感融合机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%8E%AF%E5%A2%83"><span class="nav-number">7.</span> <span class="nav-text">实现环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">8.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.1.</span> <span class="nav-text">循环神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM%E5%92%8CGRU"><span class="nav-number">2.2.</span> <span class="nav-text">LSTM和GRU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%8D%E5%B5%8C%E5%85%A5"><span class="nav-number">2.3.</span> <span class="nav-text">词嵌入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="nav-number">2.4.</span> <span class="nav-text">注意力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%88%B0%E5%BA%8F%E5%88%97"><span class="nav-number">2.5.</span> <span class="nav-text">序列到序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E6%8D%9F%E5%A4%B1"><span class="nav-number">2.6.</span> <span class="nav-text">序列损失</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">基本模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%83%85%E6%84%9F%E8%9E%8D%E5%90%88%E6%9C%BA%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">情感融合机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%8E%AF%E5%A2%83"><span class="nav-number">7.</span> <span class="nav-text">实现环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">8.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -625,12 +608,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">352k</span>
+    <span title="站点总字数">321k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5:20</span>
+    <span title="站点阅读时长">4:52</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
