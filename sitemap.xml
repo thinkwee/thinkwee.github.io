@@ -662,6 +662,13 @@
   </url>
   
   <url>
+    <loc>https://thinkwee.top/tags/graph/</loc>
+    <lastmod>2021-03-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkwee.top/tags/reinforcement-learning/</loc>
     <lastmod>2021-03-09</lastmod>
     <changefreq>daily</changefreq>
@@ -683,14 +690,14 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/graph/</loc>
+    <loc>https://thinkwee.top/tags/heterogeneous-information-network/</loc>
     <lastmod>2021-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/heterogeneous-information-network/</loc>
+    <loc>https://thinkwee.top/tags/lda/</loc>
     <lastmod>2021-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -705,13 +712,6 @@
   
   <url>
     <loc>https://thinkwee.top/tags/seq2seq/</loc>
-    <lastmod>2021-03-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/lda/</loc>
     <lastmod>2021-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -816,13 +816,6 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/vc-dimension/</loc>
-    <lastmod>2021-03-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://thinkwee.top/tags/vae/</loc>
     <lastmod>2021-03-09</lastmod>
     <changefreq>daily</changefreq>
@@ -831,6 +824,13 @@
   
   <url>
     <loc>https://thinkwee.top/tags/mcmc/</loc>
+    <lastmod>2021-03-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/vc-dimension/</loc>
     <lastmod>2021-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
