@@ -153,7 +153,7 @@
   </li>
         <li class="menu-item menu-item-novel">
 
-    <a href="/novel/" rel="section"><i class="fa fa-gamepad fa-fw"></i>For Cece</a>
+    <a href="/novel/" rel="section"><i class="fa fa-gamepad fa-fw"></i>Novel</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -284,7 +284,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5k</span>
+              <span>5.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -305,57 +305,76 @@
       
         <p>一些推导关键步骤</p>
 <a id="more"></a>
-<h1 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h1><ul>
-<li>最原始的想法自然是考虑几何间隔<script type="math/tex; mode=display">
-\begin{array}{cc}{\max _{\vec{w}, b} \gamma} \\ {s . t . \quad \tilde{y}_{i}\left(\frac{\overrightarrow{\mathbf{w}}}{\|\overrightarrow{\mathbf{w}}\|_{2}} \cdot \overrightarrow{\mathbf{x}}_{i}+\frac{b}{\|\overrightarrow{\mathbf{w}}\|_{2}}\right) \geq \gamma, i=1,2, \cdots, N}\end{array}</script></li>
-<li>但是几何间隔可以用函数间隔表示，且函数间隔可以缩放而不影响分类超平面的选择，因此才有令函数间隔等于1，再取倒数把max换成min，化简了目标函数<script type="math/tex; mode=display">
-\begin{array}{c}{\min _{\vec{w}, b} \frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}} \\ {\text {s.t.} \quad \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot \overrightarrow{\mathbf{x}}_{i}+b\right)-1 \geq 0, i=1,2, \cdots, N}\end{array}</script></li>
+<h1 id="目标函数">目标函数</h1>
+<ul>
+<li>最原始的想法自然是考虑几何间隔 <span class="math display">\[
+\begin{array}{cc}{\max _{\vec{w}, b} \gamma} \\ {s . t . \quad \tilde{y}_{i}\left(\frac{\overrightarrow{\mathbf{w}}}{\|\overrightarrow{\mathbf{w}}\|_{2}} \cdot \overrightarrow{\mathbf{x}}_{i}+\frac{b}{\|\overrightarrow{\mathbf{w}}\|_{2}}\right) \geq \gamma, i=1,2, \cdots, N}\end{array}
+\]</span></li>
+<li>但是几何间隔可以用函数间隔表示，且函数间隔可以缩放而不影响分类超平面的选择，因此才有令函数间隔等于1，再取倒数把max换成min，化简了目标函数 <span class="math display">\[
+\begin{array}{c}{\min _{\vec{w}, b} \frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}} \\ {\text {s.t.} \quad \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot \overrightarrow{\mathbf{x}}_{i}+b\right)-1 \geq 0, i=1,2, \cdots, N}\end{array}
+\]</span></li>
 </ul>
-<h1 id="min-max"><a href="#min-max" class="headerlink" title="min-max"></a>min-max</h1><ul>
+<h1 id="min-max">min-max</h1>
+<ul>
 <li>在将问题定义为带有不等式约束的最优化问题之后，就要用到拉格朗日对偶性来将原始问题转为对偶问题</li>
-<li>统计学习方法的描述如下：<ul>
-<li>对于最优化问题：<script type="math/tex; mode=display">
-\begin{array}{ll}{\min _{x \in \mathbf{R}^{n}} f(x)} & {} \\ {\text { s.t. } \quad c_{i}(x) \leqslant 0, \quad i=1,2, \cdots, k} \\ {\qquad \begin{array}{ll}{h_{j}(x)=0,} & {j=1,2, \cdots, l}\end{array}}\end{array}</script></li>
-<li>引入广义拉格朗日函数<script type="math/tex; mode=display">
-L(x, \alpha, \beta)=f(x)+\sum_{i=1}^{k} \alpha_{i} c_{i}(x)+\sum_{j=1}^{I} \beta_{j} h_{j}(x)</script></li>
-<li>定义<script type="math/tex; mode=display">
-\theta_{P}(x)=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)</script></li>
-<li>可以判断，假如不满足约束条件的话，可以令拉格朗日乘子不为0从而使上式无穷大，满足情况的话，上式要最大只能让$\alpha$为0，$\beta$则不起作用，因此：<script type="math/tex; mode=display">
-\theta_{P}(x)=\left\{\begin{array}{l}{f(x)} \ x满足原始问题约束 \\ {+\infty} \ 其他 \end{array}\right.</script></li>
+<li>统计学习方法的描述如下：
+<ul>
+<li>对于最优化问题： <span class="math display">\[
+\begin{array}{ll}{\min _{x \in \mathbf{R}^{n}} f(x)} &amp; {} \\ {\text { s.t. } \quad c_{i}(x) \leqslant 0, \quad i=1,2, \cdots, k} \\ {\qquad \begin{array}{ll}{h_{j}(x)=0,} &amp; {j=1,2, \cdots, l}\end{array}}\end{array}
+\]</span></li>
+<li>引入广义拉格朗日函数 <span class="math display">\[
+L(x, \alpha, \beta)=f(x)+\sum_{i=1}^{k} \alpha_{i} c_{i}(x)+\sum_{j=1}^{I} \beta_{j} h_{j}(x)
+\]</span></li>
+<li>定义 <span class="math display">\[
+\theta_{P}(x)=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)
+\]</span></li>
+<li>可以判断，假如不满足约束条件的话，可以令拉格朗日乘子不为0从而使上式无穷大，满足情况的话，上式要最大只能让<span class="math inline">\(\alpha\)</span>为0，<span class="math inline">\(\beta\)</span>则不起作用，因此： <span class="math display">\[
+\theta_{P}(x)=\left\{\begin{array}{l}{f(x)} \ x满足原始问题约束 \\ {+\infty} \ 其他 \end{array}\right.
+\]</span></li>
+</ul></li>
+<li>这样原始的最小化一个f就转换为最小化一个最大化的<span class="math inline">\(\theta\)</span>，即 <span class="math display">\[
+\min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)
+\]</span></li>
 </ul>
-</li>
-<li>这样原始的最小化一个f就转换为最小化一个最大化的$\theta$，即<script type="math/tex; mode=display">
-\min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)</script></li>
-</ul>
-<h1 id="对偶"><a href="#对偶" class="headerlink" title="对偶"></a>对偶</h1><ul>
-<li>max和min对换位置就得到对偶问题，即先针对$x$优化，再针对$\alpha,\beta$优化<script type="math/tex; mode=display">
-\begin{array}{l}{\max _{\alpha, \beta} \theta_{D}(\alpha, \beta)=\max _{\alpha, \beta} \min _{x} L(x, \alpha, \beta)} \\ {\text { s.t. } \quad \alpha_{i} \geqslant 0, \quad i=1,2, \cdots, k}\end{array}</script></li>
-<li>对偶问题和原始问题的关系：<script type="math/tex; mode=display">
-d^{*}=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} \min _{x} L(x, \alpha, \beta) \leqslant \min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)=p^{*}</script></li>
-<li>证明：先看两边的里面一部分，左边是$\min \ L$，右边是$\max \ L$，尽管自变量不一样，但是当自变量固定时，必然有$\min <em>{x} L(x, \alpha, \beta) \leqslant L(x, \alpha, \beta) \leqslant \max </em>{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)$，现在把里面整体看成一个函数，只看外面，即比较左边的$\max f_1$和$\min f_2$，由上可知$f_1$处处小于等于$f_2$，那即便是$f_1$的最大值，也一定小于等于$f_2$的最小值，也就是所谓的“鸡头小于凤尾”，前提是鸡群里的每一只鸡小于等于凤群里的每一只凤。</li>
+<h1 id="对偶">对偶</h1>
+<ul>
+<li>max和min对换位置就得到对偶问题，即先针对<span class="math inline">\(x\)</span>优化，再针对<span class="math inline">\(\alpha,\beta\)</span>优化 <span class="math display">\[
+\begin{array}{l}{\max _{\alpha, \beta} \theta_{D}(\alpha, \beta)=\max _{\alpha, \beta} \min _{x} L(x, \alpha, \beta)} \\ {\text { s.t. } \quad \alpha_{i} \geqslant 0, \quad i=1,2, \cdots, k}\end{array}
+\]</span></li>
+<li>对偶问题和原始问题的关系： <span class="math display">\[
+d^{*}=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} \min _{x} L(x, \alpha, \beta) \leqslant \min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)=p^{*}
+\]</span></li>
+<li>证明：先看两边的里面一部分，左边是<span class="math inline">\(\min \ L\)</span>，右边是<span class="math inline">\(\max \ L\)</span>，尽管自变量不一样，但是当自变量固定时，必然有<span class="math inline">\(\min _{x} L(x, \alpha, \beta) \leqslant L(x, \alpha, \beta) \leqslant \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)\)</span>，现在把里面整体看成一个函数，只看外面，即比较左边的<span class="math inline">\(\max f_1\)</span>和<span class="math inline">\(\min f_2\)</span>，由上可知<span class="math inline">\(f_1\)</span>处处小于等于<span class="math inline">\(f_2\)</span>，那即便是<span class="math inline">\(f_1\)</span>的最大值，也一定小于等于<span class="math inline">\(f_2\)</span>的最小值，也就是所谓的“鸡头小于凤尾”，前提是鸡群里的每一只鸡小于等于凤群里的每一只凤。</li>
 <li>SVM满足强对偶关系，即上式取到等号，因此优化原问题可以转化为优化对偶问题，方便引入核函数。</li>
-<li>原始的min-max问题可以直接解，但不是对min-max形式直接求偏导，因为先对$\alpha$求偏导没有意义，我们是希望得到$w,b$使得对任意的$\alpha \neq 0$，$\max L$都可以取到最小值。</li>
+<li>原始的min-max问题可以直接解，但不是对min-max形式直接求偏导，因为先对<span class="math inline">\(\alpha\)</span>求偏导没有意义，我们是希望得到<span class="math inline">\(w,b\)</span>使得对任意的<span class="math inline">\(\alpha \neq 0\)</span>，<span class="math inline">\(\max L\)</span>都可以取到最小值。</li>
 </ul>
-<h1 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h1><ul>
-<li>转换为对偶问题之后，先对$w,b$求导令其为0，之后将得到的$w,b$回代入对偶问题得到：<script type="math/tex; mode=display">
-带入对偶问题：L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot \overrightarrow{\mathbf{x}}_{i}+b\right)+\sum_{i=1}^{N} \alpha_{i} \\</script><script type="math/tex; mode=display">
-\begin{aligned} L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} & \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left[\left(\sum_{j=1}^{N} \alpha_{j} \tilde{y}_{j} \overrightarrow{\mathbf{x}}_{j}\right) \cdot \overrightarrow{\mathbf{x}}_{i}+b\right]+\sum_{i=1}^{N} \alpha_{i} \\ &=-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \end{aligned} \\</script></li>
-<li>这里第一项系数为1/2，第二项中b的部分为0，剩余部分其实和第一项相同，只不过系数为1，因此相减得到-1/2。最后得到外层的max优化目标<script type="math/tex; mode=display">
-\begin{aligned} \max _{\vec{\alpha}}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \\ s . t . \quad \sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}=0 \\ \alpha_{i} \geq 0, i=1,2, \cdots, N \end{aligned}</script></li>
-<li>其中等式约束条件是对$b$求导为0得到的。之前说到SVM的目标函数和约束条件满足强对偶关系，强对偶关系的充要条件是KKT条件，因此上式应该也满足KKT条件，即<ul>
-<li>拉格朗日函数对$w,b$求偏导为0</li>
+<h1 id="求解">求解</h1>
+<ul>
+<li>转换为对偶问题之后，先对<span class="math inline">\(w,b\)</span>求导令其为0，之后将得到的<span class="math inline">\(w,b\)</span>回代入对偶问题得到： <span class="math display">\[
+带入对偶问题：L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot \overrightarrow{\mathbf{x}}_{i}+b\right)+\sum_{i=1}^{N} \alpha_{i} \\
+\]</span> <span class="math display">\[
+\begin{aligned} L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} &amp; \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left[\left(\sum_{j=1}^{N} \alpha_{j} \tilde{y}_{j} \overrightarrow{\mathbf{x}}_{j}\right) \cdot \overrightarrow{\mathbf{x}}_{i}+b\right]+\sum_{i=1}^{N} \alpha_{i} \\ &amp;=-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \end{aligned} \\
+\]</span></li>
+<li>这里第一项系数为1/2，第二项中b的部分为0，剩余部分其实和第一项相同，只不过系数为1，因此相减得到-1/2。最后得到外层的max优化目标 <span class="math display">\[
+\begin{aligned} \max _{\vec{\alpha}}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \\ s . t . \quad \sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}=0 \\ \alpha_{i} \geq 0, i=1,2, \cdots, N \end{aligned}
+\]</span></li>
+<li>其中等式约束条件是对<span class="math inline">\(b\)</span>求导为0得到的。之前说到SVM的目标函数和约束条件满足强对偶关系，强对偶关系的充要条件是KKT条件，因此上式应该也满足KKT条件，即
+<ul>
+<li>拉格朗日函数对<span class="math inline">\(w,b\)</span>求偏导为0</li>
 <li>拉格朗日函数中原问题的约束部分（求和的每一项）为0，即松弛互补条件</li>
 <li>原始问题约束</li>
-<li>拉格朗日乘子非负<script type="math/tex; mode=display">
-\begin{aligned} \nabla_{\overrightarrow{\mathrm{w}}} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \overrightarrow{\mathrm{w}}^{*}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i} \overrightarrow{\mathrm{x}}_{i}=0 \\ \nabla_{b} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}=0 \\ \alpha_{i}^{*}\left[\tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1\right]=0, i=1,2, \cdots, N \\ \tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1 \geq 0, i=1,2, \cdots, N \\ \alpha_{i}^{*} \geq 0, i=1,2, \cdots, N \end{aligned}</script></li>
-</ul>
-</li>
-<li>由KKT条件，我们可以用$\alpha$表示$w$（之前求导时也已经得到过），我们知道$w$代表分类超平面的方向，$b$代表偏置，由支持向量决定，因此那些$\alpha _j$不为0对应的<script type="math/tex; mode=display">
-\tilde{y}_{i}\left(\overrightarrow{\mathbf{w}}^{*} \cdot \overrightarrow{\mathbf{x}}_{i}+b^{*}\right)-1</script>决定了$b$（因为$\alpha$不为0，由松弛互补条件，则后一项为0，就可以求得$b$）。最后得到：<script type="math/tex; mode=display">
-b^{*}=\tilde{y}_{j}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}\left(\overrightarrow{\mathrm{x}}_{i} \cdot \overrightarrow{\mathrm{x}}_{j}\right)</script>可以看到，$w,b$都是求和的形式，但大部分为0，只有不为0的$\alpha$（在$b$的表达式里直接找出不为0的记为$\alpha _j$）项才起作用，即支持向量机只有少数的支持向量决定。</li>
-<li>因此，给定数据，先求得对偶问题极大值，得到$\alpha$，再由$\alpha$中不为0的部分计算出$w,b$，得到超平面。</li>
+<li>拉格朗日乘子非负 <span class="math display">\[
+\begin{aligned} \nabla_{\overrightarrow{\mathrm{w}}} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=&amp; \overrightarrow{\mathrm{w}}^{*}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i} \overrightarrow{\mathrm{x}}_{i}=0 \\ \nabla_{b} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=&amp; \sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}=0 \\ \alpha_{i}^{*}\left[\tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1\right]=0, i=1,2, \cdots, N \\ \tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1 \geq 0, i=1,2, \cdots, N \\ \alpha_{i}^{*} \geq 0, i=1,2, \cdots, N \end{aligned}
+\]</span></li>
+</ul></li>
+<li>由KKT条件，我们可以用<span class="math inline">\(\alpha\)</span>表示<span class="math inline">\(w\)</span>（之前求导时也已经得到过），我们知道<span class="math inline">\(w\)</span>代表分类超平面的方向，<span class="math inline">\(b\)</span>代表偏置，由支持向量决定，因此那些<span class="math inline">\(\alpha _j\)</span>不为0对应的 <span class="math display">\[
+\tilde{y}_{i}\left(\overrightarrow{\mathbf{w}}^{*} \cdot \overrightarrow{\mathbf{x}}_{i}+b^{*}\right)-1
+\]</span> 决定了<span class="math inline">\(b\)</span>（因为<span class="math inline">\(\alpha\)</span>不为0，由松弛互补条件，则后一项为0，就可以求得<span class="math inline">\(b\)</span>）。最后得到： <span class="math display">\[
+b^{*}=\tilde{y}_{j}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}\left(\overrightarrow{\mathrm{x}}_{i} \cdot \overrightarrow{\mathrm{x}}_{j}\right)
+\]</span> 可以看到，<span class="math inline">\(w,b\)</span>都是求和的形式，但大部分为0，只有不为0的<span class="math inline">\(\alpha\)</span>（在<span class="math inline">\(b\)</span>的表达式里直接找出不为0的记为<span class="math inline">\(\alpha _j\)</span>）项才起作用，即支持向量机只有少数的支持向量决定。</li>
+<li>因此，给定数据，先求得对偶问题极大值，得到<span class="math inline">\(\alpha\)</span>，再由<span class="math inline">\(\alpha\)</span>中不为0的部分计算出<span class="math inline">\(w,b\)</span>，得到超平面。</li>
 <li>软间隔和非线性支持向量机的定义和求解过程类似，只不过约束条件和目标函数不同。</li>
-<li>$\alpha$的求解涉及凸二次规划，有很多解法。支持向量机的一个优点就是学习到的参数只依赖支持向量，推理时避免了维度灾难，但是在学习的过程中，需要对所有样本计算最优化，因此对于大规模数据不友好，这里可以用SMO算法来优化</li>
+<li><span class="math inline">\(\alpha\)</span>的求解涉及凸二次规划，有很多解法。支持向量机的一个优点就是学习到的参数只依赖支持向量，推理时避免了维度灾难，但是在学习的过程中，需要对所有样本计算最优化，因此对于大规模数据不友好，这里可以用SMO算法来优化</li>
 </ul>
 
     </div>
@@ -548,12 +567,12 @@ b^{*}=\tilde{y}_{j}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}\left(\overrighta
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">321k</span>
+    <span title="站点总字数">352k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:52</span>
+    <span title="站点阅读时长">5:20</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
