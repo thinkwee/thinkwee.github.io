@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/31/etsOld.gif">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/31/eYYvRK.png">
 <meta property="article:published_time" content="2019-07-29T03:17:11.000Z">
-<meta property="article:modified_time" content="2020-12-25T05:33:05.154Z">
+<meta property="article:modified_time" content="2021-04-07T07:42:39.046Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="math">
 <meta property="article:tag" content="machine learning">
@@ -249,7 +249,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-25 13:33:05" itemprop="dateModified" datetime="2020-12-25T13:33:05+08:00">2020-12-25</time>
+                <time title="修改时间：2021-04-07 15:42:39" itemprop="dateModified" datetime="2021-04-07T15:42:39+08:00">2021-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -309,10 +309,8 @@
       
         <hr />
 <p>CorEx(Correlation Explaination)的相关笔记。</p>
-<a id="more"></a>
-<figure>
-<img data-src="https://s2.ax1x.com/2019/07/31/etsOld.gif" alt="" /><figcaption>etsOld.gif</figcaption>
-</figure>
+<span id="more"></span>
+<p><img data-src="https://s2.ax1x.com/2019/07/31/etsOld.gif" /></p>
 <h1 id="概述">概述</h1>
 <ul>
 <li>Correlation Explaination是一类表示学习方法，可用于主题模型，与LDA具有相似的结果但其处理过程完全不同。Correlation Explaination不对数据的生成做任何结构上的先验假设，而是类似于信息增益，用Total Correlation之差来找出最能explain数据的Correlation的主题。 其中一种快速计算方法就简写为CorEx。</li>
@@ -330,7 +328,7 @@ I(X_1 : X_2) = H\left(X_{1}\right)+H\left(X_{2}\right)-H\left(X_{1}, X_{2}\right
 <li>我们定义Total Correlation（或者叫多元互信息multivariate mutual information）为 <span class="math display">\[
 T C\left(X_{G}\right)=\sum_{i \in G} H\left(X_{i}\right)-H\left(X_{G}\right)
 \]</span></li>
-<li>其中<span class="math inline">\(G\)</span>是<span class="math inline">\(X\)</span>的一个子集。只管来看就是子集中每一个随机变量熵之和减去子集的联合熵。当G中只有两个变量时，TC等价于两个变量的互信息。</li>
+<li>其中<span class="math inline">\(G\)</span>是<span class="math inline">\(X\)</span>的一个子集。直观来看就是子集中每一个随机变量熵之和减去子集的联合熵。当G中只有两个变量时，TC等价于两个变量的互信息。</li>
 <li>为了更方便理解，TC还可以写成KL散度的形式 <span class="math display">\[
 T C\left(X_{G}\right)=D_{K L}\left(p\left(x_{G}\right) \| \prod_{i \in G} p\left(x_{i}\right)\right)
 \]</span></li>
@@ -373,26 +371,46 @@ p\left(y_{j} | x_{i}\right) &amp;=\sum_{\overline{x}} p\left(y_{j} | \overline{x
 <li><p>注意，这是在<span class="math inline">\(\alpha\)</span>矩阵确认的情况下得到的主题最优解，通过放宽最优解条件，我们可以得到在主题更新之后<span class="math inline">\(\alpha\)</span>的迭代公式 <span class="math display">\[
 \alpha_{i, j}^{t+1}=(1-\lambda) \alpha_{i, j}^{t}+\lambda \alpha_{i, j}^{* *} \\
 \alpha_{i, j}^{* *}=\exp \left(\gamma\left(I\left(X_{i} : Y_{j}\right)-\max _{\overline{j}} I\left(X_{i} : Y_{\overline{j}}\right)\right)\right) \\
-\]</span> ## 伪算法 <span class="math display">\[
-\text { input : A matrix of size } n_{s} \times n \text { representing } n_{s} \text { samples of } n \text { discrete random variables } \\
-\text { set } : \text { Set } m, \text { the number of latent variables, } Y_{j}, \text { and } k, \text { so that }\left|Y_{j}\right|=k \\
-\text { output: Parameters } \alpha_{i, j}, p\left(y_{j} | x_{i}\right), p\left(y_{j}\right), p\left(y | x^{(l)}\right) \\
-\text { for } i \in \mathbb{N}_{n}, j \in \mathbb{N}_{m}, l \in \mathbb{N}_{n_{s}}, y \in \mathbb{N}_{k}, x_{i} \in \mathcal{X}_{i} \\
-\text { Randomly initialize } \alpha_{i, j}, p\left(y | x^{(l)}\right) \\
-\text {repeat} \\
-\text { Estimate marginals, } p\left(y_{j}\right), p\left(y_{j} | x_{i}\right) \text { using  } \\
-p\left(y_{j} | x_{i}\right)=\sum_{\overline{x}} p\left(y_{j} | \overline{x}\right) p(\overline{x}) \delta_{\overline{x}_{i}, x_{i}} / p\left(x_{i}\right) \text { and } p\left(y_{j}\right)=\sum_{\overline{x}} p\left(y_{j} | \overline{x}\right) p(\overline{x}) \\
-\text { Calculate } I\left(X_{i} : Y_{j}\right) \text { from marginals; } \\
-\text { Update } \alpha \text { using  } \\
-\alpha_{i, j}^{t+1}=(1-\lambda) \alpha_{i, j}^{t}+\lambda \alpha_{i, j}^{* *} \\
-\text { Calculate } p\left(y | x^{(l)}\right), l=1, \ldots, n_{s} \text { using } \\
-p\left(y_{j} | x\right)=\frac{1}{Z_{j}(x)} p\left(y_{j}\right) \prod_{i=1}^{n}\left(\frac{p\left(y_{j} | x_{i}\right)}{p\left(y_{j}\right)}\right)^{\alpha_{i, j}} \\
-\text { until convergence; }
 \]</span></p></li>
+</ul>
+<h2 id="伪算法">伪算法</h2>
+<ul>
+<li>伪算法描述如下 <span class="math display">\[
+\text { input : A matrix of size } n_{s} \times n \text { representing } n_{s} \text { samples of } n \text { discrete random variables } \\
+\]</span> <span class="math display">\[
+\text { set } : \text { Set } m, \text { the number of latent variables, } Y_{j}, \text { and } k, \text { so that }\left|Y_{j}\right|=k  \\
+\]</span> <span class="math display">\[
+\text { output: Parameters } \alpha_{i, j}, p\left(y_{j} | x_{i}\right), p\left(y_{j}\right), p\left(y | x^{(l)}\right) \\
+\]</span> <span class="math display">\[
+\text { for } i \in \mathbb{N}_{n}, j \in \mathbb{N}_{m}, l \in \mathbb{N}_{n_{s}}, y \in \mathbb{N}_{k}, x_{i} \in \mathcal{X}_{i} \\
+\]</span> <span class="math display">\[
+\text { Randomly initialize } \alpha_{i, j}, p\left(y | x^{(l)}\right) \\
+\]</span> <span class="math display">\[
+\text {repeat} \\
+\]</span> <span class="math display">\[
+\text { Estimate marginals, } p\left(y_{j}\right), p\left(y_{j} | x_{i}\right) \text { using  } \\
+\]</span> <span class="math display">\[
+p\left(y_{j} | x_{i}\right)=\sum_{\overline{x}} p\left(y_{j} | \overline{x}\right) p(\overline{x}) \delta_{\overline{x}_{i}, x_{i}} / p\left(x_{i}\right) \text { and } p\left(y_{j}\right)=\sum_{\overline{x}} p\left(y_{j} | \overline{x}\right) p(\overline{x}) \\
+\]</span> <span class="math display">\[
+\text { Calculate } I\left(X_{i} : Y_{j}\right) \text { from marginals; } \\
+\]</span> <span class="math display">\[
+\text { Update } \alpha \text { using  } \\
+\]</span> <span class="math display">\[
+\alpha_{i, j}^{t+1}=(1-\lambda) \alpha_{i, j}^{t}+\lambda \alpha_{i, j}^{* *} \\
+\]</span> <span class="math display">\[
+\text { Calculate } p\left(y | x^{(l)}\right), l=1, \ldots, n_{s} \text { using } \\
+\]</span> <span class="math display">\[
+p\left(y_{j} | x\right)=\frac{1}{Z_{j}(x)} p\left(y_{j}\right) \prod_{i=1}^{n}\left(\frac{p\left(y_{j} | x_{i}\right)}{p\left(y_{j}\right)}\right)^{\alpha_{i, j}} \\
+\]</span> <span class="math display">\[
+\text { until convergence; }
+\]</span></li>
 </ul>
 <h1 id="maximally-informative-hierarchical-representations-of-high-dimensional-data">Maximally Informative Hierarchical Representations of High-Dimensional Data</h1>
 <ul>
-<li>本文分析了TC的上下界，有助于进一步理解TC的含义，并提出了一种最大化信息量的层次结构高维数据表示的优化方法，上文提到的CorEx可以看成这种优化方法的一种特例。 ## 上界和下界</li>
+<li>本文分析了TC的上下界，有助于进一步理解TC的含义，并提出了一种最大化信息量的层次结构高维数据表示的优化方法，上文提到的CorEx可以看成这种优化方法的一种特例。</li>
+</ul>
+<h2 id="上界和下界">上界和下界</h2>
+<ul>
 <li>大部分定义与上文类似，更为一般性，我们将文档和主题扩展为数据<span class="math inline">\(X\)</span>和表示<span class="math inline">\(Y\)</span>，当联合概率可以分解时，我们称<span class="math inline">\(Y\)</span>是<span class="math inline">\(X\)</span>的一种表示 <span class="math display">\[
 p(x, y)=\prod_{j=1}^{m} p\left(y_{j} | x\right) p(x) \\
 \]</span></li>
@@ -593,7 +611,7 @@ p_t(x_i | y_j) = \sum _{\overline{x}} p_t(y_j|\overline{x})p(\overline{x}) \math
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#discovering-structure-in-high-dimensional-data-through-correlation-explanation"><span class="nav-number">2.</span> <span class="nav-text">Discovering Structure in High-Dimensional Data Through Correlation Explanation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89total-correlation"><span class="nav-number">2.1.</span> <span class="nav-text">定义Total Correlation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3"><span class="nav-number">2.2.</span> <span class="nav-text">迭代</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#maximally-informative-hierarchical-representations-of-high-dimensional-data"><span class="nav-number">3.</span> <span class="nav-text">Maximally Informative Hierarchical Representations of High-Dimensional Data</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#anchored-correlation-explanation-topic-modeling-with-minimal-domain-knowledge"><span class="nav-number">4.</span> <span class="nav-text">Anchored Correlation Explanation: Topic Modeling with Minimal Domain Knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#discovering-structure-in-high-dimensional-data-through-correlation-explanation"><span class="nav-number">2.</span> <span class="nav-text">Discovering Structure in High-Dimensional Data Through Correlation Explanation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89total-correlation"><span class="nav-number">2.1.</span> <span class="nav-text">定义Total Correlation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3"><span class="nav-number">2.2.</span> <span class="nav-text">迭代</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">伪算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#maximally-informative-hierarchical-representations-of-high-dimensional-data"><span class="nav-number">3.</span> <span class="nav-text">Maximally Informative Hierarchical Representations of High-Dimensional Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E7%95%8C%E5%92%8C%E4%B8%8B%E7%95%8C"><span class="nav-number">3.1.</span> <span class="nav-text">上界和下界</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#anchored-correlation-explanation-topic-modeling-with-minimal-domain-knowledge"><span class="nav-number">4.</span> <span class="nav-text">Anchored Correlation Explanation: Topic Modeling with Minimal Domain Knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

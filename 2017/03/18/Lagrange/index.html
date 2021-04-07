@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -305,7 +305,7 @@
 
       
         <hr />
-<p>介绍拉格朗日乘子法及其推广KKT条件，以及它们在PCA和SVM中的应用 <a id="more"></a></p>
+<p>介绍拉格朗日乘子法及其推广KKT条件，以及它们在PCA和SVM中的应用 <span id="more"></span></p>
 <p><img data-src="https://s1.ax1x.com/2018/10/20/i0olwj.png" alt="i0olwj.png" /> 图片来自wikipedia关于拉格朗日乘子法的形象介绍</p>
 <h1 id="拉格朗日乘子法">拉格朗日乘子法</h1>
 <ul>
@@ -371,8 +371,11 @@ g_k(X) \leq 0\\
 <li>求出协方差矩阵C</li>
 <li>求出协方差矩阵的特征值和特征向量</li>
 <li>将特征向量按特征值大小对应从大到小按行排列，组成新的基矩阵P</li>
-<li>如果需要将为，取P的前k行即可，降维后的数据为<span class="math inline">\(Y=PX\)</span> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def PCA(X, dims):</span><br><span class="line">    m &#x3D; len(X)</span><br><span class="line">    mean &#x3D; np.mean(X, axis&#x3D;0)</span><br><span class="line">    X &#x3D; X - mean</span><br><span class="line">    C &#x3D; np.dot(X.T, X) &#x2F; m</span><br><span class="line">    Eigen_Value, Eigen_Vector &#x3D; np.linalg.eig(C)</span><br><span class="line">    index &#x3D; np.argsort(Eigen_Value)[-1:-dims - 1:-1]</span><br><span class="line">    PCA_Vector &#x3D; Eigen_Vector[index]</span><br><span class="line">    X_PCA &#x3D; np.dot(PCA_Vector, X.T)</span><br><span class="line">    return X_PCA.T</span><br></pre></td></tr></table></figure> # SVM</li>
+<li>如果需要将为，取P的前k行即可，降维后的数据为<span class="math inline">\(Y=PX\)</span> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def PCA(X, dims):</span><br><span class="line">    m &#x3D; len(X)</span><br><span class="line">    mean &#x3D; np.mean(X, axis&#x3D;0)</span><br><span class="line">    X &#x3D; X - mean</span><br><span class="line">    C &#x3D; np.dot(X.T, X) &#x2F; m</span><br><span class="line">    Eigen_Value, Eigen_Vector &#x3D; np.linalg.eig(C)</span><br><span class="line">    index &#x3D; np.argsort(Eigen_Value)[-1:-dims - 1:-1]</span><br><span class="line">    PCA_Vector &#x3D; Eigen_Vector[index]</span><br><span class="line">    X_PCA &#x3D; np.dot(PCA_Vector, X.T)</span><br><span class="line">    return X_PCA.T</span><br></pre></td></tr></table></figure></li>
 </ul></li>
+</ul>
+<h1 id="svm">SVM</h1>
+<ul>
 <li>在分类学习中，我们需要找到一个划分超平面，将不同类别的样本分开，而最好的划分超平面显然是离所分各个样本类尽量远，即对训练样本局部扰动容忍性最好的超平面</li>
 <li>划分超平面通过方程<span class="math inline">\(w^Tx+b=0\)</span>描述，其中w为法向量，决定了超平面方向，b为超平面到远点的位移</li>
 <li>求解一个SVM，即找到满足约束 <span class="math display">\[
@@ -503,7 +506,7 @@ s.t. \sum _{i=1}^m \alpha _i y_i=0, \\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E5%AD%90%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">拉格朗日乘子法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%A1%E7%BD%97%E9%9C%80-%E5%BA%93%E6%81%A9-%E5%A1%94%E5%85%8B%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">卡罗需-库恩-塔克条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pca"><span class="nav-number">3.</span> <span class="nav-text">PCA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pca-using-covariance-matrix"><span class="nav-number">4.</span> <span class="nav-text">PCA using Covariance Matrix</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E5%AD%90%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">拉格朗日乘子法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%A1%E7%BD%97%E9%9C%80-%E5%BA%93%E6%81%A9-%E5%A1%94%E5%85%8B%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">卡罗需-库恩-塔克条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pca"><span class="nav-number">3.</span> <span class="nav-text">PCA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pca-using-covariance-matrix"><span class="nav-number">4.</span> <span class="nav-text">PCA using Covariance Matrix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#svm"><span class="nav-number">5.</span> <span class="nav-text">SVM</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
