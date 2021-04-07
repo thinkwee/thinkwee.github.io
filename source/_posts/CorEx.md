@@ -15,7 +15,8 @@ CorEx(Correlation Explaination)的相关笔记。
 
 <!--more-->
 
-![etsOld.gif](https://s2.ax1x.com/2019/07/31/etsOld.gif)
+![](https://s2.ax1x.com/2019/07/31/etsOld.gif)
+
 
 # 概述
 -	Correlation Explaination是一类表示学习方法，可用于主题模型，与LDA具有相似的结果但其处理过程完全不同。Correlation Explaination不对数据的生成做任何结构上的先验假设，而是类似于信息增益，用Total Correlation之差来找出最能explain数据的Correlation的主题。 其中一种快速计算方法就简写为CorEx。
@@ -35,7 +36,7 @@ $$
 $$
 T C\left(X_{G}\right)=\sum_{i \in G} H\left(X_{i}\right)-H\left(X_{G}\right)
 $$
--	其中$G$是$X$的一个子集。只管来看就是子集中每一个随机变量熵之和减去子集的联合熵。当G中只有两个变量时，TC等价于两个变量的互信息。
+-	其中$G$是$X$的一个子集。直观来看就是子集中每一个随机变量熵之和减去子集的联合熵。当G中只有两个变量时，TC等价于两个变量的互信息。
 -	为了更方便理解，TC还可以写成KL散度的形式
 $$
 T C\left(X_{G}\right)=D_{K L}\left(p\left(x_{G}\right) \| \prod_{i \in G} p\left(x_{i}\right)\right)
@@ -88,26 +89,55 @@ $$
 \alpha_{i, j}^{t+1}=(1-\lambda) \alpha_{i, j}^{t}+\lambda \alpha_{i, j}^{* *} \\
 \alpha_{i, j}^{* *}=\exp \left(\gamma\left(I\left(X_{i} : Y_{j}\right)-\max _{\overline{j}} I\left(X_{i} : Y_{\overline{j}}\right)\right)\right) \\
 $$
+
 ## 伪算法
+-	伪算法描述如下
 $$
 \text { input : A matrix of size } n_{s} \times n \text { representing } n_{s} \text { samples of } n \text { discrete random variables } \\
-\text { set } : \text { Set } m, \text { the number of latent variables, } Y_{j}, \text { and } k, \text { so that }\left|Y_{j}\right|=k \\
+$$
+$$
+\text { set } : \text { Set } m, \text { the number of latent variables, } Y_{j}, \text { and } k, \text { so that }\left|Y_{j}\right|=k  \\
+$$
+$$
 \text { output: Parameters } \alpha_{i, j}, p\left(y_{j} | x_{i}\right), p\left(y_{j}\right), p\left(y | x^{(l)}\right) \\
+$$
+$$
 \text { for } i \in \mathbb{N}_{n}, j \in \mathbb{N}_{m}, l \in \mathbb{N}_{n_{s}}, y \in \mathbb{N}_{k}, x_{i} \in \mathcal{X}_{i} \\
+$$
+$$
 \text { Randomly initialize } \alpha_{i, j}, p\left(y | x^{(l)}\right) \\
+$$
+$$
 \text {repeat} \\
+$$
+$$
 \text { Estimate marginals, } p\left(y_{j}\right), p\left(y_{j} | x_{i}\right) \text { using  } \\
+$$
+$$
 p\left(y_{j} | x_{i}\right)=\sum_{\overline{x}} p\left(y_{j} | \overline{x}\right) p(\overline{x}) \delta_{\overline{x}_{i}, x_{i}} / p\left(x_{i}\right) \text { and } p\left(y_{j}\right)=\sum_{\overline{x}} p\left(y_{j} | \overline{x}\right) p(\overline{x}) \\
+$$
+$$
 \text { Calculate } I\left(X_{i} : Y_{j}\right) \text { from marginals; } \\
+$$
+$$
 \text { Update } \alpha \text { using  } \\
+$$
+$$
 \alpha_{i, j}^{t+1}=(1-\lambda) \alpha_{i, j}^{t}+\lambda \alpha_{i, j}^{* *} \\
+$$
+$$
 \text { Calculate } p\left(y | x^{(l)}\right), l=1, \ldots, n_{s} \text { using } \\
+$$
+$$
 p\left(y_{j} | x\right)=\frac{1}{Z_{j}(x)} p\left(y_{j}\right) \prod_{i=1}^{n}\left(\frac{p\left(y_{j} | x_{i}\right)}{p\left(y_{j}\right)}\right)^{\alpha_{i, j}} \\
+$$
+$$
 \text { until convergence; }
 $$
 
 # Maximally Informative Hierarchical Representations of High-Dimensional Data
 -	本文分析了TC的上下界，有助于进一步理解TC的含义，并提出了一种最大化信息量的层次结构高维数据表示的优化方法，上文提到的CorEx可以看成这种优化方法的一种特例。
+
 ## 上界和下界
 -	大部分定义与上文类似，更为一般性，我们将文档和主题扩展为数据$X$和表示$Y$，当联合概率可以分解时，我们称$Y$是$X$的一种表示
 $$
