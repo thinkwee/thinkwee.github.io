@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="总结一下实验室参加的CLSciSumm Workshop，主要是方法，实验分析论文里很详细 论文： - 2016 - 2017 - 2018 - 2019">
+  <meta name="description" content="总结一下实验室参加的CLSciSumm Workshop，主要是方法，实验分析论文里很详细论文：  2016 2017 2018 2019">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CLSciSumm总结">
 <meta property="og:url" content="https://thinkwee.top/2020/03/27/clscisumm/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="总结一下实验室参加的CLSciSumm Workshop，主要是方法，实验分析论文里很详细 论文： - 2016 - 2017 - 2018 - 2019">
+<meta property="og:description" content="总结一下实验室参加的CLSciSumm Workshop，主要是方法，实验分析论文里很详细论文：  2016 2017 2018 2019">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.ax1x.com/2020/03/27/Gic2ef.png">
 <meta property="article:published_time" content="2020-03-27T06:04:23.000Z">
@@ -299,19 +299,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>总结一下实验室参加的CLSciSumm Workshop，主要是方法，实验分析论文里很详细 论文： - <a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-1610/paper18.pdf">2016</a> - <a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2002/cistclscisumm2017.pdf">2017</a> - <a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2132/paper8.pdf">2018</a> - <a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2414/paper20.pdf">2019</a> <span id="more"></span></p>
-<h1 id="task">Task</h1>
+        <p>总结一下实验室参加的CLSciSumm Workshop，主要是方法，实验分析论文里很详细<br>论文：</p>
 <ul>
+<li><a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-1610/paper18.pdf">2016</a></li>
+<li><a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2002/cistclscisumm2017.pdf">2017</a></li>
+<li><a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2132/paper8.pdf">2018</a></li>
+<li><a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2414/paper20.pdf">2019</a><span id="more"></span>
+</li>
+</ul>
+<h1 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h1><ul>
 <li>task 1a:给定论文CP和被引论文RP，给定CP当中的citation，找出RP中被这个citation引用的cited text span(CTS)，即content linking，本质上是一个句子对相似度计算任务</li>
 <li>task 1b:在找出CTS之后，判断这个text span属于RP中的哪一个facet，即文本分类任务</li>
 <li>task 2:生成RP的摘要，属于自动文摘任务</li>
 </ul>
-<h1 id="section">2016</h1>
-<h2 id="task-1a">task 1a</h2>
-<ul>
+<h1 id="2016"><a href="#2016" class="headerlink" title="2016"></a>2016</h1><h2 id="task-1a"><a href="#task-1a" class="headerlink" title="task 1a"></a>task 1a</h2><ul>
 <li>将输入的text span pair转换成特征向量，送入分类器判断两个text span是否link</li>
-<li>特征包括
-<ul>
+<li>特征包括<ul>
 <li>RP当中的高频词，用wordnet和word vector扩充</li>
 <li>RP和CP一起训练LDA，得到主题特征</li>
 <li>CTS和citance的词共现频率</li>
@@ -320,103 +323,90 @@
 <li>考虑上下文的相似度，即当前句的前后两句与待匹配句的相似度相乘再开方</li>
 <li>word2vec得到的两个text span相似度，这里两个句子当中的词相似度最大值，再针对两句长度做对称归一化得到</li>
 <li>doc2vec，直接得到句向量，做相似度计算</li>
-</ul></li>
+</ul>
+</li>
 <li>分类器：SVM和人为赋予权重直接打分</li>
 <li>可以看到这个任务的数据集严重不平衡，实际上不匹配的样本数量是匹配的样本数量的125倍，作者尝试切分负样本，分别训练了125个SVM并通过投票得到结果，但是效果非常差，因此采取了直接人为赋予权重打分的方法</li>
 <li>jaccard距离的效果最好，以此为主要打分特征，根据其余特征的单独实验效果赋予权重作为补充特征</li>
 </ul>
-<h2 id="task-1b">task 1b</h2>
-<ul>
-<li>基于规则的
-<ul>
+<h2 id="task-1b"><a href="#task-1b" class="headerlink" title="task 1b"></a>task 1b</h2><ul>
+<li>基于规则的<ul>
 <li>facet指 Hypothesis, Implication, Aim, Results and Method之类的论文部分，假如句子中包含这些词就直接分类</li>
 <li>计算每个facet下的高频词，并扩充。设定阈值，当句子高频词的数量超过阈值之后，就将对应facet加入候选集，选择coverage最高的facet作为结果</li>
-</ul></li>
-<li>SVM
-<ul>
-<li>提取四种特征：段落位置、文档位置比例、段落位置比例、RCTS位置</li>
-</ul></li>
-<li>投票
-<ul>
-<li>结合上面的所有结果投票</li>
-</ul></li>
-<li>融合
-<ul>
-<li>每一个1a的run都能得到一次CTS的结果，对每一次结果计算一个1b的run，取最好的</li>
-</ul></li>
 </ul>
-<h2 id="task-2">task 2</h2>
-<ul>
-<li>提取特征：
-<ul>
+</li>
+<li>SVM<ul>
+<li>提取四种特征：段落位置、文档位置比例、段落位置比例、RCTS位置</li>
+</ul>
+</li>
+<li>投票<ul>
+<li>结合上面的所有结果投票</li>
+</ul>
+</li>
+<li>融合<ul>
+<li>每一个1a的run都能得到一次CTS的结果，对每一次结果计算一个1b的run，取最好的</li>
+</ul>
+</li>
+</ul>
+<h2 id="task-2"><a href="#task-2" class="headerlink" title="task 2"></a>task 2</h2><ul>
+<li>提取特征：<ul>
 <li>hLDA：层次主题特征。hLDA的特征有两种利用方式：共享同一条路径的句子具有相似的主题分布，所以可以先进行句子的聚类，另外在评测任务当中我们还可以将facet作为聚类结果；另一种方式就是计算每个词的hlda得分，得分由两部分组成：词所在层的层（被分配主题）权重*词在所在层上的概率 + 当前主题节点内该词的概率。通过经验发现，若以三层hlda建模，高层是最抽象的词，底层是最具体的词，中间层次的词的抽象程度比较容易出现在摘要句当中，因此中间层赋予较高权重。</li>
 <li>句子长度：对gold summary的句子长度做一次高斯建模</li>
 <li>句子位置</li>
 <li>1a特征：假如是1a中提取到的CTS，那么就基于一个弱分数，因为1a的结果包含错误</li>
 <li>RST特征：基于修辞结构理论的特征</li>
-</ul></li>
-<li>加权特征进行打分，做了一些细节操作
-<ul>
+</ul>
+</li>
+<li>加权特征进行打分，做了一些细节操作<ul>
 <li>将结果句当中的第一人称改为第三人称</li>
 <li>为每一个facet或者每一个hlda聚类结果单独抽取句子</li>
 <li>移除重复度高的句子</li>
-</ul></li>
 </ul>
-<h1 id="section-1">2017</h1>
-<h2 id="task-1a-1">task 1a</h2>
-<ul>
-<li>在2016的基础上添加了
-<ul>
+</li>
+</ul>
+<h1 id="2017"><a href="#2017" class="headerlink" title="2017"></a>2017</h1><h2 id="task-1a-1"><a href="#task-1a-1" class="headerlink" title="task 1a"></a>task 1a</h2><ul>
+<li>在2016的基础上添加了<ul>
 <li>利用Wordnet计算相同pos的词之间的相似度，共6种：cn, lin, lch, res, wup and path similarit。利用与word2vec特征同样的处理方法将词相似度转成句相似度</li>
 <li>用CNN训练，计算两个句子的相似度，再将CNN的结果作为打分特征的一种</li>
-</ul></li>
 </ul>
-<h2 id="task-1b-1">task 1b</h2>
-<ul>
+</li>
+</ul>
+<h2 id="task-1b-1"><a href="#task-1b-1" class="headerlink" title="task 1b"></a>task 1b</h2><ul>
 <li>基本同2016年一样，除了一些SVM训练细节稍有不同</li>
 </ul>
-<h2 id="task-2-1">task 2</h2>
-<ul>
+<h2 id="task-2-1"><a href="#task-2-1" class="headerlink" title="task 2"></a>task 2</h2><ul>
 <li>相比前一年主要引入了行列式点过程采样来保证摘要结果质量与多样性的均衡</li>
 <li>在训练hlda时，不仅仅将RP作为单篇文档的语料，也引入了该RP相关的所有citation</li>
-<li>特征
-<ul>
+<li>特征<ul>
 <li>hlda的特征增加了句子的主题分布</li>
 <li>增加了标题相似度作为特征</li>
-</ul></li>
-<li>引入了行列式点过程抽样，将句子作为待抽样的点，给定每个点的质量（得分）以及点之间的相似度，采样出一个子集（摘要），使得子集的质量高且子集内元素相似度低： <img data-src="https://s1.ax1x.com/2020/03/27/Gic2ef.png" alt="Gic2ef.png" /></li>
 </ul>
-<h1 id="section-2">2018</h1>
-<h2 id="task-1a-2">task 1a</h2>
-<ul>
+</li>
+<li>引入了行列式点过程抽样，将句子作为待抽样的点，给定每个点的质量（得分）以及点之间的相似度，采样出一个子集（摘要），使得子集的质量高且子集内元素相似度低：<br><img data-src="https://s1.ax1x.com/2020/03/27/Gic2ef.png" alt="Gic2ef.png"></li>
+</ul>
+<h1 id="2018"><a href="#2018" class="headerlink" title="2018"></a>2018</h1><h2 id="task-1a-2"><a href="#task-1a-2" class="headerlink" title="task 1a"></a>task 1a</h2><ul>
 <li>相比前一年，作者采用了WMD距离作为特征向量之间的相似度度量，将其应用于task 1a的similarity feature以及task2中DPPs</li>
 <li>改进了LDA特征的利用。之前只是将隐主题作为词典，现在还计算了两个句子的LDA分布相似度，不仅考虑了属于同一主题的词的数量，还考虑了内部的主题分布</li>
 </ul>
-<h2 id="task-1b-2">task 1b</h2>
-<ul>
+<h2 id="task-1b-2"><a href="#task-1b-2" class="headerlink" title="task 1b"></a>task 1b</h2><ul>
 <li>尝试了很多机器学习方法，包括SVM、DT、KNN、RF、GB，但只有RF取得了和规则打分方法相当的效果</li>
 </ul>
-<h2 id="task-2-2">task 2</h2>
-<ul>
+<h2 id="task-2-2"><a href="#task-2-2" class="headerlink" title="task 2"></a>task 2</h2><ul>
 <li>依然是规则打分+DPPs，只不过在构建DPPs所需的L矩阵时，采用了WMD计算相似度</li>
 </ul>
-<h1 id="section-3">2019</h1>
-<h2 id="task-1a-3">task 1a</h2>
-<ul>
+<h1 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h1><h2 id="task-1a-3"><a href="#task-1a-3" class="headerlink" title="task 1a"></a>task 1a</h2><ul>
 <li>在计算LDA相似度时，采用jaccard距离，因为LDA的主题分布通常很稀疏</li>
-<li>使用CNN时，采用了Word2Vec_H特征：
-<ul>
+<li>使用CNN时，采用了Word2Vec_H特征：<ul>
 <li>先用SVD对两个句子的embedding矩阵进行降维</li>
-<li>再计算词级别的相似度矩阵，<span class="math inline">\(L_{ij}\)</span>是句子a的i号词和句子b的j号词的降维之后的词向量计算cosine距离</li>
+<li>再计算词级别的相似度矩阵，$L_{ij}$是句子a的i号词和句子b的j号词的降维之后的词向量计算cosine距离</li>
 <li>将L矩阵作为CNN的输入</li>
-</ul></li>
 </ul>
-<h2 id="task-1b-3">task 1b</h2>
-<ul>
+</li>
+</ul>
+<h2 id="task-1b-3"><a href="#task-1b-3" class="headerlink" title="task 1b"></a>task 1b</h2><ul>
 <li>添加了CNN作为分类方法，但是依然比不过传统特征打分</li>
 </ul>
-<h2 id="task-2-3">task 2</h2>
-<ul>
+<h2 id="task-2-3"><a href="#task-2-3" class="headerlink" title="task 2"></a>task 2</h2><ul>
 <li>将WMD距离经过反比例映射、线性映射、和指数映射压缩入[0,1]区间内</li>
 <li>构建L矩阵时除了QS分解，还采取了Gram分解，这样不需要显式计算特征与相似度，只需要输入每一句的特征向量即可。尝试了word2vec与LSA构建特征向量</li>
 </ul>
@@ -532,7 +522,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#task"><span class="nav-number">1.</span> <span class="nav-text">Task</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#section"><span class="nav-number">2.</span> <span class="nav-text">2016</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1a"><span class="nav-number">2.1.</span> <span class="nav-text">task 1a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1b"><span class="nav-number">2.2.</span> <span class="nav-text">task 1b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-2"><span class="nav-number">2.3.</span> <span class="nav-text">task 2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#section-1"><span class="nav-number">3.</span> <span class="nav-text">2017</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1a-1"><span class="nav-number">3.1.</span> <span class="nav-text">task 1a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1b-1"><span class="nav-number">3.2.</span> <span class="nav-text">task 1b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-2-1"><span class="nav-number">3.3.</span> <span class="nav-text">task 2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#section-2"><span class="nav-number">4.</span> <span class="nav-text">2018</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1a-2"><span class="nav-number">4.1.</span> <span class="nav-text">task 1a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1b-2"><span class="nav-number">4.2.</span> <span class="nav-text">task 1b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-2-2"><span class="nav-number">4.3.</span> <span class="nav-text">task 2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#section-3"><span class="nav-number">5.</span> <span class="nav-text">2019</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1a-3"><span class="nav-number">5.1.</span> <span class="nav-text">task 1a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1b-3"><span class="nav-number">5.2.</span> <span class="nav-text">task 1b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-2-3"><span class="nav-number">5.3.</span> <span class="nav-text">task 2</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Task"><span class="nav-number">1.</span> <span class="nav-text">Task</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2016"><span class="nav-number">2.</span> <span class="nav-text">2016</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1a"><span class="nav-number">2.1.</span> <span class="nav-text">task 1a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1b"><span class="nav-number">2.2.</span> <span class="nav-text">task 1b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-2"><span class="nav-number">2.3.</span> <span class="nav-text">task 2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017"><span class="nav-number">3.</span> <span class="nav-text">2017</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1a-1"><span class="nav-number">3.1.</span> <span class="nav-text">task 1a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1b-1"><span class="nav-number">3.2.</span> <span class="nav-text">task 1b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-2-1"><span class="nav-number">3.3.</span> <span class="nav-text">task 2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2018"><span class="nav-number">4.</span> <span class="nav-text">2018</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1a-2"><span class="nav-number">4.1.</span> <span class="nav-text">task 1a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1b-2"><span class="nav-number">4.2.</span> <span class="nav-text">task 1b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-2-2"><span class="nav-number">4.3.</span> <span class="nav-text">task 2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2019"><span class="nav-number">5.</span> <span class="nav-text">2019</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1a-3"><span class="nav-number">5.1.</span> <span class="nav-text">task 1a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-1b-3"><span class="nav-number">5.2.</span> <span class="nav-text">task 1b</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#task-2-3"><span class="nav-number">5.3.</span> <span class="nav-text">task 2</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -611,12 +601,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">352k</span>
+    <span title="站点总字数">321k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5:20</span>
+    <span title="站点阅读时长">4:52</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
