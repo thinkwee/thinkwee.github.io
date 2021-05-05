@@ -550,7 +550,7 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/abstractive-summarization/</loc>
+    <loc>https://thinkwee.top/tags/corex/</loc>
     <lastmod>2021-05-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -571,6 +571,20 @@
   </url>
   
   <url>
+    <loc>https://thinkwee.top/tags/topic-model/</loc>
+    <lastmod>2021-05-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/abstractive-summarization/</loc>
+    <lastmod>2021-05-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkwee.top/tags/theory/</loc>
     <lastmod>2021-05-05</lastmod>
     <changefreq>daily</changefreq>
@@ -579,20 +593,6 @@
   
   <url>
     <loc>https://thinkwee.top/tags/nlp/</loc>
-    <lastmod>2021-05-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/corex/</loc>
-    <lastmod>2021-05-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/topic-model/</loc>
     <lastmod>2021-05-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -676,13 +676,6 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/graph/</loc>
-    <lastmod>2021-05-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://thinkwee.top/tags/glove/</loc>
     <lastmod>2021-05-05</lastmod>
     <changefreq>daily</changefreq>
@@ -697,14 +690,21 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/lda/</loc>
+    <loc>https://thinkwee.top/tags/heterogeneous-information-network/</loc>
     <lastmod>2021-05-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/heterogeneous-information-network/</loc>
+    <loc>https://thinkwee.top/tags/graph/</loc>
+    <lastmod>2021-05-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/lda/</loc>
     <lastmod>2021-05-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -767,21 +767,7 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/rnn/</loc>
-    <lastmod>2021-05-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/lstm/</loc>
-    <lastmod>2021-05-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/gru/</loc>
+    <loc>https://thinkwee.top/tags/statistical-learning/</loc>
     <lastmod>2021-05-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -809,7 +795,21 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/statistical-learning/</loc>
+    <loc>https://thinkwee.top/tags/rnn/</loc>
+    <lastmod>2021-05-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/lstm/</loc>
+    <lastmod>2021-05-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/gru/</loc>
     <lastmod>2021-05-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -817,6 +817,13 @@
   
   <url>
     <loc>https://thinkwee.top/tags/svm/</loc>
+    <lastmod>2021-05-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/vc-dimension/</loc>
     <lastmod>2021-05-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -831,13 +838,6 @@
   
   <url>
     <loc>https://thinkwee.top/tags/mcmc/</loc>
-    <lastmod>2021-05-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/vc-dimension/</loc>
     <lastmod>2021-05-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
