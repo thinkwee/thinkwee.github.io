@@ -27,12 +27,13 @@ comments: false
 	-	KeyPhrase Ranking and Generation
 	-	MRC
 	-	Text Generation
--	(NEW!)Now I accept the offer of Tencent AIPD
+-	Now I accept the offer of Tencent AIPD
+-	(NEW!)Coauthored paper *UniKeyphrase* with Tencent get accepted on ACL Findings 2021
 
 # Research
 -	[**My Google Scholar**](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ)
-	-	*Keyphrase Prediction* (under review)
-	-	*SubjGCN* (under review)
+	-	[*UniKeyphrase: A Unified Extraction and Generation Framework for Keyphrase Prediction*]() (ACL 2021 Findings Long Paper)
+	-	[*Subjective Bias in Abstractive Summarization*]() (to be release on Arxiv)
 	-	[*CIST@CL-SciSumm 2020, LongSumm 2020: Automatic Scientific Document Summarization*](https://www.aclweb.org/anthology/2020.sdp-1.25.pdf) (EMNLP 2020 Workshop)
 	-	[*In Conclusion Not Repetition: Comprehensive Abstractive Summarization with Diversified Attention Based on Determinantal Point Processes*](https://www.aclweb.org/anthology/K19-1077/) (CoNLL 2019 Long Paper)
 	-	[*Multi-lingual Wikipedia Summarization and Title Generation On Low Resource Corpus*](https://www.aclweb.org/anthology/W19-8904.pdf) (RANLP 2019 workshop)
