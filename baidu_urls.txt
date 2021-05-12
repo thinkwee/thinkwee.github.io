@@ -1,3 +1,4 @@
+https://thinkwee.top/2021/05/11/text-edit-generation/
 https://thinkwee.top/2020/05/15/vc-dimension/
 https://thinkwee.top/2020/04/05/graph-doc-thesis/
 https://thinkwee.top/2020/03/30/cs224w/
@@ -47,4 +48,3 @@ https://thinkwee.top/2017/01/23/numpycookbook/
 https://thinkwee.top/2017/01/22/LinearAlgebra3/
 https://thinkwee.top/2017/01/21/LinearAlgebra2/
 https://thinkwee.top/2017/01/21/LinearAlgebra1/
-https://thinkwee.top/2017/01/16/setupmywebsite/
