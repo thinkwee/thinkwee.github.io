@@ -613,6 +613,13 @@
   </url>
   
   <url>
+    <loc>https://thinkwee.top/tags/code/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkwee.top/tags/corex/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>daily</changefreq>
@@ -621,13 +628,6 @@
   
   <url>
     <loc>https://thinkwee.top/tags/topic-model/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/code/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -718,13 +718,6 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/lda/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://thinkwee.top/tags/inference/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>daily</changefreq>
@@ -740,6 +733,13 @@
   
   <url>
     <loc>https://thinkwee.top/tags/interview/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/lda/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -767,6 +767,20 @@
   </url>
   
   <url>
+    <loc>https://thinkwee.top/tags/local-sensitive-hashing/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/transformer/</loc>
+    <lastmod>2021-05-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkwee.top/tags/rnn/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>daily</changefreq>
@@ -782,20 +796,6 @@
   
   <url>
     <loc>https://thinkwee.top/tags/gru/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/local-sensitive-hashing/</loc>
-    <lastmod>2021-05-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/transformer/</loc>
     <lastmod>2021-05-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
