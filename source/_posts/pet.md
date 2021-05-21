@@ -13,7 +13,7 @@ html: true
 mathjax: true
 ---
 ***
--	记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。 这类防范一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few shot learning上能取得较好结果。主要阅读以下9篇论文：
+-	记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。 这类方法一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few shot learning上能取得较好结果。主要阅读以下9篇论文：
 	-	早期的将问题转为自然语言并使用预训练语言模型解答的：
 		-	(Harvard)Commonsense Knowledge Mining from Pretrained Models
 		-	(Heidelberg)Argumentative Relation Classification as Plausibility Ranking
@@ -30,7 +30,7 @@ mathjax: true
 
 <!--more-->
 # Commonsense Knowledge Mining from Pretrained Models
--	动机是要挖掘未知分布数据中的尝试，之前的监督学习方法容易受到训练集中的数据分布影响，导致结果有偏差
+-	作者想要做到挖掘未知分布数据中的常识，而传统的监督学习方法容易受到训练集中的数据分布影响，导致结果有偏差
 -	将关系三元组转换为masked sentence送给BERT，通过BERT的预测结果计算互信息来对三元组的可信度排序
 -	任务，给定一个三元组为其打分，确定这个三元组代表了真实世界知识的可能性，作者将其分为两步：
 	-	将三元组转化为mask过后的句子：对每个关系手工设计了多个模板，同时还设计了一系列规则来确保语法正确性（单复数、插入冠词、改动名词等等），这样所有模板和规则的组合得到了一系列候选句子，然后通过预训练单向语言模型来计算每个句子是正常句子的得分log-likelihood
@@ -74,7 +74,7 @@ mathjax: true
 		-	第三步，用一个分类器在打标后的数据上完成监督学习
 -	第二步中有两个小细节：多分类器集成，即多个预测标签分布相加，这里可以等权重相加，也可以根据PvP直接在训练集上zero-shot的表现作为先验权重（实验结果这样做好些）；打标时打的是软标签即概率分布，softmax时取T=2做了温度处理。这两个处理都是为了能够更好的学习到语言模型的知识，一个在于集成更加鲁棒，另一个则相当于知识蒸馏。
 -	另外作者还提出了iPET，其实就是传统的半监督学习，训练打标之间迭代，用越来越多的数据训练出不同代模型然后集成。
--	这样的半监督框架好处在于，最终实际操作依然是监督学习，准确率较高，而语言模型带来的不确定性通过知识蒸馏的方式来软化标签，降低错误。
+-	这样的半监督框架好处在于，最终实际操作依然是监督学习，准确率较高，而语言模型带来的不确定性在知识蒸馏（软化标签）的时候降低了。
 
 # It's Not Just Size That Matters: Small Language Models Are Also Few-Shot Learners
 -	还是PET原版人马，又水了一篇，换了个动机，说用PET的话，小模型也能在few-shot上取得与GPT-3这样的大模型接近的结果，环保
@@ -91,7 +91,7 @@ mathjax: true
 	-	将损失从交叉熵改为两个二元交叉熵，一个依然是在label相关target词上算损失，另一部分损失则负责优化降低其他所有不相关词的概率
 	-	将mask替换为正确或者错误的target word，然后对输入剩下部分做MLM,要是target word对的话MLM就应该预测对，反之就应该预测错
 	-	分别对应图中左右两类损失
--	ADAPET增加了目标函数，对参数做了更充分的训练，对比PET结果也确实不过，不使用未标注数据还在很多任务上超过了PET
+-	ADAPET增加了目标函数，对参数做了更充分的训练，对比PET结果也确实不错，不使用未标注数据还在很多任务上超过了PET
 
 # AUTOPROMPT: Eliciting Knowledge from Language Models with Automatically Generated Prompts
 -	由上面介绍的工作可以发现，构建有效的文本来触发语言模型得到结果至关重要，即构建prompt。目前看到的都是手工构建的，后来也出现了一批工作尝试自动构建prompts
@@ -131,4 +131,4 @@ mathjax: true
 -	本文提出了P-tuning，即不是找离散的prompt（具体文本），而是找连续的（embedding）
 -	回顾一下整个prompt based methods，都是把数据和任务转化为语言模型任务的形式，使其更加贴近预训练目标，能够更好的利用预训练模型的知识。实际操作时，就是把输入添加一些prompt generated templates，输出变成与类别label相关的target words，作者反思，这些prompt generated templates 本质上就是一些词，一定要是人类能够理解的文本吗？这些文本输入到模型的实际上是embedding，那么搜索prompt的时候为什么不直接优化embedding呢？所以作者提出就用几个词表中没用的符号（例如BERT中的unused）来作为pseudo template token，固定这些token，不去搜索新的token，而是直接优化token对应的embedding。
 -	为了让这些pseudo token更像是自然语言，而不是独立的几个符号，作者还用了双向LSTM来做编码，即prompt encoder，这里感觉动机阐释的不是很清楚，为什么不能放在PLM里直接建模之间关系？
--	这么看来整体就相当于输入拼接上几个embedding然后去优化，只不过输出和后处理采用了PET的形式，很像自己加了某个层去微调（所以叫Prompt fineTuning？）。我感觉加层微调和P-tuning都是引入少量参数把PLM用到自己的下游任务上，只不过P-tuning转换了下游任务形式，使其跟贴近预训练目标，算是微调结构先验更合理吧，同时也算是从另一个高度总结了prompt一类的工作。
+-	这么看来整体就相当于输入拼接上几个embedding然后去优化，只不过输出和后处理采用了PET的形式，很像自己加了某个层去微调（所以叫**P**rompt fine**tuning**？）。我感觉加层微调和P-tuning都是引入少量参数把PLM用到自己的下游任务上，只不过P-tuning转换了下游任务形式，使其跟贴近预训练目标，算是微调结构先验更合理吧，同时也算是从另一个高度总结了prompt一类的工作。
