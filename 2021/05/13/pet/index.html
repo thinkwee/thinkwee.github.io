@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。 这类防范一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few shot learning上能取得较好结果。主要阅读以下9篇论文：  早期的将">
+  <meta name="description" content="记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。 这类方法一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few shot learning上能取得较好结果。主要阅读以下9篇论文：  早期的将">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prompt Based Task Reformulation in NLP调研">
 <meta property="og:url" content="https://thinkwee.top/2021/05/13/pet/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。 这类防范一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few shot learning上能取得较好结果。主要阅读以下9篇论文：  早期的将">
+<meta property="og:description" content="记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。 这类方法一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few shot learning上能取得较好结果。主要阅读以下9篇论文：  早期的将">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://z3.ax1x.com/2021/05/17/gW98oV.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/05/17/gWivmd.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://z3.ax1x.com/2021/05/19/g5YjfI.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/05/19/g52dDH.png">
 <meta property="article:published_time" content="2021-05-13T11:36:34.000Z">
-<meta property="article:modified_time" content="2021-05-19T12:57:48.630Z">
+<meta property="article:modified_time" content="2021-05-21T07:22:37.703Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="nlp">
@@ -255,7 +255,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-19 20:57:48" itemprop="dateModified" datetime="2021-05-19T20:57:48+08:00">2021-05-19</time>
+                <time title="修改时间：2021-05-21 15:22:37" itemprop="dateModified" datetime="2021-05-21T15:22:37+08:00">2021-05-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -315,7 +315,7 @@
       
         <hr />
 <ul>
-<li>记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。 这类防范一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few shot learning上能取得较好结果。主要阅读以下9篇论文：
+<li>记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。 这类方法一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few shot learning上能取得较好结果。主要阅读以下9篇论文：
 <ul>
 <li>早期的将问题转为自然语言并使用预训练语言模型解答的：
 <ul>
@@ -340,7 +340,7 @@
 <span id="more"></span>
 <h1 id="commonsense-knowledge-mining-from-pretrained-models">Commonsense Knowledge Mining from Pretrained Models</h1>
 <ul>
-<li>动机是要挖掘未知分布数据中的尝试，之前的监督学习方法容易受到训练集中的数据分布影响，导致结果有偏差</li>
+<li>作者想要做到挖掘未知分布数据中的常识，而传统的监督学习方法容易受到训练集中的数据分布影响，导致结果有偏差</li>
 <li>将关系三元组转换为masked sentence送给BERT，通过BERT的预测结果计算互信息来对三元组的可信度排序</li>
 <li>任务，给定一个三元组为其打分，确定这个三元组代表了真实世界知识的可能性，作者将其分为两步：
 <ul>
@@ -391,7 +391,7 @@ PMI(tail,head|relation) = \log p(tail|head, relation) - \log p(tail|realtion) \\
 </ul></li>
 <li>第二步中有两个小细节：多分类器集成，即多个预测标签分布相加，这里可以等权重相加，也可以根据PvP直接在训练集上zero-shot的表现作为先验权重（实验结果这样做好些）；打标时打的是软标签即概率分布，softmax时取T=2做了温度处理。这两个处理都是为了能够更好的学习到语言模型的知识，一个在于集成更加鲁棒，另一个则相当于知识蒸馏。</li>
 <li>另外作者还提出了iPET，其实就是传统的半监督学习，训练打标之间迭代，用越来越多的数据训练出不同代模型然后集成。</li>
-<li>这样的半监督框架好处在于，最终实际操作依然是监督学习，准确率较高，而语言模型带来的不确定性通过知识蒸馏的方式来软化标签，降低错误。</li>
+<li>这样的半监督框架好处在于，最终实际操作依然是监督学习，准确率较高，而语言模型带来的不确定性在知识蒸馏（软化标签）的时候降低了。</li>
 </ul>
 <h1 id="its-not-just-size-that-matters-small-language-models-are-also-few-shot-learners">It's Not Just Size That Matters: Small Language Models Are Also Few-Shot Learners</h1>
 <ul>
@@ -414,7 +414,7 @@ PMI(tail,head|relation) = \log p(tail|head, relation) - \log p(tail|realtion) \\
 <li>将mask替换为正确或者错误的target word，然后对输入剩下部分做MLM,要是target word对的话MLM就应该预测对，反之就应该预测错</li>
 <li>分别对应图中左右两类损失</li>
 </ul></li>
-<li>ADAPET增加了目标函数，对参数做了更充分的训练，对比PET结果也确实不过，不使用未标注数据还在很多任务上超过了PET</li>
+<li>ADAPET增加了目标函数，对参数做了更充分的训练，对比PET结果也确实不错，不使用未标注数据还在很多任务上超过了PET</li>
 </ul>
 <h1 id="autoprompt-eliciting-knowledge-from-language-models-with-automatically-generated-prompts">AUTOPROMPT: Eliciting Knowledge from Language Models with Automatically Generated Prompts</h1>
 <ul>
@@ -460,7 +460,7 @@ PMI(tail,head|relation) = \log p(tail|head, relation) - \log p(tail|realtion) \\
 <li>本文提出了P-tuning，即不是找离散的prompt（具体文本），而是找连续的（embedding）</li>
 <li>回顾一下整个prompt based methods，都是把数据和任务转化为语言模型任务的形式，使其更加贴近预训练目标，能够更好的利用预训练模型的知识。实际操作时，就是把输入添加一些prompt generated templates，输出变成与类别label相关的target words，作者反思，这些prompt generated templates 本质上就是一些词，一定要是人类能够理解的文本吗？这些文本输入到模型的实际上是embedding，那么搜索prompt的时候为什么不直接优化embedding呢？所以作者提出就用几个词表中没用的符号（例如BERT中的unused）来作为pseudo template token，固定这些token，不去搜索新的token，而是直接优化token对应的embedding。</li>
 <li>为了让这些pseudo token更像是自然语言，而不是独立的几个符号，作者还用了双向LSTM来做编码，即prompt encoder，这里感觉动机阐释的不是很清楚，为什么不能放在PLM里直接建模之间关系？</li>
-<li>这么看来整体就相当于输入拼接上几个embedding然后去优化，只不过输出和后处理采用了PET的形式，很像自己加了某个层去微调（所以叫Prompt fineTuning？）。我感觉加层微调和P-tuning都是引入少量参数把PLM用到自己的下游任务上，只不过P-tuning转换了下游任务形式，使其跟贴近预训练目标，算是微调结构先验更合理吧，同时也算是从另一个高度总结了prompt一类的工作。</li>
+<li>这么看来整体就相当于输入拼接上几个embedding然后去优化，只不过输出和后处理采用了PET的形式，很像自己加了某个层去微调（所以叫<strong>P</strong>rompt fine<strong>tuning</strong>？）。我感觉加层微调和P-tuning都是引入少量参数把PLM用到自己的下游任务上，只不过P-tuning转换了下游任务形式，使其跟贴近预训练目标，算是微调结构先验更合理吧，同时也算是从另一个高度总结了prompt一类的工作。</li>
 </ul>
 
     </div>
