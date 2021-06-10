@@ -4,8 +4,8 @@ comments: false
 ***
 
 # About Me
--	I am a CS master at CIST@BUPT(Center of Intelligence Science and Technology@Beijing University of Posts and Telecommunications)
 -	Acquired Bachelor of Communication Engineering at BUPT in 2018
+-	Acquired Master of Computer Engineering at CIST@BUPT(Center of Intelligence Science and Technology) in 2021
 -	My research interests include summarization, keyphrase prediction, NLG for content understanding, etc.
 
 # Experience
@@ -28,22 +28,13 @@ comments: false
 	-	MRC
 	-	Text Generation
 -	Now I accept the offer of Tencent AIPD
--	(NEW!)Coauthored paper *UniKeyphrase* with Tencent get accepted on ACL Findings 2021
+-	(NEW!) Co-authored paper *UniKeyphrase* with Tencent get accepted on ACL Findings 2021
 
 # Research
 -	[**My Google Scholar**](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ)
-	-	[*UniKeyphrase: A Unified Extraction and Generation Framework for Keyphrase Prediction*]() (ACL 2021 Findings Long Paper)
-	-	[*Subjective Bias in Abstractive Summarization*]() (to be release on Arxiv)
-	-	[*CIST@CL-SciSumm 2020, LongSumm 2020: Automatic Scientific Document Summarization*](https://www.aclweb.org/anthology/2020.sdp-1.25.pdf) (EMNLP 2020 Workshop)
-	-	[*In Conclusion Not Repetition: Comprehensive Abstractive Summarization with Diversified Attention Based on Determinantal Point Processes*](https://www.aclweb.org/anthology/K19-1077/) (CoNLL 2019 Long Paper)
-	-	[*Multi-lingual Wikipedia Summarization and Title Generation On Low Resource Corpus*](https://www.aclweb.org/anthology/W19-8904.pdf) (RANLP 2019 workshop)
-	-	[*CIST@CLSciSumm-19: Automatic Scientific Paper Summarization with Citances and Facets*](http://ceur-ws.org/Vol-2414/paper20.pdf) (SIGIR 2019 workshop)
-	-	[*A Multi-View Abstractive Summarization Model Jointly Considering Semantics and Sentiment*](https://www.researchgate.net/publication/332432404_A_Multi-View_Abstractive_Summarization_Model_Jointly_Considering_Semantics_and_Sentiment) (CCIS 2018 Long Paper)
-
-# My Github
-(powered by anuraghazra/github-readme-stats)
-
-[![Thinkwee's GitHub stats](https://github-readme-stats.vercel.app/api?username=thinkwee&count_private=true&show_icons=true&include_all_commits=true&bg_color=15,2F4F4F,DD5182,960B7E,9FE6E8&title_color=FFFFFF&text_color=FFFFFF&icon_color=FFFFFF)](https://github.com/thinkwee)
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=thinkwee&&layout=compact)](https://github.com/thinkwee)
-
+	-	[[code](https://github.com/thinkwee/UniKeyphrase)][[paper](https://arxiv.org/pdf/2106.04847.pdf)] (ACL 2021 Findings Long Paper) *UniKeyphrase: A Unified Extraction and Generation Framework for Keyphrase Prediction*
+	-	[[paper](https://www.aclweb.org/anthology/2020.sdp-1.25.pdf)] (EMNLP 2020 Workshop) *CIST@CL-SciSumm 2020, LongSumm 2020: Automatic Scientific Document Summarization*
+	-	[[code](https://github.com/thinkwee/DPP_CNN_Summarization)][[paper](https://www.aclweb.org/anthology/K19-1077/)] (CoNLL 2019 Long Paper) *In Conclusion Not Repetition: Comprehensive Abstractive Summarization with Diversified Attention Based on Determinantal Point Processes*]
+	-	[[paper](https://www.aclweb.org/anthology/W19-8904.pdf)] (RANLP 2019 workshop) *Multi-lingual Wikipedia Summarization and Title Generation On Low Resource Corpus*]
+	-	[[paper](http://ceur-ws.org/Vol-2414/paper20.pdf)] (SIGIR 2019 workshop) [*CIST@CLSciSumm-19: Automatic Scientific Paper Summarization with Citances and Facets*]
+	-	[[paper](https://www.researchgate.net/publication/332432404_A_Multi-View_Abstractive_Summarization_Model_Jointly_Considering_Semantics_and_Sentiment)] (CCIS 2018 Long Paper) *A Multi-View Abstractive Summarization Model Jointly Considering Semantics and Sentiment*
