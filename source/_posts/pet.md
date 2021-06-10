@@ -79,7 +79,7 @@ mathjax: true
 # It's Not Just Size That Matters: Small Language Models Are Also Few-Shot Learners
 -	还是PET原版人马，又水了一篇，换了个动机，说用PET的话，小模型也能在few-shot上取得与GPT-3这样的大模型接近的结果，环保
 -	将PvP中要预测的词从单个mask扩展为多个mask，训练的时候插入固定最大数量的mask，预测时再做后处理
--	给了更丰富的实验结果（不过好像还是arxiv挂着，没中会议。。。）
+-	给了更丰富的实验结果（不过好像还是arxiv挂着，没中会议。。。）（更新：惊了，拿到了NAACL 2021 杰出论文）
 
 # Improving and Simplifying Pattern Exploiting Training
 -	[![gIih5j.png](https://z3.ax1x.com/2021/05/19/gIih5j.png)](https://imgtu.com/i/gIih5j)
