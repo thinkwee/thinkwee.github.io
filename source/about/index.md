@@ -27,8 +27,11 @@ comments: false
 	-	KeyPhrase Ranking and Generation
 	-	MRC
 	-	Text Generation
--	Now I accept the offer of Tencent AIPD
--	(NEW!) Co-authored paper *UniKeyphrase* with Tencent get accepted on ACL Findings 2021
+-	Tencent AIPD(Application Research)
+	-	Summarization
+	-	Computational Advertising
+-	Intern co-authored paper *UniKeyphrase* with Tencent get accepted on ACL Findings 2021
+-	(NEW!) Co-authored paper *Fast and Constrained Keyphrase Generation* get accepted on AAAI 2022
 
 # Research
 -	[**My Google Scholar**](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ)
