@@ -6,7 +6,7 @@ comments: false
 # About Me
 -	Acquired Bachelor of Communication Engineering at BUPT in 2018
 -	Acquired Master of Computer Engineering at CIST@BUPT(Center of Intelligence Science and Technology) in 2021
--	My research interests include summarization, keyphrase prediction, NLG for content understanding, etc.
+-	Now works at Tencent as Application Researcher, focusing on NLP for recommendation, advertising.
 
 # Experience
 -	CIST(Student)
@@ -27,9 +27,11 @@ comments: false
 	-	KeyPhrase Ranking and Generation
 	-	MRC
 	-	Text Generation
--	Tencent AIPD(Application Research)
+-	Tencent AIPD(Application Researcher)
 	-	Summarization
-	-	Computational Advertising
+	-	Graph Embedding
+	-	Computational Advertising(CB Recall and Diversity, improve the Real-time recommendation sense)
+	-	Federated Learning
 -	Intern co-authored paper *UniKeyphrase* with Tencent get accepted on ACL Findings 2021
 -	(NEW!) Co-authored paper *Fast and Constrained Keyphrase Generation* get accepted on AAAI 2022
 
