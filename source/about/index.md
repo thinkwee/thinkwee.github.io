@@ -37,6 +37,7 @@ comments: false
 
 # Research
 -	[**My Google Scholar**](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ)
+	-	[[paper](https://www.aaai.org/AAAI22Papers/AAAI-4989.WuH.pdf)] (AAAI 2022 Long Paper) *Fast and Constrained Absent Keyphrase Generation by Prompt-Based Learning*
 	-	[[code](https://github.com/thinkwee/UniKeyphrase)][[paper](https://arxiv.org/pdf/2106.04847.pdf)] (ACL 2021 Findings Long Paper) *UniKeyphrase: A Unified Extraction and Generation Framework for Keyphrase Prediction*
 	-	[[paper](https://www.aclweb.org/anthology/2020.sdp-1.25.pdf)] (EMNLP 2020 Workshop) *CIST@CL-SciSumm 2020, LongSumm 2020: Automatic Scientific Document Summarization*
 	-	[[code](https://github.com/thinkwee/DPP_CNN_Summarization)][[paper](https://www.aclweb.org/anthology/K19-1077/)] (CoNLL 2019 Long Paper) *In Conclusion Not Repetition: Comprehensive Abstractive Summarization with Diversified Attention Based on Determinantal Point Processes*
