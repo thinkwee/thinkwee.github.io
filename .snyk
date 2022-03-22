@@ -98,6 +98,8 @@ patch:
   'npm:http-signature:20150122':
     - hexo-related-popular-posts > ga-analytics > googleapis > request > http-signature:
         patched: '2020-12-24T04:56:53.270Z'
+    - hexo-related-popular-posts > ga-analytics > googleapis > gapitoken > request > http-signature:
+        patched: '2022-03-22T11:54:57.305Z'
   'npm:request:20160119':
     - hexo-related-popular-posts > ga-analytics > googleapis > request:
         patched: '2020-12-24T04:56:53.270Z'
