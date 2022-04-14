@@ -33,7 +33,7 @@
     "hexo-server": "^2.0.0",
     "hexo-symbols-count-time": "^0.6.2",
     "hexo-theme-landscape": "^0.0.3",
-    "@snyk/protect": "1.865.0"
+    "@snyk/protect": "1.878.0"
   },
   "snyk": true
 }
