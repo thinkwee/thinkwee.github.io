@@ -44,4 +44,5 @@ comments: false
 	-	[[paper](https://www.aclweb.org/anthology/W19-8904.pdf)] (RANLP 2019 workshop) *Multi-lingual Wikipedia Summarization and Title Generation On Low Resource Corpus*
 	-	[[paper](http://ceur-ws.org/Vol-2414/paper20.pdf)] (SIGIR 2019 workshop) *CIST@CLSciSumm-19: Automatic Scientific Paper Summarization with Citances and Facets*
 	-	[[code](https://github.com/thinkwee/SubjectiveBiasABS)][[paper](https://arxiv.org/pdf/2106.10084.pdf)] (Arxiv Preprint) *Subjective Bias in Abstractive Summarization*
+	-	[[paper](https://arxiv.org/pdf/2112.01147.pdf)] (Arxiv Preprint) *CO2Sum:Contrastive Learning for Factual-Consistent Abstractive Summarization*
 	-	[[paper](https://www.researchgate.net/publication/332432404_A_Multi-View_Abstractive_Summarization_Model_Jointly_Considering_Semantics_and_Sentiment)] (CCIS 2018 Long Paper) *A Multi-View Abstractive Summarization Model Jointly Considering Semantics and Sentiment*
