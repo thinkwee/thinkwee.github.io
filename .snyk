@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.22.1
+version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-JS-BL-608877:
@@ -95,6 +95,8 @@ patch:
   'npm:hawk:20160119':
     - hexo-related-popular-posts > ga-analytics > googleapis > request > hawk:
         patched: '2020-12-24T04:56:53.270Z'
+    - hexo-related-popular-posts > ga-analytics > googleapis > gapitoken > request > hawk:
+        patched: '2022-08-31T07:45:35.623Z'
   'npm:http-signature:20150122':
     - hexo-related-popular-posts > ga-analytics > googleapis > request > http-signature:
         patched: '2020-12-24T04:56:53.270Z'
@@ -106,6 +108,8 @@ patch:
   'npm:tunnel-agent:20170305':
     - hexo-related-popular-posts > ga-analytics > googleapis > request > tunnel-agent:
         patched: '2020-12-24T04:56:53.270Z'
+    - hexo-related-popular-posts > ga-analytics > googleapis > gapitoken > request > tunnel-agent:
+        patched: '2022-08-31T07:45:35.623Z'
   'npm:uglify-js:20151024':
     - hexo-git-backup > swig > uglify-js:
         patched: '2020-12-24T04:56:53.270Z'
