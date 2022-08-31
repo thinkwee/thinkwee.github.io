@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="STRUCTURED NEURAL SUMMARIZATION 阅读笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STRUCTURED NEURAL SUMMARIZATION 阅读笔记">
+<meta property="og:url" content="https://thinkwee.top/2020/02/28/structured-summarization/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="STRUCTURED NEURAL SUMMARIZATION 阅读笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/27/3082wD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/28/3BkTun.png">
+<meta property="article:published_time" content="2020-02-28T02:22:26.000Z">
+<meta property="article:modified_time" content="2022-08-31T07:48:47.957Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="graph neural network">
+<meta property="article:tag" content="deep learning">
+<meta property="article:tag" content="summarization">
+<meta property="article:tag" content="natural language processing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/02/27/3082wD.png">
+
+<link rel="canonical" href="https://thinkwee.top/2020/02/28/structured-summarization/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>STRUCTURED NEURAL SUMMARIZATION 阅读笔记 | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-96114782-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Thinkwee's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">54</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">53</span></a>
+
+  </li>
+        <li class="menu-item menu-item-memory">
+
+    <a href="/memory/" rel="section"><i class="fa fa-smile-wink fa-fw"></i>memory</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2020/02/28/structured-summarization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          STRUCTURED NEURAL SUMMARIZATION 阅读笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-28 10:22:26" itemprop="dateCreated datePublished" datetime="2020-02-28T10:22:26+08:00">2020-02-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-31 15:48:47" itemprop="dateModified" datetime="2022-08-31T15:48:47+08:00">2022-08-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">自然语言处理</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/02/28/structured-summarization/" class="post-meta-item leancloud_visitors" data-flag-title="STRUCTURED NEURAL SUMMARIZATION 阅读笔记" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/02/28/structured-summarization/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/28/structured-summarization/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>STRUCTURED NEURAL SUMMARIZATION 阅读笔记</p>
+<span id="more"></span>
+<h1 id="intuition">Intuition</h1>
+<ul>
+<li>将GNN引入seq2seq的一个很自然的想法就是先用sequence encoder得到token
+representations，然后再构建token之间的关系，建图，将图和token
+representations送入GNN，得到新的token表示。</li>
+<li>问题在于，对于摘要，直觉的想法是以句子为节点，构建句子之间的关系图，这样最后得到的是句子的表示，不能到词级别的细粒度，这样的话attention
+based decoder就不太好做。</li>
+<li>本文作者的想法就很粗暴，干脆就做词级别的GNN，一篇文章900个词，就构建900个节点的图，而边的关系是异构的，分三种：
+<ul>
+<li>一句里的所有词连向一个额外添加的句子节点、一个实体里的所有词连向一个额外添加的实体节点，这类边都叫做IN</li>
+<li>前一个词连后一个词，前一句连后一句，这类边叫NEXT</li>
+<li>指代消解，这部分叫做REF 整体如下图所示： <img
+src="https://s2.ax1x.com/2020/02/11/1Toe6P.png" alt="1Toe6P.png" /></li>
+</ul></li>
+</ul>
+<h1 id="ggnn">GGNN</h1>
+<ul>
+<li>作者使用的GNN是Gated Graph Neural Network。原论文见：GATED GRAPH
+SEQUENCE NEURAL NETWORKS <span class="math display">\[
+\begin{aligned} \mathbf{h}_{v}^{(1)}
+&amp;=\left[\boldsymbol{x}_{v}^{\top}, \mathbf{0}\right]^{\top} \\
+\mathbf{a}_{v}^{(t)}
+&amp;=\mathbf{A}_{v:}^{\top}\left[\mathbf{h}_{1}^{(t-1) \top} \ldots
+\mathbf{h}_{|\mathcal{V}|}^{(t-1) \top}\right]^{\top}+\mathbf{b} \\
+\mathbf{z}_{v}^{t} &amp;=\sigma\left(\mathbf{W}^{z}
+\mathbf{a}_{v}^{(t)}+\mathbf{U}^{z} \mathbf{h}_{v}^{(t-1)}\right)
+\end{aligned} \\
+\begin{aligned} \mathbf{r}_{v}^{t} &amp;=\sigma\left(\mathbf{W}^{r}
+\mathbf{a}_{v}^{(t)}+\mathbf{U}^{r} \mathbf{h}_{v}^{(t-1)}\right) \\
+\widetilde{\mathbf{h}_{v}^{(t)}} &amp;=\tanh \left(\mathbf{W}
+\mathbf{a}_{v}^{(t)}+\mathbf{U}\left(\mathbf{r}_{v}^{t} \odot
+\mathbf{h}_{v}^{(t-1)}\right)\right) \\ \mathbf{h}_{v}^{(t)}
+&amp;=\left(1-\mathbf{z}_{v}^{t}\right) \odot
+\mathbf{h}_{v}^{(t-1)}+\mathbf{z}_{v}^{t} \odot
+\widetilde{\mathbf{h}_{v}^{(t)}} \end{aligned} \\
+\]</span></li>
+<li>GGNN发布于2015年，在2009年的GNN模型上改进。</li>
+<li>原始的GNN模型相当于用图的拓扑关系，在多层线性网络中Mask掉部分边，节点在每一层的表示通过上一层中相邻的节点线性变换而来，即propagation，最后一层linear做output输出节点标签
+<img data-src="https://s2.ax1x.com/2020/02/27/3082wD.png"
+alt="3082wD.png" /></li>
+<li>GGNN考虑了边的有向和异构。其邻接矩阵A如上图所示，是一个<span
+class="math inline">\(\mathbf{A} \in \mathbb{R}^{D|\mathcal{V}| \times 2
+D|\mathcal{V}|}\)</span>的线性层，两倍的宽代表双向两个输出频道，输入节点的表示矩阵<span
+class="math inline">\(\mathbb{R}^{D|\mathcal{V}|}\)</span>，这里的<span
+class="math inline">\(A\)</span>包含了参数，依赖于边的类型和方向，相当于这个包含了邻接信息的线性层也是通过embedding
+lookup得到的。接下来就是类似于GRU的更新，<span
+class="math inline">\(z\)</span>和<span
+class="math inline">\(r\)</span>分别是更新门和重置门。所以公式含义如下
+<ul>
+<li>1:初始化节点embedding，根据具体任务给每个节点补上手工特征，并Padding到相同长度</li>
+<li>2:通过包含了邻接信息的线性层，得到propagate之后的信息</li>
+<li>3:根据上一层状态和propagate信息计算更新门</li>
+<li>4:根据上一层状态和propagate信息计算重置门</li>
+<li>5,6:同GRU</li>
+</ul></li>
+<li>output部分，简单的线性层作用于每一个节点就可以做节点级别的任务，如果要获得整张图的表示，可以用一个门控机制来获取（原文表述为attention）：
+<span class="math display">\[
+\mathbf{h}_{\mathcal{G}}=\tanh \left(\sum_{v \in \mathcal{V}}
+\sigma\left(i\left(\mathbf{h}_{v}^{(T)},
+\boldsymbol{x}_{v}\right)\right) \odot \tanh
+\left(j\left(\mathbf{h}_{v}^{(T)},
+\boldsymbol{x}_{v}\right)\right)\right)
+\]</span></li>
+</ul>
+<h1 id="ggsnn">GGSNN</h1>
+<ul>
+<li>门控的GNN还可以扩展为sequence output，即GATED GRAPH SEQUENCE NEURAL
+NETWORK。 <img data-src="https://s2.ax1x.com/2020/02/28/3BkTun.png"
+alt="3BkTun.png" /></li>
+<li>如上图所示，一般的seq2seq，需要把输入的seq编码，之后再逐步解码，但是再graph当中，一步的graph就已经包含了所有seq
+token信息，多层只是深度层次上的叠加，而不是时序的层次，因此我们可以在任意的深度层次开始解码，类似于CRF，如图所示：<span
+class="math inline">\(o\)</span>为输出，<span
+class="math inline">\(X^k\)</span>为第k步输出时节点的input embedding
+matrix，<span
+class="math inline">\(H^{k,t}\)</span>代表第k步输出，同时整个输入的节点embedding在深度上传递了t步时，节点的hidden
+state matrix。类似于转移与发射矩阵，作者分别用了两个GGNN<span
+class="math inline">\(F_o,F_x\)</span>来完成hidden
+state的转移和发射。两者可以共享propagation部分的参数。虽然只写了<span
+class="math inline">\(F_x\)</span>将<span
+class="math inline">\(H\)</span>转移到<span
+class="math inline">\(X\)</span>，但实际上类似于LSTM，<span
+class="math inline">\(X^{k+1}\)</span>同时还由<span
+class="math inline">\(X^k\)</span>决定： <span class="math display">\[
+\boldsymbol{x}_{v}^{(k+1)}=\sigma\left(j\left(\mathbf{h}_{v}^{(k, T)},
+\boldsymbol{x}_{v}^{(k)}\right)\right)
+\]</span></li>
+<li>同样，也可以不需要从<span class="math inline">\(H\)</span>到<span
+class="math inline">\(X\)</span>的转移，直接输入每一解码步的<span
+class="math inline">\(X\)</span>，类似于teacher forcing</li>
+<li>论文里的实验都是状态空间比较小，不同于文本任务。直接看STRUCTURED
+NEURAL SUMMARIZATION里的用法</li>
+</ul>
+<h1 id="sequence-gnns">Sequence GNNs</h1>
+<ul>
+<li>作者将GGNN引入编码端，相当于传统的seq2seq
+encoder最后用GNN补充了一次编码，但是encoder的输出不变，decoder不变（抛弃了GGSNN的decoder设计）</li>
+<li>首先作者用更加清晰的语言描述了GGNN，每一步包含propagation 与 update
+<ul>
+<li>propagation：<span
+class="math inline">\(\boldsymbol{m}_{v}^{(i)}=g\left(\left\{f_{k}\left(\boldsymbol{h}_{u}^{(i)}\right)
+| \text { there is an edge of type } k \text { from } u \text { to }
+v\right\}\right.)\)</span>，即用边相关的线性变换收集邻域节点信息求和，其中<span
+class="math inline">\(f\)</span>是线性层，<span
+class="math inline">\(g\)</span>是求和</li>
+<li>update：<span
+class="math inline">\(\boldsymbol{h}_{v}^{(i+1)}=\operatorname{GRU}\left(\boldsymbol{m}_{v}^{(i)},
+\boldsymbol{h}_{v}^{(i)}\right)\)</span></li>
+</ul></li>
+<li>seq2seq中的encoder至少要提供两点信息：token representation 和
+context representation。token级别的已经拿到了，即GNN之后的节点
+embedding，context级别即图的表示，这里作者除了沿用GGNN里门控算权重求和各节点之外，还拼接了输入图之前、RNN编码之后的hidden
+state，看代码貌似是把所有节点输入图前后的hidden
+state拼接起来，作为最终的节点embedding；把RNN的输出直接和图embedding表示拼接起来再过一个线性层。这里注意RNN的输出实际上是对图（整个序列）的一个表示，和graph
+embedding是同一级别的，所以直接拼接： <span class="math display">\[
+\left[\mathbf{e}_{1}^{\prime} \ldots
+\mathbf{e}_{N}^{\prime}\right]=\operatorname{GNN}\left(\left(S,\left[R_{1}
+\ldots R_{K}\right],\left[\mathbf{e}_{1} \ldots
+\mathbf{e}_{N}\right]\right)\right) \\
+\]</span> <span class="math display">\[
+\sigma\left(w\left(\boldsymbol{h}_{v}^{(T)}\right)\right) \in[0,1] \\
+\]</span> <span class="math display">\[
+\hat{\mathbf{e}}=\sum_{1&lt;i&lt;N}
+\sigma\left(w\left(\mathbf{e}_{i}^{\prime}\right)\right) \cdot
+\aleph\left(\mathbf{e}_{i}^{\prime}\right) \\
+\]</span> <span class="math display">\[
+Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\
+\]</span></li>
+<li>在实际工程实现中，不同大小的图打包成batch不方便，作者也是采用了两个trick
+<ul>
+<li>GNN的常规做法：把小图拼接成有多个连接子图的大图作为一个batch</li>
+<li>由于copy和attention机制需要在整个输入序列上计算权重，拼接成大图之后作者也保留了每个节点在小图当中的index，然后通过tensorflow的unsorted
+segment *操作符（即对不同长度的段分别做操作），可以完成一个efficient and
+numerically stable softmax over the variable number of representations
+of the nodes of each graph.</li>
+</ul></li>
+<li>作者只用了简单的LSTM的encoder和decoder配置，基本在pointer
+generator的代码上做改动。GNN叠加八层</li>
+<li>最后的结果并没有超过pointer
+generator，但是引入pointer机制后的ablation比较明显，如下图， <img
+src="https://s2.ax1x.com/2020/02/11/1TTHPJ.png" alt="1TTHPJ.png" /></li>
+<li>作者也没有对结果做太多分析，因为论文做了三个数据集，其余两个是代码摘要，有比较自然的结构化数据，因此表现很好，在CNNDM这种纯自然语言数据集上表现并不是特别亮眼。</li>
+<li>但是在消融实验中值得注意的是即便不添加指代信息，仅仅是让GNN处理句子结构，表现也比LSTM要好。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/12/16/201912/" rel="bookmark">2019-2020的阅读</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/10/03/graph-summarization/" rel="bookmark">基于图的摘要论文选读</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/10/30/heterogeneous/" rel="bookmark">异构信息网络的一些处理</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/08/15/acl2019-summarization/" rel="bookmark">ACL/NAACL 2019 自动摘要相关论文选读</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/07/28/acl2019/" rel="bookmark">ACL 2019 获奖论文选读</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/graph-neural-network/" rel="tag"><i class="fa fa-tag"></i> graph neural network</a>
+              <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
+              <a href="/tags/summarization/" rel="tag"><i class="fa fa-tag"></i> summarization</a>
+              <a href="/tags/natural-language-processing/" rel="tag"><i class="fa fa-tag"></i> natural language processing</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/13/svm/" rel="prev" title="支持向量机一些细节补充">
+      <i class="fa fa-chevron-left"></i> 支持向量机一些细节补充
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/02/bertology/" rel="next" title="BERT解剖综述">
+      BERT解剖综述 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#intuition"><span class="nav-number">1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ggnn"><span class="nav-number">2.</span> <span class="nav-text">GGNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ggsnn"><span class="nav-number">3.</span> <span class="nav-text">GGSNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sequence-gnns"><span class="nav-number">4.</span> <span class="nav-text">Sequence GNNs</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/thinkwee/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;thinkwee&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">367k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:33</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three.min.js"></script>
+    <script defer src="//cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/canvas_lines.min.js"></script>
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 13961,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://thinkwee.top/2020/02/28/structured-summarization/',]
+      });
+      });
+  </script>
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/gh/MHuiG/blog-cdn@1.2.1/js/valine-no-math.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'g58NgfMJBlwTyftr6hizdozq-gzGzoHsz',
+      appKey     : '1nA1tNVxeeSlAumHogP0PvSd',
+      placeholder: "just write something to me",
+      avatar     : '',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
