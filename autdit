@@ -1,0 +1,253 @@
+# npm audit report
+
+base64url  <3.0.0
+Severity: moderate
+Out-of-bounds Read in base64url - https://github.com/advisories/GHSA-rvg8-pwq2-xj7q
+No fix available
+node_modules/base64url
+node_modules/jws/node_modules/base64url
+  jwa  <=1.1.5
+  Depends on vulnerable versions of base64url
+  node_modules/jwa
+    jws  <=3.1.4
+    Depends on vulnerable versions of base64url
+    Depends on vulnerable versions of jwa
+    node_modules/jws
+      gapitoken  *
+      Depends on vulnerable versions of jws
+      node_modules/gapitoken
+        googleapis  <=39.0.0
+        Depends on vulnerable versions of gapitoken
+        Depends on vulnerable versions of request
+        node_modules/googleapis
+          ga-analytics  *
+          Depends on vulnerable versions of googleapis
+          Depends on vulnerable versions of lodash
+          node_modules/ga-analytics
+            hexo-related-popular-posts  *
+            Depends on vulnerable versions of ga-analytics
+            Depends on vulnerable versions of hexo-fs
+            node_modules/hexo-related-popular-posts
+
+bl  <1.2.3
+Severity: moderate
+Remote Memory Exposure in bl - https://github.com/advisories/GHSA-pp7h-53gx-mx7r
+No fix available
+node_modules/bl
+  request  2.16.0 - 2.86.0
+  Depends on vulnerable versions of bl
+  Depends on vulnerable versions of hawk
+  Depends on vulnerable versions of qs
+  Depends on vulnerable versions of tunnel-agent
+  node_modules/googleapis/node_modules/request
+
+braces  <=2.3.0
+Regular Expression Denial of Service in braces - https://github.com/advisories/GHSA-g95f-p29q-9xw4
+Regular Expression Denial of Service (ReDoS) in braces - https://github.com/advisories/GHSA-cwfw-4gq5-mrqx
+fix available via `npm audit fix --force`
+Will install hexo-git-backup@0.0.9, which is a breaking change
+node_modules/hexo-related-popular-posts/node_modules/braces
+  micromatch  0.2.0 - 2.3.11
+  Depends on vulnerable versions of braces
+  Depends on vulnerable versions of parse-glob
+  node_modules/hexo-related-popular-posts/node_modules/micromatch
+    anymatch  1.2.0 - 1.3.2
+    Depends on vulnerable versions of micromatch
+    node_modules/hexo-related-popular-posts/node_modules/anymatch
+      chokidar  1.0.0-rc1 - 2.1.8
+      Depends on vulnerable versions of anymatch
+      Depends on vulnerable versions of glob-parent
+      node_modules/hexo-generator-baidu-sitemap/node_modules/chokidar
+      node_modules/hexo-git-backup/node_modules/chokidar
+      node_modules/hexo-related-popular-posts/node_modules/chokidar
+        hexo-fs  0.1.4 - 1.0.2
+        Depends on vulnerable versions of chokidar
+        node_modules/hexo-generator-baidu-sitemap/node_modules/hexo-fs
+        node_modules/hexo-git-backup/node_modules/hexo-fs
+        node_modules/hexo-related-popular-posts/node_modules/hexo-fs
+          hexo  <=5.4.0
+          Depends on vulnerable versions of cheerio
+          Depends on vulnerable versions of hexo-cli
+          Depends on vulnerable versions of hexo-fs
+          Depends on vulnerable versions of hexo-util
+          Depends on vulnerable versions of swig-extras
+          Depends on vulnerable versions of swig-templates
+          node_modules/hexo-generator-baidu-sitemap/node_modules/hexo
+          node_modules/hexo-git-backup/node_modules/hexo
+            hexo-generator-baidu-sitemap  *
+            Depends on vulnerable versions of ejs
+            Depends on vulnerable versions of hexo
+            node_modules/hexo-generator-baidu-sitemap
+            hexo-git-backup  >=0.0.4
+            Depends on vulnerable versions of hexo
+            Depends on vulnerable versions of swig
+            node_modules/hexo-git-backup
+          hexo-cli  0.1.9 - 3.1.0
+          Depends on vulnerable versions of hexo-fs
+          Depends on vulnerable versions of hexo-util
+          node_modules/hexo-generator-baidu-sitemap/node_modules/hexo-cli
+          node_modules/hexo-git-backup/node_modules/hexo-cli
+
+cryptiles  <=4.1.1
+Severity: critical
+Insufficient Entropy in cryptiles - https://github.com/advisories/GHSA-rq8g-5pc5-wrhr
+Depends on vulnerable versions of boom
+No fix available
+node_modules/cryptiles
+  hawk  <=9.0.0
+  Depends on vulnerable versions of boom
+  Depends on vulnerable versions of cryptiles
+  Depends on vulnerable versions of hoek
+  Depends on vulnerable versions of sntp
+  node_modules/hawk
+
+ejs  <3.1.7
+Severity: critical
+ejs template injection vulnerability - https://github.com/advisories/GHSA-phwq-j96m-2c2q
+No fix available
+node_modules/ejs
+
+glob-parent  <5.1.2
+Severity: high
+glob-parent before 5.1.2 vulnerable to Regular Expression Denial of Service in enclosure regex - https://github.com/advisories/GHSA-ww39-953v-wcq6
+fix available via `npm audit fix --force`
+Will install hexo-git-backup@0.0.9, which is a breaking change
+node_modules/glob-base/node_modules/glob-parent
+node_modules/hexo-generator-baidu-sitemap/node_modules/glob-parent
+node_modules/hexo-git-backup/node_modules/glob-parent
+node_modules/hexo-related-popular-posts/node_modules/glob-parent
+  glob-base  *
+  Depends on vulnerable versions of glob-parent
+  node_modules/glob-base
+    parse-glob  >=2.1.0
+    Depends on vulnerable versions of glob-base
+    node_modules/parse-glob
+
+
+
+
+highlight.js  9.0.0 - 10.4.0
+Severity: moderate
+ReDOS vulnerabities: multiple grammars - https://github.com/advisories/GHSA-7wwv-vh3v-89cq
+fix available via `npm audit fix --force`
+Will install hexo-git-backup@0.0.9, which is a breaking change
+node_modules/hexo-git-backup/node_modules/highlight.js
+  hexo-util  0.3.0 - 1.9.1
+  Depends on vulnerable versions of highlight.js
+  Depends on vulnerable versions of striptags
+  node_modules/hexo-generator-baidu-sitemap/node_modules/hexo-util
+  node_modules/hexo-git-backup/node_modules/hexo-util
+  node_modules/hexo-renderer-kramed/node_modules/hexo-util
+  node_modules/hexo-symbols-count-time/node_modules/hexo-util
+    hexo-renderer-kramed  *
+    Depends on vulnerable versions of hexo-util
+    node_modules/hexo-renderer-kramed
+    hexo-symbols-count-time  0.0.1 || >=0.6.3
+    Depends on vulnerable versions of hexo-util
+    node_modules/hexo-symbols-count-time
+
+hoek  <4.2.1
+Severity: moderate
+Prototype Pollution in hoek - https://github.com/advisories/GHSA-jp4x-w63m-7wgm
+No fix available
+node_modules/hoek
+  boom  <=3.1.2
+  Depends on vulnerable versions of hoek
+  node_modules/boom
+  sntp  0.0.0 || 0.1.1 - 2.0.0
+  Depends on vulnerable versions of hoek
+  node_modules/sntp
+
+lodash  <=4.17.20
+Severity: critical
+Prototype Pollution in lodash - https://github.com/advisories/GHSA-jf85-cpcp-j695
+Regular Expression Denial of Service (ReDoS) in lodash - https://github.com/advisories/GHSA-x5rq-j2xg-h7qm
+Prototype Pollution in lodash - https://github.com/advisories/GHSA-p6mc-m468-83gw
+Command Injection in lodash - https://github.com/advisories/GHSA-35jh-r3h4-6jhm
+Regular Expression Denial of Service (ReDoS) in lodash - https://github.com/advisories/GHSA-29mw-wpgm-hmr9
+Prototype Pollution in lodash - https://github.com/advisories/GHSA-4xc9-xhrj-v574
+Prototype Pollution in lodash - https://github.com/advisories/GHSA-fvqr-27wr-82fm
+No fix available
+node_modules/ga-analytics/node_modules/lodash
+
+markdown  *
+Regular Expression Denial of Service in markdown - https://github.com/advisories/GHSA-wx77-rp39-c6vg
+fix available via `npm audit fix --force`
+Will install hexo-git-backup@0.0.9, which is a breaking change
+node_modules/markdown
+  swig-extras  *
+  Depends on vulnerable versions of markdown
+  node_modules/swig-extras
+
+minimist  <=1.2.5
+Severity: critical
+Prototype Pollution in minimist - https://github.com/advisories/GHSA-xvch-5gv4-984h
+Prototype Pollution in minimist - https://github.com/advisories/GHSA-vh95-rmgr-6w4m
+fix available via `npm audit fix --force`
+Will install hexo-git-backup@0.0.9, which is a breaking change
+node_modules/optimist/node_modules/minimist
+  optimist  >=0.6.0
+  Depends on vulnerable versions of minimist
+  node_modules/optimist
+    swig-templates  *
+    Depends on vulnerable versions of optimist
+    node_modules/swig-templates
+
+nth-check  <2.0.1
+Severity: high
+Inefficient Regular Expression Complexity in nth-check - https://github.com/advisories/GHSA-rp65-9cf3-cjxr
+fix available via `npm audit fix --force`
+Will install hexo-git-backup@0.0.9, which is a breaking change
+node_modules/hexo-git-backup/node_modules/nth-check
+  css-select  <=3.1.0
+  Depends on vulnerable versions of nth-check
+  node_modules/hexo-generator-baidu-sitemap/node_modules/css-select
+  node_modules/hexo-git-backup/node_modules/css-select
+    cheerio  0.19.0 - 1.0.0-rc.3
+    Depends on vulnerable versions of css-select
+    node_modules/hexo-generator-baidu-sitemap/node_modules/cheerio
+    node_modules/hexo-git-backup/node_modules/cheerio
+
+qs  <6.0.4
+Severity: high
+Prototype Pollution Protection Bypass in qs - https://github.com/advisories/GHSA-gqgv-6jq5-jjj9
+No fix available
+node_modules/googleapis/node_modules/qs
+
+
+striptags  <3.2.0
+Severity: moderate
+Passing in a non-string 'html' argument can lead to unsanitized output - https://github.com/advisories/GHSA-qxg5-2qff-p49r
+fix available via `npm audit fix --force`
+Will install hexo-git-backup@0.0.9, which is a breaking change
+node_modules/hexo-generator-baidu-sitemap/node_modules/striptags
+node_modules/hexo-git-backup/node_modules/striptags
+node_modules/hexo-renderer-kramed/node_modules/striptags
+
+tunnel-agent  <0.6.0
+Severity: moderate
+Memory Exposure in tunnel-agent - https://github.com/advisories/GHSA-xc7v-wxcw-j472
+No fix available
+node_modules/googleapis/node_modules/tunnel-agent
+
+uglify-js  <2.6.0
+Severity: high
+Regular Expression Denial of Service in uglify-js - https://github.com/advisories/GHSA-c9f4-xj24-8jqx
+fix available via `npm audit fix --force`
+Will install hexo-git-backup@0.0.9, which is a breaking change
+node_modules/uglify-js
+  swig  >=1.0.0-pre1
+  Depends on vulnerable versions of optimist
+  Depends on vulnerable versions of uglify-js
+  node_modules/swig
+
+45 vulnerabilities (4 low, 16 moderate, 19 high, 6 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues possible (including breaking changes), run:
+  npm audit fix --force
+
+Some issues need review, and may require choosing
+a different dependency.
