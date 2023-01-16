@@ -27,12 +27,11 @@ comments: false
 	-	KeyPhrase Ranking and Generation
 	-	MRC
 	-	Text Generation
--	Tencent AIPD(Application Researcher)
+-	Tencent MLPD(Application Researcher)
 	-	Summarization
 	-	Graph Embedding
-	-	Computational Advertising(CB Recall and Diversity, improve the Real-time recommendation sense)
-	-	Federated Learning
--	Intern co-authored paper *UniKeyphrase* with Tencent get accepted on ACL Findings 2021
+	-	CB Recall, improve the diversity and Real-time recommendation sense
+	-	User Profile Modeling, Recall&Prerank Model Improvements
 -	(NEW!) Co-authored paper *Fast and Constrained Keyphrase Generation* get accepted on AAAI 2022
 
 # Research
