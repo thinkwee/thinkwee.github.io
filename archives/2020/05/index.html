@@ -505,7 +505,7 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//fastly.jsdelivr.net/gh/MHuiG/blog-cdn@1.2.1/js/valine-no-math.js', () => {
+  NexT.utils.getScript('//fastly.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
     var GUEST = ['nick', 'mail', 'link'];
     var guest = 'nick,mail,link';
     guest = guest.split(',').filter(item => {
