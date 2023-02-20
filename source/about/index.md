@@ -12,7 +12,7 @@ comments: false
 # Professional Experience
 -	CIST@BUPT, 2018.9-2021.7
 	-	Guided by Dr.Lei Li. Focusing on natural language generation, especially on abstractive summarization
-	-	During my master's degree, my research project is about "Strong Abstractive Summarization" (as opposed to Weak Abstractive Summarization, which degenerates to Extractive Summarization), focusing on the "text degeneration problem" in early deep learning network-based abstractive summarization models. This phenonmenon will harm the performance of summarization systems behind search engine, dialogue and new summarization. The research was done from three perspectives: model<sup>[1]</sup>, data<sup>[2]</sup> and task definition.
+	-	During my master's degree, my research project is about "Strong Abstractive Summarization" (as opposed to Weak Abstractive Summarization, which degenerates to Extractive Summarization), focusing on the "text degeneration problem" in early seq2seq-based summarization models. This phenonmenon will harm the performance of summarization systems behind search engine, dialogue and news summarization. The research was done from three perspectives: model<sup>[1]</sup>, data<sup>[2]</sup> and task definition.
 	-	I also participated in several workshops, including Scientific Paper Summarization<sup>[3]</sup>, Multi-lingual Summarization<sup>[4]</sup> and Extreme Long Text Summarization<sup>[5]</sup>.
 </br>   
 -	Application Research Intern, Sina Weibo, 2019.6-2019.9
