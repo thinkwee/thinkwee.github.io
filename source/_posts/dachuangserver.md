@@ -1,5 +1,5 @@
 ---
-title: Melodia服务器搭建
+title: Notes for the server of Melodia
 date: 2017-05-26 19:18:01
 tags: [code,server,linux]
 categories: Python

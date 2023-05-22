@@ -1,5 +1,5 @@
 ---
-title: 变分自编码器学习笔记
+title: Note for Variational Auto-Encoder
 date: 2019-03-20 09:53:31
 categories: 机器学习
 tags:

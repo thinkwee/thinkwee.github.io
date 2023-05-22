@@ -1,5 +1,5 @@
 ---
-title: Correlation Explaination 学习笔记
+title: Study Notes for Correlation Explaination
 date: 2019-07-29 11:17:11
 categories: 机器学习
 tags:

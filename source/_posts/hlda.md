@@ -1,5 +1,5 @@
 ---
-title: hLDA学习笔记
+title: Note for Hierarchical Latent Dirichlet Allocation
 date: 2019-11-15 10:53:34
 categories: 机器学习
 tags:

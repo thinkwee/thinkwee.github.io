@@ -1,5 +1,5 @@
 ---
-title: 基于图的摘要论文选读
+title: Note for Graph-based Summarization
 date: 2019-10-03 17:18:15
 categories: 自然语言处理
 tags:

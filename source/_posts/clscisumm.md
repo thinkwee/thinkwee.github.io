@@ -1,5 +1,5 @@
 ---
-title: CLSciSumm总结
+title: CLSciSumm summary
 date: 2020-03-27 14:04:23
 categories: 自然语言处理
 tags:

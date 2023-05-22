@@ -1,5 +1,5 @@
 ---
-title: 简洁到自己都看不懂的强化学习笔记
+title: Easy Reinforcement Learning Notes
 date: 2019-09-23 18:16:27
 categories: 自然语言处理
 tags:

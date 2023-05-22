@@ -1,5 +1,5 @@
 ---
-title: VC维学习笔记
+title: Note for VC Dimension
 date: 2020-05-15 16:58:58
 categories: 机器学习
 tags:

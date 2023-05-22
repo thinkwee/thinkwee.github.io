@@ -1,5 +1,5 @@
 ---
-title: Glove数学推导
+title: Glove Embedding - Mathematical Derivation 
 date: 2019-01-13 09:42:37
 categories: 机器学习
 tags:

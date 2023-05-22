@@ -1,5 +1,5 @@
 ---
-title: 认知图谱学习笔记
+title: Study Notes for Cognitive Graph
 date: 2019-08-13 14:22:49
 categories: 自然语言处理
 tags:

@@ -1,5 +1,5 @@
 ---
-title: 统计学习方法手写版笔记
+title: Statistical Learning - A hand-write note
 date: 2018-08-09 10:03:46
 categories: 机器学习
 tags:

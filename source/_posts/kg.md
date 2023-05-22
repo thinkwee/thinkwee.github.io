@@ -1,5 +1,5 @@
 ---
-title: 知识图谱应用论文选读
+title: Paper reading on Knowledge Graphs
 date: 2019-11-13 09:36:19
 categories: 自然语言处理
 tags:

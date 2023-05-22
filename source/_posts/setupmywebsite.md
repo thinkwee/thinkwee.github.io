@@ -1,4 +1,4 @@
-title: 搭站总结
+title: note for building a blog
 tags:
   - web
   - hexo

@@ -1,5 +1,5 @@
 ---
-title: MIT线性代数笔记3
+title: Note for Linear Algebra 3
 date: 2017-01-22 19:21:02
 tags: [linearalgebra,math]
 categories: 数学

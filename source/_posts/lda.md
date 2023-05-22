@@ -1,5 +1,5 @@
 ---
-title: LDA学习笔记
+title: Note for Latent Dirichlet Allocation
 date: 2018-07-23 09:56:41
 categories: 机器学习
 tags:

@@ -1,5 +1,5 @@
 ---
-title: 论文翻译：用于生成式自动文摘的一种神经注意力模型
+title: Translate - A Neural Attention Model for Abstractive Sentence Summarization
 date: 2017-12-27 19:20:43
 tags:
   - abstractive summarization

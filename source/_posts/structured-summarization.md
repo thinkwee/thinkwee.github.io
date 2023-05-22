@@ -1,5 +1,5 @@
 ---
-title: STRUCTURED NEURAL SUMMARIZATION 阅读笔记
+title: Structured Neural Summarization, Paper Reading
 date: 2020-02-28 10:22:26
 categories: 自然语言处理
 tags:

@@ -1,5 +1,5 @@
 ---
-title: 用Python实现字典树
+title: Trie in Python
 date: 2017-05-02 10:09:19
 tags:
 -	code

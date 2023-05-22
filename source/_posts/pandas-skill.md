@@ -1,5 +1,5 @@
 ---
-title: pandas 数据处理基础
+title: Pandas Basics
 date: 2017-02-04 21:02:39
 tags: [math,machine learning,python,code]
 categories: Python

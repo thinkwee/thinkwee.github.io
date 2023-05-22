@@ -1,5 +1,5 @@
 ---
-title: 计算未来沙龙-阅读理解专场
+title: Future of Computing Salon - Reading Comprehension Session
 date: 2018-10-13 17:49:06
 tags: [comprehension,NLI,]
 categories: 自然语言处理

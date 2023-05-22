@@ -1,5 +1,5 @@
 ---
-title: 6月份自然语言处理岗面经
+title: Interview Summary for NLP
 date: 2019-08-09 09:59:45
 categories: 面试
 tags:

@@ -1,5 +1,5 @@
 ---
-title: 推断算法笔记
+title: Note for Inference Algorithms in Probabilistic ML
 date: 2018-08-28 09:55:10
 categories: 机器学习
 tags:

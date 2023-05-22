@@ -1,5 +1,5 @@
 ---
-title: 论文阅读笔记2018下半年
+title: Paper Reading 2
 date: 2018-07-03 15:18:52
 tags:
   - abstractive summarization

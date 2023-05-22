@@ -1,5 +1,5 @@
 ---
-title: MIT线性代数笔记2
+title: Note for Linear Algebra 2
 date: 2017-01-21 19:28:03
 tags: [linearalgebra,math]
 categories: 数学

@@ -1,5 +1,5 @@
 ---
-title: Android:Melodia客户端
+title: Notes for my Android app - Melodia
 date: 2017-03-09 17:19:53
 tags: [code,android]
 categories: Android

@@ -1,5 +1,5 @@
 ---
-title: 机器学习笔记
+title: Notes for ML
 categories: 机器学习
 tags:
 - code

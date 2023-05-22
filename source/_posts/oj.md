@@ -1,5 +1,5 @@
 ---
-title: Algorithm 题解目录
+title: OJ
 date: 2017-03-27 19:47:54
 tags:
 -	code

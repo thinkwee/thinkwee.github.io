@@ -1,4 +1,4 @@
-title: '机器学习入门:Coding基础与线性回归'
+title: ML Basic Practices
 categories: 机器学习
 tags:
   - code

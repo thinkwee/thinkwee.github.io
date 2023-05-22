@@ -1,5 +1,5 @@
 ---
-title: 机器学习入门:K-Means和KNN
+title: K-Means and KNN
 date: 2017-03-016 15:51:11
 categories: 机器学习
 tags:

@@ -1,5 +1,5 @@
 ---
-title: 自然语言处理|深度学习入门
+title: NLP Basics
 date: 2018-03-07 09:56:23
 tags:
   - abstractive summarization

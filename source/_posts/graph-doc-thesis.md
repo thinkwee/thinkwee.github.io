@@ -1,5 +1,5 @@
 ---
-title: 基于图结构表示的自然语言处理阅读笔记
+title: Notes for NLP with Graph-Structured Representations
 date: 2020-04-05 21:22:54
 tags:
   - gnn

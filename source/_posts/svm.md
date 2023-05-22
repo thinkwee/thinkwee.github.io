@@ -1,5 +1,5 @@
 ---
-title: 支持向量机一些细节补充
+title: SVM
 date: 2020-02-13 22:04:46
 categories: 自然语言处理
 tags:

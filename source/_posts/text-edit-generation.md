@@ -1,5 +1,5 @@
 ---
-title: 基于编辑的文本生成调研
+title: Edit-based Text Generation
 date: 2021-05-11 15:45:26
 tags:
   - seq2seq

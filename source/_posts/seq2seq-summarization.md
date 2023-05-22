@@ -1,5 +1,5 @@
 ---
-title: 基于端到端模型的生成式自动文摘研究
+title: Seq2seq based Summarization
 date: 2018-07-04 15:58:59
 tags:
   - abstractive summarization

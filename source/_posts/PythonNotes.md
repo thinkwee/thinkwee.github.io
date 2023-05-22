@@ -1,4 +1,4 @@
-title: Python特性拾零
+title: Python Notes
 date: 2017-03-28 20:02:39
 tags:
 -	code

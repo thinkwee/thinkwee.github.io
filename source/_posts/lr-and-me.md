@@ -1,5 +1,5 @@
 ---
-title: Logistic回归与最大熵
+title: Logistic Regression and Maximum Entropy
 date: 2018-10-14 20:38:59
 tags: [logistic regression,math,machine learning]
 categories: 机器学习

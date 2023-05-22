@@ -1,5 +1,5 @@
 ---
-title: Prompt Based Task Reformulation in NLP调研
+title: Prompt - Task Reformulation in NLP
 date: 2021-05-13 19:36:34
 tags:
   - pretrained language model

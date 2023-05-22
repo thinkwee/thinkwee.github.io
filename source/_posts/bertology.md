@@ -1,5 +1,5 @@
 ---
-title: BERT解剖综述
+title: BERTology
 date: 2020-03-02 16:40:55
 categories: 自然语言处理
 tags:

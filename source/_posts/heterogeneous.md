@@ -1,5 +1,5 @@
 ---
-title: 异构信息网络的一些处理
+title: Note for Heterogeneous Information Network
 date: 2019-10-30 18:42:00
 categories: 自然语言处理
 tags:
