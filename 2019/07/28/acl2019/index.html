@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -22,17 +22,17 @@
 
   <meta name="description" content="ACL 2019获奖论文选读。 - 利用oracle来做句子级别的teacher forcing - speaker commitment - 适用于摘要的一套评价指标框架，结合了多个指标 - Zero-Shot Entity Linking">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ACL 2019 获奖论文选读">
+<meta property="og:title" content="Outstanding Papers Reading (ACL 2019)">
 <meta property="og:url" content="https://thinkwee.top/2019/07/28/acl2019/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
 <meta property="og:description" content="ACL 2019获奖论文选读。 - 利用oracle来做句子级别的teacher forcing - speaker commitment - 适用于摘要的一套评价指标框架，结合了多个指标 - Zero-Shot Entity Linking">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-07-28T01:37:46.000Z">
-<meta property="article:modified_time" content="2022-08-31T07:48:47.953Z">
+<meta property="article:modified_time" content="2023-05-22T13:16:13.659Z">
 <meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="natural language processing">
-<meta property="article:tag" content="machine learning">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://thinkwee.top/2019/07/28/acl2019/">
@@ -44,11 +44,11 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'zh-CN'
+    lang   : 'en'
   };
 </script>
 
-  <title>ACL 2019 获奖论文选读 | Thinkwee's Blog</title>
+  <title>Outstanding Papers Reading (ACL 2019) | Thinkwee's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
     <script>
@@ -97,7 +97,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="Toggle navigation bar">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -128,27 +128,27 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">54</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">54</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">53</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">53</span></a>
 
   </li>
         <li class="menu-item menu-item-memory">
@@ -157,7 +157,7 @@
 
   </li>
       <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
       </li>
   </ul>
@@ -173,7 +173,7 @@
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
+           placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
@@ -210,7 +210,7 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2019/07/28/acl2019/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ACL 2019 获奖论文选读
+          Outstanding Papers Reading (ACL 2019)
         </h1>
 
         <div class="post-meta">
@@ -232,33 +232,33 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">发表于</span>
+              <span class="post-meta-item-text">Posted on</span>
 
-              <time title="创建时间：2019-07-28 09:37:46" itemprop="dateCreated datePublished" datetime="2019-07-28T09:37:46+08:00">2019-07-28</time>
+              <time title="Created: 2019-07-28 09:37:46" itemprop="dateCreated datePublished" datetime="2019-07-28T09:37:46+08:00">2019-07-28</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-31 15:48:47" itemprop="dateModified" datetime="2022-08-31T15:48:47+08:00">2022-08-31</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-05-22 21:16:13" itemprop="dateModified" datetime="2023-05-22T21:16:13+08:00">2023-05-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">自然语言处理</span></a>
                 </span>
             </span>
 
           
-            <span id="/2019/07/28/acl2019/" class="post-meta-item leancloud_visitors" data-flag-title="ACL 2019 获奖论文选读" title="阅读次数">
+            <span id="/2019/07/28/acl2019/" class="post-meta-item leancloud_visitors" data-flag-title="Outstanding Papers Reading (ACL 2019)" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="post-meta-item-text">Views: </span>
               <span class="leancloud-visitors-count"></span>
             </span>
   
@@ -267,7 +267,7 @@
       <span class="post-meta-item-icon">
         <i class="far fa-comment"></i>
       </span>
-      <span class="post-meta-item-text">Valine：</span>
+      <span class="post-meta-item-text">Valine: </span>
     
     <a title="valine" href="/2019/07/28/acl2019/#valine-comments" itemprop="discussionUrl">
       <span class="post-comments-count valine-comment-count" data-xid="/2019/07/28/acl2019/" itemprop="commentCount"></span>
@@ -275,19 +275,19 @@
   </span>
   
   <br>
-            <span class="post-meta-item" title="本文字数">
+            <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-                <span class="post-meta-item-text">本文字数：</span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
               <span>8.4k</span>
             </span>
-            <span class="post-meta-item" title="阅读时长">
+            <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>8 mins.</span>
             </span>
 
         </div>
@@ -578,22 +578,22 @@ attention很重要已经是通识了，不需要再强调了。</li>
     
     
       
-  <div class="popular-posts-header">相关文章</div>
+  <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/11/13/kg/" rel="bookmark">知识图谱应用论文选读</a></div>
+      <div class="popular-posts-title"><a href="/2019/11/13/kg/" rel="bookmark">Paper reading on Knowledge Graphs</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/12/16/201912/" rel="bookmark">2019-2020的阅读</a></div>
+      <div class="popular-posts-title"><a href="/2019/08/13/CogGraph/" rel="bookmark">Study Notes for Cognitive Graph</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/08/15/acl2019-summarization/" rel="bookmark">ACL/NAACL 2019 自动摘要相关论文选读</a></div>
+      <div class="popular-posts-title"><a href="/2020/03/27/clscisumm/" rel="bookmark">CLSciSumm summary</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2020/03/02/bertology/" rel="bookmark">BERT解剖综述</a></div>
+      <div class="popular-posts-title"><a href="/2019/08/09/interview201906/" rel="bookmark">Interview Summary for NLP</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/10/30/heterogeneous/" rel="bookmark">异构信息网络的一些处理</a></div>
+      <div class="popular-posts-title"><a href="/2019/12/16/201912/" rel="bookmark">Paper Reading 4</a></div>
     </li>
   </ul>
 
@@ -601,9 +601,9 @@ attention很重要已经是通识了，不需要再强调了。</li>
       <footer class="post-footer">
           
           <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
               <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
               <a href="/tags/natural-language-processing/" rel="tag"><i class="fa fa-tag"></i> natural language processing</a>
-              <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
           </div>
 
         
@@ -617,12 +617,12 @@ attention很重要已经是通识了，不需要再强调了。</li>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/03/20/vae/" rel="prev" title="变分自编码器学习笔记">
-      <i class="fa fa-chevron-left"></i> 变分自编码器学习笔记
+    <a href="/2019/03/20/vae/" rel="prev" title="Note for Variational Auto-Encoder">
+      <i class="fa fa-chevron-left"></i> Note for Variational Auto-Encoder
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/07/29/CorEx/" rel="next" title="Correlation Explaination 学习笔记">
-      Correlation Explaination 学习笔记 <i class="fa fa-chevron-right"></i>
+    <a href="/2019/07/29/CorEx/" rel="next" title="Study Notes for Correlation Explaination">
+      Study Notes for Correlation Explaination <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -674,10 +674,10 @@ attention很重要已经是通识了，不需要再强调了。</li>
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          文章目录
+          Table of Contents
         </li>
         <li class="sidebar-nav-overview">
-          站点概览
+          Overview
         </li>
       </ul>
 
@@ -704,20 +704,20 @@ Entity Linking by Reading Entity Descriptions</span></a><ol class="nav-child"><l
           <a href="/archives/">
         
           <span class="site-state-item-count">53</span>
-          <span class="site-state-item-name">日志</span>
+          <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
         <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">分类</span></a>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
         <span class="site-state-item-count">54</span>
-        <span class="site-state-item-name">标签</span></a>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
@@ -766,14 +766,14 @@ Entity Linking by Reading Entity Descriptions</span></a><ol class="nav-child"><l
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">367k</span>
+    <span title="Symbols count total">367k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5:33</span>
+    <span title="Reading time total">5:33</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
         
