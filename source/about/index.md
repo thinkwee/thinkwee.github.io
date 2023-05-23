@@ -4,10 +4,10 @@ comments: false
 ***
 
 # About Me
--	Hi, I'm Wei Liu. Here is my [Email](mailto:thinkwee2767@gmail.com), [Github](https://github.com/thinkwee) and [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ).
--	Acquired Bachelor of Communication Engineering at BUPT in 2018.
--	Acquired Master of Computer Engineering at CIST@BUPT(Center of Intelligence Science and Technology) in 2021.
--	Now works at Tencent as Application Researcher, focusing on NLP for Recommendation and Advertising.
+-	Hello, my name is Wei Liu. You can reach me via[Email](mailto:thinkwee2767@gmail.com), [Github](https://github.com/thinkwee) and [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ).
+-	I earned a Bachelor of Communication Engineering from BUPT in 2018.
+-	I completed my Master of Computer Engineering at CIST@BUPT (Center of Intelligence Science and Technology) in 2021.
+-	Currently, I am working at Tencent as an Applied Researcher, specializing in NLP for Recommendation and Advertising.
 
 # Experience
 -	CIST@BUPT, 2018.9-2021.7
