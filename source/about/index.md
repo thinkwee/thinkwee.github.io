@@ -3,7 +3,10 @@ comments: false
 ---
 ***
 
-![](https://i.imgur.com/8yt5HPX.jpeg){width=25%}<center>2023.5 at XiaMen</center>
+<p align="center">
+  <img src="https://i.imgur.com/8yt5HPX.jpeg" alt="Your Image Description" width="200" height="200">
+</p>
+<center>2023.5 at XiaMen</center>
 
 # About Me
 -	Hello, my name is Wei Liu. Here are my [Email](mailto:thinkwee2767@gmail.com), [Github](https://github.com/thinkwee) and [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ).
