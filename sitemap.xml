@@ -515,15 +515,6 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/game/data/Skills.json</loc>
-    
-    <lastmod>2022-08-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://thinkwee.top/game/data/Weapons.json</loc>
     
     <lastmod>2022-08-31</lastmod>
@@ -533,7 +524,34 @@
   </url>
   
   <url>
+    <loc>https://thinkwee.top/game/data/Skills.json</loc>
+    
+    <lastmod>2022-08-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkwee.top/game/data/Tilesets.json</loc>
+    
+    <lastmod>2022-08-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/game/data/Classes.json</loc>
+    
+    <lastmod>2022-08-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/game/data/Enemies.json</loc>
     
     <lastmod>2022-08-31</lastmod>
     
@@ -552,24 +570,6 @@
   
   <url>
     <loc>https://thinkwee.top/game/data/Items.json</loc>
-    
-    <lastmod>2022-08-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/game/data/Enemies.json</loc>
-    
-    <lastmod>2022-08-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/game/data/Classes.json</loc>
     
     <lastmod>2022-08-31</lastmod>
     
@@ -623,7 +623,7 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/game/data/Animations.json</loc>
+    <loc>https://thinkwee.top/game/data/Armors.json</loc>
     
     <lastmod>2022-08-31</lastmod>
     
@@ -632,7 +632,7 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/game/data/Armors.json</loc>
+    <loc>https://thinkwee.top/game/data/Animations.json</loc>
     
     <lastmod>2022-08-31</lastmod>
     
@@ -763,6 +763,13 @@
   </url>
   
   <url>
+    <loc>https://thinkwee.top/tags/code/</loc>
+    <lastmod>2023-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkwee.top/tags/linearalgebra/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -784,13 +791,6 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/code/</loc>
-    <lastmod>2023-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://thinkwee.top/tags/python/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -798,14 +798,14 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/android/</loc>
+    <loc>https://thinkwee.top/tags/workshop/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/workshop/</loc>
+    <loc>https://thinkwee.top/tags/android/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -826,6 +826,13 @@
   </url>
   
   <url>
+    <loc>https://thinkwee.top/tags/graph/</loc>
+    <lastmod>2023-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://thinkwee.top/tags/server/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -834,13 +841,6 @@
   
   <url>
     <loc>https://thinkwee.top/tags/linux/</loc>
-    <lastmod>2023-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/graph/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -882,13 +882,6 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/lda/</loc>
-    <lastmod>2023-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://thinkwee.top/tags/inference/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -903,14 +896,7 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/interview/</loc>
-    <lastmod>2023-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/knowledge-graph/</loc>
+    <loc>https://thinkwee.top/tags/lda/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -938,7 +924,14 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/logistic-regression/</loc>
+    <loc>https://thinkwee.top/tags/interview/</loc>
+    <lastmod>2023-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/knowledge-graph/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -953,6 +946,13 @@
   
   <url>
     <loc>https://thinkwee.top/tags/algorithm/</loc>
+    <lastmod>2023-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://thinkwee.top/tags/logistic-regression/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -988,13 +988,6 @@
   
   <url>
     <loc>https://thinkwee.top/tags/gru/</loc>
-    <lastmod>2023-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://thinkwee.top/tags/statistical-learning/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1043,7 +1036,7 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/tags/vae/</loc>
+    <loc>https://thinkwee.top/tags/statistical-learning/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1063,6 +1056,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://thinkwee.top/tags/vae/</loc>
+    <lastmod>2023-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -1073,14 +1073,14 @@
   </url>
   
   <url>
-    <loc>https://thinkwee.top/categories/%E6%95%B0%E5%AD%A6/</loc>
+    <loc>https://thinkwee.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://thinkwee.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://thinkwee.top/categories/%E6%95%B0%E5%AD%A6/</loc>
     <lastmod>2023-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

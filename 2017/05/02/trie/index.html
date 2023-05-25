@@ -300,24 +300,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <hr>
+        <hr />
 <p>在Python中有字典这一数据结构，因此用Python实现字典树很方便</p>
 <span id="more"></span>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i07rz6.jpg" alt="i07rz6.jpg"></p>
-<h1 id="字典树-trie"><a href="#字典树-trie" class="headerlink" title="字典树(trie)"></a>字典树(trie)</h1><ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i07rz6.jpg" alt="i07rz6.jpg" />
+<figcaption aria-hidden="true">i07rz6.jpg</figcaption>
+</figure>
+<h1 id="字典树trie">字典树(trie)</h1>
+<ul>
 <li>字典树主要用于词频统计，前缀后缀相关的算法，树的根节点不存任何字符，每一条边代表一个字符，其他每一个节点代表从根节点到此节点的所有边上字符构成的单词，存的内容根据需求而定。</li>
 <li>字典树快的原因就是充分利用的单词的共同前缀，如果前缀都不一样，就不需要继续查找</li>
 <li>一个单词不一定在叶子节点，因为它可能构成其他更长单词的前缀，因此如果用于词频统计，则可以插入完一个单词后在此单词最后一个节点中count++。如果仅仅用于判断某个词是否在字典树构成的字典中，则可以在插入完一个单词后，在最后一个节点中添加一个None节点，内容为单词本身</li>
 </ul>
-<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><ul>
+<h1 id="例子">例子</h1>
+<ul>
 <li>以leetcode472为例，当中需要判断某个序列中某个单词是否能由它前面的单词构成</li>
-<li>初始化trie<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trie = &#123;&#125;</span><br></pre></td></tr></table></figure></li>
-<li>trie中插入单词<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">trie, w</span>):</span><br><span class="line">	<span class="keyword">for</span> c <span class="keyword">in</span> w:</span><br><span class="line">		trie = trie.setdefault(c, &#123;&#125;)  <span class="comment"># if c not in trie then set trie[c]=&#123;&#125;</span></span><br><span class="line">	trie[<span class="literal">None</span>] = w</span><br></pre></td></tr></table></figure>
-对每一个字符串，依次按字母索引，当索引不到时就对当前字母建立新节点<br>遍历完单词后建立None节点存放单词(因为题目需要返回所有单词，因此此处存放单词,也可以存放出现次数<br>这样一棵树最终完成时就如标题图所示，其中前四行是加入[“cat”, “cats”,”dog”, “rat”]之后树的内容</li>
-<li>trie中查找某一个单词<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">prefixs</span>(<span class="params">trie, w, lo</span>):</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(lo, <span class="built_in">len</span>(w)):</span><br><span class="line">		trie = trie.get(w[i])</span><br><span class="line">		<span class="keyword">if</span> trie <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		prefix = trie.get(<span class="literal">None</span>)</span><br><span class="line">	<span class="keyword">if</span> prefix:</span><br><span class="line">		<span class="keyword">yield</span> i + <span class="number">1</span>, prefix</span><br></pre></td></tr></table></figure>
-因为题目需要，利用了生成器，这段函数是查找单词w中i从lo位置开始，i到单词尾这一段构成的字符串，是否在trie的字典集合中，返回所有符合结果的i+1。查找的方式与插入相同<br>特别说明的是，trie的一大优势便是支持插入与查找同时进行</li>
+<li>初始化trie <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trie = &#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li>trie中插入单词 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">trie, w</span>):</span><br><span class="line">	<span class="keyword">for</span> c <span class="keyword">in</span> w:</span><br><span class="line">		trie = trie.setdefault(c, &#123;&#125;)  <span class="comment"># if c not in trie then set trie[c]=&#123;&#125;</span></span><br><span class="line">	trie[<span class="literal">None</span>] = w</span><br></pre></td></tr></table></figure>
+对每一个字符串，依次按字母索引，当索引不到时就对当前字母建立新节点
+遍历完单词后建立None节点存放单词(因为题目需要返回所有单词，因此此处存放单词,也可以存放出现次数
+这样一棵树最终完成时就如标题图所示，其中前四行是加入["cat",
+"cats","dog", "rat"]之后树的内容</li>
+<li>trie中查找某一个单词 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">prefixs</span>(<span class="params">trie, w, lo</span>):</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(lo, <span class="built_in">len</span>(w)):</span><br><span class="line">		trie = trie.get(w[i])</span><br><span class="line">		<span class="keyword">if</span> trie <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		prefix = trie.get(<span class="literal">None</span>)</span><br><span class="line">	<span class="keyword">if</span> prefix:</span><br><span class="line">		<span class="keyword">yield</span> i + <span class="number">1</span>, prefix</span><br></pre></td></tr></table></figure>
+因为题目需要，利用了生成器，这段函数是查找单词w中i从lo位置开始，i到单词尾这一段构成的字符串，是否在trie的字典集合中，返回所有符合结果的i+1。查找的方式与插入相同
+特别说明的是，trie的一大优势便是支持插入与查找同时进行</li>
 </ul>
-<h1 id="后缀树"><a href="#后缀树" class="headerlink" title="后缀树"></a>后缀树</h1><ul>
+<h1 id="后缀树">后缀树</h1>
+<ul>
 <li>如果将一个单词，长度为l，拆分成l个子单词插入到trie中，每个子单词都是这个单词的[i:l]构成的后缀，则这样的字典树称之为后缀树。</li>
 <li>简单按上述方法建立后缀树会存在许多冗余信息，在空间上还可以进行优化</li>
 <li>待续</li>
@@ -335,13 +345,13 @@
       <div class="popular-posts-title"><a href="/2017/03/28/PythonNotes/" rel="bookmark">Python Notes</a></div>
     </li>
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/03/27/oj/" rel="bookmark">OJ</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/2017/01/23/numpycookbook/" rel="bookmark">Numpy Cookbook</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/2017/02/04/pandas-skill/" rel="bookmark">Pandas Basics</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2017/03/27/oj/" rel="bookmark">OJ</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/2017/03/18/Lagrange/" rel="bookmark">Lagrange,KKT,PCA,SVM</a></div>
@@ -433,7 +443,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E5%85%B8%E6%A0%91-trie"><span class="nav-number">1.</span> <span class="nav-text">字典树(trie)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E7%BC%80%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text">后缀树</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E5%85%B8%E6%A0%91trie"><span class="nav-number">1.</span> <span class="nav-text">字典树(trie)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E7%BC%80%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text">后缀树</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -510,12 +520,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">336k</span>
+    <span title="Symbols count total">367k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:05</span>
+    <span title="Reading time total">5:33</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
