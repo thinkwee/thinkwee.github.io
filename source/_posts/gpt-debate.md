@@ -13,7 +13,7 @@ html: true
 -	基于[ChatGPT-Shortcut](https://github.com/rockbenben/ChatGPT-Shortcut)改了一个网页，展示了一些GPT自己与自己发生的有趣辩论。
 -	体验地址在[这](https://gpt-debate.vercel.app/)
 -   A webpage based on [ChatGPT-Shortcut](https://github.com/rockbenben/ChatGPT-Shortcut) that shows some interesting debates that took place between GPTs.
--   The experience website is at [this](https://gpt-debate.vercel.app/)
+-   The experience website is [here](https://gpt-debate.vercel.app/)
 
 <!--more-->
 
