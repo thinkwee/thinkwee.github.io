@@ -118,12 +118,13 @@ darkmode: false
 menu:
   home: / || fa fa-home
   about: /about/ || fa fa-user
-  tags: /tags/ || fa fa-tags
-  categories: /categories/ || fa fa-th
+  # tags: /tags/ || fa fa-tags
+  # categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
   # novel: /novel/ || fa fa-gamepad
   # game: /game/ || fa fa-gamepad
   memory: /memory/ || fa fa-smile-wink
+  GPTDebate: https://gpt-debate.vercel.app/ || fa fa-robot
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
