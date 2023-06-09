@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-gptdebate">
 
-    <a href="https://gpt-debate.vercel.app/" rel="noopener" target="_blank"><i class="fa fa-robot fa-fw"></i>GPTDebate</a>
+    <a href="https://thinkwee.top/debate/" rel="section"><i class="fa fa-robot fa-fw"></i>GPTDebate</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-06-07 14:21:14" itemprop="dateModified" datetime="2023-06-07T14:21:14+08:00">2023-06-07</time>
+                <time title="Modified: 2023-06-09 19:08:37" itemprop="dateModified" datetime="2023-06-09T19:08:37+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -289,16 +289,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr />
+          <hr>
 <ul>
-<li>基于<a
-target="_blank" rel="noopener" href="https://github.com/rockbenben/ChatGPT-Shortcut">ChatGPT-Shortcut</a>改了一个网页，展示了一些GPT自己与自己发生的有趣辩论。</li>
-<li>体验地址在<a target="_blank" rel="noopener" href="https://gpt-debate.vercel.app/">这</a></li>
-<li>A webpage based on <a
-target="_blank" rel="noopener" href="https://github.com/rockbenben/ChatGPT-Shortcut">ChatGPT-Shortcut</a>
-that shows some interesting debates that took place between GPTs.</li>
-<li>The experience website is <a
-target="_blank" rel="noopener" href="https://gpt-debate.vercel.app/">here</a></li>
+<li>基于<a target="_blank" rel="noopener" href="https://github.com/rockbenben/ChatGPT-Shortcut">ChatGPT-Shortcut</a>改了一个网页，展示了一些GPT自己与自己发生的有趣辩论。</li>
+<li>体验地址在<a href="https://thinkwee.top/debate/">这</a></li>
+<li>A webpage based on <a target="_blank" rel="noopener" href="https://github.com/rockbenben/ChatGPT-Shortcut">ChatGPT-Shortcut</a> that shows some interesting debates that took place between GPTs.</li>
+<li>The experience website is <a href="https://thinkwee.top/debate/">here</a></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -357,7 +353,7 @@ target="_blank" rel="noopener" href="https://gpt-debate.vercel.app/">here</a></l
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:28:51" itemprop="dateModified" datetime="2023-05-22T21:28:51+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -415,37 +411,29 @@ target="_blank" rel="noopener" href="https://gpt-debate.vercel.app/">here</a></l
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr />
+          <hr>
 <ul>
-<li>记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。
-这类方法一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few
-shot learning上能取得较好结果。主要阅读以下9篇论文：
-<ul>
-<li>早期的将问题转为自然语言并使用预训练语言模型解答的：
-<ul>
+<li>记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。 这类方法一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few shot learning上能取得较好结果。主要阅读以下9篇论文：<ul>
+<li>早期的将问题转为自然语言并使用预训练语言模型解答的：<ul>
 <li>(Harvard)Commonsense Knowledge Mining from Pretrained Models</li>
-<li>(Heidelberg)Argumentative Relation Classification as Plausibility
-Ranking</li>
-<li>(NVIDIA)Zero-shot Text Classification With Generative Language
-Models</li>
-</ul></li>
-<li>PET方向，Pattern Exploiting Training
-<ul>
-<li>(LMU)Exploiting Cloze Questions for Few Shot Text Classification and
-Natural Language Inference</li>
-<li>(LMU)It’s Not Just Size That Matters: Small Language Models Are Also
-Few-Shot Learners</li>
+<li>(Heidelberg)Argumentative Relation Classification as Plausibility Ranking</li>
+<li>(NVIDIA)Zero-shot Text Classification With Generative Language Models</li>
+</ul>
+</li>
+<li>PET方向，Pattern Exploiting Training<ul>
+<li>(LMU)Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference</li>
+<li>(LMU)It’s Not Just Size That Matters: Small Language Models Are Also Few-Shot Learners</li>
 <li>(UNC)Improving and Simplifying Pattern Exploiting Training</li>
-</ul></li>
-<li>自动构建prompt，Automatically Searching Prompts
-<ul>
-<li>(UCI,UCB)AUTOPROMPT: Eliciting Knowledge from Language Models with
-Automatically Generated Prompts</li>
-<li>(Princeton, MIT)Making Pre-trained Language Models Better Few-shot
-Learners</li>
+</ul>
+</li>
+<li>自动构建prompt，Automatically Searching Prompts<ul>
+<li>(UCI,UCB)AUTOPROMPT: Eliciting Knowledge from Language Models with Automatically Generated Prompts</li>
+<li>(Princeton, MIT)Making Pre-trained Language Models Better Few-shot Learners</li>
 <li>(THU)GPT Understands, Too</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -504,7 +492,7 @@ Learners</li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:25:53" itemprop="dateModified" datetime="2023-05-22T21:25:53+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -543,7 +531,7 @@ Learners</li>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>7.6k</span>
+              <span>7.7k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -562,22 +550,17 @@ Learners</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr />
+          <hr>
 <ul>
-<li>记录近年来关于编辑式seq2seq的方法，这类方法对于输入输出同语种且较小更改的任务（纠错、简化、摘要）有着高效率（部分自回归或非自回归解码）和less
-data hungry（输出词表小）的优势。</li>
-<li>主要阅读五篇论文，按照其在arxiv上发表时间排序：
-<ul>
+<li>记录近年来关于编辑式seq2seq的方法，这类方法对于输入输出同语种且较小更改的任务（纠错、简化、摘要）有着高效率（部分自回归或非自回归解码）和less data hungry（输出词表小）的优势。</li>
+<li>主要阅读五篇论文，按照其在arxiv上发表时间排序：<ul>
 <li>(LevT, Facebook) Levenshtein Transformer</li>
-<li>(华为) EditNTS: An Neural Programmer-Interpreter Model for Sentence
-Simplification through Explicit Editing</li>
-<li>(LaserTagger, Google) Encode, Tag, Realize: High-Precision Text
-Editing</li>
-<li>(PIE，印度理工) Parallel Iterative Edit Models for Local Sequence
-Transduction</li>
-<li>(Google) Felix: Flexible Text Editing Through Tagging and
-Insertion</li>
-</ul></li>
+<li>(华为) EditNTS: An Neural Programmer-Interpreter Model for Sentence Simplification through Explicit Editing</li>
+<li>(LaserTagger, Google) Encode, Tag, Realize: High-Precision Text Editing</li>
+<li>(PIE，印度理工) Parallel Iterative Edit Models for Local Sequence Transduction</li>
+<li>(Google) Felix: Flexible Text Editing Through Tagging and Insertion</li>
+</ul>
+</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -636,7 +619,7 @@ Insertion</li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:29:14" itemprop="dateModified" datetime="2023-05-22T21:29:14+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -675,7 +658,7 @@ Insertion</li>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.1k</span>
+              <span>5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -752,7 +735,7 @@ Insertion</li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:20:04" itemprop="dateModified" datetime="2023-05-22T21:20:04+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
 
           
@@ -782,7 +765,7 @@ Insertion</li>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.7k</span>
+              <span>5.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -801,9 +784,7 @@ Insertion</li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>阅读来自University of Alberta 的Bang Liu博士的论文Natural Language
-Processing and Text Mining with Graph-Structured
-Representations，做一些笔记
+          <p>阅读来自University of Alberta<br>的Bang Liu博士的论文Natural Language Processing and Text Mining with Graph-Structured Representations，做一些笔记<br>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/04/05/graph-doc-thesis/#more" rel="contents">
@@ -861,7 +842,7 @@ Representations，做一些笔记
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:18:39" itemprop="dateModified" datetime="2023-05-22T21:18:39+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -900,7 +881,7 @@ Representations，做一些笔记
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>9.3k</span>
+              <span>9.2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -919,8 +900,7 @@ Representations，做一些笔记
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Jure Leskovec, Stanford CS224W: Machine Learning with
-Graphs学习笔记，未完待续
+          <p>Jure Leskovec, Stanford CS224W: Machine Learning with Graphs学习笔记，未完待续<br>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/03/30/cs224w/#more" rel="contents">
@@ -978,7 +958,7 @@ Graphs学习笔记，未完待续
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:17:08" itemprop="dateModified" datetime="2023-05-22T21:17:08+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1036,12 +1016,12 @@ Graphs学习笔记，未完待续
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>总结一下实验室参加的CLSciSumm
-Workshop，主要是方法，实验分析论文里很详细 论文： - <a
-target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-1610/paper18.pdf">2016</a> - <a
-target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2002/cistclscisumm2017.pdf">2017</a> - <a
-target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2132/paper8.pdf">2018</a> - <a
-target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2414/paper20.pdf">2019</a>
+          <p>总结一下实验室参加的CLSciSumm Workshop，主要是方法，实验分析论文里很详细<br>论文：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-1610/paper18.pdf">2016</a></li>
+<li><a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2002/cistclscisumm2017.pdf">2017</a></li>
+<li><a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2132/paper8.pdf">2018</a></li>
+<li><a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2414/paper20.pdf">2019</a>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/03/27/clscisumm/#more" rel="contents">
@@ -1099,7 +1079,7 @@ target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2414/paper20.pdf">20
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-08-31 15:48:47" itemprop="dateModified" datetime="2022-08-31T15:48:47+08:00">2022-08-31</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1157,8 +1137,7 @@ target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2414/paper20.pdf">20
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>记录一下Fairseq当中对于CNN
-seq2seq，Transformer之类的并行解码模型，在推理阶段的增量解码处理。</p>
+          <p>记录一下Fairseq当中对于CNN seq2seq，Transformer之类的并行解码模型，在推理阶段的增量解码处理。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/03/17/incremental-decoding/#more" rel="contents">
@@ -1216,7 +1195,7 @@ seq2seq，Transformer之类的并行解码模型，在推理阶段的增量解�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:16:46" itemprop="dateModified" datetime="2023-05-22T21:16:46+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1274,9 +1253,7 @@ seq2seq，Transformer之类的并行解码模型，在推理阶段的增量解�
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>翻译A Primer in BERTology: What we know about how BERT
-works一文，系统的介绍了近年来对于BERT可解释性以及扩展性方面的研究。
-原论文<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2002.12327.pdf">arxiv pdf</a></p>
+          <p>翻译A Primer in BERTology: What we know about how BERT works一文，系统的介绍了近年来对于BERT可解释性以及扩展性方面的研究。<br>原论文<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2002.12327.pdf">arxiv pdf</a></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/03/02/bertology/#more" rel="contents">
@@ -1334,7 +1311,7 @@ works一文，系统的介绍了近年来对于BERT可解释性以及扩展性�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:25:35" itemprop="dateModified" datetime="2023-05-22T21:25:35+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1373,14 +1350,14 @@ works一文，系统的介绍了近年来对于BERT可解释性以及扩展性�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.6k</span>
+              <span>3.8k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -1450,7 +1427,7 @@ works一文，系统的介绍了近年来对于BERT可解释性以及扩展性�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:25:43" itemprop="dateModified" datetime="2023-05-22T21:25:43+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1489,7 +1466,7 @@ works一文，系统的介绍了近年来对于BERT可解释性以及扩展性�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.1k</span>
+              <span>5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -1566,7 +1543,7 @@ works一文，系统的介绍了近年来对于BERT可解释性以及扩展性�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:28:56" itemprop="dateModified" datetime="2023-05-22T21:28:56+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1605,14 +1582,14 @@ works一文，系统的介绍了近年来对于BERT可解释性以及扩展性�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3k</span>
+              <span>789</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>1 mins.</span>
             </span>
 
         </div>
@@ -1682,7 +1659,7 @@ works一文，系统的介绍了近年来对于BERT可解释性以及扩展性�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:23:44" itemprop="dateModified" datetime="2023-05-22T21:23:44+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1721,7 +1698,7 @@ works一文，系统的介绍了近年来对于BERT可解释性以及扩展性�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.9k</span>
+              <span>4.8k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -1740,8 +1717,14 @@ works一文，系统的介绍了近年来对于BERT可解释性以及扩展性�
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>跨年读论文。 - 边池化 - Discourse-Aware，抽取式摘要 -
-Discourse-Aware，生成式摘要 - 孪生BERT - 巨型Chatbot</p>
+          <p>跨年读论文。</p>
+<ul>
+<li>边池化</li>
+<li>Discourse-Aware，抽取式摘要</li>
+<li>Discourse-Aware，生成式摘要</li>
+<li>孪生BERT</li>
+<li>巨型Chatbot</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/12/16/201912/#more" rel="contents">
@@ -1799,7 +1782,7 @@ Discourse-Aware，生成式摘要 - 孪生BERT - 巨型Chatbot</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:20:48" itemprop="dateModified" datetime="2023-05-22T21:20:48+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1838,7 +1821,7 @@ Discourse-Aware，生成式摘要 - 孪生BERT - 巨型Chatbot</p>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>8.8k</span>
+              <span>8.5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -1857,9 +1840,7 @@ Discourse-Aware，生成式摘要 - 孪生BERT - 巨型Chatbot</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>记录 Hierarchical Latent Dirichlet
-Allocation，层次主题模型的学习笔记。
-依然大量参考了徐亦达老师的教程。</p>
+          <p>记录 Hierarchical Latent Dirichlet Allocation，层次主题模型的学习笔记。<br>依然大量参考了徐亦达老师的教程。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/11/15/hlda/#more" rel="contents">
@@ -1917,7 +1898,7 @@ Allocation，层次主题模型的学习笔记。
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:22:12" itemprop="dateModified" datetime="2023-05-22T21:22:12+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1975,10 +1956,16 @@ Allocation，层次主题模型的学习笔记。
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>知识图谱专辑 - 跨语言知识图谱中的实体对齐 - Knowledge Graph Language
-Model - 动态知识图谱对话生成 - Graph2Seq - Graph Matching Network -
-动态更新知识图谱 - Attention-based Embeddings for Relation
-Prediction</p>
+          <p>知识图谱专辑</p>
+<ul>
+<li>跨语言知识图谱中的实体对齐</li>
+<li>Knowledge Graph Language Model</li>
+<li>动态知识图谱对话生成</li>
+<li>Graph2Seq</li>
+<li>Graph Matching Network</li>
+<li>动态更新知识图谱</li>
+<li>Attention-based Embeddings for Relation Prediction</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/11/13/kg/#more" rel="contents">
@@ -2036,7 +2023,7 @@ Prediction</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:20:30" itemprop="dateModified" datetime="2023-05-22T21:20:30+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2075,7 +2062,7 @@ Prediction</p>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.7k</span>
+              <span>4.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -2094,9 +2081,16 @@ Prediction</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>记录近年来对于异构信息网络的一些处理 - PathSim - HGNN - HGAN - HGAN
-for text classification - 带属性，Attributed Multiplex Heterogeneous
-Network - Meta-graph Guided Random Walks - TBD</p>
+          <p>记录近年来对于异构信息网络的一些处理</p>
+<ul>
+<li>PathSim</li>
+<li>HGNN</li>
+<li>HGAN</li>
+<li>HGAN for text classification</li>
+<li>带属性，Attributed Multiplex Heterogeneous Network</li>
+<li>Meta-graph Guided Random Walks</li>
+<li>TBD</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/10/30/heterogeneous/#more" rel="contents">
@@ -2154,7 +2148,7 @@ Network - Meta-graph Guided Random Walks - TBD</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:20:14" itemprop="dateModified" datetime="2023-05-22T21:20:14+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2193,7 +2187,7 @@ Network - Meta-graph Guided Random Walks - TBD</p>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>7.4k</span>
+              <span>7.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -2212,9 +2206,14 @@ Network - Meta-graph Guided Random Walks - TBD</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>基于图的自动摘要相关论文选读 - AMR 生成式摘要 - AMR 多文档摘要两篇 -
-pagerank in encoder attention - 基于主题建模构建图，使用ILP做抽取式摘要
-- 基于GCN的多文档抽取式摘要 - STRUCTURED NEURAL SUMMARIZATION
+          <p>基于图的自动摘要相关论文选读</p>
+<ul>
+<li>AMR 生成式摘要</li>
+<li>AMR 多文档摘要两篇</li>
+<li>pagerank in encoder attention</li>
+<li>基于主题建模构建图，使用ILP做抽取式摘要</li>
+<li>基于GCN的多文档抽取式摘要</li>
+<li>STRUCTURED NEURAL SUMMARIZATION
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/10/03/graph-summarization/#more" rel="contents">
@@ -2272,7 +2271,7 @@ pagerank in encoder attention - 基于主题建模构建图，使用ILP做抽取
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:19:21" itemprop="dateModified" datetime="2023-05-22T21:19:21+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2311,7 +2310,7 @@ pagerank in encoder attention - 基于主题建模构建图，使用ILP做抽取
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.8k</span>
+              <span>4.7k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -2330,9 +2329,17 @@ pagerank in encoder attention - 基于主题建模构建图，使用ILP做抽取
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>极简风格 - Q-learning - Sarsa - Sarsa(<span
-class="math inline">\(\lambda\)</span>) - DQN - Double DQN - DQN with
-Prioritized Experience replay - Dueling DQN - Policy Gradient</p>
+          <p>极简风格</p>
+<ul>
+<li>Q-learning</li>
+<li>Sarsa</li>
+<li>Sarsa($\lambda$)</li>
+<li>DQN</li>
+<li>Double DQN</li>
+<li>DQN with Prioritized Experience replay</li>
+<li>Dueling DQN</li>
+<li>Policy Gradient</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/09/23/easyrl/#more" rel="contents">
@@ -2390,7 +2397,7 @@ Prioritized Experience replay - Dueling DQN - Policy Gradient</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:16:19" itemprop="dateModified" datetime="2023-05-22T21:16:19+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2429,7 +2436,7 @@ Prioritized Experience replay - Dueling DQN - Policy Gradient</p>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>7k</span>
+              <span>6.9k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -2448,9 +2455,13 @@ Prioritized Experience replay - Dueling DQN - Policy Gradient</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>ACL/NAACL 2019 自动摘要相关论文选读 - DPPs 相似度度量改进 -
-STRASS：抽取式摘要的反向传播 - 先翻译再生成摘要 - 阅读理解+自动摘要 -
-BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based
+          <p>ACL/NAACL 2019 自动摘要相关论文选读</p>
+<ul>
+<li>DPPs 相似度度量改进</li>
+<li>STRASS：抽取式摘要的反向传播</li>
+<li>先翻译再生成摘要</li>
+<li>阅读理解+自动摘要</li>
+<li>BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/08/15/acl2019-summarization/#more" rel="contents">
@@ -2508,7 +2519,7 @@ BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:17:21" itemprop="dateModified" datetime="2023-05-22T21:17:21+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2566,9 +2577,7 @@ BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天阅读一篇来自清华和阿里巴巴团队的关于机器阅读理解方面的论文，Cognitive
-Graph for Multi-Hop Reading Comprehension at
-Scale。这篇论文同样中了ACL2019，但我没有将其放进ACL2019论文阅读的博文里，因为感觉这篇值得专门讲讲，虽然没有拿到优秀论文或者杰出论文，甚至提名都没有，但这篇论文的思路、方法论都非常好，用一种最简单的方式实现联结主义+知识推理。</p>
+          <p>今天阅读一篇来自清华和阿里巴巴团队的关于机器阅读理解方面的论文，Cognitive Graph for Multi-Hop Reading Comprehension at Scale。这篇论文同样中了ACL2019，但我没有将其放进ACL2019论文阅读的博文里，因为感觉这篇值得专门讲讲，虽然没有拿到优秀论文或者杰出论文，甚至提名都没有，但这篇论文的思路、方法论都非常好，用一种最简单的方式实现联结主义+知识推理。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/08/13/CogGraph/#more" rel="contents">
@@ -2626,7 +2635,7 @@ Scale。这篇论文同样中了ACL2019，但我没有将其放进ACL2019论文�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:21:57" itemprop="dateModified" datetime="2023-05-22T21:21:57+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2742,7 +2751,7 @@ Scale。这篇论文同样中了ACL2019，但我没有将其放进ACL2019论文�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:18:27" itemprop="dateModified" datetime="2023-05-22T21:18:27+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2781,7 +2790,7 @@ Scale。这篇论文同样中了ACL2019，但我没有将其放进ACL2019论文�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>8.6k</span>
+              <span>8.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -2800,7 +2809,7 @@ Scale。这篇论文同样中了ACL2019，但我没有将其放进ACL2019论文�
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr />
+          <hr>
 <p>CorEx(Correlation Explaination)的相关笔记。</p>
           <!--noindex-->
             <div class="post-button">
@@ -2859,7 +2868,7 @@ Scale。这篇论文同样中了ACL2019，但我没有将其放进ACL2019论文�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:16:13" itemprop="dateModified" datetime="2023-05-22T21:16:13+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2898,14 +2907,14 @@ Scale。这篇论文同样中了ACL2019，但我没有将其放进ACL2019论文�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>8.4k</span>
+              <span>8.2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>8 mins.</span>
+              <span>7 mins.</span>
             </span>
 
         </div>
@@ -2917,9 +2926,13 @@ Scale。这篇论文同样中了ACL2019，但我没有将其放进ACL2019论文�
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>ACL 2019获奖论文选读。 - 利用oracle来做句子级别的teacher forcing -
-speaker commitment - 适用于摘要的一套评价指标框架，结合了多个指标 -
-Zero-Shot Entity Linking</p>
+          <p>ACL 2019获奖论文选读。</p>
+<ul>
+<li>利用oracle来做句子级别的teacher forcing</li>
+<li>speaker commitment</li>
+<li>适用于摘要的一套评价指标框架，结合了多个指标</li>
+<li>Zero-Shot Entity Linking</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/07/28/acl2019/#more" rel="contents">
@@ -2977,7 +2990,7 @@ Zero-Shot Entity Linking</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:26:30" itemprop="dateModified" datetime="2023-05-22T21:26:30+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -3016,14 +3029,14 @@ Zero-Shot Entity Linking</p>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5k</span>
+              <span>4.9k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -3035,17 +3048,15 @@ Zero-Shot Entity Linking</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr />
+          <hr>
 <ul>
 <li>变分自编码器学习笔记</li>
-<li>参考文章：
-<ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1312.6114.pdf">Auto-Encoding
-Variational Bayes</a></li>
-<li><a target="_blank" rel="noopener" href="https://dfdazac.github.io/01-vae.html">Daniel Daza ，The
-Variational Autoencoder</a></li>
+<li>参考文章：<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1312.6114.pdf">Auto-Encoding Variational Bayes</a></li>
+<li><a target="_blank" rel="noopener" href="https://dfdazac.github.io/01-vae.html">Daniel Daza ，The Variational Autoencoder</a></li>
 <li><a target="_blank" rel="noopener" href="https://spaces.ac.cn/tag/vae/">苏神的VAE系列</a></li>
-</ul></li>
+</ul>
+</li>
 <li>关于VAE，上面的原论文以及两篇博客已经讲的很清楚了，我写也就是复读转述，自己捋一遍，如果有人看到这篇博客，建议优先读这三个参考来源
           <!--noindex-->
             <div class="post-button">
@@ -3104,7 +3115,7 @@ Variational Autoencoder</a></li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:28:15" itemprop="dateModified" datetime="2023-05-22T21:28:15+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -3143,7 +3154,7 @@ Variational Autoencoder</a></li>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.7k</span>
+              <span>3.5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -3162,7 +3173,7 @@ Variational Autoencoder</a></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr />
+          <hr>
 <ul>
 <li>记录一下Glove词向量的数学推导，因为原论文不是画模型得出的，而是纯数学操作计算得到的目标函数，这种设计方式非常有意思，而且还将word2vec的数学本质写出来进行了对比。</li>
 <li>原论文：<em>GloVe: Global Vectors for Word Representation</em></li>
@@ -3224,7 +3235,7 @@ Variational Autoencoder</a></li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:24:02" itemprop="dateModified" datetime="2023-05-22T21:24:02+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -3263,7 +3274,7 @@ Variational Autoencoder</a></li>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.7k</span>
+              <span>3.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -3342,7 +3353,7 @@ Variational Autoencoder</a></li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:17:40" itemprop="dateModified" datetime="2023-05-22T21:17:40+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -3381,14 +3392,14 @@ Variational Autoencoder</a></li>
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>37k</span>
+              <span>22k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>33 mins.</span>
+              <span>20 mins.</span>
             </span>
 
         </div>
@@ -3400,9 +3411,7 @@ Variational Autoencoder</a></li>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>计算语言学课程笔记 参考教材：Speech and Language Processing：An
-Introduction to Natural Language Processing,Computational Linguistics,
-and Speech Recognition 一些公式待修订
+          <p>计算语言学课程笔记<br>参考教材：Speech and Language Processing：An Introduction to Natural Language Processing,Computational Linguistics, and Speech Recognition<br>一些公式待修订<br>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/11/16/coling/#more" rel="contents">
@@ -3460,7 +3469,7 @@ and Speech Recognition 一些公式待修订
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:23:09" itemprop="dateModified" datetime="2023-05-22T21:23:09+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -3499,14 +3508,14 @@ and Speech Recognition 一些公式待修订
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4k</span>
+              <span>3.8k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -3518,16 +3527,15 @@ and Speech Recognition 一些公式待修订
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>翻译John Mount的<em>The equivalence of logistic regression and
-maximum entropy models</em>
-一文，并说明了这种证明是在统计学习方法中介绍最大熵模型的通用导出证明的一个特例</p>
-<p>结论 - 最大熵模型就是softmax分类 -
-在满足广义线性模型的平衡条件下，满足最大熵条件的模型映射函数就是softmax函数
--
-在统计机器学习方法一书中，给出了在特征函数定义下的最大熵模型，其与softmax回归都属于对数线性模型
--
-当特征函数从二值函数扩展为特征值本身时，最大熵模型就化为softmax回归模型
-- 最大熵最大化的是条件熵，不是条件概率的熵，也不是联合概率的熵。</p>
+          <p>翻译John Mount的<em>The equivalence of logistic regression and maximum entropy models</em> 一文，并说明了这种证明是在统计学习方法中介绍最大熵模型的通用导出证明的一个特例</p>
+<p>结论</p>
+<ul>
+<li>最大熵模型就是softmax分类</li>
+<li>在满足广义线性模型的平衡条件下，满足最大熵条件的模型映射函数就是softmax函数</li>
+<li>在统计机器学习方法一书中，给出了在特征函数定义下的最大熵模型，其与softmax回归都属于对数线性模型</li>
+<li>当特征函数从二值函数扩展为特征值本身时，最大熵模型就化为softmax回归模型</li>
+<li>最大熵最大化的是条件熵，不是条件概率的熵，也不是联合概率的熵。</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/10/14/lr-and-me/#more" rel="contents">
@@ -3585,7 +3593,7 @@ maximum entropy models</em>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:18:17" itemprop="dateModified" datetime="2023-05-22T21:18:17+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -3643,8 +3651,7 @@ maximum entropy models</em>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>去清华的FIT听了一次轻沙龙，介绍了关于机器阅读理解的一些进展，有趣的是上午九点演讲的博士还说有一个还没公开的工作：BERT，很牛逼，很有钱，八块p100训一年，结果十点半机器之心就发了报道，下午就知乎满天飞了，说NLP新的时代到来了......
-这个沙龙是一个系列，之后可能会有机器翻译、深度贝叶斯、迁移学习和知识图谱啥的，要是有时间的话再听再记录吧</p>
+          <p>去清华的FIT听了一次轻沙龙，介绍了关于机器阅读理解的一些进展，有趣的是上午九点演讲的博士还说有一个还没公开的工作：BERT，很牛逼，很有钱，八块p100训一年，结果十点半机器之心就发了报道，下午就知乎满天飞了，说NLP新的时代到来了……<br>这个沙龙是一个系列，之后可能会有机器翻译、深度贝叶斯、迁移学习和知识图谱啥的，要是有时间的话再听再记录吧</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/10/13/compute-future/#more" rel="contents">
@@ -3702,7 +3709,7 @@ maximum entropy models</em>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-22 21:19:10" itemprop="dateModified" datetime="2023-05-22T21:19:10+08:00">2023-05-22</time>
+                <time title="Modified: 2023-06-09 19:05:29" itemprop="dateModified" datetime="2023-06-09T19:05:29+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -3760,7 +3767,7 @@ maximum entropy models</em>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Deep-Bayes 2018 Summer Camp的习题 填不动了，就到这吧
+          <p>Deep-Bayes 2018 Summer Camp的习题<br>填不动了，就到这吧<br>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/09/22/deepbayes2018/#more" rel="contents">
@@ -3913,12 +3920,12 @@ maximum entropy models</em>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">370k</span>
+    <span title="Symbols count total">339k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:36</span>
+    <span title="Reading time total">5:08</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
