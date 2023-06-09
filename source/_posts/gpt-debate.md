@@ -34,7 +34,21 @@ html: true
 - Then pass the argument between the two GPT bots: "The other side speaks:" {}", please rebut him, still speaking in no more than one sentence. Do not repeat your side of the argument. Do not repeat what you have said before. Find as many holes in the other person's argument as possible. Present new evidence to attack the other person whenever possible."
 
 # Discovery
-- 这个项目想通过辩论来探索一下GPT的语言能力、逻辑能力
-- 可以设计许多有意思的限制，观察GPT如何给出他的最优解，例如限制每次只能发言一句，或者设计一个反事实的辩题，或者引入第三个gpt作为裁判
-- This project is intended to explore the verbal and logical skills of the GPT through debate.
-- There are many interesting restrictions that can be designed to see how the GPT gives his optimal solution, such as limiting each statement to one sentence, or designing a counterfactual debate, or introducing a third GPT as a judge.
+- 该项目想通过辩论这一极具挑战和思辨的语言应用来探索一下GPT的语言能力、逻辑能力，以及探索人类的思想究竟是否可以被概率所拟合
+- 可以设计许多有意思的场景，观察GPT如何给出他的最优解，例如：
+  - 限制每次只能发言一句进行辩论
+  - 设计一个反事实的辩题
+  - 引入第三个gpt作为裁判
+  - 三方乃至n方辩论
+  - 只提供背景，gpt自己设计辩题
+  - 何时一个GPT bot才会被另一个GPT bot说服
+  - and more
+- The project aims to explore the linguistic and logical capabilities of the GPT through the challenging and discursive use of language in debate, and to explore whether human thought can be fitted to probabilities.
+- A number of interesting scenarios can be devised to see how the GPT gives his optimal solution, for example
+  - Limit debate to one sentence at a time
+  - devising a counterfactual debate question
+  - Introducing a third GPT as a referee
+  - Three-way or even n-way debates
+  - Provide only the background, the gpt designs his own debate
+  - When will one GPT bot be convinced by another GPT bot
+  - and more
