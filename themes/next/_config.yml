@@ -123,7 +123,7 @@ menu:
   archives: /archives/ || fa fa-archive
   # novel: /novel/ || fa fa-gamepad
   # game: /game/ || fa fa-gamepad
-  memory: /memory/ || fa fa-smile-wink
+  Memory: /memory/ || fa fa-smile-wink
   GPTDebate: https://thinkwee.top/debate/ || fa fa-robot
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap

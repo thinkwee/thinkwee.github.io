@@ -123,8 +123,8 @@ menu:
   archives: /archives/ || fa fa-archive
   # novel: /novel/ || fa fa-gamepad
   # game: /game/ || fa fa-gamepad
-  memory: /memory/ || fa fa-smile-wink
-  debate: https://thinkwee.top/debate/ || fa fa-bots
+  Memory: /memory/ || fa fa-smile-wink
+  GPTDebate: https://thinkwee.top/debate/ || fa fa-bots
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
