@@ -18,13 +18,13 @@ html: true
     -   **🙋🏻‍♂ Now actively seeking Ph.D. opportunities (2024 Fall/2023 Spring) on NLP! **
 
 # Research Interests
--   My research interests focus on exploring the intelligence of NLP models during the process of compressing text into model parameters. I believe that in the process of language compression lies the birth of knowledge and intelligence. 
--   I also started to explore the next stage of intelligence in natural languages by studying LLM multi-agent behaviors in a complex environment or society. It is still an early exploration and I am interested in several potential research directions, including:
-    -   self-organization and automatic differentiation in multi-agent collaboration
-    -   alignment in multi-agent activity
-    -   build and use complicated tools with multi-agent collaboration
+-   I focus on exploring the intelligence in deep natural language processing models when **compressing and summarizing languages**. I believe that in the process of language compression lies the birth of knowledge and intelligence. 
+-   I also started to explore the next stage of intelligence in natural languages by studying **LLM multi-agent behaviors in a complex environment or society**. It is still an early exploration and I am interested in several potential research directions, including:
+    -   let LLMs build and use complicated tools with multi-agent collaboration
+    -   self-organization and automatic job differentiation in multi-agent collaboration
+    -   alignment in multi-agent activities
     -   improve the communication efficiency among agents
-    -   multi-agent activities improve LLM
+    -   make multi-agent activities improve LLMs
 
 # Research Details
 -   More Comprehensive and Factual Summarization: 
