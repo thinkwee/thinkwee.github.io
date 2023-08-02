@@ -14,7 +14,7 @@ html: true
 	-	2014-2018: Bachelor of Communication Engineering from BUPT
 	-	2018-2021: Master of Computer Engineering in CIST Lab@BUPT
 	-	2021-2023: NLP Researcher, Tencent
-	-	**2023.8**: I will be working as a RA at [THUNLP](https://nlp.csai.tsinghua.edu.cn/), in collboration with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/)
+	-	**2023.8**: I will be working as a RA at [THUNLP](https://nlp.csai.tsinghua.edu.cn/), in collaboration with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/)
 	-	**Now actively seeking for Ph.D opportunities (2024 Fall/2023 Spring) on NLP!**
 
 # Research Interests
