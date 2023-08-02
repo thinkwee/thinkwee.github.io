@@ -10,42 +10,42 @@ html: true
 <center>2023.5 at XiaMen</center>
 
 # About Me
--	Hello, I'm Wei Liu (刘维). Here are my [Email](mailto:thinkwee2767@gmail.com), [Github](https://github.com/thinkwee) and [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ).
-	-	2014-2018: Bachelor of Communication Engineering from BUPT
-	-	2018-2021: Master of Computer Engineering in CIST Lab@BUPT
-	-	2021-2023: NLP Researcher, Tencent
-	-	**2023.8**: I will be working as a RA at [THUNLP](https://nlp.csai.tsinghua.edu.cn/), in collaboration with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/)
-	-	**Now actively seeking for Ph.D opportunities (2024 Fall/2023 Spring) on NLP!**
+-   Hello, I'm Wei Liu (刘维). Here are my [Email](mailto:thinkwee2767@gmail.com), [Github](https://github.com/thinkwee) and [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ).
+    -   2014-2018: Bachelor of Communication Engineering from BUPT
+    -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
+    -   2021-2023: NLP Researcher, Tencent
+    -   **2023.8**: I will be working as a RA at [THUNLP](https://nlp.csai.tsinghua.edu.cn/), in collaboration with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/)
+    -   **Now actively seeking Ph.D. opportunities (2024 Fall/2023 Spring) on NLP!**
 
 # Research Interests
--	My research interests focus on exploring the intelligence of NLP models during the process of compressing text into model parameters. I believe that in the process of language compression lies the birth of knowledge and intelligence. 
--	I also started to explore the next stage of intelligence in natural languages by studying LLM multi-agents' behaviors in a complex environment or society. It is still an early exploration and I am interested in several potential research directions, including:
-	-	self-organization and automatic differentiation in multi-agent collaboration
-	-	alignment in multi-agent activity
-	-	build and use complicated tools with multi-agent collaboration
-	-	improve the communication efficiency among agents
-	-	multi-agent activities improve LLM
+-   My research interests focus on exploring the intelligence of NLP models during the process of compressing text into model parameters. I believe that in the process of language compression lies the birth of knowledge and intelligence. 
+-   I also started to explore the next stage of intelligence in natural languages by studying LLM multi-agent behaviors in a complex environment or society. It is still an early exploration and I am interested in several potential research directions, including:
+    -   self-organization and automatic differentiation in multi-agent collaboration
+    -   alignment in multi-agent activity
+    -   build and use complicated tools with multi-agent collaboration
+    -   improve the communication efficiency among agents
+    -   multi-agent activities improve LLM
 
 # Research Details
--	More Comprehensive and Factual Summarization: 
-	-	Introduce Determinantal Point Processes into Abstractive Summarization to solve the attention degeneration problem<sup>[1]</sup>.
-	-	Discover the subjective bias in public summarization datasets which leads to the text degeneration<sup>[2]</sup>. 
-	-	Design a fine-tuning schema based on mutual information that minimizes hallucination in summarization<sup>[3]</sup>. 
-	-	Improve the sentiment-consistency in abstractive summarization through a memory-based approach<sup>[4]</sup>.
-	-	Solve challenges including Scientific Paper Summarization, Multi-lingual and Low-Resource Summarization and Extreme Long Text Summarization<sup>[5,6,7]</sup>.
--	More Accurate and Controllable Keyphrase Prediction: 
-	-	Consider Keyphrase Ranking as a MRC task which better leverages PLM to improve performance. (Patent-only)
-	-	Develop a unified present/absent Keyphrase Prediction method<sup>[8]</sup>. 
-	-	Explore Controllable Keyphrase Generation as an early attempt in prompt engineering<sup>[9]</sup>. 
--	We will release a repo for building complicaed tools within a multi-agent virtual environment.
+-   More Comprehensive and Factual Summarization: 
+    -   Introduce Determinantal Point Processes into Abstractive Summarization to solve the attention degeneration problem<sup>[1]</sup>.
+    -   Discover the subjective bias in public summarization datasets which leads to text degeneration<sup>[2]</sup>. 
+    -   Design a fine-tuning schema based on mutual information that minimizes hallucination in summarization<sup>[3]</sup>. 
+    -   Improve the sentiment consistency in abstractive summarization through a memory-based approach<sup>[4]</sup>.
+    -   Solve challenges including Scientific Paper Summarization, Multi-lingual and Low-Resource Summarization, and Extreme Long Text Summarization<sup>[5,6,7]</sup>.
+-   More Accurate and Controllable Keyphrase Prediction: 
+    -   Consider Keyphrase Ranking as an MRC task that better leverages PLM to improve performance. (Patent-only)
+    -   Develop a unified present/absent Keyphrase Prediction method<sup>[8]</sup>. 
+    -   Explore Controllable Keyphrase Generation as an early attempt in prompt engineering<sup>[9]</sup>. 
+-   We will release a repo for building complicated tools within a multi-agent virtual environment.
 
 # Industrial Experience
--	At Tencent, I utilize NLP and other deep learning methods to improve the performance of News Feed Recommendation and Advertising.
-	-	Improve the NLU ability for News Feed Recommendation by more accurate and controllable keyphrase prediction
-	-	Introducing non-commercial behaviours into advertising modeling through graph modeling.
-	-	Explore stable and end-to-end feature quantization methods for Advertising models.
-	-	Diverse user interest modeling in a diffusion-based way<sup>[10]</sup>.
-	-	Achieve better tradeoff between single-tower and two-tower models during the recall/pre-rank stage in Advertising<sup>[11]</sup>.
+-   At Tencent, I utilize NLP and other deep learning methods to improve the performance of News Feed Recommendations and Advertising.
+    -   Improve the NLU ability for News Feed Recommendation by more accurate and controllable keyphrase prediction
+    -   Introducing non-commercial behaviors into advertising modeling through graph modeling.
+    -   Explore stable and end-to-end feature quantization methods for Advertising models.
+    -   Diverse user interest modeling in a diffusion-based way<sup>[10]</sup>.
+    -   Achieve better tradeoffs between single-tower and two-tower models during the recall/pre-rank stage in Advertising<sup>[11]</sup>.
 
 # Publications
 -	[**My Google Scholar**](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ)
