@@ -13,7 +13,7 @@ html: true
 -   Hello, I'm Wei Liu (刘维). Here are my [Email](mailto:thinkwee2767@gmail.com), [Github](https://github.com/thinkwee) and [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ).
     -   2014-2018: Bachelor of Communication Engineering from BUPT
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
-    -   2021-2023: NLP Researcher, Tencent
+    -   2021-2023: NLP Researcher, [Tencent](https://www.tencent.com/en-us/about.html)
     -   **2023.8**: I will be working as a RA at [THUNLP](https://nlp.csai.tsinghua.edu.cn/), in collaboration with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/)
     -   **🙋🏻‍♂ Now actively seeking Ph.D. opportunities (2024 Fall/2023 Spring) on NLP! **
 
