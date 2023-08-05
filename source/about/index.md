@@ -11,7 +11,7 @@ html: true
 
 # About Me
 -   Hello, I'm Wei Liu (刘维). Here are my [Email](mailto:thinkwee2767@gmail.com), [Github](https://github.com/thinkwee) and [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ).
-    -   2014-2018: Bachelor of Communication Engineering from BUPT
+    -   2014-2018: Bachelor of Communication Engineering in BUPT
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
     -   2021-2023: NLP Researcher, [Tencent](https://www.tencent.com/en-us/about.html)
     -   **2023.8**: I will be working as a RA at [THUNLP](https://nlp.csai.tsinghua.edu.cn/), in collaboration with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/)
@@ -28,20 +28,20 @@ html: true
 
 # Research Details
 -   More Comprehensive and Factual Summarization: 
-    -   Introduce Determinantal Point Processes into Abstractive Summarization to solve the attention degeneration problem<sup>[1]</sup>.
+    -   Introduce Determinantal Point Processes to solve the attention degeneration in Summarization<sup>[1]</sup>.
     -   Discover the subjective bias in public summarization datasets which leads to text degeneration<sup>[2]</sup>. 
     -   Design a fine-tuning schema based on mutual information that minimizes hallucination in summarization<sup>[3]</sup>. 
     -   Improve the sentiment consistency in abstractive summarization through a memory-based approach<sup>[4]</sup>.
-    -   Solve challenges including Scientific Paper Summarization, Multi-lingual and Low-Resource Summarization, and Extreme Long Text Summarization<sup>[5,6,7]</sup>.
+    -   Scientific Paper Summarization, Multi-lingual Lay Summarization, Long Document Summarization<sup>[5,6,7]</sup>.
 -   More Accurate and Controllable Keyphrase Prediction: 
     -   Consider Keyphrase Ranking as an MRC task that better leverages PLM to improve performance. (Patent-only)
     -   Develop a unified present/absent Keyphrase Prediction method<sup>[8]</sup>. 
-    -   Explore Controllable Keyphrase Generation as an early attempt in prompt engineering<sup>[9]</sup>. 
--   We will release a repo for building complicated tools within a multi-agent virtual environment.
+    -   Explore Controllable Keyphrase Generation as an early attempt at prompt engineering<sup>[9]</sup>. 
+-   We will release a repo for building complicated tools within a LLM multi-agent virtual environment.
 
 # Industrial Experience
--   At Tencent, I utilize NLP and other deep learning methods to improve the performance of News Feed Recommendations and Advertising.
-    -   Improve the NLU ability for News Feed Recommendation by more accurate and controllable keyphrase prediction
+-   At Tencent, I aim to improve the performance of News Feed Recommendations and Advertising.
+    -   Improve the NLU ability for News Feed Recommendation by more accurate and controllable keyphrase prediction.
     -   Introducing non-commercial behaviors into advertising modeling through graph modeling.
     -   Explore stable and end-to-end feature quantization methods for Advertising models.
     -   Diverse user interest modeling in a diffusion-based way<sup>[10]</sup>.
