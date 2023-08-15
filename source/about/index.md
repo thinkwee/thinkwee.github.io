@@ -126,6 +126,7 @@ background-color: #f2f2f2;
 </tr>
 <tr>
 <td>
+<a href="https://github.com/thinkwee/co2sum" class="link">code</a>
 <a href="https://arxiv.org/pdf/2112.01147.pdf" class="link">paper</a>
 </td>
 </tr>
@@ -171,6 +172,7 @@ background-color: #f2f2f2;
 </tr>
 <tr class="even">
 <td>
+<a href="https://github.com/thinkwee/multiling2019_wiki" class="link">code</a>
 <a href="https://www.aclweb.org/anthology/W19-8904.pdf" class="link">paper</a>
 </td>
 </tr>
@@ -217,12 +219,13 @@ background-color: #f2f2f2;
 </tr>
 <tr>
 <td>
+<a href="https://github.com/m1594730237/FastAndConstrainedKeyphrase" class="link">code</a>
 <a href="https://ojs.aaai.org/index.php/AAAI/article/download/21402/version/19689/21151" class="link">paper</a>
 </td>
 </tr>
 <tr class="even">
 <td rowspan="4" style="vertical-align: middle;"></td>
-<td><strong>[10] In Submission To SCIS</strong></td>
+<td><strong>[10] In Submission</strong></td>
 </tr>
 <tr class="even">
 <td>Anonymous</td>
@@ -235,7 +238,7 @@ background-color: #f2f2f2;
 </tr>
 <tr>
 <td rowspan="4" style="vertical-align: middle;"></td>
-<td><strong>[11] In Submission to CIKM</strong></td>
+<td><strong>[11] In Submission</strong></td>
 </tr>
 <tr>
 <td>Anonymous</td>
