@@ -5,7 +5,7 @@ html: true
 ***
 
 <p align="center">
-  <img src="https://thinkwee.top/img/avatar.jpg" alt="Your Image Description" width="200" height="200">
+  <img src="/img/avatar.jpg" alt="Your Image Description" width="200" height="200">
 </p>
 <center>2023.5 at XiaMen</center>
 
@@ -37,7 +37,8 @@ html: true
     -   Consider Keyphrase Ranking as an MRC task that better leverages PLM to improve performance. (Patent-only)
     -   Develop a unified present/absent Keyphrase Prediction method<sup>[8]</sup>. 
     -   Explore Controllable Keyphrase Generation as an early attempt at prompt engineering<sup>[9]</sup>. 
--   We will release a repo for building complicated tools within a LLM multi-agent virtual environment.
+-   Multi-Agents powered by LLMs:
+    -   **Release a repo for building complicated tools within a LLM multi-agent virtual environment: [ChatDev](https://github.com/OpenBMB/ChatDev)<sup>[12]</sup>**
 
 # Industrial Experience
 -   At Tencent, I aim to improve the performance of News Feed Recommendations and Advertising.
@@ -83,7 +84,7 @@ background-color: #f2f2f2;
 
 <table>
 <tr>
-<td rowspan="4" style="vertical-align: middle;"><img src="https://s1.ax1x.com/2023/02/16/pSHHBSs.png" width="150"></td>
+<td rowspan="4" style="vertical-align: middle;"><img src="/img/DivCNN.png" width="150"></td>
 <td><strong>[1] In Conclusion Not Repetition: Comprehensive Abstractive Summarization with Diversified Attention Based on Determinantal Point Processes</strong></td>
 </tr>
 <tr>
@@ -99,7 +100,7 @@ background-color: #f2f2f2;
 </td>
 </tr>
 <tr class="even">
-<td rowspan="4" style="vertical-align: middle;"><img src="https://s1.ax1x.com/2023/02/16/pSHLEyn.png" width="150"></td>
+<td rowspan="4" style="vertical-align: middle;"><img src="/img/sub_bias.png" width="150"></td>
 <td><strong>[2] Subjective Bias in Abstractive Summarization</strong></td>
 </tr>
 <tr class="even">
@@ -115,7 +116,7 @@ background-color: #f2f2f2;
 </td>
 </tr>
 <tr>
-<td rowspan="4" style="vertical-align: middle;"><img src="https://s1.ax1x.com/2023/02/16/pSHjpo6.png" width="150"></td>
+<td rowspan="4" style="vertical-align: middle;"><img src="/img/co2sum.png" width="150"></td>
 <td><strong>[3] CO2Sum: Contrastive Learning for Factual-Consistent Abstractive Summarization</strong></td>
 </tr>
 <tr>
@@ -131,7 +132,7 @@ background-color: #f2f2f2;
 </td>
 </tr>
 <tr class="even">
-<td rowspan="4" style="vertical-align: middle;"><img src="https://s1.ax1x.com/2023/02/16/pSHjgTx.png" width="150"></td>
+<td rowspan="4" style="vertical-align: middle;"><img src="/img/senti_sum.png" width="150"></td>
 <td><strong>[4] A Multi-View Abstractive Summarization Model Jointly Considering Semantics and Sentiment</strong></td>
 </tr>
 <tr>
@@ -146,7 +147,7 @@ background-color: #f2f2f2;
 </td>
 </tr>
 <tr class="even">
-<td rowspan="4" style="vertical-align: middle;"><img src="https://s1.ax1x.com/2023/02/16/pSHLQW4.png" width="150"></td>
+<td rowspan="4" style="vertical-align: middle;"><img src="/img/cl19.png" width="150"></td>
 <td><strong>[5] CIST@CLSciSumm-19: Automatic Scientific Paper Summarization with Citances and Facets</strong></td>
 </tr>
 <tr>
@@ -161,7 +162,7 @@ background-color: #f2f2f2;
 </td>
 </tr>
 <tr class="even">
-<td rowspan="4" style="vertical-align: middle;"><img src="https://s1.ax1x.com/2023/02/16/pSHLoXn.png" width="150"></td>
+<td rowspan="4" style="vertical-align: middle;"><img src="/img/multilingual_sum.png" width="150"></td>
 <td><strong>[6] Multi-lingual Wikipedia Summarization and Title Generation On Low Resource Corpus</strong></td>
 </tr>
 <tr class="even">
@@ -177,7 +178,7 @@ background-color: #f2f2f2;
 </td>
 </tr>
 <tr>
-<td rowspan="4" style="vertical-align: middle;"><img src="https://s1.ax1x.com/2023/02/16/pSHOhE6.png" width="150"></td>
+<td rowspan="4" style="vertical-align: middle;"><img src="/img/cl20.png" width="150"></td>
 <td><strong>[7] CIST@CL-SciSumm 2020, LongSumm 2020: Automatic Scientific Document Summarization</strong></td>
 </tr>
 <tr>
@@ -192,7 +193,7 @@ background-color: #f2f2f2;
 </td>
 </tr>
 <tr class="even">
-<td rowspan="4" style="vertical-align: middle;"><img src="https://s1.ax1x.com/2023/02/16/pSHOLDI.png" width="150"></td>
+<td rowspan="4" style="vertical-align: middle;"><img src="/img/unikeyphrase.png" width="150"></td>
 <td><strong>[8] UniKeyphrase: A Unified Extraction and Generation Framework for Keyphrase Prediction</strong></td>
 </tr>
 <tr class="even">
@@ -208,7 +209,7 @@ background-color: #f2f2f2;
 </td>
 </tr>
 <tr>
-<td rowspan="4" style="vertical-align: middle;"><img src="https://s1.ax1x.com/2023/02/16/pSHXu24.png" width="150"></td>
+<td rowspan="4" style="vertical-align: middle;"><img src="/img/prompt_keyphrase.png" width="150"></td>
 <td><strong>[9] Fast and Constrained Absent Keyphrase Generation by Prompt-Based Learning</strong></td>
 </tr>
 <tr>
