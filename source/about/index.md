@@ -38,15 +38,15 @@ html: true
     -   Develop a unified present/absent Keyphrase Prediction method<sup>[8]</sup>. 
     -   Explore Controllable Keyphrase Generation as an early attempt at prompt engineering<sup>[9]</sup>. 
 -   Multi-Agents powered by LLMs:
-    -   **Release a repo for building complicated tools within a LLM multi-agent virtual environment: [ChatDev](https://github.com/OpenBMB/ChatDev)<sup>[12]</sup>**
+    -   **Release a repo for building complicated tools within a LLM multi-agent virtual environment: [ChatDev](https://github.com/OpenBMB/ChatDev)<sup>[10]</sup>**
 
 # Industrial Experience
 -   At Tencent, I aim to improve the performance of News Feed Recommendations and Advertising.
     -   Improve the NLU ability for News Feed Recommendation by more accurate and controllable keyphrase prediction.
     -   Introducing non-commercial behaviors into advertising modeling through graph modeling.
     -   Explore stable and end-to-end feature quantization methods for Advertising models.
-    -   Diverse user interest modeling in a diffusion-based way<sup>[10]</sup>.
-    -   Achieve better tradeoffs between single-tower and two-tower models during the recall/pre-rank stage in Advertising<sup>[11]</sup>.
+    -   Diverse user interest modeling in a diffusion-based way<sup>[In Submission]</sup>.
+    -   Achieve better tradeoffs between single-tower and two-tower models during the recall/pre-rank stage in Advertising<sup>[In Submission]</sup>.
 
 # Publications
 -	[**My Google Scholar**](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ)
@@ -225,29 +225,17 @@ background-color: #f2f2f2;
 </td>
 </tr>
 <tr class="even">
-<td rowspan="4" style="vertical-align: middle;"></td>
-<td><strong>[10] In Submission</strong></td>
-</tr>
-<tr class="even">
-<td>Anonymous</td>
-</tr>
-<tr class="even">
-<td>Anonymous</td>
-</tr>
-<tr class="even">
-<td>Anonymous</td>
+<td rowspan="4" style="vertical-align: middle;"><img src="/img/chatdev.png" width="150"></td>
+<td><strong>[10] Communicative Agents for Software Development</strong></td>
 </tr>
 <tr>
-<td rowspan="4" style="vertical-align: middle;"></td>
-<td><strong>[11] In Submission</strong></td>
+<td>Arxiv</td>
 </tr>
 <tr>
-<td>Anonymous</td>
+<td>Chen Qian, Xin Cong, <strong>Wei Liu</strong>, Cheng Yang, Weize Chen, Yusheng Su, Yufan Dang, Jiahao Li, Juyuan Xu, Dahai Li, Zhiyuan Liu, Maosong Sun</td>
 </tr>
 <tr>
-<td>Anonymous</td>
-</tr>
-<tr>
-<td>Anonymous</td>
+<td><a href="https://github.com/OpenBMB/ChatDev" class="link">code</a>
+<a href="https://arxiv.org/abs/2307.07924" class="link">paper</a></td>
 </tr>
 </table>

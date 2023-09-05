@@ -52,6 +52,7 @@ $$
 $$
 Q(s,a) = \sum_{s^{'}} P(s^{'}|s,a)[R(s,a,s^{'}) + \gamma Q(s^{'},a^{'})]
 $$
+- 注意以上讨论的都是最优价值函数和最优q函数，都是取max，即计算最优策略下的return，区别于on-policy价值函数和q函数，计算的是期望
 
 ## reward shaping
 - 可以通过修改奖励函数R（而不改变最优策略）来使强化学习过程更加稳定
@@ -229,4 +230,9 @@ $$
 \frac1N \sum_{j=1}^N\frac{u_j(s)\triangledown_{\theta}\pi_{\theta}(s,a_j)}{\pi_{\theta}(s,a_j)}
 $$
 
-
+# MARL (Multi-Agent Rl)
+- 先挖坑
+- <img src="/img/marl1.png" width="1200">
+- <img src="/img/marl2.png" width="1200">
+- <img src="/img/marl3.png" width="1200">
+- <img src="/img/marl4.png" width="1200">
