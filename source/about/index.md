@@ -15,7 +15,7 @@ html: true
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
     -   2021-2023: NLP Researcher, [Tencent](https://www.tencent.com/en-us/about.html)
     -   **2023.8**: I will be working as a RA at [THUNLP](https://nlp.csai.tsinghua.edu.cn/), in collaboration with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/)
-    -   **🙋🏻‍♂ Now actively seeking Ph.D. opportunities (2024 Spring/Fall) on NLP! **
+    -   **🙋🏻‍♂ Now actively seeking Ph.D. opportunities (2024 Spring/Fall) on NLP/LLM! **
 
 # Research Interests
 -   I focus on exploring the intelligence in deep natural language processing models when **compressing and summarizing languages**. I believe that in the process of language compression lies the birth of knowledge and intelligence. 

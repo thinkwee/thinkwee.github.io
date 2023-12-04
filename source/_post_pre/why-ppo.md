@@ -13,7 +13,9 @@ https://arxiv.org/pdf/2305.16960.pdf
 https://arxiv.org/pdf/2305.16334.pdf
 https://arxiv.org/pdf/2305.13246.pdf
 https://arxiv.org/pdf/2306.03341.pdf
-https://arxiv.org/pdf/2306.01693.pdf Fine-Grained Human Feedback Gives Better Rewards for anguage Model Training
+https://arxiv.org/pdf/2306.01693.pdf 
+
+Fine-Grained Human Feedback Gives Better Rewards for Language Model Training
 
 ppo实现了instruct-following吗
 rlfh实现了instruct-following吗
