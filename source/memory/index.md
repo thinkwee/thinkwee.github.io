@@ -1,8 +1,10 @@
 ---
-title: 一些有趣的东西
+title: Memory
 comments: false
 html: true
 ---
+
+Something interesting to commemorate the fun times we had in the past.
 
 ***
 
@@ -11,13 +13,13 @@ html: true
 <iframe width="980" height="410" src="https://mars.nasa.gov/layout/embed/send-your-name/future/certificate/?cn=579385605414" frameborder="0"></iframe>
 <iframe width="980" height="410" src="https://mars.nasa.gov/layout/embed/send-your-name/future/certificate/?cn=553271652893" frameborder="0"></iframe>
 
-# 海口攻略
+# Trip in QuanZhou
 
-<iframe src="https://www.ldmap.net/map.html?id=6b2fbd92-af2c-49d3-873c-0f06954fc26e&iframe=true&left_menu_vis=true"  height="722"   width="1519"></iframe>
+<iframe src="https://www.ldmap.net/map.html?id=2bbfe5b9-5c1f-444a-b3fc-2b8c8582ae30&iframe=true&left_menu_vis=true"  height="722"   width="1519"></iframe>
 
-# 交互小说demo
+# Demo for interactive novel
 
-- [罗生门](https://thinkwee.top/novel/)
+- [In the woods](https://thinkwee.top/novel/)
 
-# 100天纪念
+# RPG Game for 100 Days Anniversary
 - [Game](https://thinkwee.top/game/)
