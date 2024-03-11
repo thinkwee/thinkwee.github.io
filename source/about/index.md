@@ -60,8 +60,7 @@ html: true
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
     -   2021-2023: NLP Researcher, [Tencent](https://www.tencent.com/en-us/about.html)
     -   2023.8-present: Working as a RA at [THUNLP](https://nlp.csai.tsinghua.edu.cn/), supervised by Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/)
-    -   2023.11: Just had a heart surgery, now i am the iron man! (come back soon)
-    -   **🙋🏻‍♂ Now actively seeking Ph.D. opportunities (2024 Spring/Fall) on NLP/LLM! **
+    -   **Now I am hiring for research interns! See details [here](https://thinkwee.top/hiring/)**
 
 # Research Interests
 -   Natural Language Generation, especially on **Compressing and Summarizing Languages**. 
