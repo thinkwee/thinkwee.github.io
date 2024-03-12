@@ -44,7 +44,7 @@ markdown: true
 
 拟招募若干名校园实习生在该方向进行科学研究和工程落地。
 
-感兴趣的同学可以给我[发邮件](mailto:thinkwee2767@gmail.com)（附上你的简历）～期待你的加入！
+感兴趣的同学可以给我[发邮件:thinkwee2767@gmail.com](mailto:thinkwee2767@gmail.com)（附上你的简历）～期待你的加入！
 
 
 
