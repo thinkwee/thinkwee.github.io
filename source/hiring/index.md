@@ -12,7 +12,7 @@ markdown: true
 
 与THUNLP实验室相关教授、博后和科研助理合作，就大模型驱动的自主智能体方向开展科研与研发工作。重点探索基于多智能体协作与博弈、多智能体软件开发、多智能体的组织行为学等。这是一个新兴且前沿的研究课题，充满足够的想象空间和潜力，期待你的加入！
 
-我们组部分工作（[详细介绍]((https://nlp.csai.tsinghua.edu.cn/join_us/research_direction/details/?slug=large_model_swarm_intelligence_doctor)))：
+我们组部分工作([详细介绍](https://nlp.csai.tsinghua.edu.cn/join_us/research_direction/details/?slug=large_model_swarm_intelligence_doctor))：
 
 - [ChatDev](https://github.com/OpenBMB/ChatDev)
 
