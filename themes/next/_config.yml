@@ -124,7 +124,7 @@ menu:
   # novel: /novel/ || fa fa-gamepad
   # game: /game/ || fa fa-gamepad
   Memory: /memory/ || fa fa-smile-wink
-  Hiring: /hiring/ || fa fa-briefcase
+  # Hiring: /hiring/ || fa fa-briefcase
   GPTDebate: https://thinkwee.top/debate/ || fa fa-robot
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
