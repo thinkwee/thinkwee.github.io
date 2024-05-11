@@ -2,16 +2,18 @@
 title: DeepBayes 2018
 date: 2018-09-22 10:26:48
 tags: [bayes,math,machine learning]
-categories: 数学
+categories: Math
 mathjax: true
 html: true
 ---
 
 Deep-Bayes 2018 Summer Camp的习题
 填不动了，就到这吧
-<!--more-->  
+
+<!--more-->
 
 # Deep<span style="color:green">|</span>Bayes summer school. Practical session on EM algorithm
+
 - 第一题就是应用EM算法还原图像，人像和背景叠加在一起，灰度值的概率分布形式已知，设计人像在背景中的位置为隐变量，进行EM迭代推断。
 - 具体说明在官网和下面的notebook注释中有，实际上公式已经给出，想要完成作业就是把公式打上去，可以自己推一下公式。
 
@@ -20,6 +22,7 @@ One of the school organisers decided to prank us and hid all games for our Thurs
 Let's find the prankster!
 
 When you recognize [him or her](http://deepbayes.ru/#speakers), send:
+
 * name
 * reconstructed photo
 * this notebook with your code (doesn't matter how awful it is :)
@@ -28,13 +31,11 @@ __privately__ to [Nadia Chirkova](https://www.facebook.com/nadiinchi) at Faceboo
 
 Please, note that you have only __one attempt__ to send a message!
 
-
 ```python
 import numpy as np
 from matplotlib import pyplot as plt
 %matplotlib inline
 ```
-
 
 ```python
 DATA_FILE = "data_em"
@@ -47,25 +48,17 @@ We are given a set of $K$ images with shape $H \times W$.
 
 It is represented by a numpy-array with shape $H \times W \times K$:
 
-
 ```python
 X = np.load(DATA_FILE)
 ```
-
 
 ```python
 X.shape # H, W, K
 ```
 
-
-
-
     (100, 200, 1000)
 
-
-
 Example of noisy image:
-
 
 ```python
 plt.imshow(X[:, :, 0], cmap="Greys_r")
@@ -88,32 +81,29 @@ print(X[1,:,0])
      255. 166. 255.   0. 255.  42. 255.  44. 255. 255. 255. 255. 255. 255.
      255. 255.  28.   0.  52. 255.  81. 104. 255. 255.  48. 255. 255. 255.
      102.  25.  30.  73.]
-    
-
 
 ![i0Ihiq.png](https://s1.ax1x.com/2018/10/20/i0Ihiq.png)
-
 
 ### Goal and plan
 
 Our goal is to find face $F$ ($H \times w$).
 
 Also, we will find:
+
 * $B$: background  ($H \times W$)
 * $s$: noise standard deviation (float)
 * $a$: discrete prior over face positions ($W-w+1$)
 * $q(d)$: discrete posterior over face positions for each image  (($W-w+1$) x $K$)
 
 Implementation plan:
-1. calculating $log\, p(X  \mid d,\,F,\,B,\,s)$
-1. calculating objective
-1. E-step: finding $q(d)$
-1. M-step: estimating $F,\, B, \,s, \,a$
-1. composing EM-algorithm from E- and M-step
 
+1. calculating $log\, p(X  \mid d,\,F,\,B,\,s)$
+2. calculating objective
+3. E-step: finding $q(d)$
+4. M-step: estimating $F,\, B, \,s, \,a$
+5. composing EM-algorithm from E- and M-step
 
 ### Implementation
-
 
 ```python
 ### Variables to test implementation
@@ -129,6 +119,7 @@ tq = tq / tq.sum(axis=0)[np.newaxis, :]
 ```
 
 #### 1. Implement calculate_log_probability
+
 For $k$-th image $X_k$ and some face position $d_k$:
 $$p(X_k  \mid d_k,\,F,\,B,\,s) = \prod_{ij}
     \begin{cases} 
@@ -138,9 +129,9 @@ $$p(X_k  \mid d_k,\,F,\,B,\,s) = \prod_{ij}
     \end{cases}$$
 
 Important notes:
+
 * Do not forget about logarithm!
 * This implementation should use no more than 1 cycle!
-
 
 ```python
 def calculate_log_probability(X, F, B, s):
@@ -189,7 +180,6 @@ def calculate_log_probability(X, F, B, s):
     return ll
 ```
 
-
 ```python
 # run this cell to test your implementation
 expected = np.array([[-3541.69812064, -5541.69812064],
@@ -201,17 +191,17 @@ print("OK")
 ```
 
     OK
-    
 
 #### 2. Implement calculate_lower_bound
+
 $$\mathcal{L}(q, \,F, \,B,\, s,\, a) = \sum_k \biggl (\mathbb{E} _ {q( d_k)}\bigl ( \log p(  X_{k}  \mid {d}_{k} , \,F,\,B,\,s) + 
     \log p( d_k  \mid a)\bigr) - \mathbb{E} _ {q( d_k)} \log q( d_k)\biggr) $$
-    
+
 Important notes:
+
 * Use already implemented calculate_log_probability! 
 * Note that distributions $q( d_k)$ and $p( d_k  \mid a)$ are discrete. For example, $P(d_k=i \mid a) = a[i]$.
 * This implementation should not use cycles!
-
 
 ```python
 def calculate_lower_bound(X, F, B, s, a, q):
@@ -251,10 +241,9 @@ def calculate_lower_bound(X, F, B, s, a, q):
     for k in range(K):
         dk_expection += np.multiply(np.log(a),q[:,k])
     L = np.sum(ll_expectation)-np.sum(q_expectation)+np.sum(dk_expection)
-    
+
     return L
 ```
-
 
 ```python
 # run this cell to test your implementation
@@ -265,21 +254,21 @@ print("OK")
 ```
 
     OK
-    
 
 #### 3. Implement E-step
+
 $$q(d_k) = p(d_k \mid X_k, \,F, \,B, \,s,\, a) = 
 \frac {p(  X_{k}  \mid {d}_{k} , \,F,\,B,\,s)\, p(d_k \mid a)}
 {\sum_{d'_k} p(  X_{k}  \mid d'_k , \,F,\,B,\,s) \,p(d'_k \mid a)}$$
 
 Important notes:
+
 * Use already implemented calculate_log_probability!
 * For computational stability, perform all computations with logarithmic values and apply exp only before return. Also, we recommend using this trick:
-$$\beta_i = \log{p_i(\dots)} \quad\rightarrow \quad
+  $$\beta_i = \log{p_i(\dots)} \quad\rightarrow \quad
   \frac{e^{\beta_i}}{\sum_k e^{\beta_k}} = 
   \frac{e^{(\beta_i - \max_j \beta_j)}}{\sum_k e^{(\beta_k- \max_j \beta_j)}}$$
 * This implementation should not use cycles!
-
 
 ```python
 def run_e_step(X, F, B, s, a):
@@ -320,7 +309,6 @@ def run_e_step(X, F, B, s, a):
     return q
 ```
 
-
 ```python
 # run this cell to test your implementation
 expected = np.array([[ 1.,  1.],
@@ -332,9 +320,9 @@ print("OK")
 ```
 
     OK
-    
 
 #### 4. Implement M-step
+
 $$a[j] = \frac{\sum_k q( d_k = j )}{\sum_{j'}  \sum_{k'} q( d_{k'} = j')}$$
 $$F[i, m] = \frac 1 K  \sum_k \sum_{d_k} q(d_k)\, X^k[i,\, m+d_k]$$
 $$B[i, j] = \frac {\sum_k \sum_{ d_k:\, (i, \,j) \,\not\in faceArea(d_k)} q(d_k)\, X^k[i, j]} 
@@ -345,10 +333,10 @@ $$s^2 = \frac 1 {HWK}   \sum_k \sum_{d_k} q(d_k)
 where $Model^{d_k}[i, j]$ is an image composed from background and face located at $d_k$.
 
 Important notes:
+
 * Update parameters in the following order: $a$, $F$, $B$, $s$.
 * When the parameter is updated, its __new__ value is used to update other parameters.
 * This implementation should use no more than 3 cycles and no embedded cycles!
-
 
 ```python
 def run_m_step(X, q, w):
@@ -380,7 +368,7 @@ def run_m_step(X, q, w):
     K = X.shape[2]
     W = X.shape[1]
     H = X.shape[0]
-    
+
     a = np.sum(q,axis=1) / np.sum(q)
 
     F = np.zeros((H,w))
@@ -388,8 +376,8 @@ def run_m_step(X, q, w):
         for dk in range(W-w+1):
             F+=q[dk][k]*X[:,dk:dk+w,k]
     F = F / K
-            
-    
+
+
     B = np.zeros((H,W))
     denominator = np.zeros((H,W))
     for k in range(K):
@@ -400,7 +388,7 @@ def run_m_step(X, q, w):
             denominator += q[dk][k]*mask
     denominator = 1/denominator
     B = B * denominator
-    
+
     s = 0
     for k in range(K):
         for dk in range(W-w+1):
@@ -415,12 +403,9 @@ def run_m_step(X, q, w):
             temp *= q[dk][k]
             s += temp
     s = np.sqrt(s /(H*W*K))          
-    
-    return F,B,s,a
-    
-    
-```
 
+    return F,B,s,a
+```
 
 ```python
 # run this cell to test your implementation
@@ -437,13 +422,12 @@ print("OK")
 ```
 
     OK
-    
 
 #### 5. Implement EM_algorithm
+
 Initialize parameters, if they are not passed, and then repeat E- and M-steps till convergence.
 
 Please note that $\mathcal{L}(q, \,F, \,B, \,s, \,a)$ must increase after each iteration.
-
 
 ```python
 def run_EM(X, w, F=None, B=None, s=None, a=None, tolerance=0.001,
@@ -501,10 +485,7 @@ def run_EM(X, w, F=None, B=None, s=None, a=None, tolerance=0.001,
             break
     LL = np.array(LL)
     return F,B,s,a,LL
-        
-    
 ```
-
 
 ```python
 # run this cell to test your implementation
@@ -515,7 +496,6 @@ print("OK")
 ```
 
     OK
-    
 
 ### Who is the prankster?
 
@@ -524,7 +504,6 @@ To speed up the computation, we will perform 5 iterations over small subset of i
 If everything is implemented correctly, you will recognize the prankster (remember he is the one from [DeepBayes team](http://deepbayes.ru/#speakers)).
 
 Run EM-algorithm:
-
 
 ```python
 def show(F, i=1, n=1):
@@ -535,7 +514,6 @@ def show(F, i=1, n=1):
     plt.imshow(F, cmap="Greys_r")
     plt.axis("off")
 ```
-
 
 ```python
 F, B, s, a = [None] * 4
@@ -548,20 +526,15 @@ for i, (l, it) in enumerate(zip(lens, iters)):
     show(F, i+1, 5)
 ```
 
-
 ![i0omSf.png](https://s1.ax1x.com/2018/10/20/i0omSf.png)
 
-
 And this is the background:
-
 
 ```python
 show(B)
 ```
 
-
 ![i0I4J0.png](https://s1.ax1x.com/2018/10/20/i0I4J0.png)
-
 
 ### Optional part: hard-EM
 
@@ -570,10 +543,10 @@ $$q(d_k) = \begin{cases} 1, \, if d_k = \tilde d_k \\ 0, \, otherwise\end{cases}
 This modification simplifies formulas for $\mathcal{L}$ and M-step and speeds their computation up. However, the convergence of hard-EM is usually slow.
 
 If you implement hard-EM, add binary flag hard_EM to the parameters of the following functions:
+
 * calculate_lower_bound
 * run_e_step
 * run_m_step
 * run_EM
 
 After implementation, compare overall computation time for EM and hard-EM till recognizable F.
-

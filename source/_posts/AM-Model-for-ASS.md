@@ -5,27 +5,31 @@ tags:
   - abstractive summarization
   - math
   - machine learning
-  -	theory
+  - theory
   - nlp
 categories:
-  - 自然语言处理
+  - NLP
 author: Thinkwee
 mathjax: true 
 ---
 
 论文翻译：
--	A Neural Attention Model for Abstractive Sentence Summarization
+
+- A Neural Attention Model for Abstractive Sentence Summarization
 
 作者：
--	Alexander M. Rush(Facebook AI Research / Harvard SEAS)
--	Sumit Chopra(Facebook AI Research)
--	Jason Weston(Facebook AI Research)
-<!--more-->
+
+- Alexander M. Rush(Facebook AI Research / Harvard SEAS)
+- Sumit Chopra(Facebook AI Research)
+- Jason Weston(Facebook AI Research)
+  
+  <!--more-->
 
 ![i0IyQS.png](https://s1.ax1x.com/2018/10/20/i0IyQS.png)
 
 # 原文地址
--	[A Neural Attention Model for Abstractive Sentence Summarization](https://arxiv.org/pdf/1509.00685.pdf)
+
+- [A Neural Attention Model for Abstractive Sentence Summarization](https://arxiv.org/pdf/1509.00685.pdf)
 
 # 翻译
 

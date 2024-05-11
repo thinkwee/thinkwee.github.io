@@ -3,10 +3,13 @@ title: A summary of my Android apps:BuptRoom
 date: 2017-01-16 11:56:39
 tags: [code,android]
 categories: Android
+
 ---
+
 ***
 
 # 简介
+
 写了一个查询学校空闲教室的APP
 拉取学校教务处网站的信息，分类显示,还加了一些杂七杂八的
 毕竟第一次写android，什么都想尝试一下
@@ -22,23 +25,25 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
 ![i0IHL4.png](https://s1.ax1x.com/2018/10/20/i0IHL4.png)
 
 # 学习的内容
--	Android基本架构，组件，生命周期
--	Fragment的使用
--	Java库与库之间的调用
--	Github的使用
--	部署app
--	图像处理的一些方法
--	一个愚蠢的拉取网页内容的方式
--	GitHub第三方库的利用
--	颜色方面的知识
--	Android Material Design
--	简单的优化
--	多线程与Handler
+
+- Android基本架构，组件，生命周期
+- Fragment的使用
+- Java库与库之间的调用
+- Github的使用
+- 部署app
+- 图像处理的一些方法
+- 一个愚蠢的拉取网页内容的方式
+- GitHub第三方库的利用
+- 颜色方面的知识
+- Android Material Design
+- 简单的优化
+- 多线程与Handler
 
 # 解决的问题
+
 主要解决了这么几个问题
 
--	Android6.0以上的版本貌似权限需要动态验证，现在写的只支持5.0及以下版本，用到的permisson:
+- Android6.0以上的版本貌似权限需要动态验证，现在写的只支持5.0及以下版本，用到的permisson:
 
 ```Java
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
@@ -48,7 +53,7 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
 ```
 
--	网页是jsp动态网页，不能简单地parse，最后采用在webview中loadurl，执行javascript命令，需下载jsoup-1.9.2.jar这个包添加到库文件中
+- 网页是jsp动态网页，不能简单地parse，最后采用在webview中loadurl，执行javascript命令，需下载jsoup-1.9.2.jar这个包添加到库文件中
 
 ```Java
     final class MyWebViewClient extends WebViewClient {
@@ -68,7 +73,7 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
     }
 ```
 
--	写一个handler响应javascript命令,这样在content中就拿到String形式的html文件中body内容
+- 写一个handler响应javascript命令,这样在content中就拿到String形式的html文件中body内容
 
 ```Java
     final  class JavascriptHandler{
@@ -83,9 +88,7 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
     }
 ```
 
-
-
--	之后是字符串处理，根据教务处给的格式精简分类
+- 之后是字符串处理，根据教务处给的格式精简分类
 
 ```Java
     去逗号
@@ -95,7 +98,7 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
     for (String temp:contentstemp){
         content=content+temp;
     }
-    
+
     分组
     contents=content.split(" |:");
     String showcontent="";
@@ -116,7 +119,7 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
         }
         count++;
     }
-    
+
     SaveBuildingInfo是按教学楼分类存取一天教室，其中再按时间段分类存到j12,j34.....
     while (1 == 1) {
         if (contents[k].contains("楼") || contents[k].contains("节") || contents[k].contains("图"))
@@ -148,10 +151,9 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
     }
 ```
 
--	界面上套了一个NavigationView，没有什么特别设计的，因为没有设置多界面，就靠刷新TextView来伪装多个界面
+- 界面上套了一个NavigationView，没有什么特别设计的，因为没有设置多界面，就靠刷新TextView来伪装多个界面
 
-
--	尝试了MaterialDesign组件，加入一点系统时间方面的东西
+- 尝试了MaterialDesign组件，加入一点系统时间方面的东西
 
 ```Java
     final Calendar c = Calendar.getInstance();
@@ -162,7 +164,7 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
      mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK));
      mHour= c.get(Calendar.HOUR_OF_DAY);
      mMinute= c.get(Calendar.MINUTE);
-    
+
      if (mHour>=8&&mHour<10){
          nowtime="现在是一二节课";
      }else
@@ -182,7 +184,7 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
          nowtime="现在是十、十一节课";
      }else
     nowtime="现在是休息时间";
-    
+
      if("1".equals(mWay)){
          mWay ="天";
          daycount=6;
@@ -206,7 +208,7 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
          daycount=5;
      }
      Timestring=mYear + "年" + mMonth + "月" + mDay+"日"+"星期"+mWay;
-    
+
      FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
      fab.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -218,119 +220,123 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
 ```
 
 # 在GitHub上学到的
+
 此外还尝试引用了其他的一些GitHub库，学习了许多，包括调色盘，摇一摇模块，fir更新模块，滑动卡片界面等等
 部分GitHub repository链接在这里
--	滑动卡片界面：[Android-SwipeToDismiss](https://github.com/romannurik/Android-SwipeToDismiss)
--	fir更新模块:[UpdateDemo](https://github.com/hugeterry/UpdateDemo)
+
+- 滑动卡片界面：[Android-SwipeToDismiss](https://github.com/romannurik/Android-SwipeToDismiss)
+- fir更新模块:[UpdateDemo](https://github.com/hugeterry/UpdateDemo)
 
 还有一些直接写在代码里了，忘记原地址了....
--	摇一摇的传感器调用
-```Java
-public class ShakeService extends Service {
-    public static final String TAG = "ShakeService";
-    private SensorManager mSensorManager;
-    public boolean flag=false;
-    private ShakeBinder shakebinder= new ShakeBinder();
-    private String htmlbody="";
 
-    @Override
-    public void onCreate() {
-        // TODO Auto-generated method stub
-        super.onCreate();
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        Log.i(TAG,"Shake Service Create");
-    }
-
-    @Override
-    public void onDestroy() {
-        // TODO Auto-generated method stub
-        flag=false;
-        super.onDestroy();
-        mSensorManager.unregisterListener(mShakeListener);
-    }
-
-    @Override
-    public void onStart(Intent intent, int startId) {
-        // TODO Auto-generated method stub
-        super.onStart(intent, startId);
-        Log.i(TAG,"Shake Service Start");
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        // TODO Auto-generated method stub
-        mSensorManager.registerListener(mShakeListener,
-                mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                //SensorManager.SENSOR_DELAY_GAME,
-                50 * 1000); //batch every 50 milliseconds
-        htmlbody=intent.getStringExtra("htmlbody");
-
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-    private final SensorEventListener mShakeListener = new SensorEventListener() {
-        private static final float SENSITIVITY = 10;
-        private static final int BUFFER = 5;
-        private float[] gravity = new float[3];
-        private float average = 0;
-        private int fill = 0;
-
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int acc) {
-        }
-
-        public void onSensorChanged(SensorEvent event) {
-            final float alpha = 0.8F;
-
-            for (int i = 0; i < 3; i++) {
-                gravity[i] = alpha * gravity[i] + (1 - alpha) * event.values[i];
-            }
-
-            float x = event.values[0] - gravity[0];
-            float y = event.values[1] - gravity[1];
-            float z = event.values[2] - gravity[2];
-
-            if (fill <= BUFFER) {
-                average += Math.abs(x) + Math.abs(y) + Math.abs(z);
-                fill++;
-            } else {
-                Log.i(TAG, "average:"+average);
-                Log.i(TAG, "average / BUFFER:"+(average / BUFFER));
-                if (average / BUFFER >= SENSITIVITY) {
-                    handleShakeAction();//如果达到阈值则处理摇一摇响应
-                }
-                average = 0;
-                fill = 0;
-            }
-        }
-    };
-
-    protected void handleShakeAction() {
-        // TODO Auto-generated method stub
-        flag=true;
-        Toast.makeText(getApplicationContext(), "摇一摇成功", Toast.LENGTH_SHORT).show();
-        Intent intent= new Intent();
-        intent.putExtra("htmlbody",htmlbody);
-        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-        intent.setClassName(this,"thinkwee.buptroom.ShakeTestActivity");
-        startActivity(intent);
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        // TODO Auto-generated method stub
-        return shakebinder;
-    }
-    class ShakeBinder extends Binder{
-
-    }
-}
+- 摇一摇的传感器调用
+  
+  ```Java
+  public class ShakeService extends Service {
+  public static final String TAG = "ShakeService";
+  private SensorManager mSensorManager;
+  public boolean flag=false;
+  private ShakeBinder shakebinder= new ShakeBinder();
+  private String htmlbody="";
+  
+  @Override
+  public void onCreate() {
+     // TODO Auto-generated method stub
+     super.onCreate();
+     mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+     Log.i(TAG,"Shake Service Create");
+  }
+  
+  @Override
+  public void onDestroy() {
+     // TODO Auto-generated method stub
+     flag=false;
+     super.onDestroy();
+     mSensorManager.unregisterListener(mShakeListener);
+  }
+  
+  @Override
+  public void onStart(Intent intent, int startId) {
+     // TODO Auto-generated method stub
+     super.onStart(intent, startId);
+     Log.i(TAG,"Shake Service Start");
+  }
+  
+  @Override
+  public int onStartCommand(Intent intent, int flags, int startId) {
+     // TODO Auto-generated method stub
+     mSensorManager.registerListener(mShakeListener,
+             mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+             //SensorManager.SENSOR_DELAY_GAME,
+             50 * 1000); //batch every 50 milliseconds
+     htmlbody=intent.getStringExtra("htmlbody");
+  
+     return super.onStartCommand(intent, flags, startId);
+  }
+  
+  private final SensorEventListener mShakeListener = new SensorEventListener() {
+     private static final float SENSITIVITY = 10;
+     private static final int BUFFER = 5;
+     private float[] gravity = new float[3];
+     private float average = 0;
+     private int fill = 0;
+  
+     @Override
+     public void onAccuracyChanged(Sensor sensor, int acc) {
+     }
+  
+     public void onSensorChanged(SensorEvent event) {
+         final float alpha = 0.8F;
+  
+         for (int i = 0; i < 3; i++) {
+             gravity[i] = alpha * gravity[i] + (1 - alpha) * event.values[i];
+         }
+  
+         float x = event.values[0] - gravity[0];
+         float y = event.values[1] - gravity[1];
+         float z = event.values[2] - gravity[2];
+  
+         if (fill <= BUFFER) {
+             average += Math.abs(x) + Math.abs(y) + Math.abs(z);
+             fill++;
+         } else {
+             Log.i(TAG, "average:"+average);
+             Log.i(TAG, "average / BUFFER:"+(average / BUFFER));
+             if (average / BUFFER >= SENSITIVITY) {
+                 handleShakeAction();//如果达到阈值则处理摇一摇响应
+             }
+             average = 0;
+             fill = 0;
+         }
+     }
+  };
+  
+  protected void handleShakeAction() {
+     // TODO Auto-generated method stub
+     flag=true;
+     Toast.makeText(getApplicationContext(), "摇一摇成功", Toast.LENGTH_SHORT).show();
+     Intent intent= new Intent();
+     intent.putExtra("htmlbody",htmlbody);
+     intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+     intent.setClassName(this,"thinkwee.buptroom.ShakeTestActivity");
+     startActivity(intent);
+  }
+  
+  @Override
+  public IBinder onBind(Intent intent) {
+     // TODO Auto-generated method stub
+     return shakebinder;
+  }
+  class ShakeBinder extends Binder{
+  
+  }
+  }
+  ```
 
 ```
-
 # 独立网络拉取，并使用多线程
--	在之前的结构中网络拉取整合在欢迎界面的activity中，为了在主界面中添加刷新功能，随时调用网络拉取，我把网络拉取单独写成了一个类，需要的时候调用
--	然而在欢迎界面中显示欢迎动画和网络拉取在两个独立的线程中（为了使得动画不卡顿），这样就出现了可能欢迎动画做完了进入主界面时网络拉取还没有完成，传不了拉取的内容到主界面，最后的解决方案是设置网络拉取2s超时，若没拉取到则传一个错误的参数到启动主界面的activity中，提示刷新
+-    在之前的结构中网络拉取整合在欢迎界面的activity中，为了在主界面中添加刷新功能，随时调用网络拉取，我把网络拉取单独写成了一个类，需要的时候调用
+-    然而在欢迎界面中显示欢迎动画和网络拉取在两个独立的线程中（为了使得动画不卡顿），这样就出现了可能欢迎动画做完了进入主界面时网络拉取还没有完成，传不了拉取的内容到主界面，最后的解决方案是设置网络拉取2s超时，若没拉取到则传一个错误的参数到启动主界面的activity中，提示刷新
 ```Java
         webget = new Webget();
         webget.init(webView);
@@ -345,7 +351,7 @@ public class ShakeService extends Service {
                 img.startAnimation(animation);
             }
         }, 50);
-        
+
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 //execute the task
@@ -373,11 +379,3 @@ public class ShakeService extends Service {
         }, 2500);
     }
 ```
-
-
-
-
-
-
-
-
