@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="ACL&#x2F;NAACL 2019 自动摘要相关论文选读 - DPPs 相似度度量改进 - STRASS：抽取式摘要的反向传播 - 先翻译再生成摘要 - 阅读理解+自动摘要 - BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based">
+  <meta name="description" content="ACL&#x2F;NAACL 2019 自动摘要相关论文选读  DPPs 相似度度量改进 STRASS：抽取式摘要的反向传播 先翻译再生成摘要 阅读理解+自动摘要 BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Summarization-Related Papers Reading (ACL&#x2F;NAACL 2019)">
 <meta property="og:url" content="https://thinkwee.top/2019/08/15/acl2019-summarization/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="ACL&#x2F;NAACL 2019 自动摘要相关论文选读 - DPPs 相似度度量改进 - STRASS：抽取式摘要的反向传播 - 先翻译再生成摘要 - 阅读理解+自动摘要 - BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based">
+<meta property="og:description" content="ACL&#x2F;NAACL 2019 自动摘要相关论文选读  DPPs 相似度度量改进 STRASS：抽取式摘要的反向传播 先翻译再生成摘要 阅读理解+自动摘要 BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/12/ezCge0.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/14/mkkJHO.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/21/mtX0eS.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/21/mtXczq.png">
 <meta property="article:published_time" content="2019-08-15T02:51:37.000Z">
-<meta property="article:modified_time" content="2024-03-11T05:56:55.934Z">
+<meta property="article:modified_time" content="2024-04-23T07:53:14.220Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="summarization">
@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
 
   </li>
         <li class="menu-item menu-item-memory">
@@ -241,7 +241,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-03-11 13:56:55" itemprop="dateModified" datetime="2024-03-11T13:56:55+08:00">2024-03-11</time>
+                <time title="Modified: 2024-04-23 15:53:14" itemprop="dateModified" datetime="2024-04-23T15:53:14+08:00">2024-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,7 +249,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">自然语言处理</span></a>
+                  <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
                 </span>
             </span>
 
@@ -299,10 +299,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>ACL/NAACL 2019 自动摘要相关论文选读 - DPPs 相似度度量改进 -
-STRASS：抽取式摘要的反向传播 - 先翻译再生成摘要 - 阅读理解+自动摘要 -
-BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based
-<span id="more"></span></p>
+        <p>ACL/NAACL 2019 自动摘要相关论文选读</p>
+<ul>
+<li><p>DPPs 相似度度量改进</p></li>
+<li><p>STRASS：抽取式摘要的反向传播</p></li>
+<li><p>先翻译再生成摘要</p></li>
+<li><p>阅读理解+自动摘要</p></li>
+<li><p>BiSET：Retrieve + Fast Rerank + Selective Encoding + Template
+Based</p>
+<span id="more"></span></li>
+</ul>
 <h1
 id="improving-the-similarity-measure-of-determinantal-point-processes-for-extractive-multi-document-summarization">Improving
 the Similarity Measure of Determinantal Point Processes for Extractive
@@ -341,36 +347,46 @@ alt="ezCge0.png" /></li>
 id="strass-a-light-and-effective-method-for-extractive-summarization-based-on-sentence-embeddings">STRASS:
 A Light and Effective Method for Extractive Summarization Based on
 Sentence Embeddings</h1>
-<p><img data-src="https://s2.ax1x.com/2019/08/14/mkkJHO.png"
-alt="mkkJHO.png" /> -
-又是一篇用监督方法做抽取式文摘的，从标题就可以大致猜出来内容，基于embedding，还要light
+<figure>
+<img data-src="https://s2.ax1x.com/2019/08/14/mkkJHO.png" alt="mkkJHO.png" />
+<figcaption aria-hidden="true">mkkJHO.png</figcaption>
+</figure>
+<ul>
+<li><p>又是一篇用监督方法做抽取式文摘的，从标题就可以大致猜出来内容，基于embedding，还要light
 and effective，那最简单的目标就是把摘要的embedding和gold
-embedding保持一致。 -
-困难的地方在于这是抽取式的，是离散的，因此需要一个流程把抽取、embedding、比较打分三个部分统一起来，软化使其可导，可以端到端训练，作者给出的是四个步骤：
-- 将文档embedding映射到比较空间 - 抽句子组成摘要 -
-去近似抽出的摘要的embedding - 和gold summary的embedding比较 -
-首先给定一篇文档，直接用sent2vec获得doc
-embedding和文档里每一句的sentence embedding -
-之后只用一层全连接作为映射函数f(d)，这里作者给出了第一个假设：抽取的摘要句子应该和文档具有相似度：
-<span class="math display">\[
-    sel(s,d,S,t) = sigmoid (ncos^{+}(s,f(d),S)-t)
-    \]</span> - 其中s是句子embedding，S代表句子集，t为阈值。
-sel代表select，即选择这个句子组成摘要的置信度，这个式子说明选出句子的embedding和文档embedding之间的相似度应该大于阈值t，且使用sigmoid做了软化，将{0,1}软化为[0,1]
--
-之后进一步软化，作者并不根据分数选出句子组成文摘，而是根据分数直接近似文摘的embedding
-<span class="math display">\[
-    app(d,S,t) = \sum _{s \in S} s * nb_w(s) * sel(s,d,S,t)
-    \]</span> - 其中nb_w是number of words，即使用每个句子的字数和select
-score对所有的句子embedding加权求和得到generated summary的embedding -
-最后一步，和gold
-summary比较embedding相似度计算损失，这里作者加入了一个正则项，希望提出来的摘要压缩比越高越好，这里我感觉是上一步一系列软化操作带来的补偿，因为没有选择句子，而是对所有句子加权，因此需要正则强迫模型放弃一些句子：
-<span class="math display">\[
-    loss = \lambda * \frac{nb_w(gen_sum)}{nb_w(d)} + (1-\lambda) *
+embedding保持一致。</p></li>
+<li><p>困难的地方在于这是抽取式的，是离散的，因此需要一个流程把抽取、embedding、比较打分三个部分统一起来，软化使其可导，可以端到端训练，作者给出的是四个步骤：</p>
+<ul>
+<li>将文档embedding映射到比较空间</li>
+<li>抽句子组成摘要</li>
+<li>去近似抽出的摘要的embedding</li>
+<li>和gold summary的embedding比较</li>
+</ul></li>
+<li><p>首先给定一篇文档，直接用sent2vec获得doc
+embedding和文档里每一句的sentence embedding</p></li>
+<li><p>之后只用一层全连接作为映射函数f(d)，这里作者给出了第一个假设：抽取的摘要句子应该和文档具有相似度：</p>
+<p><span class="math display">\[
+sel(s,d,S,t) = sigmoid (ncos^{+}(s,f(d),S)-t)
+\]</span></p></li>
+<li><p>其中s是句子embedding，S代表句子集，t为阈值。
+sel代表select，即选择这个句子组成摘要的置信度，这个式子说明选出句子的embedding和文档embedding之间的相似度应该大于阈值t，且使用sigmoid做了软化，将{0,1}软化为[0,1]</p></li>
+<li><p>之后进一步软化，作者并不根据分数选出句子组成文摘，而是根据分数直接近似文摘的embedding</p>
+<p><span class="math display">\[
+app(d,S,t) = \sum _{s \in S} s * nb_w(s) * sel(s,d,S,t)
+\]</span></p></li>
+<li><p>其中nb_w是number of words，即使用每个句子的字数和select
+score对所有的句子embedding加权求和得到generated
+summary的embedding</p></li>
+<li><p>最后一步，和gold
+summary比较embedding相似度计算损失，这里作者加入了一个正则项，希望提出来的摘要压缩比越高越好，这里我感觉是上一步一系列软化操作带来的补偿，因为没有选择句子，而是对所有句子加权，因此需要正则强迫模型放弃一些句子：</p>
+<p><span class="math display">\[
+loss = \lambda * \frac{nb_w(gen_sum)}{nb_w(d)} + (1-\lambda) *
 cos_{sim}(app(d,S,t),ref_{sum})
-    \]</span> - 这里有一个问题，gold summary的embedding是怎么得到的？ -
-另外为了保证能够对所有文档使用同一个阈值，作者还对cosine相似度计算的结果做了归一化
--
-从结果来看其实ROUGE还不如生成式的方法好，当然一方面原因是因为数据集本来就是生成式的，但是强在简单，快，而且用监督的方法做抽取式也不用考虑redundency的问题。</p>
+\]</span></p></li>
+<li><p>这里有一个问题，gold summary的embedding是怎么得到的？</p></li>
+<li><p>另外为了保证能够对所有文档使用同一个阈值，作者还对cosine相似度计算的结果做了归一化</p></li>
+<li><p>从结果来看其实ROUGE还不如生成式的方法好，当然一方面原因是因为数据集本来就是生成式的，但是强在简单，快，而且用监督的方法做抽取式也不用考虑redundency的问题。</p></li>
+</ul>
 <h1 id="a-robust-abstractive-system-for-cross-lingual-summarization">A
 Robust Abstractive System for Cross-Lingual Summarization</h1>
 <ul>
@@ -389,41 +405,47 @@ document上训练生成式摘要模型，使得模型对噪声更加鲁棒，最
 id="answering-while-summarizing-multi-task-learning-for-multi-hop-qa-with-evidence-extraction">Answering
 while Summarizing: Multi-task Learning for Multi-hop QA with Evidence
 Extraction</h1>
-<p><img data-src="https://s2.ax1x.com/2019/08/21/mtX0eS.png"
-alt="mtX0eS.png" /> -
-这篇论文来自号称全球最大电信公司NTT的智能实验室，提出了一个多任务模型：阅读理解+自动摘要
-- 论文做了很多实验和分析，并且详细分析了在何种情况下他们的module
-works，对于摘要部分也利用了许多近年来提出的技巧，而不是简单的拼凑。 -
-这篇论文同样也是在HotpotQA数据集上做，和CogQA那一篇一样，但那一篇用的是full
+<figure>
+<img data-src="https://s2.ax1x.com/2019/08/21/mtX0eS.png" alt="mtX0eS.png" />
+<figcaption aria-hidden="true">mtX0eS.png</figcaption>
+</figure>
+<ul>
+<li><p>这篇论文来自号称全球最大电信公司NTT的智能实验室，提出了一个多任务模型：阅读理解+自动摘要</p></li>
+<li><p>论文做了很多实验和分析，并且详细分析了在何种情况下他们的module
+works，对于摘要部分也利用了许多近年来提出的技巧，而不是简单的拼凑。</p></li>
+<li><p>这篇论文同样也是在HotpotQA数据集上做，和CogQA那一篇一样，但那一篇用的是full
 wiki setting，即没有gold evidence，而这篇需要gold
-evidence因此用了HotpotQA 的distractor setting。 -
-对于HotpotQA的distractor
+evidence因此用了HotpotQA 的distractor setting。</p></li>
+<li><p>对于HotpotQA的distractor
 setting，监督信号有两部分：answer和evidence，输入有两部分:query和context，其中evidence是context当中的句子。作者沿用了HotpotQA论文里的baseline:Simple
 and effective multi-paragraph reading
 comprehension，及上图中Query-Focused
 Extractor以外的部分。基本思想就是将query和context结合，加上一堆FC,attention，BiRNN提取特征，最终在answer部分输出一个answer
 type的分类和answer span的sequence
 labelling，而在evidence部分直接接BiRNN输出的结果对每个句子做二分类。
-<img data-src="https://s2.ax1x.com/2019/08/21/mtXczq.png" alt="mtXczq.png" />
-- 作者将evidence这边的监督任务细化为一个query
+<img data-src="https://s2.ax1x.com/2019/08/21/mtXczq.png"
+alt="mtXczq.png" /></p></li>
+<li><p>作者将evidence这边的监督任务细化为一个query
 based的summarization，就在BiRNN后面加了一个模块，称之为Query-Focused
-Extractor(QFE)，相比原始的简单二分类，QFE强调了evidence应该是在query条件下从context中抽取出来的summary，因满足：
-- summary内的句子之间应该不能冗余 -
-summary内不同句子应该有着query上不同的注意力 -
-针对第一点，作者在QFE内设计了一个RNN，使得在生成注意力乃至抽取摘要时都能注意到之前已经抽取出来的句子,其中RNN的时间步定义为每一次抽取一个句子，输入即某一时间步抽取出的句子的vector
--
-针对第二点，作者在QFE内增加了一个针对query的注意力，加权之后的query向量称为glimpse，注意这里是QA
+Extractor(QFE)，相比原始的简单二分类，QFE强调了evidence应该是在query条件下从context中抽取出来的summary，因满足：</p>
+<ul>
+<li>summary内的句子之间应该不能冗余</li>
+<li>summary内不同句子应该有着query上不同的注意力</li>
+</ul></li>
+<li><p>针对第一点，作者在QFE内设计了一个RNN，使得在生成注意力乃至抽取摘要时都能注意到之前已经抽取出来的句子,其中RNN的时间步定义为每一次抽取一个句子，输入即某一时间步抽取出的句子的vector</p></li>
+<li><p>针对第二点，作者在QFE内增加了一个针对query的注意力，加权之后的query向量称为glimpse，注意这里是QA
 context对QA
 query的注意力，attention里的key和value都是QA的query，而attention里的query不是直接拿整个QA
-context，而是RNN的输出，即已经抽取出的句子集经过RNN编码的context，这样的设计也是符合直觉的。
--
-在RNN编码已抽取句子、注意力加权query形成glimpse向量之后，QFE拿到这两部分向量，结合每一个context未抽取句子的向量来输出每一个句子被抽取的概率，并选择最大概率的句子加入已抽取句子集合，然后接着循环计算RNN和glimpse。整个系统的依赖关系在上图中展示的很清晰。
-- 由于gold evidence的句子数目不固定，作者采用添加一个EOE的dummy
-sentence的方法来动态抽取，当抽取到EOE时，模型就不再接着抽取句子。 -
-在训练时，evidence这边的损失函数为： <span class="math display">\[
-    L_E = - \sum _{t=1}^{|E|} \log (max _{i \in E / E^{t-1}}
-Pr(i;E^{t-1})) + \sum _i min(c_i^t, \alpha _i^t)
-    \]</span> 这里<span class="math inline">\(E\)</span>是gold
+context，而是RNN的输出，即已经抽取出的句子集经过RNN编码的context，这样的设计也是符合直觉的。</p></li>
+<li><p>在RNN编码已抽取句子、注意力加权query形成glimpse向量之后，QFE拿到这两部分向量，结合每一个context未抽取句子的向量来输出每一个句子被抽取的概率，并选择最大概率的句子加入已抽取句子集合，然后接着循环计算RNN和glimpse。整个系统的依赖关系在上图中展示的很清晰。</p></li>
+<li><p>由于gold evidence的句子数目不固定，作者采用添加一个EOE的dummy
+sentence的方法来动态抽取，当抽取到EOE时，模型就不再接着抽取句子。</p></li>
+<li><p>在训练时，evidence这边的损失函数为：</p>
+<p><span class="math display">\[
+L_E = - \sum _{t=1}^{|E|} \log (max _{i \in E / E^{t-1}} Pr(i;E^{t-1}))
++ \sum _i min(c_i^t, \alpha _i^t)
+\]</span></p>
+<p>这里<span class="math inline">\(E\)</span>是gold
 evidence的句子集合，<span
 class="math inline">\(E^t\)</span>是QFE抽取出来的句子集合，<span
 class="math inline">\(\alpha
@@ -433,11 +455,11 @@ class="math inline">\(c^t = \sum _{i=1}^{t-1} \alpha
 evidence的负对数似然损失，依次在抽取句子集合里找拥有最大QFE预测概率的gold
 sentence，算损失，然后排除这个句子接着找下一个最大的，直到gold
 sentence找完或者抽取句子集合里找不到gold
-sentence，后半部分是coverage机制的一个正则化应用，保证挑出来计算损失的句子不会在query上拥有过于重复（集中）的注意力。
--
-作者在HotpotQA和文本蕴含数据集FEVER上做了结果，evidence部分的指标远好于baseline，而answer部分的指标也有较大提升，但不如evidence部分明显，且与BERT模型部分相比还差一点，在full
+sentence，后半部分是coverage机制的一个正则化应用，保证挑出来计算损失的句子不会在query上拥有过于重复（集中）的注意力。</p></li>
+<li><p>作者在HotpotQA和文本蕴含数据集FEVER上做了结果，evidence部分的指标远好于baseline，而answer部分的指标也有较大提升，但不如evidence部分明显，且与BERT模型部分相比还差一点，在full
 wiki setting的测试集上也被CogQA全面超过，这里作者说存在dataset
-shift问题。但至少本文仅仅在baseline上添加了一个小模块，就获得了answer部分的8个点的提升，说明精心设计的summarization部分在多任务学习中确实帮助到了answer的选取。</p>
+shift问题。但至少本文仅仅在baseline上添加了一个小模块，就获得了answer部分的8个点的提升，说明精心设计的summarization部分在多任务学习中确实帮助到了answer的选取。</p></li>
+</ul>
 <h1
 id="biset-bi-directional-selective-encoding-with-template-for-abstractive-summarization">BiSET:
 Bi-directional Selective Encoding with Template for Abstractive
@@ -467,18 +489,19 @@ summary中自动提取模板。</li>
 </ul>
 <h2 id="rerank">Rerank</h2>
 <ul>
-<li>经过搜索搜出来的摘要（soft
+<li><p>经过搜索搜出来的摘要（soft
 template)是按照搜索相关度排序的，但我们需要的是按照摘要相似度排序，因此我们使用ROUGE值衡量soft
 template和gold
-summary之间的相似程度，这里的rerank并不是要真的排序出来，而是在生成摘要时综合考虑每个template的rank程度，之后在损失部分可以看出来。</li>
-<li>具体而言，先用一个BiLSTM编码器编码输入x和某一个候选模板r，这里是分别编码隐层状态，但是共用编码器，之后将两个隐层状态输入一个Bilinear网络预测出输入x对应的gold
+summary之间的相似程度，这里的rerank并不是要真的排序出来，而是在生成摘要时综合考虑每个template的rank程度，之后在损失部分可以看出来。</p></li>
+<li><p>具体而言，先用一个BiLSTM编码器编码输入x和某一个候选模板r，这里是分别编码隐层状态，但是共用编码器，之后将两个隐层状态输入一个Bilinear网络预测出输入x对应的gold
 summary y和r之间的ROUGE值，相当于这是一个给定x，给r做出saliency
-prediction的网络： <span class="math display">\[
+prediction的网络：</p>
+<p><span class="math display">\[
 h_x = BiLSTM(x) \\
 h_r = BiLSTM(r) \\
 ROUGE(r,y) = sigmoid(h_r W_s h_x^T + b_s) \\
-\]</span></li>
-<li>这就完成了rerank的监督部分</li>
+\]</span></p></li>
+<li><p>这就完成了rerank的监督部分</p></li>
 </ul>
 <h2 id="rewrite">Rewrite</h2>
 <ul>
@@ -641,13 +664,13 @@ Summarization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -705,12 +728,12 @@ Summarization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">376k</span>
+    <span title="Symbols count total">380k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:42</span>
+    <span title="Reading time total">5:45</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

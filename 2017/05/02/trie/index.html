@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i07rz6.jpg">
 <meta property="article:published_time" content="2017-05-02T02:09:19.000Z">
-<meta property="article:modified_time" content="2024-03-11T05:56:55.942Z">
+<meta property="article:modified_time" content="2024-04-23T08:37:21.950Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="code">
 <meta property="article:tag" content="python">
@@ -139,7 +139,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
 
   </li>
         <li class="menu-item menu-item-memory">
@@ -237,7 +237,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-03-11 13:56:55" itemprop="dateModified" datetime="2024-03-11T13:56:55+08:00">2024-03-11</time>
+                <time title="Modified: 2024-04-23 16:37:21" itemprop="dateModified" datetime="2024-04-23T16:37:21+08:00">2024-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -310,16 +310,19 @@
 </ul>
 <h1 id="例子">例子</h1>
 <ul>
-<li>以leetcode472为例，当中需要判断某个序列中某个单词是否能由它前面的单词构成</li>
-<li>初始化trie <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trie = &#123;&#125;</span><br></pre></td></tr></table></figure></li>
-<li>trie中插入单词 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">trie, w</span>):</span><br><span class="line">	<span class="keyword">for</span> c <span class="keyword">in</span> w:</span><br><span class="line">		trie = trie.setdefault(c, &#123;&#125;)  <span class="comment"># if c not in trie then set trie[c]=&#123;&#125;</span></span><br><span class="line">	trie[<span class="literal">None</span>] = w</span><br></pre></td></tr></table></figure>
-对每一个字符串，依次按字母索引，当索引不到时就对当前字母建立新节点
+<li><p>以leetcode472为例，当中需要判断某个序列中某个单词是否能由它前面的单词构成</p></li>
+<li><p>初始化trie</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trie = &#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>trie中插入单词</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">trie, w</span>):</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> w:</span><br><span class="line">        trie = trie.setdefault(c, &#123;&#125;)  <span class="comment"># if c not in trie then set trie[c]=&#123;&#125;</span></span><br><span class="line">    trie[<span class="literal">None</span>] = w</span><br></pre></td></tr></table></figure>
+<p>对每一个字符串，依次按字母索引，当索引不到时就对当前字母建立新节点
 遍历完单词后建立None节点存放单词(因为题目需要返回所有单词，因此此处存放单词,也可以存放出现次数
 这样一棵树最终完成时就如标题图所示，其中前四行是加入["cat",
-"cats","dog", "rat"]之后树的内容</li>
-<li>trie中查找某一个单词 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">prefixs</span>(<span class="params">trie, w, lo</span>):</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(lo, <span class="built_in">len</span>(w)):</span><br><span class="line">		trie = trie.get(w[i])</span><br><span class="line">		<span class="keyword">if</span> trie <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		prefix = trie.get(<span class="literal">None</span>)</span><br><span class="line">	<span class="keyword">if</span> prefix:</span><br><span class="line">		<span class="keyword">yield</span> i + <span class="number">1</span>, prefix</span><br></pre></td></tr></table></figure>
-因为题目需要，利用了生成器，这段函数是查找单词w中i从lo位置开始，i到单词尾这一段构成的字符串，是否在trie的字典集合中，返回所有符合结果的i+1。查找的方式与插入相同
-特别说明的是，trie的一大优势便是支持插入与查找同时进行</li>
+"cats","dog", "rat"]之后树的内容</p></li>
+<li><p>trie中查找某一个单词</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">prefixs</span>(<span class="params">trie, w, lo</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(lo, <span class="built_in">len</span>(w)):</span><br><span class="line">        trie = trie.get(w[i])</span><br><span class="line">        <span class="keyword">if</span> trie <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        prefix = trie.get(<span class="literal">None</span>)</span><br><span class="line">    <span class="keyword">if</span> prefix:</span><br><span class="line">        <span class="keyword">yield</span> i + <span class="number">1</span>, prefix</span><br></pre></td></tr></table></figure>
+<p>因为题目需要，利用了生成器，这段函数是查找单词w中i从lo位置开始，i到单词尾这一段构成的字符串，是否在trie的字典集合中，返回所有符合结果的i+1。查找的方式与插入相同
+特别说明的是，trie的一大优势便是支持插入与查找同时进行</p></li>
 </ul>
 <h1 id="后缀树">后缀树</h1>
 <ul>
@@ -340,10 +343,10 @@
       <div class="popular-posts-title"><a href="/2017/03/28/PythonNotes/" rel="bookmark">Python Notes</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2017/01/23/numpycookbook/" rel="bookmark">Numpy Cookbook</a></div>
+      <div class="popular-posts-title"><a href="/2017/03/27/oj/" rel="bookmark">OJ</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2017/03/27/oj/" rel="bookmark">OJ</a></div>
+      <div class="popular-posts-title"><a href="/2017/01/23/numpycookbook/" rel="bookmark">Numpy Cookbook</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/2017/02/04/pandas-skill/" rel="bookmark">Pandas Basics</a></div>
@@ -452,13 +455,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -516,12 +519,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">376k</span>
+    <span title="Symbols count total">380k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:42</span>
+    <span title="Reading time total">5:45</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

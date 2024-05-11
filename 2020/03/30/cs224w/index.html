@@ -27,18 +27,19 @@
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
 <meta property="og:description" content="Jure Leskovec, Stanford CS224W: Machine Learning with Graphs学习笔记，未完待续">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/30/GuQgQf.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/03/30/Gu3QeS.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/03/30/GutuVK.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/03/31/GKd2KH.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/03/31/GQaGnJ.png">
 <meta property="article:published_time" content="2020-03-30T01:21:12.000Z">
-<meta property="article:modified_time" content="2024-03-11T05:56:55.936Z">
+<meta property="article:modified_time" content="2024-04-23T07:54:52.722Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="gnn">
 <meta property="article:tag" content="math">
 <meta property="article:tag" content="graph">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s1.ax1x.com/2020/03/30/Gu3QeS.png">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/03/30/GuQgQf.png">
 
 <link rel="canonical" href="https://thinkwee.top/2020/03/30/cs224w/">
 
@@ -143,7 +144,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
 
   </li>
         <li class="menu-item menu-item-memory">
@@ -241,7 +242,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-03-11 13:56:55" itemprop="dateModified" datetime="2024-03-11T13:56:55+08:00">2024-03-11</time>
+                <time title="Modified: 2024-04-23 15:54:52" itemprop="dateModified" datetime="2024-04-23T15:54:52+08:00">2024-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,7 +250,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                  <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
                 </span>
             </span>
 
@@ -300,7 +301,8 @@
 
       
         <p>Jure Leskovec, Stanford CS224W: Machine Learning with
-Graphs学习笔记，未完待续 <span id="more"></span></p>
+Graphs学习笔记，未完待续</p>
+<span id="more"></span>
 <h1 id="网络随机图的属性">网络、随机图的属性</h1>
 <ul>
 <li>degree distribution:P(k)
@@ -316,10 +318,10 @@ Graphs学习笔记，未完待续 <span id="more"></span></p>
 </ul></li>
 <li>clustering coefficient:C
 <ul>
-<li>衡量了节点的邻居的连接状况：邻居之间相连的边数除以节点的度： <span
-class="math display">\[
+<li><p>衡量了节点的邻居的连接状况：邻居之间相连的边数除以节点的度：</p>
+<p><span class="math display">\[
 C_{i}=\frac{2 e_{i}}{k_{i}\left(k_{i}-1\right)}
-\]</span></li>
+\]</span></p></li>
 </ul></li>
 <li>connected components
 <ul>
@@ -328,22 +330,25 @@ component)的size称为connectivity，即最大连通子图的节点数</li>
 </ul></li>
 <li>Random Graph Model
 <ul>
-<li>将图看成随机过程生成的结果，两个参数，n,p，即总共n个节点，每条边独立同分布按概率p建立，显然这两个参数不足以唯一确定一个图，考虑这样一个图上的degree
-distribution, path length以及clustering coefficient</li>
-<li>P(k): <span class="math display">\[
+<li><p>将图看成随机过程生成的结果，两个参数，n,p，即总共n个节点，每条边独立同分布按概率p建立，显然这两个参数不足以唯一确定一个图，考虑这样一个图上的degree
+distribution, path length以及clustering coefficient</p></li>
+<li><p>P(k):</p>
+<p><span class="math display">\[
 P(k)=\left(\begin{array}{c}
 n-1 \\
 k
 \end{array}\right) p^{k}(1-p)^{n-1-k}
-\]</span></li>
-<li>h:Olog(n)</li>
-<li>C: <span class="math display">\[
+\]</span></p></li>
+<li><p>h:Olog(n)</p></li>
+<li><p>C:</p>
+<p><span class="math display">\[
 =\frac{p \cdot
 k_{i}\left(k_{i}-1\right)}{k_{i}\left(k_{i}-1\right)}=p=\frac{\bar{k}}{n-1}
 \approx \frac{\bar{k}}{n}
-\]</span></li>
-<li>connectivity:随着p的增大，图越来越可能出现连接子图，具体如下： <img
-src="https://s1.ax1x.com/2020/03/30/GuQgQf.png" alt="GuQgQf.png" /></li>
+\]</span></p></li>
+<li><p>connectivity:随着p的增大，图越来越可能出现连接子图，具体如下：
+<img data-src="https://s1.ax1x.com/2020/03/30/GuQgQf.png"
+alt="GuQgQf.png" /></p></li>
 </ul></li>
 <li>small world model
 <ul>
@@ -359,39 +364,40 @@ alt="Gu3QeS.png" /></li>
 </ul>
 <h1 id="图的特征纹理子图小图">图的特征：纹理、子图、小图</h1>
 <ul>
-<li>子图，以三个节点构成的子图为例： <img
-src="https://s1.ax1x.com/2020/03/30/Gu8hj0.png" alt="Gu8hj0.png" /></li>
-<li>这里假设所有的节点都是相同的，子图只关注节点和边构成的结构特征。假如用一个significance来衡量每个子图，那么就可以构建一个feature
-vector。</li>
-<li>定义纹理：motifs,“recurring, significant patterns of
+<li><p>子图，以三个节点构成的子图为例： <img
+src="https://s1.ax1x.com/2020/03/30/Gu8hj0.png"
+alt="Gu8hj0.png" /></p></li>
+<li><p>这里假设所有的节点都是相同的，子图只关注节点和边构成的结构特征。假如用一个significance来衡量每个子图，那么就可以构建一个feature
+vector。</p></li>
+<li><p>定义纹理：motifs,“recurring, significant patterns of
 interconnections”，即图中出现很多次，具有显著程度（More frequent than
 expected, i.e., in randomly generated networks）的Small induced
-subgraph</li>
-<li>通过某一个motifs在真实图和随机图中的出现次数之比就可以定义这个motifs的significance：
-<span class="math display">\[
+subgraph</p></li>
+<li><p>通过某一个motifs在真实图和随机图中的出现次数之比就可以定义这个motifs的significance：</p>
+<p><span class="math display">\[
 Z_{i}=\left(N_{i}^{\mathrm{real}}-\bar{N}_{i}^{\mathrm{rand}}\right) /
 \operatorname{std}\left(N_{i}^{\mathrm{rand}}\right)
-\]</span></li>
-<li>RECAP算法：找出一个图的motifs,
+\]</span></p></li>
+<li><p>RECAP算法：找出一个图的motifs,</p>
 <ul>
 <li>根据真实图，定义一个随机图，其拥有和真实图一样的节点数、边数和度分布</li>
 <li>找出每一个子图在真实图和其对应的随机图上的significance，那么significance大的subgraph就是motifs</li>
 </ul></li>
-<li>小图(graphlet)：节点特征向量,graphlet的定义：connected
+<li><p>小图(graphlet)：节点特征向量,graphlet的定义：connected
 non-isomorphic
-subgraphs，在graphlet中，我们灌注node-level的特征，例如三个节点只有两种graphlet，即三角形或者一条直线连接三个点。在三角形中，每个节点是等价的（相对于graphlet中其他节点而言），而在一条直线中，两端的节点等价，中间的节点是另一类。graphlet非常稀疏，n=10的graphlet有11716571种，且不算其中不同类的节点。</li>
-<li>将度的概念泛化，Graphlet degree
+subgraphs，在graphlet中，我们灌注node-level的特征，例如三个节点只有两种graphlet，即三角形或者一条直线连接三个点。在三角形中，每个节点是等价的（相对于graphlet中其他节点而言），而在一条直线中，两端的节点等价，中间的节点是另一类。graphlet非常稀疏，n=10的graphlet有11716571种，且不算其中不同类的节点。</p></li>
+<li><p>将度的概念泛化，Graphlet degree
 vector（GDV）指一个节点接触到的graphlet，每一类占一个feature，值为接触到的这一类graphlet的数量：
 <img data-src="https://s1.ax1x.com/2020/03/30/GutuVK.png"
-alt="GutuVK.png" /></li>
-<li>GDV衡量了节点的局部拓扑状态</li>
-<li>寻找graphlet/motifs：三类算法
+alt="GutuVK.png" /></p></li>
+<li><p>GDV衡量了节点的局部拓扑状态</p></li>
+<li><p>寻找graphlet/motifs：三类算法</p>
 <ul>
 <li>Exact subgraph enumeration (ESU) [Wernicke 2006]</li>
 <li>Kavosh [Kashani et al. 2009]</li>
 <li>Subgraph sampling [Kashtan et al. 2004]</li>
 </ul></li>
-<li>图的同构：如何判断两个图是topologically equivalent的？
+<li><p>图的同构：如何判断两个图是topologically equivalent的？</p>
 <ul>
 <li>定义roles:节点在图中所起的功能，通过结构信息来衡量，比如可以认为星型子图的中心节点具有相似的功能，或者直接归为一类功能，因此role也可以定义为A
 collection of nodes which have similar positions in a
@@ -410,52 +416,53 @@ for model selection, and KL divergence to measure likelihood。</li>
 </ul>
 <h1 id="图谱聚类">图谱聚类</h1>
 <ul>
-<li>三步走
+<li><p>三步走</p>
 <ul>
 <li>预处理：得到一个能够包含整图信息的矩阵</li>
 <li>分解：做特征分解，将每个节点映射到低维嵌入</li>
 <li>分组：根据低维嵌入做聚类</li>
 </ul></li>
-<li>定义问题： graph
-partition，即将图的节点分为几个互不相交的集合，一个好的划分应该保证集合内节点之间的连接尽量多，集合之间节点之间的连接尽量少。</li>
-<li>定义cut(A,B)为AB两个集合节点之间的连接权重之和，那么最小切就是使得cut(A,B)最小的AB划分</li>
-<li>如何再考虑上AB集合内部的连接，定义vol(A)为A内部节点的度加权之和，那么可以得到衡量partition的一个指标Conductance：
-<span class="math display">\[
+<li><p>定义问题： graph
+partition，即将图的节点分为几个互不相交的集合，一个好的划分应该保证集合内节点之间的连接尽量多，集合之间节点之间的连接尽量少。</p></li>
+<li><p>定义cut(A,B)为AB两个集合节点之间的连接权重之和，那么最小切就是使得cut(A,B)最小的AB划分</p></li>
+<li><p>如何再考虑上AB集合内部的连接，定义vol(A)为A内部节点的度加权之和，那么可以得到衡量partition的一个指标Conductance：</p>
+<p><span class="math display">\[
 \phi(A, B)=\frac{\operatorname{cut}(A, B)}{\min (\operatorname{vol}(A),
 \operatorname{vol}(B))}
-\]</span></li>
-<li>找到一个好的partition是np-hard</li>
-<li>基于图谱的划分：
+\]</span></p></li>
+<li><p>找到一个好的partition是np-hard</p></li>
+<li><p>基于图谱的划分：</p>
 <ul>
-<li>我们定义A为无向图的邻接矩阵，x为节点相关的向量，那么Ax得到就是邻域求和的结果
-<span class="math display">\[
+<li><p>我们定义A为无向图的邻接矩阵，x为节点相关的向量，那么Ax得到就是邻域求和的结果</p>
+<p><span class="math display">\[
 y_{i}=\sum_{j=1}^{n} A_{i j} x_{j}=\sum_{(i, j) \in E} x_{j}
-\]</span></li>
-<li>我们定义"spectrum of
+\]</span></p></li>
+<li><p>我们定义"spectrum of
 graph"，即图谱为A的特征向量构成的矩阵，按特征值<span
 class="math inline">\(\lambda\)</span>大小排序，<span
-class="math inline">\(Ax=\lambda x\)</span></li>
-<li>那么假设图是d-regular，即所有节点的度都是d，那么很容易得到<span
+class="math inline">\(Ax=\lambda x\)</span></p></li>
+<li><p>那么假设图是d-regular，即所有节点的度都是d，那么很容易得到<span
 class="math inline">\(\lambda = d,
-x=(1,1,...,1)\)</span>是该图的一组特征值/特征向量，且可以证明d是最大的特征值</li>
-<li>假如图是有两个连通分量，分别都是d-regular，那么对应的特征值依然是d，对应的特征向量有两个，分别是A分量里的节点置1，B置0以及vice
-versa</li>
-<li>这样根据node eigen
-vector的分量是1还是0就可以做一个划分，将节点分为两部分。显然两个d-regular的分量，用少数几条边连接起来，这应该是整图的一个好的划分。</li>
-<li>那么现在假设存在一个好的划分，整图是一个d-regular的图（这样两个分量就不是d-regular了，因为要考虑划分之间的连接所有节点的度才为d），分量之间有很少的连接。我们已知一个特征向量是全1的，且对应着最大的特征值d，那么直觉上第二大的特征值应该和d非常接近，因为我们知道断开的两个分量构成的图最大的特征值也为d，现在的图跟断开的图差别不是很大。而且由于特征向量之间相互正交而已知一个特征向量是全1，那么第二大的特征值对应的特征向量应该和为1，有正有负。类比于断开成两个分量的场景，我们也可以根据特征向量中分量的正负来划分节点。当然这都是直觉上的推测，下面引入Laplacian矩阵来详细说明。</li>
-<li>邻接矩阵的性质：n*n方阵，对称，n个实特征值，特征向量相互正交</li>
-<li>再定义度矩阵D，这是一个对角阵，第i个对角值存储第i个节点的度</li>
-<li>定义Laplacian矩阵，<span
+x=(1,1,...,1)\)</span>是该图的一组特征值/特征向量，且可以证明d是最大的特征值</p></li>
+<li><p>假如图是有两个连通分量，分别都是d-regular，那么对应的特征值依然是d，对应的特征向量有两个，分别是A分量里的节点置1，B置0以及vice
+versa</p></li>
+<li><p>这样根据node eigen
+vector的分量是1还是0就可以做一个划分，将节点分为两部分。显然两个d-regular的分量，用少数几条边连接起来，这应该是整图的一个好的划分。</p></li>
+<li><p>那么现在假设存在一个好的划分，整图是一个d-regular的图（这样两个分量就不是d-regular了，因为要考虑划分之间的连接所有节点的度才为d），分量之间有很少的连接。我们已知一个特征向量是全1的，且对应着最大的特征值d，那么直觉上第二大的特征值应该和d非常接近，因为我们知道断开的两个分量构成的图最大的特征值也为d，现在的图跟断开的图差别不是很大。而且由于特征向量之间相互正交而已知一个特征向量是全1，那么第二大的特征值对应的特征向量应该和为1，有正有负。类比于断开成两个分量的场景，我们也可以根据特征向量中分量的正负来划分节点。当然这都是直觉上的推测，下面引入Laplacian矩阵来详细说明。</p></li>
+<li><p>邻接矩阵的性质：n*n方阵，对称，n个实特征值，特征向量相互正交</p></li>
+<li><p>再定义度矩阵D，这是一个对角阵，第i个对角值存储第i个节点的度</p></li>
+<li><p>定义Laplacian矩阵，<span
 class="math inline">\(L=D-A\)</span>，显然<span
 class="math inline">\(\lambda = 0,
-x=(1,1,...,1)\)</span>是该图的一组特征值/特征向量。L矩阵的一些性质包括：
+x=(1,1,...,1)\)</span>是该图的一组特征值/特征向量。L矩阵的一些性质包括：</p>
 <ul>
 <li>所有特征值非负</li>
 <li>半正定</li>
 <li>可以分解为<span class="math inline">\(N^TN\)</span></li>
 <li>实际上三个性质是等价的</li>
 </ul></li>
-<li>那么L矩阵的二次型的含义是什么？ <span class="math display">\[
+<li><p>那么L矩阵的二次型的含义是什么？</p>
+<p><span class="math display">\[
 \begin{array}{l}
 x^{T} L x=\sum_{i, j=1}^{n} L_{i j} x_{i} x_{j}=\sum_{i,
 j=1}^{n}\left(D_{i j}-A_{i j}\right) x_{i} x_{j} \\
@@ -463,31 +470,32 @@ j=1}^{n}\left(D_{i j}-A_{i j}\right) x_{i} x_{j} \\
 =\sum_{(i, j) \in E_{1}}\left(x_{i}^{2}+x_{j}^{2}-2 x_{i}
 x_{j}\right)=\sum_{(i, j) \in E}\left(x_{i}-x_{j}\right)^{2}
 \end{array}
-\]</span></li>
-<li>可以证明，二次型等价于矩阵的特征值加权x在对应特征向量上的坐标的平方求和
-<span class="math display">\[
+\]</span></p></li>
+<li><p>可以证明，二次型等价于矩阵的特征值加权x在对应特征向量上的坐标的平方求和</p>
+<p><span class="math display">\[
 x = \sum _{i=1}^n \alpha _i w_i \\
 x^TMx = \sum _i \lambda _i \alpha _i^2 \\
-\]</span></li>
-<li>回到我们要找第二大的特征值，可以证明，对于对称阵： <span
-class="math display">\[
+\]</span></p></li>
+<li><p>回到我们要找第二大的特征值，可以证明，对于对称阵：</p>
+<p><span class="math display">\[
 \lambda_{2}=\min _{x: x^{T} w_{1}=0} \frac{x^{T} M x}{x^{T} x} \\
 \left(\mathbf{w}_{1} \text { is eigenvector corresponding to }
 \lambda_{1}\right) \\
-\]</span></li>
-<li>当这个对称阵是L矩阵时，有 <span class="math display">\[
+\]</span></p></li>
+<li><p>当这个对称阵是L矩阵时，有</p>
+<p><span class="math display">\[
 \lambda _ 2 = min \frac{\sum _{i,j \in E}(x_i - x_j)^2}{\sum _i x_i^2}
 \\
 \sum x_i = 0 \\
-\]</span></li>
-<li>根据Fiedler'73的寻找最佳划分的方法，令节点label为1,-1来表示划分，所有节点求和为0来强制两个划分的集合大小一致，其提出的最佳划分是
-<span class="math display">\[
+\]</span></p></li>
+<li><p>根据Fiedler'73的寻找最佳划分的方法，令节点label为1,-1来表示划分，所有节点求和为0来强制两个划分的集合大小一致，其提出的最佳划分是</p>
+<p><span class="math display">\[
 \arg \min _{y \in\{-1,+1\}^{n}} f(y)=\sum_{(i, j) \in
 E}\left(y_{i}-y_{j}\right)^{2}
-\]</span></li>
-<li>可以发现将其label的限制从离散的1，-1放宽到实数值之后，等价于我们找L矩阵的第二大特征值和特征向量，第二特征值对应的特征向量分量的正负决定了划分情况（节点的分配情况）</li>
+\]</span></p></li>
+<li><p>可以发现将其label的限制从离散的1，-1放宽到实数值之后，等价于我们找L矩阵的第二大特征值和特征向量，第二特征值对应的特征向量分量的正负决定了划分情况（节点的分配情况）</p></li>
 </ul></li>
-<li>回到spectral clustering
+<li><p>回到spectral clustering</p>
 <ul>
 <li>预处理：构建L矩阵</li>
 <li>分解：对L矩阵做特征分解，得到每个节点在第二大特征值对应的特征向量上的分量</li>
@@ -498,7 +506,7 @@ alt="GKd2KH.png" /></li>
 <li>聚多类的两种方式：迭代式的聚类，每次聚两类；聚k类，找k个特征向量，而不仅仅是第二大的，然后相当于每个节点有k维特征，用k-means做聚类</li>
 <li>怎么确定聚几类？聚成k类时，第k大特征值和第k-1大特征值之间的差应该最大</li>
 </ul></li>
-<li>基于motifs的spectral clustering
+<li><p>基于motifs的spectral clustering</p>
 <ul>
 <li>当我们把边的概念升级到motifs时，就可以得到以motifs为特征的谱聚类</li>
 <li>同样的，我们可以得到基于motifs的Conductance，直接找也依然是NP-hard</li>
@@ -539,21 +547,22 @@ classifier</li>
 </ul></li>
 <li>精确的推断是np-hard的，这里介绍三种近似推断的方法：
 <ul>
-<li>Relational classification：对邻域节点的label概率加权求和 <span
-class="math display">\[
+<li><p>Relational classification：对邻域节点的label概率加权求和</p>
+<p><span class="math display">\[
 P\left(Y_{i}=c\right)=\frac{1}{\sum_{(i, j) \in E} W(i, j)} \sum_{(i, j)
 \in E} W(i, j) P\left(Y_{j}=c\right)
-\]</span> 缺点：不保证收敛，且没有用到节点特征</li>
-<li>Iterative
+\]</span></p>
+<p>缺点：不保证收敛，且没有用到节点特征</p></li>
+<li><p>Iterative
 classification：先对每个节点初始化一个特征向量，训练一个分类器（用有gold
 label的节点训练），输入特征向量输出Label，这是一个Local
 classifier，不考虑网络结构。等到每个节点都预测了label之后，根据网络结构进行消息传递，更新节点的特征向量，然后再用local
 classifier预测label,如此迭代。一篇应用论文<a
 target="_blank" rel="noopener" href="https://cs.stanford.edu/~srijan/pubs/rev2-wsdm18.pdf">REV2:
-Fraudulent User Prediction in Rating Platforms</a></li>
-<li>Belief propagation：基于动态规划的方法，"Belief Propagation is a
+Fraudulent User Prediction in Rating Platforms</a></p></li>
+<li><p>Belief propagation：基于动态规划的方法，"Belief Propagation is a
 dynamic programming approach to answering conditional probability
-queries in a graphical model"
+queries in a graphical model"</p>
 <ul>
 <li>定义label的矩阵<span
 class="math inline">\(\psi\)</span>,其定义了邻域节点label为i时，中心节点的label为j的概率<span
@@ -609,13 +618,13 @@ src="https://s1.ax1x.com/2020/03/31/GMfTOI.png" alt="GMfTOI.png" /></li>
 </ul></li>
 <li>TransE
 <ul>
-<li>在知识图谱中，三元组(subject,predicate,object)表示了图中两个节点以及相连的边，都有feature
-vector</li>
-<li>TransE的目标是学习到所有实体节点和关系边的embedding，该算法将边解释为一种翻译，即predicate将subject翻译为Object</li>
-<li>数学表示就是简单的<span class="math inline">\(u_{subject} +
-v_{predicate} = u_{object}\)</span></li>
-<li>训练采用了对比学习，采样负样本，用margin loss <span
-class="math display">\[
+<li><p>在知识图谱中，三元组(subject,predicate,object)表示了图中两个节点以及相连的边，都有feature
+vector</p></li>
+<li><p>TransE的目标是学习到所有实体节点和关系边的embedding，该算法将边解释为一种翻译，即predicate将subject翻译为Object</p></li>
+<li><p>数学表示就是简单的<span class="math inline">\(u_{subject} +
+v_{predicate} = u_{object}\)</span></p></li>
+<li><p>训练采用了对比学习，采样负样本，用margin loss</p>
+<p><span class="math display">\[
 \begin{aligned}
 &amp;\sum \quad \nabla\left[\gamma+d(\boldsymbol{h}+\ell,
 \boldsymbol{t})-d\left(\boldsymbol{h}^{\prime}+\ell,
@@ -623,7 +632,7 @@ class="math display">\[
 &amp;\left((h, \ell, t),\left(h^{\prime}, \ell, t^{\prime}\right)\right)
 \in T_{\text {batch}} \quad
 \end{aligned}
-\]</span></li>
+\]</span></p></li>
 </ul></li>
 <li>如何embedding整张图？
 <ul>
@@ -810,13 +819,13 @@ initialization、 Network data whitening</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -874,12 +883,12 @@ initialization、 Network data whitening</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">376k</span>
+    <span title="Symbols count total">380k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:42</span>
+    <span title="Reading time total">5:45</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

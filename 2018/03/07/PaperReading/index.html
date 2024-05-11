@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0ojBQ.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0ozAs.png">
 <meta property="article:published_time" content="2018-03-07T02:20:14.000Z">
-<meta property="article:modified_time" content="2024-03-11T05:56:55.932Z">
+<meta property="article:modified_time" content="2024-04-23T07:58:10.424Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="math">
@@ -152,7 +152,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
 
   </li>
         <li class="menu-item menu-item-memory">
@@ -250,7 +250,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-03-11 13:56:55" itemprop="dateModified" datetime="2024-03-11T13:56:55+08:00">2024-03-11</time>
+                <time title="Modified: 2024-04-23 15:58:10" itemprop="dateModified" datetime="2024-04-23T15:58:10+08:00">2024-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,7 +258,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                  <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
                 </span>
             </span>
 
@@ -309,16 +309,17 @@
 
       
         <ul>
-<li>attention开山作（机器翻译）</li>
-<li>Luong attention，全局与局部注意力、</li>
-<li>attention开山作（自动文摘）</li>
-<li>生成式摘要技巧集合：LVT，开关网络，层次注意力</li>
-<li>对话系统，端到端的层次RNN</li>
-<li>微博摘要，补充micropoints</li>
-<li>disan，有向的transformer，注意力掩码</li>
-<li>注意力抽取器</li>
-<li>基于强化学习的生成式摘要</li>
-<li>w2v，负采样 <span id="more"></span></li>
+<li><p>attention开山作（机器翻译）</p></li>
+<li><p>Luong attention，全局与局部注意力、</p></li>
+<li><p>attention开山作（自动文摘）</p></li>
+<li><p>生成式摘要技巧集合：LVT，开关网络，层次注意力</p></li>
+<li><p>对话系统，端到端的层次RNN</p></li>
+<li><p>微博摘要，补充micropoints</p></li>
+<li><p>disan，有向的transformer，注意力掩码</p></li>
+<li><p>注意力抽取器</p></li>
+<li><p>基于强化学习的生成式摘要</p></li>
+<li><p>w2v，负采样</p>
+<span id="more"></span></li>
 </ul>
 <figure>
 <img data-src="https://s1.ax1x.com/2018/10/20/i0o00J.jpg" alt="i0o00J.jpg" />
@@ -340,12 +341,13 @@ src="https://s1.ax1x.com/2018/10/20/i0oB79.png" alt="i0oB79.png" /></li>
 id="effective-approaches-to-attention-based-neural-machine-translation">Effective
 Approaches to Attention-based Neural Machine Translation</h1>
 <ul>
-<li>发布于2015.8，作者（Minh-Thang
-Luong）使用RNN编码器解码器模型，翻译任务。</li>
-<li>其中解码时是将包含注意力的表示和目标单词对应的解码隐藏层向量连接再经激活函数生成注意力向量：
-<span class="math display">\[
+<li><p>发布于2015.8，作者（Minh-Thang
+Luong）使用RNN编码器解码器模型，翻译任务。</p></li>
+<li><p>其中解码时是将包含注意力的表示和目标单词对应的解码隐藏层向量连接再经激活函数生成注意力向量：</p>
+<p><span class="math display">\[
 h_t = tanh(W_c[c_t;h_t])
-\]</span> 之后注意力向量过softmax生成概率分布。</li>
+\]</span></p>
+<p>之后注意力向量过softmax生成概率分布。</p></li>
 </ul>
 <h2 id="全局注意力">全局注意力</h2>
 <ul>
@@ -358,20 +360,27 @@ Approaches，即局部注意力和input-feeding。</li>
 </ul>
 <h2 id="局部注意力">局部注意力</h2>
 <ul>
-<li>局部注意力：不使用全部输入信息，而是对每一个输出的单词先生成一个对齐位置，然后只对对齐位置附近窗内的输入信息注意力加权生成表示。文章给出了两种种生成对齐位置的方式：</li>
-<li>单调对齐：简单的将第i输出单词的对齐位置设为i,显然在文摘中这种方式不可取。</li>
-<li>预测对齐：训练对齐位置。 <span class="math display">\[
+<li><p>局部注意力：不使用全部输入信息，而是对每一个输出的单词先生成一个对齐位置，然后只对对齐位置附近窗内的输入信息注意力加权生成表示。文章给出了两种种生成对齐位置的方式：</p>
+<ul>
+<li><p>单调对齐：简单的将第i输出单词的对齐位置设为i,显然在文摘中这种方式不可取。</p></li>
+<li><p>预测对齐：训练对齐位置。</p>
+<p><span class="math display">\[
 p_t = S \cdots sigmoid(v_p^T tanh(W_ph_t)) \\
-\]</span> 其中<span
+\]</span></p>
+<p>其中<span
 class="math inline">\(h_t\)</span>是第t个生成单词的隐藏层向量 <span
 class="math inline">\(W_p\)</span>和<span
 class="math inline">\(v_p\)</span>都是需要训练的权重
-S是输入单词长度,与sigmoid相乘就得到输入句中任意位置</li>
-<li>另外为了使得对齐位置的权重最大，先以对齐位置为期望、半窗长为标准差生成高斯分布，再以此为基础生成权重。
-<span class="math display">\[
+S是输入单词长度,与sigmoid相乘就得到输入句中任意位置</p></li>
+</ul></li>
+<li><p>另外为了使得对齐位置的权重最大，先以对齐位置为期望、半窗长为标准差生成高斯分布，再以此为基础生成权重。</p>
+<p><span class="math display">\[
 a_t(s) = align(h_t,h_s)exp(-\frac{(s-p_t)^2}{2\sigma ^2})
-\]</span> <img data-src="https://s1.ax1x.com/2018/10/20/i0ost1.png"
-alt="i0ost1.png" /></li>
+\]</span></p>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0ost1.png" alt="i0ost1.png" />
+<figcaption aria-hidden="true">i0ost1.png</figcaption>
+</figure></li>
 </ul>
 <h2 id="input-feeding">Input-feeding</h2>
 <ul>
@@ -513,44 +522,48 @@ Summarization by Extracting Sentences and Words</h1>
 <h1 id="a-deep-reinforced-model-for-abstractive-summarization">A DEEP
 REINFORCED MODEL FOR ABSTRACTIVE SUMMARIZATION</h1>
 <ul>
-<li>使用强化学习来优化当前的端到端生成式文摘模型 <img
-src="https://s1.ax1x.com/2018/10/20/i0TicT.png" alt="i0TicT.png" /></li>
-<li>解决长文摘生成和重复短语问题</li>
-<li>强化学习需要外界给予模型反馈，这里作者使用人工对生成的文摘进行评价并反馈给模型，使得模型可以生成可读性更好的文摘</li>
-<li>模型的改进主要在两点：在编码端和解码端分别加入了内注意力，其中编码端是之前提出过的，本文主要引入解码端的内注意力机制；提出了一种新的目标函数，结合了交叉熵损失和来自强化学习的奖励</li>
-<li>编码解码两端的内注意力是从两个方面解决重复短语问题，因为重复问题在长文本生成文摘中相比短文本更加严重。</li>
-<li>编码端加入内注意力是认为重复来自于在解码各个时间步对输入长文本的注意力分布不均匀，没用充分利用长文本，在解码各个时间步可能注意力的分布都相似，导致生成重复语段。因此作者在模型中对过去已经获得高注意力权重的输入位置给予惩罚，保证输入文本的各个部分充分利用。引入惩罚的方式是在新的某一解码时间步，某一编码输入位置的注意力权重是本次产生的注意力权重除以之前所有时间步注意力权重之和，这样如果过去的产生了大的注意力权重，则新产生的注意力权重会变小。</li>
-<li>解码端加入内注意力是认为重复还来源于解码端本身的隐藏状态重复。作者认为解码时依赖的解码端信息应该不止包含上一时间步的解码端隐藏层状态，而是过去所有时间步的隐藏层状态并给予注意力加权，因此在解码端引入了类似的内注意力机制和惩罚机制。</li>
-<li>在这个端到端模型中注意力并不是沟通编码端和解码端的方式，而是独立在两端，仅依赖于编码/解码端之前的状态和当前状态产生，因此是内注意力（自注意力）。</li>
-<li>在搭建端到端模型时作者还采用了一些其他前人提出过的技巧，例如使用复制指针和开关解决稀疏词问题，编码解码共享词嵌入矩阵，另外还特别提出了一个小技巧：基于观察，一般文摘中不会出现重复的三词短语，因此在解码端束搜索中若出现了重复的三词短语就剪枝。</li>
-<li>之后作者分析了静态的监督学习在文摘评价标准中常常取不到理想结果的两个原因：一是exposure
+<li><p>使用强化学习来优化当前的端到端生成式文摘模型 <img
+src="https://s1.ax1x.com/2018/10/20/i0TicT.png"
+alt="i0TicT.png" /></p></li>
+<li><p>解决长文摘生成和重复短语问题</p></li>
+<li><p>强化学习需要外界给予模型反馈，这里作者使用人工对生成的文摘进行评价并反馈给模型，使得模型可以生成可读性更好的文摘</p></li>
+<li><p>模型的改进主要在两点：在编码端和解码端分别加入了内注意力，其中编码端是之前提出过的，本文主要引入解码端的内注意力机制；提出了一种新的目标函数，结合了交叉熵损失和来自强化学习的奖励</p></li>
+<li><p>编码解码两端的内注意力是从两个方面解决重复短语问题，因为重复问题在长文本生成文摘中相比短文本更加严重。</p></li>
+<li><p>编码端加入内注意力是认为重复来自于在解码各个时间步对输入长文本的注意力分布不均匀，没用充分利用长文本，在解码各个时间步可能注意力的分布都相似，导致生成重复语段。因此作者在模型中对过去已经获得高注意力权重的输入位置给予惩罚，保证输入文本的各个部分充分利用。引入惩罚的方式是在新的某一解码时间步，某一编码输入位置的注意力权重是本次产生的注意力权重除以之前所有时间步注意力权重之和，这样如果过去的产生了大的注意力权重，则新产生的注意力权重会变小。</p></li>
+<li><p>解码端加入内注意力是认为重复还来源于解码端本身的隐藏状态重复。作者认为解码时依赖的解码端信息应该不止包含上一时间步的解码端隐藏层状态，而是过去所有时间步的隐藏层状态并给予注意力加权，因此在解码端引入了类似的内注意力机制和惩罚机制。</p></li>
+<li><p>在这个端到端模型中注意力并不是沟通编码端和解码端的方式，而是独立在两端，仅依赖于编码/解码端之前的状态和当前状态产生，因此是内注意力（自注意力）。</p></li>
+<li><p>在搭建端到端模型时作者还采用了一些其他前人提出过的技巧，例如使用复制指针和开关解决稀疏词问题，编码解码共享词嵌入矩阵，另外还特别提出了一个小技巧：基于观察，一般文摘中不会出现重复的三词短语，因此在解码端束搜索中若出现了重复的三词短语就剪枝。</p></li>
+<li><p>之后作者分析了静态的监督学习在文摘评价标准中常常取不到理想结果的两个原因：一是exposure
 bias，即模型在训练时是接触到了正确的输出(ground
-truth)，但是在infer时是没有正确输出做矫正的，因此如果infer时错了一个词，之后错误会越积越大；二是文摘生成本身不是静态的，没有标准答案，而好的文摘有许多种可能（文摘评价标准中一般考虑了这些可能），但使用最大似然目标函数的静态的学习方法扼杀了这些可能。</li>
-<li>因此作者在监督学习之外为文摘任务引入了policy
+truth)，但是在infer时是没有正确输出做矫正的，因此如果infer时错了一个词，之后错误会越积越大；二是文摘生成本身不是静态的，没有标准答案，而好的文摘有许多种可能（文摘评价标准中一般考虑了这些可能），但使用最大似然目标函数的静态的学习方法扼杀了这些可能。</p></li>
+<li><p>因此作者在监督学习之外为文摘任务引入了policy
 learning，一种策略搜索强化学习方式。在强化学习中模型不是以生成与标签最相似的输出为目标，而是以最大化某一种指标为目标。在这里作者借鉴了图像标注任务中的一种强化学习算法：self-critical
-policy gradient training algorithm： <span class="math display">\[
+policy gradient training algorithm：</p>
+<p><span class="math display">\[
 L_{rl} = (r(y)-r(y^s))\sum _{t=1}^n log p(y_t^s | y_1^s,...,y_{t-1}^s,x)
-\]</span> r是人工评价奖励函数
+\]</span></p>
+<p>r是人工评价奖励函数
 两个r函数的参数：前者是最大化输出概率得到的基准句子，后者是根据每一步输出条件概率分布采样得到的句子
-目标是最小化这个L目标函数，假如采样的句子得到的人工奖励比基准句子多，则这个最小化目标函数等价于最大化采样句子的条件概率（前面的两个r函数计算之后为负号）</li>
-<li>之后作者将监督学习和强化学习的两种目标函数结合起来：</li>
+目标是最小化这个L目标函数，假如采样的句子得到的人工奖励比基准句子多，则这个最小化目标函数等价于最大化采样句子的条件概率（前面的两个r函数计算之后为负号）</p></li>
+<li><p>之后作者将监督学习和强化学习的两种目标函数结合起来：</p></li>
 </ul>
 <h1
 id="distributed-representations-of-words-and-phrases-and-their-compositionality">Distributed
 Representations of Words and Phrases and their Compositionality</h1>
 <ul>
-<li>介绍了w2v的负采样版本。</li>
-<li>以短语为基本单位训练而不是单词，这样能够更好的表示一些idiomatic
-phrase。</li>
-<li>用nce（噪声对比估计）替代分层softmax，nce近似最大化softmax的对数概率，在w2v中只关心学到好的表示，因此用简化版的nce，负采样，用下式替代输出的条件概率：
-<span class="math display">\[
+<li><p>介绍了w2v的负采样版本。</p></li>
+<li><p>以短语为基本单位训练而不是单词，这样能够更好的表示一些idiomatic
+phrase。</p></li>
+<li><p>用nce（噪声对比估计）替代分层softmax，nce近似最大化softmax的对数概率，在w2v中只关心学到好的表示，因此用简化版的nce，负采样，用下式替代输出的条件概率：</p>
+<p><span class="math display">\[
 p(w_O | w_I) = \frac {exp(v_{w_O}^T v_{w_I})}{\sum _{w=1}^W
 exp(v_{w_O}^T v_{w_I})}
-\]</span> 被替换成 $$ log (v_{w_O}^T v_{w_I}) + <em>{i=1}^k E</em>{w_i
-P_n(w)} [log (v_{w_O}^T v_{w_I})]</li>
-<li>每次在softmax输出层只激活目标label和k个噪声label（即非目标label），即对每一个单词，有k+1个样本，1个正样本，k个采样得到的负样本，进行logistic回归分类，上式即logistics回归的似然函数，其中Pn是噪声的概率分布。</li>
-<li>对常见词进行降采样，因为常见词的向量表示容易稳定，再训练几百万次也不会发生大的改变，因此每一次对词的训练以一定概率跳过：</li>
-<li>这样训练出来的skip-gram模型具有很好的加法语义合成性（两个向量的逐分量相加），即俄国+河与伏尔加河相近，因为向量与输出层的概率对数相关，两个向量相加与两个上下文的乘积相关，这种乘积相当于逻辑与：高概率乘高概率为高概率，其余为低概率。因此具有这种简单的算术语义合成性。</li>
+\]</span></p>
+<p>被替换成 $$ log (v_{w_O}^T v_{w_I}) + <em>{i=1}^k E</em>{w_i P_n(w)}
+[log (v_{w_O}^T v_{w_I})]</p></li>
+<li><p>每次在softmax输出层只激活目标label和k个噪声label（即非目标label），即对每一个单词，有k+1个样本，1个正样本，k个采样得到的负样本，进行logistic回归分类，上式即logistics回归的似然函数，其中Pn是噪声的概率分布。</p></li>
+<li><p>对常见词进行降采样，因为常见词的向量表示容易稳定，再训练几百万次也不会发生大的改变，因此每一次对词的训练以一定概率跳过：</p></li>
+<li><p>这样训练出来的skip-gram模型具有很好的加法语义合成性（两个向量的逐分量相加），即俄国+河与伏尔加河相近，因为向量与输出层的概率对数相关，两个向量相加与两个上下文的乘积相关，这种乘积相当于逻辑与：高概率乘高概率为高概率，其余为低概率。因此具有这种简单的算术语义合成性。</p></li>
 </ul>
 
     </div>
@@ -693,13 +706,13 @@ Representations of Words and Phrases and their Compositionality</span></a></li><
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -757,12 +770,12 @@ Representations of Words and Phrases and their Compositionality</span></a></li><
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">376k</span>
+    <span title="Symbols count total">380k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:42</span>
+    <span title="Reading time total">5:45</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

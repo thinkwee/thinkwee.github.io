@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0IOoR.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oSSK.png">
 <meta property="article:published_time" content="2018-03-07T01:56:23.000Z">
-<meta property="article:modified_time" content="2024-03-11T05:56:55.932Z">
+<meta property="article:modified_time" content="2024-04-23T08:34:34.847Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="math">
@@ -145,7 +145,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
 
   </li>
         <li class="menu-item menu-item-memory">
@@ -243,7 +243,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-03-11 13:56:55" itemprop="dateModified" datetime="2024-03-11T13:56:55+08:00">2024-03-11</time>
+                <time title="Modified: 2024-04-23 16:34:34" itemprop="dateModified" datetime="2024-04-23T16:34:34+08:00">2024-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -251,7 +251,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">自然语言处理</span></a>
+                  <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
                 </span>
             </span>
 
@@ -309,14 +309,15 @@
 </figure>
 <h1 id="前馈神经网络相关">前馈神经网络相关</h1>
 <ul>
-<li>数据维数很高时，样本空间容量可能远大于训练样本数目，导致维数灾难。</li>
-<li>激活函数.用于表示神经网络中的非线性变换，没有激活函数而只有权重矩阵的话神经网络是线性变换的组合，依然是线性变换。利用非线性变换能提取出方便进行线性变换的特征，避免维数灾难(?)。</li>
-<li>Softmax和sigmoid的意义：具有最大熵，方便求导，万能近似定理（具有挤压性质）</li>
-<li>隐藏层可使用激活函数ReLU，即整流线性，缺陷是不能使用梯度学习使函数激活为0的样本，因此发展了三种扩展：
-<span class="math display">\[
+<li><p>数据维数很高时，样本空间容量可能远大于训练样本数目，导致维数灾难。</p></li>
+<li><p>激活函数.用于表示神经网络中的非线性变换，没有激活函数而只有权重矩阵的话神经网络是线性变换的组合，依然是线性变换。利用非线性变换能提取出方便进行线性变换的特征，避免维数灾难(?)。</p></li>
+<li><p>Softmax和sigmoid的意义：具有最大熵，方便求导，万能近似定理（具有挤压性质）</p></li>
+<li><p>隐藏层可使用激活函数ReLU，即整流线性，缺陷是不能使用梯度学习使函数激活为0的样本，因此发展了三种扩展：</p>
+<p><span class="math display">\[
 g(z,\alpha)_i = max(0,z_i) + \alpha _i min(0,z_i)
-\]</span> 绝对值整流：右边系数为-1 渗漏整流：右边系数固定为一个较小值
-参数化整流：系数放到模型中学习</li>
+\]</span></p>
+<p>绝对值整流：右边系数为-1 渗漏整流：右边系数固定为一个较小值
+参数化整流：系数放到模型中学习</p></li>
 </ul>
 <h1 id="反向传播">反向传播</h1>
 <ul>
@@ -331,32 +332,38 @@ src="https://s1.ax1x.com/2018/10/20/i0IIzT.png" alt="i0IIzT.png" />
 <h1 id="rnn循环神经网络">RNN循环神经网络</h1>
 <h2 id="rnn">RNN</h2>
 <ul>
-<li>特点：所有的隐藏层共享参数，将隐藏层作为状态变量，方便参数化。</li>
-<li>用双曲正切作为隐藏层激活函数</li>
-<li>输入x，x过权重矩阵经隐藏层激活后得到h，h过权重矩阵输出o，代价L，o经输出激活后得到y</li>
-<li>基本结构（展开和非展开）： <img
-src="https://s1.ax1x.com/2018/10/20/i0I7yF.png" alt="i0I7yF.png" /></li>
-<li>几种变式：</li>
+<li><p>特点：所有的隐藏层共享参数，将隐藏层作为状态变量，方便参数化。</p></li>
+<li><p>用双曲正切作为隐藏层激活函数</p></li>
+<li><p>输入x，x过权重矩阵经隐藏层激活后得到h，h过权重矩阵输出o，代价L，o经输出激活后得到y</p></li>
+<li><p>基本结构（展开和非展开）： <img
+src="https://s1.ax1x.com/2018/10/20/i0I7yF.png"
+alt="i0I7yF.png" /></p></li>
+<li><p>几种变式：</p>
+<ul>
 <li>每一个时间步均有输出，隐藏层之间有循环连接： <img
 src="https://s1.ax1x.com/2018/10/20/i0ITQU.png" alt="i0ITQU.png" /></li>
 <li>每一个时间步均有输出，输出与隐藏层之间有循环连接： <img
 src="https://s1.ax1x.com/2018/10/20/i0IqeJ.png" alt="i0IqeJ.png" /></li>
 <li>读取整个序列后产生单个输出： <img
 src="https://s1.ax1x.com/2018/10/20/i0oCOe.png" alt="i0oCOe.png" /></li>
-<li>普通的前向传播，softmax处理输出，负对数似然作为损失函数，通过时间反向传播代价过大。
-前馈过程： <span class="math display">\[
+</ul></li>
+<li><p>普通的前向传播，softmax处理输出，负对数似然作为损失函数，通过时间反向传播代价过大。
+前馈过程：</p>
+<p><span class="math display">\[
 \alpha ^{(t)} = b + Wh^{(t-1)} + Ux^{(t)}, \\
 h^{(t)} = tanh(a^{(t)}), \\
 o^{(t)} = c + Vh^{(t)}, \\
 y^{(t)} = softmax(o^{(t)}) \\
-\]</span> 代价函数： <span class="math display">\[
+\]</span></p>
+<p>代价函数：</p>
+<p><span class="math display">\[
 L(\{ x^{(1)} , ... , x^{(\tau)}\},\{ y^{(1)} , ... , y^{(\tau)}\}) \\
 =\sum _t L^{(t)} \\
 = - \sum _t log p_{model} (y^{(t)}|\{ x^{(1)} , ... , x^{(\tau)}\}) \\
-\]</span></li>
-<li>改为第二种RNN，使用输出到隐藏层的循环，消除了隐藏层到隐藏层的循环，解耦并行(?)，使用导师驱动模型（用正确输出训练到隐藏层的循环网络W，测试时用贴近正确输出的实际输出经过网络W）
+\]</span></p></li>
+<li><p>改为第二种RNN，使用输出到隐藏层的循环，消除了隐藏层到隐藏层的循环，解耦并行(?)，使用导师驱动模型（用正确输出训练到隐藏层的循环网络W，测试时用贴近正确输出的实际输出经过网络W）
 导师驱动模型： <img data-src="https://s1.ax1x.com/2018/10/20/i0ILw9.png"
-alt="i0ILw9.png" /></li>
+alt="i0ILw9.png" /></p></li>
 </ul>
 <h2 id="双向rnn">双向RNN</h2>
 <ul>
@@ -382,12 +389,14 @@ src="https://s1.ax1x.com/2018/10/20/i0IjF1.png" alt="i0IjF1.png" /></li>
 <li>最好是避免梯度爆炸。在循环网络中，隐藏层到隐藏层之间的变换没有引入非线性变换，即相当于对权重矩阵做幂运算，特征值会爆炸或者消失，相对应的长期相互作用的梯度值就会变得指数小。避免的办法包括引入时间维度的跳跃链接（添加长时间跨度的边）、引入渗漏单元（设置权重接近1的线性自连接单元）、删除短时间跨度的边（只保留长时间跨度的边）</li>
 </ul>
 <h2 id="门控rnn">门控RNN</h2>
-<p>-用类似渗漏单元的方法解决长期依赖问题，引入了门控RNN，包括LSTM和GRU。
-- 渗漏单元(?)：我们对某些 v 值应用更新 µ (t) ← αµ(t−1) + (1−α)v (t)
+<p>-用类似渗漏单元的方法解决长期依赖问题，引入了门控RNN，包括LSTM和GRU。</p>
+<ul>
+<li>渗漏单元(?)：我们对某些 v 值应用更新 µ (t) ← αµ(t−1) + (1−α)v (t)
 累积一个滑动平均值 µ (t)，其中 α 是一个从 µ (t−1) 到 µ (t)
 线性自连接的例子。当 α 接近 1
 时，滑动平均值能记住过去很长一段时间的信息，而当 α 接近
-0，关于过去的信息被迅速丢弃。线性自连接的隐藏单元µ可以模拟滑动平均的行为。这种隐藏单元称为渗漏单元。</p>
+0，关于过去的信息被迅速丢弃。线性自连接的隐藏单元µ可以模拟滑动平均的行为。这种隐藏单元称为渗漏单元。</li>
+</ul>
 <h1 id="lstm">LSTM</h1>
 <ul>
 <li>LSTM：使自循环的权重视上下文而定（通过门控控制此循环的权重）</li>
@@ -404,11 +413,13 @@ src="https://s1.ax1x.com/2018/10/20/i0IxW6.png" alt="i0IxW6.png" /></li>
 <h1 id="双向lstm">双向LSTM</h1>
 <ul>
 <li>同双向RNN，每一个隐藏层节点都是lstm节点，且双向的两个隐藏层节点之间没有连接，需要将两个隐藏层全部更新完才能计算输出层，每一时间步的输出依赖w1到w6共6个权重矩阵。</li>
-<li>因为每一个输出层节点接受两个隐藏层节点的输出，需要做一个处理，有多种方式：</li>
+<li>因为每一个输出层节点接受两个隐藏层节点的输出，需要做一个处理，有多种方式：
+<ul>
 <li>直接连接(concat)<br />
 </li>
 <li>求和 <img data-src="https://s1.ax1x.com/2018/10/20/i0oSSK.png"
 alt="i0oSSK.png" /></li>
+</ul></li>
 </ul>
 <h1 id="词嵌入word2vec">词嵌入、Word2Vec</h1>
 <ul>
@@ -552,13 +563,13 @@ target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4Mj
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -616,12 +627,12 @@ target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4Mj
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">376k</span>
+    <span title="Symbols count total">380k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:42</span>
+    <span title="Reading time total">5:45</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

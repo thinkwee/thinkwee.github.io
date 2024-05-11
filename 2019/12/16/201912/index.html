@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="跨年读论文。 - 边池化 - Discourse-Aware，抽取式摘要 - Discourse-Aware，生成式摘要 - 孪生BERT - 巨型Chatbot">
+  <meta name="description" content="跨年读论文。  边池化 Discourse-Aware，抽取式摘要 Discourse-Aware，生成式摘要 孪生BERT 巨型Chatbot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Paper Reading 4">
 <meta property="og:url" content="https://thinkwee.top/2019/12/16/201912/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="跨年读论文。 - 边池化 - Discourse-Aware，抽取式摘要 - Discourse-Aware，生成式摘要 - 孪生BERT - 巨型Chatbot">
+<meta property="og:description" content="跨年读论文。  边池化 Discourse-Aware，抽取式摘要 Discourse-Aware，生成式摘要 孪生BERT 巨型Chatbot">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.ax1x.com/2020/01/29/1MfDOI.png">
 <meta property="article:published_time" content="2019-12-16T08:07:25.000Z">
-<meta property="article:modified_time" content="2024-03-11T05:56:55.928Z">
+<meta property="article:modified_time" content="2024-04-23T07:53:06.505Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="graph neural network">
 <meta property="article:tag" content="deep learning">
@@ -141,7 +141,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
 
   </li>
         <li class="menu-item menu-item-memory">
@@ -239,7 +239,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-03-11 13:56:55" itemprop="dateModified" datetime="2024-03-11T13:56:55+08:00">2024-03-11</time>
+                <time title="Modified: 2024-04-23 15:53:06" itemprop="dateModified" datetime="2024-04-23T15:53:06+08:00">2024-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -247,7 +247,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">自然语言处理</span></a>
+                  <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
                 </span>
             </span>
 
@@ -297,121 +297,131 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>跨年读论文。 - 边池化 - Discourse-Aware，抽取式摘要 -
-Discourse-Aware，生成式摘要 - 孪生BERT - 巨型Chatbot</p>
+        <p>跨年读论文。</p>
+<ul>
+<li>边池化</li>
+<li>Discourse-Aware，抽取式摘要</li>
+<li>Discourse-Aware，生成式摘要</li>
+<li>孪生BERT</li>
+<li>巨型Chatbot</li>
+</ul>
 <span id="more"></span>
 <h1 id="edge-contraction-pooling-for-graph-neural-networks">Edge
 Contraction Pooling for Graph Neural Networks</h1>
 <ul>
-<li>一种新的GNN池化方式，考虑了边</li>
-<li>池化在GNN中的意义：
+<li><p>一种新的GNN池化方式，考虑了边</p></li>
+<li><p>池化在GNN中的意义：</p>
 <ul>
 <li>识别基于特征或者基于结构的聚类</li>
 <li>减少计算量</li>
 </ul></li>
-<li>作者提出的edgepool能够提高图分类和节点分类的性能。</li>
-<li>pooling有两种，fixed和learned，作者简单介绍了三种learned pooling
-method
+<li><p>作者提出的edgepool能够提高图分类和节点分类的性能。</p></li>
+<li><p>pooling有两种，fixed和learned，作者简单介绍了三种learned pooling
+method</p>
 <ul>
-<li>DiffPool：DiffPool学习到一种概率分配，用一个GNN学习embedding，用一个GNN学习聚类分配，将聚类分配视为一个soft
+<li><p>DiffPool：DiffPool学习到一种概率分配，用一个GNN学习embedding，用一个GNN学习聚类分配，将聚类分配视为一个soft
 assign matrix<span
-class="math inline">\(S\)</span>，基于节点特征将每个节点分配给一个聚类，聚类数量事先固定，每一层同时对embedding和邻接矩阵进行pooling，如下：
-<span class="math display">\[
+class="math inline">\(S\)</span>，基于节点特征将每个节点分配给一个聚类，聚类数量事先固定，每一层同时对embedding和邻接矩阵进行pooling，如下：</p>
+<p><span class="math display">\[
 \begin{array}{l}{X^{(l+1)}=S^{(l)^{T}} Z^{(l)} \in \mathbb{R}^{n_{l+1}
 \times d}} \\
 {A^{(l+1)}=S^{(l)^{T}} A^{(l)} S^{(l)} \in \mathbb{R}^{n_{l+1} \times
 n_{l+1}}}\end{array} \\
-\]</span>
-问题在于：聚类数量不可变；基于节点特征分配而不考虑节点之间距离；聚类分配矩阵与节点数目成线性关系，难以scale；难以训练</li>
-<li>TopKPool：简单粗暴，学习到一个投影向量，将每个节点的特征投影加权为一个单值，取topk个节点保留作为Pooling，问题在于不能改变图（加节点），以及这种hard
-assignment容易丢失信息</li>
-<li>SAGPool：对TopK的改进，对邻域节点使用了注意力加权，再投影，不过依然是topk的hard
-assignment。</li>
+\]</span></p>
+<p>问题在于：聚类数量不可变；基于节点特征分配而不考虑节点之间距离；聚类分配矩阵与节点数目成线性关系，难以scale；难以训练</p></li>
+<li><p>TopKPool：简单粗暴，学习到一个投影向量，将每个节点的特征投影加权为一个单值，取topk个节点保留作为Pooling，问题在于不能改变图（加节点），以及这种hard
+assignment容易丢失信息</p></li>
+<li><p>SAGPool：对TopK的改进，对邻域节点使用了注意力加权，再投影，不过依然是topk的hard
+assignment。</p></li>
 </ul></li>
-<li>edge pooling的思想是通过边的收缩(edge
+<li><p>edge pooling的思想是通过边的收缩(edge
 contraction)来降采样，给定一条边e，两边节点<span
 class="math inline">\(v_i\)</span>和<span
 class="math inline">\(v_j\)</span>，边收缩指的是将i和j的所有邻接节点全部接到一个新节点<span
-class="math inline">\(v_e\)</span>，这个操作显然是可以叠加多次，类似于CNN的不断扩大感受野。</li>
-<li>如何选边？
+class="math inline">\(v_e\)</span>，这个操作显然是可以叠加多次，类似于CNN的不断扩大感受野。</p></li>
+<li><p>如何选边？</p>
 <ul>
-<li>先对边计算分数，这里简单的将边连接的两个节点的embedding拼接再线性变换
-<span class="math display">\[
+<li><p>先对边计算分数，这里简单的将边连接的两个节点的embedding拼接再线性变换</p>
+<p><span class="math display">\[
 r(e_{ij}) = W (n_i || n_j) + b
-\]</span></li>
-<li>之后对所有的分数做softmax归一化，注意这里作者加了0.5使得均值为1，作者给出的解释是数值计算更稳定且梯度传导更好
-<span class="math display">\[
+\]</span></p></li>
+<li><p>之后对所有的分数做softmax归一化，注意这里作者加了0.5使得均值为1，作者给出的解释是数值计算更稳定且梯度传导更好</p>
+<p><span class="math display">\[
 s_{ij} = 0.5 + softmax_{r_{*j}}(R_{ij})
-\]</span></li>
-<li>按照分数开始收缩边，假如边连接了已经收缩的边节点那就不再收缩了。这样每次都能减少一半的节点。</li>
+\]</span></p></li>
+<li><p>按照分数开始收缩边，假如边连接了已经收缩的边节点那就不再收缩了。这样每次都能减少一半的节点。</p></li>
 </ul></li>
-<li>新的节点分数直接用边分数加权两端节点特征和得到： <span
-class="math display">\[
+<li><p>新的节点分数直接用边分数加权两端节点特征和得到：</p>
+<p><span class="math display">\[
 \hat{n}_{i j}=s_{i j}\left(n_{i}+n_{j}\right)
-\]</span></li>
+\]</span></p></li>
 </ul>
 <h1
 id="discourse-aware-hierarchical-attention-network-for-extractive-single-document-summarization">Discourse-Aware
 Hierarchical Attention Network for Extractive Single-Document
 Summarization</h1>
 <ul>
-<li>以hierarchical lstm encoder+lstm
+<li><p>以hierarchical lstm encoder+lstm
 decoder的抽取式摘要作为baseline，添加了一个三层attention用来加入篇章信息，这里的篇章信息具体指的是句子级别的elaborate关系，即某一句详细阐述或者补充说明了另一句，作者认为document
-summarization这种篇章级别的任务当然需要篇章信息。</li>
-<li>作者使用了attention来学习句子之间的elaborate有向边，具体如下图：
+summarization这种篇章级别的任务当然需要篇章信息。</p></li>
+<li><p>作者使用了attention来学习句子之间的elaborate有向边，具体如下图：
 <img data-src="https://s2.ax1x.com/2020/01/29/1MfDOI.png"
-alt="1MfDOI.png" /></li>
-<li>三个组件
+alt="1MfDOI.png" /></p></li>
+<li><p>三个组件</p>
 <ul>
-<li>Parent Attention：使用hierarchical
+<li><p>Parent Attention：使用hierarchical
 encoder得到每个句子的表示，之后用attention表示句子k是句子i父节点的概率，即elaborate的边由k指向i（作者没有用self
-attention） <span class="math display">\[
+attention）</p>
+<p><span class="math display">\[
 \begin{aligned} p(k | i, \mathbf{H}) &amp;=\operatorname{softmax}(g(k,
 i)) \\ g(k, i) &amp;=v_{a}^{\mathrm{T}} \tanh \left(U_{a} \cdot
 H_{k}+W_{a} H_{i}\right) \end{aligned}
-\]</span></li>
-<li>Recursive
-Attention：即计算多跳父节点，得到k是i的d跳父节点概率，这里简单的用注意力矩阵幂应该就可以得到，注意要对root句子（虚节点）做特殊处理，root没有父节点：
-<span class="math display">\[
+\]</span></p></li>
+<li><p>Recursive
+Attention：即计算多跳父节点，得到k是i的d跳父节点概率，这里简单的用注意力矩阵幂应该就可以得到，注意要对root句子（虚节点）做特殊处理，root没有父节点：</p>
+<p><span class="math display">\[
 \alpha_{d, k, i}=\left\{\begin{array}{ll}{p(k | i, \mathbf{H})} &amp;
 {(d=1)} \\ {\sum_{l=0}^{N} \alpha_{d-1, k, l} \times \alpha_{1, l, i}}
 &amp; {(d&gt;1)}\end{array}\right.
-\]</span></li>
-<li>Selective
-Attention：综合得到的attention信息，首先将句子i某一跳所有父节点的信息加权求和：
-<span class="math display">\[
+\]</span></p></li>
+<li><p>Selective
+Attention：综合得到的attention信息，首先将句子i某一跳所有父节点的信息加权求和：</p>
+<p><span class="math display">\[
 \gamma_{d, i}=\sum_{k=0}^{N} \alpha_{d, k, i} H_{k}
-\]</span> 之后再用selective
+\]</span></p>
+<p>之后再用selective
 attention计算该跳的权重，依赖于句子i的encoder和decoder state<span
-class="math inline">\(H,s\)</span>，以及所有父节点的encoder state：
-<span class="math display">\[
+class="math inline">\(H,s\)</span>，以及所有父节点的encoder state：</p>
+<p><span class="math display">\[
 \beta_{d, i}=\operatorname{softmax}\left(\mathbf{W}_{\beta}\left[H_{i} ;
 s_{i} ; K\right]\right)
-\]</span> 得到权重加权所有跳的信息，并补充进decoder input当中（拼接）
-<span class="math display">\[
+\]</span></p>
+<p>得到权重加权所有跳的信息，并补充进decoder input当中（拼接）</p>
+<p><span class="math display">\[
 \Omega_{i}=\sum_{d} \beta_{d, i} \gamma_{d, i} \\
 p\left(y_{i} | \mathbf{x},
 \theta\right)=\operatorname{softmax}\left(\mathbf{W}_{o} \tanh
 \left(\mathbf{W}_{c^{\prime}}\left[H_{i} ; s_{t} ; K ;
 \Omega_{i}\right]\right)\right) \\
-\]</span></li>
+\]</span></p></li>
 </ul></li>
-<li>这里，作者说提到了修辞结构分析（RST）目前没有很好的off-the-shelf
+<li><p>这里，作者说提到了修辞结构分析（RST）目前没有很好的off-the-shelf
 tools，误差大，这是硬伤，因此提出了一个联合学习的框架，后来发现联合学习是指训练集上依然用已有的RST
 Parser得到elaborate edges，用以指导Parent
-Attention，之后测试集就不需要了，这样的话Parser当中的误差对模型的影响依然很大。目标函数为：
-<span class="math display">\[
+Attention，之后测试集就不需要了，这样的话Parser当中的误差对模型的影响依然很大。目标函数为：</p>
+<p><span class="math display">\[
 -\log p(\mathbf{y} | \mathbf{x})-\lambda \cdot \sum_{k=1}^{N}
 \sum_{i=1}^{N} E_{k, i} \log \alpha_{1, k, i}
-\]</span> 其中第二项就是用parser得到的边指导attention</li>
-<li>作者先用HILDA parser得到RST格式的篇章标注信息，然后用Single-document
-summarization as a tree knapsack
-problem一文中的方法转换为dependency的格式</li>
-<li>虽然依然依赖于parser进行训练，但是作者做了两个Baseline，一个是不用parser，直接将前一句作为下一句的elaborate
+\]</span></p>
+<p>其中第二项就是用parser得到的边指导attention</p></li>
+<li><p>作者先用HILDA
+parser得到RST格式的篇章标注信息，然后用Single-document summarization as
+a tree knapsack problem一文中的方法转换为dependency的格式</p></li>
+<li><p>虽然依然依赖于parser进行训练，但是作者做了两个Baseline，一个是不用parser，直接将前一句作为下一句的elaborate
 parent，另一个也不用parser，让attention自己学习，结果发现baseline都不如注入了parser信息的attention模型。让attention自己学习最差，其次是学一个固定的前句父节点。作者提出的模型相比baseline在daily
-mail数据集上抽短文本（75)比抽长文本(275)优势更大，这里有ROUGE指标偏爱长文本的原因，也说明在字数限制下，抽最重要的信息方面，discourse的信息确实可以起到帮助。</li>
-<li>这篇文章可以看成一个attention模型(self attention +
-multi-blocks)，注入了一些先验信息来帮助在单文档抽取式摘要获得更好的结果。</li>
+mail数据集上抽短文本（75)比抽长文本(275)优势更大，这里有ROUGE指标偏爱长文本的原因，也说明在字数限制下，抽最重要的信息方面，discourse的信息确实可以起到帮助。</p></li>
+<li><p>这篇文章可以看成一个attention模型(self attention +
+multi-blocks)，注入了一些先验信息来帮助在单文档抽取式摘要获得更好的结果。</p></li>
 </ul>
 <h1
 id="a-discourse-aware-attention-model-for-abstractive-summarization-of-long-documents">A
@@ -591,13 +601,13 @@ Open-Domain Chatbot</span></a></li></ol></div>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -655,12 +665,12 @@ Open-Domain Chatbot</span></a></li></ol></div>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">376k</span>
+    <span title="Symbols count total">380k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:42</span>
+    <span title="Reading time total">5:45</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

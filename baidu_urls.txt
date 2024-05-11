@@ -1,3 +1,4 @@
+https://thinkwee.top/2024/04/23/next-on-llm/
 https://thinkwee.top/2023/07/20/marl/
 https://thinkwee.top/2023/06/05/gpt-debate/
 https://thinkwee.top/2021/05/13/pet/
@@ -47,4 +48,3 @@ https://thinkwee.top/2017/03/09/dachuang/
 https://thinkwee.top/2017/02/12/MachineLearningNote/
 https://thinkwee.top/2017/02/07/TitanicLinearRegression/
 https://thinkwee.top/2017/02/04/pandas-skill/
-https://thinkwee.top/2017/01/23/numpycookbook/
