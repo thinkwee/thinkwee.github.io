@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Python的一些特性和语法总结一些自己跳过的坑Python3.5">
+  <meta name="description" content="Python的一些特性和语法 总结一些自己跳过的坑 Python3.5">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python Notes">
 <meta property="og:url" content="https://thinkwee.top/2017/03/28/PythonNotes/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="Python的一些特性和语法总结一些自己跳过的坑Python3.5">
+<meta property="og:description" content="Python的一些特性和语法 总结一些自己跳过的坑 Python3.5">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-03-28T12:02:39.000Z">
 <meta property="article:modified_time" content="2024-04-23T08:35:35.800Z">
@@ -293,55 +293,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <hr>
-<p>Python的一些特性和语法<br>总结一些自己跳过的坑<br>Python3.5</p>
+        <hr />
+<p>Python的一些特性和语法 总结一些自己跳过的坑 Python3.5</p>
 <span id="more"></span>
-<h1 id="对象皆引用"><a href="#对象皆引用" class="headerlink" title="对象皆引用"></a>对象皆引用</h1><ul>
-<li>不同于C++，Python只有传引用，不存在传值，在Python中，一切皆对象，变量只是对对象的引用</li>
+<h1 id="对象皆引用">对象皆引用</h1>
+<ul>
+<li><p>不同于C++，Python只有传引用，不存在传值，在Python中，一切皆对象，变量只是对对象的引用</p></li>
 <li><p>Python中不需要声明变量类型也是基于此</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="number">3</span></span><br><span class="line">b=a</span><br></pre></td></tr></table></figure>
-<p>a和b都只是引用一个整型值3，修改b，a的引用值也会变化</p>
-</li>
-<li>如果要拷贝，可以用b=a[:]</li>
+<p>a和b都只是引用一个整型值3，修改b，a的引用值也会变化</p></li>
+<li><p>如果要拷贝，可以用b=a[:]</p></li>
 </ul>
-<h1 id="string是常量"><a href="#string是常量" class="headerlink" title="string是常量"></a>string是常量</h1><ul>
+<h1 id="string是常量">string是常量</h1>
+<ul>
 <li>字符串不能更改，只能在原先字符串上更改后赋给一个新字符串，原字符串依然不变</li>
 </ul>
-<h1 id="lambda匿名函数"><a href="#lambda匿名函数" class="headerlink" title="lambda匿名函数"></a>lambda匿名函数</h1><ul>
-<li><p>简化函数书写，lambda 参量:计算式</p>
-</li>
-<li><p>主要用于排序或者reduce</p>
-</li>
+<h1 id="lambda匿名函数">lambda匿名函数</h1>
+<ul>
+<li><p>简化函数书写，lambda 参量:计算式</p></li>
+<li><p>主要用于排序或者reduce</p></li>
 <li><p>lambda的参数是自由变量，是运行时绑定值，而不是定义时绑定值，如果要实现定义时绑定值，则定义之后在lambda中设置默认参数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   x=<span class="number">10</span></span><br><span class="line">   a=<span class="keyword">lambda</span> y,x=x:x+y</span><br><span class="line">   x=<span class="number">20</span></span><br><span class="line">   <span class="built_in">print</span>(a(<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">20</span></span><br></pre></td></tr></table></figure>
-<p>如果不设置默认参数，上面的运行结果就是30</p>
-</li>
+<p>如果不设置默认参数，上面的运行结果就是30</p></li>
 </ul>
-<h1 id="迭代器与生成器"><a href="#迭代器与生成器" class="headerlink" title="迭代器与生成器"></a>迭代器与生成器</h1><ul>
-<li><p>通过重写对象的<strong>iter</strong>方法实现自定义迭代器，生成器yield实现迭代器的next方法</p>
+<h1 id="迭代器与生成器">迭代器与生成器</h1>
+<ul>
+<li><p>通过重写对象的__iter__方法实现自定义迭代器，生成器yield实现迭代器的next方法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Countdown</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, start</span>):</span><br><span class="line">        self.start = start</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        n = self.start</span><br><span class="line">        <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">yield</span> n</span><br><span class="line">            n -= <span class="number">1</span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__reversed__</span>(<span class="params">self</span>):</span><br><span class="line">        n = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> n &lt;= self.start:</span><br><span class="line">            n += <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <pre><code>  for rr in (Countdown(3)):
-      print(rr)
-</code></pre><blockquote>
+      print(rr)</code></pre>
 <blockquote>
 <blockquote>
-<p>3</p>
-<pre><code>  2
-  1
-</code></pre>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># enumerate</span><br><span class="line"></span><br><span class="line">- 同时输出迭代对象和索引，参数为索引开始号</span><br><span class="line">  </span><br><span class="line">  ```Python</span><br><span class="line">     for idx,val in enumerate(my_list,1):</span><br><span class="line">         print(idx,val)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>3 2 1 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># enumerate</span><br><span class="line"></span><br><span class="line">- 同时输出迭代对象和索引，参数为索引开始号</span><br><span class="line">  </span><br><span class="line">  ```Python</span><br><span class="line">     for idx,val in enumerate(my_list,1):</span><br><span class="line">         print(idx,val)</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 </blockquote>
-</blockquote>
-</li>
+</blockquote></li>
 </ul>
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><ul>
+<h1 id="函数">函数</h1>
+<ul>
 <li><p>接收任意个参数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">avg</span>(<span class="params">first,*rest</span>):</span><br><span class="line">   <span class="keyword">return</span> (first+<span class="built_in">sum</span>(rest))/(<span class="number">1</span>+<span class="built_in">len</span>(rest))</span><br></pre></td></tr></table></figure>
-<p>*接任意数量的位置参数，也可以用**接一个字典，代表任意数量的关键字参数，也可以混用*和**<br>顺序(任意个位置参数，*，最后一个位置参数，其他参数，**)</p>
-</li>
-<li>函数返回多个值<br>直接return a,b,c，实际上返回的是一个元祖</li>
+<p>*接任意数量的位置参数，也可以用**接一个字典，代表任意数量的关键字参数，也可以混用*和**
+顺序(任意个位置参数，*，最后一个位置参数，其他参数，**)</p></li>
+<li><p>函数返回多个值 直接return a,b,c，实际上返回的是一个元祖</p></li>
 </ul>
-<h1 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h1><ul>
+<h1 id="装饰器">装饰器</h1>
+<ul>
 <li><p>一个装饰器就是一个函数，它接收一个函数作为参数并返回一个新的函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br></pre></td></tr></table></figure>
 <pre><code>  def timethis(func):
@@ -359,19 +357,26 @@
   def loop(n):
       while n &gt; 0:
           n -= 1
-</code></pre></li>
-</ul>
-<pre><code>    loop(100000)
 
-&gt;&gt;&gt; loop 0.03971695899963379
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    在上例中，timethis是包装器，其定义中func是被包装的函数，args和kwargs是任意数量的位置参数和关键字参数，来保证被包装的函数能正确接收参数执行</span><br><span class="line">    可以看到包装器中实现了一个wrapper装饰器函数，它运行了作为参数的func函数并计算打印了运行时间，一般装饰器函数返回原函数的执行结果</span><br><span class="line"></span><br><span class="line">- 可以看到timethis中的@wraps本身也是一个装饰器，它用来注解底层包装函数，这样能够保留原函数的元信息，还能通过装饰器返回函数的__wrapped__属性直接访问到被装饰的函数，用来解除装饰</span><br><span class="line"></span><br><span class="line"># 逗号的特殊作用</span><br><span class="line"></span><br><span class="line">- 输出时换行变空格</span><br><span class="line">- 转换类型为元组</span><br><span class="line"></span><br><span class="line"># filter</span><br><span class="line"></span><br><span class="line">- 接收一个函数和序列，将函数作用于序列中每一个元素上，根据返回值决定是否删除该元素</span><br><span class="line">  </span><br><span class="line">  ```Python</span><br><span class="line">     def is_odd(n):</span><br><span class="line">         return n % 2 == 1</span><br><span class="line">  </span><br><span class="line">     filter(is_odd, [1, 2, 4, 5, 6, 9, 10, 15])</span><br></pre></td></tr></table></figure>
-</code></pre><h1 id="any"><a href="#any" class="headerlink" title="any"></a>any</h1><ul>
-<li><p>原型：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">any</span>(<span class="params">iterable</span>):</span><br><span class="line">   <span class="keyword">for</span> element <span class="keyword">in</span> iterable:</span><br><span class="line">       <span class="keyword">if</span>  element:</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">   <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-</li>
+
+  loop(100000)</code></pre>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>loop 0.03971695899963379 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    在上例中，timethis是包装器，其定义中func是被包装的函数，args和kwargs是任意数量的位置参数和关键字参数，来保证被包装的函数能正确接收参数执行</span><br><span class="line">    可以看到包装器中实现了一个wrapper装饰器函数，它运行了作为参数的func函数并计算打印了运行时间，一般装饰器函数返回原函数的执行结果</span><br><span class="line"></span><br><span class="line">- 可以看到timethis中的@wraps本身也是一个装饰器，它用来注解底层包装函数，这样能够保留原函数的元信息，还能通过装饰器返回函数的__wrapped__属性直接访问到被装饰的函数，用来解除装饰</span><br><span class="line"></span><br><span class="line"># 逗号的特殊作用</span><br><span class="line"></span><br><span class="line">- 输出时换行变空格</span><br><span class="line">- 转换类型为元组</span><br><span class="line"></span><br><span class="line"># filter</span><br><span class="line"></span><br><span class="line">- 接收一个函数和序列，将函数作用于序列中每一个元素上，根据返回值决定是否删除该元素</span><br><span class="line">  </span><br><span class="line">  ```Python</span><br><span class="line">     def is_odd(n):</span><br><span class="line">         return n % 2 == 1</span><br><span class="line">  </span><br><span class="line">     filter(is_odd, [1, 2, 4, 5, 6, 9, 10, 15])</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+</blockquote>
+</blockquote></li>
 </ul>
-<h1 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h1><ul>
-<li><p>一个带有yield的函数就是一个generator，它和普通函数不同，生成一个generator看起来像函数调用，但不会执行任何函数代码，直到对其调用next()（在for循环中会自动调用next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个yield语句就会中断，并返回一个迭代值，下次执行时从yield的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield中断了数次，每次中断都会通过 yield 返回当前的迭代值。</p>
+<h1 id="any">any</h1>
+<ul>
+<li><p>原型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">any</span>(<span class="params">iterable</span>):</span><br><span class="line">   <span class="keyword">for</span> element <span class="keyword">in</span> iterable:</span><br><span class="line">       <span class="keyword">if</span>  element:</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">   <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="yield">yield</h1>
+<ul>
+<li><p>一个带有yield的函数就是一个generator，它和普通函数不同，生成一个generator看起来像函数调用，但不会执行任何函数代码，直到对其调用next()（在for循环中会自动调用next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个yield语句就会中断，并返回一个迭代值，下次执行时从yield的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被
+yield中断了数次，每次中断都会通过 yield 返回当前的迭代值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">g</span>(<span class="params">n</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">yield</span> i **<span class="number">2</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> g(<span class="number">5</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span> i,<span class="string">&quot;:&quot;</span>,</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span> : <span class="number">1</span> : <span class="number">4</span> : <span class="number">9</span> : <span class="number">16</span> :</span><br></pre></td></tr></table></figure></li>
 </ul>
 
@@ -387,10 +392,10 @@
       <div class="popular-posts-title"><a href="/2017/01/23/numpycookbook/" rel="bookmark">Numpy Cookbook</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2017/02/04/pandas-skill/" rel="bookmark">Pandas Basics</a></div>
+      <div class="popular-posts-title"><a href="/2017/03/27/oj/" rel="bookmark">OJ</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2017/03/27/oj/" rel="bookmark">OJ</a></div>
+      <div class="popular-posts-title"><a href="/2017/02/04/pandas-skill/" rel="bookmark">Pandas Basics</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/2017/05/02/trie/" rel="bookmark">Trie in Python</a></div>
@@ -563,12 +568,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">349k</span>
+    <span title="Symbols count total">380k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:17</span>
+    <span title="Reading time total">5:45</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
