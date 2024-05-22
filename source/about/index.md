@@ -76,9 +76,9 @@ html: true
 
 # Publications
 -   Multi-Agents powered by LLMs:
-    -   <a href="https://arxiv.org/abs/2307.07924" class="bp">paper</a></td> <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Communicative Agents for Software Development. ACL 2024
-    -   <a href="https://arxiv.org/abs/2312.17025" class="bp">paper</a></td> <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Experiential Co-Learning of Software-Developing Agents. ACL 2024
-    -   <a href="https://arxiv.org/pdf/2405.04219" class="bp">paper</a></td> <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Iterative Experience Refinement of Software-Developing Agents. Arxiv
+    -   <a href="https://arxiv.org/abs/2307.07924" class="bp">paper</a> </td> <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Communicative Agents for Software Development. ACL 2024
+    -   <a href="https://arxiv.org/abs/2312.17025" class="bp">paper</a> </td> <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Experiential Co-Learning of Software-Developing Agents. ACL 2024
+    -   <a href="https://arxiv.org/pdf/2405.04219" class="bp">paper</a> </td> <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Iterative Experience Refinement of Software-Developing Agents. Arxiv
 -   More Accurate and Controllable Keyphrase Prediction: 
     -   <a href="https://arxiv.org/pdf/2106.04847.pdf" class="bp">paper</a> <a href="https://github.com/thinkwee/UniKeyphrase" class="bc">code</a> UniKeyphrase: A Unified Extraction and Generation Framework for Keyphrase Prediction. ACL 2021 findings
     -   <a href="https://ojs.aaai.org/index.php/AAAI/article/download/21402/version/19689/21151" class="bp">paper</a> <a href="https://github.com/m1594730237/FastAndConstrainedKeyphrase" class="bc">code</a> Fast and Constrained Absent Keyphrase Generation by Prompt-Based Learning. AAAI 2022
