@@ -65,6 +65,7 @@ html: true
 # Research Interests
 -   Natural Language Generation, especially on **Compressing and Summarizing Languages**. 
 -   Develop robust, safe, efficient, and human-centric **LLM Multi-Agent System**.
+-   Served as reviewer for ACL/EMNLP/NeuralPS.
 
 # Industrial Experience
 -   At Tencent, I aim to improve the performance of News Feed Recommendations and Advertising.
@@ -79,6 +80,8 @@ html: true
     -   <a href="https://arxiv.org/abs/2307.07924" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Communicative Agents for Software Development. ACL 2024
     -   <a href="https://arxiv.org/abs/2312.17025" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Experiential Co-Learning of Software-Developing Agents. ACL 2024
     -   <a href="https://arxiv.org/pdf/2405.04219" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Iterative Experience Refinement of Software-Developing Agents. Arxiv
+    -   <a href="https://arxiv.org/pdf/2406.07155" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Scaling Large-Language-Model-based Multi-Agent Collaboration. Arxiv
+    -   <a href="https://arxiv.org/pdf/2406.08979" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Multi-Agent Software Development through Cross-Team Collaboration. Arxiv
 -   More Accurate and Controllable Keyphrase Prediction: 
     -   <a href="https://arxiv.org/pdf/2106.04847.pdf" class="bp">paper</a> <a href="https://github.com/thinkwee/UniKeyphrase" class="bc">code</a> UniKeyphrase: A Unified Extraction and Generation Framework for Keyphrase Prediction. ACL 2021 findings
     -   <a href="https://ojs.aaai.org/index.php/AAAI/article/download/21402/version/19689/21151" class="bp">paper</a> <a href="https://github.com/m1594730237/FastAndConstrainedKeyphrase" class="bc">code</a> Fast and Constrained Absent Keyphrase Generation by Prompt-Based Learning. AAAI 2022
