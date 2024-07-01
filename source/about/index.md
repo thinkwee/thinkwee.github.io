@@ -60,7 +60,7 @@ html: true
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
     -   2021-2023: NLP Researcher, [Tencent](https://www.tencent.com/en-us/about.html)
     -   2023.8-present: Working as a RA at [THUNLP](https://nlp.csai.tsinghua.edu.cn/), supervised by Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/)
-    -   **2024.5.16 Update. Two long papers get accepted by ACL 2024 main conference!**
+    -   **2024.6.21. We propose [iAgents](https://arxiv.org/abs/2406.14928), a new LLM Multi-Agent paradigm towarding a society weaved by humans and agents!**
 
 # Research Interests
 -   Natural Language Generation, especially on **Compressing and Summarizing Languages**. 
@@ -78,6 +78,7 @@ html: true
 # Publications
 -   Multi-Agents powered by LLMs:
     -   <a href="https://arxiv.org/abs/2307.07924" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Communicative Agents for Software Development. ACL 2024
+    -   <a href="https://arxiv.org/abs/2406.14928" class="bp">paper</a>  <a href="https://github.com/thinkwee/iAgents" class="bc">code</a> Autonomous Agents for Collaborative Task under Information Asymmetry. Arxiv
     -   <a href="https://arxiv.org/abs/2312.17025" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Experiential Co-Learning of Software-Developing Agents. ACL 2024
     -   <a href="https://arxiv.org/pdf/2405.04219" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Iterative Experience Refinement of Software-Developing Agents. Arxiv
     -   <a href="https://arxiv.org/pdf/2406.07155" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Scaling Large-Language-Model-based Multi-Agent Collaboration. Arxiv
