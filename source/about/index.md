@@ -55,17 +55,19 @@ html: true
 <center>2023.5 at XiaMen</center>
 
 # About Me
--   Hello, I'm Wei Liu (刘维). Here are my [Email](mailto:thinkwee2767@gmail.com), [Github](https://github.com/thinkwee) and [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ).
+-   Hello, I'm Wei Liu (刘维). Here are my [Email](mailto:thinkwee2767@gmail.com), [Github](https://github.com/thinkwee) and [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ). I am now opening for job opportunities, feel free to contact me~
     -   2014-2018: Bachelor of Communication Engineering in BUPT
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
-    -   2021-2023: NLP Researcher, [Tencent](https://www.tencent.com/en-us/about.html)
-    -   2023.8-present: Working as a RA at [THUNLP](https://nlp.csai.tsinghua.edu.cn/), supervised by Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/)
-    -   **2024.6.21. We propose [iAgents](https://arxiv.org/abs/2406.14928), a new LLM Multi-Agent paradigm towarding a society weaved by humans and agents!**
+    -   2021-2023: Application Research, [Tencent](https://www.tencent.com/en-us/about.html)
+    -   2023.8-present: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/). See my works [here](https://thinkwee.top/multiagent_ebook/#more-works).
+    -   Our work, the first LLM Multi-Agent system for coding, [ChatDev](https://github.com/OpenBMB/ChatDev), has reached [Github \#1 for 3 times and has earned 25k 🌟](https://trendshift.io/repositories/1245).
+    -   **2024.9 Our paper about connecting humans and agents in one system, [iAgents](https://arxiv.org/abs/2406.14928), is accepted by NeurIPS 2024!**. Try our online demo [here](https://thinkwee.top/iagents/).
 
 # Research Interests
--   Natural Language Generation, especially on **Compressing and Summarizing Languages**. 
+-   Natural Language Generation, especially on **Compressing and Summarizing Languages**.
+-   Memorization and reasoning in LLMs.
 -   Develop robust, safe, efficient, and human-centric **LLM Multi-Agent System**.
--   Served as reviewer for ACL/EMNLP/NeuralPS.
+-   Served as reviewer for ACL/EMNLP/NeurIPS.
 
 # Industrial Experience
 -   At Tencent, I aim to improve the performance of News Feed Recommendations and Advertising.
@@ -78,7 +80,7 @@ html: true
 # Publications
 -   Multi-Agents powered by LLMs:
     -   <a href="https://arxiv.org/abs/2307.07924" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Communicative Agents for Software Development. ACL 2024
-    -   <a href="https://arxiv.org/abs/2406.14928" class="bp">paper</a>  <a href="https://github.com/thinkwee/iAgents" class="bc">code</a> Autonomous Agents for Collaborative Task under Information Asymmetry. Arxiv
+    -   <a href="https://arxiv.org/abs/2406.14928" class="bp">paper</a>  <a href="https://github.com/thinkwee/iAgents" class="bc">code</a> Autonomous Agents for Collaborative Task under Information Asymmetry. NeurIPS 2024
     -   <a href="https://arxiv.org/abs/2312.17025" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Experiential Co-Learning of Software-Developing Agents. ACL 2024
     -   <a href="https://arxiv.org/pdf/2405.04219" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Iterative Experience Refinement of Software-Developing Agents. Arxiv
     -   <a href="https://arxiv.org/pdf/2406.07155" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Scaling Large-Language-Model-based Multi-Agent Collaboration. Arxiv
