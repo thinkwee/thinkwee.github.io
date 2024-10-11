@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="卷积序列到序列 鲁棒的无监督跨语言词嵌入映射">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper Reading 3">
+<meta property="og:url" content="https://thinkwee.top/2019/01/03/PaperReading3/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="卷积序列到序列 鲁棒的无监督跨语言词嵌入映射">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/11/APCWNT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/13/Ak0cYd.png">
+<meta property="article:published_time" content="2019-01-03T08:21:42.000Z">
+<meta property="article:modified_time" content="2024-06-03T07:41:19.392Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="abstractive summarization">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="theory">
+<meta property="article:tag" content="nlp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/03/11/APCWNT.png">
+
+<link rel="canonical" href="https://thinkwee.top/2019/01/03/PaperReading3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Paper Reading 3 | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-96114782-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Thinkwee's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-multi-agent-ebook">
+
+    <a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a>
+
+  </li>
+        <li class="menu-item menu-item-iagents">
+
+    <a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2019/01/03/PaperReading3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Paper Reading 3
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-01-03 16:21:42" itemprop="dateCreated datePublished" datetime="2019-01-03T16:21:42+08:00">2019-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-06-03 15:41:19" itemprop="dateModified" datetime="2024-06-03T15:41:19+08:00">2024-06-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/01/03/PaperReading3/" class="post-meta-item leancloud_visitors" data-flag-title="Paper Reading 3" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/01/03/PaperReading3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/01/03/PaperReading3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p>卷积序列到序列</p></li>
+<li><p>鲁棒的无监督跨语言词嵌入映射</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="convolutional-sequence-to-sequence-learning">Convolutional
+Sequence to Sequence Learning</h1>
+<ul>
+<li>非常直白，编码器和解码器都使用卷积神经网络的序列到序列学习</li>
+<li>无论是transformer还是CNN作为encoder，都需要捕获整个句子的语义信息。就目前两者大幅领先RNN的现状开来，相比序列结构，树型结构更适合作为自然语言数据的先验结构。</li>
+<li>transformer直接在第一层建模所谓的自注意力，我个人觉得这个自注意力是在建模句子的parse关系，针对所有剖析对（一个词到本句所有其他词）、所有维度（可能是成分剖析、可能是实体关系、可能是共指消解、可能是依存剖析）进行建模，利用注意力的机制对无用的关系筛选，之后再过一层全连接层进行重组。这样剖析+重组的block迭代多层，逐步抽象特征，再加上batch
+normalization和residual这些深层网络设计常用的结构，就构成了transformer。因此transformer是一次性构建全局剖析关系，再逐步重组、抽象、筛选。</li>
+<li>CNN的结构则更符合常规句法剖析的套路，依然是针对了各个维度建模，但是不是一次性构建全局关系，而是在底层先剖析局部关系（kernal
+size大小的ngram)，然后通过叠加层对局部关系进行汇总、抽象。</li>
+<li>Facebook在本论文中采用的CNN
+block采用了普通的一维卷积，但是使用了gated linear
+unit，即多卷积出一倍的channel来作为门结构输入，利用门结构过滤信息、构建非线性关系，类似LSTM的门控设计，同时也起到了类似自注意力的效果，放弃了pooling的设计。而在decoder端，也使用了CNN（我感觉其实没有很大必要），decoder依然是一个从左往右逐字顺序生成的过程。为了保证这种顺序关系，对decoder的输入做了mask，而我现在还没弄懂具体代码是怎么实现的......这样做mask然后一步一步生成其实并没有充分利用CNN的加速。</li>
+<li>在本文中也引入了注意力，是传统的encoder-decoder间注意力，不同的地方在于
+<ul>
+<li>采用了多层注意力，虽然key依然是encoder最后一层的输出，但是对于decoder每一层都单独引入了注意力。然而作者自己也说decoder不需要太多层，两层足以，因此这个多层注意力可能也没充分利用。况且多层代表decode出每一个词所需要的上下文更多，看来CNN作为decoder并不需要太多上下文，或者说没有充分利用上比较长的上下文。</li>
+<li>注意力的value不是和key一样，而是encoder最后一层的输出加上encoder输入的embedding，作者认为这样可以综合考虑具体和抽象的表示，实际效果也确实要好一些。</li>
+</ul></li>
+<li>作者提到了bytenet作为参考，但是不知道为啥并没有采用bytenet中的dilation
+convolution设计。</li>
+</ul>
+<h1
+id="a-robust-self-learning-method-for-fully-unsupervised-cross-lingual-mappings-of-word-embeddings">A
+robust self-learning method for fully unsupervised cross-lingual
+mappings of word embeddings</h1>
+<ul>
+<li>完全无监督的跨语言词嵌入映射</li>
+<li>跨语言词嵌入，即多种语言共用相同的词嵌入矩阵，这样可以将大规模预训练词嵌入和或者语言模型进行跨语言的模型迁移</li>
+<li>一般的做法是利用两个语言的词嵌入矩阵，映射到同一个跨语言的词嵌入空间，并且建立两种语言的词对应关系</li>
+<li>这类研究最近很火，其催生的最知名的一个下游应用应该就是Facebook18年的无监督机器翻译</li>
+<li>之前的方法分三种：
+<ul>
+<li>有监督的，使用双语词典，构建几千个监督词对，将学习映射看成回归问题：用最小均方目标函数建模，之后催生了各种方法：canonical
+correlation
+analysis；正交方法；最大间隔方法。这些方法都可以归为将两类语言的词嵌入矩阵做线性变化映射到同一个空间。</li>
+<li>半监督的，通过seed
+dictionary和bootstrap来做，这类方法依赖好的seed且容易陷入局部最优；</li>
+<li>另一类是无监督的生成式方法，但是已有的方法太过依赖特定任务，泛化能力不佳，针对语言系统不同的两种语言很难达到很好效果。</li>
+</ul></li>
+<li>本文采用无监督的生成式方法，基于一个观察：在一种语言中，每个词都有一个在这种语言词典上的相似度分布，不同语言中等价的词应该具有相似的相似度分布。基于这种观察，本文建立了初始的seed
+dictionary，并采用一种更鲁棒的self learning方式来改进学习到的映射。</li>
+<li><img data-src="https://s2.ax1x.com/2019/03/11/APCWNT.png" title="fig:"
+alt="APCWNT.png" /></li>
+</ul>
+<h2 id="模型">模型</h2>
+<ul>
+<li>令<span class="math inline">\(X\)</span>和<span
+class="math inline">\(Z\)</span>分别为两种语言的词嵌入矩阵，目标是学习到线性变换矩阵<span
+class="math inline">\(W_x\)</span>和<span
+class="math inline">\(W_z\)</span>，使得映射后两种语言的矩阵在同一个跨语言空间,形成新的跨语言词嵌入矩阵</li>
+<li>模型的迭代更新依赖一个对齐矩阵<span
+class="math inline">\(D\)</span>，<span
+class="math inline">\(D_{ij}=1\)</span>当且仅当A语言的第<span
+class="math inline">\(i\)</span>个词对应着B语言的第<span
+class="math inline">\(j\)</span>个词，该矩阵反映的对齐关系是单向的</li>
+<li>模型分四步：预处理、完全无监督的初始化、一种鲁棒的自学习过程、通过对称权重重分配进一步改善结果</li>
+</ul>
+<h2 id="预处理">预处理</h2>
+<ul>
+<li>对词嵌入做长度归一化</li>
+<li>再针对每一维做去均值</li>
+<li>前两个预处理在作者之前的论文Learning principled bilingual mappings
+of word embeddings while preserving monolingual
+invariance中提到过，目的分别是简化问题为求余弦相似度和求最大协方差。这篇论文讲的是有监督方法，待阅读</li>
+<li>再做一次长度归一化，保证每一个词嵌入都拥有单位长度，使得两个词嵌入的内积等价于cos距离</li>
+</ul>
+<h2 id="完全无监督的初始化">完全无监督的初始化</h2>
+<ul>
+<li><p>初始化很难做，因为两种语言的词嵌入矩阵，两个维度（每个词、嵌入的每一维）都不对齐</p></li>
+<li><p>本文的做法是，先构造两个矩阵<span
+class="math inline">\(X^{&#39;}\)</span>和<span
+class="math inline">\(Z^{&#39;}\)</span>，这两个矩阵的词嵌入每一维是对齐的</p></li>
+<li><p><span class="math inline">\(X^{&#39;}\)</span>和<span
+class="math inline">\(Z^{&#39;}\)</span>分别通过计算原词嵌入矩阵的相似矩阵开方得到，即<span
+class="math inline">\(X^{&#39;} = \sqrt sorted{XX^T}\)</span>，<span
+class="math inline">\(Z^{&#39;} = \sqrt
+sorted{ZZ^T}\)</span>。自己乘自己的转置即同一语言下的相似度矩阵（因为之前做了预处理）。根据之前的观察，表示同一词义的两种语言下的两个词，应该有相似的单语言相似度分布，那么我们将两种语言的相似度矩阵的每一行单独排序，从大到小排，则假如两个词有相同词义，他们在自己语言中的已排序相似度矩阵中的对应行，应该有相似的分布</p></li>
+<li><figure>
+<img data-src="https://s2.ax1x.com/2019/03/13/Ak0cYd.png" alt="Ak0cYd.png" />
+<figcaption aria-hidden="true">Ak0cYd.png</figcaption>
+</figure></li>
+<li><p>这样就跳过了词嵌入每个维度上的直接对齐，转换为词典相似度的对齐，之后只要做词的对齐，即对相似度矩阵每一行单独排序，建立行分布相似的词之间的对应关系即可。</p></li>
+<li><p>建立了词语的对齐，即建立了初始化的<span
+class="math inline">\(D\)</span>矩阵</p></li>
+</ul>
+<h2 id="鲁棒的自学习过程">鲁棒的自学习过程</h2>
+<ul>
+<li><p>计算正交映射以最大化当前<span
+class="math inline">\(D\)</span>矩阵的相似度</p>
+<p><span class="math display">\[
+argmax_{W_x,W_z} \sum _i \sum _j D_{ij}((X_{i^*}W_X) \cdot (Z_{j^*}W_Z))
+\\
+\]</span></p>
+<p>最优解可以直接计算得到：<span
+class="math inline">\(W_X=U,W_Z=V\)</span>，其中<span
+class="math inline">\(U,V\)</span>来自<span
+class="math inline">\(USV^T\)</span>，是<span
+class="math inline">\(X^TDZ\)</span>的奇异值分解</p></li>
+<li><p>将两个语言的词嵌入映射到跨语言词嵌入空间（分别映射，依然是两个词嵌入矩阵，只不过在同一个跨语言空间内）后，对A语言的每一个词，在跨语言词嵌入空间内找其最近的B语言的词，建立映射关系，更新<span
+class="math inline">\(D\)</span>矩阵。</p>
+<p><span class="math display">\[
+D_{ij} = 1 \ \ \ if  \ \ j = argmax _k (X_{i^*}W_X) \cdot (Z_{j^*}W_Z)
+\\
+else \ \ D_{ij} = 0 \\
+\]</span></p></li>
+<li><p>反复迭代，<span class="math inline">\(W_X,W_Z \rightarrow D
+\rightarrow W_X,W_Z \rightarrow D \rightarrow W_X,W_Z \rightarrow D
+\rightarrow W_X,W_Z\)</span></p></li>
+<li><p>使用完全无监督的初始化<span
+class="math inline">\(D\)</span>矩阵比随机初始化效果要好，但是依然会陷入局部最优，因此作者针对迭代的第二步，即更新<span
+class="math inline">\(D\)</span>矩阵时提了几个小trick使得学习更为鲁棒</p>
+<ul>
+<li>随机词典归纳：每次迭代以一定概率将D矩阵模型元素设为0，迫使模型探索更多可能</li>
+<li>基于词频的词典截断：每次词典归纳时只更新前k个最频繁的词，避免低频词带来的噪音，截断上限为20000</li>
+<li>CSLS检索：之前的方法是对每一个i,找一个映射到跨语言词嵌入空间后距离最相近的j，更新<span
+class="math inline">\(D_{ij}\)</span>为1，这种最近邻方法受维度灾难影响，效果并不好（具体引起的现象叫hubs，即词语发生聚类，hubs词是许多词的最近邻，差异度不大）。CSLS即跨领域相似度局部放缩，惩罚了这些hubs词语</li>
+<li>双向词典归纳，不仅针对i找j，也针对j找i</li>
+<li>这些trick对初始化构建的矩阵有所差别，不做随机归纳，词典截断上限为4000</li>
+</ul></li>
+</ul>
+<h2
+id="通过对称权重重分配进一步改善结果">通过对称权重重分配进一步改善结果</h2>
+<ul>
+<li><p>即迭代完成之后计算</p>
+<p><span class="math display">\[
+W_X = US^{\frac 12} \\
+W_Z = UV^{\frac 12} \\
+\]</span></p></li>
+<li><p>比起之前的论文，在每一次迭代前后做白化和去白化的方法，这种方法鼓励模型探索更多搜索空间，且对方向不敏感</p></li>
+<li><p>重新分配权重的原因在之前的论文中提到，待阅读</p></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/12/27/AM-Model-for-ASS/" rel="bookmark">Translate - A Neural Attention Model for Abstractive Sentence Summarization</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2018/03/07/NLPBasic/" rel="bookmark">NLP Basics</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2018/07/03/PaperReading2/" rel="bookmark">Paper Reading 2</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2018/03/07/PaperReading/" rel="bookmark">Paper Reading 1</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2018/11/16/coling/" rel="bookmark">Notes for Computational Linguistics</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/abstractive-summarization/" rel="tag"><i class="fa fa-tag"></i> abstractive summarization</a>
+              <a href="/tags/math/" rel="tag"><i class="fa fa-tag"></i> math</a>
+              <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
+              <a href="/tags/theory/" rel="tag"><i class="fa fa-tag"></i> theory</a>
+              <a href="/tags/nlp/" rel="tag"><i class="fa fa-tag"></i> nlp</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/16/coling/" rel="prev" title="Notes for Computational Linguistics">
+      <i class="fa fa-chevron-left"></i> Notes for Computational Linguistics
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/01/13/glove/" rel="next" title="Glove Embedding - Mathematical Derivation">
+      Glove Embedding - Mathematical Derivation <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#convolutional-sequence-to-sequence-learning"><span class="nav-number">1.</span> <span class="nav-text">Convolutional
+Sequence to Sequence Learning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-robust-self-learning-method-for-fully-unsupervised-cross-lingual-mappings-of-word-embeddings"><span class="nav-number">2.</span> <span class="nav-text">A
+robust self-learning method for fully unsupervised cross-lingual
+mappings of word embeddings</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.1.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">预处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E6%97%A0%E7%9B%91%E7%9D%A3%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">完全无监督的初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%B2%81%E6%A3%92%E7%9A%84%E8%87%AA%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B"><span class="nav-number">2.4.</span> <span class="nav-text">鲁棒的自学习过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%AF%B9%E7%A7%B0%E6%9D%83%E9%87%8D%E9%87%8D%E5%88%86%E9%85%8D%E8%BF%9B%E4%B8%80%E6%AD%A5%E6%94%B9%E5%96%84%E7%BB%93%E6%9E%9C"><span class="nav-number">2.5.</span> <span class="nav-text">通过对称权重重分配进一步改善结果</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/portal/download" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">380k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">5:45</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//fastly.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//fastly.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//fastly.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 13961,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//fastly.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://thinkwee.top/2019/01/03/PaperReading3/',]
+      });
+      });
+  </script>
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//fastly.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'g58NgfMJBlwTyftr6hizdozq-gzGzoHsz',
+      appKey     : '1nA1tNVxeeSlAumHogP0PvSd',
+      placeholder: "just write something to me",
+      avatar     : '',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="把统计学习方法十大算法精简了一些手写了出来（虽然我觉得书本身已经很精简了） 现在只有算法本身的流程，以后如果有什么新的理解再补充 字太丑，自己都看不下去，发上来纯粹做个备份">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Statistical Learning - A hand-write note">
+<meta property="og:url" content="https://thinkwee.top/2018/08/09/statistical-handwriting/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="把统计学习方法十大算法精简了一些手写了出来（虽然我觉得书本身已经很精简了） 现在只有算法本身的流程，以后如果有什么新的理解再补充 字太丑，自己都看不下去，发上来纯粹做个备份">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0HLjK.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0Hb1x.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0HoN9.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0HH91.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0HThR.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0Hqc6.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0HXnO.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0HjBD.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0HzAH.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0HvHe.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bP3t.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bSNd.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bp4A.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bFjf.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bAu8.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bEDS.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0beEQ.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bVHg.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bmNj.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bn4s.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bKCn.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bM3q.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bQg0.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0b3uT.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0blvV.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0b8DU.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bGbF.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0bYE4.jpg">
+<meta property="article:published_time" content="2018-08-09T02:03:46.000Z">
+<meta property="article:modified_time" content="2024-06-03T07:41:19.403Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="code">
+<meta property="article:tag" content="statistical learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/20/i0HLjK.jpg">
+
+<link rel="canonical" href="https://thinkwee.top/2018/08/09/statistical-handwriting/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Statistical Learning - A hand-write note | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-96114782-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Thinkwee's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-multi-agent-ebook">
+
+    <a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a>
+
+  </li>
+        <li class="menu-item menu-item-iagents">
+
+    <a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2018/08/09/statistical-handwriting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Statistical Learning - A hand-write note
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-08-09 10:03:46" itemprop="dateCreated datePublished" datetime="2018-08-09T10:03:46+08:00">2018-08-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-06-03 15:41:19" itemprop="dateModified" datetime="2024-06-03T15:41:19+08:00">2024-06-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2018/08/09/statistical-handwriting/" class="post-meta-item leancloud_visitors" data-flag-title="Statistical Learning - A hand-write note" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/08/09/statistical-handwriting/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/08/09/statistical-handwriting/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>732</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr />
+<p>把统计学习方法十大算法精简了一些手写了出来（虽然我觉得书本身已经很精简了）
+现在只有算法本身的流程，以后如果有什么新的理解再补充
+字太丑，自己都看不下去，发上来纯粹做个备份</p>
+<span id="more"></span>
+<h1 id="概论">概论</h1>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0HLjK.jpg" alt="i0HLjK.jpg" />
+<figcaption aria-hidden="true">i0HLjK.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0Hb1x.jpg" alt="i0Hb1x.jpg" />
+<figcaption aria-hidden="true">i0Hb1x.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0HoN9.jpg" alt="i0HoN9.jpg" />
+<figcaption aria-hidden="true">i0HoN9.jpg</figcaption>
+</figure>
+<h1 id="感知机">感知机</h1>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0HH91.jpg" alt="i0HH91.jpg" />
+<figcaption aria-hidden="true">i0HH91.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0HThR.jpg" alt="i0HThR.jpg" />
+<figcaption aria-hidden="true">i0HThR.jpg</figcaption>
+</figure>
+<h1 id="k近邻">k近邻</h1>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0Hqc6.jpg" alt="i0Hqc6.jpg" />
+<figcaption aria-hidden="true">i0Hqc6.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0HXnO.jpg" alt="i0HXnO.jpg" />
+<figcaption aria-hidden="true">i0HXnO.jpg</figcaption>
+</figure>
+<h1 id="朴素贝叶斯">朴素贝叶斯</h1>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0HjBD.jpg" alt="i0HjBD.jpg" />
+<figcaption aria-hidden="true">i0HjBD.jpg</figcaption>
+</figure>
+<h1 id="决策树">决策树</h1>
+<ul>
+<li>GBDT写在了提升方法里，另外可以扩展看看随机森林，是一个自举的方法，利用了决策树。
+<img data-src="https://s1.ax1x.com/2018/10/20/i0HzAH.jpg"
+alt="i0HzAH.jpg" /></li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0HvHe.jpg" alt="i0HvHe.jpg" />
+<figcaption aria-hidden="true">i0HvHe.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bP3t.jpg" alt="i0bP3t.jpg" />
+<figcaption aria-hidden="true">i0bP3t.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bSNd.jpg" alt="i0bSNd.jpg" />
+<figcaption aria-hidden="true">i0bSNd.jpg</figcaption>
+</figure>
+<h1 id="逻辑斯蒂回归最大熵">逻辑斯蒂回归、最大熵</h1>
+<ul>
+<li>待补充最大熵和逻辑斯蒂回归之间的相互推导 <img
+src="https://s1.ax1x.com/2018/10/20/i0bigP.jpg" alt="i0bigP.jpg" /></li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bp4A.jpg" alt="i0bp4A.jpg" />
+<figcaption aria-hidden="true">i0bp4A.jpg</figcaption>
+</figure>
+<h1 id="支持向量机">支持向量机</h1>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bFjf.jpg" alt="i0bFjf.jpg" />
+<figcaption aria-hidden="true">i0bFjf.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bAu8.jpg" alt="i0bAu8.jpg" />
+<figcaption aria-hidden="true">i0bAu8.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bEDS.jpg" alt="i0bEDS.jpg" />
+<figcaption aria-hidden="true">i0bEDS.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0beEQ.jpg" alt="i0beEQ.jpg" />
+<figcaption aria-hidden="true">i0beEQ.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bVHg.jpg" alt="i0bVHg.jpg" />
+<figcaption aria-hidden="true">i0bVHg.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bmNj.jpg" alt="i0bmNj.jpg" />
+<figcaption aria-hidden="true">i0bmNj.jpg</figcaption>
+</figure>
+<h1 id="提升方法">提升方法</h1>
+<ul>
+<li>待补充XGBoost <img data-src="https://s1.ax1x.com/2018/10/20/i0bn4s.jpg"
+alt="i0bn4s.jpg" /></li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bKCn.jpg" alt="i0bKCn.jpg" />
+<figcaption aria-hidden="true">i0bKCn.jpg</figcaption>
+</figure>
+<h1 id="em算法">EM算法</h1>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bM3q.jpg" alt="i0bM3q.jpg" />
+<figcaption aria-hidden="true">i0bM3q.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bQg0.jpg" alt="i0bQg0.jpg" />
+<figcaption aria-hidden="true">i0bQg0.jpg</figcaption>
+</figure>
+<ul>
+<li>用EM算法做高斯混合模型的推断时，需要推断的参数包括k个高斯模型的均值、方差、比例系数，隐变量代表第j个观测样本来自第k个高斯模型的可能，叫做responsibility，而<span
+class="math inline">\(n_k\)</span>则是对第k个高斯模型在所有样本上的responsibility的总和，除以<span
+class="math inline">\(N\)</span>即以其均值来更新GMM比例系数，用responsibility加权样本来更新均值，方差同理。</li>
+<li>在更新完参数之后，再用这些参数重新计算responsibility，重新计算E步骤，再继续做M步骤，从而完成迭代。</li>
+</ul>
+<h1 id="隐马尔可夫">隐马尔可夫</h1>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0b3uT.jpg" alt="i0b3uT.jpg" />
+<figcaption aria-hidden="true">i0b3uT.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0blvV.jpg" alt="i0blvV.jpg" />
+<figcaption aria-hidden="true">i0blvV.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0b8DU.jpg" alt="i0b8DU.jpg" />
+<figcaption aria-hidden="true">i0b8DU.jpg</figcaption>
+</figure>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bGbF.jpg" alt="i0bGbF.jpg" />
+<figcaption aria-hidden="true">i0bGbF.jpg</figcaption>
+</figure>
+<h1 id="条件随机场">条件随机场</h1>
+<ul>
+<li>待补充三种问题的解法，因为条件随机场是隐马尔可夫模型的条件化扩展，算法也类似
+<img data-src="https://s1.ax1x.com/2018/10/20/i0bYE4.jpg"
+alt="i0bYE4.jpg" /></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/01/23/numpycookbook/" rel="bookmark">Numpy Cookbook</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/02/04/pandas-skill/" rel="bookmark">Pandas Basics</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2020/05/15/vc-dimension/" rel="bookmark">Note for VC Dimension</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2017/12/27/AM-Model-for-ASS/" rel="bookmark">Translate - A Neural Attention Model for Abstractive Sentence Summarization</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2019/07/29/CorEx/" rel="bookmark">Study Notes for Correlation Explaination</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/math/" rel="tag"><i class="fa fa-tag"></i> math</a>
+              <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
+              <a href="/tags/code/" rel="tag"><i class="fa fa-tag"></i> code</a>
+              <a href="/tags/statistical-learning/" rel="tag"><i class="fa fa-tag"></i> statistical learning</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/07/23/lda/" rel="prev" title="Note for Latent Dirichlet Allocation">
+      <i class="fa fa-chevron-left"></i> Note for Latent Dirichlet Allocation
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/08/28/inference-algorithm/" rel="next" title="Note for Inference Algorithms in Probabilistic ML">
+      Note for Inference Algorithms in Probabilistic ML <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">概论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%84%9F%E7%9F%A5%E6%9C%BA"><span class="nav-number">2.</span> <span class="nav-text">感知机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#k%E8%BF%91%E9%82%BB"><span class="nav-number">3.</span> <span class="nav-text">k近邻</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF"><span class="nav-number">4.</span> <span class="nav-text">朴素贝叶斯</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">5.</span> <span class="nav-text">决策树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%E5%9B%9E%E5%BD%92%E6%9C%80%E5%A4%A7%E7%86%B5"><span class="nav-number">6.</span> <span class="nav-text">逻辑斯蒂回归、最大熵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA"><span class="nav-number">7.</span> <span class="nav-text">支持向量机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">提升方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#em%E7%AE%97%E6%B3%95"><span class="nav-number">9.</span> <span class="nav-text">EM算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%90%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB"><span class="nav-number">10.</span> <span class="nav-text">隐马尔可夫</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA"><span class="nav-number">11.</span> <span class="nav-text">条件随机场</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/portal/download" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">380k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">5:45</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//fastly.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//fastly.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//fastly.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 13961,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//fastly.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://thinkwee.top/2018/08/09/statistical-handwriting/',]
+      });
+      });
+  </script>
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//fastly.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'g58NgfMJBlwTyftr6hizdozq-gzGzoHsz',
+      appKey     : '1nA1tNVxeeSlAumHogP0PvSd',
+      placeholder: "just write something to me",
+      avatar     : '',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
