@@ -60,7 +60,7 @@ html: true
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
     -   2021-2023: Application Research, [Tencent](https://www.tencent.com/en-us/about.html)
     -   2023.8-present: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/). See my works [here](https://thinkwee.top/multiagent_ebook/#more-works).
-    -   Our work, the first LLM Multi-Agent system for coding, [ChatDev](https://github.com/OpenBMB/ChatDev), has reached [Github \#1 for 3 times and has earned 25k 🌟](https://trendshift.io/repositories/1245).
+    -   Our work, the amazing LLM Multi-Agent system for software development, [ChatDev](https://github.com/OpenBMB/ChatDev), has reached [Github \#1 for 3 times and has earned 25k 🌟](https://trendshift.io/repositories/1245).
     -   **2024.9 Our paper about connecting humans and agents in one system, [iAgents](https://arxiv.org/abs/2406.14928), is accepted by NeurIPS 2024!**. Try our online demo [here](https://thinkwee.top/iagents/).
 
 # Research Interests
