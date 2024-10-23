@@ -59,9 +59,10 @@ html: true
     -   2014-2018: Bachelor of Communication Engineering in BUPT
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
     -   2021-2023: Application Research, [Tencent](https://www.tencent.com/en-us/about.html)
-    -   2023.8-present: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/). See my works [here](https://thinkwee.top/multiagent_ebook/#more-works).
-    -   Our work, the amazing LLM Multi-Agent system for software development, [ChatDev](https://github.com/OpenBMB/ChatDev), has reached [Github \#1 for 3 times and has earned 25k 🌟](https://trendshift.io/repositories/1245).
-    -   **2024.9 Our paper about connecting humans and agents in one system, [iAgents](https://arxiv.org/abs/2406.14928), is accepted by NeurIPS 2024!**. Try our online demo [here](https://thinkwee.top/iagents/).
+    -   2023.8-present: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) with a focus on LLM Multi-Agent System.
+        -   See my works [here](https://thinkwee.top/multiagent_ebook/#more-works).
+        -   The LLM Multi-Agent system for software development, [ChatDev](https://github.com/OpenBMB/ChatDev), has reached [Github \#1 for 3 times and has earned 25k 🌟](https://trendshift.io/repositories/1245)!
+        -   **2024.9 Our paper about connecting humans and agents in one system, [iAgents](https://arxiv.org/abs/2406.14928), is accepted by NeurIPS 2024!**. Try our online demo [here](https://thinkwee.top/iagents/).
 
 # Research Interests
 -   Natural Language Generation, especially on **Compressing and Summarizing Languages**.
@@ -71,16 +72,15 @@ html: true
 
 # Industrial Experience
 -   At Tencent, I aim to improve the performance of News Feed Recommendations and Advertising.
-    -   Improve the NLU ability for News Feed Recommendation by more accurate and controllable keyphrase prediction.
-    -   Introducing non-commercial behaviors into advertising modeling through graph modeling.
-    -   Model sequence behaviours and apply end-to-end feature quantization methods to perform stable feature engineering for Advertising.
-    -   Diverse user interest modeling in a diffusion-model way.
-    -   Achieve better efficiency/quality tradeoffs between single-tower and two-tower models during the recall/pre-rank stage in Advertising.
+    -   Improving the NLU ability for News Feed Recommendation.
+    -   Resolving the mismatch between commercial inclinations and content interests for Wechat Ads.
+    -   Raise the stability, warm-up effects and efficiency/quality tradeoffs on Tencent Ads Recommendation System.
+    -   Diverse user interest modeling.
 
 # Publications
 -   Multi-Agents powered by LLMs:
-    -   <a href="https://arxiv.org/abs/2307.07924" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Communicative Agents for Software Development. ACL 2024
     -   <a href="https://arxiv.org/abs/2406.14928" class="bp">paper</a>  <a href="https://github.com/thinkwee/iAgents" class="bc">code</a> Autonomous Agents for Collaborative Task under Information Asymmetry. NeurIPS 2024
+    -   <a href="https://arxiv.org/abs/2307.07924" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Communicative Agents for Software Development. ACL 2024
     -   <a href="https://arxiv.org/abs/2312.17025" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Experiential Co-Learning of Software-Developing Agents. ACL 2024
     -   <a href="https://arxiv.org/pdf/2405.04219" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Iterative Experience Refinement of Software-Developing Agents. Arxiv
     -   <a href="https://arxiv.org/pdf/2406.07155" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Scaling Large-Language-Model-based Multi-Agent Collaboration. Arxiv
