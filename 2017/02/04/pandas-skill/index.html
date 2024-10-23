@@ -27,7 +27,6 @@
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
 <meta property="og:description" content="以泰坦尼克号的数据为例介绍一下前期对数据的基础操作。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0Tn41.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TP3V.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TFjU.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TAuF.jpg">
@@ -51,7 +50,7 @@
 <meta property="article:tag" content="code">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/20/i0Tn41.jpg">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/20/i0TP3V.jpg">
 
 <link rel="canonical" href="https://thinkwee.top/2017/02/04/pandas-skill/">
 
@@ -156,7 +155,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">57</span></a>
 
   </li>
         <li class="menu-item menu-item-multi-agent-ebook">
@@ -312,68 +311,98 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <hr>
+        <hr />
 <p>以泰坦尼克号的数据为例介绍一下前期对数据的基础操作。</p>
 <span id="more"></span>
-<h1 id="引入库"><a href="#引入库" class="headerlink" title="引入库"></a>引入库</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv <span class="keyword">as</span> csv </span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
-<h1 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">r&quot;文件目录&quot;</span>) </span><br></pre></td></tr></table></figure>
-<p>此时数据的样式是：<br><img data-src="https://s1.ax1x.com/2018/10/20/i0Tn41.jpg" alt="i0Tn41.jpg"></p>
-<h1 id="数据概览"><a href="#数据概览" class="headerlink" title="数据概览"></a>数据概览</h1><ul>
+<h1 id="引入库">引入库</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv <span class="keyword">as</span> csv </span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<h1 id="读取文件">读取文件</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">r&quot;文件目录&quot;</span>) </span><br></pre></td></tr></table></figure>
+<p>此时数据的样式是： <img
+src="https://s1.ax1x.com/2018/10/20/i0Tn41.jpg" alt="i0Tn41.jpg" /></p>
+<h1 id="数据概览">数据概览</h1>
+<ul>
 <li><p>describe 显示整体数据常见属性</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train.describe())</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TP3V.jpg" alt="i0TP3V.jpg"></p>
-</li>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TP3V.jpg" alt="i0TP3V.jpg" />
+<figcaption aria-hidden="true">i0TP3V.jpg</figcaption>
+</figure></li>
 <li><p>head tail 显示首尾一些数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train.head(<span class="number">5</span>))</span><br><span class="line"><span class="built_in">print</span>(train.tail(<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TFjU.jpg" alt="i0TFjU.jpg"></p>
-</li>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TFjU.jpg" alt="i0TFjU.jpg" />
+<figcaption aria-hidden="true">i0TFjU.jpg</figcaption>
+</figure></li>
 <li><p>index：索引，默认自建整型索引；columns：列；values：数据数值</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train.index)</span><br><span class="line"><span class="built_in">print</span>(train.columns)</span><br><span class="line"><span class="built_in">print</span>(train.values)</span><br></pre></td></tr></table></figure>
-<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1></li>
+<h1 id="数据操作">数据操作</h1></li>
 <li><p>T：数据的转置</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train.T)</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TAuF.jpg" alt="i0TAuF.jpg"></p>
-</li>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TAuF.jpg" alt="i0TAuF.jpg" />
+<figcaption aria-hidden="true">i0TAuF.jpg</figcaption>
+</figure></li>
 <li><p>sort：可以按索引或者值进行排序，axis选择维度(行还是列),ascending选择升序或者降序,Nan永远排在最后，无论升序降序</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train.sort_index(axis=<span class="number">0</span>,ascending=<span class="literal">True</span>))</span><br><span class="line"><span class="built_in">print</span>(train.sort_values(by=<span class="string">&quot;Age&quot;</span>,ascending=<span class="literal">False</span>))</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TEB4.jpg" alt="i0TEB4.jpg"><br><img data-src="https://s1.ax1x.com/2018/10/20/i0TmNR.jpg" alt="i0TmNR.jpg"></p>
-</li>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TEB4.jpg"
+alt="i0TEB4.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TmNR.jpg"
+alt="i0TmNR.jpg" /></p></li>
 </ul>
-<h1 id="数据选择"><a href="#数据选择" class="headerlink" title="数据选择"></a>数据选择</h1><ul>
+<h1 id="数据选择">数据选择</h1>
+<ul>
 <li><p>按照标签选择，选择列，行切片</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train[<span class="string">&#x27;Age&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(train[<span class="number">0</span>:<span class="number">9</span>])</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TVHJ.jpg" alt="i0TVHJ.jpg"><br><img data-src="https://s1.ax1x.com/2018/10/20/i0TeE9.jpg" alt="i0TeE9.jpg"></p>
-</li>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TVHJ.jpg"
+alt="i0TVHJ.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TeE9.jpg"
+alt="i0TeE9.jpg" /></p></li>
 <li><p>利用loc自由选择某些行某些列，可以用at替代</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train.loc[train.index[<span class="number">4</span>:<span class="number">6</span>]])</span><br><span class="line"><span class="built_in">print</span>(train.loc[:,[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Fare&#x27;</span>]])</span><br><span class="line"><span class="built_in">print</span>(train.loc[<span class="number">3</span>:<span class="number">5</span>,[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Fare&#x27;</span>]])</span><br><span class="line"><span class="built_in">print</span>(train.loc[<span class="number">4</span>,<span class="string">&#x27;Age&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(train.at[<span class="number">4</span>,<span class="string">&#x27;Age&#x27;</span>])</span><br></pre></td></tr></table></figure></li>
 <li><p>利用iloc按照位置进行选择</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train.iloc[<span class="number">5</span>])</span><br><span class="line"><span class="built_in">print</span>(train.iloc[<span class="number">3</span>:<span class="number">5</span>,<span class="number">2</span>:<span class="number">4</span>])</span><br><span class="line"><span class="built_in">print</span>(train.iloc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>],[<span class="number">2</span>,<span class="number">5</span>]])</span><br><span class="line"><span class="built_in">print</span>(train.iloc[<span class="number">3</span>,<span class="number">3</span>])</span><br></pre></td></tr></table></figure></li>
 <li><p>布尔选择</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>( train[ (train[<span class="string">&#x27;Age&#x27;</span>]&gt;<span class="number">40</span>) &amp; (train[<span class="string">&#x27;Age&#x27;</span>]&lt;<span class="number">50</span>) ] )</span><br><span class="line"><span class="built_in">print</span>(train[train[<span class="string">&#x27;Parch&#x27;</span>].isin([<span class="number">1</span>,<span class="number">2</span>])])</span><br><span class="line"><span class="built_in">print</span>(train[pd.isnull(train[<span class="string">&#x27;Age&#x27;</span>])==<span class="literal">True</span>])</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TK9x.jpg" alt="i0TK9x.jpg"><br><img data-src="https://s1.ax1x.com/2018/10/20/i0TM36.jpg" alt="i0TM36.jpg"><br><img data-src="https://s1.ax1x.com/2018/10/20/i0TljO.jpg" alt="i0TljO.jpg"></p>
-</li>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TK9x.jpg"
+alt="i0TK9x.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TM36.jpg"
+alt="i0TM36.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TljO.jpg"
+alt="i0TljO.jpg" /></p></li>
 </ul>
-<h1 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h1><ul>
+<h1 id="缺失值处理">缺失值处理</h1>
+<ul>
 <li><p>利用reindex选择部分数据进行拷贝，并进行缺失值处理。一些函数会自动过滤掉缺失值，比如mean()</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">train1=train.reindex(index=train.index[<span class="number">0</span>:<span class="number">5</span>],columns=[<span class="string">&#x27;PassengerId&#x27;</span>]+[<span class="string">&#x27;Age&#x27;</span>]+[<span class="string">&#x27;Sex&#x27;</span>])<span class="comment">#选择前5行，只取选定的三列</span></span><br><span class="line"><span class="built_in">print</span>(train1)</span><br><span class="line"><span class="built_in">print</span>(train1.dropna(axis=<span class="number">0</span>)) <span class="comment">#删除存在nan值的行</span></span><br><span class="line"><span class="built_in">print</span>(train1.dropna(subset=[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Sex&#x27;</span>])) <span class="comment">#删除年龄性别列中存在nan值的行</span></span><br><span class="line"><span class="built_in">print</span>(pd.isnull(train1)) <span class="comment">#nan值改为true，其余值改为false</span></span><br><span class="line"><span class="built_in">print</span>(train1.fillna(value=<span class="number">2333</span>)) <span class="comment">#缺失值替换为2333</span></span><br></pre></td></tr></table></figure>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TcUs.jpg" alt="i0TcUs.jpg"></p>
-<h1 id="应用函数"><a href="#应用函数" class="headerlink" title="应用函数"></a>应用函数</h1></li>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TcUs.jpg" alt="i0TcUs.jpg" />
+<figcaption aria-hidden="true">i0TcUs.jpg</figcaption>
+</figure>
+<h1 id="应用函数">应用函数</h1></li>
 <li><p>可以自己写函数并应用到数据的行或者列，通过axis参数选择行列</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#写函数统计包含nan值的行数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">null_count</span>(<span class="params">column</span>):</span><br><span class="line">column_null=pd.isnull(column)</span><br><span class="line">null=column[column_null == <span class="literal">True</span>]</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">len</span>(null)</span><br><span class="line"><span class="built_in">print</span>(train.apply(null_count))</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TQgK.jpg" alt="i0TQgK.jpg"></p>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TQgK.jpg" alt="i0TQgK.jpg" />
+<figcaption aria-hidden="true">i0TQgK.jpg</figcaption>
+</figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#写函数对年龄列进行分类</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">judge</span>(<span class="params">row</span>):</span><br><span class="line"><span class="keyword">if</span> pd.isnull(row[<span class="string">&#x27;Age&#x27;</span>]) ==<span class="literal">True</span>:</span><br><span class="line">   <span class="keyword">return</span> <span class="string">&#x27;unknown&#x27;</span></span><br><span class="line"><span class="keyword">return</span> <span class="string">&#x27;youngth&#x27;</span> <span class="keyword">if</span> row[<span class="string">&#x27;Age&#x27;</span>]&lt;<span class="number">18</span> <span class="keyword">else</span> <span class="string">&#x27;adult&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(train.apply(judge,axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i07jFs.jpg" alt="i07jFs.jpg"></p>
-<h1 id="数据透视表"><a href="#数据透视表" class="headerlink" title="数据透视表"></a>数据透视表</h1></li>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i07jFs.jpg" alt="i07jFs.jpg" />
+<figcaption aria-hidden="true">i07jFs.jpg</figcaption>
+</figure>
+<h1 id="数据透视表">数据透视表</h1></li>
 <li><p>自选分类和值进行数据透视，比如按照pclass和sex分类，统计age和fare的平均值</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train.pivot_table(index=[<span class="string">&quot;Pclass&quot;</span>,<span class="string">&quot;Sex&quot;</span>], values=[<span class="string">&quot;Age&quot;</span>, <span class="string">&quot;Fare&quot;</span>], aggfunc=np.mean))</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0T3uD.jpg" alt="i0T3uD.jpg"></p>
-</li>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0T3uD.jpg" alt="i0T3uD.jpg" />
+<figcaption aria-hidden="true">i0T3uD.jpg</figcaption>
+</figure></li>
 </ul>
-<h1 id="数据合并"><a href="#数据合并" class="headerlink" title="数据合并"></a>数据合并</h1><ul>
+<h1 id="数据合并">数据合并</h1>
+<ul>
 <li><p>数据合并的一些操作，待补全</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data1 = pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>]&#125;)</span><br><span class="line"></span><br><span class="line">data2=pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber&#x27;</span>:[<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">10</span>]&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;merge:\n&quot;</span>,pd.merge(data1,data2),<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">data3 = pd.DataFrame(&#123;<span class="string">&#x27;level1&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber1&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>]&#125;)</span><br><span class="line">data4 = pd.DataFrame(&#123;<span class="string">&#x27;level2&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber2&#x27;</span>:[<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">10</span>]&#125;)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;merge with left_on,right_on: \n&quot;</span>,pd.merge(data3,data4,left_on=<span class="string">&#x27;level1&#x27;</span>,right_on=<span class="string">&#x27;level2&#x27;</span>),<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;concat: \n&quot;</span>,pd.concat([data1,data2]),<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">data3 = pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber1&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,np.nan]&#125;)</span><br><span class="line">data4=pd.DataFrame(&#123;<span class="string">&#x27;level&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>],</span><br><span class="line">                 <span class="string">&#x27;numeber2&#x27;</span>:[<span class="number">2</span>,np.nan,<span class="number">6</span>,<span class="number">10</span>]&#125;)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;combine: \n&quot;</span>,data3.combine_first(data4),<span class="string">&quot;\n&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://s1.ax1x.com/2018/10/20/i0T8De.jpg" alt="i0T8De.jpg"></p>
-</li>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0T8De.jpg" alt="i0T8De.jpg" />
+<figcaption aria-hidden="true">i0T8De.jpg</figcaption>
+</figure></li>
 </ul>
 
     </div>
@@ -397,7 +426,7 @@
       <div class="popular-posts-title"><a href="/2019/07/29/CorEx/" rel="bookmark">Study Notes for Correlation Explaination</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2018/03/07/PaperReading/" rel="bookmark">Paper Reading 1</a></div>
+      <div class="popular-posts-title"><a href="/2018/03/07/NLPBasic/" rel="bookmark">NLP Basics</a></div>
     </li>
   </ul>
 
@@ -502,7 +531,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -566,12 +595,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">349k</span>
+    <span title="Symbols count total">380k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:17</span>
+    <span title="Reading time total">5:46</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
