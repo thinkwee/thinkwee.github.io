@@ -12,10 +12,113 @@ mathjax: true
 html: true 
 ---
 
-简单的梳理VC维。所有讨论基于二分类这一简单情况出发。
+A brief review of the VC dimension. All discussions are based on the simple case of binary classification.
 
 <!--more-->
 
+{% language_switch %}
+
+{% lang_content en %}
+# Hoeffding's Inequality
+
+- A major assumption in machine learning is that the model trained on the training set can generalize to the test set. More specifically, using algorithm A and training set D, we find a hypothesis g in the hypothesis space H that approximates the target hypothesis f. Let $E_{in}(g)$ represent the error (empirical error) on the training set, and $E_{out}(g)$ represent the error (generalization error, expected error) on all possible samples outside the training set.
+- Given $E_{out}(f) = 0$, we also hope that the obtained g satisfies $E_{out}(g) = 0$, which contains two pieces of information:
+  - We need $E_{in}(g) \approx E_{out}(g)$
+  - We need $E_{in}(g) \approx 0$
+- The second point $E_{in}(g) \approx 0$ is what we do when training the model, reducing the error on the training set, while the first point $E_{in}(g) \approx E_{out}(g)$, i.e., how to ensure the model's generalization ability, is what VC dimension measures.
+- The training set can be seen as a sampling of the sample space, and we use Hoeffding's inequality to estimate quantities of the entire sample space from the sampling:
+  
+  $$
+  \mathbb{P}[|\nu-\mu|>\epsilon] \leq 2 \exp \left(-2 \epsilon^{2} N\right)
+  $$
+- Where $\nu$ is the calculated quantity on the training set, $\mu$ is the corresponding quantity on the entire sample space. Naturally, we can view error (loss) as a kind of calculation, giving:
+  
+  $$
+  \mathbb{P}\left[\left|E_{i n}(h)-E_{o u t}(h)\right|>\epsilon\right] \leq 2 \exp \left(-2 \epsilon^{2} N\right)
+  $$
+- Here h is a certain hypothesis (any one, not the best hypothesis g we selected through training). The left side is the probability of the difference between training and true loss exceeding a certain threshold, which can be used to measure generalization ability. The right side depends only on the difference threshold and training set size N. This aligns with our intuition that the larger the training set, the stronger the generalization ability.
+- However, the above situation is for a fixed hypothesis h. We call the case where the empirical error and generalization error differ greatly a "bad case". The above inequality shows that for a fixed h, the probability of a bad case occurring is very small. But our algorithm A selects hypotheses from the entire hypothesis space H. We are more concerned with the probability that no h among all h experiences a bad case, i.e.:
+  
+  $$
+  \begin{array}{c}
+\mathbb{P}\left[\mathbf{E}\left(h_{1}\right)>\epsilon \cup \mathbf{E}\left(h_{2}\right)>\epsilon \ldots \cup \mathbf{E}\left(h_{M}\right)>\epsilon\right] \\
+\leq \mathbb{P}\left[\mathbf{E}\left(h_{1}\right)>\epsilon\right]+\mathbb{P}\left[\mathbf{E}\left(h_{2}\right)>\epsilon\right] \ldots+\mathbb{P}\left[\mathbf{E}\left(h_{M}\right)>\epsilon\right] \\
+\leq 2 M \exp \left(-2 \epsilon^{2} N\right)
+\end{array}
+  $$
+- Where $\mathbf{E}$ represents the difference between empirical error and generalization error. Here we further bound this upper limit, considering the maximum case, assuming the events of each h's empirical and generalization errors differing beyond a certain threshold are independent. The probability of the union of events is the sum of individual event probabilities. We ultimately obtain an upper limit of bad cases for all h as $2 M \exp (-2 \epsilon^{2} N)$
+- Now we've encountered a problem. Previously, since only N existed in the negative exponential term, as long as the training set size was large enough, this upper limit was finite, giving us confidence in machine learning's generalization ability. Now, with an M (the capacity of the hypothesis space) multiplied in front, the upper limit may no longer be finite. This also aligns with intuition: imagine that the larger the hypothesis space, the more data is needed to train and select a good hypothesis. If the data volume is fixed, the larger the hypothesis space, the harder it is to select a g close to the true hypothesis f.
+
+# Effective Hypotheses
+
+- Next, we formally enter the discussion of VC dimension. First, we discuss the number of effective hypotheses. Considering the above inequality, we made a large approximation by assuming that the events of each h's empirical and generalization errors differing beyond a threshold are independent, and the probability of the union of events is the sum of individual event probabilities. But this is not actually the case. For example, for two-dimensionally linearly separable data with separation intervals, several parallel separation planes (lines) that correctly classify the training set and are close to each other have very similar characteristics. For most data points, the results under these two separation planes are the same, and the probability distribution of generalization ability differences also has significant overlap. Treating them as independent is inappropriate.
+- Let's look again at M in the inequality, which literally means the capacity of the hypothesis space, actually a measure of the hypothesis space's expression capability. Under a certain amount of training data, the richer the hypothesis space's expression ability, the harder it is for the learning algorithm to find a good hypothesis. The capacity of the hypothesis space is the sum of all hypotheses, where one hypothesis can be seen as a set of parameters under a specific model. Is there a more effective measure of the hypothesis space's expression ability?
+- What if we look at the model's classification results instead of the model parameters themselves? For example, previously we considered hypotheses with the same parameters (same line) as the same hypothesis. Now, we consider hypotheses with the same classification results (different lines that classify points the same way) as the same hypothesis. This seems more reasonable because expression capability ultimately falls on handling all possible classification results of the data, and both empirical and generalization errors are measured through misclassified points.
+- Here we introduce several terms:
+  - Dichotomy: Denoted as $h\left(X_{1}, X_{2}, \ldots, X_{N}\right)$. The dichotomy of N points is a classification result of N points. For binary classification, there can be at most $2^N$ dichotomies.
+  - Dichotomies of hypothesis space H on N points in training set D, denoted as $\mathcal{H}\left(X_{1}, X_{2}, \ldots, X_{N}\right)$. The number of dichotomies depends not only on the dataset but also on the hypothesis space H, because the hypothesis space may not achieve all dichotomies. For example, for four points forming a square with diagonal labels the same, a linear hypothesis space cannot achieve this dichotomy.
+  - Growth function: The number of dichotomies in the hypothesis space on the training set depends not only on the training set size but also on the specific training set. For example, if the extracted training set does not include (four points forming a square with diagonal labels the same), the number of dichotomies for lines on this training set might be the same as the maximum possible dichotomies for this training set. Therefore, to exclude the influence of specific training sets, we define the maximum number of dichotomies the hypothesis space H can achieve on all possible training sets of size N as the growth function: $m_{\mathcal{H}}(N)=\max _{X_{1}, X 2, \ldots, X_{N} \in \mathcal{X}}\left|\mathcal{H}\left(X_{1}, X_{2}, \ldots, X_{N}\right)\right|$
+  - Shatter: When the growth function reaches the theoretically maximum dichotomy of $2^N$. The meaning here is that this hypothesis space is good enough for a dataset of size N (for any dataset of size N in this task setting), capable of considering all situations and providing corresponding hypotheses for any classification result. That is, for a dataset with total capacity N, the model can achieve a perfect solution.
+  - Break point: Obviously, the smaller N is, the easier it is to shatter; the larger N is, the harder it is to shatter. Starting from N=1 and gradually increasing until a critical point N=k where the hypothesis space cannot shatter these k points, we call k the break point of this hypothesis space. It can be proven that for N>k, shattering is impossible.
+- We can see that the growth function is actually a measure of the hypothesis space's expression capability. VC dimension considers using this measure to replace the hypothesis space capacity in the Hoeffding inequality. Of course, it cannot be directly substituted. Specifically:
+  
+  $$
+  \forall g \in \mathcal{H}, \mathbb{P}\left[\left|E_{i n}(g)-E_{o u t}(g)\right|>\epsilon\right] \leq 4 m_{\mathcal{H}}(2 N) \exp \left(-\frac{1}{8} \epsilon^{2} N\right)
+  $$
+- The right side is the VC bound, which is complex to prove and omitted. Now let's consider whether the upper bound is finite. We can see that the important M has been replaced by $m_H$, the growth function. If the growth function is bounded or its growth rate with N is lower than the reduction rate of the exponential part, we can say that the upper bound of the difference between empirical and generalization errors is finite. In fact, if a break point k exists, then:
+  
+  $$
+  m_{\mathcal{H}}(N) \leq B(N, k) \leq \sum_{i=0}^{k-1}\left(\begin{array}{c}
+N \\
+i
+\end{array}\right) \leq N^{k-1}
+  $$
+- Where B(N, k) is the upper bound of the growth function when the break point is k. We can see that the upper bound of the growth function is polynomial-level (k-1 power), so the growth function is at most polynomial-level, while the VC bound's $\exp \left(-2 \epsilon^{2} N\right)$ is exponential-level. Clearly, the VC bound exists and is finite.
+- Finally, for cases where a break point exists, we can say that generalization ability is guaranteed, and machine learning is viable.
+
+# VC Dimension
+
+- The VC bound ensures the feasibility of learning, while VC dimension considers the expression capability of the hypothesis space. We previously discussed the growth function as a measure of the hypothesis space's expression capability, and the two are closely related.
+- The VC dimension is defined as follows: Given a hypothesis space H with an existing break point, the VC dimension is the size of the largest dataset that can be shattered, i.e.:
+  
+  $$
+  V C(\mathcal{H})=\max \left\{N: m_{\mathcal{H}}(N)=2^{N}\right\}
+  $$
+- Recall the two concepts in the VC dimension definition: growth function and shattering. The growth function defines the hypothesis space's ability to solve dichotomies, and shattering represents the hypothesis space's ability to handle a certain amount of dataset, with a corresponding hypothesis for each possible dichotomy. The VC dimension measures the hypothesis space's capability from the perspective of dataset size. The more complex the hypothesis space and the stronger its expression capability, the larger the dataset it can shatter, with sufficient hypotheses to solve every possible dichotomy on a larger dataset - note that this is not every theoretically possible dichotomy, because the VC dimension takes the maximum dataset size that can actually be shattered, meaning the largest existing dataset size that can be shattered by this hypothesis space.
+- So what exactly is the VC dimension? We actually defined it earlier: it's k-1, meaning datasets with capacity less than the break point can be shattered, so the maximum dataset size that can be shattered is the break point - 1.
+- Notice that this k-1 is the polynomial degree in the growth function's upper bound of the VC bound, so the VC bound can also be written as:
+  
+  $$
+  \forall g \in \mathcal{H}, \mathbb{P}\left[\left|E_{i n}(g)-E_{o u t}(g)\right|>\epsilon\right] \leq 4(2 N)^{V C(\mathcal{H})} \exp \left(-\frac{1}{8} \epsilon^{2} N\right)
+  $$
+
+# Measuring Generalization Ability
+
+- From the VC bound inequality, we can see that the difference between empirical error and generalization error (measuring generalization ability) is associated with the probability of bad cases on the right side of the inequality. If we specify the probability of bad cases occurring as:
+  
+  $$
+  4(2 N)^{V C(\mathcal{H})} \exp \left(-\frac{1}{8} \epsilon^{2} N\right)=\delta
+  $$
+  
+  We can conversely calculate the difference measuring generalization ability:
+  
+  $$
+  \epsilon=\sqrt{\frac{8}{N} \ln \left(\frac{4(2 N)^{V C(\mathcal{H})}}{\delta}\right)}
+  $$
+- Therefore, in machine learning foundations and techniques, teachers often write a VC bound to estimate the generalization error formula:
+  
+  $$
+  E_{\text {out }}(\mathbf{w}) \leq E_{\text {in }}(\mathbf{w})+\Omega(\mathcal{H})
+  $$
+- Where $\Omega(\mathcal{H})$ is $\sqrt{\frac{8}{N} \ln \left(\frac{4(2 N)^{V C(\mathcal{H})}}{\delta}\right)}$
+
+# References
+
+- https://zhuanlan.zhihu.com/p/59113933
+- https://www.coursera.org/learn/ntumlone-mathematicalfoundations
+{% endlang_content %}
+
+{% lang_content zh %}
 # Hoeffding不等式
 
 - 机器学习的一个大假设就是，训练集上训练出的模型能够泛化到测试集，详细一点说即我们用算法A和训练集D，在假设空间H里中找到一个假设g，使得该假设g和需要学习的目标假设f近似。令g在训练集上的误差（经验误差）为$E_{in}(g)$，在除了训练集外所有可能样本上的误差（泛化误差，期望误差）为$E_{out}(g)$。
@@ -113,3 +216,23 @@ i
 
 - https://zhuanlan.zhihu.com/p/59113933
 - https://www.coursera.org/learn/ntumlone-mathematicalfoundations
+
+{% endlang_content %}
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

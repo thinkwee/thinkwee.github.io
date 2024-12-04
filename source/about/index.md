@@ -55,26 +55,37 @@ html: true
 <center>2023.5 at XiaMen</center>
 
 # About Me
--   Hello, I'm Wei Liu (刘维). Here are my [Email](mailto:thinkwee2767@gmail.com), [Github](https://github.com/thinkwee) and [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ). I am now opening for job opportunities, feel free to contact me~
+- Hello, I'm Wei Liu (刘维). Here are my 
+  <a href="mailto:thinkwee2767@gmail.com" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg" style="height: 1em; width: 1em; margin: 0 0.2em; display: inline-block; vertical-align: -0.1em;" alt="Email">Email
+  </a>, 
+  <a href="https://github.com/thinkwee" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" style="height: 1em; width: 1em; margin: 0 0.2em; display: inline-block; vertical-align: -0.1em;" alt="GitHub">Github
+  </a>, 
+  and 
+  <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/googlescholar.svg" style="height: 1em; width: 1em; margin: 0 0.2em; display: inline-block; vertical-align: -0.1em;" alt="Google Scholar">Google Scholar
+  </a>.
+  **I am now actively looking for PhD positions and job positions (NLP/LLM/Agent), feel free to contact me~**
     -   2014-2018: Bachelor of Communication Engineering in BUPT
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
     -   2021-2023: Application Research, [Tencent](https://www.tencent.com/en-us/about.html)
     -   2023.8-present: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) with a focus on LLM Multi-Agent System.
         -   See my works [here](https://thinkwee.top/multiagent_ebook/#more-works).
-        -   The LLM Multi-Agent system for software development, [ChatDev](https://github.com/OpenBMB/ChatDev), has reached [Github \#1 for 3 times and has earned 25k 🌟](https://trendshift.io/repositories/1245)!
-        -   **2024.9 Our paper about connecting humans and agents in one system, [iAgents](https://arxiv.org/abs/2406.14928), is accepted by NeurIPS 2024!**. Try our online demo [here](https://thinkwee.top/iagents/).
+        -   Our LLM Multi-Agent framework, [ChatDev](https://github.com/OpenBMB/ChatDev), has reached [Github \#1 for 3 times and has earned 26k 🌟](https://trendshift.io/repositories/1245)!
+        -   **2024.9 Our paper about human-agent coexist society, [iAgents](https://arxiv.org/abs/2406.14928), is accepted by NeurIPS 2024!**. Try demo [here](https://thinkwee.top/iagents/).
 
 # Research Interests
 -   Natural Language Generation, especially on **Compressing and Summarizing Languages**.
 -   Memorization and reasoning in LLMs.
 -   Develop robust, safe, efficient, and human-centric **LLM Multi-Agent System**.
--   Served as reviewer for ACL/EMNLP/NeurIPS.
+-   Served as reviewer for ACL(2021,2022,2024)/EMNLP(2020,2024)/NeurIPS(2024)/ICLR(2024).
 
 # Industrial Experience
 -   At Tencent, I aim to improve the performance of News Feed Recommendations and Advertising.
     -   Improving the NLU ability for News Feed Recommendation.
     -   Resolving the mismatch between commercial inclinations and content interests for Wechat Ads.
-    -   Raise the stability, warm-up effects and efficiency/quality tradeoffs on Tencent Ads Recommendation System.
+    -   Stability, Warm-Up, Efficiency-Quality Tradeoff, Interpretability & Explainability on Large Recommendation System.
     -   Diverse user interest modeling.
 
 # Publications
@@ -92,7 +103,7 @@ html: true
     -   <a href="https://www.aclweb.org/anthology/K19-1077/" class="bp">paper</a> <a href="https://github.com/thinkwee/DPP_CNN_Summarization" class="bc">code</a> In Conclusion Not Repetition: Comprehensive Abstractive Summarization with Diversified Attention Based on Determinantal Point Processes. CoNLL 2021
     -   <a href="https://arxiv.org/pdf/2106.10084.pdf" class="bp">paper</a> <a href="https://github.com/thinkwee/SubjectiveBiasABS" class="bc">code</a> Subjective Bias in Abstractive Summarization. Arxiv
     -   <a href="https://arxiv.org/pdf/2112.01147.pdf" class="bp">paper</a> <a href="https://github.com/thinkwee/co2sum" class="bc">code</a> CO2Sum: Contrastive Learning for Factual-Consistent Abstractive Summarization. Arxiv
+    -   <a href="https://www.aclweb.org/anthology/W19-8904.pdf" class="bp">paper</a> <a href="https://github.com/thinkwee/multiling2019_wiki" class="bc">code</a> Multi-lingual Wikipedia Summarization and Title Generation On Low Resource Corpus. RANLP 2019 workshop
     -   <a href="https://www.researchgate.net/publication/332432404_A_Multi-View_Abstractive_Summarization_Model_Jointly_Considering_Semantics_and_Sentiment" class="bp">paper</a> A Multi-View Abstractive Summarization Model Jointly Considering Semantics and Sentiment. CCIS 2018 
-    - <a href="http://ceur-ws.org/Vol-2414/paper20.pdf" class="bp">paper</a> CIST@CLSciSumm-19: Automatic Scientific Paper Summarization with Citances and Facets. SIGIR 2019 workhop
-    - <a href="https://www.aclweb.org/anthology/W19-8904.pdf" class="bp">paper</a> <a href="https://github.com/thinkwee/multiling2019_wiki" class="bc">code</a> Multi-lingual Wikipedia Summarization and Title Generation On Low Resource Corpus. RANLP 2019 workshop
-    -  <a href="https://www.aclweb.org/anthology/2020.sdp-1.25.pdf" class="bp">paper</a> CIST@CL-SciSumm 2020, LongSumm 2020: Automatic Scientific Document Summarization. EMNLP 2020 workshop
+    -   <a href="http://ceur-ws.org/Vol-2414/paper20.pdf" class="bp">paper</a> CIST@CLSciSumm-19: Automatic Scientific Paper Summarization with Citances and Facets. SIGIR 2019 workhop
+    -   <a href="https://www.aclweb.org/anthology/2020.sdp-1.25.pdf" class="bp">paper</a> CIST@CL-SciSumm 2020, LongSumm 2020: Automatic Scientific Document Summarization. EMNLP 2020 workshop

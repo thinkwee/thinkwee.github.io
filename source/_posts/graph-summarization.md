@@ -11,16 +11,194 @@ mathjax: true
 html: true
 ---
 
-基于图的自动摘要相关论文选读
+Graph-based Automatic Summary Related Paper Selection Reading
 
-- AMR 生成式摘要
-- AMR 多文档摘要两篇
+- AMR Generative Summary
+- AMR Multi-document Summarization Two Papers
 - pagerank in encoder attention
-- 基于主题建模构建图，使用ILP做抽取式摘要
-- 基于GCN的多文档抽取式摘要
+- Build a graph based on thematic modeling, use ILP for extractive summarization
+- Multi-document Extractive Summary Based on GCN
 - STRUCTURED NEURAL SUMMARIZATION
   
-  <!--more-->
+<!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+# Toward Abstractive Summarization Using Semantic Representations
+
+- Explored how to construct an AMR graph for summarization from the original AMR graph, i.e., graph summarization
+- Three-step approach, source graph construction, subgraph prediction, text generation
+
+## Source Graph Construction
+
+- This step involves merging multiple graphs into a source graph, and some concept nodes need to be combined
+- Firstly, AMR does not repeat the modeling of the mentioned concept, but supplements the frequency mentioned as a feature into the node embedding
+- Node merging consists of two steps: merging the subtrees of some nodes, followed by merging nodes with the same concepts
+- The node names after subtree merging contain information from all subtree nodes, and only nodes that are completely identical can be merged thereafter. Therefore, nodes that have undergone one subtree merge are difficult to merge again (difficult to be completely identical), and some coreference resolution work needs to be done (future work)
+- Some nodes will have multiple edges, take the two edges with the most occurrences, merge them, and discard the other edges
+- Directly merge the same concept nodes
+- Add a total root node to connect the root nodes of each sentence
+- The source graph connected in this way has a low edge coverage for the gold summary graph, so further post-processing is done on the source graph, adding null edges between all nodes to improve coverage
+
+## Subgraph Prediction
+
+- Subgraph prediction problem is a structured prediction problem
+  
+- The author constructs the subgraph scoring function for the model parameters as a linear weighted combination of edge and node features:
+  
+  $$
+  \operatorname{score}\left(V^{\prime}, E^{\prime} ; \boldsymbol{\theta}, \boldsymbol{\psi}\right)=\sum_{v \in V^{\prime}} \boldsymbol{\theta}^{\top} \mathbf{f}(v)+\sum_{e \in E^{\prime}} \boldsymbol{\psi}^{\top} \mathbf{g}(e)
+  $$
+- decoding: Selects the subgraph with the highest score based on ILP. The constraint is that the selected subgraph must be legal and connected, which can be described by the indicator function v, e, and the flow f. $v\_i=1$ means that the i-th node is selected, $e\_{i,j}=1$ means that the edge between nodes i and j is selected, and $f\_{i,j}$ represents the flow from i to j. Then, the legal condition is:
+  
+  $$
+  v_{i}-e_{i, j} \geq 0, \quad v_{j}-e_{i, j} \geq 0, \quad \forall i, j \leq N
+  $$
+- Union: The flow that originates from the root reaches each selected conceptual node, each conceptual node consumes a flow, and the flow can only pass through when the edges are selected. These three constraints are described mathematically as:
+  
+  $$
+  \begin{array}{r}{\sum_{i} f_{0, i}-\sum_{i} v_{i}=0} \\ {\sum_{i} f_{i, j}-\sum_{k} f_{j, k}-v_{j}=0, \quad \forall j \leq N} \\ {N \cdot e_{i, j}-f_{i, j} \geq 0, \quad \forall i, j \leq N}\end{array}
+  $$
+- The author only assumes that each concept has only one parent node, i.e., constructed in the form of a tree
+  
+  $$
+  \sum _j e_{i,j} \leq 1, \quad \forall i, j \leq N
+  $$
+- This form of ILP has appeared in sentence compression and dependency parsing, and the author has completed optimization using Gurobi's ILP algorithm
+  
+- A constraint can be added to limit the length of the summary, for example, the total number of selected edges not exceeding L
+  
+- The above is decoding, i.e., selecting subgraphs, but the selection of graphs is based on scores, and the scores are weighted by parameters, thus also including an optimization of parameters. We need a loss function to measure the gap between the decoded graph and the gold summary graph, however, the gold summary graph may not be in the source graph. The authors refer to ramp loss from machine translation, comparing the perceptron loss used by the perceptron, the hinge loss in structured SVM, and the ramp loss, where $G$ is the source graph, and $G^{\*}$ is the gold summary graph:
+  
+  $$
+  \begin{array}{ll}{\text {perceptron loss: }} & {-\text { score }\left(G^{*}\right)+\max _{G} \text { score }(G)} \\ {\text {hinge loss: }} & {-\text { score(G^{*} ) }+\max _{G}\left(\text {score}(G)+\operatorname{cost}\left(G ; G^{*}\right)\right)} \\ {\text {ramp loss: }} & {-\max _{G}\left(\text {score}(G)-\operatorname{cost}\left(G ; G^{*}\right)\right)+\max _{G}\left(\text {score}(G)+\operatorname{cost}\left(G ; G^{*}\right)\right)}\end{array}
+  $$
+- cost penalty for redundant edges
+  
+- Perceptron loss is very simple, it is to minimize the score gap between the gold graph and the decoded graph
+  
+- hinge loss is added to the ILP with a penalty for redundant edges, making the score of the decoded graph as large as possible, not just close to the gold graph, here the score of the decoded graph will be slightly lower than the graph obtained by direct score calculation
+  
+- ramp loss compared to hinge loss is that an inverse penalty is added to the former, while the actual ramp loss still narrows the score gap between the two images, with one image having a slightly higher score than the best decoded graph and the other slightly lower, relaxing the conditions
+  
+
+## Generation
+
+- Authors currently only counted the text span corresponding to the concept nodes in the decoded graph, and did not generate a readable summary, therefore only ROUGE-1 was calculated
+
+# Abstract Meaning Representation for Multi-Document Summarization
+
+- This is an extension of the previous one
+- Using AMR to construct a rooted directed acyclic graph, where nodes are concepts and edges are semantic relationships:
+  - Node: May be a frameset (frame) in PropBank, an ordinary English word, a special category word, or a string,
+  - Edge: It can be a predicate relationship from PropBank or a modified relationship
+- The entire system consists of three parts
+  - source sentence selection: input a series of articles and then pick out sentences from different aspects of a certain topic
+  - Content planning: Input a series of sentences, output an abstract diagram
+  - Surface realization: Convert diagrams into readable summary sentences
+- Three components can be optimized with domain-specific small corpora separately
+
+## Source Sentence Selection
+
+- Because it is a multi-document summary, spectral clustering is performed for each input example (multiple documents), and several sentences are then selected from each cluster
+- There are multiple sentence groups, and just like the modified input summary model, it is necessary to reconstruct training pairs. Here, it is to construct the training pairs to be provided for content planning, that is, the sentence groups and their corresponding gold summary AMR graphs. For each sentence in the gold summary, calculate an average similarity with the sentence group, and select the one with the highest similarity as the sentence group in the training pair. The average similarity includes:
+  - LCS
+  - VSM
+  - Smatch method, referring to the paper Smatch: an evaluation metric for semantic feature structures
+  - Concept Coverage, i.e., the concept in the maximum coverage gold summary AMR graph
+- Four similarity measures have also been ablated
+
+## Content Planning
+
+- Training is for the AMR graph of sentence pairs and summaries, naturally this part is about learning this transformation process
+  
+- Firstly, the summary in the sentence group needs to be converted into an AMR graph; the author tried two AMR Parsers, JAMR and CAMR
+  
+- After that, convert each sentence in the sentence group into an AMR graph and then merge them (this part of the paper is not described clearly)
+  
+  - Are same concept nodes merged?
+  - Perform coreference resolution, merge nodes with the same reference concepts
+  - Some special nodes require integrating subtrees into the node information, called mega-nodes, which is essentially canceling unnecessary expansion and directly writing the specific expansion information into the node, for example, date entity: year 2002: month 1: day 5. These mega-nodes can only be merged if they are completely identical.
+  - Generate a root node finally, and connect the root nodes of various subgraphs
+  - Through the last operation, does the merging of seemingly identical concept nodes represent the merging of the same nodes within the same subgraph?
+- Next, design an algorithm to identify the summarized AMR graph from the source AMR graph, which includes two parts
+  
+  - Graph Decoding: Identifies an optimal summary graph through Integer Linear Programming (ILP): First, construct a parameterized graph scoring function, where each node feature and edge feature is weighted by parameters and summed to obtain a score; here, the features are manually constructed, referring to Fei Liu's series of AMR summarization papers; next, perform an ILP to find a subgraph that maximizes the score, with the constraint of L nodes and the subgraph being connected.
+    
+  - Parameter update: Minimize the gap between the abstract graph decoded by the system and the gold summary graph. This step optimizes the feature weighting parameters in the scoring function from the previous step. Construct a loss function to measure the gap between the decoded graph and the gold graph. Sometimes, the gold graph cannot be decoded from the source graph, in which case structured ramp loss is used, considering not only the score but also the cost, i.e., the degree of agreement between the gold graph and the decoded graph on whether to include a certain node or edge in the summary.
+    
+    $$
+    L_{ramp}(\theta, \phi) = max_G (score(G)+cost(G;G_{gold})) - max_G(score(G) - cost(G;G_{gold}))
+    $$
+
+## Surface Realization
+
+- Convert image to sentence
+- AMR graphs do not convert into sentences because the graphs do not contain grammatical information; a graph may generate multiple sentences that are not grammatically correct. The author takes a two-step approach, first converting the AMR graph into PENMAN form, and then using the existing AMR-to-text to convert PENMAN into sentences
+
+# Towards a Neural Network Approach to Abstractive Multi-Document Summarization
+
+- This paper is an extension of the previous paper, expanding from single-document summarization to multi-document summarization, mainly focusing on how to transfer pre-trained models on large-scale single-document summarization datasets to the multi-document summarization task
+  
+- Compared to the single-document model, an additional document-level encoding layer is added on the encoding side. There is no dependency or sequential relationship between documents, so there is no need to use RNN. The authors directly use linear weighting. It is worth noting that the weights of this weighting should not be fixed or directly learned, but should be determined based on the document itself. Therefore, the authors add a dependency relationship learned from the document itself and the relationship between the document set:
+  
+  $$
+  w_{m}=\frac{\mathbf{q}^{T}\left[\mathbf{d}_{m} ; \mathbf{d}_{\Sigma}\right]}{\sum_{m} \mathbf{q}^{T}\left[\mathbf{d}_{m} ; \mathbf{d}_{\Sigma}\right]}
+  $$
+- The mechanism of attention remains essentially unchanged, with the decoder's initial state transitioning from single-document encoding to multi-document encoding, and the attention weighting shifting from the number of sentences in a single document to the number of sentences in multiple documents. One issue that arises here is that the number of sentences in multi-documents is too large, with many attentions being distributed very evenly, resulting in an excessive amount of information after weighting. Therefore, the authors truncate the global soft attention, allowing only the top k sentences to be weighted, with the rest of the sentences being discarded directly during encoding.
+  
+- The migration from single-document to multi-document actually is not the focus of the paper. The author trains the single-document model part on CNN/DM and then trains the multi-document part on a small DUC dataset, but these two datasets are quite consistent. Many works trained on CNNDM and tested on DUC can achieve good results.
+  
+- The paper's ablation is very detailed, comparing the effects under various functional graph model methods, including Textrank, Lexrank, Centroid
+  
+- It is noteworthy that the author uses edit distance to measure the abstractness of the abstract
+  
+
+# Abstractive Document Summarization with a Graph-Based Attentional Neural Model
+
+- A paper by the team of Teacher Wan, with very good ideas, the important parts are in two points:
+  
+  - hierarchical encoder and decoder: Since encoding and decoding at the sentence level are required to adapt to the graph scoring operation, a hierarchical seq2seq is adopted, with both encoding and decoding at the word-level and sentence-level
+  - graph-attention: The graph used here is actually a fully connected graph from pagerank, where similarity is directly measured by the inner product of the hidden vectors of enc-dec, and then the topic-aware pagerank is used to recalculate the sentence-level attention weights.
+- In the encoding-decoding stage, we use hidden layers to calculate similarity, which is the same as the original attention, but the original attention adds a parameter matrix (modern attention doesn't even bother to add a parameter matrix), so this similarity can reflect the attention weight (score). Then, graph-attention directly calculates the Markov chain iteration of pagerank on this similarity, considering the stable distribution $f$ of the Markov chain to be the sentence score after re-ranking. There is something the paper doesn't mention; the author makes an assumption that the state obtained during encoding-decoding is already in a stable state, rather than starting from scratch, so we can let $f(t+1)=f(t)=f$ and directly calculate the stable distribution:
+  
+  $$
+  \mathbf{f}(t+1)=\lambda W D^{-1} \mathbf{f}(t)+(1-\lambda) \mathbf{y} \\
+  \mathbf{f}=(1-\lambda)\left(I-\lambda W D^{-1}\right)^{-1} \mathbf{y} \\
+  $$
+- The basic form is consistent with pagerank, part of which is based on salience allocation from a similarity matrix, and the other part supplements a uniform distribution y to ensure the convergence of the Markov chain (here it seems to be abbreviated, writing the uniform transition matrix multiplied by f directly as a uniform distribution). It is noteworthy that this calculation is done on the encoding and decoding hidden layer states at the sentence level, therefore it is the graph attention score of various encoding sentences given a certain decoding sentence. How to reflect this certain decoding sentence? That is to use topic-aware pagerank, treat the decoding sentence as a topic, add this topic sentence to the pagerank graph, and change y from a uniform distribution to a one-hot distribution, which ensures the influence of the decoding sentence in the graph and thereby influences other sentences.
+  
+- Afterwards, the distraction attention mechanism was adopted to prevent repeated attention:
+  
+  $$
+  \alpha_{i}^{j}=\frac{\max \left(f_{i}^{j}-f_{i}^{j-1}, 0\right)}{\sum_{l}\left(\max \left(f_{l}^{j}-f_{l}^{j-1}, 0\right)\right)}
+  $$
+- Some minor techniques have also been applied at the decoding end, including:
+  
+  - Handling OOV, use @entity+word length as a label to replace all entities that are prone to become OOV, and attempt to restore the entity labels generated in the decoded sentence, searching in the original text according to word length
+  - hierarchical beam search: word-level beam search scoring considers the original sentence of "attend to" and the bigram overlap of the currently generated part, hoping for a larger overlap; sentence-level beam search hopes that the original sentence attended to is different for each generated sentence, this description is not very clear, it should be that N different original sentences are attended to when generating each sentence, producing N different decoded sentences
+- The hierarchical decoding in this article actually plays a very crucial role; the author did not use word-level attention all at once but rather reordered based on the sentence relationship component diagram and also fully utilized two levels of information in beam search
+  
+# Topical Coherence for Graph-based Extractive Summarization
+
+- Build a graph based on thematic modeling, use ILP for extractive summarization
+- The author used a bipartite graph, with one side being sentence nodes and the other side being topic nodes, connected by edges. The weight of the edges is the sum of the logarithms of the probabilities of all words in a sentence under a certain topic, normalized by the length of the sentence
+- Using HITS algorithm to calculate the importance of sentences on a bipartite graph
+
+# Graph-based Neural Multi-Document Summarization
+
+- Using GCN for extractive summarization, here GCN plays a role of feature supplementation. The original approach is a two-level GRU, where documents are clustered to create embeddings, with each sentence having an embedding. Then, similar to IR, a comparison is made between sentence embeddings and document embeddings to calculate salience scores. Afterward, a greedy method is used to extract sentences based on the scores, with the overall framework still being the scoring-extraction approach
+- GCN added two layers between the GRUs, i.e., the embedding of sentences under a sentence relationship graph was performed with three layers of GCN, followed by the generation of document embeddings by the GRU at the document level
+- Here are two points to focus on: how to construct the sentence relationship diagram
+- The author of the sentence relationship diagram tried three methods:
+  - The most naive, TF-IDF cosine distance
+  - ADG in the paper "Towards Coherent Multi-Document Summarization"
+  - Author's Improved PDG on ADG
+- After that, simply apply GCN propagation
+{% endlang_content %}
+
+{% lang_content zh %}
 
 # Toward Abstractive Summarization Using Semantic Representations
 
@@ -174,3 +352,22 @@ html: true
   - Towards Coherent Multi-Document Summarization一文中的ADG
   - 作者在ADG上改进的PDG
 - 之后直接套GCN传播就行了
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

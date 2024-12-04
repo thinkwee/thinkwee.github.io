@@ -14,10 +14,113 @@ mathjax: true
 html: true
 ---
 
-- 卷积序列到序列
-- 鲁棒的无监督跨语言词嵌入映射
+*   Convolutional Sequence to Sequence
+    
+*   Robust Unsupervised Cross-Lingual Word Embedding Mapping
   
-  <!--more-->
+<!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+
+Convolutional Sequence to Sequence Learning
+===========================================
+
+*   Extremely straightforward, both the encoder and decoder use sequence-to-sequence learning with convolutional neural networks
+*   Whether using a transformer or a CNN as an encoder, it is necessary to capture the semantic information of the entire sentence. Given the current situation where both are significantly ahead of RNNs, tree structures are more suitable as prior structures for natural language data.
+*   transformer directly models the so-called self-attention in the first layer, personally, I believe this self-attention is modeling the parse relationships of sentences, modeling all parse pairs (a word to all other words in the sentence), all dimensions (it may be syntactic parse, entity relationship, coreference resolution, or dependency parse), and using the mechanism of attention to filter out unnecessary relationships, and then reorganizes them through a layer of fully connected layers. By iterating this parse + reorganization block multiple layers, abstracting features step by step, and adding structures commonly used in deep network design such as batch normalization and residual, the transformer is formed. Therefore, the transformer constructs the global parse relationships all at once and then gradually reorganizes, abstracts, and filters.
+*   The structure of CNN conforms more to the conventional 套路 of syntactic parsing, still modeling across various dimensions, but it does not construct the global relationships all at once. Instead, it first analyzes local relationships (n-gram of kernel size) at the bottom level, and then summarizes and abstracts these local relationships through stacked layers.
+*   Facebook uses a CNN block with a standard one-dimensional convolution in this paper, but employs a gated linear unit, i.e., multi-convolves to double the channel as the input for the gate structure, utilizing the gate structure to filter information and construct non-linear relationships, similar to the gating design of LSTM, and also achieving a similar effect of self-attention, while giving up the pooling design. On the decoder side, CNN is also used (I feel it's not very necessary), and the decoder still follows a process of generating from left to right in word order. To ensure this order relationship, the input to the decoder is masked, but I still haven't understood how the specific code implements it... Doing the masking and generating step by step in this way does not fully utilize the acceleration of CNN.
+*   In this paper, attention is also introduced, which is the traditional encoder-decoder attention; the difference lies in
+    *   Employed multi-layer attention; although the key remains the output of the encoder's last layer, attention is individually introduced to each layer of the decoder. However, the authors themselves also say that the decoder does not require many layers, two are sufficient, so this multi-layer attention may not be fully utilized. Moreover, multi-layers represent more context needed to decode each word, it seems that CNN as a decoder does not need much context, or has not fully utilized the longer context.
+    *   The value of attention is not the same as the key; instead, it is the output of the last layer of the encoder plus the embedding of the encoder input. The authors believe that this approach can comprehensively consider both specific and abstract representations, and the actual effect is indeed better.
+*   The author mentioned bytenet as a reference, but for some reason, did not adopt the dilation convolution design from bytenet.
+
+A robust self-learning method for fully unsupervised cross-lingual mappings of word embeddings
+==============================================================================================
+
+*   Completely unsupervised cross-lingual word embedding mapping
+*   Cross-lingual word embeddings, which refer to the use of the same word embedding matrix across multiple languages, allowing for cross-lingual model transfer of large-scale pre-trained word embeddings and/or language models
+*   The general approach is to use word embedding matrices of two languages, map them to the same cross-lingual word embedding space, and establish word correspondence between the two languages
+*   This type of research has been popular recently, and the most well-known downstream application it has spawned should be Facebook's unsupervised machine translation from 2018
+*   Previous methods are divided into three categories:
+    *   Supervised, using bilingual dictionaries, constructing thousands of supervised word pairs, treating learning mapping as a regression problem: modeling with the minimum mean square objective function, which subsequently gave rise to various methods: canonical correlation analysis; orthogonal methods; maximum margin methods. These methods can all be categorized as linear transformation mappings of word embedding matrices of the two languages into the same space.
+    *   Semi-supervised, achieved through seed dictionary and bootstrap, such methods depend on good seeds and are prone to falling into local optima
+    *   Another category is unsupervised generative methods, but the existing methods are too dependent on specific tasks, have poor generalization ability, and it is difficult to achieve good results for two different languages of the language system.
+*   The text provided does not contain any source text to translate. Please provide the source text you wish to have translated into English.
+*   ![APCWNT.png](https://s2.ax1x.com/2019/03/11/APCWNT.png)
+
+Model
+-----
+
+*   Let $X$ and $Z$ be the word embedding matrices of two languages, the goal is to learn linear transformation matrices $W_x$ and $W_z$ such that the mapped matrices of the two languages are in the same cross-lingual space, forming a new cross-lingual word embedding matrix
+*   The iterative update of the model depends on an alignment matrix $D$ , $D_{ij}=1$ , which is aligned when and only when the $i$ word of Language A corresponds to the $j$ word of Language B. The alignment relationship reflected by this matrix is unidirectional
+*   Model is divided into four steps: preprocessing, fully unsupervised initialization, a robust self-learning process, and further improvement of results through symmetric weight reallocation
+
+Preprocessing
+-------------
+
+*   Normalize the length of word embeddings
+*   Perform mean removal for each dimension again
+*   The first two preprocessing steps mentioned in the author's previous paper "Learning principled bilingual mappings of word embeddings while preserving monolingual invariance" aim to simplify the problem to seeking cosine similarity and maximum covariance. This paper discusses supervised methods and is to be read.
+*   Perform another length normalization to ensure that each word embedding has a unit length, making the inner product of two word embeddings equivalent to the cosine distance
+
+Completely unsupervised initialization
+--------------------------------------
+
+*   Initialization is difficult to perform because the word embedding matrices of the two languages are not aligned in two dimensions (each word, each dimension of the embedding)
+*   The approach in this paper is to first construct two matrices $X^{'}$ and $Z^{'}$ , with the word embeddings in each dimension of these matrices aligned
+*   $X^{'}$ and $Z^{'}$ are obtained by calculating the square root of the similarity matrix of the original word embedding matrix, i.e., $X^{'} = \sqrt sorted{XX^T}$ and $Z^{'} = \sqrt sorted{ZZ^T}$ . The product of a matrix with its transpose results in a similarity matrix under the same language (because preprocessing was done previously). Based on previous observations, two words representing the same meaning in two languages should have a similar single-language similarity distribution. Therefore, we sort each row of the similarity matrices of the two languages separately, from large to small. If two words have the same meaning, the corresponding rows in their sorted similarity matrices within their own language should have a similar distribution.
+*   ![Ak0cYd.png](https://s2.ax1x.com/2019/03/13/Ak0cYd.png)
+*   This skips the direct alignment of each dimension of word embeddings, converting it to alignment based on dictionary similarity. Afterward, only word alignment is needed, i.e., sorting each row of the similarity matrix individually and establishing the correspondence between words with similar row distributions.
+*   Established word alignment, i.e., established the initial $D$ matrix
+
+Robust self-learning process
+----------------------------
+
+*   Compute orthogonal mappings to maximize the similarity of the current $D$ matrix
+    
+    $$
+    argmax_{W_x,W_z} \sum _i \sum _j D_{ij}((X_{i^*}W_X) \cdot (Z_{j^*}W_Z)) \\
+    $$
+    
+    The optimal solution can be directly calculated as: $W_X=U,W_Z=V$ , where $U,V$ comes from $USV^T$ , which is the singular value decomposition of $X^TDZ$
+    
+*   After mapping the word embeddings of the two languages into a cross-lingual word embedding space (still two word embedding matrices, but within the same cross-lingual space), for each word in Language A, find its nearest word in Language B within the cross-lingual word embedding space, establish a mapping relationship, and update the $D$ matrix.
+    
+    $$
+    D_{ij} = 1 \ \ \ if  \ \ j = argmax _k (X_{i^*}W_X) \cdot (Z_{j^*}W_Z) \\
+    else \ \ D_{ij} = 0 \\
+    $$
+    
+*   Repetitive iteration, $W_X,W_Z \rightarrow D \rightarrow W_X,W_Z \rightarrow D \rightarrow W_X,W_Z \rightarrow D \rightarrow W_X,W_Z$
+    
+*   Using a completely unsupervised initialization $D$ matrix results in better performance than random initialization, but it still falls into local optima. Therefore, the authors proposed several small tricks for the second step of the iteration, i.e., updating the $D$ matrix, to make the learning more robust
+    
+    *   Random dictionary induction: In each iteration, set elements of the D matrix model to 0 with a certain probability, forcing the model to explore more possibilities
+    *   Based on word frequency dictionary truncation: Only update the top k most frequent words during each dictionary induction, to avoid noise from low-frequency words, with a truncation limit of 20,000
+    *   CSLS retrieval: Previous methods find the nearest j for each i by mapping it to the cross-lingual word embedding space, updating $D_{ij}$ to 1. This nearest neighbor method is affected by the dimensionality disaster and does not perform well (the specific phenomenon caused is called hubs, where words cluster together, and hubs words are the nearest neighbors of many words with little difference). CSLS, which stands for cross-domain similarity local scaling, penalizes these hub words.
+    *   Bidirectional dictionary induction, not only for finding j from i, but also for finding i from j
+    *   These tricks differ in the initialization of the constructed matrices, do not perform random inductive, and the dictionary truncation limit is set to 4000
+
+Further improving results through reweighting with symmetric weights
+--------------------------------------------------------------------
+
+*   After the iterative process is completed
+    
+    $$
+    W_X = US^{\frac 12} \\
+    W_Z = UV^{\frac 12} \\
+    $$
+    
+*   Compared to previous papers, this method encourages the model to explore a wider search space by performing whitening and de-whitening before and after each iteration, and it is insensitive to direction
+    
+*   The reasons for reallocating weights were mentioned in the previous paper, to be read
+    
+{% endlang_content %}
+
+{% lang_content zh %}
 
 # Convolutional Sequence to Sequence Learning
 
@@ -99,3 +202,21 @@ W_Z = UV^{\frac 12} \\
   $$
 - 比起之前的论文，在每一次迭代前后做白化和去白化的方法，这种方法鼓励模型探索更多搜索空间，且对方向不敏感
 - 重新分配权重的原因在之前的论文中提到，待阅读
+
+{% endlang_content %}
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

@@ -104,6 +104,10 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: next
 
+# hexo-reference-plus
+refplus:
+  tippy: true
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy: 

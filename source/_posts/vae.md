@@ -15,14 +15,174 @@ html: true
 
 ***
 
-- 变分自编码器学习笔记
-- 参考文章：
-  - [Auto-Encoding Variational Bayes](https://arxiv.org/pdf/1312.6114.pdf)
-  - [Daniel Daza ，The Variational Autoencoder](https://dfdazac.github.io/01-vae.html)
-  - [苏神的VAE系列](https://spaces.ac.cn/tag/vae/)
-- 关于VAE，上面的原论文以及两篇博客已经讲的很清楚了，我写也就是复读转述，自己捋一遍，如果有人看到这篇博客，建议优先读这三个参考来源
+*   Variational Autoencoder Learning Notes
+    
+*   Reference Article:
+    
+    *   [Auto-Encoding Variational Bayes](https://arxiv.org/pdf/1312.6114.pdf)
+    *   [Daniel Daza, The Variational Autoencoder](https://dfdazac.github.io/01-vae.html)
+    *   [Sūshén's VAE series](https://spaces.ac.cn/tag/vae/)
+*   On VAE, the original paper and the two blogs above have already explained it very clearly. I am just repeating and paraphrasing, just to go through it myself. If anyone reads this blog, I recommend reading these three reference sources first
   
-  <!--more-->
+<!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+Directly view the network structure
+===================================
+
+*   Variational autoencoders use variational inference, but because the parameter estimation part employs the gradient descent method of neural networks, their network structure can be directly depicted—we actually refer to them as autoencoders, and this is also because their structure has many similarities with autoencoders. Even if one does not start from a Bayesian perspective, VAE can be directly regarded as a type of special autoencoder.
+*   Taking the mnist experiment from the original paper as an example, we directly examine the network structure of the VAE, and then generalize the model and explain the details:
+    *   An encoder and a decoder, the goal is to reconstruct the error and obtain useful encoding, just like an autoencoder
+    *   However, variational autoencoders do not directly encode the input, but rather assume that the encoding follows a multivariate normal distribution; the encoder encodes the mean and variance of this multivariate normal distribution
+    *   That is, VAE assumes that the encoding is simple, following a normal distribution, while what I train and utilize is the decoding, this decoder can decode and reconstruct the input from samples of the normal distribution, or in other words, generate the output
+*   mnist input is 28\*28, batch\_size is 128, assuming the hidden layer dim is 200, and the parameter dim is 10, then the entire network is:
+
+1. Input $x$ \[128,28\*28\], pass through a linear+ReLu, obtain encoder hidden layer $h$ \[128,200\]
+2. Through two linear transformations, obtain normal distribution parameters $\mu _e$ \[128,10\], $\log \sigma _e$ \[128,10\]
+3. From a standard multivariate normal distribution, sample $\epsilon \sim N(0,I)$ , to obtain $\epsilon$ \[128,10\]
+4. Combine the parameters obtained through the network $\mu _e$ , $\log \sigma _e$ to the sampling values of the standard multidimensional normal distribution, $z = \mu _e + \sigma _e \bigodot \epsilon$ \[128,10\], $z$ is the encoding
+5. encoder part is completed, next is the decoder part: encoding $z$ through overlinear + ReLu to obtain the decoder hidden layer state h\[128,200\]
+6. Decoding the hidden state h through linear + sigmoid yields $\mu _d$ \[128, 28\*28\], i.e., the output after decoding
+7. Decoding output $\mu _d$ and input $x$ to calculate the Bernoulli cross-entropy loss
+8. In addition, a regularity-like loss term should be added $\frac 12 \sum _{i=1}^{10} (\sigma _{ei}^2 + \mu _{ei}^2 -log(\sigma _{ei}^2) - 1)$
+
+Direct Network Analysis
+=======================
+
+*   From the network, the biggest difference between VAE and AE is that it does not directly encode the input but introduces the concept of probability into the network structure, constructing an encoding that satisfies a multi-dimensional normal distribution for each input
+*   One advantage of this approach is that the encoding can perform interpolation, achieving a continuous change in generated images: the original AE has a fixed encoding for each specific input, while the network in VAE is only responsible for generating fixed mean and variance, i.e., a fixed normal distribution. The actual encoding is just a sampling from this fixed normal distribution, still uncertain. During the training process, VAE trains an area rather than a point, so the obtained encoding has continuity, and similar images can be generated near the center point of the area. Moreover, interpolation can be performed between the two encoding areas for the two types of image inputs, realizing a smooth transition between the two generated images.
+*   Step 1, 2, 3, and 4 involve the encoder sampling an encoding from a distribution of $N(\mu _e,\sigma _e ^2)$ , however, there is a reparameterization trick, namely:
+    *   The encoder neural network should originally be fitted to a distribution satisfying $N(\mu _e,\sigma _e ^2)$ , and then samples taken from the distribution
+    *   However, the values obtained from the sampling cannot be backpropagated
+    *   Therefore, the neural network is modified to only fit the parameters of the distribution, then samples from a simple standard multivariate normal distribution, and the sampled values are processed by the fitting parameters, i.e., $z = \mu _e + \sigma _e \bigodot \epsilon$ , to achieve the effect of $z$ as if directly sampled from $N(\mu _e,\sigma _e ^2)$ , while the neural network merely fits the parameters, allowing for backpropagation, and the sampling is equivalent to performing some weighted operations with specified weights, participating in the network training
+*   Step 5, 6, and 7 are ordinary decoding, as the output is a 28\*28 black and white image, so it is directly decoded into a 28\*28 binary vector, and compared with the input to calculate cross-entropy
+*   The key is 8, how is this regular term obtained?
+
+Regular term
+============
+
+*   This regular term actually represents the KL divergence between the encoded normal distribution and the standard normal distribution, i.e., (where K is the dimension of the multivariate normal distribution, which is 10 in the above example):
+    
+    $$
+    KL(N(\mu _e,\sigma _e ^2)||N(0,I)) =  \frac 12 \sum _{i=1}^{K} (\sigma _{ei}^2 + \mu _{ei}^2 -log(\sigma _{ei}^2) - 1)
+    $$
+    
+*   That is to say, we hope the normal distribution we encode is close to the standard normal distribution, why?
+    
+*   There are many different interpretations here:
+    
+    *   The first type: We hope that for different classes of inputs, the encoding can be encoded into the same large area, that is, while the regions within are compact, the distance between regions should not be too far, and it is best to reflect the distance in terms of image features, for example, taking mnist as an example, the images of 4 and 9 are relatively similar, while the difference with the image of 0 is large, then the distance between their encoding regions can reflect the similarity; or, during the process from 0 to 8, the intermediate states will resemble 9, then the encoding region of 9 should be between the encoding regions of 0 and 8. However, in reality, the encoder network may learn such an encoding method: for different classes of inputs, the difference $\mu$ is large, it separates the encoding regions of different class inputs (more accurately, non-similar inputs, here in unsupervised learning, there are no classes) quite far apart. The neural network does this for a reason: to make it easier for the decoder to distinguish between different inputs during decoding. This goes against our original intention of encoding them into continuous regions for easy interpolation. Therefore, we strongly hope that the learned encoding distribution is approximately a standard normal distribution, so that they are all in a large area, of course, not too similar, otherwise everyone is the same, the decoder's burden is too heavy, and it cannot decode the differences, which is the role of the reconstruction loss mentioned earlier.
+    *   The second type: The effect of VAE is equivalent to adding Gaussian noise to the standard autoencoder, making the decoder robust to noise. The size of the KL divergence represents the strength of the noise: a smaller KL divergence indicates that the noise is closer to the standard Gaussian noise, i.e., stronger; a larger KL divergence indicates a weaker noise strength, here understood as the noise being assimilated, not that the variance has decreased, because the noise should be unrelated to the input signal and always maintain Gaussian noise or other specified distributions. If the noise becomes increasingly distant from the specified distribution and more related to the input, its role as noise diminishes accordingly.
+    *   The third: This is the most rigorous understanding, where the KL divergence is obtained from the perspective of variational inference, and the entire model is derived from Bayesian framework reasoning. The network structure exists because the author uses neural networks to fit the parameters, and the specification of the hyperparameters and distributions is a special case of this framework in the mnist generation task, after all, the original text refers to it as autoencoder variational Bayesian (a method), not variational autoencoder (a structure). Next, let's look at how the entire model is derived from the perspective of the original paper, and naturally obtain this KL divergence regularization term.
+
+Variational Autoencoder Bayesian
+================================
+
+*   The entire decoder section can be regarded as a generative model, with its probability graph being: ![AKu5FA.png](https://s2.ax1x.com/2019/03/20/AKu5FA.png) 
+    
+*   $z$ is the encoding, $\theta$ is the decoder parameters we hope to obtain, controlling the decoder to decode (generate) from the encoding ( $x$ )
+    
+*   The problem now returns to the inference of probabilistic graphical models: Given the observed variable x, how to obtain the parameter $\theta$ ?
+    
+*   The author's approach is not a complete copy of variational inference; in VAE, the $q$ distribution is also used to approximate the posterior distribution $p(z|x)$ . The log-likelihood of the observables is decomposed into ELBO and KL(q||p(z|x)). The difference is that in variational inference, q is obtained using the EM method, while in VAE, q is fitted using a neural network (the input of the neural network is $z$ , and therefore $q$ itself is also a posterior distribution $q(z|x)$ .
+    
+    $$
+    \log p(x|\theta) = \log p(x,z|\theta) - \log p(z|x,\theta) \\
+    $$
+    
+    $$
+    = \log \frac{p(x,z|\theta)}{q(z|x,\phi)} - \log \frac{p(z|x,\theta)}{q(z|x,\phi)} \\
+    $$
+    
+    $$
+    = \log p(x,z|\theta) - \log q(z|x,\phi) - \log \frac{p(z|x,\theta)}{q(z|x,\phi)} \\
+    $$
+    
+    $$
+    = [ \int _z q(z|x,\phi) \log p(x,z|\theta)dz - \int _z q(z|x,\phi) \log q(z|x,\phi)dz ] + [- \int _z \log \frac{p(z|x,\theta)}{q(z|x,\phi)} q(z|x,\phi) dz ]\\
+    $$
+    
+*   Note that we actually aim to obtain the parameters $\theta$ and $\phi$ that maximize the logarithmic likelihood of the observations, while the latent variable $z$ can be obtained with the model given the input.
+    
+*   It can be seen that, under the condition of the measurement, i.e., the log-likelihood, the larger the value in the previous brackets, i.e., the ELBO, the closer the subsequent KL divergence, i.e., the posterior distribution $q(z|x,\phi)$ and the posterior true distribution $p(z|x,\theta)$ . This posterior distribution, i.e., given $x$ , to obtain $z$ , is actually the encoder, so the smaller the KL divergence, the better the encoder's performance. Therefore, we should maximize the ELBO. The ELBO can be rewritten as:
+    
+    $$
+    ELBO = \int _z q(z|x,\phi) \log p(x,z|\theta)dz - \int _z q(z|x,\phi) \log q(z|x,\phi)dz \\
+    $$
+    
+    $$
+    = E_{q(z|x,\phi)}[\log p(x,z|\theta)-\log q(z|x,\phi)] \\
+    $$
+    
+    $$
+    = E_{q(z|x,\phi)}[\log p(x|z,\theta)]-KL(q(z|x,\phi)||(p(z|\theta))) \\
+    $$
+    
+*   Another KL divergence has appeared! This KL divergence is the KL divergence between the posterior distribution of the latent variables encoded by the encoder and the prior distribution of the latent variables. The first part, $p(x|z,\theta)$ , which calculates the distribution of the observable variables from the known latent variables, is actually the decoder. Therefore, $\phi$ and $\theta$ correspond to the parameters of the encoder and decoder, respectively, which are actually the parameters of the neural network. The former is called the variational parameter, and the latter is called the generative parameter.
+    
+*   We aim to maximize this ELBO, and the VAE directly uses it as the objective function of the network structure, performing gradient descent and taking derivatives with respect to $\theta$ and $\phi$ . In this case, the first part $E_{q(z|x,\phi)}[\log p(x|z,\theta)]$ calculates the expectation using the Monte Carlo method, i.e., sampling multiple $z$ from $z \sim q(z|x,\phi)$ , and then calculating the mean to find the expectation, where the reparameterization technique mentioned above is applied.
+    
+*   At this point, the entire probabilistic graphical model, including the inference part, becomes ![AKuhod.png](https://s2.ax1x.com/2019/03/20/AKuhod.png) 
+    
+*   Process: Obtain the observation x -> Obtain samples of z through reparameterization -> Input the samples of z into the target function (ELBO) for differentiation -> Gradient descent, update parameters $\theta$ and $\phi$
+    
+
+Return to mnist
+===============
+
+*   In the MNIST experiment, the authors set the prior of the latent variables, the q distribution, the base distribution in reparameterization $\epsilon$ , and the posterior distribution of the observations to be:
+    
+    $$
+    p(z) = N(z|0,I) \\
+    $$
+    
+    $$
+    q(z|x,\phi) = N(z|\mu _e , diag(\sigma _e)) \\
+    $$
+    
+    $$
+    \epsilon \sim N(0,I) \\
+    $$
+    
+    $$
+    p(x|z,\theta) = \prod _{i=1}^D \mu _{d_i}^{x_i} (1-\mu _{d_i})^{1-x_i} \\
+    $$
+    
+*   The model parameters $\phi = [\mu_e , \sigma _e]$ , $\theta=\mu _d$ are obtained through neural network learning
+    
+*   The first part of the ELBO objective function, the expectation part, has already been completed through reparameterization, the internal
+    
+    $$
+    \log p(x|z,\theta) = \sum _{i=1}^D x_i \log \mu _{d_i} + (1-x_i) \log (1- \mu _{d_i}) \\
+    $$
+    
+*   Bernoulli cross-entropy, where in network design the sigmoid function is added to the last layer, is to ensure that the output $mu_d$ satisfies the probability.
+    
+*   The latter part of the ELBO objective function, i.e., the KL divergence between the posterior q distribution of the latent variables and the prior p distribution, becomes the regularization term mentioned above, making the approximate distribution closer to the prior distribution
+    
+*   The entire model considers both the reconstruction loss and the prior information
+    
+*   Therefore, the ELBO can be written as:
+    
+    $$
+    ELBO = - reconstruction loss - regularization term
+    $$
+    
+
+Effect
+======
+
+*   Reconstruction Effect on the MNIST Dataset ![AKufdH.png](https://s2.ax1x.com/2019/03/20/AKufdH.png) 
+*   The effect obtained from variance disturbance ![AKuWee.png](https://s2.ax1x.com/2019/03/20/AKuWee.png) 
+*   The effect of mean perturbation ![AKu2LD.png](https://s2.ax1x.com/2019/03/20/AKu2LD.png) 
+*   Interpolation results for 4 and 9 ![AKuIJI.png](https://s2.ax1x.com/2019/03/20/AKuIJI.png) 
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
 
 # 直接看网络结构
 
@@ -152,3 +312,23 @@ html: true
   [![AKu2LD.png](https://s2.ax1x.com/2019/03/20/AKu2LD.png)](https://imgchr.com/i/AKu2LD)
 - 对4和9进行插值的结果
   [![AKuIJI.png](https://s2.ax1x.com/2019/03/20/AKuIJI.png)](https://imgchr.com/i/AKuIJI)
+
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

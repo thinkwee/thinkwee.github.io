@@ -15,10 +15,184 @@ html: true
 
 ***
 
-- 记录一下Glove词向量的数学推导，因为原论文不是画模型得出的，而是纯数学操作计算得到的目标函数，这种设计方式非常有意思，而且还将word2vec的数学本质写出来进行了对比。
-- 原论文：*GloVe: Global Vectors for Word Representation*
+*   Record the mathematical derivation of GloVe word vectors, as the original paper does not derive the model graphically but rather calculates the objective function through pure mathematical operations. This design approach is very interesting, and it also writes out and compares the mathematical essence of word2vec.
+*   GloVe: Global Vectors for Word Representation
 
 <!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+Word vectors
+============
+
+*   Whether based on global matrix factorization or local window-based word vectors, the method of extracting semantics is to mine meaning from the co-occurrence statistical information between words.
+*   Clearly, the global approach does not make use of the advantages of the local one: for example, global techniques such as LSA are insensitive to local contextual information, making it difficult to mine synonyms based on context; the local approach does not make use of the advantages of the global one, as it only relies on independent local contexts, and if the window is too small, it cannot effectively utilize the information of the entire document or corpus.
+*   The GloVe approach is to utilize the global word co-occurrence matrix while also calculating relevance using local contextual relationships.
+*   The result of word vectors is a mapping that generates meaningful semantic relationships based on distance relationships. To achieve this goal, GloVe designed a log-bilinear regression model and specifically adopted a weighted least mean square regression model to train word vectors.
+
+Discovery
+=========
+
+*   Definition:
+    *   For a single word.
+    *   The number of occurrences of $x_j$ in the context of $x_i$ .
+    *   The number of times all words appear in the context of $x_i$ .
+    *   The probability of $x_j$ appearing in the context of $x_i$ , which is the probabilization of the frequency count of the context occurrence, referred to as "co-occurrence probabilities" in the paper.
+    *   $r = \frac {P_{ik}}{P_{jk}}$ : Introduce an intermediate word $x_k$ , referred to as "probe word" in the paper, by introducing this $x_k$ , it can indirectly measure the relationship between $x_i$ and $x_j$ , represented by $r$ , i.e., the ratio.
+*   The role of introduction is reflected in two aspects:
+    *   For the $x_i$ and $x_j$ to be compared, filter out the $x_k$ without discriminative power, which is noise. When $r \approx 1$ , $x_k$ is considered noise.
+    *   Given $x_k$ , such that those $r >> 1$ of $x_i$ have similar meanings, and those $r << 1$ of $x_j$ have similar meanings.
+*   Therefore, we can filter out noise and only mine word sense relationships from co-occurrence data where $r$ is very large or very small.
+
+Design
+======
+
+*   Next, the author directly applies the target design function.
+    
+*   The goal is: the distance calculation results between the word vectors designed should reflect the ratio previously discovered from the word co-occurrence matrix, specifically for the triplet, words i, j, and the probe word k, the word vectors of these three words should embody r
+    
+*   Then, directly designing, defining $w_i$ as the word vector corresponding to $x_i$ , we assume $F$ to be the function for calculating distance:
+    
+    $$
+    F(w_i,w_j,w^{*}_k) = r \\
+    = \frac {P_{ik}}{P_{jk}} \\
+    $$
+    
+*   The word vectors of above $w_k$ are distinguished by asterisks from the word vectors of $w_i$ and $w_j$ , because $w_k$ is an independent context word vector, parallel to the required word vectors, similar to the forward and backward word embedding matrices in word2vec.
+    
+*   Next, a natural thought is to reduce the parameters, i.e., only the word vectors and the context word vectors are needed, because it is a distance calculation function and the vector space is a linear space; we use the vector difference between $w_i$ and $w_j$ as the parameters:
+    
+    $$
+    F(w_i - w_j,w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\
+    $$
+    
+*   The current function takes a vector as its parameter, and outputs a tensor. The simplest structure is to perform a dot product:
+    
+    $$
+    F((w_i-w_j)^T w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\
+    $$
+    
+*   The next key point is symmetry. Noticing that although context and non-context word vectors are distinguished, since the co-occurrence matrix $X$ is symmetric, the two sets of word vectors $w$ and $w^{\*}$ should have the same effect. This is because the values of the two sets of word vectors are different due to different random initialization, but they should be the same in terms of measuring similarity, that is, $w_i^T w^{\*}_j$ and $w_j^T w^{\*}_i$ should be the same.
+    
+*   Due to symmetry, $x_i,x_j,x_k$ can be any word in the corpus, so the two parameters of the $F$ function should be interchangeable ( $w$ and $w^{\*}$ , $X$ and $X^T$ ), and here a bit of mathematical technique is further applied to symmetrize the function:
+    
+    *   Design:
+        
+        $$
+        F((w_i-w_j)^T w^{*}_k) = \frac {F(w_i w^{*}_k)} {F(w_j w^{*}_k)} \\
+        $$
+        
+    *   Then both the numerator and denominator are of the same form, that is
+        
+        $$
+        F(w_i w^{*}_k) = P_{ik} = \frac {X_{ik}} {X_i} \\
+        $$
+        
+    *   To satisfy the above $F$ , it can be decomposed into two sub- $F$ , and then $F$ can be the $exp$ function, i.e
+        
+        $$
+        w_i^T w_k^{*} = log(X_{ik}) - log {X_i} \\
+        $$
+        
+    *   The indices k, i, j can be interchanged without changing the meaning. Since the numerator and denominator have the same form, we only need to ensure that this form is satisfied; the fraction will naturally satisfy the mapping from the triplet to the ratio thereafter.
+        
+    *   Noticing that in the above formula, the inner product of the two vectors on the left remains unchanged when the i,k symbols are interchanged, while the subtraction of the two log expressions on the right does not satisfy this symmetry. Therefore, we add an $log{x_k}$ to make it symmetric and simplify it to the bias $b^{*}$ . Similarly, after interchanging the i,k symbols, we add an $Log{x_i}$ to make it symmetric, i.e., the bias $b_i$ . The bias, like word vectors, also consists of two sets:
+        
+        $$
+        w_i^Tw_k^{*} + b_i + b_k^{*} = log(X_{ik}) \\
+        $$
+        
+    *   Finally, add smoothing to prevent the log parameter from being 0:
+        
+        $$
+        w_i^Tw_k^{*} + b_i + b_k^{*} = log(1 + X_{ik}) \\
+        $$
+        
+*   Here we have preliminarily completed the design of the $F$ function, but there is still an issue that it averages the weights of each co-occurrence, while in general corpora, most co-occurrences have very low frequencies
+    
+*   The solution for Glove is to use weighted functions. After weighting, the training of word vectors is regarded as a least mean square error regression of the F function, and the loss function is designed:
+    
+    $$
+    J = \sum _{i,j}^V f(X_{ij}) (w_i^T w_j^{*} + b_i + b_j^{*} - log (1 + X_{ij}))^2 \\
+    $$
+    
+*   Among which, f is the weighted function, with its parameters being the co-occurrence frequency; the author points out that this function must satisfy three properties:
+    
+    *   Clearly, if no co-occurrence occurs, the weight is 0.
+    *   Non-decreasing: The higher the co-occurrence frequency, the greater the weight.
+    *   relatively small for large X: To prevent over-weighting for certain common co-occurrences with high frequencies, which may affect the results.
+*   Based on the above three properties, the author designed a truncated weighted function within the threshold $X_{max}$
+    
+    $$
+    f(x) = (\frac {x}{X_{max}}) ^ {\alpha} \\
+    $$
+    
+    If exceeding the threshold, the function value is 1.
+    
+
+Comparing with Word2vec
+=======================
+
+*   For the skip-gram model in Word2vec, the goal is to maximize the probability of predicting the correct central word given the context, which is generally probabilized through the softmax function, i.e.:
+    
+    $$
+    Q_{ij} = \frac {exp (w_i^T w_j^{*})} { \sum _{k=1}^V exp(w_i^T w_k^{*})} \\
+    $$
+    
+*   Through gradient descent, the overall loss function can be written as:
+    
+    $$
+    J = - \sum _{i \in corpus , j \in context(i)} log Q_{ij} \\
+    $$
+    
+*   Group the same $Q_{ij}$ first and then sum up to get:
+    
+    $$
+    J = - \sum _{i=1}^V \sum _{j=1}^V X_{ij} log Q_{ij} \\
+    $$
+    
+*   Next, further transformations are made using the previously defined symbols:
+    
+    $$
+    J = - \sum _{i=1^V} X_i \sum _{j=1}^V P_{ij} log Q_{ij} \\
+    = \sum _{i=1}^V X_i H(P_i,Q_i) \\
+    $$
+    
+*   That is to say, the loss function of Word2vec is actually weighted cross-entropy, however, cross-entropy is only one possible measure and has many drawbacks:
+    
+    *   Probability requiring normalization as a parameter
+    *   Softmax computation is computationally intensive, referred to as the model's computational bottleneck
+    *   For long-tailed distributions, cross-entropy often assigns too much weight to less likely items
+*   Solution to the above problems: Simply do not normalize, directly use co-occurrence counts, do not use cross-entropy and softmax, directly use mean squared error, let $Q_{ij} = exp(w_i^T w_j^{*})$ , $P_{ij} = X_{ij}$ , then:
+    
+    $$
+    J = \sum _{i,j} X_i (P_{ij} - Q_{ij})^2 \\
+    $$
+    
+*   However, non-normalization can cause numerical overflow, so take the logarithm again:
+    
+    $$
+    J = \sum _{i,j} X_i (log P_{ij} - log Q_{ij})^2 \\
+    =  \sum _{i,j} X_i (w_i^T w_j^{*} - log X_{ij})^2 \\
+    $$
+    
+*   Thus, the simplest objective function of GloVe is obtained.
+    
+*   The authors of Word2vec found that filtering out some common words could improve the effectiveness of word vectors, and the weighted function in Word2vec is denoted as $f(X_i)=X_i$ , thus filtering out common words is equivalent to designing a non-decreasing weighted function. GloVe designed a more sophisticated weighted function.
+    
+*   Therefore, from the perspective of mathematical derivation, GloVe simplifies the objective function of Word2vec, replacing cross-entropy with mean squared error and redesigning the weighting function.
+    
+
+Concept
+=======
+
+*   The paper provides a good idea for designing a model, namely, designing the objective function based on evaluation indicators, and then training the model to obtain the parameters (by-products) as the desired results.
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
 
 # 词向量
 
@@ -152,3 +326,22 @@ html: true
 # 思路
 
 - 该文提供了一个很好的设计模型的思路，即根据评测指标设计目标函数，反过来训练模型，得到函数的参数（副产品）作为所需的结果。
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

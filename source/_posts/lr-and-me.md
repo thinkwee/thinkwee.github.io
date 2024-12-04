@@ -7,17 +7,225 @@ mathjax: true
 html: true
 ---
 
-翻译John Mount的*The equivalence of logistic regression and maximum entropy models* 一文，并说明了这种证明是在统计学习方法中介绍最大熵模型的通用导出证明的一个特例
+Note for John Mount's "The Equivalence of Logistic Regression and Maximum Entropy Models" and explains that this proof is a special case of the general derivation proof of the maximum entropy model introduced in statistical learning methods
 
-结论
+Conclusion
 
-- 最大熵模型就是softmax分类
-- 在满足广义线性模型的平衡条件下，满足最大熵条件的模型映射函数就是softmax函数
-- 在统计机器学习方法一书中，给出了在特征函数定义下的最大熵模型，其与softmax回归都属于对数线性模型
-- 当特征函数从二值函数扩展为特征值本身时，最大熵模型就化为softmax回归模型
-- 最大熵最大化的是条件熵，不是条件概率的熵，也不是联合概率的熵。
+*   Maximum entropy model is softmax classification
+*   Under the balanced conditions of the general linear model, the model mapping function that satisfies the maximum entropy condition is the softmax function
+*   In the book on Statistical Machine Learning methods, a maximum entropy model defined under the feature function is presented, which, along with softmax regression, belongs to the class of log-linear models
+*   When the feature function extends from a binary function to the feature value itself, the maximum entropy model becomes a softmax regression model
+*   The maximum entropy maximizes conditional entropy, not the entropy of conditional probabilities, nor the entropy of joint probabilities.
 
 <!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+
+Define symbols
+=============
+
+*   n-dimensional features, m samples, $x(i)_j$ denotes the j-th feature of the i-th sample, discuss the multi-class scenario, the output classification $y(i)$ has k classes, the mapping probability function $\pi$ maps from $R^n$ to $R^k$ , we hope $\pi(x(i))_{y(i)}$ to be as large as possible.
+*   Indicator function $A(u,v)$ , equals 1 when $u==v$ and 0 otherwise
+
+Logistic regression
+===================
+
+$$
+\pi(x)_1 = \frac{e^{\lambda x}}{1+e^{\lambda x}} \\
+\pi(x)_2 = 1 - \pi(x)_1\\
+$$
+
+*   The parameter to be learned $\lambda$ is $R^n$
+
+Softmax regression
+==================
+
+$$
+\pi(x)_v = \frac{e^{\lambda _v x}} {\sum _{u=1}^k e^{\lambda _u x}}
+$$
+
+*   For $R^{k * n}$
+
+Solving softmax
+===============
+
+*   When using softmax or logistic as nonlinear functions, they possess a good property of differentiation, that is, the derivative function can be expressed in terms of the original function
+    
+*   We can now define the objective function, which is to maximize the correct category probability output by the $\pi$ function (maximum likelihood), and define the optimization obtained by $\lambda$ :
+    
+    $$
+    \lambda = argmax \sum _{i=1}^m log (\pi (x(i))_{y(i)}) \\
+    = argmax f(\lambda) \\
+    $$
+    
+
+Balanced Equation
+=================
+
+*   Derive the objective function above and set the derivative to 0:
+    
+    $$
+    \frac {\partial f(\lambda)}{\partial \lambda _{u,j}} = \sum _{i=1，y(i)=u}^m x(i)_j - \sum _{i=1}^m x(i)_j \pi (x(i))_u =0 \\
+    $$
+    
+*   Thus, we obtain an important balance equation:
+    
+    $$
+    \ \  for \ all \ u,j \\
+    \sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
+    $$
+    
+*   Analyze this equation:
+    
+    *   Plain Language: We hope to obtain a mapping function $\pi$ , such that for a certain dimension (j) feature, the sum of the weighted feature values of all samples mapped to the u class by the mapping function is equal to the sum of the feature values of all samples within the u class. It is obvious that the best case is that the elements within both summation expressions are completely identical, only the samples of the u class are summed, and the probability that the mapping function maps the u class samples to the u class is 1, while the probability that samples of other classes are mapped to the u class is 0.
+        
+    *   However, this equation is very lenient, requiring only that the two sums be equal, without demanding that each element be the same, and the expression of the mapping function is not explicitly written out. Any nonlinear mapping that satisfies this equation could be called a mapping function.
+        
+    *   In formulaic terms, it is expressed as
+        
+        $$
+        \sum _{i=1}^m A(u,y(i)) x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
+        \pi (x(i))_u \approx A(u,y(i)) \\
+        $$
+        
+
+From Maximum Entropy to Softmax
+===============================
+
+*   What was mentioned above is that the balanced equation does not require the format of the mapping function, then why did we choose softmax? In other words, under what conditions can the constraint of the balanced equation lead to the conclusion that the nonlinear mapping is softmax?
+    
+*   The answer is maximum entropy. Now let's review the conditions that need to be met in $\pi$ .
+    
+    *   Balance equation (i.e., this $\pi$ can fit the data):
+        
+        $$
+        \ \  for \ all \ u,j \\
+        \sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
+        $$
+        
+    *   The output of $\pi$ should be a probability:
+        
+        $$
+        \pi (x)_v \geq 0 \\
+        \sum _{v=1}^k \pi (x)_v = 1 \\
+        $$
+        
+*   According to the maximum entropy principle, we hope that $\pi$ can have the maximum entropy while satisfying the aforementioned constraints:
+    
+    $$
+    \pi = argmax \ Ent(\pi) \\
+    Ent(\pi) = - \sum_{v=1}^k \sum _{i=1}^m \pi (x(i))_v log (\pi (x(i))_v) \\
+    $$
+    
+*   The maximum entropy can be understood from two perspectives:
+    
+    *   Maximum entropy, also known as maximum perplexity, refers to the low risk of overfitting in the model, with low model complexity. According to Ockham's Razor principle, among multiple models with the same effect, the one with lower complexity has better generalization ability. Under the satisfaction of constraint conditions, of course, we would hope for a model with lower complexity, which is equivalent to regularization.
+    *   The constraints are the parts of our model that are known to need to be satisfied and need to be fitted; the remaining parts are the unknown parts, with no rules or data to guide us in assigning probabilities. What should we do in this unknown situation? In the case of the unknown, probabilities should be uniformly distributed among all possibilities, which corresponds to the maximum entropy situation.
+*   The problem has now been formulated as a constrained optimization problem, which can be solved using the Lagrange multiplier method. There is a trick; the original text states that it would be somewhat complex to directly consider the probabilistic inequality conditions, and the KKT conditions would need to be used, which we will not consider here. If the $\pi$ obtained satisfies the inequality conditions, we can skip it (which is indeed the case).
+    
+
+$$
+L = \sum _{j=1}^n \sum _{v=1}^k \lambda _{v,j} (\sum _{i=1}^m \pi (x(i))_v x(i)_j - A(v,y(i)) x(i)_j) \\
++ \sum _{v=1}^k \sum _{i=1}^m \beta _i (\pi (x(i))_v -1) \\
+- \sum _{v=1}^k \sum _{i=1}^m \pi(x(i))_v log(\pi (x(i))_v) \\
+$$
+
+*   Here is another trick, where we should differentiate all parameters. Here, we first differentiate $\pi (x(i))_u$ and set it to 0 to obtain:
+    
+    $$
+    \pi (x(i))_u = e^{\lambda _u x(i) + \beta _i -1}
+    $$
+    
+*   Considering the equality constraint condition (the sum of probabilities equals 1), it is not necessary to differentiate with respect to $\beta$
+    
+    $$
+    \sum _{v=1}^k e^{\lambda _v x(i) + \beta _i -1} = 1 \\
+    e^{\beta} = \frac {1}{\sum _{v=1}^k e^{\lambda _v x(i) - 1}} \\
+    $$
+    
+*   Re-substitution yields:
+    
+    $$
+    \pi (x)_u = \frac {e^{\lambda _u}x}{\sum _{v=1}^k e^{\lambda _v}x}
+    $$
+    
+
+Solving Parameters
+==================
+
+*   From the time of introducing the balanced equation, it can be seen that we need to solve $n \* k$ equations to obtain $n \* k$ parameters $\lambda$ , or take partial derivatives of $n \* k$ $\lambda$ in the Lagrange equation of maximum entropy, because $\pi$ is a non-linear function of $\lambda$ . Both of these methods are relatively difficult, but we can calculate the Jacobian equations (or the Hessian matrix of the objective function) of these equations by differentiation, and then we can solve $\lambda$ using some Newton method, Fisher Scoring, or iterative method
+
+Connection with the Maximum Entropy Model Defined by Characteristic Functions
+=============================================================================
+
+*   In this paper, the constraint is (omitted the constraint $\pi$ must be a probability):
+    
+    $$
+    \sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
+    $$
+    
+*   The maximum entropy is:
+    
+    $$
+    Ent(\pi) = - \sum_{v=1}^k \sum _{i=1}^m \pi (x(i))_v log (\pi (x(i))_v) \\
+    $$
+    
+*   The results obtained are:
+    
+    $$
+    \pi (x)_u = \frac {e^{\lambda _u}x}{\sum _{v=1}^k e^{\lambda _v}x}
+    $$
+    
+*   In statistical learning methods, the constraints are (with the probability constraints similarly omitted), where $P^{*}$ represents the empirical distribution:
+    
+    $$
+    \sum _{x,y} P^{*} (x,y)f(x,y) = \sum _{x,y} P^{*} (x)P(y|x)f(x,y)
+    $$
+    
+*   The maximum entropy is:
+    
+    $$
+    Ent(P) = - \sum _{x,y} P^{*}(x) P(y|x) log P(y|x)
+    $$
+    
+*   The results obtained are:
+    
+    $$
+    P(y|x) = \frac{e^{\sum _i w_i f_i(x,y)}}{\sum _y e^{\sum _i w_i f_i(x,y)}}
+    $$
+    
+*   It can be seen that there is a distinction in the representation of the two; the former directly obtains the form of the softmax function, but does not maximize the conditional entropy, whereas the latter is the opposite
+    
+*   In fact, both are unified. Firstly, the parameters of the model are all Lagrange multipliers, the former being $\lambda$ , and the latter being $w$ , with the relationship:
+    
+    $$
+    \lambda = \{w_0,...,w_i,...\}
+    $$
+    
+*   When the characteristic function extends to the eigenvalue, the model obtained by both is the same (softmax function):
+    
+    $$
+    f_i(x_j,y) = x(j)_i
+    $$
+    
+*   The balance conditions of both are also consistent. Noticing that $P^{*}$ is an empirical distribution, which is statistically obtained through classical probability type on the training set, in general, repeated data is not considered (with a total sample size of N and a number of categories K), then:
+    
+    $$
+    P^{*} (x) = \frac 1N \\
+    \sum _{x,y} P^{*} (x,y) = 1 \\
+    P^{*} (x,y) \in \{0,\frac 1N \} \\
+    $$
+    
+*   After substitution, it will be found that the balance conditions of the two are consistent, while the calculation in the paper seems to be entropy, but it is actually conditional entropy; it merely ignores the constant condition $P^{*} (x) = \frac 1N$ from the argmax expression and writes it in the form of entropy.
+    
+
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
 
 # 明确符号
 
@@ -183,3 +391,23 @@ e^{\beta} = \frac {1}{\sum _{v=1}^k e^{\lambda _v x(i) - 1}} \\
 P^{*} (x,y) \in \{0,\frac 1N \} \\
   $$
 - 代入之后会发现两者的平衡条件一致，而论文中计算的貌似是熵，实际上是条件熵，只不过把$P^{*} (x) = \frac 1N $这一常量条件从argmax表达式中忽略了，写成了熵的形式。
+
+{% endlang_content %}
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

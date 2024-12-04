@@ -8,12 +8,284 @@ tags:
   - topic model
 mathjax: true
 html: true
+refplus: true
 ---
 
-记录 Hierarchical Latent Dirichlet Allocation，层次主题模型的学习笔记。
-依然大量参考了徐亦达老师的教程。
+Note for Hierarchical Latent Dirichlet Allocation
+
 
 <!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+- Still mainly referred to Prof. Yida Xu’s tutorials{% ref yidaxu %}.
+
+# Improvements of hLDA
+
+- Improved two points
+  
+  - Introduced Dirichlet Process
+  
+  - Introduced Hierarchical Structure
+
+# DP
+
+- The Dirichlet Process extends the concept of Dirichlet Distribution to a random process. Typically, sampling by probability yields a sample, a value, while sampling by random process yields a function, a distribution. Given the DP's hyperparameter $\alpha$, a metric space $\theta$, and a measure $H$ on this metric space (called base distribution), sampling from $DP(\alpha,H)$ generates an infinite-dimensional discrete distribution $G$ on $\theta$. For any partition $A_1,...,A_n$ of $\theta$, the partitioned $G$ still follows the Dirichlet Distribution corresponding to the hyperparameters:
+  
+  $$
+  (G(A_1,...,A_n))  \sim  Dir(\alpha H(A_1),...,\alpha H(A_n))
+  $$
+  
+  $G$ is defined as a sample path/function/realization of the Dirichlet Process, i.e., $G=DP(t,w_0) \sim \ DP(\alpha,H)$. A realization of the Dirichlet Process is a probability measure, a function defined on the metric space $\theta$, with its output being a probability. Note that due to its infinite-dimensionality, $\alpha$ cannot be preset to a specific dimension, but only set to be the same $\alpha$. Compared to LDA, we can see that DP's hyperparameter $\alpha$ is a concentration parameter that can only control the certainty of G distribution trending towards uniformity, while the specific distribution trend is determined by the partition $A$.
+
+- Here we can see the difference from LDA's use of Dir Distribution: DP directly samples to generate a probability measure, which can further generate a discrete probability distribution; while in LDA, sampling from Dir Distribution only yields a sample, which serves as a parameter for the multinomial distribution, determining a discrete distribution.
+
+- DP can be used to describe mixture models in scenarios with an uncertain number of components. In a GMM scenario, if there are n samples but we don't know how many GMs generated these n samples, for sample i, we assign it to a certain GM, and let the parameters of this GM for sample i be $\theta _i$. This $\theta$ follows a base distribution $H(\theta)$. If $H$ is a continuous distribution, the probability of two samples taking the same $\theta$ approaches zero, equivalent to n samples corresponding to n GMs. We can discretize this $H$ into G, with the discretization method being $G \sim DP(\alpha,H)$. The smaller $\alpha$ is, the more discrete it becomes; the larger $\alpha$ is, the closer G is to H. Note that $H$ can also be discrete.
+
+- The two parameters of DP, $H$ and $\alpha$, where the former determines the location of each discrete point of $G$, i.e., the specific value of $\theta _i$; the latter determines the degree of discreteness, or how dispersed $\theta$ is, whether the probability distribution is concentrated or dispersed, consistent with the $\alpha$ in Dirichlet Distribution.
+
+- Since G satisfies Dirichlet Distribution, it has many good properties, including conjugacy to the multinomial distribution, collapsing and splitting, and renormalization.
+  
+  - $E[G(A_i)]=H(A_i)$
+  
+  - $Var[G(A_i)]=\frac {H(A_i)[1-H(A_i)]}{\alpha + 1}$
+  
+  - We can see that when $\alpha$ takes extreme values, the variance degenerates to 0 or the variance of a Bernoulli distribution, corresponding to the two extreme cases of G discretizing H that we mentioned earlier.
+
+- So what do we want to do with DP? Create a generative model: we want to obtain a probability measure $G \sim \ DP(H,\alpha)$, obtain the group parameter for each sample point i based on $G$: $x_i  \sim \  G$, and then generate the sample point i based on this parameter and function $F$: $p_i \sim \ F(x_i)$
+
+- Next, we can use the Chinese Restaurant Process (CRP), Stick Breaking Process, and Polya Urn Model to refine this $x_i$, that is, split the group parameter corresponding to the sample point i into the group assignment and group parameters, written as $x_i=\phi _{g_i}$, where $g$ is the group assignment of the sample point, and $\phi$ is the group parameter.
+
+- Next, using [echen's description](http://blog.echen.me/2012/03/20/infinite-mixture-models-with-nonparametric-bayes-and-the-dirichlet-process) to describe how three models refine $x_i$:
+
+- In the Chinese Restaurant Process:
+  
+  - We generate table assignments $g_1, \ldots, g_n \sim CRP(\alpha)$ according to a Chinese Restaurant Process. ($g_i$ is the table assigned to datapoint $i$.)
+  
+  - We generate table parameters $\phi_1, \ldots, \phi_m \sim G_0$ according to the base distribution $G_0$, where $\phi_k$ is the parameter for the kth distinct group.
+  
+  - Given table assignments and table parameters, we generate each datapoint $p_i \sim F(\phi_{g_i})$ from a distribution $F$ with the specified table parameters. (For example, $F$ could be a Gaussian, and $\phi_i$ could be a parameter vector specifying the mean and standard deviation).
+
+- In the Polya Urn Model:
+  
+  - We generate colors $\phi_1, \ldots, \phi_n \sim Polya(G_0, \alpha)$ according to a Polya Urn Model. ($\phi_i$ is the color of the ith ball.)
+  
+  - Given ball colors, we generate each datapoint $p_i \sim F(\phi_i)$.
+
+- In the Stick-Breaking Process:
+  
+  - We generate group probabilities (stick lengths) $w_1, \ldots, w_{\infty} \sim Stick(\alpha)$ according to a Stick-Breaking process.
+  
+  - We generate group parameters $\phi_1, \ldots, \phi_{\infty} \sim G_0$ from $G_0$, where $\phi_k$ is the parameter for the kth distinct group.
+  
+  - We generate group assignments $g_1, \ldots, g_n \sim Multinomial(w_1, \ldots, w_{\infty})$ for each datapoint.
+  
+  - Given group assignments and group parameters, we generate each datapoint $p_i \sim F(\phi_{g_i})$.
+
+- In the Dirichlet Process:
+  
+  - We generate a distribution $G \sim DP(G_0, \alpha)$ from a Dirichlet Process with base distribution $G_0$ and dispersion parameter $\alpha$.
+  
+  - We generate group-level parameters $x_i \sim G$ from $G$, where $x_i$ is the group parameter for the ith datapoint. (Note: this is not the same as $\phi_i$. $x_i$ is the parameter associated to the group that the ith datapoint belongs to, whereas $\phi_k$ is the parameter of the kth distinct group.)
+  
+  - Given group-level parameters $x_i$, we generate each datapoint $p_i \sim F(x_i)$.
+
+# Stick-Breaking Process
+
+- The Stick-Breaking Process provides an infinite division on $\theta$. Let the DP parameters be $\alpha$, and the process is as follows:
+  
+  - $\beta _1 \sim Beta(1,\alpha)$
+  
+  - $A_1 = \beta _1$
+  
+  - $\beta _2 \sim Beta(1,\alpha)$
+  
+  - $A_2 = (1-\pi _1) * \beta _2$
+
+- This way, each time a division on [0,1] is obtained from the Beta distribution, cutting the entire $\theta$ into two parts. The first part is taken as the first division on $\theta$, and the remaining part is seen as the whole for the next stick-breaking. Then, cut it into two parts again, with the first part taken as the second division on $\theta$. It's like a stick being continuously broken, each time breaking from the remaining part, and the final segments are the divisions.
+
+# DP2CRP
+
+- Introduce an indicator function. If two sample points i and j are assigned to the same component, their indicator function $z$ is the same, which represents which component each sample belongs to, $x_i \sim Component(\theta _{z_i})$
+
+- For a mixture distribution, such as GMM, we want to obtain the predictive distribution, that is, given the component assignment of known data, for a new unknown data point, we want to know which component it belongs to:
+  
+  $$
+  p(z_i=m|z_{not \ i})
+  $$
+
+- From the definition, we know this probability should be independent of $H$, because we don't care about the specific value of $\theta$, we only care which $\theta$ it is, so the predictive distribution is closely related to $\alpha$. Expanding it:
+  
+  $$
+  p(z_i=m|z_{not \ i}) = \frac {p(z_i=m,z_{not \ i})}{p(z_{not \ i})} \\
+  $$
+
+- Since in DP, the number of categories can be infinite, we first assume k categories, and then let k approach infinity
+  
+  $$
+  = \frac {\int _{p_1...p_k} p(z_i=m, z_{not \ i}|p_1...p_k)p(p_1...p_k)}{\int _{p_1...p_k} p(z_{not \ i}|p_1...p_k)p(p_1...p_k)}
+  $$
+
+- The probabilities of these k categories follow a Dirichlet Distribution. Assuming the Base Distribution is uniform, then
+  
+  $$
+  = \frac {\int _{p_1...p_k} p(z_i=m, z_{not \ i}|p_1...p_k)Dir(\frac {\alpha}{k} ... \frac {\alpha}{k})}{\int _{p_1...p_k} p(z_{not \ i}|p_1...p_k)Dir(\frac {\alpha}{k} ... \frac{\alpha}{k})}
+  $$
+
+- In both numerator and denominator, the integral is essentially a multinomial distribution multiplied by a Dirichlet distribution. Due to conjugacy, the posterior should still be a Dirichlet distribution. We derive the integral of the multinomial distribution multiplied by the Dirichlet distribution:
+  
+  $$
+  \int _{p_1...p_k} p(n_1...n_k|p_1...p_k) p(p_1...p_k|\alpha _1 ... \alpha _k) \\
+  $$
+  
+  $$
+  = \int _{p_1...p_k} Mul(n_1...n_k|p_1...p_k) Dir(p_1...p_k|\alpha _1 ... \alpha _k) \\
+  $$
+  
+  $$
+  = \int _{p_1...p_k} (\frac {n!}{n_1!...n_k!} \prod _{i=1}^k p_i ^{n_i}) \frac {\Gamma(\sum \alpha _i)}{\prod \Gamma (\alpha _i)} \prod _{i=1}^k p_i^{\alpha _i -1} \\
+  $$
+  
+  $$
+  = \frac {n!}{n_1!...n_k!} \frac {\Gamma(\sum \alpha _i)}{\prod \Gamma (\alpha _i)} \int _{p_1...p_k} \prod _{i=1}^k  p_i^{n_i+\alpha _i -1} \\
+  $$
+
+- The integral term is actually a Dirichlet Distribution $Dir(\alpha _1 + n_1 ... \alpha _k + n_k)$ excluding the constant part, so the integral result is 1/constant, i.e.:
+  
+  $$
+  = \frac {n!}{n_1!...n_k!} \frac {\Gamma(\sum \alpha _i)}{\prod \Gamma (\alpha _i)} \frac { \prod \Gamma (\alpha _i + n_i)}{\Gamma (n + \sum \alpha _i)}
+  $$
+
+- This expression includes three parts. The first part with n's is introduced by the multinomial distribution, representing that we only look at the size of each set after division, not the specific content of each set, which is different from our requirements, so we don't need this constant. The second part is generated by the Dir distribution prior, and in the predictive distribution, the distribution priors are all the same, so they cancel out. We mainly focus on the third part, substituting it back into the predictive distribution fraction.
+
+- First, define an auxiliary variable $n_{l , not \ i} = Count(z_{not \ i} == l)$, then:
+  
+  $$
+  n_1 = n_{1,not \ i} \\
+  $$
+  
+  $$
+  ... \\
+  $$
+  
+  $$
+  n_k = n_{k,not \ i} \\
+  $$
+
+- Because we are seeking $p(z_i=m, z_{not \ i})$, the number of other categories is already determined by samples other than the ith sample. What about the mth category?
+  
+  $$
+  n_m = n_{m,not \ i} + 1
+  $$
+
+- This completes the transformation from indicator function representation to multinomial distribution. Substituting the third part of the previous derivation into the numerator gives:
+  
+  $$
+  \frac {\Gamma(n_{m,not \ i} + \frac {\alpha}{k} + 1) \prod _{l=1,l \neq m}^k Gamma(n_{l,not \ i})}{\Gamma (\alpha + n)}
+  $$
+
+- Similarly calculating the numerator, the numerator doesn't need to consider the ith sample assigned to the mth category, so the form is simpler:
+  
+  $$
+  \frac {\prod _{l=1}^k \Gamma(n_{l,not \ i})}{\Gamma(\alpha +n -1)}
+  $$
+
+- Dividing the two expressions and using the property of the Gamma function $\Gamma(x) = (x-1) \Gamma (x-1)$ to simplify, we get:
+  
+  $$
+  = \frac {n_{m,not \ i} + \frac {\alpha}{k}}{n + \alpha - 1}
+  $$
+
+- Letting k approach infinity, we get:
+  
+  $$
+  = \frac {n_{m,not \ i}}{n + \alpha - 1}
+  $$
+
+- However, the sum of this expression for all categories from 1 to m is not 1, but $\frac {n-1}{n + \alpha -1}$. The remaining probability is set as the probability of taking a new category, thus completing the predictive distribution. Interestingly, this probability corresponds exactly to the Chinese Restaurant Process.
+
+# CRP
+
+- The classic description of the Chinese Restaurant Process is to distribute n people to an uncertain number of tables, creating a partition on an integer set. Assuming each element in the set is a customer, when the nth customer enters a restaurant, they choose a table according to the following probabilities:
+  
+  $$
+  \begin{aligned} p(\text { occupied table } i | \text { previous customers }) &=\frac{n_{i}}{\alpha +n-1} \\ p(\text { next unoccupied table } | \text { previous customers }) &=\frac{\alpha }{\alpha +n-1} \end{aligned}
+  $$
+
+- Where $n_i$ is the number of people already at table i, and $\alpha$ is the hyperparameter. This way, the assignment of people to tables corresponds to a partition on the integer set.
+
+- Analyzing this, if choosing an occupied table, customers tend to choose tables with more people; if torn between occupied tables and a new table, it depends on the hyperparameter $\alpha$
+
+- According to the previous derivation, this $\alpha$ is actually the hyperparameter of the Dirichlet Distribution, and the effect completely matches. Since we choose a uniform base distribution in CRP, the corresponding Dirichlet Distribution chooses symmetric hyperparameters with the same $alpha _i$. The larger $\alpha$ is, the more likely it is to obtain an equal probability for each item in the Dirichlet Distribution as a prior for the multinomial distribution. In the Chinese Restaurant Process, this corresponds to each customer wanting to choose a new table, so each table has only one person and is equally distributed. Conversely, the smaller $\alpha$ is, the less certain, and in the Chinese Restaurant Process, the table assignments are also less certain.
+
+- We can obtain that the expected number of tables after the mth person chooses is $E(K_m|\alpha ) = O(\alpha  \log m)$, specifically $E(K_m|\alpha ) = \alpha  (\Psi (\alpha  + n) - \Psi (\alpha )) \approx \alpha  \log (1 + \frac{n}{\alpha })$, which means the increase in the number of clusters is linearly related to the logarithm of the sample size. We can estimate the hyperparameter $\alpha$ based on the amount of data and the desired number of clusters.
+
+# nCRP
+
+- The above only completes an uncertain number of clustering using DP. We can consider each table in the restaurant as a topic, people as words, and the topic model as assigning words to topics, or people to tables, but this is the same as LDA, with no correlation between topics. To establish a hierarchical relationship between topics, Blei proposed the Nested Chinese Restaurant Process.
+
+- In the Nested Chinese Restaurant Process, we unify the concepts of restaurants and tables: restaurants are tables, tables are restaurants! Why do we say this? First, we set a root restaurant (obviously, we're building a tree), then choose a table in the root restaurant according to the Chinese Restaurant Process. Each table in the restaurant has a note indicating which restaurant the customer should go to the next day. So the next day, the customer arrives at this restaurant and chooses a table according to CRP, while also knowing which restaurant to go to on the third day. Thus, tables correspond to restaurants, and the tables of the parent restaurant correspond to child restaurants. Each day is a layer of the tree, establishing a hierarchical structure of the Chinese Restaurant Process.
+
+# hLDA
+
+- Now we can describe hLDA in the framework of nCRP
+
+- Define symbols
+  
+  - $z$: topics, assuming $K$ topics
+  
+  - $\beta$: parameters from topics to word distribution, Dir prior parameters
+  
+  - $w$: words
+  
+  - $\theta$: document-to-topic distribution
+  
+  - $\alpha$: parameters of document-to-topic distribution, Dir prior parameters
+
+- We can simply define LDA:
+  
+  $$
+  p(w | \beta) \sim Dir(\beta) \\
+p(\theta | \alpha) \sim Dir(\alpha) \\
+\theta \sim p(\theta | \alpha) \\
+w \sim p(w | \theta , \beta) = \sum _{i=1}^K \theta _i p(w|z=i, \beta _i) \\
+  $$
+
+- hLDA process:
+  
+  - Obtain a path from root to leaf of length $L$ according to nCRP
+  
+  - Sample a topic distribution on the path from a $L$-dimensional Dirichlet
+  
+  - Generate a word by mixing these L topics
+
+- Detailed description:
+  [![Mwfu34.md.jpg](https://s2.ax1x.com/2019/11/16/Mwfu34.md.jpg)](https://imgchr.com/i/Mwfu34)
+
+- Probability graph, where $c$ is the restaurant, nCRP is separately drawn out here. Actually, $c$ determines the topic $z$, and $\gamma$ is the concentration parameter of CRP corresponding to DP:
+  [![Mwf3Hx.md.jpg](https://s2.ax1x.com/2019/11/16/Mwf3Hx.md.jpg)](https://imgchr.com/i/Mwf3Hx)
+
+# Gibbs Sampling in hLDA
+
+- Define variables:
+  
+  - $w_{m,n}$: the nth word in the mth document
+  
+  - $c_{m,l}$: the restaurant corresponding to the topic at the lth layer in the path of the mth document, needs to be sampled and calculated
+  
+  - $z_{m,n}$: the topic assigned to the nth word in the mth document, needs to be sampled and calculated
+
+- The sampling formula from the posterior distribution is divided into two parts. The first part is obtaining the path, which will use the previous predictive distribution; the second part is known the path, which is similar to ordinary LDA. The final sampling formula is:
+  
+  $$
+  p\left(\mathbf{w}_{m} | \mathbf{c}, \mathbf{w}_{-m}, \mathbf{z}\right)=\prod_{\ell=1}^{L}\left(\frac{\Gamma\left(n_{c_{m, \ell},-m}^{(\cdot)}+W \eta\right)}{\prod_{w} \Gamma\left(n_{c_{m, e},-m}^{(w)}+\eta\right)} \frac{\prod_{w} \Gamma\left(n_{c_{m, \ell},-m}^{(w)}+n_{c_{m, \ell}, m}^{(w)}+\eta\right)}{\Gamma\left(n_{c_{m, \ell},-m}^{(\cdot)}+n_{c_{m, \ell}, m}^{(\cdot)}+W \eta\right)}\right)
+  $$
+{% endlang_content %}
+
+{% lang_content zh %}
+
+- 依然主要参考了徐亦达老师的教程{% ref yidaxu %}。
 
 # hLDA改进了什么
 
@@ -275,3 +547,28 @@ w \sim p(w | \theta , \beta) = \sum _{i=1}^K \theta _i p(w|z=i, \beta _i) \\
   $$
   p\left(\mathbf{w}_{m} | \mathbf{c}, \mathbf{w}_{-m}, \mathbf{z}\right)=\prod_{\ell=1}^{L}\left(\frac{\Gamma\left(n_{c_{m, \ell},-m}^{(\cdot)}+W \eta\right)}{\prod_{w} \Gamma\left(n_{c_{m, e},-m}^{(w)}+\eta\right)} \frac{\prod_{w} \Gamma\left(n_{c_{m, \ell},-m}^{(w)}+n_{c_{m, \ell}, m}^{(w)}+\eta\right)}{\Gamma\left(n_{c_{m, \ell},-m}^{(\cdot)}+n_{c_{m, \ell}, m}^{(\cdot)}+W \eta\right)}\right)
   $$
+
+{% endlang_content %}
+
+
+{% references %}
+
+[yidaxu] 徐亦达机器学习课程 Variational Inference for LDA https://www.youtube.com/watch?v=e1wr0xHbfYk
+
+{% endreferences %}
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

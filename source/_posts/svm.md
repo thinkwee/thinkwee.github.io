@@ -10,10 +10,116 @@ mathjax: true
 html: true
 ---
 
-一些推导关键步骤
+Long time no see, SVM.
 
 <!--more-->
 
+{% language_switch %}
+
+{% lang_content en %}
+# Objective Function
+
+- The most primitive idea is naturally to consider the geometric margin
+  
+  $$
+  \begin{array}{cc}{\max _{\vec{w}, b} \gamma} \\ {s . t . \quad \tilde{y}_{i}\left(\frac{\overrightarrow{\mathbf{w}}}{\|\overrightarrow{\mathbf{w}}\|_{2}} \cdot \overrightarrow{\mathbf{x}}_{i}+\frac{b}{\|\overrightarrow{\mathbf{w}}\|_{2}}\right) \geq \gamma, i=1,2, \cdots, N}\end{array}
+  $$
+- However, the geometric margin can be represented by the functional margin, and the functional margin can be scaled without affecting the choice of the classification hyperplane. Therefore, we set the functional margin to 1, then take the reciprocal to replace max with min, simplifying the objective function
+  
+  $$
+  \begin{array}{c}{\min _{\vec{w}, b} \frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}} \\ {\text {s.t.} \quad \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot \overrightarrow{\mathbf{x}}_{i}+b\right)-1 \geq 0, i=1,2, \cdots, N}\end{array}
+  $$
+
+# Min-Max
+
+- After defining the problem as an optimization problem with inequality constraints, Lagrangian duality is used to transform the primal problem into a dual problem
+- The description in statistical learning methods is as follows:
+  - For the optimization problem:
+    
+    $$
+    \begin{array}{ll}{\min _{x \in \mathbf{R}^{n}} f(x)} & {} \\ {\text { s.t. } \quad c_{i}(x) \leqslant 0, \quad i=1,2, \cdots, k} \\ {\qquad \begin{array}{ll}{h_{j}(x)=0,} & {j=1,2, \cdots, l}\end{array}}\end{array}
+    $$
+  - Introduce the generalized Lagrangian function
+    
+    $$
+    L(x, \alpha, \beta)=f(x)+\sum_{i=1}^{k} \alpha_{i} c_{i}(x)+\sum_{j=1}^{I} \beta_{j} h_{j}(x)
+    $$
+  - Define
+    
+    $$
+    \theta_{P}(x)=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)
+    $$
+  - It can be determined that if the constraints are not satisfied, the Lagrangian multipliers can be set to a non-zero value to make the above expression infinite. If satisfied, the maximum value can only be achieved when $\alpha$ is 0, and $\beta$ does not play a role, therefore:
+    
+    $$
+    \theta_{P}(x)=\left\{\begin{array}{l}{f(x)} \ x \text{satisfies original problem constraints} \\ {+\infty} \ \text{otherwise} \end{array}\right.
+    $$
+- Thus, the original minimization of f is transformed into minimizing a maximized $\theta$, namely
+  
+  $$
+  \min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)
+  $$
+
+# Duality
+
+- Swapping the positions of max and min yields the dual problem, which is first optimizing for $x$, then optimizing for $\alpha,\beta$
+  
+  $$
+  \begin{array}{l}{\max _{\alpha, \beta} \theta_{D}(\alpha, \beta)=\max _{\alpha, \beta} \min _{x} L(x, \alpha, \beta)} \\ {\text { s.t. } \quad \alpha_{i} \geqslant 0, \quad i=1,2, \cdots, k}\end{array}
+  $$
+- The relationship between the dual problem and the primal problem:
+  
+  $$
+  d^{*}=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} \min _{x} L(x, \alpha, \beta) \leqslant \min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)=p^{*}
+  $$
+- Proof: First look at the inner part of both sides. The left side is $\min \ L$, the right side is $\max \ L$. Although the variables are different, when the variables are fixed, there must be $\min _{x} L(x, \alpha, \beta) \leqslant L(x, \alpha, \beta) \leqslant \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)$. Now looking at the whole thing as a function and focusing on the outer part, comparing the max of $f_1$ and the min of $f_2$, from the above we know that $f_1$ is everywhere less than or equal to $f_2$. Therefore, even the maximum of $f_1$ must be less than or equal to the minimum of $f_2$, which is the so-called "chicken head is smaller than phoenix tail", with the premise that each chicken in the chicken flock is smaller than or equal to each phoenix in the phoenix flock.
+- SVM satisfies the strong duality relationship, meaning the above equation reaches equality. Therefore, optimizing the original problem can be transformed into optimizing the dual problem, which facilitates the introduction of kernel functions.
+- The original min-max problem can be solved directly, but not by directly taking partial derivatives of the min-max form, because taking partial derivatives with respect to $\alpha$ first is meaningless. We hope to obtain $w,b$ such that for any $\alpha \neq 0$, $\max L$ can be minimized.
+
+# Solution
+
+- After converting to the dual problem, first take derivatives of $w,b$ and set them to zero, then substitute the obtained $w,b$ back into the dual problem to get:
+  
+  $$
+  \text{Substituting into the dual problem:} L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot \overrightarrow{\mathbf{x}}_{i}+b\right)+\sum_{i=1}^{N} \alpha_{i} \\
+  $$
+  
+  $$
+  \begin{aligned} L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} & \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left[\left(\sum_{j=1}^{N} \alpha_{j} \tilde{y}_{j} \overrightarrow{\mathbf{x}}_{j}\right) \cdot \overrightarrow{\mathbf{x}}_{i}+b\right]+\sum_{i=1}^{N} \alpha_{i} \\ &=-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \end{aligned} \\
+  $$
+- Here, the first term's coefficient is 1/2, the $b$ part in the second term is 0, and the remaining part is actually the same as the first term, just with a coefficient of 1. Therefore, subtracting gives -1/2. Finally, the outer max optimization objective is obtained
+  
+  $$
+  \begin{aligned} \max _{\vec{\alpha}}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \\ s . t . \quad \sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}=0 \\ \alpha_{i} \geq 0, i=1,2, \cdots, N \end{aligned}
+  $$
+- The equality constraint condition is obtained by taking the derivative of $b$ to zero. As mentioned earlier, the objective function and constraints of SVM satisfy the strong duality relationship. The necessary and sufficient condition for strong duality is the KKT conditions, so the above equation should also satisfy the KKT conditions, namely:
+  - Take partial derivatives of the Lagrangian function with respect to $w,b$ and set to zero
+  - The constraint part of the Lagrangian function (each term in the summation) is zero, i.e., the complementary slackness condition
+  - Original problem constraints
+  - Lagrangian multipliers are non-negative
+    
+    $$
+    \begin{aligned} \nabla_{\overrightarrow{\mathrm{w}}} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \overrightarrow{\mathrm{w}}^{*}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i} \overrightarrow{\mathrm{x}}_{i}=0 \\ \nabla_{b} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}=0 \\ \alpha_{i}^{*}\left[\tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1\right]=0, i=1,2, \cdots, N \\ \tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1 \geq 0, i=1,2, \cdots, N \\ \alpha_{i}^{*} \geq 0, i=1,2, \cdots, N \end{aligned}
+    $$
+- From the KKT conditions, we can express $w$ using $\alpha$ (which was also obtained when taking derivatives before). We know that $w$ represents the direction of the classification hyperplane, $b$ represents the bias, and is determined by support vectors. Therefore, those corresponding to non-zero $\alpha _j$
+  
+  $$
+  \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}}^{*} \cdot \overrightarrow{\mathbf{x}}_{i}+b^{*}\right)-1
+  $$
+  
+  determines $b$ (because when $\alpha$ is non-zero, by the complementary slackness condition, the latter term is zero, so $b$ can be solved). Finally, we get:
+  
+  $$
+  b^{*}=\tilde{y}_{j}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}\left(\overrightarrow{\mathrm{x}}_{i} \cdot \overrightarrow{\mathrm{x}}_{j}\right)
+  $$
+  
+  It can be seen that $w,b$ are in the form of summation, but most are zero. Only the non-zero $\alpha$ terms (directly finding the non-zero $\alpha _j$ in the $b$ expression) play a role, meaning the support vector machine is determined only by a few support vectors.
+- Therefore, given the data, first solve the maximum of the dual problem to obtain $\alpha$, then calculate $w,b$ from the non-zero parts of $\alpha$, to obtain the hyperplane.
+- The definition and solving process of soft margin and non-linear support vector machines are similar, just with different constraint conditions and objective functions.
+- The solving of $\alpha$ involves convex quadratic programming with many solution methods. One advantage of support vector machines is that the learned parameters only depend on support vectors, avoiding the curse of dimensionality during inference. However, during the learning process, all samples need to be calculated for optimization, so it is not friendly to large-scale data. Here, the SMO algorithm can be used for optimization.
+{% endlang_content %}
+
+{% lang_content zh %}
 # 目标函数
 
 - 最原始的想法自然是考虑几何间隔
@@ -114,3 +220,23 @@ html: true
 - 因此，给定数据，先求得对偶问题极大值，得到$\alpha$，再由$\alpha$中不为0的部分计算出$w,b$，得到超平面。
 - 软间隔和非线性支持向量机的定义和求解过程类似，只不过约束条件和目标函数不同。
 - $\alpha$的求解涉及凸二次规划，有很多解法。支持向量机的一个优点就是学习到的参数只依赖支持向量，推理时避免了维度灾难，但是在学习的过程中，需要对所有样本计算最优化，因此对于大规模数据不友好，这里可以用SMO算法来优化
+
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

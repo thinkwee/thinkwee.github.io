@@ -10,11 +10,122 @@ mathjax: true
 html: true
 ---
 
-翻译A Primer in BERTology: What we know about how BERT works一文，系统的介绍了近年来对于BERT可解释性以及扩展性方面的研究。
-原论文[arxiv pdf](https://arxiv.org/pdf/2002.12327.pdf)
+note for [A Primer in BERTology: What we know about how BERT works](https://arxiv.org/pdf/2002.12327.pdf)
 
 <!--more-->
 
+{% language_switch %}
+
+{% lang_content en %}
+# BERT Embeddings
+
+- As an NLU encoder, BERT generates context-dependent embeddings, with research focusing on:
+  - BERT embeddings form clear clusters related to word sense
+  - Some researchers found that embeddings of the same word vary with position, seemingly related to the Next Sentence Prediction (NSP) task
+  - Studies on word representations across different layers revealed that higher layers are more context-related, and embeddings become more dense (occupy a narrow cone in the vector space) in higher layers, with cosine distances between random words being closer than expected in an isotropic space
+
+# Syntactic Knowledge
+
+- BERT's representation is hierarchical rather than linear, capturing more syntactic tree-like information than word order
+- BERT encodes POS, chunk, and other information, but doesn't fully capture syntactic information (some long-distance dependencies are ignored)
+- Syntactic information is not directly encoded in self-attention weights but requires transformation
+- BERT considers subject-predicate agreement in cloze tasks
+- BERT cannot understand negation and is not sensitive to malformed input
+- Its predictions remain unchanged by word order reversal, sentence splitting, or subject-predicate removal
+- In essence, BERT encodes syntactic information without fully utilizing it
+
+# Semantic Knowledge
+
+- Probing tasks in Masked Language Model (MLM) suggest BERT can encode some semantic role information
+- BERT encodes entity types, relations, semantic roles, and proto-roles
+- Due to wordpiece preprocessing, BERT performs poorly in numerical encoding and reasoning
+
+# World Knowledge
+
+- In certain relationships, BERT outperforms knowledge base-based methods, capable of knowledge extraction with good template sentences
+- However, BERT cannot use this knowledge for reasoning
+- Research has found that BERT's knowledge is often guessed through stereotypical character combinations, not factually accurate (e.g., it would predict that a person with an Italian-sounding name is Italian, even when it is factually incorrect)
+
+# Self-Attention Heads
+
+- Research has categorized attention heads into several types:
+  - Attending to self, adjacent words, sentence end
+  - Attending to adjacent words, CLS, SEP, or distributed across the entire sequence
+  - Or the following 5 types
+    ![3Wlqsg.png](https://s2.ax1x.com/2020/03/02/3Wlqsg.png)
+- Attention weight meaning: How other words are weighted when calculating the next layer representation
+- Self-attention does not directly encode linguistic information, as most heads are heterogeneous or vertical, related to excessive parameters
+- Few heads encode words' syntactic roles
+- A single head cannot capture complete syntactic tree information
+- Even heads that capture semantic relationships are not necessary for improving related tasks
+
+# Layers
+
+- Lower layers contain the most linear word order relationships; higher layers have weaker word order information and stronger knowledge information
+- BERT's middle layers contain the strongest syntactic information, potentially capable of reconstructing syntactic trees
+- Middle layers have the best transfer performance and capabilities
+  ![3WJDg0.png](https://s2.ax1x.com/2020/03/02/3WJDg0.png)
+- However, this conclusion is conflicting: some find lower layers better for chunking, higher layers for parsing, while others find middle layers best for tagging and chunking
+- During fine-tuning, lower layers' changes have minimal performance impact; the last layer changes most significantly
+- Semantic information exists across all layers
+
+# Pre-training
+
+- Original tasks were MLM and NSP, with research proposing improved training objectives:
+  - Removing NSP has minimal impact, especially in multilingual versions
+  - NSP can be extended to predict adjacent sentences or use inverted sentences as negative samples
+  - Dynamic masking can improve performance
+  - Beyond-sentence MLM: replacing sentences with arbitrary strings
+  - Permutation language modeling (XLNet): shuffling word order, predicting from left to right
+  - Span boundary objective: using span boundary words for prediction
+  - Phrase masking and named entity masking
+  - Continual learning
+  - Conditional MLM: replacing segmentation embedding with label embedding
+  - Replacing MASK token with [UNK] token
+- Another improvement path involves datasets, attempting to integrate structured data or common-sense information through entity embeddings or semantic role information (e.g., E-BERT, ERNIE, SemBERT)
+- Regarding pre-training necessity: it makes models more robust, but effectiveness varies by task
+
+# Model Architecture
+
+- Layer count is more important than head count
+- Large batches can accelerate model convergence (batch size of 32k can reduce training time without performance degradation)
+- "A robustly optimized BERT pretraining approach" published optimal parameter settings
+- Since higher layer self-attention weights resemble lower layers, training shallow layers first and copying parameters to deeper layers can improve training efficiency by 25%
+
+# Fine-tuning
+
+- Some view fine-tuning as teaching BERT what information to ignore
+- Fine-tuning suggestions:
+  - Consider weighted outputs from multiple layers, not just the last layer
+  - Two-stage fine-tuning
+  - Adversarial token perturbations
+- Adapter modules can accelerate fine-tuning
+- Initialization is important, but no papers have systematically investigated this
+
+# Overparametrization
+
+- BERT doesn't effectively utilize its massive parameters; most heads can be pruned
+- Heads in one layer are mostly similar, potentially reducible to a single head
+- Some layers and heads can degrade model performance
+- On subject-predicate agreement and subject detection, larger BERT models sometimes perform worse than smaller ones
+- Using the same MLP and attention dropout in a layer might contribute to head redundancy
+
+# Compression
+
+- Two primary methods: quantization and knowledge distillation
+- Other approaches include progressive model replacing, embedding matrix decomposition, and converting multiple layers to a single recurrent layer
+
+# Multilingual BERT
+
+- Multilingual BERT performs excellently in zero-shot transfer for many tasks but poorly in language generation
+- Improvement methods:
+  - Fixing lower layers during fine-tuning
+  - Translation language modeling
+  - Improving word alignment in fine-tuning
+  - Combining 5 pre-training tasks (monolingual and cross-lingual MLM, translation language modeling, cross-lingual word recovery, and paraphrase classification)
+{% endlang_content %}
+
+{% lang_content zh %}
 # BERT embeddings
 
 - BERT作为一个NLU编码器，其生成的embedding是上下文相关的，关于embedding的研究有
@@ -121,3 +232,21 @@ html: true
   - translation language modeling 
   - improving word alignment in fine-tuning
   - combine 5 pre-training tasks (monolingual and cross-lingual MLM, translation language modeling, cross-lingual word recovery and paraphrase classification）
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

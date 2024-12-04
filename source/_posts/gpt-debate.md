@@ -14,9 +14,6 @@ html: true
 ---
 
 ***
-
-- 基于[ChatGPT-Shortcut](https://github.com/rockbenben/ChatGPT-Shortcut)改了一个网页，展示了一些GPT自己与自己发生的有趣辩论。
-- 体验地址在[这](https://thinkwee.top/debate/)
 - A webpage based on [ChatGPT-Shortcut](https://github.com/rockbenben/ChatGPT-Shortcut) that shows some interesting debates that took place between GPTs.
 - The experience website is [here](https://thinkwee.top/debate/)
 
@@ -60,3 +57,20 @@ html: true
   - Provide only the background, the gpt designs his own debate
   - When will one GPT bot be convinced by another GPT bot
   - and more
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

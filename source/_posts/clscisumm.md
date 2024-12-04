@@ -10,16 +10,126 @@ mathjax: true
 html: true
 ---
 
-总结一下实验室参加的CLSciSumm Workshop，主要是方法，实验分析论文里很详细
-论文：
+A brief note on the CLSciSumm Workshop that the CIST lab participated in, the main focus is on methods. The experiments are analysised in detail in papers.
+Papers:
 
 - [2016](http://ceur-ws.org/Vol-1610/paper18.pdf)
 - [2017](http://ceur-ws.org/Vol-2002/cistclscisumm2017.pdf)
 - [2018](http://ceur-ws.org/Vol-2132/paper8.pdf)
 - [2019](http://ceur-ws.org/Vol-2414/paper20.pdf)
   
-  <!--more-->
+<!--more-->
 
+{% language_switch %}
+
+{% lang_content en %}
+# Task
+
+- Task 1a: Given a citing paper (CP) and a reference paper (RP), find the cited text span (CTS) in RP that is referenced by a specific citation in CP. Essentially, this is a sentence pair similarity calculation task.
+- Task 1b: After identifying the CTS, determine which facet of the RP this text span belongs to, which is a text classification task.
+- Task 2: Generate a summary of the RP, which is an automatic summarization task.
+
+# 2016
+
+## Task 1a
+
+- Convert input text span pairs into feature vectors and feed them into a classifier to determine if the two text spans are linked
+- Features include:
+  - High-frequency words in RP, expanded using WordNet and word vectors
+  - LDA trained on RP and CP together to obtain topic features
+  - Co-occurrence frequency of CTS and citance words
+  - IDF: Co-occurrence word IDF within the RP sentence set
+  - Jaccard similarity of the two text spans
+  - Context-aware similarity: multiplication and square root of the similarity between the current sentence's preceding and following sentences with the matching sentence
+  - Word2Vec-based similarity between two text spans, calculated by taking the maximum word similarity and symmetrically normalizing based on sentence length
+  - Doc2Vec: directly obtaining sentence vectors and calculating similarity
+- Classifiers: SVM and manual weight scoring
+- The dataset is severely imbalanced, with unmatched samples 125 times more numerous than matched samples. The author attempted to split negative samples, training 125 SVMs and voting, but the results were poor. Therefore, a manual weight scoring method was adopted.
+- Jaccard distance performed best, used as the primary scoring feature, with other features' experimental effects used as supplementary weights
+
+## Task 1b
+
+- Rule-based approach
+  - Facets include Hypothesis, Implication, Aim, Results, and Method. Directly classify if the sentence contains these words
+  - Calculate high-frequency words for each facet and expand them. Set a threshold, and add the corresponding facet to the candidate set if the number of high-frequency words exceeds the threshold. Select the facet with the highest coverage
+- SVM
+  - Extract four features: paragraph position, document position ratio, paragraph position ratio, RCTS position
+- Voting
+  - Combine results from all approaches
+- Fusion
+  - Each Task 1a run obtains a CTS result, calculate a Task 1b run for each result, and select the best one
+
+## Task 2
+
+- Feature extraction:
+  - hLDA: Hierarchical topic features. Two ways to utilize hLDA features: sentences sharing the same path have similar topic distributions, so first cluster sentences, and in evaluation tasks, use facets as clustering results. Another method is to calculate the hLDA score for each word, composed of two parts: layer (assigned topic) weight * word probability in the layer + word probability in the current topic node. Through experience, a three-layer hLDA model shows that high-layer words are most abstract, bottom-layer words are most concrete, and middle-layer words' abstraction level is most likely to appear in summary sentences, so middle-layer words are given higher weights.
+  - Sentence length: Gaussian modeling of gold summary sentence length
+  - Sentence position
+  - Task 1a features: If extracted as CTS, use a weak score due to potential Task 1a errors
+  - RST features: Based on Rhetorical Structure Theory
+- Weighted feature scoring with additional operations
+  - Convert first-person pronouns in result sentences to third-person
+  - Extract sentences for each facet or hLDA cluster
+  - Remove highly redundant sentences
+
+# 2017
+
+## Task 1a
+
+- Added to 2016 approach:
+  - Use WordNet to calculate similarity between words with the same POS, including 6 types: cn, lin, lch, res, wup, and path similarity. Convert word similarity to sentence similarity using the same method as word2vec features
+  - Use CNN to train and calculate sentence similarity, using CNN results as a scoring feature
+
+## Task 1b
+
+- Basically the same as 2016, with minor differences in SVM training details
+
+## Task 2
+
+- Mainly introduced determinantal point process sampling to balance summary quality and diversity
+- When training hLDA, include not only RP but also all related citations
+- Features
+  - Added sentence topic distribution to hLDA features
+  - Added title similarity as a feature
+- Introduced determinantal point process sampling, treating sentences as points to sample. Given each point's quality (score) and inter-point similarity, sample a subset (summary) with high quality and low inter-element similarity:
+  ![Gic2ef.png](https://s1.ax1x.com/2020/03/27/Gic2ef.png)
+
+# 2018
+
+## Task 1a
+
+- Compared to the previous year, used Word Mover's Distance (WMD) as a feature vector similarity measure, applied to Task 1a similarity features and Task 2 DPPs
+- Improved LDA feature utilization. Previously only using hidden topics as a dictionary, now also calculate LDA distribution similarity between two sentences, considering not just the number of words in the same topic but also the internal topic distribution
+
+## Task 1b
+
+- Tried many machine learning methods, including SVM, DT, KNN, RF, GB, but only RF achieved performance comparable to rule-based scoring
+
+## Task 2
+
+- Still rule-based scoring + DPPs, but when constructing the L matrix for DPPs, used WMD to calculate similarity
+
+# 2019
+
+## Task 1a
+
+- When calculating LDA similarity, used Jaccard distance due to typically sparse topic distributions
+- When using CNN, adopted Word2Vec_H feature:
+  - First use SVD to reduce the embedding matrix dimensions for both sentences
+  - Calculate word-level similarity matrix, where $L_{ij}$ is the cosine distance of the dimensionality-reduced word vectors for the i-th word in sentence a and j-th word in sentence b
+  - Use the L matrix as CNN input
+
+## Task 1b
+
+- Added CNN as a classification method, but still unable to outperform traditional feature scoring
+
+## Task 2
+
+- Mapped WMD distance to [0,1] interval using inverse proportional, linear, and exponential mappings
+- When constructing the L matrix, used both QS and Gram decomposition, eliminating the need to explicitly calculate features and similarities. Just input each sentence's feature vector. Tried word2vec and LSA for feature vector construction
+{% endlang_content %}
+
+{% lang_content zh %}
 # Task
 
 - task 1a:给定论文CP和被引论文RP，给定CP当中的citation，找出RP中被这个citation引用的cited text span(CTS)，即content linking，本质上是一个句子对相似度计算任务
@@ -124,3 +234,23 @@ html: true
 
 - 将WMD距离经过反比例映射、线性映射、和指数映射压缩入[0,1]区间内
 - 构建L矩阵时除了QS分解，还采取了Gram分解，这样不需要显式计算特征与相似度，只需要输入每一句的特征向量即可。尝试了word2vec与LSA构建特征向量
+
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

@@ -10,19 +10,194 @@ mathjax: true
 html: true
 ---
 
-ACL/NAACL 2019 自动摘要相关论文选读
+Selected Reading of ACL/NAACL 2019 Automatic Summarization Papers
 
-- DPPs 相似度度量改进
-
-- STRASS：抽取式摘要的反向传播
-
-- 先翻译再生成摘要
-
-- 阅读理解+自动摘要
-
-- BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based
+*   DPPs Similarity Measurement Improvement
+    
+*   STRASS: Backpropagation for Extractive Summarization
+    
+*   Translate first, then generate the abstract
+    
+*   Reading Comprehension + Automatic Abstract
+    
+*   BiSET: Retrieve + Fast Rerank + Selective Encoding + Template Based
   
-  <!--more-->
+<!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+Improving the Similarity Measure of Determinantal Point Processes for Extractive Multi-Document Summarization
+=============================================================================================================
+
+*   This is very similar to what the others in our group have done, using DPPs to process extractive abstractive summaries
+*   In the abstract indicator paper mentioned in the preceding text, it is also mentioned that creating an abstract, especially a key sentence abstract, is all about three words: qd, qd, and still qd!
+    *   q: quality, which sentence is important and needs to be extracted as an abstract. This step is feature construction.
+    *   d: diversity, the sentences extracted should not be redundant, and should not repeatedly use the same sentences. If there are too many important sentences that are the same, they become less significant. This step is the construction of the sampling method.
+*   Determinantal Point Processes (DPPs) are a sampling method that ensures the extracted sentences are important (based on precomputed importance values) and non-repetitive. The authors of this paper have a very clear line of thought: I want to improve the DPPs in extractive summarization, how to improve them? DPPs rely on the similarity between sentences to avoid extracting duplicate sentences, so I will directly improve the calculation of similarity, thus the problem is shifted to a very mature field: semantic similarity computation.
+*   Next, just use the web to do semantic similarity calculation. The author is quite innovative, using capsule networks, which were originally proposed to solve the problem of relative changes in object positions in computer vision. The author believes that it can be generalized to extract spatial and directional information of low-level semantic features. Here, I am not very familiar with capsule networks and their applications in NLP, but based on the comparative experiments provided by the author, the improvement is actually just one point, and the entire DPP is only 2 points better than the best system before (2009), which seems a bit forced.
+*   The network provided by the author is truly complex, not in terms of principle, but due to the use of many components, including:
+    *   CNN with three to seven different sizes of convolutional kernels for extracting low-level features
+    *   Capsule networks extract high-level features, utilizing recent techniques such as parameter sharing and routing
+    *   One-hot vectors were still used, i.e., whether a word exists in a certain sentence
+    *   Fusion of various features, including inner product, absolute difference, and concatenation with all independent features, to predict the similarity between two sentences
+    *   And the similarity is only part of the goal; the authors also used LSTM to reconstruct two sentences, incorporating the reconstruction loss into the final total loss ![ezCge0.png](https://s2.ax1x.com/2019/08/12/ezCge0.png) 
+*   Absolutely, at first glance, one would assume this is a CV's work
+*   The author at least used the latest available techniques, creating an integrated network, which may not be as concise and elegant in an academic sense, but in terms of industry, many such network integration operations are very effective
+*   Another point is that although it is a sampled abstract, the author's work is fully supervised, so a dataset still needs to be constructed
+    *   Constructing Supervised Extractive Summary Datasets from Generative Summary Datasets
+    *   Constructing a supervised sentence similarity calculation dataset from generative abstract data sets
+    *   This structure also limits its generalization ability to some extent
+*   Authors' starting point is actually very good: because traditional similarity is at the word level, without delving into semantic features, the direction of constructing a network to extract features is correct, albeit somewhat complex. Moreover, since only the sentence feature extraction part of the similarity calculation in the extraction-based abstracting method has been improved, the overall impact is not particularly significant. The final result may have outperformed many traditional methods, but it has not improved much compared to the traditional best method, and it is only about 1 point better than pure DPPs.
+
+STRASS: A Light and Effective Method for Extractive Summarization Based on Sentence Embeddings
+==============================================================================================
+
+![mkkJHO.png](https://s2.ax1x.com/2019/08/14/mkkJHO.png)
+
+*   Another paper using supervised methods for extractive summarization, the content can be roughly guessed from the title, based on embedding, and aiming to be light and effective, the simplest goal is to keep the embedding of the summary consistent with the gold embedding.
+    
+*   The difficulty lies in the fact that it is extractive and discrete, thus requiring a process to unify the three parts of extraction, embedding, and comparison scoring, softening it to be differentiable, enabling end-to-end training. The authors propose four steps:
+    
+    *   Mapping document embeddings to a comparison space
+    *   Extract sentences to form an abstract
+    *   Extraction-based abstract embedding
+    *   Comparison with gold summary embedding
+*   First, given a document, directly obtain the doc embedding and the sentence embedding for each sentence in the document using sent2vec
+    
+*   After that, only one fully connected layer is used as the mapping function f(d), where the author proposes the first hypothesis: the extracted abstract sentences should have similarity to the document:
+    
+    $$
+    sel(s,d,S,t) = sigmoid (ncos^{+}(s,f(d),S)-t)
+    $$
+    
+*   s is the sentence embedding, S represents the set of sentences, t is the threshold. sel represents select, i.e., the confidence of selecting this sentence to form the summary. This formula indicates that the similarity between the selected sentence embedding and the document embedding should be greater than the threshold t, and sigmoid is used for softening, converting {0,1} to \[0,1\].
+    
+*   Afterward, further softening is applied; the author does not select sentences to form the abstract based on scores, but directly approximates the abstract's embedding based on scores
+    
+    $$
+    app(d,S,t) = \sum _{s \in S} s * nb_w(s) * sel(s,d,S,t)
+    $$
+    
+*   nb\_w is the number of words, i.e., the sum of the embedding of all sentences weighted by the number of words in each sentence and the select score to obtain the embedding of the generated summary
+    
+*   The final step involves comparing the embedding similarity calculation loss with the gold summary, where the authors introduce a regularization term to aim for a higher compression ratio of the extracted summary. I feel that this is a compensation brought about by a series of softening operations in the previous step, as no sentences are selected; instead, all sentences are weighted, thus necessitating regularization to force the model to discard some sentences:
+    
+    $$
+    loss = \lambda * \frac{nb_w(gen_sum)}{nb_w(d)} + (1-\lambda) * cos_{sim}(app(d,S,t),ref_{sum})
+    $$
+    
+*   What is the method for obtaining the embedding of the gold summary?
+    
+*   The authors also normalized the results of the cosine similarity calculation to ensure that the same threshold could be applied to all documents
+    
+*   The results actually show that ROUGE is not as good as generative methods, of course, one reason is that the dataset is inherently generative, but it is strong in simplicity, speed, and when using supervised methods for extraction, there is no need to consider the issue of redundancy.
+    
+
+A Robust Abstractive System for Cross-Lingual Summarization
+===========================================================
+
+*   In fact, one sentence can summarize this paper: Generate multilingual abstracts by first translating, while others first abstract and then translate
+*   All are implemented using existing frameworks
+    *   Marian: Fast Neural Machine Translation in C++
+    *   Abstract: Pointer-generator
+*   The author actually has sufficient supervisory data; it was previously thought that the abstracts were multilingual, with small amounts of corpus, or were summaries not relying on translation, which could extract common abstract features across multiple languages
+*   However, this paper indeed achieved robustness: generally, to achieve robustness, one introduces noise, and this paper exactly used back-translation to introduce noise: first, English is translated into a minor language, then translated back, and trained a generative abstract model on this bad English document, making the model more robust to noise. The final results were also significantly improved, and it also achieved good effects on Arabic that had not been trained, indicating that different people's translations have their own correctness, while the errors in machine translation are always similar.
+
+Answering while Summarizing: Multi-task Learning for Multi-hop QA with Evidence Extraction
+==========================================================================================
+
+![mtX0eS.png](https://s2.ax1x.com/2019/08/21/mtX0eS.png)
+
+*   This paper comes from the Smart Lab of NTT, the so-called largest telecommunications company in the world, and proposes a multi-task model: Reading Comprehension + Automatic Summary
+    
+*   The paper conducted many experiments and analyses, and provided a detailed analysis of the conditions under which their module works, and also utilized many techniques proposed in recent years for the abstract section, rather than simply patching together.
+    
+*   This paper is also based on the HotpotQA dataset, similar to the one in CogQA, but that one used the full wiki setting, which means there was no gold evidence. This paper, however, requires gold evidence, so it used the HotpotQA distractor setting.
+    
+*   For the distractor setting of HotpotQA, the supervisory signal consists of two parts: answer and evidence, with the input also having two parts: query and context, where the evidence is a sentence within the context. The authors adopt the baseline from the HotpotQA paper: Simple and effective multi-paragraph reading comprehension, and all parts except the Query-Focused Extractor shown in the above figure. The basic idea is to combine the query and context, add a lot of fully connected (FC), attention, and BiRNN to extract features, and finally output a classification of answer type and a sequence labeling of answer span in the answer part, while directly applying the output of the BiRNN to each sentence for binary classification. ![mtXczq.png](https://s2.ax1x.com/2019/08/21/mtXczq.png) 
+    
+*   The author refines the supervision task of evidence into a query-based summarization, adding a module called Query-Focused Extractor (QFE) after the BiRNN, emphasizing that the evidence should be a summary extracted from the context under the query conditions, satisfying:
+    
+    *   Sentences within the summary should not be redundant
+    *   sentences within the summary should have different attention based on the query
+*   For the first point, the author designed an RNN within the QFE, which allows attention to be paid to previously extracted sentences during the generation of attention and even the extraction of summaries. The time step of the RNN is defined as each time a sentence is extracted, with the input being the vector of the sentence extracted at that time step
+    
+*   In response to the second point, the author added an attention mechanism for the query within the QFE, with the weighted query vector referred to as glimpse. Note that this is the attention from the QA context to the QA query; both the key and value in the attention are the QA query, while the query in the attention does not directly take the entire QA context but rather the output of the RNN, i.e., the context encoded by the RNN after extracting a set of sentences. Such a design is also intuitive.
+    
+*   After the RNN encodes the extracted sentences and forms glimpse vectors with attention-weighted queries, QFE receives these two vectors, combines them with the vectors of unextracted sentences for each context, to output the probability of each sentence being extracted, and then selects the sentence with the highest probability to add to the set of extracted sentences. Subsequently, the system continues to cyclically calculate the RNN and glimpse. The dependency relationships of the entire system are clearly shown in the figure above.
+    
+*   Due to the variable number of sentences in gold evidence, the author employs the method of adding a dummy sentence with an EOE to dynamically extract, and when an EOE is extracted, the model no longer continues to extract sentences.
+    
+*   During training, the loss function for evidence is:
+    
+    $$
+    L_E = - \sum _{t=1}^{|E|} \log (max _{i \in E / E^{t-1}} Pr(i;E^{t-1})) + \sum _i min(c_i^t, \alpha _i^t)
+    $$
+    
+    Here, $E$ is the set of sentences of gold evidence, $E^t$ is the set of sentences extracted by QFE, $\alpha _i^t$ is the attention of the i-th word in the query at time step t, where the time step is consistent with the previous text, being the time step for extracting sentences. $c^t = \sum _{i=1}^{t-1} \alpha ^i$ is the coverage vector. The first half of the loss refers to the negative log-likelihood loss of the gold evidence, finding the gold sentence with the highest QFE prediction probability in the extracted sentence set, calculating the loss, and then excluding this sentence to find the next highest, until all gold sentences are found or no gold sentence can be found in the extracted sentence set. The second half is a regularization application of the coverage mechanism to ensure that the sentences selected for loss calculation do not have overly repetitive (concentrated) attention on the query.
+    
+*   Authors achieved results on the HotpotQA and textual entailment dataset FEVER, with the evidence part of the indicators far superior to the baseline, while the answer part also saw a significant improvement, though not as pronounced as the evidence part, and slightly inferior to the BERT model. On the full wiki test set, it was also comprehensively surpassed by CogQA. Here, the authors state that there is a dataset shift problem. However, at least this paper achieved an 8-point improvement on the answer part by simply adding a small module to the baseline, demonstrating that a well-designed summarization part indeed helps in the selection of answers in multi-task learning.
+    
+
+BiSET: Bi-directional Selective Encoding with Template for Abstractive Summarization
+====================================================================================
+
+*   Another model pieced together from various components, the title actually spells it all out: Bi-directional, selective encoding, template, together forming the BiSET module, and the other two preceding processes: Retrieve and Fast Rerank also follow the architecture from the paper "Retrieve, Rerank and Rewrite: Soft Template Based Neural Summarization." It should be based on soft template summarization, with the mechanism of selective encoding added, so these two papers are put together to discuss template-based generative summarization and its improvements.
+*   The idea behind the soft template approach is not to let the model generate sentences entirely, but rather for humans to provide the template and for the model to only fill in the words. However, if the template is completely designed manually, it would regress to the methods of several decades ago. The author's approach is to automatically extract templates from existing gold summaries.
+*   Generally divided into three steps:
+    *   Retrieve: Extract candidates from the training corpus
+    *   Rerank: Learning Template Saliency Measurement for seq2seq Models
+    *   Rewriting: Let the seq2seq model learn to generate the final summary
+*   This method should be more suitable for long sentence compression, or for single-sentence generative summarization, where the long sentences to be compressed can be used as queries for retrieval
+
+Retrieve
+--------
+
+*   Utilizing the existing Lucene search engine, given a long sentence to be compressed as a query, search the document collection to identify the summaries of the top 30 documents as candidate templates
+
+Rerank
+------
+
+*   The abstracts (soft template) retrieved through the search are sorted by relevance, but we require sorting by similarity. Therefore, we use the ROUGE score to measure the similarity between the soft template and the gold summary. Here, reranking is not about sorting out the results but rather considering the rank of each template comprehensively during the generation of the summary, and the loss can be observed in the parts that are omitted.
+    
+*   Specifically, first use a BiLSTM encoder to encode the input x and a certain candidate template r; here, the hidden layer states are encoded separately, but the same encoder is used, and then input the two hidden layer states into a Bilinear network to predict the ROUGE value between the gold summary y corresponding to the input x and r, which is equivalent to a network that makes a saliency prediction for r given x:
+    
+    $$
+    h_x = BiLSTM(x) \\
+    h_r = BiLSTM(r) \\
+    ROUGE(r,y) = sigmoid(h_r W_s h_x^T + b_s) \\
+    $$
+    
+*   This completes the supervised part of reranking
+    
+
+Rewrite
+-------
+
+*   This part is a standard seq2seq, still using the previously encoded $h_x, h_r$ to concatenate it and feed it into an attentional RNN decoder to generate an abstract, and calculate the loss
+
+Jointly Learning
+----------------
+
+*   The model's loss is divided into two parts. The Rerank part ensures that the encoded template and the input, after passing through bilinear processing, can correctly predict the ROUGE value. The Rewrite part ensures the generation of a correct summary. This is equivalent to, in addition to the ordinary seq2seq summary generation, I also candidate some other gold summaries as input. This candidate is initially filtered through retrieval. When used, the Rerank part guarantees that the encoded part is the template component within the summary, i.e., the part that can be taken out and compared with the gold summary, thereby assisting the decoder in the Rewrite part's generation.
+
+result
+------
+
+*   We know that in summarization, the decoder is actually very dependent on the encoder's input, which includes both the template and the original input. The authors provide several ideal examples, where the output summary is basically in the format of the template, but the key entities are extracted from the original input and filled into the template summary.
+*   Although a somewhat esoteric rerank loss method was used for extracting the soft template, the role of the template is indeed evident. The model actually finds a summary that is very close to the gold summary as input, and makes slight modifications (rewrites) on this basis, which is much more efficient than end-to-end seq2seq. The authors also tried removing the retrieve step and directly finding the ROUGE score highest summary from the entire corpus as the template, with the final model's results reaching 50 ROUGE-1 and 48 ROUGE-L
+*   This operation of taking the output as input is actually a compensation for the insufficient abstract ability of the decoder, and it is an empirical method derived from the observation of the dataset, which can effectively solve the problem
+
+biset
+-----
+
+*   Replaced the rerank part with CNN+GLU to encode documents and queries, and then computed the sim matrix using the encoded vectors
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
 
 # Improving the Similarity Measure of Determinantal Point Processes for Extractive Multi-Document Summarization
 
@@ -181,3 +356,22 @@ ROUGE(r,y) = sigmoid(h_r W_s h_x^T + b_s) \\
 ## biset
 
 - 将rerank部分换成了CNN+GLU来编码文档和查询，编码后的向量计算sim matrix，
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

@@ -10,18 +10,144 @@ tags:
 mathjax: true
 html: true
 ---
+Record some recent processing of heterogeneous information networks
 
-记录近年来对于异构信息网络的一些处理
-
-- PathSim
-- HGNN
-- HGAN
-- HGAN for text classification
-- 带属性，Attributed Multiplex Heterogeneous Network
-- Meta-graph Guided Random Walks
-- TBD
+*   PathSim
+*   HGNN
+*   HGAN
+*   HGAN for text classification
+*   Attribute, Attributed Multiplex Heterogeneous Network
+*   Meta-graph Guided Random Walks
 
 <!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+PathSim: Meta Path-Based Top-K Similarity Search in Heterogeneous Information Networks
+======================================================================================
+
+*   An early paper (with authors all being big shots) clearly defined many concepts in meta paths and proposed a method for measuring node similarity in heterogeneous information networks.
+    
+*   Traditional similarity measurement methods have biases, methods based on path count statistics and random walk have biases, favoring nodes with higher degree; pairwise random walk is biased towards nodes with more outlier neighbors
+    
+*   The idea behind PathSim is that two similar nodes should not only be strongly linked to each other but also share comparable visibility
+    
+*   Under the given symmetric meta path $P$ , the PathSim of two nodes of the same type $x,y$ is defined as:
+    
+    $$
+    s(x, y)=\frac{2 \times\left|\left\{p_{x \leadsto y}: p_{x \sim y} \in \mathcal{P}\right\}\right|}{\left|\left\{p_{x \leadsto x}: p_{x \hookrightarrow x} \in \mathcal{P}\right\}\right|+\left|\left\{p_{y \leadsto y}: p_{y \leadsto y} \in \mathcal{P}\right\}\right|}
+    $$
+    
+*   The actual node regression probability of the denominator is visibility, and the author divides the traditional pathcount by visibility, with all paths obtained by multiplying the edge weights.
+    
+*   Similar to the symmetric normalization of the degree of nodes.
+    
+
+Heterogeneous Graph Neural Network
+==================================
+
+*   Task: Graph Representation Learning
+*   Heterogeneous Types: Node Heterogeneity, Edge Heterogeneity, Node Multi-Attribute
+*   Solution:
+    *   Four-step approach: Heterogeneous neighbor sampling, multi-attribute encoding, same-type neighbor aggregation, different-type aggregation
+    *   Heterogeneous neighborhood sampling: Based on restart random walk, first perform a random walk, and with a certain probability p return to the initial node (restart), until a certain number of neighborhood nodes have been sampled. There is an upper limit for each type of neighborhood node to ensure that all types of neighbors can be sampled. Then, scale down proportionally, for each type of neighborhood node $t$ , only take $K_t$ neighborhood nodes, and group them accordingly.
+    *   Multi-attribute coding: Pre-encoded based on multimodal content, such as text using paragraph2vec, images using CNN, and different attribute information of the same neighboring nodes using BiLSTM encoding
+    *   Aggregation of similar neighbors: Using BiLSTM to aggregate features of multiple neighborhood nodes under the same type
+    *   Different types of aggregation: Use an attention mechanism to aggregate different types of features
+
+Heterogeneous Graph Attention Network
+=====================================
+
+*   Task: Graph Representation Learning
+*   Heterogeneous Types: Node Heterogeneity
+*   Solution:
+    *   Implementing double attention at the node level and metapath level.
+        
+    *   Need to add itself to all metapath neighbors, similar to the inner loop in GCN.
+        
+    *   node-level attention, applying attention weighting to different nodes along a metapath. Since nodes of different types have feature representations in different spaces, a feature transformation matrix is assigned to each type, mapping different types of nodes to the same space, and then attention calculation and weighting are performed on the nodes through the self-attention mechanism (where $\phi$ represents the metapath):
+        
+        $$
+        h_i^{\prime} = M_{\phi _i} \cdot h_i \\
+        e^{\phi}_{ij} = attn_{node}(h^{\prime}_i,h^{\prime}_j;\phi) \\
+        $$
+        
+        In calculating attention, a mask needs to be applied, only calculating attention for neighboring nodes and performing softmax. It is noteworthy that the asymmetry of self-attention is important for heterogeneous graphs, as in a node pair, the neighborhoods of the two nodes are different, and their mutual influence is not equal. Simply put, for a certain node, calculate the attention weights of all neighboring nodes under a certain type of metapath, with input being the h of the two nodes and a parameter vector specific to the metapath, outputting the attention weights, and then for a certain node, weightedly sum the h of all neighboring nodes under a certain type of metapath to obtain the representation of the node under a certain metapath.
+        
+        $$
+        \alpha_{i j}^{\Phi}=\operatorname{softmax}_{j}\left(e_{i j}^{\Phi}\right)=\frac{\exp \left(\sigma\left(\mathbf{a}_{\Phi}^{\mathrm{T}} \cdot\left[\mathbf{h}_{i}^{\prime} \| \mathbf{h}_{j}^{\prime}\right]\right)\right)}{\sum_{k \in \mathcal{N}_{i}^{\mathrm{\Phi}}} \exp \left(\sigma\left(\mathbf{a}_{\Phi}^{\mathrm{T}} \cdot\left[\mathbf{h}_{i}^{\prime} \| \mathbf{h}_{k}^{\prime}\right]\right)\right)} \\
+        $$
+        
+        Calculate the attention after transforming the metapath neighborhood node features:
+        
+        $$
+        \mathbf{z}_{i}^{\Phi}=\sigma\left(\sum_{j \in \mathcal{N}_{i}^{\Phi}} \alpha_{i j}^{\Phi} \cdot \mathbf{h}_{j}^{\prime}\right)
+        $$
+        
+    *   The author referred to the multi-head approach during actual weighted calculation, computed k attention-weighted features and concatenated them together
+        
+    *   The attention at the metapath level refers to the weighted sum of all different class metapath embeddings for a certain node. First, transform the embeddings of each metapath to the same latent space, then parameterize to calculate the attention weights and apply softmax. It should be noted that the attention logits before softmax are the average of a certain type of metapath calculated over all nodes, with the denominator being the number of nodes and the numerator being the sum of the metapath embeddings of the nodes containing that type of metapath. The node-level before this is for the average of all neighboring nodes under a certain node and metapath:
+        
+        $$
+        w_{\Phi_{i}}=\frac{1}{|\mathcal{V}|} \sum_{i \in \mathcal{V}} \mathbf{q}^{\mathrm{T}} \cdot \tanh \left(\mathbf{W} \cdot \mathbf{z}_{i}^{\Phi}+\mathbf{b}\right)
+        $$
+        
+    *   Afterward, perform softmax on all metapath types to obtain weights, and weight each node's different metapath embedding to get the final embedding
+        
+    *   The entire range of the logit and softmax in the double-layer attention is a bit confusing, sometimes local and sometimes global, requiring careful consideration.
+        
+*   The entire process can be parallelized at the node level
+*   The results show that the effectiveness has reached the SOTA, and the visualization results show that the clustering effect of node embeddings is better, and attention also brings a certain degree of interpretability.
+
+Heterogeneous Graph Attention Networks for Semi-supervised Short Text Classification
+====================================================================================
+
+*   Task: Node Classification
+*   Heterogeneous types: Node heterogeneity, including three types of nodes, text, entity, and topic
+*   Solution:
+    *   The simplest: Expand the feature space of the expansion nodes, concatenate the feature vectors of the three types of nodes, and set the positions of all feature vectors not included in a specific node to 0
+        
+    *   Heterogeneous Graph Convolution: Separates subgraphs of the same node type, performs convolution on each subgraph individually, projects different subgraphs through a parameter transformation matrix to the same latent space and sums the activations as the next layer. Specifically, the original GCN is:
+        
+        $$
+        H^{(l+1)}=\sigma\left(\tilde{A} \cdot H^{(l)} \cdot W^{(l)}\right)
+        $$
+        
+        And the Heterogeneous GCN is:
+        
+        $$
+        H^{(l+1)}=\sigma\left(\sum_{\tau \in \mathcal{T}} \tilde{A}_{\tau} \cdot H_{\tau}^{(l)} \cdot W_{\tau}^{(l)}\right)
+        $$
+        
+        The line $\tilde{A}_{\tau}$ represents all nodes, and the columns represent all nodes of a certain type, thus isolating isomorphic subgraphs. For each node, we separately consider the nodes of type a in its neighborhood, aggregate information to obtain encoding a, and then consider the nodes of type b in the neighborhood, aggregate information to obtain encoding b. Encodings a and b are transformed to the same latent space by their respective transformation matrices and then summed. This design is logically sound.
+        
+    *   The author also considered the following situations: the contributions of different types of neighboring nodes to a certain node are not the same, and the contributions of different neighboring nodes within the same type are also not the same. It is obvious that attention is needed here. The author proposed dual attention (i.e., two-layer attention), one at the type level and one at the node level. First, the mean of the embedding of a certain type of neighboring node is used as the type embedding, and then the type attention weight is calculated based on the current node embedding and the type embedding. Similarly, the node attention is obtained by using the specific neighboring node embedding and the current node embedding, plus the type attention, and the calculated node attention is used to replace the symmetric normalized adjacency matrix in GCN.
+        
+
+Representation Learning for Attributed Multiplex Heterogeneous Network
+======================================================================
+
+*   Task: Graph Representation Learning
+*   Heterogeneous Types: Node Heterogeneity, Edge Heterogeneity, Node Multi-Attribute
+*   Solution:
+    *   Consider that a node has different embeddings under different types of edges, and decompose the node's total overall embedding into a base embedding unrelated to the edges and an edge embedding related to the edges
+    *   edge embedding is related to edge type, and the neighboring nodes connected by edges of the same type are aggregated to form it. Here, the aggreagator function can adopt the approach from GraphSage.
+    *   After k-level aggregation, each node obtains k types of edge embedding, which are weighted and summed through self-attention, multiplied by the ratio, and then added to the base embedding to obtain the final overall embedding
+    *   This is a transductive model. For unobserved data, an inductive method is required. The specific approach is quite simple: parameterize the base embedding and edge embedding as functions of the node attributes, rather than randomly initializing and then completely learning from the existing graph. This way, even if there are nodes not seen in the graph, as long as the nodes have attributes, overall embedding extraction can still be performed.
+    *   The final step is to perform a random walk based on meta-path to obtain training pairs, using skip-gram training and incorporating negative sampling.
+
+Semi-supervised Learning over Heterogeneous Information Networks by Ensemble of Meta-graph Guided Random Walks
+==============================================================================================================
+
+*   Task: Node Classification
+*   Heterogeneous types: Node heterogeneity, including three types of nodes, text, entity, and topic
+*   Solution: meta-path guided random walk
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
 
 # PathSim: Meta Path-Based Top-K Similarity Search in Heterogeneous Information Networks
 
@@ -121,4 +247,4 @@ e^{\phi}_{ij} = attn_{node}(h^{\prime}_i,h^{\prime}_j;\phi) \\
 - 异构类型：节点异构，包含三类节点，文本、实体、主题
 - 解决办法：meta-path guided random walk
 
-# Joint Embedding of Meta-Path and Meta-Graph for Heterogeneous Information Networks
+{% endlang_content %}

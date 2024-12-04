@@ -13,11 +13,1467 @@ mathjax: true
 html: true
 ---
 
-计算语言学课程笔记
-参考教材：Speech and Language Processing：An Introduction to Natural Language Processing,Computational Linguistics, and Speech Recognition
-一些公式待修订
+Course Notes on Computational Linguistics, Reference Textbook: Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition.
+
 
 <!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+
+Chapter 2: Regular Expressions and Automata
+===========================================
+
+*   Regular Expressions: A tool used for finding substrings that match a specific pattern or for defining a language in a standardized form, this chapter mainly discusses its function in finding substrings. Regular expressions represent some string sets in an algebraic form.
+*   Regular expressions receive a pattern and then search for substrings that match this pattern throughout the corpus, and this function can be realized through the design of a finite state automaton.
+*   A string is viewed as a sequence of symbols, where all characters, numbers, spaces, tabs, punctuation marks, and whitespace are considered symbols.
+
+Basic Regular Expression Patterns
+---------------------------------
+
+*   Using double slashes to indicate the beginning and end of regular expressions (in Perl's format)
+    *   Find substring, case-sensitive: /woodchuck/-> woodchuck
+    *   \[One of them is represented by square brackets, or: /\[Ww\]oodchuck/ -> woodchuck or Woodchuck\]
+    *   \[±\], take or within the range: /\[2-5\]/->/\[2345\]
+    *   Insertion symbols are placed after the left square bracket, representing all symbols that do not appear after them in the pattern, i.e., the negation: /^Ss/ -> neither uppercase S nor lowercase s
+    *   Question mark represents the possibility of the previous symbol appearing once or not at all: /colou?r/ -> color or colour
+    *   Asterisks represent multiple occurrences or non-occurrences of the preceding symbol: /ba\*/ -> b or ba or baa or baaa......
+    *   The plus sign indicates that the preceding symbol appears at least once: /ba+/ -> ba or baa or baaa.......
+    *   Decimal point represents a wildcard, matching any symbol except the return character: /beg.n/->begin or begun or beg’n or .......
+    *   Anchor symbol, used to represent a substring at a specific location; the insertion symbol represents the beginning of a line, the dollar symbol represents the end of a line; \\b represents a word boundary, \\B represents a non-word boundary; Perl defines a word as a sequence of digits, underscores, or letters, and symbols not included in this are considered as word boundaries.
+
+Extraction, combination, and priority
+-------------------------------------
+
+*   Using vertical bars to represent disjunction, or: /cat|dog/ -> cat or dog
+*   (gupp(y|ies))/->guppy or guppies
+*   Priority: Round brackets > Counters > Sequences and Anchors > Disjunction operator
+
+Advanced Operators
+------------------
+
+*   Any number
+*   Any non-numeric character
+*   Any letter, number, or space
+*   Opposite to \\w
+*   \\s: blank area
+*   S: Opposite to \\s
+*   {n}: The preceding pattern appears n times
+*   {n,m}: The preceding pattern appears n to m times
+*   {n,} : The preceding pattern appears at least n times
+*   : newline
+*   Tab character
+
+Replacement, Register
+---------------------
+
+*   Replace s/A/B/: Replace A with B
+*   s/(A)/<\\1>/: Using the numeric operator \\1 to refer to A, placing angle brackets on both sides of A
+*   In searches, numerical operators can also be used to represent the content within parentheses, and multiple operators can represent multiple contents within parentheses
+*   Here, the numerical operator acts as a register
+
+Finite State Automaton
+----------------------
+
+*   Finite state automata and regular expressions are mutually symmetric, and regular expressions are a method to characterize regular languages. Regular expressions, regular grammars, and finite automata are all forms of expressing regular languages. FSA is represented by a directed graph, where circles or dots represent states, arrows or arcs represent state transitions, and double circles represent final states. The state machine diagram below illustrates the recognition of the regular expression /baa+/: ![FoVj3V.png](https://s2.ax1x.com/2019/01/03/FoVj3V.png) 
+*   The finite state machine starts from the initial state, reads in symbols sequentially, and if the conditions are met, it performs a state transition. If the sequence of read-in symbols matches the pattern, the finite state machine can reach the final state; if the sequence of symbols does not match the pattern, or if the automaton gets stuck in a non-final state, it is said that the automaton has rejected this input.
+*   Another representation is the state transition table: ![FoVqNn.png](https://s2.ax1x.com/2019/01/03/FoVqNn.png) 
+*   A finite automaton can be defined by 5 parameters:
+    *   Finite set of states {q\_i}
+    *   Finite input alphabet
+    *   Initial State
+    *   Ultimate State Set
+    *   The transition function or transition matrix between states, is a relationship from $Q × \Sigma$ to $2^Q$
+*   The automaton described above is deterministic, i.e., a DFA, which always knows how to perform state transitions based on the lookup table when the states recorded in the state transition table are known. The algorithm is as follows: given the input and the automaton model, the algorithm determines whether the input is accepted by the state machine: ![FoZpB4.png](https://s2.ax1x.com/2019/01/03/FoZpB4.png) 
+*   When an unlisted state occurs, the automaton will malfunction, and a failure state can be added to handle these situations.
+
+Formal language
+---------------
+
+*   Formal language is a model that can and only generate and recognize some symbol strings of a certain language that satisfy the definition of formal language. Formal language is a special type of regular language. Formal languages are usually used to simulate certain parts of natural languages. Taking the example /baa+!/ for instance, let the corresponding automaton model be m, the input symbol table be $\Sigma = {a,b,!}$ , and $L(m)$ represents the formal language described by m, which is an infinite set ${baa!,baaa!,baaaa!,…}$ .
+
+Non-deterministic finite automaton
+----------------------------------
+
+*   Non-deterministic Finite Automaton (NFSA), by slightly modifying the previous example, moving the self-loop to state 2, it becomes an NFSA, because at this point, in state 2, with input a, there are two possible transitions, and the automaton cannot determine the transition path: ![FoVLhq.png](https://s2.ax1x.com/2019/01/03/FoVLhq.png) 
+*   Another form of NFSA involves the introduction of $\epsilon$ transitions, which means that transitions can be made without the need for an input symbol, as shown in the figure below, where at state 3, it is still uncertain how to proceed with the transition: ![FoVX90.png](https://s2.ax1x.com/2019/01/03/FoVX90.png) 
+*   At the NFSA, when faced with a transfer choice, the automaton may make an erroneous choice, and there are three solutions to this:
+    *   Rollback: Mark this state, and revert to this state after confirming an error in the selection
+    *   Prospective: Looking ahead in the input to assist in making choices
+    *   Parallel: Performing all possible transfers in parallel
+*   In automata, the states that need to be marked when using the backtracking algorithm are called search states, which include two parts: state nodes and input positions. For NFSA, the state transition table also undergoes corresponding changes, as shown in the figure, with the addition of a column representing the $\epsilon$ transition, $\epsilon$ , and the transition can move to multiple states: ![FoZE36.png](https://s2.ax1x.com/2019/01/03/FoZE36.png) 
+*   Adopting the fallback strategy, the algorithm for the nondeterministic automaton is as follows, which is a search algorithm: ![FoZSuF.png](https://s2.ax1x.com/2019/01/03/FoZSuF.png) 
+*   值
+*   The subfunction ACCEPT-STATE accepts a search state, determining whether to accept it, and the accepted search state should be a tuple of the final state and the input end position.
+*   Algorithm uses an agenda (process table) to record all search states, initially including only the initial search state, i.e., the initial state node of the automaton and the input start. After that, it continuously loops, extracting search states from the agenda, first calling ACCEPT-STATE to determine if the search is successful, and then calling GENERATE-NEW-STATES to generate new search states and add them to the agenda. The loop continues until the search is successful or the agenda is empty (all possible transitions have been attempted and failed) and returns a rejection.
+*   The NFSA algorithm is a state space search that can improve search efficiency by changing the order of search states, for example, by using a stack to implement the process table for depth-first search (DFS); or by using a queue to implement the process table for breadth-first search (BFS).
+*   For any NFSA, there exists a completely equivalent DFSA.
+
+Regular Languages and NFSA
+--------------------------
+
+*   The alphabet \\(\\sum\\) is defined as the set of all input symbols; the empty symbol string $\epsilon$ , the empty symbol string does not contain in the alphabet; the empty set ∅. The class (or regular set) of regular languages over \\(\\sum\\) can be defined as follows:
+    *   The empty set is a regular language
+    *   ∀a ∈ $\sum$ ∪ $\epsilon$ , {a} is a formal language
+    *   If $L_1$ and $L_2$ are regular languages, then:
+    *   Concatenation of $L_1$ and $L_2$ is regular language
+    *   The conjunction and disjunction of $L_1$ and $L_2$ are also regular languages
+    *   The Kleene closure of $L_1$ is also a regular language, i.e., $L_1$
+*   Three basic operators of regular languages: concatenation, conjunction and disjunction, and Kleene closure. Any regular expression can be written in the form that uses only these three basic operators.
+*   Regular languages are also closed under the following operations ( $L_1$ and $L_2$ are both regular languages):
+    *   The intersection of the symbol string sets of $L_1$ and $L_2$ also constitutes a regular language
+    *   The difference set of the symbol sequences of $L_1$ and $L_2$ also constitutes a regular language
+    *   The language consisting of sets not in the symbol string collection of $L_1$ is also a regular language
+    *   The set of reverses of all symbol strings constitutes a regular language
+*   It can be proven that regular expressions and automata are equivalent. A method to prove that any regular expression can be constructed into a corresponding automaton is to, according to the definition of regular languages, construct basic automata representing the single symbol a in $\epsilon$ , ∅, and $\sum$ , and then represent the three basic operators as operations on the automata, inductively applying these operations on the basic automata to obtain new basic automata, thus constructing an automaton that satisfies any regular expression, as shown in the following figure: ![FoVxjU.png](https://s2.ax1x.com/2019/01/03/FoVxjU.png) Basic Automaton ![FoZPE9.png](https://s2.ax1x.com/2019/01/03/FoZPE9.png) Concatenation Operator ![FoZ9HJ.png](https://s2.ax1x.com/2019/01/03/FoZ9HJ.png) Kleene Closure Operator ![FoZiNR.png](https://s2.ax1x.com/2019/01/03/FoZiNR.png) Conjunction Disjunction Operator
+
+Chapter 3: Morphology and Finite State Transcription Machines
+=============================================================
+
+*   Analysis: Take an input and produce various structures about this input
+
+Introduction to English Morphology
+----------------------------------
+
+*   Morphological study analyzes the structure of words, which can be further decomposed into morphemes. Morphemes can be divided into stems and affixes, and affixes can be further categorized into prefixes, infixes, suffixes, and positional affixes.
+*   Inflectional morphology: In English, nouns include only two inflectional forms: one affix indicates plural, and one affix indicates possession:
+    *   Plural: -s, -es, irregular plural forms
+    *   Ownership: -'s, -s'
+*   Inflectional changes in verbs include those of regular verbs and irregular verbs:
+    *   Rule verbs: main verbs and basic verbs, -s, -ing, -ed,
+    *   Irregular verbs
+*   Derivative morphology: Derivation combines a stem with a grammatical morpheme to form new words
+    *   Nominalization: -ation, -ee, -er, -ness
+    *   Derived adjectives: -al, -able, -less
+
+Morphological analysis
+----------------------
+
+*   Example: We hope to establish a morphological analyzer that takes a word as input and outputs its stem and related morphological features, as shown in the table below; our goal is to produce the second and fourth columns: ![FoZA9x.png](https://s2.ax1x.com/2019/01/03/FoZA9x.png) 
+*   We at least need:
+    *   Lexicon: List of stems and affixes and their basic information
+    *   Morphotactic rules: What morphemes follow what morphemes
+    *   Orthographic rule: Changes in spelling rules during morpheme combination
+*   Generally, word lists are not constructed directly but are designed based on morphological order rules to generate words by inflecting stems. For example, a simple automaton for pluralizing nouns is shown as follows: ![FoZmuD.png](https://s2.ax1x.com/2019/01/03/FoZmuD.png) 
+*   reg-noun represents the regular noun, which can be pluralized by adding an "s," and it ignores irregular singular nouns (irreg-sg-noun) and irregular plural nouns (irreg-pl-noun). Another automaton for simulating the inflectional changes of modal verbs is shown below: ![FoZQUA.png](https://s2.ax1x.com/2019/01/03/FoZQUA.png) 
+*   A method for using FSA to solve morphological recognition problems (determining whether an input symbol string is legal) is to subdivide state transitions to the letter level, but there will still be some issues: ![FoZZjO.png](https://s2.ax1x.com/2019/01/03/FoZZjO.png) 
+
+Finite State Transcription Machine
+----------------------------------
+
+*   Double-layer morphology: Representing a word as a lexical layer and a surface layer, the lexical layer indicates the simple adjacency (concatenation) of morphemes, and the surface layer represents the actual final spelling of the word. A finite state transducer is a finite state automaton, but it implements transcription, achieving correspondence between the lexical layer and the surface layer. It has two inputs, producing and recognizing string pairs, and each state transition arc has two labels, representing the two inputs. ![FoZVgK.png](https://s2.ax1x.com/2019/01/03/FoZVgK.png) 
+*   From four perspectives to view FST:
+    *   As a recognizer: The FST accepts a pair of strings as input and outputs acceptance if the pair of strings is in the string pairs of the language, otherwise it rejects
+    *   As a generator: generating string pairs of language
+    *   As a translator: Read in a string, output another
+    *   As an associative: calculating the relationship between two sets
+*   Define finite state transducer:
+    *   A limited state set for state {q_i}
+    *   Finite input alphabet
+    *   Δ: Finite output symbol alphabet
+    *   Initial State
+    *   Ultimate State Set
+    *   Transition function or transition matrix between states, a relation from Q×Σ to 2^Q, where q is the state and w is the string, returning the new state set
+    *   Output function: Given each state and input, returns the set of possible output strings, which is a relation from $Q × \Sigma$ to $2^∆$
+*   In FST, the elements of the alphabet are not single symbols, but symbol pairs, known as feasible pairs. Analogous to FSA and regular languages, FST and regular relations are isomorphic, closed under the union operation, and generally not closed under the difference, complement, and intersection operations.
+*   Additionally, FST,
+    *   On the inverse (inverse of the inverse) closure, the inverse is used to facilitate the transformation from an FST as an analyzer to an FST as a generator
+    *   On composite (nested) closures, used to replace multiple transcribing machines with a more complex transcribing machine.
+*   Transcription machines are generally non-deterministic; if the search algorithm of a finite state automaton (FSA) is used, it will be very slow, and if a non-deterministic to deterministic conversion algorithm is used, some finite state transducers (FSTs) themselves cannot be converted to be deterministic.
+*   Sequential transducer is a deterministic transducer with input, where each state transition is determined after the given state and input, unlike the FST in the figure above, where state 0 has two state transitions upon input b (transferring to the same state but with different outputs). Sequential transducer can use the symbol $\epsilon$ , but it can only be added to the output string, not the input string, as shown in the following figure: ![FoZuHH.png](https://s2.ax1x.com/2019/01/03/FoZuHH.png) 
+*   The output of a sequential transducer is not necessarily sequential, that is, different transitions from the same state may produce the same output. Therefore, the inverse of a sequential transducer is not necessarily a sequential transducer. Hence, when defining a sequential transducer, direction must be defined, and the transition function and output function need to be slightly modified, with the output space reduced to Q and ∆.
+*   A generalized form of the sequential transcription machine is the concurrent transcription machine, which outputs an additional string in the final state, appended to the string already output. Sequential and concurrent transcription machines are highly efficient, and there are effective algorithms for their determinization and minimization, making them very important. The P-concurrent transcription machine can resolve ambiguity issues on this basis.
+
+Using a finite state transducer for morphological analysis
+----------------------------------------------------------
+
+*   Viewing words as the relationship between the lexical layer and the surface layer, as shown in the figure below: ![FoZnDe.png](https://s2.ax1x.com/2019/01/03/FoZnDe.png) 
+*   On the basis of the previously defined double-layer morphology, the mapping from a self to itself is defined as a basic pair, represented by a single letter; the symbol ^ represents the morpheme boundary; and the symbol # represents the word boundary. In the task, it is mentioned that it is necessary to output features such as +SG for morphemes, which do not have corresponding output symbols on another output. Therefore, they are mapped to an empty string or boundary symbol. We connect input-output pairs with a colon, or they can also be written above and below an arc. An abstract representation of an English noun plural inflection transducer is shown as follows: ![FoZl4I.png](https://s2.ax1x.com/2019/01/03/FoZl4I.png) 
+*   Afterward, we need to update the lexicon so that irregular plural nouns can be parsed into the correct stems: ![FoZMEd.png](https://s2.ax1x.com/2019/01/03/FoZMEd.png) 
+*   Afterwards, the abstract transcription machine is concretized into a transcription machine composed of letter transfer arcs, as shown in the figure below, which only displays the concretized part after the irregular plural and singular nouns: ![FoZ3Ct.png](https://s2.ax1x.com/2019/01/03/FoZ3Ct.png) 
+
+Transcription Machines and Orthographic Rules
+---------------------------------------------
+
+*   Using spelling rules, also known as orthographic rules, to handle the issue of frequent spelling errors at morpheme boundaries in English.
+*   Here are some examples of spelling rules:
+    *   Consonant cluster: beg/beggin
+    *   Deletion of E: make/making
+    *   E insertion: watch/watches
+    *   Y's replacement: try/tries
+    *   K's insertion: panic/panicked
+*   To achieve spelling rules, we introduce an intermediate layer between the lexical and surface layers, taking specific rule-based morpheme concatenation as input and modifying it to produce correct morpheme concatenation as output, for example, the input "fox +N +PL" is transcribed into the intermediate layer, resulting in "fox ^ s#", and then during the second transcription from the intermediate layer to the surface layer, the special morpheme concatenation "x^ and s#" is detected, and an "e" is inserted between the "x" and "s" on the surface layer, yielding "foxes." The following diagram of the transcription machine illustrates this process: ![FoZ88P.png](https://s2.ax1x.com/2019/01/03/FoZ88P.png) 
+*   This transducer only considers the positive lexical rule of inserting e when x^ and s# are contiguous
+*   Other words can pass normally
+*   $Q_0$ represents irrelevant words passing through, indicating an accepted state
+*   $Q_1$ represents seeing zsx, serving as an intermediate state, the last z, s, x connected to morphemes are always saved; if other letters appear, it returns to q0, and it can also serve as an accepting state
+*   $Q_2$ Represents seeing morphemes connected to z, s, x, followed by four transitions
+    *   Received $x$ , $z$ , returned to $q_1$ , that is, believing that reconnected to x, z that may be connected to morphemes
+    *   Received $s$ , it is divided into two cases. One is the normal case where e needs to be inserted, in which case it is transferred through $\epsilon$ to $q_3$ and then to $q_4$ . The other is the case where $e$ needs to be inserted from the beginning, reaching $q_5$ , after which it may retreat to $q_1$ , $q_0$ , or $s$ , or return to $q_2$ due to contiguous morphemes. The two cases are uncertain and need to be resolved through search.
+    *   Reaching word boundaries and other symbols, returning to $q_0$
+    *   It can also function as the passive voice itself
+
+Combine
+-------
+
+*   Now, a three-layer structure can be used, combining a transducer for generating morphemes and performing morphological rule correction. From the lexical layer to the intermediate layer, a transducer generates morphemes, and from the intermediate layer to the surface layer, multiple transducers can be used in parallel for morphological rule correction.
+*   Two types of transcribing machines can be rewritten as one type when superimposed, at which point the Cartesian product of the state sets of the two types of state machines needs to be calculated, and a state needs to be established for each element in the new set.
+*   This three-level structure is reversible, but ambiguity issues may arise during analysis (from the surface to the lexical level), that is, a single word may be analyzed into multiple morpheme combinations. In this case, relying solely on a transcribing machine is insufficient to resolve the ambiguity, and context is needed.
+
+Other Applications (brief introduction)
+---------------------------------------
+
+*   FST without a lexicon, PORTER stemmer: Implementing cascading rewriting rules with FST to extract the stems of words.
+*   Tokenization and sentence segmentation: A simple English tokenizer can be implemented based on regular expressions, and a simple Chinese tokenizer can be implemented using maxmatch (a greedy search algorithm based on maximum length matching).
+*   Spelling Check and Correction: The FST using projection operations can complete the detection of non-word errors, and then correction based on the minimum edit distance (implemented using dynamic programming algorithms) can be performed. Normal word error detection and correction require the assistance of N-gram language models.
+
+How Humans Perform Morphological Processing
+-------------------------------------------
+
+*   The study indicates that the human mental lexicon stores a portion of morphological structures, while other structures are not combined in the mental lexicon and require separate extraction and combination. The study elucidates two issues:
+    *   Productive morphological forms, particularly inflectional changes, play a role in the human mental lexicon, and the phonological lexicon and the orthographic lexicon may have the same structure.
+    *   For example, many properties of morphology, a language processing field, can be applied to the understanding and generation of language.
+
+Chapter 4: N-gram Grammar
+=========================
+
+*   Language models are statistical models of word sequences, and the N-gram model is one of them. It predicts the Nth word based on the previous N-1 words, and such conditional probabilities can constitute the joint probability of the entire word sequence (sentence).
+
+Count words in a corpus
+-----------------------
+
+*   Difference: Word type, or vocabulary size V, represents the number of different words in the corpus, while tokens, without duplicates, represent the size of the corpus. Some studies suggest that the dictionary size should not be less than the square root of the number of tokens. Non-smooth N-gram grammar model
+    
+*   Task: Infer the probability of the next word based on previous words: $P(w|h)$ , and calculate the probability of the entire sentence: $P(W)$ .
+    
+*   The simplest approach is to use the classical probability model, counting the number of occurrences of the segment composed of historical h and current word w in the corpus, and dividing it by the number of occurrences of the historical h segment in the corpus. The probability of the sentence is also generated using a similar method. Drawback: It depends on a large corpus, and the language itself is variable, making the calculation too strict.
+    
+*   Next, the N-gram grammar model is introduced. Firstly, through the chain rule of probability, the relationship between the conditional probability $P(w|h)$ and the joint probability of the entire sentence $P(W)$ can be obtained:
+    
+    $$
+    P(w_1^n) = P(w_1)P(w_2|w_1)P(w_3|w_1^2)...P(w_n|w_1^{n-1}) \\
+    = \prod _{k=1}^n P(w_k|w_1^{k-1}) \\
+    $$
+    
+*   N-gram grammar model relaxes the constraints on conditional probability, making a Markov assumption: the probability of each word is only related to the previous N-1 words, for example, in the bigram grammar model, it is only related to the previous word, using this conditional probability to approximate $P(w|h)$
+    
+    $$
+    P(w_n|w_1^{n-1}) \approx P(w_n|w_{n-1}) \\
+    $$
+    
+*   The conditional probability in the N-gram model is estimated using maximum likelihood, counting the occurrences of various N-gram patterns in the statistical corpus and normalizing them, with a simplification being that, for example, in the case of bigram grammar, the total number of bigrams starting with a given word must equal the count of the unigram of that word:
+    
+    $$
+    P(w_n|w_{n-1}) = \frac {C(w_{n-1}w_n)}{C(w_{n-1})} \\
+    $$
+    
+*   After using N-gram grammar, the chain decomposition of sentence probability becomes easy to calculate, and we can determine whether a sentence contains misspellings by calculating the probabilities of various sentences, or calculate the likelihood of certain sentences appearing in a given context, because N-gram grammar can capture some linguistic features or some usage habits. When there is sufficient corpus, we can use the trigram grammar model to achieve better results.
+    
+
+Training set and test set
+-------------------------
+
+*   The N-gram grammar model is highly sensitive to the training set. The larger the N in N-gram grammar, the more contextual information it depends on, and the smoother the sentences generated by the N-gram grammar model become. However, they may not be "too smooth" because the N-gram probability matrix is very large and sparse, especially in the case of N being large, such as in a four-gram, where once the first word is generated, the available choices are very few. After generating the second word, the choices become even fewer, often only one choice, resulting in a sentence that is identical to one in the original text with a certain four-gram. Over-reliance on the training set will degrade the model's generalization ability. Therefore, the training set and test set we choose should come from the same subfield.
+*   Sometimes, there may be words in the test set that are not present in the training set dictionary, i.e., out-of-vocabulary (OOV) words. In open dictionary systems, we first fix the size of the dictionary and replace all OOV words with special symbols before training.
+
+Evaluation of N-gram Grammar Models: Perplexity
+-----------------------------------------------
+
+*   The evaluation of models is divided into two types: external evaluation and internal evaluation. External evaluation is an end-to-end evaluation that examines whether the improvement of a certain module has improved the overall effectiveness of the model. The purpose of internal evaluation is to quickly measure the potential improvement effect of the module. The potential improvement effect of the internal evaluation does not necessarily lead to an increase in the end-to-end external evaluation, but generally, there is some positive correlation between the two.
+    
+*   Perplexity (PP) is an intrinsic evaluation method for probabilistic models. The perplexity of a language model on a test set is a function of the probabilities assigned by the language model to the test set. Taking binary grammar as an example, the perplexity on the test set is:
+    
+    $$
+    PP(W) = \sqrt[n]{\prod _{i=1}^N \frac {1}{P(w_i|w_{i-1})}} \\
+    $$
+    
+*   The higher the probability, the lower the perplexity. Two interpretations of perplexity:
+    
+    *   Weighted average branching factor: The branching factor refers to the number of words that can follow any preceding text. It is obvious that if our model has learned nothing, any word in the test set can follow any preceding text, resulting in a high branching factor and high perplexity; conversely, if our model has learned specific rules, words are restricted to follow some specified preceding texts, and the perplexity decreases. Perplexity uses probability-weighted branching factor, and the size of the branching factor remains unchanged before and after the model learns, so "morning" can still follow any preceding text, but the probability of it following "good" increases, thus it is a weighted branching factor.
+        
+    *   Entropy: For a language sequence, we define the entropy of a sequence as: 
+        $$
+        H(w_1,w_2,…,w_n )=-\sum _{W_1^n \in L} p(W_1^n) \log ⁡p(W_1^n)
+        $$
+         which is the sum of the entropies of all prefix sub-sequences within this sequence, and its mean is the entropy rate of the sequence. To calculate the entropy of the entire language, assuming the language is a stochastic process that generates word sequences, with the word sequence being infinitely long, then its entropy rate is: 
+        $$
+        H(L)=\lim _{n \rightarrow \infty}⁡ \frac 1n H(w_1,w_2,…,w_n) =\lim _{n \rightarrow \infty} -⁡\frac 1n \sum _{W \in L} p(W_1^n)  \log ⁡p(W_1^n)
+        $$
+         According to the Shannon-McMillan-Breiman theorem, as n approaches infinity, if the language is both stationary and regular, the entropy of the sum of these substrings can be replaced by the maximum substring, where the replacement refers to the probability of the maximum substring calculated after the log, while the probability before the log remains the probability of each substring? If so, the logarithm of the probability of the maximum substring is proposed, and the sum of probabilities of all sub-strings is obtained: 
+        $$
+        H(L)=\lim _{n \rightarrow \infty} -⁡ \frac 1n \log ⁡p(w_1,w_2,…,w_n)
+        $$
+         Cross-entropy can measure the distance between the probability distribution generated by our model and the specified probability distribution, and we hope that the probability distribution generated by the model is as close as possible to the true distribution, i.e., the cross-entropy is small. Specifically, it measures the cross-entropy of the probabilities of generating the same language sequence by the model m trained and the ideal model p: 
+        $$
+        H(p,m) = \lim _{n \rightarrow \infty}⁡ - \frac 1n \sum _{W \in L} p(W_1^n) \log⁡ m(W_1^n)
+        $$
+         However, we do not know the ideal distribution p. At this point, according to the previous Shannon-McMillan-Breiman theorem, we obtain the cross-entropy of a sequence that only contains one probability distribution (?): 
+        $$
+        H(p,m)=\lim _{n \rightarrow \infty}⁡ - \frac 1n \log⁡ m(W_1^n)
+        $$
+         On the test data, since we do not have infinitely long sequences, we approximate the cross-entropy of the infinitely long sequence using the cross-entropy of finite-length sequences. Perplexity is the exponential operation of this (approximate? Only containing one probability distribution?) cross-entropy:
+        
+        $$
+        Perplexity(W) = 2^{H(W)} \\
+        = P(w_1 w_2 ... w_N)^{\frac {-1}{N}} \\
+        = \sqrt[n]{\frac {1}{P(w_1 w_2 ... w_N)}} \\
+        = \sqrt[n]{\prod _{i=1}^N \frac {1}{P(w_i | w_1 ... w_{i-1})}} \\
+        $$
+        
+
+Smooth
+------
+
+*   Because the N-gram model depends on corpus, generally speaking, the higher the N in the N-gram model, the sparser the data provided by the corpus. In this case, the N-gram model performs poorly in estimating grammatical counts that are very small, and if a sentence in the test set contains an N-gram that did not appear in the training set, we cannot use perplexity for evaluation. Therefore, we use smoothing as an improvement method to make the maximum likelihood estimation of the N-gram model adaptable to these situations with 0 probability.
+*   Next, two types of smoothing are introduced:
+    *   Laplace smoothing (add 1 smoothing)
+    *   Good-Turing discounting method
+
+### Laplace Smoothing
+
+*   Add 1 smoothing is to add 1 to each count before calculating probability normalization, correspondingly, the denominator in normalization is increased by the size of the dictionary:
+    
+    $$
+    P_{Laplace}(w_i) = \frac {c_i + 1}{N+V} \\
+    $$
+    
+*   To demonstrate the effect of smoothing, an adjusted count $c^{*}$ is introduced, and the smoothed probability is written in the same form as before the smoothing:
+    
+    $$
+    P_{Laplace} (w_i) = \frac {(C_i^{*})}{N} \\
+    C_i^{*} = \frac {(C_i+1)N}{(N+V)} \\
+    $$
+    
+*   An approach to viewing smoothness is: discount each non-zero count, allocate some probability to the zero count, and define relative discount $d_c$ (defined on non-zero counts)
+    
+    $$
+    d_c = \frac {c^{*}} {c}
+    $$
+    
+*   The change in word count before and after the discount is represented by $d_c$ . After smoothing, for non-zero counts, the count increases when $C_i < \frac NV$ , otherwise it decreases. The higher the count, the greater the discount, with less increase (more decrease). When there are many zero counts, N/V is smaller, and in this case, most non-zero counts will decrease, and by a larger amount.
+    
+*   And the 0 count was not affected by the discount. Therefore, after a round of growth at different levels, the normalized result is that the non-zero counts shared some probability with the 0 count. Written in the form of adjusted counts, it means that the non-zero counts decrease in value, and the 0 count changes (usually decreases) in value (but not the decrease is equal to the increase). The book provides an example, and the figure below shows the counts after binary grammar smoothing of a part of the corpus: ![FoZNDg.png](https://s2.ax1x.com/2019/01/03/FoZNDg.png) If the table is written in the form of adjusted counts: ![FoZtKS.png](https://s2.ax1x.com/2019/01/03/FoZtKS.png) 
+    
+*   It can be seen that the original 0 count (blue) increases from 0, while others decrease, for example, "<i>" decreases from 827 to 527, from 608 to 238.</i>
+    
+*   When the count of 0s is many, the reduction in the count of non-0s is significant, and a decimal less than 1, $\delta$ , can be used in place of 1, i.e., adding $\delta$ for smoothing. Typically, this $\delta$ varies dynamically.
+    
+
+### GT Discounting Method
+
+*   Similar to the Good-Turing discounting method, the Witten-Bell discounting method, and the Kneyser-Ney smoothing method, their basic motivation is to estimate the count of never-seen items using the count of items that appear only once. Items that appear only once are called singletons or hapax legomena. The Good-Turing discounting method uses the frequency of singletons to estimate the 0-count bigram.
+    
+*   Define N\_c as the total number of N-gram grammars that appear c times (not the total number multiplied by c), and call it the frequency c frequency. The maximum likelihood estimate of c in N\_c is c. This is equivalent to dividing the N-gram grammar into multiple buckets according to their frequency of occurrence, and the GT discounting method uses the maximum likelihood estimate of the probability of the grammar in the c+1 bucket to reestimate the probability of the grammar in the c bucket. Therefore, after the GT estimation, the c obtained from the maximum likelihood estimate is replaced with:
+    
+    $$
+    c^{*}=(c+1) \frac {N_{c+1}}{N_c}
+    $$
+    
+*   After calculating the probability of a certain N-gram:
+    
+    *   Never appeared: $P_{GT}^{*}=\frac{N_1}{N}$ . Here, N represents the total number of N-gram grammars $(\sum _i N_i * i)$ . Assuming that $N_0$ is known, this expression indicates that when calculating the probability of a specific unknown N-gram grammar, it should also be divided by $N_0$ .
+    *   $P_{GT}^{*} = \frac{c^{*}}{N}$ has appeared (known count):
+*   Thus calculated, some probabilities of $N_1$ are transferred to $N_0$ . The GT discounting method assumes that all N-gram probability distributions satisfy the binomial distribution, and assumes that we know $N_0$ , taking the bigram grammar as an example:
+    
+    $$
+    N_0 = V^2 - \sum _{i>0} N_i \\
+    $$
+    
+*   Other considerations:
+    
+    *   Some $N_c$ are 0, in which case we cannot use these $N_c$ to calculate the smoothed c. In this situation, we directly abandon smoothing, let $c^{*} = c$ , and then calculate a logarithmic linear mapping, $log⁡(N_c) = a + b \log(c)$ , based on the normal data. Substitute the abandoned smoothing c and use its inverse to calculate the $N_c$ with a count of 0, so that these $N_c$ have values and do not affect the calculation of higher-order c.
+        
+    *   Smooth only the smaller c's $N_c$ , consider the larger c's $N_c$ sufficiently reliable, set a threshold k, and calculate the $N_c$ of $c < k$
+        
+        $$
+        c^{*} = \frac {(c+1) \frac {N_c+1}{N_c} - c \frac {(k+1) N_{k+1} }{N_1} } {1- \frac {(k+1)N_{k+1}} {N_1}} \\
+        $$
+        
+    *   When calculating for smaller c such as c=1, also treat it as the case of c=0 for smoothing
+        
+*   An example: ![FoZGgf.png](https://s2.ax1x.com/2019/01/03/FoZGgf.png) 
+    
+
+Interpolation and Regression
+----------------------------
+
+*   The above smoothing only considers how to transfer probabilities to grammatical units with a count of 0. For conditional probability $p(w|h)$ , we can also adopt a similar idea: if there is no ternary grammar to help calculate $p(w_n |w_{n-1} w_{n-2})$ , then a grammar with a lower order, $p(w_n |w_{n-1})$ , can be used to assist in the calculation. There are two options:
+    *   Regression: High-order grammar alternative to the 0-count of low-order grammar
+    *   Interpolation: Weighted estimation of higher-order grammar using lower-order grammar
+*   In the Katz back-off, we use GT discounting as part of the method: GT discounting tells us how much probability can be extracted from the known grammar, while Katz back-off tells us how to distribute these extracted probabilities to the unknown grammar. In the previous GT discounting method, we distributed the extracted probabilities evenly among each unknown grammar, while Katz back-off relies on the information of low-order grammar to distribute: ![FoZJv8.png](https://s2.ax1x.com/2019/01/03/FoZJv8.png) 
+*   The probability obtained after the discount is denoted as $P^{*}$ ; \\alpha is the normalization coefficient, ensuring that the probability allocated is equal to the probability obtained from the unknown grammar allocation.
+*   Interpolation is obtained by weighted summation using low-order grammatical probabilities to derive the unknown high-order grammatical probabilities: ![FoZUbQ.png](https://s2.ax1x.com/2019/01/03/FoZUbQ.png) 
+*   The weighted coefficients can also be dynamically calculated through context. There are two methods for calculating specific coefficients:
+    *   Attempt various coefficient combinations, using the one that performs best on the validation set
+    *   Viewing coefficients as latent variables in a probabilistic generative model and inferring them using the EM algorithm
+
+Actual Issue: Tools and Data Formats
+------------------------------------
+
+*   In language model computation, logarithms of probabilities are generally used for calculation, for two reasons: to prevent numerical underflow; and because taking logarithms converts multiplicative accumulation into additive accumulation, thereby speeding up the computation.
+*   The N-gram grammar model generally uses ARPA format. ARPA format files consist of some header information and lists of various N-gram grammars, which include all grammars, probabilities, and normalized coefficients for the N-gram grammars. Only low-order grammars that can be called high-order grammar prefixes can be utilized in the backoff and have normalized coefficients.
+*   Two toolkits for calculating N-gram grammar models: SRILM toolkit and Cambridge-CMU toolkit
+
+Advanced Issues in Language Modeling
+------------------------------------
+
+### Advanced Smoothing Method: Kneser-Ney Smoothing
+
+*   Noticing that in the GT discounting method, the estimated c value after discounting is approximately one constant d more than the c value obtained from maximum likelihood estimation. The absolute discounting method takes this into account, subtracting this d from each count: ![FoZwUs.png](https://s2.ax1x.com/2019/01/03/FoZwUs.png) 
+*   Kneser-Ney smoothing incorporates this perspective and also considers continuity: words that appear in different contexts are more likely to appear after new contexts, and when backtracking, we should prioritize such words that appear in multiple context environments rather than those that occur frequently but only in specific contexts. ![FoZdEj.png](https://s2.ax1x.com/2019/01/03/FoZdEj.png) 
+*   In Kneser-Ney, the interpolation method can achieve better results than the back-off method: ![FoZ05n.png](https://s2.ax1x.com/2019/01/03/FoZ05n.png) 
+
+### Based on Categorization N-gram Grammar
+
+*   This method is designed to address the sparsity of training data. For example, in IBM clustering, each word can only belong to one category; for instance, in the case of bigram grammar, the calculation of the conditional probability of a bigram grammar becomes the conditional probability of a word given the category of the preceding context, which can also be further decomposed into the conditional probabilities of two categories multiplied by the conditional probability of a word given its category.
+    
+    $$
+    p(w_i│w_{i-1} ) \approx p(w_i│c_{i-1} ) = p(c_i |c_{i-1}) \cdot p(w_i |c_i)
+    $$
+    
+
+### Language Model Adaptation and Network Applications
+
+*   Adaptation refers to training language models on large, broad corpora and further improving them on language models in small, specialized domains. The web is an important source of large corpora. In practical applications, it is impossible to search for every grammar and count all grammatical occurrences on all pages retrieved. We use the number of pages retrieved to approximate the count.
+
+### Utilizing longer-distance contextual information
+
+* Usually we use bigram and trigram grammar models, but larger N can also be used to capture more contextual information. To capture longer-distance contextual information, there are several methods:
+    *   N-gram Model Based on Caching Mechanism
+    *   Based on topic modeling, a N-gram grammar model is applied to different topic modeling language models, followed by weighted summation
+    *   Not necessarily using adjacent context information, such as skip N-grams, or not necessarily using fixed-length context information, such as variable-length N-grams
+
+Chapter 16: The Complexity of Language
+======================================
+
+Chomsky hierarchy
+-----------------
+
+*   Chomsky's hierarchy reflects the implicational relationships between grammars described by different formalization methods, with stronger generative capacity or more complex grammars on the outer layers. From the outside to the inside, the constraints added to the rewrite grammar rules increase, and the generative capacity of the language gradually diminishes. ![FoZXad.png](https://s2.ax1x.com/2019/01/03/FoZXad.png) 
+*   Five grammatical rules and application examples corresponding to each: ![Foepxf.png](https://s2.ax1x.com/2019/01/03/Foepxf.png) 
+    *   0-type grammar: By rule, there is only one restriction, that is, the left-hand side of the rule cannot be an empty string. 0-type grammar characterizes recursively enumerable languages.
+    *   Context-related grammar: The non-terminal symbol A between the contexts \\alpha and \\beta can be rewritten as any non-empty symbol string
+    *   Temperate context-related grammar
+    *   Context-free grammar: Any single non-terminal symbol can be rewritten as a string consisting of terminal and non-terminal symbols, or it can be rewritten as an empty string
+    *   Regular Grammar: It can be right-linear or left-linear. Taking right-linear as an example, a non-terminal symbol can be rewritten as another non-terminal symbol with several terminal symbols added to the left, and right-linear continuously generates terminal symbols on the left side of the string.
+
+Is Natural Language Regular
+---------------------------
+
+*   The ability to determine whether a language is regular allows us to understand which level of grammar should be used to describe a language, and this question can help us understand certain formal characteristics of different aspects of natural language.
+*   P pumping lemma: Used to prove that a language is not a regular language.
+    *   If a language can be described by a finite state automaton, there corresponds to the automaton a memory constraint quantity. This constraint quantity does not increase significantly for different symbol strings, as the number of states is fixed; longer symbol strings should be produced through transitions between states rather than by increasing the number of states. Therefore, this memory quantity does not necessarily scale proportionally with the length of the input.
+    *   If a regular language can describe arbitrarily long symbol sequences, more than the number of states in an automaton, then there must be cycles in the automaton. ![FoZxPI.png](https://s2.ax1x.com/2019/01/03/FoZxPI.png) 
+*   As shown in the figure of the automaton, it can express xyz, xyyz, xyyyz ..., of course, the infinitely long y sequence in the middle can also be "sucked out," expressing xz. The principle of suction is described as follows:
+*   Let L be a finite regular language, then there exist symbol strings x, y, z such that for any n ≥ 0, y ≠ $\epsilon$ , and xy^n z ∈ L
+*   If a language is regular, there exists a string y that can be appropriately "absorbed." This theorem is a necessary but not sufficient condition for a language to be regular.
+*   Some scholars have proven that English is not a regular language:
+    *   Sentences with mirror properties can be proven not to be regular languages through the principle of suction, and a special subset in English is isomorphic to such sentences with mirror properties.
+    *   Another proof is based on certain sentences with a central-nested structure. Such sentences can be obtained by the intersection of English and a certain type of simple regular expression, and it can be shown by the pumping lemma that these sentences are not regular languages. If the intersection of English and regular languages is not a regular language, then English is not a regular language.
+
+Is natural language context-free
+--------------------------------
+
+*   Since natural language is not a regular language, we then consider a more lenient constraint: is natural language context-free?
+*   Not...
+
+Computational Complexity and Human Language Processing
+------------------------------------------------------
+
+*   People find it difficult to process centrally nested sentences because the stack memory used in analysis is limited, and memories at different levels in the stack are prone to confusion.
+
+Chapter 5: Part-of-Speech Tagging
+=================================
+
+*   Various expressions: POS (Part of Speech), word classes, morphological classes, lexical tags.
+*   The significance of POS lies in:
+    *   A wealth of information about words and their contexts can be provided.
+    *   The same word has different pronunciations under different parts of speech, so POS can also provide information for speech processing.
+    *   Perform stemming, assist information retrieval
+*   This chapter introduces three word tagging algorithms:
+    *   Rule-based algorithm
+    *   Probabilistic algorithms, Hidden Markov Models
+    *   Algorithm Based on Transformation
+
+General Word Classes
+--------------------
+
+*   POS is divided into closed sets and open sets, with closed sets being relatively stable, such as prepositions, while the words in open sets are continuously dynamically expanded, such as nouns and verbs. The open sets of a specific speaker or a specific corpus may differ, but all speakers of a language and various large-scale corpora may share the same closed set. The words in closed sets are called function words (functional words, function words), which are grammatical words, generally short, and have a high frequency of occurrence.
+*   Four open classes: nouns, verbs, adjectives, adverbs.
+*   Nouns are defined functionally rather than semantically, therefore nouns generally represent people, places, and things, but neither sufficiently nor necessarily. Define nouns:
+    *   With the appearance of determiners
+    *   Can the subject be modified by pronouns
+    *   词以复数形式出现（即可数名词），物质名词不可数。单数可数名词出现时不能没有冠词
+*   Verb, a word indicating action and process, including the forms of third-person singular, non-third-person singular, present continuous, and past participle
+*   Adjectives, describing nature and quality
+*   Adverb, used for modification; adverbs can modify verbs, verb phrases, and other adverbs.
+*   Some closed classes in English:
+    *   Prepositions: Appear before noun phrases, indicating relationships
+    *   Determiners: related to definiteness Articles: related to definiteness
+    *   Pronouns: A brief form of reference to certain noun phrases, entities, or events
+    *   Conjunctions: Used for connection and complementation (complementation)
+    *   Auxiliary verbs: Mark certain semantic features of the main verb, including: tense, perfective aspect, polarity opposition, modality
+    *   Particles: Combine with verbs to form phrasal verbs
+    *   Numerals
+
+Word tagging
+------------
+
+*   The input of annotation algorithms is a sequence of word symbols and a set of tags, and the output requires each word to be annotated with a single and optimal tag. If each word corresponds to only one part of speech, then according to the existing set of tags, part-of-speech tagging is a simple process of lookup and labeling. However, many words have multiple parts of speech, such as "book," which can be both a noun and a verb, thus requiring disambiguation. Part-of-speech tagging is an important aspect of disambiguation.
+
+Rule-based Part-of-Speech Tagging
+---------------------------------
+
+*   Presented the ENGTWOL system, constructed based on a double-layered morphology, establishing separate entries for each word type, and calculating without considering inflectional and derivative forms.
+*   The first stage of the annotation algorithm involves using a two-layer transducer to obtain all possible word categories for a given word
+*   Afterward, incorrect word classes are excluded by applying constraint rules, which determine which word classes to exclude based on the type of context.
+
+Word Classification Based on Hidden Markov Models
+-------------------------------------------------
+
+*   Using Hidden Markov Models for word segmentation is a type of Bayesian inference, where word segmentation is viewed as a sequence classification task. The observation is a word sequence (such as a sentence), and the task is to assign a labeling sequence to this sequence.
+    
+*   Given a sentence, Bayesian inference aims to select the best sequence among all possible annotated sequences, that is
+    
+    $$
+    {t_1^n} _{best} = {argmax} _{t_1^n}  P(t_1^n |w_1^n)
+    $$
+    
+*   Using Bayes' theorem, it can be transformed into:
+    
+    $$
+    {t_1^n} _{best}={argmax} _{t_1^n}  \frac{P(w_1^n│t_1^n)P(t_1^n)}{P(w_1^n)} = {argmax} _{t_1^n} P(w_1^n│t_1^n)P(t_1^n)
+    $$
+    
+*   The Hidden Markov Model makes two assumptions on this basis
+    
+    *   The probability of a word's occurrence is only related to the word's part-of-speech tagging, and is unrelated to other words in the context or other tags, thus decomposing the joint probability of the sequence into the product of element probabilities, i.e., P(w\_1^n│t\_1^n) ≈ ∏\_{i=1}^n P(w\_i |t\_i)
+    *   A labeled probability is only related to the previous label, similar to the assumption of binary grammar: P(t\_1^n) ≈ ∏\_{i=1}^n P(t\_i |t\_{i-1})
+*   Under two assumptions, the best annotated sequence expression after simplification is:
+    
+    $$
+    {t_1^n}_{best} = {argmax} _{t_1^n} P(t_1^n│w_1^n) \approx {argmax} _{t_1^n} \prod _{i=1}^n P(w_i│t_i) P(t_i |t_{i-1})
+    $$
+    
+*   The above probability expression actually decomposes the joint probability of the HMM model into the product of individual transition probabilities, specifically into label transition probabilities (transitions between hidden variables) and word likelihood (transitions from hidden variables to observable variables). Through maximum likelihood estimation, we can calculate these two types of probabilities using the classical probability type method from the annotated corpus:
+    
+    $$
+    P(t_i│t _{i-1} ) = (C(t _{i-1},t_i))/C(t _{i-1} ) \\
+    P(w_i│t_i ) = \frac{C(t_i,w_i)}{C(t_i)} \\
+    $$
+    
+*   An example: How the HMM model correctly identifies "race" as a verb rather than a noun in the following sentence:
+    
+*   The Secretariat is expected to race tomorrow.
+    
+*   Sketch the HMM models for the two cases where "race" is identified as both a verb and a noun, and you can see that only three transition probabilities differ between the two models, which are marked with bold lines: ![FoZDCq.png](https://s2.ax1x.com/2019/01/03/FoZDCq.png) 
+    
+*   The HMM word sense disambiguator operates in a global rather than a local manner. We obtain these three transition probabilities by counting in the corpus and then multiplying them together, resulting in the probability of (a) being 843 times that of (b). It is obvious that "race" should be tagged as a verb.
+    
+
+Formalized Hidden Markov Model Annotator
+----------------------------------------
+
+*   HMM model is an extension of finite automata, specifically a weighted finite automaton, an extension of Markov chains, which allows us to consider observed variables and hidden variables, and consider probabilistic models that include hidden variables. The HMM includes the following components:
+    
+    *   State set of size N
+    *   A: A transfer probability matrix of size N\*N
+    *   Observation event set of size T
+    *   B: The observation likelihood sequence, also known as emission probability, $b_i (o_t)$ describes the probability of generating observation o\_t from state i
+    *   Special initial and final states, without connected observation quantities
+*   The probability in A corresponds to the prior $P(w_i│t_i )$ and likelihood $P(t_i |t _{i-1})$ probabilities in each cumulative product term of the previous formula:
+    
+    $$
+    {t_1^n}_{best}={argmax} _{t_1^n} P(t_1^n│w_1^n ) \approx {argmax} _{t_1^n} \prod _{i=1}^n P(w_i│t_i)P(t_i |t _{i-1})
+    $$
+    
+
+Hidden Markov Model (HMM) Viterbi Algorithm
+-------------------------------------------
+
+*   In the HMM model, the task of inferring the hidden variables given the transition probabilities and the observation sequence is called decoding. One algorithm for decoding is the Viterbi algorithm, which is essentially a dynamic programming algorithm, similar to the algorithm previously used to find the minimum edit distance.
+*   First, we calculate two matrices A and B from the corpus, that is, the transition probabilities of the model are known. For a given observation sequence, the Viterbi algorithm is executed according to the following steps: ![FoZyvT.png](https://s2.ax1x.com/2019/01/03/FoZyvT.png) 
+*   The algorithm maintains a Viterbi probability matrix $(N+2)*T$ with 2 representing the initial and final states. Viterbi\[s,t\] represents the best path probability at state s in step t, while backpointer\[s,t\] corresponds to the previous state that led to the best path, used for backtracking to output the entire best path.
+*   The key transition lies in $viterbi[s,t] \leftarrow max _{s^{*}=1}^N⁡ viterbi[s^{*},t-1] * a_{s^{*},s} * b_s (o_t)$ that the optimal path at the current time step is transferred from the optimal paths of various states in the previous time step. The path with the maximum product of the probability of the optimal path in the previous step and the transition probability is chosen as the optimal path at the current time step. From the perspective of dynamic programming, the optimal path of length t must be selected from the optimal paths of length t-1, otherwise, it is certain that a better solution can be obtained by transferring from another path with a higher probability. This limits the possibilities of generating the optimal path and reduces the computational amount.
+
+Extending the HMM algorithm to trigram grammar
+----------------------------------------------
+
+*   Modern HMM annotators generally consider a longer history of the preceding context in the annotation of transition probabilities:
+    
+    $$
+    P(t_1^n ) \approx \prod_{i=1}^n P(t_i |t _{i-1},t_{i-2})
+    $$
+    
+*   Such a case requires boundary handling at the beginning and end of the sequence. One issue with using trigram grammar is data sparsity: for example, if we have never seen the annotated sequence PRP VB TO in the training set, we cannot compute P(TO|PRP,VB). One solution is linear interpolation:
+    
+    $$
+    P(t_i│t _{i-1} t _{i-2} ) = \lambda _1 P ̂(t_i│t _{i-1} t _{i-2} )+\lambda _2 P ̂(t_i│t _{i-1} )+\lambda _3 P ̂(t_i)
+    $$
+    
+*   Determine the coefficient $\lambda$ using the method of deletion interpolation: ![FoZr80.png](https://s2.ax1x.com/2019/01/03/FoZr80.png) 
+    
+
+Transformation-Based Annotation
+-------------------------------
+
+*   The method based on transformation combines the advantages of rule-based and probabilistic methods. The method based on transformation still requires rules, but it summarizes rules from the data, which is a supervised learning approach known as Transformation Based Learning (TBL). In the TBL algorithm, the corpus is first annotated with relatively broad rules, then slightly special rules are selected to modify, followed by narrower rules to modify a smaller number of annotations.
+
+How to Apply the TBL Rules
+--------------------------
+
+*   Firstly, the most general rule is applied, which is to annotate each word based on probability and select the word class with the highest probability as the annotation. Then, transformation rules are applied, meaning that if a certain condition is met, the previously annotated word class is transformed (corrected) into the correct word class. Subsequently, more stringent transformations are continuously applied, making minor modifications based on the previous transformation.
+*   How to Learn the TBL Rules
+    *   First, label each word with the most probable tag
+    *   Examine each possible transformation, select the transformation that yields the greatest improvement in effect, and here it is necessary to use the correct label for each word to measure the improvement brought by the transformation, therefore it is supervised learning.
+    *   According to this selected transformation, re-label the data, repeat step 2 until convergence (the improvement effect is less than a certain threshold)
+*   The output of the above process is a sequence of ordered transformations, used to form a labeling process and applied to new corpus. Although all rules can be enumerated, the complexity is too high, so we need to limit the size of the transformation set. The solution is to design a small set of templates (abstract transformations), where each allowed transformation is an instantiation of one of the templates.
+
+Evaluation and Error Analysis
+-----------------------------
+
+*   Generally, it is divided into training set, validation set, and test set, with ten-fold cross-validation performed within the training set.
+*   Comparing the computational accuracy with the gold standard of human annotation as a measure.
+*   The general human performance is used as a ceiling, and the result with the highest probability marked by the one-way grammar is used as the baseline.
+*   Through confusion matrices or contingency tables to conduct error analysis. In an N-classification task, the element in the ith row and jth column of an N\*N confusion matrix indicates the proportion of times that the ith class is mistakenly classified as the jth class out of the total number of misclassifications. Some common word types that are easy to misclassify include:
+    *   Single nouns, proper nouns, adjectives
+    *   Adverbs, particles, prepositions
+    *   Verb past tense, verb past participle, adjective
+
+Some other issues in part-of-speech tagging
+-------------------------------------------
+
+*   Labeling uncertainty: A word has ambiguity between multiple parts of speech, which is difficult to distinguish. In this case, some annotators allow a word to be labeled with multiple part-of-speech tags. During training and testing, there are three methods to address the issue of multi-labeled words:
+    *   Select a label from these candidate labels in some way
+    *   Specify a word type during training, and consider the annotation correct as long as any of the candidate word types are marked during testing
+    *   View the entire set of uncertain parts of speech as a new complex part of speech
+*   Multicomponent words: Before annotation, segmentation is required. Whether some multicomponent words should be segmented into one part, such as whether "New York City" should be divided into three parts or treated as a whole, is also a consideration for various annotation systems.
+*   Unknown word: Words not found in dictionaries are called unknown words. For unknown words, the training set cannot provide its likelihood P(w\_i | t\_i), which can be addressed in the following ways:
+    *   Predicting POS based solely on contextual information
+    *   Estimating the distribution of unknown words using words that appear only once, similar to the Good Turing discounting method
+    *   Utilizing spelling information of words with unknown words, morphological information. For example, hyphenation, ed endings, capitalized initials, etc. Subsequently, calculate the likelihood of each feature in the training set, assuming independence among features, and then multiply the likelihoods of features as the likelihood of the unknown word: $P(w_i│t_i )=p(unknown word│t_i ) * p(capital│t_i ) * p(endings/hyph|t_i)$
+    *   Maximum Entropy Markov Model
+    *   Utilizing the log-linear model
+
+Noise Channel Model
+-------------------
+
+*   Bayesian inference is used for annotation, which can be considered an application of a noise channel model. This section introduces how to use the noise channel model to complete the task of spelling correction. Previously, non-word errors could be detected through dictionary lookup and corrected based on the minimum edit distance, but this method is ineffective for real word errors. The noise channel model can correct both types of spelling errors.
+*   The motivation of the noise channel model lies in treating a misspelled word as a correctly spelled word that has been distorted and interfered with after passing through a noise channel. We try all possible correct words, input them into the channel, and then compare the word after interference with the misspelled word; the input word that corresponds to the most similar example is considered the correct word. Such noise channel models, such as the previous HMM tagging model, are a special case of Bayesian inference. We observe a misspelled word and hope to find the latent variable (correctly spelled word) that generates this observation, which is to find the maximum a posteriori.
+*   Applying the noise channel model to spelling correction: First, assume various types of spelling errors, such as misspelling one, misspelling two, omitting one, etc., then generate all possible corrections, excluding those not existing in the dictionary, and finally, calculate the posterior probabilities separately, selecting the correction with the highest posterior probability. In this process, likelihood needs to be calculated based on local contextual features.
+*   Another correction algorithm is a method that improves through iteration: first, assume that the ambiguous matrix for spelling correction is uniformly distributed, then run the correction algorithm based on the ambiguous matrix, and update the ambiguous matrix according to the corrected dataset, repeating the iteration. This iterative algorithm is an EM algorithm.
+
+Contextual spelling correction
+------------------------------
+
+*   Correction of actual word spelling errors. To address such tasks, it is necessary to extend the noise channel model: when generating candidate correction words, the word itself and homophones should be included. Subsequently, the correct correction word is selected based on the maximum likelihood of the entire sentence.
+
+Chapter 6: Hidden Markov Models and Maximum Entropy Models
+==========================================================
+
+*   Hidden Markov Model is used to solve sequence labeling (sequence classification problem).
+*   The maximum entropy method is a classification idea that, under given conditions, the classification should satisfy the minimum restrictions (maximum entropy) and comply with Ockham's Razor principle.
+*   The maximum entropy Markov model is an extension of the maximum entropy method to sequence labeling tasks.
+
+Markov Chain
+------------
+
+*   Weighted finite automata are an extension of finite automata, where each transition path is assigned a probability as a weight, indicating the possibility of transition along that path. A Markov chain is a special case of a weighted finite state automaton, where the input sequence uniquely determines the sequence of states the automaton will pass through. A Markov chain can only assign probabilities to deterministic sequences.
+    
+*   We regard the Markov chain as a probabilistic graph model; a Markov chain is determined by the following components:
+    
+    $$
+    Q=q_1 q_2…q_N \\
+    A=a_{01} a_{02} … a_{n1} … a_{nn} \\
+    q_0,q_F \\
+    $$
+    
+*   Respectively
+    
+    *   State Set
+    *   Transfer probability matrix, where a\_ij represents the probability of transitioning from state i to state j $P(q_j |q_i)$
+    *   Special starting and ending states
+*   Probability graphs represent states as points in a graph and transitions as edges.
+    
+*   First-order Markov models make a strong assumption about transitions: the probability of a state is only related to the previous state:
+    
+    $$
+    P(q_i│q_1…q _{i-1} )=P(q_i |q _{i-1})
+    $$
+    
+*   Another representation of Markov chains does not require a starting and ending state:
+    
+    $$
+    \pi = \pi _1,\pi _2 , … , \pi _N \\
+    QA={q_x,q_y…} \\
+    $$
+    
+*   Are:
+    
+    *   The initial probability distribution of the state, the Markov chain starts from state i with probability $\pi _i$
+    *   Set QA is a subset of Q, representing a legitimate acceptance state
+*   Therefore, the probability of state 1 as the initial state can be written as $a_{01}$ or as $\pi _1$ .
+    
+
+Hidden Markov Model
+-------------------
+
+*   When the Markov chain is known, we can use it to calculate the probability of an observed sequence. However, the observed sequence may depend on some unobserved hidden variables, and we may be interested in inferring these hidden variables. The Hidden Markov Model allows us to consider both observed variables and hidden variables simultaneously.
+*   As defined previously, the Hidden Markov Model:
+    *   State set of size N
+    *   A: A transfer probability matrix of size N\*N
+    *   Observation event set of size T
+    *   B: The observation likelihood sequence, also known as emission probability, $b_i (o_t)$ describes the probability of generating observation $o_t$
+    *   Special initial and final states, without connected observation quantities
+*   Similarly, the Hidden Markov Model can also be represented in a way that does not depend on the initial and final states. The Hidden Markov Model also makes two assumptions, namely the first-order Markov property between hidden states and from hidden states to observations.
+*   For Hidden Markov Models, three types of problems need to be addressed:
+    *   Likelihood Calculation: Given parameters and an observation sequence, calculate the likelihood $P(O|\lambda)$
+    *   Decoding: Given the known parameters and the observed sequence, to find the hidden state sequence
+    *   Learning: Solving model parameters given the observed sequence and the set of hidden states
+
+Computing Likelihood: Forward Algorithm
+---------------------------------------
+
+*   For the Markov chain, as it lacks a transition probability matrix from hidden states to observables, it can be considered as having observables and hidden states being the same. In the Hidden Markov Model, it is not possible to directly calculate the likelihood; we need to know the hidden state sequence.
+    
+*   Assuming the hidden state sequence is known, the likelihood calculation is:
+    
+    $$
+    P(O│Q) = \prod _{i=1}^T P(o_i |q_i)
+    $$
+    
+*   According to the first-order Markov property of hidden state transitions, the prior of the hidden state can be obtained, multiplied by the likelihood to obtain the joint probability of the observed sequence and the hidden state sequence:
+    
+    $$
+    P(O,Q)=P(O│Q) * P(Q) = \prod _{i=1}^n P(o_i│q_i )  \prod _{i=1}^n P(q_i |q _{i-1})
+    $$
+    
+*   For the joint probability integral over the hidden state sequence, the likelihood of the observed probability can be obtained:
+    
+    $$
+    P(O) = \sum _Q P(O,Q) = \sum _Q P(O|Q)P(Q)
+    $$
+    
+*   This calculation is equivalent to considering all possible hidden states and calculating the likelihood for each possibility from the start to the end of the hidden state sequence. In fact, it is possible to retain the intermediate states of each calculation to reduce redundant computation, which is known as dynamic programming. The dynamic programming algorithm used in the forward calculation of the HMM observation likelihood is called the forward algorithm:
+    
+    *   Let $\alpha _t (j)$ represent the probability that the latent variable is in state j at the current moment after obtaining the first t observations, with λ being the model parameter:
+        
+        $$
+        \alpha _t (j) = P(o_1,o_2…o_t,q_t=j|\lambda)
+        $$
+        
+    *   This probability value can be calculated based on the \\alpha value of the previous time step, thus avoiding recalculating from scratch each time:
+        
+        $$
+        \alpha _t (j) = \sum _{i=1}^N \alpha _{t-1} (i) a_{ij} b_j (o_t)
+        $$
+        
+    *   Initialization $\alpha _1 (j)$ :
+        
+        $$
+        \alpha _1 (j)=a_{0s} b_s (o_1)
+        $$
+        
+    *   Termination state:
+        
+        $$
+        P(O│\lambda) = \alpha _T (q_F) = \sum _{i=1}^N \alpha _T (i) \alpha _{iF}
+        $$
+        
+
+Decoding: Viterbi Algorithm
+---------------------------
+
+*   The decoding task is to infer the most likely hidden state sequence based on the observed sequence and parameters. The most naive approach is to calculate the likelihood of the observed sequence for each possible hidden state sequence and take the hidden state sequence corresponding to the maximum likelihood. However, this is just like the naive calculation of likelihood methods, with a high time complexity. Similarly, we use dynamic programming to reduce the scale of the solution. A Viterbi algorithm is used during decoding.
+    *   Let $v_t (j)$ represent the probability of the current latent state being j, given the known first t observations (1t) and the known first t-1 latent states (0t-1)
+        
+        $$
+        v_t (j)=max _{q_0,q_1,…,q_{t-1}} P(q_0,q_1…q_{t-1},o_1,o_2 … o_t,q_t=j|\lambda)
+        $$
+        
+    *   Among which, we have known the maximum possible hidden state sequence for the first t time steps, which is also obtained through dynamic programming:
+        
+        $$
+        v_t (j)=max _{i=1}^N⁡ v_{t-1} (i) a_{ij} b_j (o_t)
+        $$
+        
+    *   To obtain the optimal hidden state sequence, it is also necessary to record the best choice at each step for easy backtracking to obtain the path:
+        
+        $$
+        {bt}_t (j) = argmax _{i=1}^N v_{t-1} (i) a_{ij} b_j (o_t)
+        $$
+        
+    *   Initialization:
+        
+        $$
+        v_1 (j) = a_{0j} b_j (o_1) \ \  1 \leq j \leq N \\
+        {bt}_1 (j) = 0 \\
+        $$
+        
+    *   Termination, separately obtaining the optimal hidden state sequence (with the starting value for backtracking) and its likelihood value:
+        
+        $$
+        P * = v_t (q_F ) = max_{i=1}^N⁡ v_T (i) * a_{i,F} \\
+        q_{T*} = {bt}_T (q_F ) = argmax _{i=1}^N v_T (i) * a_{i,F} \\
+        $$
+        
+*   The reason the Viterbi algorithm reduces the time complexity is that it does not compute all the hidden state paths but utilizes the condition that the best path at each time step can only extend from the best path at the previous time step, thereby reducing the number of path candidates and avoiding many unnecessary path computations. Moreover, using the result from the previous step also employs the idea of dynamic programming to reduce the amount of computation.
+
+Training Hidden Markov Models: Forward-Backward Algorithm
+---------------------------------------------------------
+
+*   Learning problems refer to the situation where the known observed sequence and the set of hidden states are given, and the model parameters are to be solved for.
+    
+*   Forward-backward algorithms, also known as the Baum-Welch algorithm, are a special case of the EM algorithm used to estimate the parameters of probabilistic generative models containing latent variables. The algorithm updates the transition probabilities and generation probabilities iteratively until convergence. The BW algorithm uses the ratio of the counts as the latent variables, iteratively updating the transition probability matrix and the generation probability matrix together.
+    
+*   Consider the learning problem of Markov chains. Markov chains can be regarded as degenerate hidden Markov models, where each hidden variable generates only observations of itself, with a probability of 0 for generating other observations. Therefore, only the transition probabilities need to be learned.
+    
+*   For Markov chains, the transition probabilities can be statistically estimated through the classical probability model:
+    
+    $$
+    a_{ij} = \frac {Count(i \rightarrow j)} {\sum _{q \in Q} Count(i \rightarrow q)}
+    $$
+    
+*   We can directly calculate the probability because in a Markov chain, we know the current state. For the Hidden Markov Model, we cannot calculate it directly because the hidden state sequence cannot be determined for a given input. The Badum-Welch algorithm uses two simple intuitions to solve this problem:
+    
+    *   Iterative estimation, first assuming a transition probability and a generation probability, and then deducing better probabilities based on the assumed probabilities
+    *   Estimate the forward probability of a certain observation, and distribute this probability across different paths, thereby estimating the probability
+*   Firstly, similar to the forward probability, we define the backward probability:
+    
+    *   Let $\beta _t (i)$ represent the probability that the latent variable is in state i at the current moment after receiving t observations, and $\lambda$ are the model parameters:
+        
+        $$
+        \beta _t (i) = P(o_{t+1},o_{t+2}…o_T,q_t=i|\lambda)
+        $$
+        
+    *   Similar to inductive calculations of backward probability:
+        
+        $$ \\beta\_t (i) = \\sum \_{j=1}^N a\_{ij} b\_j (o\_{t+1} ) \\beta \_{t+1} (j), \\ \\ 1≤i≤N,1≤t
+        
+    *   Initialization $$ :
+        
+        $$
+        \alpha _1 (j)
+        $$
+        
+    *   Termination state:
+        
+        $$
+        \beta _T (i)=\alpha _(i,F)
+        $$
+        
+*   Similarly, we hope the classical probability in the Markov chain can help us estimate the transition probabilities:
+    
+    $$
+    P(O│\lambda)=\alpha _t (q_F )=\beta_1 (0)= \sum _{i=1}^N a_{0j} b_j (o_1) \beta _1 (j)
+    $$
+    
+*   How to estimate the count values: We convert the count values of the entire sequence's transition paths into the sum of count values between time steps, with the probability of a specific transition path between time steps being:
+    
+    $$
+    a_{ij}^{*} = \frac {the expected count of transitions from state i to state j}{the expected count of transitions from state i to other states}
+    $$
+    
+*   First, consider the joint probability of all the observed sequences and this transition path (conditioned on parameters $P(q_t=i,q_{t+1}=j)$ is omitted):
+    
+    $$
+    \lambda
+    $$
+    
+*   Observe the following probability graph: ![FoZWVJ.png](https://s2.ax1x.com/2019/01/03/FoZWVJ.png) 
+    
+*   It can be seen that this joint probability includes three parts:
+    
+    *   T-moment hidden state i forward probability
+    *   Backward probability of the hidden state j at T+1 moment
+    *   Probability of state transition between T time and T+1 time, as well as the generation probability of the corresponding observed quantities
+*   Therefore, there is:
+    
+    $$
+    P(q_t=i,q_{t+1}=j,O)
+    $$
+    
+*   To obtain the joint probability of transition paths from the joint distribution given the known observation sequence, it is necessary to calculate the probability of the observation sequence, which can be obtained through forward probability or backward probability:
+    
+    $$
+    P(q_t=i,q_{t+1}=j,O)=\alpha _t (i) a_{ij} b_j (o_{t+1} ) \beta _{t+1} (j)
+    $$
+    
+*   Ultimately obtained
+    
+    $$
+    P(O)=\alpha _t (N)=\beta _T (1) = \sum _{j=1}^N \alpha _t (j) \beta_t (j)
+    $$
+    
+*   The sum of all time steps yields the expected count of transitions from state i to state j, thereby further obtaining an estimate of the transition probability:
+    
+    $$
+    ξ_t (i,j)=P(q_t=i,q_{t+1}=j│O) = \frac {(\alpha _t (i) a_{ij} b_j (o_{t+1} ) \beta_{t+1} (j))}{(\alpha _t (N))}
+    $$
+    
+*   Similarly, we also hope to obtain an estimate of the generation probability:
+    
+    $$
+    a_{ij}^{*} = \frac {\sum _{t=1}^{T-1} ξ_t (i,j)}{\sum _{t=1}^{T-1} \sum _{j=1}^{N-1} ξ_t (i,j)}
+    $$
+    
+*   Similarly, the probability of being in the hidden state j at time t is obtained by first calculating the joint distribution and then the conditional distribution:
+    
+    $$
+    b_{j}^{*} (v_k) = \frac {the expected count of observations of symbol v_k in state j}{the expected count of observations of all symbols in state j}
+    $$
+    
+*   The joint probability includes two parts, namely the forward probability and the backward probability of being in state j at time t, thus:
+    
+    $$
+    γ_t (j)=P(q_t=j│O) = \frac {P(q_t=j,O)}{P(O)}
+    $$
+    
+*   Similarly, by summing over all time steps, an estimate of the generation probability is obtained:
+    
+    $$
+    γ_t (j) = \frac {\alpha _t (j) \beta_t (j)}{\alpha _t (N)}
+    $$
+    
+*   These two formulas are calculated under the condition of known forward and backward probabilities, and introduce the intermediate variables (latent variables) (ξ,γ). The motivation for introducing latent variables is to transform the ratio of the expected counts of the estimates of a and b into a ratio of probabilities, and these two latent variables can be represented by a and b. Then, the transition probabilities and generation probabilities are calculated from the latent variables, thus forming an iterative loop, which can be solved using the EM algorithm.
+    
+    $$
+    (\alpha,\beta)
+    $$
+    
+*   E-step:
+    
+    $$
+    a,b→\alpha,\beta→ξ,γ→a,b
+    $$
+    
+*   M-step (What is the goal of maximization):
+    
+    $$
+    γ_t (j) = (\alpha _t (j) \beta_t (j))/(\alpha _t (N)) ξ_t (i,j) \\
+    = (\alpha _t (i) a_{ij} b_j (o_{t+1} ) \beta_{t+1} (j))/(\alpha _t (N)) \\
+    $$
+    
+*   Iterative calculations need to be recalculated:
+    
+    $$
+    a _{ij} = (\sum _{t=1}^{T-1}   ξ_t (i,j)  )/(\sum _{t=1}^{T-1} \sum _{j=1}^{N-1}   ξ_t (i,j)  ) \\
+    b ̂_j(v_k) = (\sum _{t=1 s.t. O_t=v_k}^T   γ_t (j) )/(\sum _{t=1}^T   γ_t (j) ) \\
+    $$
+    
+*   The initial state of the iteration is important for the EM algorithm, often designed by introducing some external information.
+    
+
+Maximum Entropy Model: Background
+---------------------------------
+
+*   Another widely known form of the maximum entropy model is multi-logistic regression (Softmax?).
+    
+*   The maximum entropy model solves classification problems. As a probabilistic classifier, the maximum entropy model can calculate the probability of each sample belonging to every category based on the features of the samples, and then perform classification.
+    
+*   The maximum entropy model belongs to the exponential family (log-linear) classifier, which calculates classification probabilities by taking the exponential of a linear combination of features:
+    
+    $$
+    \alpha _t (j) = \sum _{i=1}^N   \alpha_{t-1} (i) a_ij b_j (o_t) \\
+    \beta_t (i) = \sum _{j=1}^N   a_ij b_j (o_{t+1} ) \beta_{t+1} (j)  \\
+    $$
+    
+*   Z is a normalization coefficient that makes the sum of the generated probabilities equal to 1.
+    
+
+Maximum Entropy Modeling
+------------------------
+
+*   Extending binary logistic regression to the multi-class problem results in:
+    
+    $$
+    p(c│x)=\frac 1Z exp⁡(\sum _i   weight_i feature_i)
+    $$
+    
+*   Features in speech and language processing are typically binary (whether the feature is present), thus indicator functions are used to represent features
+    
+    $$
+    P(c│x) = \frac {exp⁡(\sum _(i=0)^N   w_ci f_i) } {\sum _{c^{*} in C}   exp⁡(\sum _{i=0}^N   w_{c^{*} i} f_i)  }
+    $$
+    
+*   Noticed that in this model, each class has its independent linear weight w\_c. Compared to hard distribution, the maximum entropy model can provide the probability of being assigned to each class, thus allowing the calculation of the classification probability at each moment, and then the overall classification probability can be obtained, leading to the global optimal classification result. Noticed that unlike support vector machines and other models, the maximum entropy model cannot utilize the combination of features and must manually construct combinations as new features.
+    
+*   通常使用加上了正则化的最大似然作为优化的目标函数：
+    
+    $$
+    P(c│x) = \frac {exp⁡(\sum _{i=0}^N   w_{c_i} f_i (c,x)) }{\sum _{c^{*} \in C}   exp⁡(\sum _{i=0}^N   w_{c^{*} i} f_i (c^{*},x))  }
+    $$
+    
+*   This regularization is equivalent to adding a zero-mean Gaussian prior to the probability distribution of the weights, where the weights deviate more from the mean, i.e., the larger the weights, the lower their probability.
+    
+*   Why multi-class logistic regression is a maximum entropy model: The maximum entropy model guarantees that the un 约束 part of the classification should be equally probable under given constraints, for example, under two constraints:
+    
+    $$
+    w ̂={argmax} _w \sum _i   \log P(y^{(i)}│x^{(i) } ) - \alpha \sum _{j=1}^N w_j^2
+    $$
+    
+*   Then, if these two constraints are satisfied, the probability results allocated by the maximum entropy model are:
+    
+    $$
+    P(NN)+P(JJ)+P(NNS)+P(VB)=1 \\
+    P(t_i=NN or t_i=NNS)=8/10 \\
+    $$
+    
+*   In the paper "The Equivalence of Logistic Regression and Maximum Entropy Models," it is proven that under the constraint of the balance condition in the generalized linear regression model, the nonlinear activation function that satisfies the maximum entropy distribution is the sigmoid, i.e., logistic regression.
+    
+
+Maximum Entropy Markov Model
+----------------------------
+
+*   The maximum entropy model can only classify single observations, while the maximum entropy Markov model can extend it to the problem of sequence classification.
+    
+*   Where does the Maximum Entropy Markov model excel over the Hidden Markov Model? The Hidden Markov Model depends on transition probabilities and generation probabilities for the classification of each observation. If we want to introduce external knowledge during the labeling process, we need to encode this external knowledge into these two types of probabilities, which is inconvenient. The Maximum Entropy Markov model can introduce external knowledge more simply.
+    
+*   In the Hidden Markov Model, we optimize the likelihood and multiply by the prior to estimate the posterior:
+    
+    $$
+    p(NN)=4/10  \\
+    p(JJ)=1/10  \\
+    p(NNS)=4/10  \\
+    p(VB)=1/10 \\
+    $$
+    
+*   In the maximum entropy hidden Markov model, we directly compute the posterior. Because we directly train the model for classification, that is, the maximum entropy Markov model is a type of discriminative model rather than a generative model:
+    
+    $$
+    T ̂= {argmax}_T ∏_i   P(word_i│tag_i ) ∏_i   P(tag_i│tag _{i-1} )
+    $$
+    
+*   Therefore, in the maximum entropy hidden Markov model, there is no separate modeling of likelihood and prior, but rather the posterior is estimated through a single probability model. The difference between the two is shown in the figure below: ![FoZgrF.png](https://s2.ax1x.com/2019/01/03/FoZgrF.png) 
+    
+*   Additional features can be more dependent and flexible in the Maximum Entropy Markov Model, as shown in the following figure: ![FoZcKU.png](https://s2.ax1x.com/2019/01/03/FoZcKU.png) 
+    
+*   Express this difference in formula:
+    
+    $$
+    T ̂= {argmax}_T ∏_i   P(tag_i |word_i,tag _{i-1})
+    $$
+    
+*   When estimating the single transition probability (from state q\* to state q, producing the observation o), we use the following maximum entropy model:
+    
+    $$
+    HMM:P(Q│O)=∏_{i=1}^n   P(o_i |q_i)×∏_{i=1}^n   P(q_i |q _{i-1})  \\
+    MEMM:P(Q│O)=∏_{i=1}^n   P(q_i |q _{i-1},o_i) \\
+    $$
+    
+
+Decoding (Inference) of the Maximum Entropy Markov Model
+--------------------------------------------------------
+
+*   MEMM also uses the Viterbi algorithm for decoding
+    
+*   The general framework for decoding using the Viterbi algorithm is:
+    
+    $$
+    P(q│q^{*},o)=\frac{1}{Z(o,q^{*})} exp⁡(\sum _i   w_i f_i (o,q))
+    $$
+    
+*   In the HMM model, this framework is specifically realized as:
+    
+    $$
+    v_t (j)=max_{i=1}^N⁡  v_{t-1} (i)P(s_j│s_i )P(o_t |s_j)
+    $$
+    
+*   In MEMM, replace the likelihood and prior directly with the posterior:
+    
+    $$
+    v_t (j)=max_{i=1}^N⁡  v_{t-1} (i) a_ij b_j (o_t)
+    $$
+    
+
+Training of Maximum Entropy Markov Models
+-----------------------------------------
+
+*   MEMM as an extension of the maximum entropy model employs the same supervised algorithm for training. If there are missing label sequences in the training data, semi-supervised learning can also be performed using the EM algorithm.
+
+Chapter 12: The Formal Grammar of English
+=========================================
+
+Compositionality
+----------------
+
+*   How are words in English composed into a phrase?
+*   In other words, how do we determine that some word combinations form a part? One possibility is that these combinations can all appear in similar syntactic environments, for example, noun phrases can all appear before a verb. Another possibility comes from the prepositional and postpositional structures, for example, the prepositional phrase "on September seventeenth" can be placed at the beginning, middle, or end of a sentence, but the individual components of this phrase cannot be split and placed in different positions in the sentence, so we judge that "on September seventeenth" these three word combinations form a phrase.
+
+Context-free grammar
+--------------------
+
+*   Context-free grammar, abbreviated as CFG, also known as phrase structure grammar, has a formalization method equivalent to the Backus-Naur form. A context-free grammar consists of two parts: rules or production, and a vocabulary.
+    
+*   For example, in describing noun phrases with context-free grammar, one way is that a noun phrase can be composed of a proper noun, or it can be composed of a determiner plus a nominal component, where the nominal component can consist of one or more nouns. The rules of this CFG are:
+    
+    *   NP→Determiner Nominal
+    *   NP→ProperNoun
+    *   Nominal→Noun|Noun Nominal
+*   CFG can be hierarchically nested, thus the above rules can be combined with the rules below that represent lexical facts (vocabulary list):
+    
+    *   Det→a
+    *   Det→the
+    *   Noun→flight
+*   Symbols are divided into two categories:
+    
+    *   Ultimate Symbol: A symbol corresponding to a word in reality; the lexicon is a collection of rules for introducing ultimate symbols
+    *   Non 终极符号: Clustering or generalizing symbols representing ultimate symbols
+*   In each rule, the right side of the arrow contains one or more terminal symbols and non-terminal symbols, and the left side of the arrow is a non-terminal symbol associated with each word and its category (part of speech).
+    
+*   CFG can be regarded as a mechanism for generating sentences as well as a mechanism for assigning structure to a sentence.
+    
+*   For example, taking the CFG mentioned earlier, an NP (noun phrase) symbol string can be generated step by step:
+    
+    $$
+    v_t (j)=max_{i=1}^N⁡  v_{t-1} (j)P(s_j |s_i,o_t)
+    $$
+    
+*   A flight is a derivation of NP, which is generally represented by a parse tree: ![FoZ5P1.png](https://s2.ax1x.com/2019/01/03/FoZ5P1.png) A CFG defines a formal language, which is a set of symbol strings. If a sentence derived by a grammar is within the formal language defined by that grammar, the sentence is syntactically correct. Using formal languages to simulate the grammar of natural languages is known as generative grammar.
+    
+*   Formal definition of context-free grammar:
+    
+    *   Set of non-terminating symbols (or variables)
+    *   Sigma: Set of terminal symbols, disjoint from N
+    *   Rule set or set of productions
+    *   S: Specified start symbol
+*   Some conventions defined:
+    
+    *   Capital letters: Represent non-terminating symbols
+    *   S: Start Symbol
+    *   Lowercase Greek letters: a sequence of symbols extracted from the conjunction of non-terminal and terminal symbols
+    *   Lowercase Roman letters: end-of-sequence symbol string
+*   Direct derivation definition: Formula to be supplemented
+    
+*   Exportation is a generalization of direct exportation. Subsequently, we can formally define the language L generated by the grammar G as a set of strings composed of terminal symbols, which can be exported from the specified starting symbol S through the grammar G: Formula to be supplemented
+    
+*   Mapping a sequence of words to its corresponding parse tree is called syntactic parsing.
+    
+
+Some grammatical rules of English
+---------------------------------
+
+*   Four most common sentence structures in English:
+    *   Declarative structure: a noun phrase subject followed by a verb phrase
+    *   Imperative structure: Typically begins with a verb phrase and lacks a subject
+    *   Yes-no interrogative structure: commonly used for asking questions, and begins with an auxiliary verb, followed by a subject NP, and then a VP
+    *   Wh interrogative structure: contains a wh phrase element
+*   In the previous description, the beginning symbol was used to generate an entire sentence independently, but S can also appear on the right side of grammatical generation rules, embedded within a larger sentence. Such an S is called a clause, which has a complete semantics. Having complete semantics means that this S, in the overall syntactic parse tree of the sentence, has the main verb in its subtree with all the required arguments.
+
+Noun phrase
+-----------
+
+*   Determiner Det: Noun phrases can begin with some simple lexical determiners, such as a, the, this, those, any, some, etc., and the position of determiners can also be replaced by more complex expressions, such as possessives. Such expressions can be recursively defined, for example, possessives plus noun phrases can constitute determiners of larger noun phrases. No determiners are needed before plural nouns or mass nouns.
+*   Nominal: Comprising some modifiers before or after nouns
+*   Before nouns, after determiners: Some special word classes can appear before nouns and after determiners, including cardinal numbers Card, ordinal numbers Ord, and quantity modifiers Quant.
+*   Adjective Phrase AP: An adverb can appear before an adjective phrase
+*   The rules for the attributive modifiers of noun phrases can be regularized as follows (items in parentheses are optional):
+*   Nominal
+*   Post-modifiers mainly include three types:
+    *   Prepositional phrase PP: Nominal -> Nominal PP(PP)(PP)
+    *   Non-restrictive relative clause: Gerund VP, Gerund VP -> GerundV NP | GerundV PP | GerundV | GerundV NP PP
+    *   Relative clause: Clause starting with a relative pronoun Nominal ->Nominal RelCaluse;RelCaluse -> (who|that) VP
+
+Consistency relationship
+------------------------
+
+*   When a verb has a noun as its subject, the phenomenon of agreement occurs; any sentence where the subject and its verb do not agree is ungrammatical, for example, the third-person singular verb without the -s ending. A set of rules can be used to expand the original grammar, making it capable of handling agreement. For example, the rule for yes-no questions is
+    
+    $$
+    NP→Det Nominal→Det Noun→a flight
+    $$
+    
+*   Two rules of the following form can be substituted:
+    
+    $$
+    S \rightarrow Aux \ NP \ VP
+    $$
+    
+*   Specify the auxiliary verb forms for the third person singular and non-third person singular separately. Such a method would lead to an increase in grammatical scale.
+    
+
+Verb phrases and subcategorization
+----------------------------------
+
+*   Verb phrases include combinations of verbs and other components, such as NP and PP, as well as combinations of both. The entire embedded sentence can also follow the verb, becoming a complement of the sentence.
+*   Another potential constituent of the verb phrase is another verb phrase.
+*   The verb can also be followed by a particle, which is similar to "借以," but when combined with the verb, it forms a phrasal verb that is inseparable from the verb.
+*   Reclassification refers to subcategorization. Traditional grammar subcategorizes verbs into transitive verbs and intransitive verbs, while modern grammar has differentiated verbs into 100 subcategories. Discussing the relationship between verbs and possible components involves viewing verbs as predicates and components as the arguments of this predicate.
+*   For the relationship between verbs and their complements, we can express the consistency features using context-free grammar and it is necessary to differentiate the various subclasses of verbs.
+
+Auxiliary verb
+--------------
+
+*   Auxiliaries are a subclass of verbs with special syntactic constraints. Auxiliaries include modal verbs, perfect auxiliary verbs, progressive auxiliary verbs, and passive auxiliary verbs. Each auxiliary imposes a constraint on the form of the verb that follows it, and they must be combined in a certain order.
+*   Four auxiliary verbs categorize the VP subcategory, with the central verbs of the VP being a bare verb, a past participle form, a present participle form, and a past participle form, respectively.
+*   A sentence can use multiple auxiliary verbs, but they should be arranged in the order of modal auxiliary verbs, perfect auxiliary verbs, progressive auxiliary verbs, and passive auxiliary verbs.
+
+Tree Diagram Database
+---------------------
+
+*   Context-free grammar can analyze a sentence into a syntactic parse tree. If all sentences in a corpus are represented in the form of a syntactic parse tree, such syntactically annotated corpus is called a treebank.
+    
+*   The sentences in the treebank database implicitly constitute a grammar of a language, from which we can extract CFG rules for each syntactic parse tree. The CFG rules extracted from the Penn Treebank are highly flattened, resulting in a large number of rules and long rules.
+    
+*   A special expression is required for searching in a treebank, which can represent constraints on nodes and connections to search for specific patterns. For example, tgrep or TGrep2.
+    
+*   A pattern in tgrep, TGrep2 consists of a description of a node, and a node description can be used to return a subtree rooted at this node.
+    
+*   One can name a class of patterns using double slashes:
+    
+    $$
+    S \rightarrow 3sgAux \ 3sgNP \ VP \\
+    S \rightarrow Non3sgAux \ Non3sgNP \ VP \\
+    $$
+    
+*   The benefits of the Tgrep/Tgrep2 pattern lie in its ability to describe connected information. The less than symbol represents direct dominance, the much less than symbol represents dominance, and the decimal point represents linear order. This description of connections is reflected in the relationships within the parse tree as follows: ![FoZ2b4.png](https://s2.ax1x.com/2019/01/03/FoZ2b4.png) 
+    
+
+Central word and central word search
+------------------------------------
+
+*   Syntactic components can be associated with a lexical center word. In a simple lexical center word model, each context-free rule is associated with a center word, which is passed to the parse tree, so that each non-terminal symbol in the parse tree is labeled with a single word, which is the center word of that non-terminal symbol. An example is as follows: ![FoZfa9.png](https://s2.ax1x.com/2019/01/03/FoZfa9.png) 
+*   To generate such a tree, each CFG rule must be expanded to recognize a right-hand constituent as the center word child node. The center word of a node is set to the center word of its child center words.
+*   Another approach is to complete the search for the center word through a computational system. In this method, the search for the specified sentence is based on the context of the tree, thereby dynamically identifying the center word. Once a sentence is parsed, the tree is traversed and each node is decorated with the appropriate center word.
+
+Grammar Equivalence and Patterns
+--------------------------------
+
+*   Grammar equivalence includes two types: strong equivalence, which means that two grammars generate the same set of symbol strings and assign the same phrase structure to each sentence; weak equivalence, which means that two grammars generate the same set of symbol strings but do not assign the same phrase structure to each sentence.
+*   All grammars use a single paradigm, in which each production rule employs a specific form. For example, a context-free grammar with five senses is sigma-free, and if each production rule's form is A->BC or A->a, it indicates that this context-free grammar conforms to the Chomsky paradigm, abbreviated as CNF. All grammars in the Chomsky paradigm have a binary tree structure. Any context-free grammar can be transformed into a weakly equivalent Chomsky paradigm grammar.
+*   Using a parse tree in binary tree form can produce a smaller grammar. Rules of the form A->A B are called Chomsky and-conjunctions.
+
+Finite State Grammar and Context-Free Grammar
+---------------------------------------------
+
+*   Complex grammatical models must represent compositionality, hence they are not suitable for describing grammar using finite state models.
+*   When the expansion of a non-terminal symbol also includes this non-terminal symbol, a grammatical recursion problem arises.
+*   For example, using regular expressions to describe nominal-centered noun phrases: (Det)(Card)(Ord)(Quant)(AP)Nominal(PP)\*
+*   To complete this regular expression, it is only necessary to expand PP in sequence, resulting in (P NP)\*. This then leads to the ground problem, because NP now appears, and NP appears in the regular expression for NP.
+*   A context-free grammar can be generated by a finite automaton if and only if there exists a context-free grammar for the language L with no central self-embedding recursion.
+
+Dependency Grammar
+------------------
+
+*   Dependency grammar contrasts with context-free grammar, where the syntactic structure is entirely described by the semantic or syntactic relationships between words and between words. An example is as follows: ![FoZOVH.png](https://s2.ax1x.com/2019/01/03/FoZOVH.png) 
+*   There are no non-terminal symbols or phrase nodes; the connections in the tree only link two words. The connections, or dependency relations, represent grammatical functions or general semantic relationships, such as syntactic subjects, direct objects, indirect objects, temporal adverbials, and so on.
+*   Dependency grammar has a strong predictive analytical ability and performs better in handling languages with relatively free word order.
+
+Chapter 13: Analysis Based on Context-Free Grammar
+==================================================
+
+Analysis is searching
+---------------------
+
+*   In syntactic parsing, parsing can be seen as a search through all possible parsing tree spaces of a sentence to discover the correct parsing tree.
+*   For a certain sentence (input symbol string), the goal of the parsing search is to discover all parsing trees rooted at the initial symbol S that exactly cover the entire input symbol string. The constraints on the search algorithm come from two aspects:
+    *   Constraints from the data, i.e., the input sentence itself, should result in the leaves of the parsed tree being all the words of the original sentence.
+    *   From grammatical constraints, the parsed tree that is searched should have a root, namely the initial symbol S
+*   Top-down, goal-directed search and bottom-up, data-directed search strategies were generated based on these two constraints.
+*   For top-down search, starting from the root, we continuously generate all possible child nodes at each subsequent level, searching through every possibility at each level, as shown in the figure (for the sentence "book that flight"): ![FoZh5R.png](https://s2.ax1x.com/2019/01/03/FoZh5R.png) 
+*   For bottom-up parsing, the analysis starts from the input words, using the grammatical rules each time to attempt to construct an analysis tree from the bottom up. If the analysis tree successfully constructs a tree rooted at the initial symbol S and covers the entire input, then the parsing is successful. First, each word is connected to its corresponding word class through the lexicon; if a word has more than one word class, all possibilities need to be considered. Unlike top-down parsing, when moving to the next level, bottom-up parsing needs to consider whether the analyzed component matches the right-hand side of some rule, whereas top-down parsing matches the left-hand side. If a rule cannot be matched during the process, this branch is removed from the search space, as shown in the figure below: ![FoZI8x.png](https://s2.ax1x.com/2019/01/03/FoZI8x.png) 
+*   Both compared:
+    *   Top-down search starts from S, therefore, it will not search those subtrees that cannot be found in the tree rooted at S, while bottom-up search will generate many impossible search trees
+    *   Correspondingly, top-down search is wasted on trees that cannot produce the input word sequence
+    *   In summary, we need to combine top-down and bottom-up approaches
+
+Ambiguity
+---------
+
+*   A problem that needs to be addressed in syntactic analysis is structural ambiguity, that is, grammar may yield multiple parsing results for a single sentence.
+    
+*   The most common two ambiguities: attachment ambiguity and coordination conjunction ambiguity.
+    
+*   If a particular element can attach to more than one position in the parse tree, the sentence will exhibit attachment ambiguity. For example, in the sentence "We saw the Eiffel Tower flying to Paris," "flying to Paris" can modify either the Eiffel Tower or "We."
+    
+*   In coordination ambiguity, there exist different phrases connected by conjunctions such as "and." For example, "old men and women" can refer to elderly men and elderly women, or elderly men and ordinary women, i.e., whether the term "old" is simultaneously assigned to both "men" and "women."
+    
+*   The above two ambiguities can be combined and nested to form more complex ambiguities. If we do not resolve the ambiguities but simply return all possibilities, leaving it to the user or manual judgment, the number of possibilities may increase exponentially as the analysis of sentence structure becomes more complex or as the number of analysis rules increases. Specifically, the growth of the analysis of possible sentences is similar to the arithmetic expression insertion of parentheses problem, growing exponentially according to Catalan numbers:
+    
+    $$
+    /NNS?/    NN|NNS
+    $$
+    
+*   Two methods exist to escape this exponential explosion:
+    
+    *   Dynamic programming, studying the regularity of the search space, so that common parts are derived only once, reducing the overhead related to ambiguity
+    *   Employing exploratory methods to improve the search strategy of the profiler
+*   Utilizing planned and backtracking search algorithms such as depth-first search or breadth-first search is a common approach in searching complex search spaces, however, the pervasive ambiguity in complex grammatical spaces makes these search algorithms inefficient, as there are many redundant search processes.
+    
+
+Dynamic Programming Analysis Method
+-----------------------------------
+
+*   In dynamic programming, we maintain a table, systematically filling in the solutions for subproblems, and using the already stored solutions for subproblems to solve larger subproblems without having to recalculate from scratch.
+*   In the analysis, such a table is used to store the subtrees of various parts of the input, which are stored in the table upon discovery for later retrieval, thereby solving the problem of repeated analysis (only subtrees need to be searched without the need for re-analysis) and ambiguity issues (the analysis table implicitly stores all possible analysis results).
+*   The main three dynamic programming parsing methods are the CKY algorithm, the Earley algorithm, and the table parsing algorithm.
+
+### CKY Parsing
+
+*   CKY parsing requires that the grammar must satisfy the Chomsky paradigm, i.e., the right-hand side of a generating rule must either be two non-terminals or one terminal symbol. If it is not in Chomsky 范式, then a general CFG needs to be transformed into CNF:
+    *   Right-hand side has both terminal symbols and non-terminal symbols: Create a separate non-terminal symbol for the right-hand terminal symbol, for example: INF-VP → to VP, change to INF-VP → TO VP and TO → to
+    *   There is only one non-terminal symbol on the right: This non-terminal symbol is called a unit product, which will eventually generate non-unit products, and the unit products are replaced by the rules of the non-unit products generated in the end
+    *   Right side has more than 2 symbols: introducing new non-terminal symbols to decompose the rules
+    *   Lexical rules remain unchanged, but new lexical rules may be generated during the transformation process
+*   After all the rules are converted to CNF, the non-terminal symbols in the table have two child nodes during parsing, and each entry in the table represents an interval in the input. For example, for an entry such as \[0,3\], it can be split into two parts, where one part is \[0,2\], and the other part is \[2,3\]. The former is on the left side of \[0,3\], and the latter is directly below \[0,3\], as shown in the following figure: ![FoZo26.png](https://s2.ax1x.com/2019/01/03/FoZo26.png) 
+*   The next step is how to fill out the table, and we analyze it through a bottom-up approach. For each entry \[i, j\], the table cells within the input interval from i to j contribute to this entry value, that is, the cells to the left and below the entry \[i, j\]. The CKY pseudo-algorithm diagram in the following table describes this process: ![FoZjIA.png](https://s2.ax1x.com/2019/01/03/FoZjIA.png) 
+*   Outer loop iterates over columns from left to right, inner loop iterates over rows from bottom to top, and the innermost loop traverses all possible binary substrings of \[i, j\]. The table stores the set of non-terminal symbols that can represent the symbol string in the interval \[i, j\]. Since it is a set, there will be no repeated non-terminal symbols.
+*   Now that we have completed the recognition task, the next step is to analyze. Analysis involves finding a non-terminal symbol as the starting symbol S that corresponds to the entire sentence within the interval \[0, N\]. Firstly, we need to make two modifications to the algorithm:
+    *   The stored information in the table is not only non-terminal symbols but also their corresponding pointers, which point to the table entry that generates the non-terminal symbol
+    *   Permit different versions of the same non-terminal symbol to exist within an entry
+*   After making these changes, the table contains all possible parsing information for a given input. We can choose any non-terminal symbol from the \[0,N\] entries as the starting symbol S, and then iteratively extract the parsing information according to the pointer.
+*   Of course, returning all possible decompositions would encounter an exponential explosion problem, therefore, we apply the Viterbi algorithm to the complete table, calculate the decomposition with the highest probability, and return this decomposition result.
+
+### Early Algorithms
+
+*   Compared to CKY's bottom-up parsing, the Early algorithm employs a top-down parsing approach and uses a one-dimensional table to save the state, with each state containing three types of information:
+    *   Corresponding subtree for a single grammatical rule
+    *   Completion state of subtrees
+    *   Subtrees correspond to positions in the input
+*   Algorithm flowchart as follows: ![FoZHKO.png](https://s2.ax1x.com/2019/01/03/FoZHKO.png) 
+*   Algorithms have three operations on states:
+    *   Prediction: Create a new state to represent the top-down prediction generated during the analysis process. When the state to be analyzed is neither a terminal symbol nor a category of lexical types, a new state is created for each different expansion of this non-terminal symbol.
+    *   Scan: When the state to be analyzed is a lexical category, check the input symbol string and add the state corresponding to the predicted lexical category to the syntax diagram.
+    *   Completion: When all the state analyses on the right are completed, the completion operation searches for the grammatical category at this position in the input, discovers, and advances all the states created earlier.
+
+### Table analysis
+
+*   Table decomposition allows for the dynamic determination of the order of table processing, where the algorithm dynamically removes an edge from the graph according to a plan, and the order of elements in the plan is determined by rules. ![FoZTxK.png](https://s2.ax1x.com/2019/01/03/FoZTxK.png) 
+
+------------
+
+*   Sometimes we only need to input partial syntactic analysis information of a sentence
+*   The task of partial analysis can be accomplished by cascading finite state automata, which will produce a more "flat" analysis tree than the previously mentioned methods.
+*   Another effective method of partial parsing is segmentation. Using the most widely covered grammar for part-of-speech tagging of sentences, dividing them into sub-blocks with main part-of-speech tagging information and no recursive structure, where the sub-blocks do not overlap, is segmentation.
+*   We enclose each block with square brackets, and some words may not be enclosed, belonging to the blocks outside.
+*   The most important aspect of partitioning is that the basic partitioning cannot recursively contain the same type of components.
+
+### Rule-based Finite State Partitioning
+
+*   Utilizing a finite state method for segmentation requires manually constructing rules for specific purposes, then finding the longest matching segment from left to right, and proceeding to segment in order from there. This is a greedy segmentation process that does not guarantee the globally optimal solution.
+*   The main limitation of these partitioning rules is that they cannot contain recursion.
+*   The advantage of using finite state segmentation lies in the ability to utilize the output of the previous transducer as input to form a cascade, in partial parsing, this method can effectively approximate the true context-free parser.
+
+### Block-based Machine Learning
+
+*   Chunking can be regarded as a sequence classification task, where each position is classified as 1 (chunk) or 0 (not chunked). Machine learning methods used for training sequence classifiers can all be applied to chunking.
+*   A highly effective method is to treat segmentation as a sequence labeling task similar to part-of-speech tagging, encoding both segmentation information and the labeling information of each block with a small set of labeling symbols. This method is called IOB labeling, with B representing the beginning of a block, I indicating within a block, and O indicating outside a block. Both B and I are followed by suffixes, representing the syntactic information of the block.
+*   Machine learning requires training data, and it is difficult to obtain segmented labeled data. One method is to use existing treebank resources, such as the Penn Treebank.
+
+### Evaluation Block System
+
+*   Accuracy: The number of correctly segmented blocks given by the model / The total number of blocks given by the model
+*   Recall rate: Number of correctly segmented blocks given by the model / Total number of correctly segmented blocks in the text
+*   F1 score: Harmonic mean of accuracy and recall
+
+Chapter 14: Statistical Analysis
+================================
+
+Probabilistic Context-Free Grammar
+----------------------------------
+
+*   Probability Context-Free Grammar (PCFG) is a simple extension of context-free grammar, also known as stochastic context-free grammar. PCFG makes a slight change in definition:
+    *   N: Non-terminal symbol set
+    *   Σ: Set of termination symbols
+    *   R: Rule set, similar to the context-free grammar, but with an additional probability p, representing the conditional probability of executing a particular rule $C(n)=\frac{1}{1+n} C_{2n}^n$
+    *   A specified starting symbol
+*   When the sum of the probabilities of all sentences in a language is 1, we say that the PCFG is consistent. Some recursive rules can lead to an inconsistent PCFG.
+
+PCFG for Disambiguation
+-----------------------
+
+*   The probability of a specific parsing for a given sentence is the product of all rule probabilities, which is both the probability of the parsing and the joint probability of the parsing and the sentence. Thus, for sentences with parsing ambiguities, the probabilities of different parses are different, and ambiguity can be resolved by choosing the parse with a higher probability.
+
+PCFG for Language Modeling
+--------------------------
+
+*   PCFG assigns a probability to a sentence (i.e., the probability of parsing), thus it can be used for language modeling. Compared to n-gram grammar models, PCFG considers the entire sentence when calculating the conditional probability of generating each word, resulting in better performance. For ambiguous sentences, the probability is the sum of the probabilities of all possible parses.
+
+Probability CKY Parsing of PCFG
+-------------------------------
+
+*   PCFG probabilistic parsing problem: generating the most probable parsing for a sentence
+*   The probability CKY algorithm extends the CKY algorithm, encoding each part of the CKY parsing tree into a matrix of $P(\beta|A)$ . Each element of the matrix contains a probability distribution over a set of non-terminal symbols, which can be considered as each element also being V-dimensional, thus the entire storage space is $(n+1)*(n+1)$ . Where \[i,j,A\] represents the probability that the non-terminal symbol A can be used to represent the segment from position i to j in the sentence.
+*   Algorithm Pseudocode: ![FoZbrD.png](https://s2.ax1x.com/2019/01/03/FoZbrD.png) 
+*   It can be seen that the method also divides the interval \[i, j\] using k, takes the combination with the highest probability as the probability of the interval, and then expands the interval to the right for dynamic programming.
+
+Learning the rule probabilities of PCFG
+---------------------------------------
+
+*   The pseudo-algorithm diagram above uses the probability of each rule. How to obtain this probability? There are two methods, the first being a naive approach: using classical probability type statistics on a known treebank dataset:
+    
+    $$
+    (n+1)*(n+1)*V
+    $$
+    
+*   If we do not have a treebank, we can use a non-probabilistic parsing algorithm to parse a dataset and then calculate the probabilities. However, non-probabilistic parsing algorithms require calculating probabilities for each possible parsing when parsing ambiguous sentences, but calculating probabilities requires a probabilistic parsing algorithm, thus falling into a chicken-and-egg cycle. One solution is to first use a uniform probability parsing algorithm to parse the sentence, obtain the probability of each parsing, then use probability-weighted statistics, and then re-estimate the probability of parsing rules, continue parsing, and iteratively repeat until convergence. This algorithm is called the inside-outside algorithm, which is an extension of the forward-backward algorithm and is also a special case of the EM algorithm.
+    
+
+PCFG issue
+----------
+
+*   The independence assumption leads to poor modeling of the structural dependency of the parse tree: each PCFG rule is assumed to be independent of other rules, for example, statistical results indicate that pronouns are more likely to be subjects than nouns, so when an NP is expanded, if the NP is a subject, it is more likely to be expanded into a pronoun—here, the position of NP in the sentence needs to be considered, however, this probabilistic dependency relationship is not allowed by PCFG
+*   Lack of sensitivity to specific words leads to issues such as subcategorization ambiguity, preposition attachment ambiguity, and coordination structure ambiguity: for example, in the preposition attachment issue, which part does a prepositional phrase like "into Afghanistan" attach to, and in the calculation of PCFG, it is abstracted as which part a prepositional phrase should attach to, while the abstraction probability comes from the statistics of the corpus, which does not consider specific words. For example, in the coordination structure ambiguity, if two possible parse trees of a sentence use the same rules but the rules are located differently in the trees, PCFG calculates the same probability for the two parses: because PCFG assumes that rules are independent, the joint probability is the product of individual probabilities.
+
+Improving PCFG by Splitting and Merging Non-Terminals
+-----------------------------------------------------
+
+*   Address the issue of structural dependency first. It was previously mentioned that we hope for different probability rules for NP as a subject and object. One idea is to split NP into subject NP and object NP. The method to achieve this split is parent node annotation, where each node is annotated with its parent node. For subject NP, the parent node is S, and for object NP, the parent node is VP, thus distinguishing different NPs. In addition, the parsing tree can be enhanced by splitting words according to their parts of speech.
+*   Splitting leads to an increase in rules, with less data available to train each rule, causing overfitting. Therefore, a handwritten rule or an automatic algorithm should be used to merge some splits based on each training set.
+
+Probabilistic lexicalization CFG
+--------------------------------
+
+*   Probability CKY parsing modifies the grammatical rules, while the probabilistic lexicalization model modifies the probability model itself. For each rule, not only should the rule changes for the constituents be generated, but also the headword and part of speech of each constituent should be annotated, as shown in the following figure: ![FoeSRP.png](https://s2.ax1x.com/2019/01/03/FoeSRP.png) 
+    
+*   To generate such an analysis tree, each rule on the right side of a PCFG needs to select a constituent as a central word sub-node, using the central word and part of speech of the sub-node as the central word and part of speech of the node. Among them, the rules are divided into two categories, internal rules and lexical rules; the latter is deterministic, while the former requires us to estimate: ![FoZqqe.png](https://s2.ax1x.com/2019/01/03/FoZqqe.png) 
+    
+*   We can split the rules using the idea of similar parent node annotation, with each part corresponding to a possible choice of a central word. If we treat the CFG with probabilistic vocabulary as a large CFG with many rules, we can estimate the probability using the previous classical probability model. However, such an effect will not be very good, because the rule division is too fine, and there is not enough data to estimate the probability. Therefore, we need to make some independence assumptions, decomposing the probability into smaller probability products, which can be easily estimated from the corpus.
+    
+*   Different statistical analyzers differ in the independence assumptions they make.
+    
+*   Collins' analysis is shown as follows: ![FoZzGt.png](https://s2.ax1x.com/2019/01/03/FoZzGt.png) 
+    
+*   The probability is decomposed as follows:
+    
+    $$
+    P(\alpha \rightarrow \beta | \alpha) = \frac{Count(\alpha \rightarrow \beta)}{\sum _{\gamma} Count(\alpha \rightarrow \gamma)}
+    $$
+    
+*   After generating the left side of the generative expression, the central word of the rule is first generated, followed by the generation of the dependency of the central word one by one from the inside out. Starting from the left side of the central word, generation continues until the STOP symbol is encountered, after which the right side is generated. After making a probability split as shown in the above expression, each probability is easy to statistically calculate from a smaller amount of data. The complete Collins parser is more complex, taking into account word distance relationships, smoothing techniques, unknown words, and so on.
+    
+
+Evaluation Analyzer
+-------------------
+
+*   PARSEVAL measure is the standard method for analyzer evaluation, for each sentence s:
+    *   Recall rate = (Count of correct components in s's candidate parsing) / (Count of correct components in s's treebank)
+    *   Accuracy of tagging = (Count of correct components in candidate parsing of s) / (Count of all components in candidate parsing of s)
+
+Discriminant reordering
+-----------------------
+
+*   PCFG parsing and Collins lexical parsing both belong to generative parsers. The drawback of generative models is that it is difficult to introduce arbitrary information, i.e., it is difficult to incorporate features that are locally irrelevant to a particular PCFG rule. For example, the feature that parsing trees tend to be right-generated is not convenient to add to the generative model.
+*   There are two types of discriminative models for syntactic parsing, those based on dynamic programming and those based on discriminative reordering.
+*   Discriminant reordering consists of two stages. In the first stage, we use a general statistical profiler to generate the top N most probable profiles and their corresponding probability sequences. In the second stage, we introduce a classifier, which takes a series of sentences and the top N profile-probability pairs of each sentence as input, extracts a large set of features, and selects the best profile for each sentence. Features include: profile probability, CFG rules in the profile tree, the number of parallel and coordinate structures, the size of each component, the extent of right generation in the tree, the binary grammar of adjacent non-terminal symbols, the frequency of different parts of the tree, and so on.
+
+Language Modeling Based on Analysis
+-----------------------------------
+
+*   The simplest way to use a statistical parser for language modeling is to employ the two-phase algorithm previously mentioned. In the first phase, we run a standard speech recognition decoder or machine translation decoder (based on ordinary N-gram grammar) to generate N best candidate sentences; in the second phase, we run the statistical parser and assign a probability to each candidate sentence, selecting the one with the highest probability.
+
+Human anatomy
+-------------
+
+*   Humans also employ similar probabilistic parsing ideas in recognizing sentences; two examples:
+    *   For frequently occurring binary grammatical structures, people spend less time reading these binary grammatical structures
+    *   Some experiments indicate that humans tend to choose the analysis with a higher statistical probability during disambiguation
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
 
 # 第二章：正则表达式与自动机
 
@@ -1276,3 +2732,22 @@ P_R (STOP|VP,VBD,dumped) \\
 - 人类在识别句子时也用到了类似的概率剖析思想，两个例子：
   - 对于出现频率高的二元语法，人们阅读这个二元语法所花的时间就更少
   - 一些实验表明人类在消歧时倾向于选择统计概率大的剖析
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

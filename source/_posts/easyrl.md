@@ -12,18 +12,166 @@ html: true
 
 ---
 
-极简风格
+rl study note, minimalist style
 
-- Q-learning
-- Sarsa
-- Sarsa($\lambda$)
-- DQN
-- Double DQN
-- DQN with Prioritized Experience replay
-- Dueling DQN
-- Policy Gradient
+*   Q-learning
+*   Sarsa
+*   Sarsa($\lambda$)
+*   DQN
+*   Double DQN
+*   DQN with Prioritized Experience replay
+*   Dueling DQN
+*   Policy Gradient
 
 <!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+
+Definition
+==========
+
+*   agent: An agent, which, in a certain state, takes an action based on some policy to reach the next state
+*   s:status, status
+*   a: action, action
+*   r:reward, reward
+*   s,a: Can be called a step. The behavior of the agent can be described as a series of steps. In reinforcement learning, the behavior of the agent can be represented by DP (decision process), where s is the node state in the DP and a is the transition path between states.
+*   Q: Q-table, Q(s,a) refers to the value of action a under state s (probability during inference), estimated by the expected reward
+
+Q-learning
+==========
+
+*   Random Q-table, initial state, start iteration, $\epsilon$ Greedy
+    
+*   Taking action a in state s, observing reward r and state $s \prime$
+    
+*   Key Iteration Formula:
+    
+    $$
+    Q(s,a) = Q(s,a) + \alpha [r + \gamma max_{a \prime}Q(s \prime,a \prime) - Q(s,a)] \\
+    $$
+    
+*   Q's update includes two parts, one of which is naturally the reward (if this step is rewarded), and the other is the time difference, or TD-error, which is the difference between reality and estimation. Here, reality refers to the reward obtained after taking the best action in the new state, while estimation refers to all our rewards except for the actual reward obtained in the final step. For the intermediate steps, the estimated reality reward is obtained using the Q-table values, so the update of the Q-table should be to add (reality - estimation), making the Q-table closer to reality.
+    
+*   It is noteworthy that only when the last step is rewarded (if there is only one reward at the end), is the reality truly the reward; otherwise, it is still estimated using the Q-table.
+    
+*   Here, the update of the Q-table is only related to future states and actions. Initially, the updates of all steps except the last one with actual rewards are uncertain (because reality also uses the Q-table for estimation, only the last step is truly real), but after the first iteration, the value update of the last step is determined (knowing how to approach the treasure is known), and unlike LSTM's time series, it does not update from the last time step backwards with BPTT, but updates the transition value of a state (which action is better), and this state may appear at multiple time steps in each iteration (or it is unrelated to the time step). When updating the state adjacent to this state, the estimated reality from the Q-table will be more accurate, and gradually the entire algorithm reaches convergence.
+    
+
+Sarsa
+=====
+
+*   Q-learning is off-policy because of the gap between reality and estimation, we optimize towards reality, while the actual actions are based on the estimated reality from the Q-table, i.e., asynchronous (off).
+    
+*   Sarsa is on-policy, differing from Q-learning in algorithmic terms:
+    
+    *   Q-learning: Select action based on Q-table - Execute action, observe reward and new state - Update Q-table - Update state
+    *   Sarsa: Execute action, observe reward and new state - update state - select action on the new state based on the Q-table, and select an action based on the Q-table before the iteration
+*   It can be seen that Sarsa has changed the order of steps in the learning algorithm; what effect does this change bring? The effect is to bring the selection of new states and actions forward before the Q-table update, so that when the Q-table is updated, the part of the gap that is realized does not need to be estimated with $max_{a \prime}Q(s \prime,a \prime)$ but is directly estimated using the new state and action:
+    
+    $$
+    Q(s,a) = Q(s,a) + \alpha [r + \gamma Q(s \prime,a \prime) - Q(s,a)] \\
+    $$
+    
+*   That is, both reality and the estimate use the same strategy (determined actions, rather than selecting the maximum value based on given states), and then still use this gap to update.
+    
+*   In the updating process, Sarsa follows through on its promises (because the reality is adopting new states and actions, the agent will definitely update accordingly), while Q-learning is more optimistic (because the reality is adopting the maximum value under the new state, but the actual action taken may not necessarily be the one with the maximum value, with $\epsilon$ disturbance). Sarsa is more conservative (wishing to do well at every step), while Q-learning is more aggressive (rushing in first and worrying about it later).
+    
+
+Sarsa($\lambda$)
+================
+
+*   naive version of Sarsa can be seen as Sarsa(0), because the Q-table is updated with every step, i.e., $Q(s \prime,a \prime)$ will only bring the value update of the previous step $Q(s,a)$ . If we consider the updates for all steps, and steps closer to the final reward have higher weights while steps farther from the final reward have lower weights, then the hyperparameter adjusting this weight is $\lambda$ , with a weight of 0 meaning not considering previous steps, i.e., naive Sarsa.
+    
+*   The specific implementation involves adding a trace matrix E (with each element corresponding to a step (s, a)) to save the weights of all steps in the current path. The closer to the final reward, the higher the weight. Therefore, with each step taken, the corresponding element in the matrix is incremented by 1, and then the corresponding trace matrix value is used as a weight to multiply onto the reward to update the Q-table (here, all steps and the entire E matrix are multiplied together). Afterward, the matrix values are decayed by multiplying with the update decay factor $\gamma$ and the weight hyperparameter $\lambda$ . Clearly, when $\gamma$ is 1, all states receive the same update (since all steps and the entire E matrix are multiplied together); when $\gamma$ is 0, only the executed step element is incremented by 1, and the entire E matrix is set to 0, so only the executed step receives an update, i.e., naive Sarsa. By expanding the iteration of the E matrix, one can obtain an expansion similar to naive Sarsa, except that an E(s,a) is added during the decay to record the distance of a step from the reward.
+    
+    $$
+    \delta = r + \gamma Q(s \prime,a \prime) - Q(s,a) \\
+    E(s,a) = E(s,a) + 1 \\
+    Q = Q + \alpha \delta E \\
+    E = \gamma \lambda E \\
+    update  \ \ s,a \\
+    $$
+    
+*   This E-matrix is the eligibility trace. For a certain step, if it is executed, its value is slightly increased, and then it decays slowly until it is executed again. If it is executed multiple times in the short term, its value will rise too high, at which point a threshold can be set to limit the increase in eligibility. This value can be interpreted as the contribution of this step to finding the final reward in this iteration.
+    
+
+DQN
+===
+
+*   Q-learning + deep neural network
+*   Neural networks are used to parameterize the update process of the Q-table, inputting a state vector to output the value of all actions. The training of the neural network replaces the simple iterative update. This can solve the dimensionality disaster problem caused by an excessive number of states.
+*   It is not easy to train by simply replacing this way, DQN introduces two techniques
+    *   experience replay
+    *   fix q
+*   Examine the input, output, and loss of the neural network
+    *   Two neural networks are involved, one participating in training (evaluation network), and the other replicating the parameters trained by the first network to generate ground truth, i.e., the target network
+    *   The network input for training is a state represented as an s-dimensional feature vector, and the output is an a-dimensional value vector obtained from each action, with the loss being the mean squared error between this vector and the a-dimensional ground truth vector.
+*   DQN also includes a memory matrix, with dimensions \[number of memory items, $2 * s + 2$ \], where each item contains the reward, action, old state, and new state, i.e., all the information of a single step. The memory only saves the last few memory items executed steps.
+*   Where do the input and output of the neural network come from? In fact, it samples a batch of data from memory, inputs the old state to the evaluation network to obtain the model output, inputs the new state to the target network to obtain the ground truth, and then calculates the loss.
+*   Every so often, the target network replicates the evaluation network; during this period, the target network remains unchanged, i.e., fix q
+*   Experience replay
+*   It is noteworthy that we do not directly use the value vector output by the evaluation network to calculate the loss, as no action has been taken yet. Therefore, we first take actions based on the value vector output by the network, update the value corresponding to these actions in the value vector with rewards, and then use this updated value vector to participate in the loss calculation.
+
+Double DQN
+==========
+
+*   Double DQN solves the DQN overestimate problem
+*   The difference from DQN is that the evaluation network not only accepts an old state to produce an output $q_{eval}$ , but also accepts a new state to produce an output $q_{eval4next}$ , and then selects an action to update $q_{eval}$ based on $q_{eval4next}$ , rather than selecting an action to update based on $q_{eval}$ itself.
+
+DQN with Prioritized Experience replay
+======================================
+
+*   Priorly, it was to randomly sample a segment of memory from the memory bank, which would lead to an excessive number of training steps for the model (random sampling is difficult to ensure reaching the final reward)
+*   Memory should naturally be allocated priority, with higher priority having a greater sampling probability
+*   Priority can be measured by the TD-error value, with larger errors naturally requiring more sampling and optimization
+*   Given the priority distribution, if one wishes to obtain a sampling sequence that satisfies this priority distribution, then this is a Monte Carlo problem, which can be solved using MCMC, importance sampling, or the SumTree mentioned in the paper
+
+Dueling DQN
+===========
+
+*   Dueling DQN refines the input-output relationship of the internal network in the original DQN:
+    
+    $$
+    Q(s,a;\theta,\alpha,\beta) = Value(s;\theta,\beta) + Advantage(s,a;\theta,\alpha)
+    $$
+    
+*   The value brought by the state and the value (advantage) brought by actions on that state have been split
+    
+*   Why consider states separately? Because some states are unrelated to actions, and no action will bring about a change in value regardless of what action is taken
+    
+
+Policy Gradient
+===============
+
+*   Translated Text: The previously introduced methods are all based on value reinforcement learning, i.e., querying the value brought by each action at a certain state and selecting the action with the highest value to execute
+    
+*   Policy gradient（策略梯度）directly outputs actions from the policy network input state, skipping the step of calculating value, and is a method based on the policy
+    
+*   Strategy networks do not calculate a certain loss for backpropagation but propagate back based on rewards, and the updated algorithm is as follows:
+    
+    $$
+    \theta = \theta + \alpha \nabla _{\theta} \log \pi _{\theta} (s_t, a_t) v_t \\
+    $$
+    
+*   It should be noted the following key points:
+    
+    *   The PG algorithm neural network here is responsible for receiving the state as input, the reward as the gradient adjustment value, the actual action executed as the gold label, and outputs an action vector. The entire network itself is a policy $\pi$ (input state, output action probability distribution)
+    *   Afterward, the entire model still selects actions based on action probabilities (network outputs) using a policy (network), transitions states, and observes the environment to receive rewards, just like DQN
+    *   The first question is, where does this strategy gradient come from? As can be seen, the gradient is still the derivative of the loss with respect to the parameters, $- \nabla _{\theta} \log \pi _{\theta} (s_t, a_t) v_t$ . Where does the loss come from? It is actually the probability of executing an action multiplied by the reward, which can be considered as the cross-entropy between the action probability distribution and the one-hot vector of the executed action, multiplied by the reward (cross-entropy itself has a similar lookup effect). Let's look at its original meaning: the probability of executing an action multiplied by the reward. The network itself is just a strategy. What kind of strategy is a good strategy? If the good reward is obtained after executing the action selected by this strategy, then this is a good strategy network. That is, a strategy network that can select good actions is a good network. It is obvious that the objective function of the network should be the probability of executing an action (the actions recognized by the network) multiplied by the reward (the good actions recognized by the reward).
+    *   The second question is, for an environment where rewards can be given at any time, the agent can take a step and update the strategy network once according to the reward. But what about the situation where only the last step can yield a reward? In fact, we adopt round updates, whether it is an environment where rewards can be given at every step or only at the last step, we record all the steps within a round (s, a, r) (except for the last step, the rewards for the other steps are 0 or -1). Then, replace the reward for each step with the cumulative reward and multiply it by a decay coefficient to make the reward decay with the episode steps. Note that unlike discrete value-based learning, policy-based PG can still calculate an action probability to compute the loss even for steps without rewards, so even in the absence of rewards (or negative rewards), it can make the strategy network optimize to reduce the probability of bad actions.
+
+Actor-Critic
+============
+
+*   Clearly, strategy-based methods abandon values to gain an advantage (continuous actions), but also bring disadvantages (after each step, there is no value left to estimate immediate rewards, and only round updates can be performed). A natural thought, then, is to combine these two points: choose a strategy-based network as the actor to train the strategy; choose a value-based network as the critic to provide values to the strategy network and estimate immediate rewards.
+
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
 
 # 定义
 
@@ -131,3 +279,22 @@ update  \ \ s,a \\
 # Actor Critic
 
 - 显然基于策略的方法抛弃了值，获得了优势（连续动作），也带来了劣势（每执行一步之后没得值可以用来估计即时奖励，只能进行回合更新），那么一个自然而然的想法就是结合这两点，选择一个基于策略的网络作为actor，训练出策略；选择一个基于值的网络作为critic，用来给策略网络提供值，估计即时奖励。
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

@@ -17,11 +17,367 @@ html: true
 
 ***
 
-CorEx(Correlation Explaination)的相关笔记。
+Note for CorEx(Correlation Explaination).
 
 <!--more-->
 
 ![](https://s2.ax1x.com/2019/07/31/etsOld.gif)
+
+{% language_switch %}
+
+{% lang_content en %}
+Abstract
+========
+
+*   Correlation Explaination is a type of learning method that can be used in topic models, yielding results similar to LDA but with a completely different processing process. Correlation Explaination does not make any structural prior assumptions about the generation of data, but, similar to information gain, uses the difference in Total Correlation to find the topic that best explains the data. One rapid calculation method is abbreviated as CorEx.
+*   For convenience, the following text uses concepts from LDA to analogize to concepts in CorEx, including that the background is document topic modeling, a topic is a discrete random variable, and a document may contain multiple topics, etc.
+
+Discovering Structure in High-Dimensional Data Through Correlation Explanation
+==============================================================================
+
+Define Total Correlation
+------------------------
+
+*   The entropy of the discrete random variable $X$ is defined as
+    
+    $$
+    H(X) \equiv \mathbb{E}_{X}[-\log p(x)]
+    $$
+    
+*   The mutual information between two random variables is defined as
+    
+    $$
+    I(X_1 : X_2) = H\left(X_{1}\right)+H\left(X_{2}\right)-H\left(X_{1}, X_{2}\right)
+    $$
+    
+*   We define Total Correlation (or Multivariate Mutual Information) as
+    
+    $$
+    T C\left(X_{G}\right)=\sum_{i \in G} H\left(X_{i}\right)-H\left(X_{G}\right)
+    $$
+    
+*   Among them, $G$ is a subset of $X$ . Intuitively, it is the sum of the entropy of each random variable in the subset minus the joint entropy of the subset. When there are only two variables in G, TC is equivalent to the mutual information between the two variables.
+    
+*   To facilitate understanding, TC can also be expressed in the form of KL divergence
+    
+    $$
+    T C\left(X_{G}\right)=D_{K L}\left(p\left(x_{G}\right) \| \prod_{i \in G} p\left(x_{i}\right)\right)
+    $$
+    
+*   The KL divergence between the joint distribution and the product of the marginal distributions can be seen as TC, so when TC is 0, the KL divergence is 0, the joint distribution equals the product of the marginal distributions, which means the internal correlation of the data is 0, the variables are mutually independent, and the joint distribution can be factorized into the product of the marginal distributions.
+    
+*   Next, we define conditional TC
+    
+    $$
+    T C(X | Y)=\sum_{i} H\left(X_{i} | Y\right)-H(X | Y)
+    $$
+    
+*   Then we can use the difference between TC and conditional TC to measure the contribution of a certain condition (variable) to the correlation of the data, the original text states: measure the extent to which $Y$ explains the correlations in $X$
+    
+    $$
+    T C(X ; Y) \equiv T C(X)-T C(X | Y)=\sum_{i \in \mathbb{N}_{n}} I\left(X_{i} : Y\right)-I(X : Y)
+    $$
+    
+*   When $T C(X ; Y)$ is maximized, $T C(X | Y)$ is 0, which means that the joint distribution of $X$ can be decomposed given $Y$ . This implies that $Y$ explains all the correlation in $X$ . We believe that a good topic should be a representation of the document, which explains the document's Total Correlation to the maximum extent.
+    
+*   Now we can treat $Y$ as a latent variable that explains $X$ , that is, the topic. Next, we need to determine the topic. In LDA, the topic is explicitly defined as a word probability distribution, whereas in CorEx, we define the topic through $p(Y|X)$ , meaning it is defined as a discrete random variable that can affect $X$ , with $k$ possible values, unlike LDA which defines $|V|$ possible values.
+    
+*   LDA iteratively updates the topic assignment for each word, thereby indirectly obtaining the document's topic distribution and the distribution of words over topics. CorEx, however, is different; it calculates a topic distribution for both documents and words. CorEx continuously updates the probability of each topic $p(y_j)$ , the topic distribution of each word $p(y_j|x_i)$ , the allocation matrix from words to topic subsets $\alpha$ , and the topic distribution of each document $p(y_j|x)$ .
+    
+*   At initialization, we randomly set $\alpha$ and the document's topic distribution $p(y|x)$
+    
+*   LDA is a generative model, while CorEX is a discriminative model.
+    
+
+Iteration
+---------
+
+*   The topic we need to find is
+    
+    $$
+    \max _{p(y | x)} T C(X ; Y) \quad \text { s.t. } \quad|Y|=k
+    $$
+    
+*   We can find m topics and divide $X$ into m disjoint subsets for modeling
+    
+    $$
+    \max _{G_{j}, p\left(y_{j} | x_{C_{j}}\right)} \sum_{j=1}^{m} T C\left(X_{G_{j}} ; Y_{j}\right) \quad \text { s.t. } \quad\left|Y_{j}\right|=k, G_{j} \cap G_{j^{\prime} \neq j}=\emptyset
+    $$
+    
+*   Rewrite the above equation in terms of mutual information
+    
+    $$
+    \max _{G, p\left(y_{j} | x\right)} \sum_{j=1}^{m} \sum_{i \in G_{j}} I\left(Y_{j} : X_{i}\right)-\sum_{j=1}^{m} I\left(Y_{j} : X_{G_{j}}\right)
+    $$
+    
+*   We further simplify this expression using an indicator function, removing the subscripts of the subset $G$ , and uniformly representing the partition results of the subset with a single $\alpha$ connectivity matrix
+    
+    $$
+    \alpha_{i, j}=\mathbb{I}\left[X_{i} \in G_{j}\right] \in\{0,1\}  \\
+    \max _{\alpha, p\left(y_{j} | x\right)} \sum_{j=1}^{m} \sum_{i=1}^{n} \alpha_{i, j} I\left(Y_{j} : X_{i}\right)-\sum_{j=1}^{m} I\left(Y_{j} : X\right) \\
+    $$
+    
+*   We must also add a constraint to ensure that the subsets do not intersect
+    
+    $$
+    \sum_{\overline{j}} \alpha_{i, \overline{j}}=1
+    $$
+    
+*   This is an optimization problem with constraints, which can be solved using the Lagrange multiplier method
+    
+    $$
+    \begin{aligned} p\left(y_{j} | x\right) &=\frac{1}{Z_{j}(x)} p\left(y_{j}\right) \prod_{i=1}^{n}\left(\frac{p\left(y_{j} | x_{i}\right)}{p\left(y_{j}\right)}\right)^{\alpha_{i, j}} \\ 
+    p\left(y_{j} | x_{i}\right) &=\sum_{\overline{x}} p\left(y_{j} | \overline{x}\right) p(\overline{x}) \delta_{\overline{x}_{i}, x_{i}} / p\left(x_{i}\right) \text { and } p\left(y_{j}\right)=\sum_{\overline{x}} p\left(y_{j} | \overline{x}\right) p(\overline{x}) \end{aligned} \\
+    $$
+    
+*   Note that this is the optimal theme solution obtained under the confirmation of matrix $\alpha$ , by relaxing the conditions for the optimal solution, we can obtain the iterative formula for $\alpha$ after the theme update
+    
+    $$
+    \alpha_{i, j}^{t+1}=(1-\lambda) \alpha_{i, j}^{t}+\lambda \alpha_{i, j}^{* *} \\
+    \alpha_{i, j}^{* *}=\exp \left(\gamma\left(I\left(X_{i} : Y_{j}\right)-\max _{\overline{j}} I\left(X_{i} : Y_{\overline{j}}\right)\right)\right) \\
+    $$
+    
+
+Pseudo-algorithm
+----------------
+
+*   Pseudo-algorithm description as follows
+    
+     $$
+    \text { input : A matrix of size } n_{s} \times n \text { representing } n_{s} \text { samples of } n \text { discrete random variables } \\
+    $$ 
+    
+     $$
+    \text { set } : \text { Set } m, \text { the number of latent variables, } Y_{j}, \text { and } k, \text { so that }\left|Y_{j}\right|=k  \\
+    $$
+    
+     $$
+    \text { output: Parameters } \alpha_{i, j}, p\left(y_{j} | x_{i}\right), p\left(y_{j}\right), p\left(y | x^{(l)}\right) \\
+    $$
+    
+     $$
+    \text { for } i \in \mathbb{N}_{n}, j \in \mathbb{N}_{m}, l \in \mathbb{N}_{n_{s}}, y \in \mathbb{N}_{k}, x_{i} \in \mathcal{X}_{i} \\
+    $$
+    
+     $$
+    \text { Randomly initialize } \alpha_{i, j}, p\left(y | x^{(l)}\right) \\
+    $$
+    
+    $$
+    \text {repeat} \\
+    $$
+    
+     $$
+    \text { Estimate marginals, } p\left(y_{j}\right), p\left(y_{j} | x_{i}\right) \text { using  } \\
+    $$ 
+    
+    $$
+    p\left(y_{j} | x_{i}\right)=\sum_{\overline{x}} p\left(y_{j} | \overline{x}\right) p(\overline{x}) \delta_{\overline{x}_{i}, x_{i}} / p\left(x_{i}\right) \text { and } p\left(y_{j}\right)=\sum_{\overline{x}} p\left(y_{j} | \overline{x}\right) p(\overline{x}) \\
+    $$
+    
+     $$
+    \text { Calculate } I\left(X_{i} : Y_{j}\right) \text { from marginals; } \\
+    $$ 
+    
+     $$
+    \text { Update } \alpha \text { using  } \\
+    $$ 
+    
+    $$
+    \alpha_{i, j}^{t+1}=(1-\lambda) \alpha_{i, j}^{t}+\lambda \alpha_{i, j}^{* *} \\
+    $$
+    
+     $$
+    \text { Calculate } p\left(y | x^{(l)}\right), l=1, \ldots, n_{s} \text { using } \\
+    $$ 
+    
+    $$
+    p\left(y_{j} | x\right)=\frac{1}{Z_{j}(x)} p\left(y_{j}\right) \prod_{i=1}^{n}\left(\frac{p\left(y_{j} | x_{i}\right)}{p\left(y_{j}\right)}\right)^{\alpha_{i, j}} \\
+    $$
+    
+     $$
+    \text { until convergence; }
+    $$ 
+    
+
+Maximally Informative Hierarchical Representations of High-Dimensional Data
+===========================================================================
+
+*   This paper analyzes the upper and lower bounds of TC, which helps to further understand the meaning of TC and proposes an optimization method for a hierarchical high-dimensional data representation that maximizes information content. The CorEx mentioned earlier can be considered a special case of this optimization method.
+
+Upper and lower bounds
+----------------------
+
+*   Most definitions are similar to the previous ones, more general in nature. We extend documents and topics to data $X$ and representation $Y$ . When the joint probability can be decomposed, we call $Y$ a representation of $X$
+    
+    $$
+    p(x, y)=\prod_{j=1}^{m} p\left(y_{j} | x\right) p(x) \\
+    $$
+    
+*   Thus, the representation of a data set is completely determined by the representation of the variable domain and the conditional probability $p(y_j|x)$ .
+    
+*   Hierarchical representations can be stacked in layers; we define hierarchical representation as:
+    
+    $$
+    Y^{1 : r} \equiv Y^{1}, \ldots, Y^{r}
+    $$
+    
+*   ![eYYvRK.png](https://s2.ax1x.com/2019/07/31/eYYvRK.png)
+    
+*   The $Y^k$ represents $Y^{k-1}$ . We mainly focus on the upper and lower bounds of the informativeness of hierarchical representations for data. This type of hierarchical representation is a general representation, including RBM and autoencoders, etc.
+    
+*   Definition:
+    
+    $$
+    T C_{L}(X ; Y) \equiv \sum_{i=1}^{n} I\left(Y : X_{i}\right)-\sum_{j=1}^{m} I\left(Y_{j} : X\right) \\
+    $$
+    
+*   There exist the following boundaries and decompositions:
+    
+    $$
+    T C(X) \geq T C(X ; Y)=T C(Y)+T C_{L}(X ; Y)
+    $$
+    
+*   Then you get a lower bound of $Y$ relative to $X$ TC value:
+    
+    $$
+    T C(X ; Y) \geq T C_{L}(X ; Y)
+    $$
+    
+*   When $TC(Y)$ is 0, the lower bound is obtained, at which point $Y$ are mutually independent and do not contain any information about $X$ . Extending the inequality above to the hierarchical representation, we can obtain
+    
+    $$
+    T C(X) \geq \sum_{k=1}^{r} T C_{L}\left(Y^{k-1} ; Y^{k}\right)
+    $$
+    
+*   Attention here is that we define the 0th layer as $X$ , and we can also find the upper bound
+    
+    $$
+    T C(X) \leq \sum_{k=1}^{r}\left(T C_{L}\left(Y^{k-1} ; Y^{k}\right)+\sum_{i=1}^{m_{k-1}} H\left(Y_{i}^{k-1} | Y^{k}\right)\right)
+    $$
+    
+*   The difference between the upper and lower bounds is a pile of accumulated conditional entropy.
+    
+*   The lower and upper bounds of TC can help measure the extent of interpretation for the data
+    
+    Analysis
+    --------
+    
+*   Consider the simplest case first, where the first layer represents a single variable $Y^{1} \equiv Y_{1}^{1}$
+    
+    $$
+    TC(Y)+TC_L(X;Y)=TC(X;Y) \leq TC(X) \leq TC_L(X;Y)+\sum _{i=1}^{m_0} H(X_i|Y)
+    $$
+    
+*   To be supplemented
+    
+    Optimization
+    ------------
+    
+*   We can optimize layer by layer, so that each layer maximally explains the correlations in the layer below, which can be achieved by optimizing the lower bound, taking the first layer as an example
+    
+    $$
+    \max _{\forall j, p\left(y_{j}^{1} | x\right)} T C_{L}\left(X ; Y^{1}\right)
+    $$
+    
+*   Define the ancestor information as
+    
+    $$
+    A I_{\alpha}(X ; Y) \equiv \sum_{i=1}^{n} \alpha_{i} I\left(Y : X_{i}\right)-I(Y : X) \\
+    \alpha_{i} \in[0,1] \\
+    $$
+    
+*   If given a certain $\alpha$ , whose $AI_{\alpha}$ is positive, it implies the existence of common ancestors for some ( $\alpha$ -dependent) set of $X_i$ s in any DAG that describes $X$ , here it is not quite understood, but it can be seen as a generalization of the aforementioned connected matrix $\alpha$ , generalizing from binarization to the 01 interval. The optimization problem can be represented by $AI_{\alpha}$ and can be written as
+    
+    $$
+    \max _{p(y | x)} \sum_{i=1}^{n} \alpha_{i} I\left(Y : X_{i}\right)-I(Y : X)
+    $$
+    
+*   The form has been transformed into the same as the previous paragraph, and the subsequent solution is also the same
+    
+    $$
+    p(y | x)=\frac{1}{Z(x)} p(y) \prod_{i=1}^{n}\left(\frac{p\left(y | x_{i}\right)}{p(y)}\right)^{\alpha_{i}}
+    $$
+    
+*   Taking the logarithmic expectation of the normalized denominator $Z(x)$ yields the free energy, which is precisely our optimization objective
+    
+    $$
+    \begin{aligned} \mathbb{E}[\log Z(x)] &=\mathbb{E}\left[\log \frac{p(y)}{p(y | x)} \prod_{i=1}^{n}\left(\frac{p\left(y | x_{i}\right)}{p(y)}\right)^{\alpha_{i}}\right] \\ &=\sum_{i=1}^{n} \alpha_{i} I\left(Y : X_{i}\right)-I(Y : X) \end{aligned}
+    $$
+    
+*   For multiple latent variables, the author reconstructed the lower bound and similarly extended $\alpha$ to continuous values in the 01 interval. The specific process is relatively complex, and the final optimization objective changed from maximizing the $TC_L(X;Y)$ of all latent units to optimizing the lower bounds of $p(y_j|x)$ and $\alpha$ .
+    
+    $$
+    \max _{\alpha_{i, j}, p\left(y_{j} | x\right) \atop c_{i, j}\left(\alpha_{i, j}\right)=0}^{m} \sum_{j=1}^m \left(\sum_{i=1}^{n} \alpha_{i, j} I\left(Y_{j} : X_{i}\right)-I\left(Y_{j} : X\right)\right)
+    $$
+    
+*   Defined the relationship between $X_i$ and $Y_j$ , i.e., the structure. As for optimizing the structure, the ideal situation is
+    
+    $$
+    \alpha _{i,j} = \mathbb{I} [j = argmax _{j} I(X_i : Y_j)]
+    $$
+    
+*   This structure is rigidly connected, with each node only connected to a specific hidden layer node in the next layer. Based on $I(Y_j : X_i | Y_{1:j-1}) \geq \alpha _{i,j} I(Y_j : X_i)$ , the authors propose a heuristic algorithm to estimate $\alpha$ . We verify whether $X_i$ correctly estimates $Y_j$ .
+    
+    $$
+    d_{i,j}^l \equiv \mathbb{I} [argmax_{y_j} \log p(Y_j = y_j|x^{(l)}) = argmax_{y_j} \log p(Y_j = y_j | x_i^{(l)}) / p(Y_j = y_j)]
+    $$
+    
+*   Afterward, we summed up over all the samples, counted the number of correct estimates, and set the $\alpha$ value according to the proportion.
+    
+
+Anchored Correlation Explanation: Topic Modeling with Minimal Domain Knowledge
+==============================================================================
+
+Abstract
+--------
+
+*   This paper formally applies CorEx to topic modeling, emphasizing the advantages compared to LDA.   
+    *   No structural assumptions need to be made for the data, and compared to LDA, CorEX has fewer hyperparameters
+    *   Different from LDA, it can be generalized to hierarchical models and semi-supervised models without any structural modifications to the model
+*   The iterative process of the model still follows these steps:
+    
+    $$
+    p_t(y_j) = \sum _{\overline{x}} p_t(y_j | \overline{x})p(\overline{x}) \\
+    $$
+    
+    $$
+    p_t(x_i | y_j) = \sum _{\overline{x}} p_t(y_j|\overline{x})p(\overline{x}) \mathbb{I} [\overline{x}_i = x_i]/p_t(y_j) \\
+    $$
+    
+    $$
+    \log p_{t+1} (y_j | x^l) = \log p_t(y_j) + \sum _{i=1}^n \alpha _{i,j}^t \log \frac{p_t(x_i^l | y_j)}{p(x_i^l)} - \log \mathbb{Z} _j (x^l) \\
+    $$
+    
+*   Due to the use of bag-of-words information and the processing of sparse matrices, the calculation of edge probabilities and conditional probabilities is very fast. The slowest step in the iteration is the third formula, which is to calculate the topic distribution of all documents. We rewrite the summation of logarithmic terms in this formula:
+    
+    $$
+    \log \frac{p_t(x_i^l | y_j)}{p(x_i^l)} = \log \frac{p_t(X_i=0|y_j)}{p(X_i=0)} + x_i^l \log (\frac{p_t(X_i^l=1|y_j)p(X_i=0)}{p_t(X_i=0|y_j)p(X_i^l=1)})
+    $$
+    
+*   The cumulative calculation is performed for each document, computing the likelihood over the entire dictionary, however, only a small portion of the words in the dictionary appear in each document. When a word in the dictionary does not appear in the document, only the first term in the above formula is not zero; when the word does appear, the term $\log P(X_i^l=1|y_j)/p(X_i^l=1)$ is zero, with the remaining terms retained, thus the author prioritizes the assumption that the word is not present in the document and then updates and supplements the probability terms for those words that do appear. After such optimization, the calculation speed of CorEx is similar to that of LDA.
+    
+*   The greatest benefit of this optimization is that the computational complexity is only linearly related to the number of documents and the number of topics, thus making it possible to compute over large-scale documents with large-scale topics.
+    
+    Semi-supervised
+    ---------------
+    
+*   Some value in the weight matrix can be fixed. The normal $\alpha$ is in the 01 interval, and the anchor of the i-th word in the j-th topic can be set to $\beta _{i,j}$, where $\beta$ is the strength of the anchor.
+    
+*   This approach can assign an anchor word to each topic, with one or more words as an anchor, offering great flexibility.
+    
+*   In business terms, the advantages of CorEx lie in:
+    
+    *   Extremely fast in training with a very large number of topics.
+    *   It is convenient to anchor words to adapt to the field.
+    *   The themes in CorEx are non-overlapping; there will be no repeated themes
+*   Iterative hierarchical topics are based on the hierarchical method of the previous paper, hierarchical topics can be used to aggregate concepts and divide subtopics.
+    
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
 
 # 概述
 
@@ -312,3 +668,23 @@ p\left(y_{j} | x_{i}\right) &=\sum_{\overline{x}} p\left(y_{j} | \overline{x}\ri
   - 可以方便的anchor词以适应领域。
   - CorEx的主题之间词是不相交的，不会出现重复主题
 - 层次主题就按照上一篇论文中的层次方法迭代，层次主题可以用于聚合概念，划分子话题。
+
+{% endlang_content %}
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
