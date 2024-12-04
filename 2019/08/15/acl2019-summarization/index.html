@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.2.0">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -12,27 +12,30 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="//fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-  <meta name="description" content="ACL&#x2F;NAACL 2019 自动摘要相关论文选读  DPPs 相似度度量改进 STRASS：抽取式摘要的反向传播 先翻译再生成摘要 阅读理解+自动摘要 BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Selected Reading of ACL&#x2F;NAACL 2019 Automatic Summarization Papers  DPPs Similarity Measurement Improvement STRASS: Backpropagation for Extractive Summarization Translate first, then generate the abstr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Summarization-Related Papers Reading (ACL&#x2F;NAACL 2019)">
 <meta property="og:url" content="https://thinkwee.top/2019/08/15/acl2019-summarization/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="ACL&#x2F;NAACL 2019 自动摘要相关论文选读  DPPs 相似度度量改进 STRASS：抽取式摘要的反向传播 先翻译再生成摘要 阅读理解+自动摘要 BiSET：Retrieve + Fast Rerank + Selective Encoding + Template Based">
+<meta property="og:description" content="Selected Reading of ACL&#x2F;NAACL 2019 Automatic Summarization Papers  DPPs Similarity Measurement Improvement STRASS: Backpropagation for Extractive Summarization Translate first, then generate the abstr">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/12/ezCge0.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/14/mkkJHO.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/21/mtX0eS.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/08/21/mtXczq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/12/ezCge0.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/14/mkkJHO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/21/mtX0eS.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/21/mtXczq.png">
 <meta property="article:published_time" content="2019-08-15T02:51:37.000Z">
-<meta property="article:modified_time" content="2024-06-03T07:41:19.393Z">
+<meta property="article:modified_time" content="2024-12-04T06:52:24.446Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="summarization">
@@ -40,30 +43,20 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/08/12/ezCge0.png">
 
+
 <link rel="canonical" href="https://thinkwee.top/2019/08/15/acl2019-summarization/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'en'
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2019/08/15/acl2019-summarization/","path":"2019/08/15/acl2019-summarization/","title":"Summarization-Related Papers Reading (ACL/NAACL 2019)"}</script>
 
-  <title>Summarization-Related Papers Reading (ACL/NAACL 2019) | Thinkwee's Blog</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Summarization-Related Papers Reading (ACL/NAACL 2019) | Thinkwee's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-96114782-1');
-      }
-    </script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
 
 
 
@@ -71,56 +64,36 @@
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Thinkwee's Blog</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -128,34 +101,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
-
-  </li>
-        <li class="menu-item menu-item-multi-agent-ebook">
-
-    <a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a>
-
-  </li>
-        <li class="menu-item menu-item-iagents">
-
-    <a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -167,128 +114,224 @@
 
   <div class="search-pop-overlay">
     <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
-</div>
-    </header>
+</header>
+        
+  
+  <aside class="sidebar">
 
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#improving-the-similarity-measure-of-determinantal-point-processes-for-extractive-multi-document-summarization"><span class="nav-number">1.</span> <span class="nav-text">Improving
+the Similarity Measure of Determinantal Point Processes for Extractive
+Multi-Document Summarization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#strass-a-light-and-effective-method-for-extractive-summarization-based-on-sentence-embeddings"><span class="nav-number">2.</span> <span class="nav-text">STRASS:
+A Light and Effective Method for Extractive Summarization Based on
+Sentence Embeddings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-robust-abstractive-system-for-cross-lingual-summarization"><span class="nav-number">3.</span> <span class="nav-text">A
+Robust Abstractive System for Cross-Lingual Summarization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#answering-while-summarizing-multi-task-learning-for-multi-hop-qa-with-evidence-extraction"><span class="nav-number">4.</span> <span class="nav-text">Answering
+while Summarizing: Multi-task Learning for Multi-hop QA with Evidence
+Extraction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#biset-bi-directional-selective-encoding-with-template-for-abstractive-summarization"><span class="nav-number">5.</span> <span class="nav-text">BiSET:
+Bi-directional Selective Encoding with Template for Abstractive
+Summarization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#retrieve"><span class="nav-number">5.1.</span> <span class="nav-text">Retrieve</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rerank"><span class="nav-number">5.2.</span> <span class="nav-text">Rerank</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rewrite"><span class="nav-number">5.3.</span> <span class="nav-text">Rewrite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jointly-learning"><span class="nav-number">5.4.</span> <span class="nav-text">Jointly Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#result"><span class="nav-number">5.5.</span> <span class="nav-text">result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#biset"><span class="nav-number">5.6.</span> <span class="nav-text">biset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#improving-the-similarity-measure-of-determinantal-point-processes-for-extractive-multi-document-summarization"><span class="nav-number">6.</span> <span class="nav-text">Improving
+the Similarity Measure of Determinantal Point Processes for Extractive
+Multi-Document Summarization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#strass-a-light-and-effective-method-for-extractive-summarization-based-on-sentence-embeddings"><span class="nav-number">7.</span> <span class="nav-text">STRASS:
+A Light and Effective Method for Extractive Summarization Based on
+Sentence Embeddings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-robust-abstractive-system-for-cross-lingual-summarization"><span class="nav-number">8.</span> <span class="nav-text">A
+Robust Abstractive System for Cross-Lingual Summarization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#answering-while-summarizing-multi-task-learning-for-multi-hop-qa-with-evidence-extraction"><span class="nav-number">9.</span> <span class="nav-text">Answering
+while Summarizing: Multi-task Learning for Multi-hop QA with Evidence
+Extraction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#biset-bi-directional-selective-encoding-with-template-for-abstractive-summarization"><span class="nav-number">10.</span> <span class="nav-text">BiSET:
+Bi-directional Selective Encoding with Template for Abstractive
+Summarization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#retrieve"><span class="nav-number">10.1.</span> <span class="nav-text">Retrieve</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rerank"><span class="nav-number">10.2.</span> <span class="nav-text">Rerank</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rewrite"><span class="nav-number">10.3.</span> <span class="nav-text">Rewrite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jointly-learning"><span class="nav-number">10.4.</span> <span class="nav-text">Jointly Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#result"><span class="nav-number">10.5.</span> <span class="nav-text">result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#biset"><span class="nav-number">10.6.</span> <span class="nav-text">biset</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
   </div>
 
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
+        </div>
+      </div>
+    </div>
 
     
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2019/10/03/graph-summarization/" rel="bookmark">
+        <time class="popular-posts-time">2019-10-03</time>
+        <br>
+      Note for Graph-based Summarization
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/02/07/reformer/" rel="bookmark">
+        <time class="popular-posts-time">2020-02-07</time>
+        <br>
+      Reformer - Paper Reading
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2019/08/15/acl2019-summarization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Thinkwee">
-      <meta itemprop="description" content="Failed Better">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Summarization-Related Papers Reading (ACL/NAACL 2019) | Thinkwee's Blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           Summarization-Related Papers Reading (ACL/NAACL 2019)
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-08-15 10:51:37" itemprop="dateCreated datePublished" datetime="2019-08-15T10:51:37+08:00">2019-08-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-06-03 15:41:19" itemprop="dateModified" datetime="2024-06-03T15:41:19+08:00">2024-06-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/08/15/acl2019-summarization/" class="post-meta-item leancloud_visitors" data-flag-title="Summarization-Related Papers Reading (ACL/NAACL 2019)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
+        <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/08/15/acl2019-summarization/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/08/15/acl2019-summarization/" itemprop="commentCount"></span>
-    </a>
-  </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-08-15 10:51:37" itemprop="dateCreated datePublished" datetime="2019-08-15T10:51:37+08:00">2019-08-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-12-04 14:52:24" itemprop="dateModified" datetime="2024-12-04T14:52:24+08:00">2024-12-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+        </span>
+    </span>
+
   
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>7k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>6 mins.</span>
-            </span>
+    <span id="/2019/08/15/acl2019-summarization/" class="post-meta-item leancloud_visitors" data-flag-title="Summarization-Related Papers Reading (ACL/NAACL 2019)" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>23k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>21 mins.</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -296,20 +339,402 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <p>ACL/NAACL 2019 自动摘要相关论文选读</p>
+    <div class="post-body" itemprop="articleBody"><p>Selected Reading of ACL/NAACL 2019 Automatic Summarization Papers</p>
 <ul>
-<li><p>DPPs 相似度度量改进</p></li>
-<li><p>STRASS：抽取式摘要的反向传播</p></li>
-<li><p>先翻译再生成摘要</p></li>
-<li><p>阅读理解+自动摘要</p></li>
-<li><p>BiSET：Retrieve + Fast Rerank + Selective Encoding + Template
-Based</p>
-<span id="more"></span></li>
+<li><p>DPPs Similarity Measurement Improvement</p></li>
+<li><p>STRASS: Backpropagation for Extractive Summarization</p></li>
+<li><p>Translate first, then generate the abstract</p></li>
+<li><p>Reading Comprehension + Automatic Abstract</p></li>
+<li><p>BiSET: Retrieve + Fast Rerank + Selective Encoding + Template
+Based</p></li>
+</ul>
+<span id="more"></span>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1
+id="improving-the-similarity-measure-of-determinantal-point-processes-for-extractive-multi-document-summarization">Improving
+the Similarity Measure of Determinantal Point Processes for Extractive
+Multi-Document Summarization</h1>
+<ul>
+<li>This is very similar to what the others in our group have done,
+using DPPs to process extractive abstractive summaries</li>
+<li>In the abstract indicator paper mentioned in the preceding text, it
+is also mentioned that creating an abstract, especially a key sentence
+abstract, is all about three words: qd, qd, and still qd!
+<ul>
+<li>q: quality, which sentence is important and needs to be extracted as
+an abstract. This step is feature construction.</li>
+<li>d: diversity, the sentences extracted should not be redundant, and
+should not repeatedly use the same sentences. If there are too many
+important sentences that are the same, they become less significant.
+This step is the construction of the sampling method.</li>
+</ul></li>
+<li>Determinantal Point Processes (DPPs) are a sampling method that
+ensures the extracted sentences are important (based on precomputed
+importance values) and non-repetitive. The authors of this paper have a
+very clear line of thought: I want to improve the DPPs in extractive
+summarization, how to improve them? DPPs rely on the similarity between
+sentences to avoid extracting duplicate sentences, so I will directly
+improve the calculation of similarity, thus the problem is shifted to a
+very mature field: semantic similarity computation.</li>
+<li>Next, just use the web to do semantic similarity calculation. The
+author is quite innovative, using capsule networks, which were
+originally proposed to solve the problem of relative changes in object
+positions in computer vision. The author believes that it can be
+generalized to extract spatial and directional information of low-level
+semantic features. Here, I am not very familiar with capsule networks
+and their applications in NLP, but based on the comparative experiments
+provided by the author, the improvement is actually just one point, and
+the entire DPP is only 2 points better than the best system before
+(2009), which seems a bit forced.</li>
+<li>The network provided by the author is truly complex, not in terms of
+principle, but due to the use of many components, including:
+<ul>
+<li>CNN with three to seven different sizes of convolutional kernels for
+extracting low-level features</li>
+<li>Capsule networks extract high-level features, utilizing recent
+techniques such as parameter sharing and routing</li>
+<li>One-hot vectors were still used, i.e., whether a word exists in a
+certain sentence</li>
+<li>Fusion of various features, including inner product, absolute
+difference, and concatenation with all independent features, to predict
+the similarity between two sentences</li>
+<li>And the similarity is only part of the goal; the authors also used
+LSTM to reconstruct two sentences, incorporating the reconstruction loss
+into the final total loss <img data-src="https://s2.ax1x.com/2019/08/12/ezCge0.png" alt="ezCge0.png" /></li>
+</ul></li>
+<li>Absolutely, at first glance, one would assume this is a CV's
+work</li>
+<li>The author at least used the latest available techniques, creating
+an integrated network, which may not be as concise and elegant in an
+academic sense, but in terms of industry, many such network integration
+operations are very effective</li>
+<li>Another point is that although it is a sampled abstract, the
+author's work is fully supervised, so a dataset still needs to be
+constructed
+<ul>
+<li>Constructing Supervised Extractive Summary Datasets from Generative
+Summary Datasets</li>
+<li>Constructing a supervised sentence similarity calculation dataset
+from generative abstract data sets</li>
+<li>This structure also limits its generalization ability to some
+extent</li>
+</ul></li>
+<li>Authors' starting point is actually very good: because traditional
+similarity is at the word level, without delving into semantic features,
+the direction of constructing a network to extract features is correct,
+albeit somewhat complex. Moreover, since only the sentence feature
+extraction part of the similarity calculation in the extraction-based
+abstracting method has been improved, the overall impact is not
+particularly significant. The final result may have outperformed many
+traditional methods, but it has not improved much compared to the
+traditional best method, and it is only about 1 point better than pure
+DPPs.</li>
 </ul>
 <h1
+id="strass-a-light-and-effective-method-for-extractive-summarization-based-on-sentence-embeddings">STRASS:
+A Light and Effective Method for Extractive Summarization Based on
+Sentence Embeddings</h1>
+<figure>
+<img data-src="https://s2.ax1x.com/2019/08/14/mkkJHO.png" alt="mkkJHO.png" />
+<figcaption aria-hidden="true">mkkJHO.png</figcaption>
+</figure>
+<ul>
+<li><p>Another paper using supervised methods for extractive
+summarization, the content can be roughly guessed from the title, based
+on embedding, and aiming to be light and effective, the simplest goal is
+to keep the embedding of the summary consistent with the gold
+embedding.</p></li>
+<li><p>The difficulty lies in the fact that it is extractive and
+discrete, thus requiring a process to unify the three parts of
+extraction, embedding, and comparison scoring, softening it to be
+differentiable, enabling end-to-end training. The authors propose four
+steps:</p>
+<ul>
+<li>Mapping document embeddings to a comparison space</li>
+<li>Extract sentences to form an abstract</li>
+<li>Extraction-based abstract embedding</li>
+<li>Comparison with gold summary embedding</li>
+</ul></li>
+<li><p>First, given a document, directly obtain the doc embedding and
+the sentence embedding for each sentence in the document using
+sent2vec</p></li>
+<li><p>After that, only one fully connected layer is used as the mapping
+function f(d), where the author proposes the first hypothesis: the
+extracted abstract sentences should have similarity to the document:</p>
+<p><span class="math display">\[
+sel(s,d,S,t) = sigmoid (ncos^{+}(s,f(d),S)-t)
+\]</span></p></li>
+<li><p>s is the sentence embedding, S represents the set of sentences, t
+is the threshold. sel represents select, i.e., the confidence of
+selecting this sentence to form the summary. This formula indicates that
+the similarity between the selected sentence embedding and the document
+embedding should be greater than the threshold t, and sigmoid is used
+for softening, converting {0,1} to [0,1].</p></li>
+<li><p>Afterward, further softening is applied; the author does not
+select sentences to form the abstract based on scores, but directly
+approximates the abstract's embedding based on scores</p>
+<p><span class="math display">\[
+app(d,S,t) = \sum _{s \in S} s * nb_w(s) * sel(s,d,S,t)
+\]</span></p></li>
+<li><p>nb_w is the number of words, i.e., the sum of the embedding of
+all sentences weighted by the number of words in each sentence and the
+select score to obtain the embedding of the generated summary</p></li>
+<li><p>The final step involves comparing the embedding similarity
+calculation loss with the gold summary, where the authors introduce a
+regularization term to aim for a higher compression ratio of the
+extracted summary. I feel that this is a compensation brought about by a
+series of softening operations in the previous step, as no sentences are
+selected; instead, all sentences are weighted, thus necessitating
+regularization to force the model to discard some sentences:</p>
+<p><span class="math display">\[
+loss = \lambda * \frac{nb_w(gen_sum)}{nb_w(d)} + (1-\lambda) *
+cos_{sim}(app(d,S,t),ref_{sum})
+\]</span></p></li>
+<li><p>What is the method for obtaining the embedding of the gold
+summary?</p></li>
+<li><p>The authors also normalized the results of the cosine similarity
+calculation to ensure that the same threshold could be applied to all
+documents</p></li>
+<li><p>The results actually show that ROUGE is not as good as generative
+methods, of course, one reason is that the dataset is inherently
+generative, but it is strong in simplicity, speed, and when using
+supervised methods for extraction, there is no need to consider the
+issue of redundancy.</p></li>
+</ul>
+<h1 id="a-robust-abstractive-system-for-cross-lingual-summarization">A
+Robust Abstractive System for Cross-Lingual Summarization</h1>
+<ul>
+<li>In fact, one sentence can summarize this paper: Generate
+multilingual abstracts by first translating, while others first abstract
+and then translate</li>
+<li>All are implemented using existing frameworks
+<ul>
+<li>Marian: Fast Neural Machine Translation in C++</li>
+<li>Abstract: Pointer-generator</li>
+</ul></li>
+<li>The author actually has sufficient supervisory data; it was
+previously thought that the abstracts were multilingual, with small
+amounts of corpus, or were summaries not relying on translation, which
+could extract common abstract features across multiple languages</li>
+<li>However, this paper indeed achieved robustness: generally, to
+achieve robustness, one introduces noise, and this paper exactly used
+back-translation to introduce noise: first, English is translated into a
+minor language, then translated back, and trained a generative abstract
+model on this bad English document, making the model more robust to
+noise. The final results were also significantly improved, and it also
+achieved good effects on Arabic that had not been trained, indicating
+that different people's translations have their own correctness, while
+the errors in machine translation are always similar.</li>
+</ul>
+<h1
+id="answering-while-summarizing-multi-task-learning-for-multi-hop-qa-with-evidence-extraction">Answering
+while Summarizing: Multi-task Learning for Multi-hop QA with Evidence
+Extraction</h1>
+<figure>
+<img data-src="https://s2.ax1x.com/2019/08/21/mtX0eS.png" alt="mtX0eS.png" />
+<figcaption aria-hidden="true">mtX0eS.png</figcaption>
+</figure>
+<ul>
+<li><p>This paper comes from the Smart Lab of NTT, the so-called largest
+telecommunications company in the world, and proposes a multi-task
+model: Reading Comprehension + Automatic Summary</p></li>
+<li><p>The paper conducted many experiments and analyses, and provided a
+detailed analysis of the conditions under which their module works, and
+also utilized many techniques proposed in recent years for the abstract
+section, rather than simply patching together.</p></li>
+<li><p>This paper is also based on the HotpotQA dataset, similar to the
+one in CogQA, but that one used the full wiki setting, which means there
+was no gold evidence. This paper, however, requires gold evidence, so it
+used the HotpotQA distractor setting.</p></li>
+<li><p>For the distractor setting of HotpotQA, the supervisory signal
+consists of two parts: answer and evidence, with the input also having
+two parts: query and context, where the evidence is a sentence within
+the context. The authors adopt the baseline from the HotpotQA paper:
+Simple and effective multi-paragraph reading comprehension, and all
+parts except the Query-Focused Extractor shown in the above figure. The
+basic idea is to combine the query and context, add a lot of fully
+connected (FC), attention, and BiRNN to extract features, and finally
+output a classification of answer type and a sequence labeling of answer
+span in the answer part, while directly applying the output of the BiRNN
+to each sentence for binary classification. <img data-src="https://s2.ax1x.com/2019/08/21/mtXczq.png"
+alt="mtXczq.png" /></p></li>
+<li><p>The author refines the supervision task of evidence into a
+query-based summarization, adding a module called Query-Focused
+Extractor (QFE) after the BiRNN, emphasizing that the evidence should be
+a summary extracted from the context under the query conditions,
+satisfying:</p>
+<ul>
+<li>Sentences within the summary should not be redundant</li>
+<li>sentences within the summary should have different attention based
+on the query</li>
+</ul></li>
+<li><p>For the first point, the author designed an RNN within the QFE,
+which allows attention to be paid to previously extracted sentences
+during the generation of attention and even the extraction of summaries.
+The time step of the RNN is defined as each time a sentence is
+extracted, with the input being the vector of the sentence extracted at
+that time step</p></li>
+<li><p>In response to the second point, the author added an attention
+mechanism for the query within the QFE, with the weighted query vector
+referred to as glimpse. Note that this is the attention from the QA
+context to the QA query; both the key and value in the attention are the
+QA query, while the query in the attention does not directly take the
+entire QA context but rather the output of the RNN, i.e., the context
+encoded by the RNN after extracting a set of sentences. Such a design is
+also intuitive.</p></li>
+<li><p>After the RNN encodes the extracted sentences and forms glimpse
+vectors with attention-weighted queries, QFE receives these two vectors,
+combines them with the vectors of unextracted sentences for each
+context, to output the probability of each sentence being extracted, and
+then selects the sentence with the highest probability to add to the set
+of extracted sentences. Subsequently, the system continues to cyclically
+calculate the RNN and glimpse. The dependency relationships of the
+entire system are clearly shown in the figure above.</p></li>
+<li><p>Due to the variable number of sentences in gold evidence, the
+author employs the method of adding a dummy sentence with an EOE to
+dynamically extract, and when an EOE is extracted, the model no longer
+continues to extract sentences.</p></li>
+<li><p>During training, the loss function for evidence is:</p>
+<p><span class="math display">\[
+L_E = - \sum _{t=1}^{|E|} \log (max _{i \in E / E^{t-1}} Pr(i;E^{t-1}))
++ \sum _i min(c_i^t, \alpha _i^t)
+\]</span></p>
+<p>Here, <span class="math inline">\(E\)</span> is the set of sentences
+of gold evidence, <span class="math inline">\(E^t\)</span> is the set of
+sentences extracted by QFE, <span class="math inline">\(\alpha
+_i^t\)</span> is the attention of the i-th word in the query at time
+step t, where the time step is consistent with the previous text, being
+the time step for extracting sentences. <span class="math inline">\(c^t
+= \sum _{i=1}^{t-1} \alpha ^i\)</span> is the coverage vector. The first
+half of the loss refers to the negative log-likelihood loss of the gold
+evidence, finding the gold sentence with the highest QFE prediction
+probability in the extracted sentence set, calculating the loss, and
+then excluding this sentence to find the next highest, until all gold
+sentences are found or no gold sentence can be found in the extracted
+sentence set. The second half is a regularization application of the
+coverage mechanism to ensure that the sentences selected for loss
+calculation do not have overly repetitive (concentrated) attention on
+the query.</p></li>
+<li><p>Authors achieved results on the HotpotQA and textual entailment
+dataset FEVER, with the evidence part of the indicators far superior to
+the baseline, while the answer part also saw a significant improvement,
+though not as pronounced as the evidence part, and slightly inferior to
+the BERT model. On the full wiki test set, it was also comprehensively
+surpassed by CogQA. Here, the authors state that there is a dataset
+shift problem. However, at least this paper achieved an 8-point
+improvement on the answer part by simply adding a small module to the
+baseline, demonstrating that a well-designed summarization part indeed
+helps in the selection of answers in multi-task learning.</p></li>
+</ul>
+<h1
+id="biset-bi-directional-selective-encoding-with-template-for-abstractive-summarization">BiSET:
+Bi-directional Selective Encoding with Template for Abstractive
+Summarization</h1>
+<ul>
+<li>Another model pieced together from various components, the title
+actually spells it all out: Bi-directional, selective encoding,
+template, together forming the BiSET module, and the other two preceding
+processes: Retrieve and Fast Rerank also follow the architecture from
+the paper "Retrieve, Rerank and Rewrite: Soft Template Based Neural
+Summarization." It should be based on soft template summarization, with
+the mechanism of selective encoding added, so these two papers are put
+together to discuss template-based generative summarization and its
+improvements.</li>
+<li>The idea behind the soft template approach is not to let the model
+generate sentences entirely, but rather for humans to provide the
+template and for the model to only fill in the words. However, if the
+template is completely designed manually, it would regress to the
+methods of several decades ago. The author's approach is to
+automatically extract templates from existing gold summaries.</li>
+<li>Generally divided into three steps:
+<ul>
+<li>Retrieve: Extract candidates from the training corpus</li>
+<li>Rerank: Learning Template Saliency Measurement for seq2seq
+Models</li>
+<li>Rewriting: Let the seq2seq model learn to generate the final
+summary</li>
+</ul></li>
+<li>This method should be more suitable for long sentence compression,
+or for single-sentence generative summarization, where the long
+sentences to be compressed can be used as queries for retrieval</li>
+</ul>
+<h2 id="retrieve">Retrieve</h2>
+<ul>
+<li>Utilizing the existing Lucene search engine, given a long sentence
+to be compressed as a query, search the document collection to identify
+the summaries of the top 30 documents as candidate templates</li>
+</ul>
+<h2 id="rerank">Rerank</h2>
+<ul>
+<li><p>The abstracts (soft template) retrieved through the search are
+sorted by relevance, but we require sorting by similarity. Therefore, we
+use the ROUGE score to measure the similarity between the soft template
+and the gold summary. Here, reranking is not about sorting out the
+results but rather considering the rank of each template comprehensively
+during the generation of the summary, and the loss can be observed in
+the parts that are omitted.</p></li>
+<li><p>Specifically, first use a BiLSTM encoder to encode the input x
+and a certain candidate template r; here, the hidden layer states are
+encoded separately, but the same encoder is used, and then input the two
+hidden layer states into a Bilinear network to predict the ROUGE value
+between the gold summary y corresponding to the input x and r, which is
+equivalent to a network that makes a saliency prediction for r given
+x:</p>
+<p><span class="math display">\[
+h_x = BiLSTM(x) \\
+h_r = BiLSTM(r) \\
+ROUGE(r,y) = sigmoid(h_r W_s h_x^T + b_s) \\
+\]</span></p></li>
+<li><p>This completes the supervised part of reranking</p></li>
+</ul>
+<h2 id="rewrite">Rewrite</h2>
+<ul>
+<li>This part is a standard seq2seq, still using the previously encoded
+<span class="math inline">\(h_x, h_r\)</span> to concatenate it and feed
+it into an attentional RNN decoder to generate an abstract, and
+calculate the loss</li>
+</ul>
+<h2 id="jointly-learning">Jointly Learning</h2>
+<ul>
+<li>The model's loss is divided into two parts. The Rerank part ensures
+that the encoded template and the input, after passing through bilinear
+processing, can correctly predict the ROUGE value. The Rewrite part
+ensures the generation of a correct summary. This is equivalent to, in
+addition to the ordinary seq2seq summary generation, I also candidate
+some other gold summaries as input. This candidate is initially filtered
+through retrieval. When used, the Rerank part guarantees that the
+encoded part is the template component within the summary, i.e., the
+part that can be taken out and compared with the gold summary, thereby
+assisting the decoder in the Rewrite part's generation.</li>
+</ul>
+<h2 id="result">result</h2>
+<ul>
+<li>We know that in summarization, the decoder is actually very
+dependent on the encoder's input, which includes both the template and
+the original input. The authors provide several ideal examples, where
+the output summary is basically in the format of the template, but the
+key entities are extracted from the original input and filled into the
+template summary.</li>
+<li>Although a somewhat esoteric rerank loss method was used for
+extracting the soft template, the role of the template is indeed
+evident. The model actually finds a summary that is very close to the
+gold summary as input, and makes slight modifications (rewrites) on this
+basis, which is much more efficient than end-to-end seq2seq. The authors
+also tried removing the retrieve step and directly finding the ROUGE
+score highest summary from the entire corpus as the template, with the
+final model's results reaching 50 ROUGE-1 and 48 ROUGE-L</li>
+<li>This operation of taking the output as input is actually a
+compensation for the insufficient abstract ability of the decoder, and
+it is an empirical method derived from the observation of the dataset,
+which can effectively solve the problem</li>
+</ul>
+<h2 id="biset">biset</h2>
+<ul>
+<li>Replaced the rerank part with CNN+GLU to encode documents and
+queries, and then computed the sim matrix using the encoded vectors</li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1
 id="improving-the-similarity-measure-of-determinantal-point-processes-for-extractive-multi-document-summarization">Improving
 the Similarity Measure of Determinantal Point Processes for Extractive
 Multi-Document Summarization</h1>
@@ -529,424 +954,158 @@ summary很接近的一个summary作为输入，在此基础上稍加更改(rewri
 <li>将rerank部分换成了CNN+GLU来编码文档和查询，编码后的向量计算sim
 matrix，</li>
 </ul>
-
-    </div>
-
-    
-    
-    
-      
-  <div class="popular-posts-header">Related Posts</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/12/16/201912/" rel="bookmark">Paper Reading 4</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/10/03/graph-summarization/" rel="bookmark">Note for Graph-based Summarization</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2020/02/28/structured-summarization/" rel="bookmark">Structured Neural Summarization, Paper Reading</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2020/03/02/bertology/" rel="bookmark">BERTology</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/07/28/acl2019/" rel="bookmark">Outstanding Papers Reading (ACL 2019)</a></div>
-    </li>
-  </ul>
-
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
-              <a href="/tags/summarization/" rel="tag"><i class="fa fa-tag"></i> summarization</a>
-              <a href="/tags/natural-language-processing/" rel="tag"><i class="fa fa-tag"></i> natural language processing</a>
-          </div>
-
-        
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  </div>
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/08/13/CogGraph/" rel="prev" title="Study Notes for Cognitive Graph">
-      <i class="fa fa-chevron-left"></i> Study Notes for Cognitive Graph
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/09/23/easyrl/" rel="next" title="Easy Reinforcement Learning Notes">
-      Easy Reinforcement Learning Notes <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#improving-the-similarity-measure-of-determinantal-point-processes-for-extractive-multi-document-summarization"><span class="nav-number">1.</span> <span class="nav-text">Improving
-the Similarity Measure of Determinantal Point Processes for Extractive
-Multi-Document Summarization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#strass-a-light-and-effective-method-for-extractive-summarization-based-on-sentence-embeddings"><span class="nav-number">2.</span> <span class="nav-text">STRASS:
-A Light and Effective Method for Extractive Summarization Based on
-Sentence Embeddings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-robust-abstractive-system-for-cross-lingual-summarization"><span class="nav-number">3.</span> <span class="nav-text">A
-Robust Abstractive System for Cross-Lingual Summarization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#answering-while-summarizing-multi-task-learning-for-multi-hop-qa-with-evidence-extraction"><span class="nav-number">4.</span> <span class="nav-text">Answering
-while Summarizing: Multi-task Learning for Multi-hop QA with Evidence
-Extraction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#biset-bi-directional-selective-encoding-with-template-for-abstractive-summarization"><span class="nav-number">5.</span> <span class="nav-text">BiSET:
-Bi-directional Selective Encoding with Template for Abstractive
-Summarization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#retrieve"><span class="nav-number">5.1.</span> <span class="nav-text">Retrieve</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rerank"><span class="nav-number">5.2.</span> <span class="nav-text">Rerank</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rewrite"><span class="nav-number">5.3.</span> <span class="nav-text">Rewrite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jointly-learning"><span class="nav-number">5.4.</span> <span class="nav-text">Jointly Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#result"><span class="nav-number">5.5.</span> <span class="nav-text">result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#biset"><span class="nav-number">5.6.</span> <span class="nav-text">biset</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Thinkwee</p>
-  <div class="site-description" itemprop="description">Failed Better</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">56</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">58</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    
+    
+    
 
-      </div>
-    </main>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+              <a href="/tags/summarization/" rel="tag"># summarization</a>
+              <a href="/tags/natural-language-processing/" rel="tag"># natural language processing</a>
+          </div>
 
-    <footer class="footer">
-      <div class="footer-inner">
         
-
-        
-  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
-      <img src="http://www.beian.gov.cn/portal/download" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
   </div>
 
-<div class="copyright">
-  
-  &copy; 2017 – 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Thinkwee</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/08/13/CogGraph/" rel="prev" title="Study Notes for Cognitive Graph">
+                  <i class="fa fa-angle-left"></i> Study Notes for Cognitive Graph
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/09/23/easyrl/" rel="next" title="Easy Reinforcement Learning Notes">
+                  Easy Reinforcement Learning Notes <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
     </span>
-    <span title="Symbols count total">380k</span>
-    <span class="post-meta-divider">|</span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">782k</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:45</span>
+    <span title="Reading time total">11:51</span>
+  </span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
-        
+    </div>
+  </footer>
 
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="//fastly.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//fastly.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-  <script src="//fastly.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id    : 13961,
-      el    : 'wpac-rating',
-      color : 'fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
+
+
+  <script src="/js/third-party/addtoany.js"></script>
 
   
-<script src="/js/local-search.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-<script>
-if (document.querySelectorAll('pre.mermaid').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
-    mermaid.initialize({
-      theme    : 'forest',
-      logLevel : 3,
-      flowchart: { curve     : 'linear' },
-      gantt    : { axisFormat: '%m/%d/%Y' },
-      sequence : { actorMargin: 50 }
-    });
-  }, window.mermaid);
-}
-</script>
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
 
 
   
 
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//fastly.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
-
-  
-  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
-  <script>
-      window.addEventListener('load', () => {
-      quicklink({
-        timeout : 3000,
-        priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://thinkwee.top/2019/08/15/acl2019-summarization/',]
-      });
-      });
-  </script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//fastly.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'g58NgfMJBlwTyftr6hizdozq-gzGzoHsz',
-      appKey     : '1nA1tNVxeeSlAumHogP0PvSd',
-      placeholder: "just write something to me",
-      avatar     : '',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : true,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2019/08/15/acl2019-summarization/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
 
 </body>
 </html>

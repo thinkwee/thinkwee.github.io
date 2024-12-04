@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.2.0">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -12,25 +12,25 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="//fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-  <meta name="description" content="CorEx(Correlation Explaination)的相关笔记。">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Note for CorEx(Correlation Explaination).">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Study Notes for Correlation Explaination">
 <meta property="og:url" content="https://thinkwee.top/2019/07/29/CorEx/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="CorEx(Correlation Explaination)的相关笔记。">
+<meta property="og:description" content="Note for CorEx(Correlation Explaination).">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/31/etsOld.gif">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/31/eYYvRK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/31/eYYvRK.png">
 <meta property="article:published_time" content="2019-07-29T03:17:11.000Z">
-<meta property="article:modified_time" content="2024-06-03T07:41:19.390Z">
+<meta property="article:modified_time" content="2024-12-04T07:08:57.395Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="math">
 <meta property="article:tag" content="machine learning">
@@ -39,30 +39,20 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/07/31/etsOld.gif">
 
+
 <link rel="canonical" href="https://thinkwee.top/2019/07/29/CorEx/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'en'
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2019/07/29/CorEx/","path":"2019/07/29/CorEx/","title":"Study Notes for Correlation Explaination"}</script>
 
-  <title>Study Notes for Correlation Explaination | Thinkwee's Blog</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Study Notes for Correlation Explaination | Thinkwee's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-96114782-1');
-      }
-    </script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
 
 
 
@@ -70,56 +60,36 @@
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Thinkwee's Blog</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -127,34 +97,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
-
-  </li>
-        <li class="menu-item menu-item-multi-agent-ebook">
-
-    <a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a>
-
-  </li>
-        <li class="menu-item menu-item-iagents">
-
-    <a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -166,128 +110,228 @@
 
   <div class="search-pop-overlay">
     <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
-</div>
-    </header>
+</header>
+        
+  
+  <aside class="sidebar">
 
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#discovering-structure-in-high-dimensional-data-through-correlation-explanation"><span class="nav-number">2.</span> <span class="nav-text">Discovering
+Structure in High-Dimensional Data Through Correlation Explanation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#define-total-correlation"><span class="nav-number">2.1.</span> <span class="nav-text">Define Total Correlation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iteration"><span class="nav-number">2.2.</span> <span class="nav-text">Iteration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pseudo-algorithm"><span class="nav-number">2.3.</span> <span class="nav-text">Pseudo-algorithm</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#maximally-informative-hierarchical-representations-of-high-dimensional-data"><span class="nav-number">3.</span> <span class="nav-text">Maximally
+Informative Hierarchical Representations of High-Dimensional Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#upper-and-lower-bounds"><span class="nav-number">3.1.</span> <span class="nav-text">Upper and lower bounds</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#analysis"><span class="nav-number">3.2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#optimization"><span class="nav-number">3.3.</span> <span class="nav-text">Optimization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#anchored-correlation-explanation-topic-modeling-with-minimal-domain-knowledge"><span class="nav-number">4.</span> <span class="nav-text">Anchored
+Correlation Explanation: Topic Modeling with Minimal Domain
+Knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract-1"><span class="nav-number">4.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#semi-supervised"><span class="nav-number">4.2.</span> <span class="nav-text">Semi-supervised</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">5.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#discovering-structure-in-high-dimensional-data-through-correlation-explanation"><span class="nav-number">6.</span> <span class="nav-text">Discovering
+Structure in High-Dimensional Data Through Correlation Explanation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89total-correlation"><span class="nav-number">6.1.</span> <span class="nav-text">定义Total Correlation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3"><span class="nav-number">6.2.</span> <span class="nav-text">迭代</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E7%AE%97%E6%B3%95"><span class="nav-number">6.3.</span> <span class="nav-text">伪算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#maximally-informative-hierarchical-representations-of-high-dimensional-data"><span class="nav-number">7.</span> <span class="nav-text">Maximally
+Informative Hierarchical Representations of High-Dimensional Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E7%95%8C%E5%92%8C%E4%B8%8B%E7%95%8C"><span class="nav-number">7.1.</span> <span class="nav-text">上界和下界</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">7.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">7.3.</span> <span class="nav-text">优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#anchored-correlation-explanation-topic-modeling-with-minimal-domain-knowledge"><span class="nav-number">8.</span> <span class="nav-text">Anchored
+Correlation Explanation: Topic Modeling with Minimal Domain
+Knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-number">8.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8A%E7%9B%91%E7%9D%A3"><span class="nav-number">8.2.</span> <span class="nav-text">半监督</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
   </div>
 
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
+        </div>
+      </div>
+    </div>
 
     
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/02/13/svm/" rel="bookmark">
+        <time class="popular-posts-time">2020-02-13</time>
+        <br>
+      SVM
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2019/11/15/hlda/" rel="bookmark">
+        <time class="popular-posts-time">2019-11-15</time>
+        <br>
+      Note for Hierarchical Latent Dirichlet Allocation
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/05/15/vc-dimension/" rel="bookmark">
+        <time class="popular-posts-time">2020-05-15</time>
+        <br>
+      Note for VC Dimension
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2017/03/18/Lagrange/" rel="bookmark">
+        <time class="popular-posts-time">2017-03-18</time>
+        <br>
+      Lagrange,KKT,PCA,SVM
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2019/07/29/CorEx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Thinkwee">
-      <meta itemprop="description" content="Failed Better">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Study Notes for Correlation Explaination | Thinkwee's Blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           Study Notes for Correlation Explaination
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-07-29 11:17:11" itemprop="dateCreated datePublished" datetime="2019-07-29T11:17:11+08:00">2019-07-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-06-03 15:41:19" itemprop="dateModified" datetime="2024-06-03T15:41:19+08:00">2024-06-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/07/29/CorEx/" class="post-meta-item leancloud_visitors" data-flag-title="Study Notes for Correlation Explaination" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
+        <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/07/29/CorEx/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/07/29/CorEx/" itemprop="commentCount"></span>
-    </a>
-  </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-29 11:17:11" itemprop="dateCreated datePublished" datetime="2019-07-29T11:17:11+08:00">2019-07-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-12-04 15:08:57" itemprop="dateModified" datetime="2024-12-04T15:08:57+08:00">2024-12-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
+        </span>
+    </span>
+
   
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>8.6k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>8 mins.</span>
-            </span>
+    <span id="/2019/07/29/CorEx/" class="post-meta-item leancloud_visitors" data-flag-title="Study Notes for Correlation Explaination" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>23k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>21 mins.</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -295,14 +339,476 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <hr />
-<p>CorEx(Correlation Explaination)的相关笔记。</p>
+    <div class="post-body" itemprop="articleBody"><hr />
+<p>Note for CorEx(Correlation Explaination).</p>
 <span id="more"></span>
 <p><img data-src="https://s2.ax1x.com/2019/07/31/etsOld.gif" /></p>
-<h1 id="概述">概述</h1>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="abstract">Abstract</h1>
+<ul>
+<li>Correlation Explaination is a type of learning method that can be
+used in topic models, yielding results similar to LDA but with a
+completely different processing process. Correlation Explaination does
+not make any structural prior assumptions about the generation of data,
+but, similar to information gain, uses the difference in Total
+Correlation to find the topic that best explains the data. One rapid
+calculation method is abbreviated as CorEx.</li>
+<li>For convenience, the following text uses concepts from LDA to
+analogize to concepts in CorEx, including that the background is
+document topic modeling, a topic is a discrete random variable, and a
+document may contain multiple topics, etc.</li>
+</ul>
+<h1
+id="discovering-structure-in-high-dimensional-data-through-correlation-explanation">Discovering
+Structure in High-Dimensional Data Through Correlation Explanation</h1>
+<h2 id="define-total-correlation">Define Total Correlation</h2>
+<ul>
+<li><p>The entropy of the discrete random variable <span
+class="math inline">\(X\)</span> is defined as</p>
+<p><span class="math display">\[
+H(X) \equiv \mathbb{E}_{X}[-\log p(x)]
+\]</span></p></li>
+<li><p>The mutual information between two random variables is defined
+as</p>
+<p><span class="math display">\[
+I(X_1 : X_2) = H\left(X_{1}\right)+H\left(X_{2}\right)-H\left(X_{1},
+X_{2}\right)
+\]</span></p></li>
+<li><p>We define Total Correlation (or Multivariate Mutual Information)
+as</p>
+<p><span class="math display">\[
+T C\left(X_{G}\right)=\sum_{i \in G}
+H\left(X_{i}\right)-H\left(X_{G}\right)
+\]</span></p></li>
+<li><p>Among them, <span class="math inline">\(G\)</span> is a subset of
+<span class="math inline">\(X\)</span> . Intuitively, it is the sum of
+the entropy of each random variable in the subset minus the joint
+entropy of the subset. When there are only two variables in G, TC is
+equivalent to the mutual information between the two variables.</p></li>
+<li><p>To facilitate understanding, TC can also be expressed in the form
+of KL divergence</p>
+<p><span class="math display">\[
+T C\left(X_{G}\right)=D_{K L}\left(p\left(x_{G}\right) \| \prod_{i \in
+G} p\left(x_{i}\right)\right)
+\]</span></p></li>
+<li><p>The KL divergence between the joint distribution and the product
+of the marginal distributions can be seen as TC, so when TC is 0, the KL
+divergence is 0, the joint distribution equals the product of the
+marginal distributions, which means the internal correlation of the data
+is 0, the variables are mutually independent, and the joint distribution
+can be factorized into the product of the marginal
+distributions.</p></li>
+<li><p>Next, we define conditional TC</p>
+<p><span class="math display">\[
+T C(X | Y)=\sum_{i} H\left(X_{i} | Y\right)-H(X | Y)
+\]</span></p></li>
+<li><p>Then we can use the difference between TC and conditional TC to
+measure the contribution of a certain condition (variable) to the
+correlation of the data, the original text states: measure the extent to
+which <span class="math inline">\(Y\)</span> explains the correlations
+in <span class="math inline">\(X\)</span></p>
+<p><span class="math display">\[
+T C(X ; Y) \equiv T C(X)-T C(X | Y)=\sum_{i \in \mathbb{N}_{n}}
+I\left(X_{i} : Y\right)-I(X : Y)
+\]</span></p></li>
+<li><p>When <span class="math inline">\(T C(X ; Y)\)</span> is
+maximized, <span class="math inline">\(T C(X | Y)\)</span> is 0, which
+means that the joint distribution of <span
+class="math inline">\(X\)</span> can be decomposed given <span
+class="math inline">\(Y\)</span> . This implies that <span
+class="math inline">\(Y\)</span> explains all the correlation in <span
+class="math inline">\(X\)</span> . We believe that a good topic should
+be a representation of the document, which explains the document's Total
+Correlation to the maximum extent.</p></li>
+<li><p>Now we can treat <span class="math inline">\(Y\)</span> as a
+latent variable that explains <span class="math inline">\(X\)</span> ,
+that is, the topic. Next, we need to determine the topic. In LDA, the
+topic is explicitly defined as a word probability distribution, whereas
+in CorEx, we define the topic through <span
+class="math inline">\(p(Y|X)\)</span> , meaning it is defined as a
+discrete random variable that can affect <span
+class="math inline">\(X\)</span> , with <span
+class="math inline">\(k\)</span> possible values, unlike LDA which
+defines <span class="math inline">\(|V|\)</span> possible
+values.</p></li>
+<li><p>LDA iteratively updates the topic assignment for each word,
+thereby indirectly obtaining the document's topic distribution and the
+distribution of words over topics. CorEx, however, is different; it
+calculates a topic distribution for both documents and words. CorEx
+continuously updates the probability of each topic <span
+class="math inline">\(p(y_j)\)</span> , the topic distribution of each
+word <span class="math inline">\(p(y_j|x_i)\)</span> , the allocation
+matrix from words to topic subsets <span
+class="math inline">\(\alpha\)</span> , and the topic distribution of
+each document <span class="math inline">\(p(y_j|x)\)</span> .</p></li>
+<li><p>At initialization, we randomly set <span
+class="math inline">\(\alpha\)</span> and the document's topic
+distribution <span class="math inline">\(p(y|x)\)</span></p></li>
+<li><p>LDA is a generative model, while CorEX is a discriminative
+model.</p></li>
+</ul>
+<h2 id="iteration">Iteration</h2>
+<ul>
+<li><p>The topic we need to find is</p>
+<p><span class="math display">\[
+\max _{p(y | x)} T C(X ; Y) \quad \text { s.t. } \quad|Y|=k
+\]</span></p></li>
+<li><p>We can find m topics and divide <span
+class="math inline">\(X\)</span> into m disjoint subsets for
+modeling</p>
+<p><span class="math display">\[
+\max _{G_{j}, p\left(y_{j} | x_{C_{j}}\right)} \sum_{j=1}^{m} T
+C\left(X_{G_{j}} ; Y_{j}\right) \quad \text { s.t. }
+\quad\left|Y_{j}\right|=k, G_{j} \cap G_{j^{\prime} \neq j}=\emptyset
+\]</span></p></li>
+<li><p>Rewrite the above equation in terms of mutual information</p>
+<p><span class="math display">\[
+\max _{G, p\left(y_{j} | x\right)} \sum_{j=1}^{m} \sum_{i \in G_{j}}
+I\left(Y_{j} : X_{i}\right)-\sum_{j=1}^{m} I\left(Y_{j} :
+X_{G_{j}}\right)
+\]</span></p></li>
+<li><p>We further simplify this expression using an indicator function,
+removing the subscripts of the subset <span
+class="math inline">\(G\)</span> , and uniformly representing the
+partition results of the subset with a single <span
+class="math inline">\(\alpha\)</span> connectivity matrix</p>
+<p><span class="math display">\[
+\alpha_{i, j}=\mathbb{I}\left[X_{i} \in G_{j}\right] \in\{0,1\}  \\
+\max _{\alpha, p\left(y_{j} | x\right)} \sum_{j=1}^{m} \sum_{i=1}^{n}
+\alpha_{i, j} I\left(Y_{j} : X_{i}\right)-\sum_{j=1}^{m} I\left(Y_{j} :
+X\right) \\
+\]</span></p></li>
+<li><p>We must also add a constraint to ensure that the subsets do not
+intersect</p>
+<p><span class="math display">\[
+\sum_{\overline{j}} \alpha_{i, \overline{j}}=1
+\]</span></p></li>
+<li><p>This is an optimization problem with constraints, which can be
+solved using the Lagrange multiplier method</p>
+<p><span class="math display">\[
+\begin{aligned} p\left(y_{j} | x\right) &amp;=\frac{1}{Z_{j}(x)}
+p\left(y_{j}\right) \prod_{i=1}^{n}\left(\frac{p\left(y_{j} |
+x_{i}\right)}{p\left(y_{j}\right)}\right)^{\alpha_{i, j}} \\
+p\left(y_{j} | x_{i}\right) &amp;=\sum_{\overline{x}} p\left(y_{j} |
+\overline{x}\right) p(\overline{x}) \delta_{\overline{x}_{i}, x_{i}} /
+p\left(x_{i}\right) \text { and }
+p\left(y_{j}\right)=\sum_{\overline{x}} p\left(y_{j} |
+\overline{x}\right) p(\overline{x}) \end{aligned} \\
+\]</span></p></li>
+<li><p>Note that this is the optimal theme solution obtained under the
+confirmation of matrix <span class="math inline">\(\alpha\)</span> , by
+relaxing the conditions for the optimal solution, we can obtain the
+iterative formula for <span class="math inline">\(\alpha\)</span> after
+the theme update</p>
+<p><span class="math display">\[
+\alpha_{i, j}^{t+1}=(1-\lambda) \alpha_{i, j}^{t}+\lambda \alpha_{i,
+j}^{* *} \\
+\alpha_{i, j}^{* *}=\exp \left(\gamma\left(I\left(X_{i} :
+Y_{j}\right)-\max _{\overline{j}} I\left(X_{i} :
+Y_{\overline{j}}\right)\right)\right) \\
+\]</span></p></li>
+</ul>
+<h2 id="pseudo-algorithm">Pseudo-algorithm</h2>
+<ul>
+<li><p>Pseudo-algorithm description as follows</p>
+<p> <span class="math display">\[
+\text { input : A matrix of size } n_{s} \times n \text { representing }
+n_{s} \text { samples of } n \text { discrete random variables } \\
+\]</span> </p>
+<p> <span class="math display">\[
+\text { set } : \text { Set } m, \text { the number of latent variables,
+} Y_{j}, \text { and } k, \text { so that }\left|Y_{j}\right|=k  \\
+\]</span></p>
+<p> <span class="math display">\[
+\text { output: Parameters } \alpha_{i, j}, p\left(y_{j} | x_{i}\right),
+p\left(y_{j}\right), p\left(y | x^{(l)}\right) \\
+\]</span></p>
+<p> <span class="math display">\[
+\text { for } i \in \mathbb{N}_{n}, j \in \mathbb{N}_{m}, l \in
+\mathbb{N}_{n_{s}}, y \in \mathbb{N}_{k}, x_{i} \in \mathcal{X}_{i} \\
+\]</span></p>
+<p> <span class="math display">\[
+\text { Randomly initialize } \alpha_{i, j}, p\left(y | x^{(l)}\right)
+\\
+\]</span></p>
+<p><span class="math display">\[
+\text {repeat} \\
+\]</span></p>
+<p> <span class="math display">\[
+\text { Estimate marginals, } p\left(y_{j}\right), p\left(y_{j} |
+x_{i}\right) \text { using  } \\
+\]</span> </p>
+<p><span class="math display">\[
+p\left(y_{j} | x_{i}\right)=\sum_{\overline{x}} p\left(y_{j} |
+\overline{x}\right) p(\overline{x}) \delta_{\overline{x}_{i}, x_{i}} /
+p\left(x_{i}\right) \text { and }
+p\left(y_{j}\right)=\sum_{\overline{x}} p\left(y_{j} |
+\overline{x}\right) p(\overline{x}) \\
+\]</span></p>
+<p> <span class="math display">\[
+\text { Calculate } I\left(X_{i} : Y_{j}\right) \text { from marginals;
+} \\
+\]</span> </p>
+<p> <span class="math display">\[
+\text { Update } \alpha \text { using  } \\
+\]</span> </p>
+<p><span class="math display">\[
+\alpha_{i, j}^{t+1}=(1-\lambda) \alpha_{i, j}^{t}+\lambda \alpha_{i,
+j}^{* *} \\
+\]</span></p>
+<p> <span class="math display">\[
+\text { Calculate } p\left(y | x^{(l)}\right), l=1, \ldots, n_{s} \text
+{ using } \\
+\]</span> </p>
+<p><span class="math display">\[
+p\left(y_{j} | x\right)=\frac{1}{Z_{j}(x)} p\left(y_{j}\right)
+\prod_{i=1}^{n}\left(\frac{p\left(y_{j} |
+x_{i}\right)}{p\left(y_{j}\right)}\right)^{\alpha_{i, j}} \\
+\]</span></p>
+<p> <span class="math display">\[
+\text { until convergence; }
+\]</span> </p></li>
+</ul>
+<h1
+id="maximally-informative-hierarchical-representations-of-high-dimensional-data">Maximally
+Informative Hierarchical Representations of High-Dimensional Data</h1>
+<ul>
+<li>This paper analyzes the upper and lower bounds of TC, which helps to
+further understand the meaning of TC and proposes an optimization method
+for a hierarchical high-dimensional data representation that maximizes
+information content. The CorEx mentioned earlier can be considered a
+special case of this optimization method.</li>
+</ul>
+<h2 id="upper-and-lower-bounds">Upper and lower bounds</h2>
+<ul>
+<li><p>Most definitions are similar to the previous ones, more general
+in nature. We extend documents and topics to data <span
+class="math inline">\(X\)</span> and representation <span
+class="math inline">\(Y\)</span> . When the joint probability can be
+decomposed, we call <span class="math inline">\(Y\)</span> a
+representation of <span class="math inline">\(X\)</span></p>
+<p><span class="math display">\[
+p(x, y)=\prod_{j=1}^{m} p\left(y_{j} | x\right) p(x) \\
+\]</span></p></li>
+<li><p>Thus, the representation of a data set is completely determined
+by the representation of the variable domain and the conditional
+probability <span class="math inline">\(p(y_j|x)\)</span> .</p></li>
+<li><p>Hierarchical representations can be stacked in layers; we define
+hierarchical representation as:</p>
+<p><span class="math display">\[
+Y^{1 : r} \equiv Y^{1}, \ldots, Y^{r}
+\]</span></p></li>
+<li><figure>
+<img data-src="https://s2.ax1x.com/2019/07/31/eYYvRK.png" alt="eYYvRK.png" />
+<figcaption aria-hidden="true">eYYvRK.png</figcaption>
+</figure></li>
+<li><p>The <span class="math inline">\(Y^k\)</span> represents <span
+class="math inline">\(Y^{k-1}\)</span> . We mainly focus on the upper
+and lower bounds of the informativeness of hierarchical representations
+for data. This type of hierarchical representation is a general
+representation, including RBM and autoencoders, etc.</p></li>
+<li><p>Definition:</p>
+<p><span class="math display">\[
+T C_{L}(X ; Y) \equiv \sum_{i=1}^{n} I\left(Y :
+X_{i}\right)-\sum_{j=1}^{m} I\left(Y_{j} : X\right) \\
+\]</span></p></li>
+<li><p>There exist the following boundaries and decompositions:</p>
+<p><span class="math display">\[
+T C(X) \geq T C(X ; Y)=T C(Y)+T C_{L}(X ; Y)
+\]</span></p></li>
+<li><p>Then you get a lower bound of <span
+class="math inline">\(Y\)</span> relative to <span
+class="math inline">\(X\)</span> TC value:</p>
+<p><span class="math display">\[
+T C(X ; Y) \geq T C_{L}(X ; Y)
+\]</span></p></li>
+<li><p>When <span class="math inline">\(TC(Y)\)</span> is 0, the lower
+bound is obtained, at which point <span class="math inline">\(Y\)</span>
+are mutually independent and do not contain any information about <span
+class="math inline">\(X\)</span> . Extending the inequality above to the
+hierarchical representation, we can obtain</p>
+<p><span class="math display">\[
+T C(X) \geq \sum_{k=1}^{r} T C_{L}\left(Y^{k-1} ; Y^{k}\right)
+\]</span></p></li>
+<li><p>Attention here is that we define the 0th layer as <span
+class="math inline">\(X\)</span> , and we can also find the upper
+bound</p>
+<p><span class="math display">\[
+T C(X) \leq \sum_{k=1}^{r}\left(T C_{L}\left(Y^{k-1} ;
+Y^{k}\right)+\sum_{i=1}^{m_{k-1}} H\left(Y_{i}^{k-1} |
+Y^{k}\right)\right)
+\]</span></p></li>
+<li><p>The difference between the upper and lower bounds is a pile of
+accumulated conditional entropy.</p></li>
+<li><p>The lower and upper bounds of TC can help measure the extent of
+interpretation for the data</p>
+<h2 id="analysis">Analysis</h2></li>
+<li><p>Consider the simplest case first, where the first layer
+represents a single variable <span class="math inline">\(Y^{1} \equiv
+Y_{1}^{1}\)</span></p>
+<p><span class="math display">\[
+TC(Y)+TC_L(X;Y)=TC(X;Y) \leq TC(X) \leq TC_L(X;Y)+\sum _{i=1}^{m_0}
+H(X_i|Y)
+\]</span></p></li>
+<li><p>To be supplemented</p>
+<h2 id="optimization">Optimization</h2></li>
+<li><p>We can optimize layer by layer, so that each layer maximally
+explains the correlations in the layer below, which can be achieved by
+optimizing the lower bound, taking the first layer as an example</p>
+<p><span class="math display">\[
+\max _{\forall j, p\left(y_{j}^{1} | x\right)} T C_{L}\left(X ;
+Y^{1}\right)
+\]</span></p></li>
+<li><p>Define the ancestor information as</p>
+<p><span class="math display">\[
+A I_{\alpha}(X ; Y) \equiv \sum_{i=1}^{n} \alpha_{i} I\left(Y :
+X_{i}\right)-I(Y : X) \\
+\alpha_{i} \in[0,1] \\
+\]</span></p></li>
+<li><p>If given a certain <span class="math inline">\(\alpha\)</span> ,
+whose <span class="math inline">\(AI_{\alpha}\)</span> is positive, it
+implies the existence of common ancestors for some ( <span
+class="math inline">\(\alpha\)</span> -dependent) set of <span
+class="math inline">\(X_i\)</span> s in any DAG that describes <span
+class="math inline">\(X\)</span> , here it is not quite understood, but
+it can be seen as a generalization of the aforementioned connected
+matrix <span class="math inline">\(\alpha\)</span> , generalizing from
+binarization to the 01 interval. The optimization problem can be
+represented by <span class="math inline">\(AI_{\alpha}\)</span> and can
+be written as</p>
+<p><span class="math display">\[
+\max _{p(y | x)} \sum_{i=1}^{n} \alpha_{i} I\left(Y : X_{i}\right)-I(Y :
+X)
+\]</span></p></li>
+<li><p>The form has been transformed into the same as the previous
+paragraph, and the subsequent solution is also the same</p>
+<p><span class="math display">\[
+p(y | x)=\frac{1}{Z(x)} p(y) \prod_{i=1}^{n}\left(\frac{p\left(y |
+x_{i}\right)}{p(y)}\right)^{\alpha_{i}}
+\]</span></p></li>
+<li><p>Taking the logarithmic expectation of the normalized denominator
+<span class="math inline">\(Z(x)\)</span> yields the free energy, which
+is precisely our optimization objective</p>
+<p><span class="math display">\[
+\begin{aligned} \mathbb{E}[\log Z(x)] &amp;=\mathbb{E}\left[\log
+\frac{p(y)}{p(y | x)} \prod_{i=1}^{n}\left(\frac{p\left(y |
+x_{i}\right)}{p(y)}\right)^{\alpha_{i}}\right] \\ &amp;=\sum_{i=1}^{n}
+\alpha_{i} I\left(Y : X_{i}\right)-I(Y : X) \end{aligned}
+\]</span></p></li>
+<li><p>For multiple latent variables, the author reconstructed the lower
+bound and similarly extended <span class="math inline">\(\alpha\)</span>
+to continuous values in the 01 interval. The specific process is
+relatively complex, and the final optimization objective changed from
+maximizing the <span class="math inline">\(TC_L(X;Y)\)</span> of all
+latent units to optimizing the lower bounds of <span
+class="math inline">\(p(y_j|x)\)</span> and <span
+class="math inline">\(\alpha\)</span> .</p>
+<p><span class="math display">\[
+\max _{\alpha_{i, j}, p\left(y_{j} | x\right) \atop c_{i,
+j}\left(\alpha_{i, j}\right)=0}^{m} \sum_{j=1}^m \left(\sum_{i=1}^{n}
+\alpha_{i, j} I\left(Y_{j} : X_{i}\right)-I\left(Y_{j} : X\right)\right)
+\]</span></p></li>
+<li><p>Defined the relationship between <span
+class="math inline">\(X_i\)</span> and <span
+class="math inline">\(Y_j\)</span> , i.e., the structure. As for
+optimizing the structure, the ideal situation is</p>
+<p><span class="math display">\[
+\alpha _{i,j} = \mathbb{I} [j = argmax _{j} I(X_i : Y_j)]
+\]</span></p></li>
+<li><p>This structure is rigidly connected, with each node only
+connected to a specific hidden layer node in the next layer. Based on
+<span class="math inline">\(I(Y_j : X_i | Y_{1:j-1}) \geq \alpha _{i,j}
+I(Y_j : X_i)\)</span> , the authors propose a heuristic algorithm to
+estimate <span class="math inline">\(\alpha\)</span> . We verify whether
+<span class="math inline">\(X_i\)</span> correctly estimates <span
+class="math inline">\(Y_j\)</span> .</p>
+<p><span class="math display">\[
+d_{i,j}^l \equiv \mathbb{I} [argmax_{y_j} \log p(Y_j = y_j|x^{(l)}) =
+argmax_{y_j} \log p(Y_j = y_j | x_i^{(l)}) / p(Y_j = y_j)]
+\]</span></p></li>
+<li><p>Afterward, we summed up over all the samples, counted the number
+of correct estimates, and set the <span
+class="math inline">\(\alpha\)</span> value according to the
+proportion.</p></li>
+</ul>
+<h1
+id="anchored-correlation-explanation-topic-modeling-with-minimal-domain-knowledge">Anchored
+Correlation Explanation: Topic Modeling with Minimal Domain
+Knowledge</h1>
+<h2 id="abstract-1">Abstract</h2>
+<ul>
+<li><p>This paper formally applies CorEx to topic modeling, emphasizing
+the advantages compared to LDA.</p>
+<ul>
+<li>No structural assumptions need to be made for the data, and compared
+to LDA, CorEX has fewer hyperparameters</li>
+<li>Different from LDA, it can be generalized to hierarchical models and
+semi-supervised models without any structural modifications to the
+model</li>
+</ul></li>
+<li><p>The iterative process of the model still follows these steps:</p>
+<p><span class="math display">\[
+p_t(y_j) = \sum _{\overline{x}} p_t(y_j | \overline{x})p(\overline{x})
+\\
+\]</span></p>
+<p><span class="math display">\[
+p_t(x_i | y_j) = \sum _{\overline{x}}
+p_t(y_j|\overline{x})p(\overline{x}) \mathbb{I} [\overline{x}_i =
+x_i]/p_t(y_j) \\
+\]</span></p>
+<p><span class="math display">\[
+\log p_{t+1} (y_j | x^l) = \log p_t(y_j) + \sum _{i=1}^n \alpha _{i,j}^t
+\log \frac{p_t(x_i^l | y_j)}{p(x_i^l)} - \log \mathbb{Z} _j (x^l) \\
+\]</span></p></li>
+<li><p>Due to the use of bag-of-words information and the processing of
+sparse matrices, the calculation of edge probabilities and conditional
+probabilities is very fast. The slowest step in the iteration is the
+third formula, which is to calculate the topic distribution of all
+documents. We rewrite the summation of logarithmic terms in this
+formula:</p>
+<p><span class="math display">\[
+\log \frac{p_t(x_i^l | y_j)}{p(x_i^l)} = \log
+\frac{p_t(X_i=0|y_j)}{p(X_i=0)} + x_i^l \log
+(\frac{p_t(X_i^l=1|y_j)p(X_i=0)}{p_t(X_i=0|y_j)p(X_i^l=1)})
+\]</span></p></li>
+<li><p>The cumulative calculation is performed for each document,
+computing the likelihood over the entire dictionary, however, only a
+small portion of the words in the dictionary appear in each document.
+When a word in the dictionary does not appear in the document, only the
+first term in the above formula is not zero; when the word does appear,
+the term <span class="math inline">\(\log
+P(X_i^l=1|y_j)/p(X_i^l=1)\)</span> is zero, with the remaining terms
+retained, thus the author prioritizes the assumption that the word is
+not present in the document and then updates and supplements the
+probability terms for those words that do appear. After such
+optimization, the calculation speed of CorEx is similar to that of
+LDA.</p></li>
+<li><p>The greatest benefit of this optimization is that the
+computational complexity is only linearly related to the number of
+documents and the number of topics, thus making it possible to compute
+over large-scale documents with large-scale topics.</p>
+<h2 id="semi-supervised">Semi-supervised</h2></li>
+<li><p>Some value in the weight matrix can be fixed. The normal <span
+class="math inline">\(\alpha\)</span> is in the 01 interval, and the
+anchor of the i-th word in the j-th topic can be set to <span
+class="math inline">\(\beta _{i,j}\)</span>, where <span
+class="math inline">\(\beta\)</span> is the strength of the
+anchor.</p></li>
+<li><p>This approach can assign an anchor word to each topic, with one
+or more words as an anchor, offering great flexibility.</p></li>
+<li><p>In business terms, the advantages of CorEx lie in:</p>
+<ul>
+<li>Extremely fast in training with a very large number of topics.</li>
+<li>It is convenient to anchor words to adapt to the field.</li>
+<li>The themes in CorEx are non-overlapping; there will be no repeated
+themes</li>
+</ul></li>
+<li><p>Iterative hierarchical topics are based on the hierarchical
+method of the previous paper, hierarchical topics can be used to
+aggregate concepts and divide subtopics.</p></li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="概述">概述</h1>
 <ul>
 <li>Correlation
 Explaination是一类表示学习方法，可用于主题模型，与LDA具有相似的结果但其处理过程完全不同。Correlation
@@ -675,420 +1181,159 @@ class="math inline">\(\beta\)</span>是anchor的强度。</p></li>
 </ul></li>
 <li><p>层次主题就按照上一篇论文中的层次方法迭代，层次主题可以用于聚合概念，划分子话题。</p></li>
 </ul>
-
-    </div>
-
-    
-    
-    
-      
-  <div class="popular-posts-header">Related Posts</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2017/12/27/AM-Model-for-ASS/" rel="bookmark">Translate - A Neural Attention Model for Abstractive Sentence Summarization</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2018/03/07/NLPBasic/" rel="bookmark">NLP Basics</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/01/03/PaperReading3/" rel="bookmark">Paper Reading 3</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2018/03/07/PaperReading/" rel="bookmark">Paper Reading 1</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2018/07/03/PaperReading2/" rel="bookmark">Paper Reading 2</a></div>
-    </li>
-  </ul>
-
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/math/" rel="tag"><i class="fa fa-tag"></i> math</a>
-              <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
-              <a href="/tags/corex/" rel="tag"><i class="fa fa-tag"></i> corex</a>
-              <a href="/tags/topic-model/" rel="tag"><i class="fa fa-tag"></i> topic model</a>
-          </div>
-
-        
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  </div>
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/07/28/acl2019/" rel="prev" title="Outstanding Papers Reading (ACL 2019)">
-      <i class="fa fa-chevron-left"></i> Outstanding Papers Reading (ACL 2019)
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/08/09/interview201906/" rel="next" title="Interview Summary for NLP">
-      Interview Summary for NLP <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#discovering-structure-in-high-dimensional-data-through-correlation-explanation"><span class="nav-number">2.</span> <span class="nav-text">Discovering
-Structure in High-Dimensional Data Through Correlation Explanation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89total-correlation"><span class="nav-number">2.1.</span> <span class="nav-text">定义Total Correlation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3"><span class="nav-number">2.2.</span> <span class="nav-text">迭代</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">伪算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#maximally-informative-hierarchical-representations-of-high-dimensional-data"><span class="nav-number">3.</span> <span class="nav-text">Maximally
-Informative Hierarchical Representations of High-Dimensional Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E7%95%8C%E5%92%8C%E4%B8%8B%E7%95%8C"><span class="nav-number">3.1.</span> <span class="nav-text">上界和下界</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">3.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">3.3.</span> <span class="nav-text">优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#anchored-correlation-explanation-topic-modeling-with-minimal-domain-knowledge"><span class="nav-number">4.</span> <span class="nav-text">Anchored
-Correlation Explanation: Topic Modeling with Minimal Domain
-Knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="nav-number">4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8A%E7%9B%91%E7%9D%A3"><span class="nav-number">4.2.</span> <span class="nav-text">半监督</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Thinkwee</p>
-  <div class="site-description" itemprop="description">Failed Better</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">56</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">58</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    
+    
+    
 
-      </div>
-    </main>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/math/" rel="tag"># math</a>
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/corex/" rel="tag"># corex</a>
+              <a href="/tags/topic-model/" rel="tag"># topic model</a>
+          </div>
 
-    <footer class="footer">
-      <div class="footer-inner">
         
-
-        
-  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
-      <img src="http://www.beian.gov.cn/portal/download" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
   </div>
 
-<div class="copyright">
-  
-  &copy; 2017 – 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Thinkwee</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/07/28/acl2019/" rel="prev" title="Outstanding Papers Reading (ACL 2019)">
+                  <i class="fa fa-angle-left"></i> Outstanding Papers Reading (ACL 2019)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/08/13/CogGraph/" rel="next" title="Study Notes for Cognitive Graph">
+                  Study Notes for Cognitive Graph <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
     </span>
-    <span title="Symbols count total">380k</span>
-    <span class="post-meta-divider">|</span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">782k</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:45</span>
+    <span title="Reading time total">11:51</span>
+  </span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
-        
+    </div>
+  </footer>
 
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="//fastly.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//fastly.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-  <script src="//fastly.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id    : 13961,
-      el    : 'wpac-rating',
-      color : 'fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
+
+
+  <script src="/js/third-party/addtoany.js"></script>
 
   
-<script src="/js/local-search.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-<script>
-if (document.querySelectorAll('pre.mermaid').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
-    mermaid.initialize({
-      theme    : 'forest',
-      logLevel : 3,
-      flowchart: { curve     : 'linear' },
-      gantt    : { axisFormat: '%m/%d/%Y' },
-      sequence : { actorMargin: 50 }
-    });
-  }, window.mermaid);
-}
-</script>
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
 
 
   
 
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//fastly.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
-
-  
-  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
-  <script>
-      window.addEventListener('load', () => {
-      quicklink({
-        timeout : 3000,
-        priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://thinkwee.top/2019/07/29/CorEx/',]
-      });
-      });
-  </script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//fastly.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'g58NgfMJBlwTyftr6hizdozq-gzGzoHsz',
-      appKey     : '1nA1tNVxeeSlAumHogP0PvSd',
-      placeholder: "just write something to me",
-      avatar     : '',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : true,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2019/07/29/CorEx/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
 
 </body>
 </html>

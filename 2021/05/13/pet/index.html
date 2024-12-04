@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.2.0">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -12,23 +12,36 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="//fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"thinkwee.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-  <meta name="description" content="记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。 这类方法一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few shot learning上能取得较好结果。主要阅读以下9篇论文：  早期的将问题转为">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Record of recent task reconstruction methods based on templates, a particularly interesting direction since the appearance of GPT-3. These methods typically design prompts for tasks, converting samp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Prompt - Task Reformulation in NLP">
 <meta property="og:url" content="https://thinkwee.top/2021/05/13/pet/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。 这类方法一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few shot learning上能取得较好结果。主要阅读以下9篇论文：  早期的将问题转为">
+<meta property="og:description" content="Record of recent task reconstruction methods based on templates, a particularly interesting direction since the appearance of GPT-3. These methods typically design prompts for tasks, converting samp">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/17/gW98oV.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/17/gWivmd.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/19/gIih5j.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/18/ghFDuF.md.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/19/g58yOe.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/19/g5YjfI.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/19/g52dDH.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/17/gW98oV.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/17/gWivmd.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/19/gIih5j.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/18/ghFDuF.md.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/19/g58yOe.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/19/g5YjfI.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/19/g52dDH.png">
 <meta property="article:published_time" content="2021-05-13T11:36:34.000Z">
-<meta property="article:modified_time" content="2024-06-03T07:41:19.402Z">
+<meta property="article:modified_time" content="2024-11-29T07:08:19.597Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="nlp">
@@ -36,31 +49,22 @@
 <meta property="article:tag" content="pet">
 <meta property="article:tag" content="few shot">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/05/17/gW98oV.png">
+
 
 <link rel="canonical" href="https://thinkwee.top/2021/05/13/pet/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'en'
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2021/05/13/pet/","path":"2021/05/13/pet/","title":"Prompt - Task Reformulation in NLP"}</script>
 
-  <title>Prompt - Task Reformulation in NLP | Thinkwee's Blog</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Prompt - Task Reformulation in NLP | Thinkwee's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-96114782-1');
-      }
-    </script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
 
 
 
@@ -68,56 +72,36 @@
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Thinkwee's Blog</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -125,34 +109,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">56</span></a>
-
-  </li>
-        <li class="menu-item menu-item-multi-agent-ebook">
-
-    <a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a>
-
-  </li>
-        <li class="menu-item menu-item-iagents">
-
-    <a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -164,128 +122,204 @@
 
   <div class="search-pop-overlay">
     <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
-</div>
-    </header>
+</header>
+        
+  
+  <aside class="sidebar">
 
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#commonsense-knowledge-mining-from-pretrained-models"><span class="nav-number">1.</span> <span class="nav-text">Commonsense
+Knowledge Mining from Pretrained Models</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#argumentative-relation-classification-as-plausibility-ranking"><span class="nav-number">2.</span> <span class="nav-text">Argumentative
+Relation Classification as Plausibility Ranking</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zero-shot-text-classification-with-generative-language-models"><span class="nav-number">3.</span> <span class="nav-text">Zero-shot
+Text Classification With Generative Language Models</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#exploiting-cloze-questions-for-few-shot-text-classification-and-natural-language-inference"><span class="nav-number">4.</span> <span class="nav-text">Exploiting
+Cloze Questions for Few Shot Text Classification and Natural Language
+Inference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#its-not-just-size-that-matters-small-language-models-are-also-few-shot-learners"><span class="nav-number">5.</span> <span class="nav-text">It&#39;s
+Not Just Size That Matters: Small Language Models Are Also Few-Shot
+Learners</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#improving-and-simplifying-pattern-exploiting-training"><span class="nav-number">6.</span> <span class="nav-text">Improving
+and Simplifying Pattern Exploiting Training</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#autoprompt-eliciting-knowledge-from-language-models-with-automatically-generated-prompts"><span class="nav-number">7.</span> <span class="nav-text">AUTOPROMPT:
+Eliciting Knowledge from Language Models with Automatically Generated
+Prompts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#making-pre-trained-language-models-better-few-shot-learners"><span class="nav-number">8.</span> <span class="nav-text">Making
+Pre-trained Language Models Better Few-shot Learners</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gpt-understands-too"><span class="nav-number">9.</span> <span class="nav-text">GPT Understands, Too</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#commonsense-knowledge-mining-from-pretrained-models"><span class="nav-number">10.</span> <span class="nav-text">Commonsense
+Knowledge Mining from Pretrained Models</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#argumentative-relation-classification-as-plausibility-ranking"><span class="nav-number">11.</span> <span class="nav-text">Argumentative
+Relation Classification as Plausibility Ranking</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zero-shot-text-classification-with-generative-language-models"><span class="nav-number">12.</span> <span class="nav-text">Zero-shot
+Text Classification With Generative Language Models</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#exploiting-cloze-questions-for-few-shot-text-classification-and-naturallanguage-inference"><span class="nav-number">13.</span> <span class="nav-text">Exploiting
+Cloze Questions for Few Shot Text Classification and NaturalLanguage
+Inference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#its-not-just-size-that-matters-small-language-models-are-also-few-shot-learners"><span class="nav-number">14.</span> <span class="nav-text">It&#39;s
+Not Just Size That Matters: Small Language Models Are Also Few-Shot
+Learners</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#improving-and-simplifying-pattern-exploiting-training"><span class="nav-number">15.</span> <span class="nav-text">Improving
+and Simplifying Pattern Exploiting Training</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#autoprompt-eliciting-knowledge-from-language-models-with-automatically-generated-prompts"><span class="nav-number">16.</span> <span class="nav-text">AUTOPROMPT:
+Eliciting Knowledge from Language Models with Automatically Generated
+Prompts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#making-pre-trained-language-models-better-few-shot-learners"><span class="nav-number">17.</span> <span class="nav-text">Making
+Pre-trained Language Models Better Few-shot Learners</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gpt-understands-too"><span class="nav-number">18.</span> <span class="nav-text">GPT Understands, Too</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
   </div>
 
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
+        </div>
+      </div>
+    </div>
 
     
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2021/05/13/pet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Thinkwee">
-      <meta itemprop="description" content="Failed Better">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Prompt - Task Reformulation in NLP | Thinkwee's Blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           Prompt - Task Reformulation in NLP
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-05-13 19:36:34" itemprop="dateCreated datePublished" datetime="2021-05-13T19:36:34+08:00">2021-05-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-06-03 15:41:19" itemprop="dateModified" datetime="2024-06-03T15:41:19+08:00">2024-06-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2021/05/13/pet/" class="post-meta-item leancloud_visitors" data-flag-title="Prompt - Task Reformulation in NLP" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
+        <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2021/05/13/pet/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/05/13/pet/" itemprop="commentCount"></span>
-    </a>
-  </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-05-13 19:36:34" itemprop="dateCreated datePublished" datetime="2021-05-13T19:36:34+08:00">2021-05-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-11-29 15:08:19" itemprop="dateModified" datetime="2024-11-29T15:08:19+08:00">2024-11-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+        </span>
+    </span>
+
   
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>7.6k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>7 mins.</span>
-            </span>
+    <span id="/2021/05/13/pet/" class="post-meta-item leancloud_visitors" data-flag-title="Prompt - Task Reformulation in NLP" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>24k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>21 mins.</span>
+    </span>
+</div>
 
         </div>
       </header>
@@ -293,43 +327,419 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <hr />
+    <div class="post-body" itemprop="articleBody"><hr />
 <ul>
-<li>记录近年基于模板来完成任务重构的方法，这是一个比较有意思的方向，尤其是GPT3出现之后。
-这类方法一般针对任务设计prompt，将样本和任务一起转换为自然语言形式的template，直接输入预训练语言模型预测出文本，间接的完成任务。prompt的构建一方面统一了下游任务和预训练任务的形式（语言模型）在few
-shot learning上能取得较好结果。主要阅读以下9篇论文：
+<li>Record of recent task reconstruction methods based on templates, a
+particularly interesting direction since the appearance of GPT-3. These
+methods typically design prompts for tasks, converting samples and tasks
+into natural language templates, which are then directly input into
+pre-trained language models to generate text, thereby indirectly
+completing the tasks. The construction of prompts standardizes the form
+of downstream tasks and pre-trained tasks (language models), achieving
+good results in few-shot learning. Key papers to read include the
+following nine:
 <ul>
-<li>早期的将问题转为自然语言并使用预训练语言模型解答的：
+<li>Early work that converts questions into natural language and uses
+pre-trained language models for answers:
 <ul>
-<li>(Harvard)Commonsense Knowledge Mining from Pretrained Models</li>
-<li>(Heidelberg)Argumentative Relation Classification as Plausibility
+<li>(Harvard) Commonsense Knowledge Mining from Pretrained Models</li>
+<li>(Heidelberg) Argumentative Relation Classification as Plausibility
 Ranking</li>
-<li>(NVIDIA)Zero-shot Text Classification With Generative Language
+<li>(NVIDIA) Zero-shot Text Classification With Generative Language
 Models</li>
 </ul></li>
-<li>PET方向，Pattern Exploiting Training
+<li>The PET approach, Pattern Exploiting Training:
 <ul>
-<li>(LMU)Exploiting Cloze Questions for Few Shot Text Classification and
-Natural Language Inference</li>
-<li>(LMU)It’s Not Just Size That Matters: Small Language Models Are Also
-Few-Shot Learners</li>
-<li>(UNC)Improving and Simplifying Pattern Exploiting Training</li>
+<li>(LMU) Exploiting Cloze Questions for Few Shot Text Classification
+and Natural Language Inference</li>
+<li>(LMU) It’s Not Just Size That Matters: Small Language Models Are
+Also Few-Shot Learners</li>
+<li>(UNC) Improving and Simplifying Pattern Exploiting Training</li>
 </ul></li>
-<li>自动构建prompt，Automatically Searching Prompts
+<li>Automatically constructing prompts, Automatically Searching Prompts:
 <ul>
-<li>(UCI,UCB)AUTOPROMPT: Eliciting Knowledge from Language Models with
+<li>(UCI, UCB) AUTOPROMPT: Eliciting Knowledge from Language Models with
 Automatically Generated Prompts</li>
-<li>(Princeton, MIT)Making Pre-trained Language Models Better Few-shot
+<li>(Princeton, MIT) Making Pre-trained Language Models Better Few-shot
 Learners</li>
-<li>(THU)GPT Understands, Too</li>
+<li>(THU) GPT Understands, Too <span id="more"></span></li>
 </ul></li>
 </ul></li>
 </ul>
-<span id="more"></span>
-<h1 id="commonsense-knowledge-mining-from-pretrained-models">Commonsense
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="commonsense-knowledge-mining-from-pretrained-models">Commonsense
+Knowledge Mining from Pretrained Models</h1>
+<ul>
+<li>The authors aim to mine commonsense knowledge from data with unknown
+distributions, whereas traditional supervised learning methods are
+easily influenced by the data distribution in the training set, leading
+to biased results.</li>
+<li>They convert relation triples into masked sentences and input them
+into BERT. The mutual information between the predicted results from
+BERT and the triples is used to rank the credibility of the
+triples.</li>
+<li>The task involves scoring a given triple to determine its likelihood
+of representing real-world knowledge. This is divided into two steps:
+<ul>
+<li><p>Converting the triple into a masked sentence: multiple templates
+were manually designed for each relationship, and a set of rules was
+designed to ensure grammatical correctness (singular/plural, inserting
+articles, modifying nouns, etc.). All combinations of these templates
+and rules form a series of candidate sentences, which are then input
+into a pre-trained unidirectional language model to compute the
+log-likelihood score of each sentence being grammatically
+correct.</p></li>
+<li><p>Inputting the generated sentences into BERT for scoring: here,
+the authors use conditional pointwise mutual information (PMI), where
+the mutual information between the head and tail entities, conditioned
+on the relation r, serves as the score:</p>
+<p><span class="math display">\[
+PMI(tail, head | relation) = \log p(tail | head, relation) - \log p(tail
+| relation)
+\]</span></p>
+<p>In the language model, this effectively means masking the tail and
+predicting it. The first term in the equation masks only the tail, while
+the second term also masks the head (no prediction for the head).
+Additionally, if entities are composed of multiple words, a greedy
+approximation is used. Initially, all words are masked, and the
+highest-probability word is unmasked, followed by iterative predictions
+for the remaining words, where each time the highest-probability word is
+restored. The product of these probabilities gives the conditional
+probability of the entire word. The equation is asymmetric, so the
+authors also compute the head entity probability based on the
+relationship and tail entity, and average the two PMI values as the
+final result.</p></li>
+</ul></li>
+<li>The final results, although not as good as supervised learning,
+achieved the best results in unsupervised learning.</li>
+<li>This is an early attempt to use pre-trained models for Mask Predict,
+where the task is framed as a Cloze task. The patterns here are still
+manually designed (with a set of rules designed for each relation).</li>
+</ul>
+<h1
+id="argumentative-relation-classification-as-plausibility-ranking">Argumentative
+Relation Classification as Plausibility Ranking</h1>
+<ul>
+<li>The task in this paper is Argumentative Relation Classification,
+i.e., text pair classification, where the goal is to distinguish whether
+a pair of texts supports or contradicts a given (or implicit)
+conclusion. In positive text pairs, both texts support the conclusion,
+while in negative pairs, one supports and the other contradicts the
+conclusion.</li>
+<li>For this interesting task, the authors propose a similarly
+interesting approach: using a Siamese network for ranking, where the
+ranking is based on the plausibility (credibility) of the constructed
+text. And what is this constructed text? Quite simple: the two sentences
+to be classified are connected by a conjunction to form the constructed
+text:
+<ul>
+<li>Positive example: Text A, and Text B</li>
+<li>Negative example: Text A, however, Text B</li>
+</ul></li>
+<li>If Text A and Text B are contradictory, the credibility of the
+negative example is high. If Text A and Text B support each other, the
+credibility of the positive example is high.</li>
+<li>The next step involves using a pre-trained language model as the
+encoder in the Siamese network for ranking.</li>
+<li>The core idea here is to transform the task into natural language
+and use the language model, which has learned general knowledge about
+natural text, to perform the task and make predictions indirectly.</li>
+<li>Similar to the previous paper, the key here is to convert the task
+into natural language (a template) and cleverly use pre-trained language
+models to indirectly complete the task (by completing the constructed
+task).</li>
+</ul>
+<h1
+id="zero-shot-text-classification-with-generative-language-models">Zero-shot
+Text Classification With Generative Language Models</h1>
+<ul>
+<li>The authors use GPT to transform the text classification task into a
+natural language question by combining the original text with the
+category, and indirectly determine the category through text
+generation.</li>
+<li>The main advantage, as highlighted in the title, is zero-shot
+learning, which allows the model to generalize to categories that do not
+exist in the training data.</li>
+<li>Specifically, the text classification problem is turned into a
+multiple-choice QA task, where the options are formulated into a
+question: "Which category does this text belong to? A; B; C; D..." and
+then the text to be classified is appended. The goal is to train the
+language model to directly generate the correct category as text.</li>
+<li>To minimize the gap between pre-training and fine-tuning, the
+authors introduce a pre-training task, called title prediction
+pretraining, where all candidate titles are concatenated with the main
+text and the correct title is generated.</li>
+<li>This is a very intuitive, indirect, and bold use of language models
+for classification tasks, where the language model directly generates
+category labels. <img data-src="https://z3.ax1x.com/2021/05/17/gW98oV.png"
+alt="gW98oV.png" /></li>
+<li>The final zero-shot results, while not as good as fine-tuning or
+state-of-the-art models, show a strong generalization ability,
+outperforming the random and majority baseline models. The key takeaway
+is how the language model is used creatively to solve the classification
+task by designing multiple-choice questions.</li>
+</ul>
+<h1
+id="exploiting-cloze-questions-for-few-shot-text-classification-and-natural-language-inference">Exploiting
+Cloze Questions for Few Shot Text Classification and Natural Language
+Inference</h1>
+<ul>
+<li>This paper formally introduces the concept of PET:
+Pattern-Exploiting Training.</li>
+<li>In the previous three papers, we see that many NLP tasks can be
+completed unsupervised or indirectly by providing natural language
+descriptions of the tasks through language models. However, these
+methods still fall short compared to supervised learning methods.</li>
+<li>PET offers a semi-supervised learning approach that successfully
+outperforms supervised models in low-resource settings.</li>
+<li>The principle of PET is explained in a single diagram: <img data-src="https://z3.ax1x.com/2021/05/17/gWivmd.png" alt="gWivmd.png" />
+<ul>
+<li>The authors introduce two concepts: pattern, which transforms the
+input text into a masked Cloze text based on the task, and verbalizer,
+which maps the predicted masked words from the language model to labels.
+Each pattern corresponds to a verbalizer, forming a PvP
+(pattern-verbalizer pair).</li>
+<li>The PET process is divided into three steps:
+<ul>
+<li>First, use PvP to fine-tune the pre-trained language model on a
+small training set.</li>
+<li>Second, for each task, multiple PvPs can be designed to create
+different models through fine-tuning, and then a soft label is assigned
+to unannotated data using these models.</li>
+<li>Third, a classifier is trained on the labeled data to complete
+supervised learning.</li>
+</ul></li>
+</ul></li>
+<li>In the second step, there are two small details: ensemble learning
+with multiple classifiers (adding the predicted label distributions,
+which can be equally weighted or weighted based on zero-shot performance
+in the training set) and using soft labels (probability distributions)
+when labeling the data, with softmax applied at temperature T=2. These
+two techniques help better leverage the knowledge from the language
+model, one through ensemble robustness and the other through knowledge
+distillation.</li>
+<li>The authors also introduce iPET, a traditional semi-supervised
+learning approach that iterates between labeling and training, using
+increasing amounts of data and different generations of models to
+improve performance.</li>
+<li>The advantage of this semi-supervised framework is that the final
+operation is still supervised learning, achieving high accuracy, while
+reducing the uncertainty introduced by the language model through
+knowledge distillation (soft labels).</li>
+</ul>
+<h1
+id="its-not-just-size-that-matters-small-language-models-are-also-few-shot-learners">It's
+Not Just Size That Matters: Small Language Models Are Also Few-Shot
+Learners</h1>
+<ul>
+<li>The original PET team has another paper where the motivation is that
+small models can also achieve results comparable to large models like
+GPT-3 in few-shot learning when using PET, promoting environmental
+sustainability.</li>
+<li>In this paper, the authors extend the prediction of masked words in
+PvP to multiple masks, inserting a fixed maximum number of masks during
+training and then performing post-processing during prediction.</li>
+<li>They provide more extensive experimental results, which, while still
+in preprint form (not yet published in conferences...), later won the
+NAACL 2021 Outstanding Paper Award.</li>
+</ul>
+<h1 id="improving-and-simplifying-pattern-exploiting-training">Improving
+and Simplifying Pattern Exploiting Training</h1>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/gIih5j"><img data-src="https://z3.ax1x.com/2021/05/19/gIih5j.png"
+alt="gIih5j.png" /></a></p></li>
+<li><p>This paper improves PET by further simplifying the design of the
+pattern-verbalizer pair and reducing the number of patterns needed to
+achieve few-shot learning in a broad set of tasks.</p></li>
+<li><p>The simplification helps lower the entry barrier for researchers
+and developers by making it easier to implement this framework with
+minimal effort.</p></li>
+</ul>
+<h1
+id="autoprompt-eliciting-knowledge-from-language-models-with-automatically-generated-prompts">AUTOPROMPT:
+Eliciting Knowledge from Language Models with Automatically Generated
+Prompts</h1>
+<ul>
+<li><p>From the work introduced above, it can be seen that constructing
+effective text to trigger language models to generate results is
+crucial, which means constructing the prompt. Currently, all prompts are
+manually constructed, but later a series of works emerged attempting to
+automatically construct prompts.</p></li>
+<li><p>This work cannot really be considered as prompts; a more accurate
+term would be "trigger words sequence," because it essentially applies a
+method for generating adversarial text samples to the task of
+constructing prompts.</p></li>
+<li><p>Specifically, it draws on two papers: <em>HotFlip: White-box
+adversarial examples for text classification</em> and <em>Universal
+Adversarial Triggers for Attacking and Analyzing NLP</em>. The idea is
+to concatenate a sequence of trigger words into the sample, which can
+lead the model to make incorrect predictions. The search for trigger
+words in the model primarily uses the HotFlip method:</p>
+<ul>
+<li><p>Initialize the trigger word <span
+class="math display">\[\mathbf{e}_{adv}\]</span> (e.g., words like the,
+a, an), then pass the model forward to obtain the gradient of the loss
+with respect to the trigger word embedding <span
+class="math display">\[\nabla_{\mathbf{e}_{adv}} \mathcal{L}\]</span>.
+Note that the label used for loss calculation should be the incorrect
+label that the model is intended to be fooled into predicting (i.e., the
+label after fooling the model).</p></li>
+<li><p>We aim to replace the <span class="math inline">\(i\)</span>-th
+trigger word with a word <span
+class="math display">\[\mathbf{e}_{i}\]</span> such that the loss is
+minimized most significantly after replacement, meaning the model is
+most likely to predict the wrong label. Therefore, the word we are
+looking for is <span class="math display">\[
+\underset{\mathbf{e}_{i}^{\prime} \in \mathcal{V}}{\arg \min }
+\mathcal{L}(\mathbf{e}_{i}^{\prime}) \]</span>, where a first-order
+Taylor expansion is used for approximation. We need to compute the
+gradient of the loss with respect to the token. Since token embedding
+lookup is not differentiable, we need to compute the gradient of the
+embedding of a specific token.</p></li>
+</ul>
+<p><span class="math display">\[
+\mathcal{L}(\mathbf{e}_{i}^{\prime})    =  \mathcal{L}(\mathbf{e}_{adv_{i}})
++ \left[\mathbf{e}_{i}^{\prime}-\mathbf{e}_{adv_{i}}\right]^{\top}
+\nabla_{\mathbf{e}_{adv_{i}}} \mathcal{L}
+\]</span></p>
+<p><span class="math display">\[
+\propto \left[\mathbf{e}_{i}^{\prime}-\mathbf{e}_{adv_{i}}\right]^{\top}
+\nabla_{\mathbf{e}_{adv_{i}}} \mathcal{L}
+\]</span></p>
+<ul>
+<li>This results in the first trigger word in the first round of
+iteration. Then, through beam search, the remaining trigger words are
+generated, iterating multiple times to eventually obtain a sequence of
+trigger words that can be used to attack the model.</li>
+</ul></li>
+<li><p>The above describes the HotFlip method for text adversarial
+attacks. Its essence is to generate trigger words and append them to the
+sample to make the model predict an incorrect label. The idea of
+autoprompt is to generate trigger words to make the model predict a
+specified label.</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/ghFDuF"><img data-src="https://z3.ax1x.com/2021/05/18/ghFDuF.md.png"
+alt="ghFDuF.md.png" /></a></p></li>
+<li><p>Now it becomes simpler. The authors first used the HotFlip method
+to generate trigger words for each task in the training set, then used a
+template to transform the sample into a sentence. As shown in the
+figure, the sentence is concatenated with the trigger word sequence
+([T]) and the mask position ([P]) that the PLM is to predict. The model
+then predicts the word, and the label is obtained through
+post-processing. The specific post-processing operation involves summing
+the probabilities of the predicted words for each label, and finally
+normalizing these sums to get the probability for each label.</p></li>
+<li><p>The above only explains the automatic prompt construction method
+in PvP. As for the verbalizer, i.e., the mapping from predicted words to
+labels, the authors also propose an automatic search method:</p>
+<ul>
+<li>After encoding the PLM and obtaining the embedding of the mask token
+containing contextual information, this embedding is used as a feature
+input, and the label is used as the output to train a logistic
+classifier. Then, the PLM-encoded embedding of each word is fed into
+this classifier to obtain a score for each word on each label. The top k
+words with the highest scores are chosen for each label as the mapped
+word set. Essentially, this compares the mask token's encoded embedding
+(needed for predicting the label) with the embeddings of each word,
+selecting the top k closest words, but using a logistic classifier to
+apply class-related feature weighting. This is not merely based on the
+semantic similarity of the PLM encoding but is a very clever
+method.</li>
+</ul></li>
+</ul>
+<h1
+id="making-pre-trained-language-models-better-few-shot-learners">Making
+Pre-trained Language Models Better Few-shot Learners</h1>
+<ul>
+<li><p>The title of this paper is essentially the title of GPT-3 with
+"better" added, emphasizing how to better use prompts for few-shot
+learning.</p></li>
+<li><p>A training framework is proposed: prompt-based fine-tuning +
+automatic prompt generation + dynamically and selectively integrating
+task descriptions into prompts, all of which are strongly task-agnostic.
+Let's now go through these three improvements in detail.</p></li>
+<li><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/g58yOe"><img data-src="https://z3.ax1x.com/2021/05/19/g58yOe.png"
+alt="g58yOe.png" /></a></p></li>
+<li><p>The image above clearly demonstrates the first improvement:
+prompt-based fine-tuning. As we can see, compared to previous
+prompt-based methods, in addition to the input and prompt, the input is
+also concatenated with a description for each label.</p></li>
+<li><p>As for automatic prompt generation, it is divided into two
+parts:</p>
+<ul>
+<li>How to automatically generate the mapping from target words to
+labels given a template. Here, the author iterates over the results of a
+pre-trained language model (PLM). First, for each class, all the
+training samples of this class are identified, and the probability
+distribution of the masked word is inferred using the PLM. The top-k
+words are selected by accumulating the probability distributions of all
+samples to get the word-to-label mapping for that category. Since the
+model parameters change during the fine-tuning process, the result may
+shift, so the mapping needs to be re-ranked and adjusted after each
+training round.</li>
+<li>Given a category and its target word, how to generate a template.
+The author uses the T5 model because its mask span seq2seq pretraining
+task aligns well with the template generation task. This can be
+explained in a single diagram: <img data-src="https://z3.ax1x.com/2021/05/19/g5YjfI.png" alt="g5YjfI.png" /> The
+generated prompt takes into account both the context of the training
+samples and the semantic context of the label word. The author uses a
+wide beam width to beam search a set of prompt candidates (100+), then
+fine-tunes each sample on a small training set, selecting the one with
+the highest performance on the validation set (or using top-k ensemble)
+as the final prompt.</li>
+<li>Dynamic selective integration of tasks, which is more complicated.
+After obtaining the prompt, the question is how to construct the input
+sample. As shown in the first image, for each category, a sample is
+randomly selected and converted into a prompt to serve as the
+description for that category. All category descriptions are
+concatenated with the input sample (the one to be trained). During
+sampling, sentence-BERT is used to obtain the semantic embeddings of
+each sample, and only the top 50% of samples with the highest semantic
+similarity to the input sample are selected.</li>
+</ul></li>
+<li><p>The design of this prompt is somewhat similar to a semantic
+similarity task, where the input is "x is a mask example? y is positive;
+z is negative." This essentially compares the semantic similarity
+between x and yz, propagating the label through this
+comparison.</p></li>
+</ul>
+<h1 id="gpt-understands-too">GPT Understands, Too</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://imgtu.com/i/g52dDH"><img data-src="https://z3.ax1x.com/2021/05/19/g52dDH.png"
+alt="g52dDH.png" /></a></li>
+<li>This paper introduces P-tuning, which is not about finding discrete
+prompts (specific texts), but rather continuous ones (embeddings).</li>
+<li>Let's review the entire prompt-based method. It essentially
+transforms data and tasks into a form suitable for language model tasks,
+bringing them closer to pretraining objectives and enabling better
+utilization of the pretrained model's knowledge. In practice, this
+involves adding some prompt-generated templates to the input, and the
+output becomes target words related to category labels. The author
+reflects on whether these prompt-generated templates necessarily need to
+be human-understandable text. After all, what the model actually
+processes are embeddings. So, when searching for prompts, why not
+directly optimize the embeddings instead? Therefore, the author proposes
+using some unused symbols from word tables (such as the "unused" tokens
+in BERT) as pseudo-template tokens. These tokens are fixed, and rather
+than searching for new tokens, we directly optimize the embeddings
+corresponding to these tokens.</li>
+<li>To make these pseudo-tokens resemble natural language more closely,
+rather than just being independent symbols, the author also uses a
+bidirectional LSTM for encoding, which serves as the prompt encoder.
+However, the motivation for this approach isn't fully clear. Why not
+directly model the relationship within the PLM itself?</li>
+<li>From this perspective, the approach is essentially about
+concatenating a few embeddings to the input and optimizing them. The
+output and post-processing adopt the PET (Prompt-based Elicitation of
+Task) form, which feels like adding a layer for fine-tuning (hence the
+name <strong>P</strong>rompt fine<strong>tuning</strong>?). In my view,
+both layer-based fine-tuning and P-tuning introduce a small number of
+parameters to adapt the PLM to downstream tasks, but P-tuning changes
+the format of the downstream task to better align with pretraining
+objectives, making the fine-tuning structural priors more reasonable. It
+also offers a higher-level summary of prompt-based work.</li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="commonsense-knowledge-mining-from-pretrained-models">Commonsense
 Knowledge Mining from Pretrained Models</h1>
 <ul>
 <li>作者想要做到挖掘未知分布数据中的常识，而传统的监督学习方法容易受到训练集中的数据分布影响，导致结果有偏差</li>
@@ -378,8 +788,7 @@ Text Classification With Generative Language Models</h1>
 prediction
 pretraining，即将所有候选标题和正文拼接起来，然后生成正确的标题。</li>
 <li>这是一篇非常直观、间接且大胆的利用语言模型分类任务的工作，直接让语言模型生成类别文字。
-<a target="_blank" rel="noopener" href="https://imgtu.com/i/gW98oV"><img
-src="https://z3.ax1x.com/2021/05/17/gW98oV.png"
+<a target="_blank" rel="noopener" href="https://imgtu.com/i/gW98oV"><img data-src="https://z3.ax1x.com/2021/05/17/gW98oV.png"
 alt="gW98oV.png" /></a></li>
 <li>最终的zero-shot结果，虽然依然比不上finetune和sota，但是相比random和majority两个baseline可以比较出模型还是学到了相当强的泛化能力。最主要的还是把语言模型玩出了花，提供了这么一种直接设计多项选择疑问句来完成分类任务的思路。</li>
 </ul>
@@ -391,8 +800,7 @@ Inference</h1>
 <li>该论文正式引入了PET的概念：Pattern-Exploiting Training。</li>
 <li>在上面三篇论文中我们可以看到，很多NLP任务可以通过提供自然语言任务描述的方式，通过语言模型来无监督的或者间接的完成。但是这类方法终究还是比不过监督学习方法。</li>
 <li>PET提供了一种半监督学习方式，在低资源场景下成功超过了监督学习模型的结果。</li>
-<li>一张图就能说明PET的原理： <a target="_blank" rel="noopener" href="https://imgtu.com/i/gWivmd"><img
-src="https://z3.ax1x.com/2021/05/17/gWivmd.png" alt="gWivmd.png" /></a>
+<li>一张图就能说明PET的原理： <a target="_blank" rel="noopener" href="https://imgtu.com/i/gWivmd"><img data-src="https://z3.ax1x.com/2021/05/17/gWivmd.png" alt="gWivmd.png" /></a>
 <ul>
 <li>作者引入了两个名词，pattern负责把输入文本根据任务改造成一个带mask的完形填空文本，verbalizer负责把语言模型预测的mask词映射到label上。这样一个pattern对应一个verbalizer，称为PvP。。。（pattern
 verbalizer pair）</li>
@@ -420,8 +828,7 @@ Learners</h1>
 <h1 id="improving-and-simplifying-pattern-exploiting-training">Improving
 and Simplifying Pattern Exploiting Training</h1>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://imgtu.com/i/gIih5j"><img
-src="https://z3.ax1x.com/2021/05/19/gIih5j.png"
+<li><a target="_blank" rel="noopener" href="https://imgtu.com/i/gIih5j"><img data-src="https://z3.ax1x.com/2021/05/19/gIih5j.png"
 alt="gIih5j.png" /></a></li>
 <li>PET依然需要大量领域未标注数据来做半监督学习，本文提出了ADAPET，不用未标注数据也能取得更好效果</li>
 <li>作者通过修改任务目标来达成这一目的。当我们使用PET时，浪费了两类信息：
@@ -480,8 +887,7 @@ v_{i}}\right]^{\top} \nabla_{\mathbf{e}_{a d v_{i}}} \mathcal{L}
 search得到剩下的触发词，并迭代多次，最终得到可以用于攻击模型的触发词序列。</li>
 </ul></li>
 <li><p>以上是文本对抗攻击中的hotflip方法，其本质就是生成一些触发词，拼接到样本上，使得模型预测出错的label。autoprompt的思想就是生成触发词，使得模型预测出指定label。
-<a target="_blank" rel="noopener" href="https://imgtu.com/i/ghFDuF"><img
-src="https://z3.ax1x.com/2021/05/18/ghFDuF.md.png"
+<a target="_blank" rel="noopener" href="https://imgtu.com/i/ghFDuF"><img data-src="https://z3.ax1x.com/2021/05/18/ghFDuF.md.png"
 alt="ghFDuF.md.png" /></a></p></li>
 <li><p>接下来就简单了。作者首先在训练集上用hotflip方法为每个任务生成了触发词，然后用模板将样本变为一个句子，如图所示，句子拼接上触发词序列（[T]）和PLM要预测的mask位置([P])，让模型预测出词之后再后处理得到label。具体的后处理操作是，将每个label对应的预测词集合得到的概率累加，最后归一化，作为标签的概率。</p></li>
 <li><p>上面只说了PvP中的prompt自动构建方法，而verbalizer，即预测词到标签的映射作者也给出了一个自动搜索的方法：</p>
@@ -501,8 +907,7 @@ Pre-trained Language Models Better Few-shot Learners</h1>
 shot learning。</li>
 <li>提出了一个训练体系：基于prompt的微调+prompt自动生成+动态选择性融入任务说明到prompt中，且这一切都是strong
 task-agnostic。接下来分别说这三点改进。</li>
-<li><a target="_blank" rel="noopener" href="https://imgtu.com/i/g58yOe"><img
-src="https://z3.ax1x.com/2021/05/19/g58yOe.png"
+<li><a target="_blank" rel="noopener" href="https://imgtu.com/i/g58yOe"><img data-src="https://z3.ax1x.com/2021/05/19/g58yOe.png"
 alt="g58yOe.png" /></a></li>
 <li>上图清晰的展示了第一点改进：基于prompt的微调。可以看到，和以往prompt方法相比，除了输入、prompt之外，输入还拼接上了每个label的说明</li>
 <li>至于prompt自动生成，分为两部分：
@@ -510,8 +915,7 @@ alt="g58yOe.png" /></a></li>
 <li>如何在给定模板的情况下，自动生成目标词到标签的映射。这里作者也是用PLM的结果不断迭代。首先对每个类，找出这个类的所有训练样本，通过PLM推断得到mask词的概率分布，累加所有样本的概率分布取topk就得到了词到该类别标签的映射。由于接下来训练微调时模型参数变化，结果可能有改变，所以需要每轮训练后重新rerank调整一下映射关系。</li>
 <li>给定类别和这个类别的目标词，如何生成模板。作者采用了T5模型，因为其mask
 span seq2seq预训练的目标和模板生成任务很符合。一张图就可以解释清楚： <a
-target="_blank" rel="noopener" href="https://imgtu.com/i/g5YjfI"><img
-src="https://z3.ax1x.com/2021/05/19/g5YjfI.png" alt="g5YjfI.png" /></a>
+target="_blank" rel="noopener" href="https://imgtu.com/i/g5YjfI"><img data-src="https://z3.ax1x.com/2021/05/19/g5YjfI.png" alt="g5YjfI.png" /></a>
 这样生成的prompt考虑了训练样本上下文和标签词的语境。作者使用wide beam
 width来beam
 search出一堆prompt候选（100+），然后在一个小训练集上微调每个样本，取验证集最高的（或者topk集成）作为最终prompt</li>
@@ -521,8 +925,7 @@ search出一堆prompt候选（100+），然后在一个小训练集上微调每�
 </ul>
 <h1 id="gpt-understands-too">GPT Understands, Too</h1>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://imgtu.com/i/g52dDH"><img
-src="https://z3.ax1x.com/2021/05/19/g52dDH.png"
+<li><a target="_blank" rel="noopener" href="https://imgtu.com/i/g52dDH"><img data-src="https://z3.ax1x.com/2021/05/19/g52dDH.png"
 alt="g52dDH.png" /></a></li>
 <li>本文提出了P-tuning，即不是找离散的prompt（具体文本），而是找连续的（embedding）</li>
 <li>回顾一下整个prompt based
@@ -538,428 +941,160 @@ encoder，这里感觉动机阐释的不是很清楚，为什么不能放在PLM�
 <li>这么看来整体就相当于输入拼接上几个embedding然后去优化，只不过输出和后处理采用了PET的形式，很像自己加了某个层去微调（所以叫<strong>P</strong>rompt
 fine<strong>tuning</strong>？）。我感觉加层微调和P-tuning都是引入少量参数把PLM用到自己的下游任务上，只不过P-tuning转换了下游任务形式，使其跟贴近预训练目标，算是微调结构先验更合理吧，同时也算是从另一个高度总结了prompt一类的工作。</li>
 </ul>
-
-    </div>
-
-    
-    
-    
-      
-  <div class="popular-posts-header">Related Posts</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2017/12/27/AM-Model-for-ASS/" rel="bookmark">Translate - A Neural Attention Model for Abstractive Sentence Summarization</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2018/03/07/NLPBasic/" rel="bookmark">NLP Basics</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2019/01/03/PaperReading3/" rel="bookmark">Paper Reading 3</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2018/03/07/PaperReading/" rel="bookmark">Paper Reading 1</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2018/07/03/PaperReading2/" rel="bookmark">Paper Reading 2</a></div>
-    </li>
-  </ul>
-
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
-              <a href="/tags/nlp/" rel="tag"><i class="fa fa-tag"></i> nlp</a>
-              <a href="/tags/pretrained-language-model/" rel="tag"><i class="fa fa-tag"></i> pretrained language model</a>
-              <a href="/tags/pet/" rel="tag"><i class="fa fa-tag"></i> pet</a>
-              <a href="/tags/few-shot/" rel="tag"><i class="fa fa-tag"></i> few shot</a>
-          </div>
-
-        
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  </div>
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/05/11/text-edit-generation/" rel="prev" title="Edit-based Text Generation">
-      <i class="fa fa-chevron-left"></i> Edit-based Text Generation
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/06/05/gpt-debate/" rel="next" title="Debates between GPTs">
-      Debates between GPTs <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="valine-comments"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#commonsense-knowledge-mining-from-pretrained-models"><span class="nav-number">1.</span> <span class="nav-text">Commonsense
-Knowledge Mining from Pretrained Models</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#argumentative-relation-classification-as-plausibility-ranking"><span class="nav-number">2.</span> <span class="nav-text">Argumentative
-Relation Classification as Plausibility Ranking</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zero-shot-text-classification-with-generative-language-models"><span class="nav-number">3.</span> <span class="nav-text">Zero-shot
-Text Classification With Generative Language Models</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#exploiting-cloze-questions-for-few-shot-text-classification-and-naturallanguage-inference"><span class="nav-number">4.</span> <span class="nav-text">Exploiting
-Cloze Questions for Few Shot Text Classification and NaturalLanguage
-Inference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#its-not-just-size-that-matters-small-language-models-are-also-few-shot-learners"><span class="nav-number">5.</span> <span class="nav-text">It&#39;s
-Not Just Size That Matters: Small Language Models Are Also Few-Shot
-Learners</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#improving-and-simplifying-pattern-exploiting-training"><span class="nav-number">6.</span> <span class="nav-text">Improving
-and Simplifying Pattern Exploiting Training</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#autoprompt-eliciting-knowledge-from-language-models-with-automatically-generated-prompts"><span class="nav-number">7.</span> <span class="nav-text">AUTOPROMPT:
-Eliciting Knowledge from Language Models with Automatically Generated
-Prompts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#making-pre-trained-language-models-better-few-shot-learners"><span class="nav-number">8.</span> <span class="nav-text">Making
-Pre-trained Language Models Better Few-shot Learners</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gpt-understands-too"><span class="nav-number">9.</span> <span class="nav-text">GPT Understands, Too</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Thinkwee</p>
-  <div class="site-description" itemprop="description">Failed Better</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">56</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">8</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">58</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
+    
+    
+    
 
-      </div>
-    </main>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/nlp/" rel="tag"># nlp</a>
+              <a href="/tags/pretrained-language-model/" rel="tag"># pretrained language model</a>
+              <a href="/tags/pet/" rel="tag"># pet</a>
+              <a href="/tags/few-shot/" rel="tag"># few shot</a>
+          </div>
 
-    <footer class="footer">
-      <div class="footer-inner">
         
-
-        
-  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
-      <img src="http://www.beian.gov.cn/portal/download" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
   </div>
 
-<div class="copyright">
-  
-  &copy; 2017 – 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Thinkwee</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/05/11/text-edit-generation/" rel="prev" title="Edit-based Text Generation">
+                  <i class="fa fa-angle-left"></i> Edit-based Text Generation
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/06/05/gpt-debate/" rel="next" title="Debates between GPTs">
+                  Debates between GPTs <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
     </span>
-    <span title="Symbols count total">380k</span>
-    <span class="post-meta-divider">|</span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">782k</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">5:45</span>
+    <span title="Reading time total">11:51</span>
+  </span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
-        
+    </div>
+  </footer>
 
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="//fastly.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
-  <script src="//fastly.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-  <script src="//fastly.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id    : 13961,
-      el    : 'wpac-rating',
-      color : 'fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
+
+
+  <script src="/js/third-party/addtoany.js"></script>
 
   
-<script src="/js/local-search.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-<script>
-if (document.querySelectorAll('pre.mermaid').length) {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
-    mermaid.initialize({
-      theme    : 'forest',
-      logLevel : 3,
-      flowchart: { curve     : 'linear' },
-      gantt    : { axisFormat: '%m/%d/%Y' },
-      sequence : { actorMargin: 50 }
-    });
-  }, window.mermaid);
-}
-</script>
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
 
 
   
 
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//fastly.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
-
-  
-  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
-  <script>
-      window.addEventListener('load', () => {
-      quicklink({
-        timeout : 3000,
-        priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://thinkwee.top/2021/05/13/pet/',]
-      });
-      });
-  </script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//fastly.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'g58NgfMJBlwTyftr6hizdozq-gzGzoHsz',
-      appKey     : '1nA1tNVxeeSlAumHogP0PvSd',
-      placeholder: "just write something to me",
-      avatar     : '',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : true,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2021/05/13/pet/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
 
 </body>
 </html>
