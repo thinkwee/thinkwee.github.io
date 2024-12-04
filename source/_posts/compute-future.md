@@ -5,12 +5,54 @@ tags: [comprehension,NLI,]
 categories: NLP
 ---
 
-去清华的FIT听了一次轻沙龙，介绍了关于机器阅读理解的一些进展，有趣的是上午九点演讲的博士还说有一个还没公开的工作：BERT，很牛逼，很有钱，八块p100训一年，结果十点半机器之心就发了报道，下午就知乎满天飞了，说NLP新的时代到来了......
-这个沙龙是一个系列，之后可能会有机器翻译、深度贝叶斯、迁移学习和知识图谱啥的，要是有时间的话再听再记录吧
+Attended a light salon at Tsinghua University's FIT, which introduced some advancements in machine reading comprehension. Interestingly, the PhD who spoke at 9 am also mentioned an unpublished work: BERT, which is very impressive and well-funded; it took eight p100 GPUs to train for a year. By 10:30, Machine Intelligence had already published a report, and by the afternoon, Zhihu was buzzing with discussions, saying that a new era for NLP had arrived... This salon is part of a series, and there may be future sessions on machine translation, deep Bayesian, transfer learning, and knowledge graphs, so if you have the time, you might as well listen and take notes.
+
 
 <!--more-->
 
-# 2018.10.13 机器阅读理解
+{% language_switch %}
+
+{% lang_content en %}
+Machine Reading Comprehension
+========================================
+
+*   Three speeches, the first being an overview; the second a presentation by the author of nlnet, which won first place on SQuAD2.0, a collaboration between National University of Defense Technology and Microsoft; the third by a Ph.D. from Tsinghua University, who introduced his research on noise filtering and information aggregation in open-domain question answering.
+
+Abstract
+--------
+
+*   The current reading comprehension is far behind what is expected from artificial intelligence reading comprehension. Researchers have decomposed the reading comprehension process into tasks such as word selection, span selection, and generating short texts. Before the rise of deep learning, it involved some manually designed features and Pipeline operations. With the advent of deep learning, the focus shifted to end-to-end research from input to output, bypassing many elements required in the reading comprehension process.
+*   Previous research on reading comprehension can be used as a testing method to assess the model's ability in lexical, rhetorical, and knowledge utilization skills.
+*   The current large-scale machine reading comprehension datasets are at a very low level of inference, as mentioned in a paper: "Efficient and Robust Question Answering from Minimal Context over Documents." It discusses that if deep learning is used, training only with the span you find, cutting out the context, the results actually won't be much different. Therefore, end-to-end learning does not involve a "reading the entire text to grasp the main idea" process, but rather "you ask, I answer, don't ask me why I answer this way, just memorize." It mentions a work from the University of Tokyo that established evaluation indicators for the model's reading comprehension ability, over 30, including the elimination of ambiguity, coreference resolution, etc. Large and simple datasets cannot reflect these features, and the cleverly designed datasets are not large enough in scale.
+*   Towards AI-Complete Question Answering: A Set of Prerequisite Toy Tasks
+*   Industrial issues to be solved in the use of reading comprehension: simplifying models or accelerating models, introduces techniques such as SKIM-RNN, which become more complex during training but can accelerate inference. Paper: Neural Speed Reading via SKIM-RNN
+*   BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. Another form of transfer learning is to directly use a trained module from one task for another, such as directly taking the encoder trained in seq2seq to calculate semantic representations (deep learning is essentially representation learning). Remember, fast Disan directly returns a function that returns the vector representation of a sentence, which is similar in thought.
+*   Latest Research Field: open domain question-answering and learning to ask. The former actually adds an information retrieval process, where the relevant corpus needed for reading comprehension is retrieved through asking questions. The latter reverses the answer task to asking questions, with the speaker mentioning that the reverse can assist in reading comprehension, and it has an industrially useful design: instead of comparing queries and documents (or document keywords) during retrieval, it compares them with the questions generated for the documents, which is equivalent to calculating similarity between two questions.
+*   The speaker mentioned his view on attention: attention involves filtering information from the model, which does not imply that the original model lacks the ability to represent this information.
+*   Presented several currently popular datasets, using MCTest and ProcessBank before 2015, CNNDM, SQuAD, and MS MARCO between 2015 and 2017, and TriviaQA, SQuAD2.0, CoQA, QuAC, and HotpotQA after 2017. (However, the abstract is still using CNNDM...)
+
+NLNet
+-----
+
+*   Paper: It can be seen on Squad, but it seems that it hasn't been published yet?
+*   NLNet was originally designed to address the robustness and effectiveness in reading comprehension problems, both of which are targeted at ensemble models. Therefore, NLNet adds a distillation process on top of ensemble models, using a single model to improve efficiency, and also includes a read and verify process to enhance robustness. Consequently, it performs exceptionally well on the SQuAD2.0 dataset with adversarial samples, currently ranking first. It lags behind the four-overpowering BERT on version 1.0, but the gap is not significant. However, the ensemble version of NLNet in version 1.0 is better than the single model version, while the 2.0 version did not submit an ensemble version, which is quite perplexing...
+*   The meaning of distillation was not fully understood, the effect is to compress 12 models into one model, with the structure of the models completely the same but with different initializations. It is not simply selecting the best; the single model is trained, and the paper refers to the 12 models as teachers and the single model as a student, with the student using the training results of the teacher to guide its training.
+*   Designed a read and verify mechanism, which, after extracting a span to answer a question, also calculates a confidence score based on the answer and the question. If the confidence score is too low, it is considered that there is no answer, which is akin to the adversarial sample scenario in SQuAD 2.0. It feels like if there is an issue, loss is added.
+*   It is said that some details of feature selection were not presented in the paper, and the model was optimized with reinforcement learning at the end?
+
+Open Domain QA Noise Filtering and Information Aggregation
+----------------------------------------------------------
+
+*   Paper (ACL 2018): Denoising Distantly Supervised Open-Domain Question Answering
+*   This noise refers to the situation where many relevant documents are found during the retrieval process but do not provide the correct answers, which is a filtering of documents. This step of filtering should have been placed within the retrieval process, but the author ultimately solved it by using a deep learning algorithm to calculate probabilities and loss.
+*   The denoising process is a document selector, and then reading comprehension is a reader, the author believes that it corresponds to the fast skimming and careful reading & summarizing that humans do in reading comprehension.
+*   The information set did not pay much attention to listening, but fully utilized the information extraction from multiple documents to provide answers
+{% endlang_content %}
+
+{% lang_content zh %}
+
+
+# 机器阅读理解
 
 - 三场演讲，第一场是概述；第二场是当时在SQuAD2.0上拿到第一名的nlnet作者的presentation，国防科大和微软合作的成果；第三场是一位清华的博士，介绍了他关于开放领域问答中噪声过滤和信息集合的研究。
 
@@ -40,3 +82,23 @@ categories: NLP
 - 这个噪声是指在检索文档的过程搜到了很多相关但提供的不是正确答案的文档，是对文档的过滤。这一步的过滤本来应该放在检索的过程里，但是作者最后也是用深度学习算概率加loss的方式解决了。
 - 去噪过程是一个document selector，然后阅读理解是一个reader，作者认为对应于人做阅读理解的fast skimming 和careful reading & summarizing。
 - 信息集合没太注意听，就是充分利用多篇文档的信息提取出答案
+
+{% endlang_content %}
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

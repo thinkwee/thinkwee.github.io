@@ -9,19 +9,742 @@ html: true
 
 ***
 
-# 第九讲：线性相关性、基、维数
+Lecture 9: Linear Correlation, Basis, Dimension
+===============================================
 
-## 线性相关性
+Linear Correlation
+------------------
 
-- 背景知识:假设一个矩阵A，m<n，即未知数个数大于方程数，因此在零空间内除了零向量之外还有别的向量，最多m个主元，存在n-m个自由向量，整个方程存在非零解。
-- 什么条件下，$x_1,x_2,x_3...x_n$线性无关?存在一个系数不全为零的组合，使得线性相加结果为0,则为线性相关，反之为线性无关。
-- 如果向量组里存在一个零向量，则这个向量组不可能线性无关。
-- 假如在二维空间内随意画三个向量，则他们一定线性相关，为什么？由背景知识可得。
-- 对一个矩阵A，我们关心各列是否线性相关，如果零空间内存在非零向量，则各列相关。
-- 换一种方式解释：当$v_1,v_2...v_n$是A的各列，如果他们是无关的，那么A的零空间是怎样的？只有零向量。如果他们是相关的呢？那么零空间内除了零向量还存在一个非零向量。
-- 列向量无关时，所有的列向量都是主向量，秩为n。列向量相关时，秩小于n。
+*   Background knowledge: Assume a matrix A, where m < n, i.e., the number of unknowns is greater than the number of equations. Therefore, in the null space, there are vectors other than the zero vector, up to m leading principal elements, and there exist n-m free vectors, and the entire equation system has non-zero solutions.
+*   Under what conditions is the vector $x_1,x_2,x_3...x_n$ linearly independent? If there exists a combination of coefficients not all equal to zero such that the linear sum results in 0, then it is linearly dependent; otherwise, it is linearly independent.
+*   If there exists a zero vector in the set of vectors, then the set of vectors cannot be linearly independent.
+*   If three vectors are randomly drawn in two-dimensional space, they must be linearly dependent. Why? This can be deduced from background knowledge.
+*   For a matrix A, we are concerned with whether the columns are linearly dependent; if there exists a non-zero vector in the null space, then the columns are dependent.
+*   When $v_1,v_2...v_n$ is the columns of A, if they are unrelated, then what is the null space of A? Only the zero vector. If they are related, then in addition to the zero vector, there exists a non-zero vector in the null space.
+*   When the column vectors are linearly independent, all column vectors are leading vectors, and the rank is n. When the column vectors are linearly dependent, the rank is less than n.
 
 <!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+
+Generated space, base
+---------------------
+
+*   Generated a space, referring to the space containing all linear combinations of these vectors.
+    
+*   A set of basis in a vector space refers to a group of vectors that have two characteristics: they are linearly independent, and they generate the entire space.
+    
+*   For example: The most easily thought of basis for $R^3$ is
+    
+    $$
+    \begin{bmatrix}
+    1   \\
+    0   \\
+    0   \\
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+    0   \\
+    1   \\
+    0   \\
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+    0   \\
+    0   \\
+    1   \\
+    \end{bmatrix}
+    $$
+    
+*   This is a set of standard bases, another example:
+    
+    $$
+    \begin{bmatrix}
+    1   \\
+    1   \\
+    2   \\
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+    2   \\
+    2   \\
+    5   \\
+    \end{bmatrix}
+    $$
+    
+*   It is evident that a space cannot be formed, as taking any vector that does not lie in the plane spanned by these two vectors will suffice.
+    
+*   How to test if they form a basis? Treat them as columns to form a matrix, which must be invertible (since it is a square matrix in this example).
+    
+*   If the two vectors in Example 2 cannot form a basis for three-dimensional space, then what space can they form a basis for? The plane formed by these two vectors.
+    
+*   The basis is not uniquely determined, but all bases share a common feature: the number of vectors in the basis is the same.
+    
+
+Dimension
+---------
+
+*   The number of all the basis vectors mentioned above is the same, and this number is the dimension of the space. It is not the dimension of the basis vectors, but the number of basis vectors.
+
+Give an example
+---------------
+
+On matrix A 
+$$
+\begin{bmatrix}
+1 & 2 & 3 &1  \\
+1 & 1 & 2 & 1   \\
+1 & 2 & 3 & 1 \\
+\end{bmatrix}
+$$
+
+*   Four columns are not linearly independent; the first and second columns can be taken as the main columns
+    
+*   2 = rank of A = number of leading columns = dimension of column space
+    
+*   The first and second columns form a set of basis for the column space.
+    
+*   If you know the dimension of the column space, you have determined the number of vectors, and as long as they are linearly independent, these vectors can form a basis.
+    
+*   What is the dimension of the null space? In this example, the two vectors in the null space (special solutions) are:
+    
+    $$
+    \begin{bmatrix}
+    -1   \\
+    -1  \\
+    1   \\
+    0   \\
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+    -1   \\
+    0  \\
+    0   \\
+    1    \\
+    \end{bmatrix}
+    $$
+    
+*   Yes, these two special solutions form a basis for the null space. The dimension of the null space is the number of free variables, which is n-r, i.e., 4-2=2 in this case.
+    
+
+Tenth Lecture: Four Basic Subspaces
+===================================
+
+*   C(A), N(A), C( $A^T$ ), N( $A^T$ ).
+    
+*   Respectively located in the $R^m、R^n、R^n、R^m$ space
+    
+*   The dimension of the column space and the row space are both rank r, the dimension of the null space is n-r, and the dimension of the left null space is m-r
+    
+*   Basis of the column space: the leading columns, a total of r columns. Basis of the null space: special solutions (free columns), a total of n-r columns. Basis of the row space: non-zero rows in the reduced form of R, a total of r rows.
+    
+*   Row transformations are linear combinations of row vectors, thus the row spaces of A and R are the same, but the column spaces have changed
+    
+*   Why is it called the left null space?
+    
+    $$
+    rref\begin{bmatrix}
+    A_{m*n} & I_{m*n}
+    \end{bmatrix}\rightarrow
+    \begin{bmatrix}
+    R_{m*n} & E_{m*n}
+    \end{bmatrix} \\
+    $$
+    
+*   rref=E, i.e., EA=R
+    
+*   Through E, the left zero 空洞 can be calculated
+    
+*   Find the row combination that generates a zero row vector
+    
+*   The basis of the left null space is the rows corresponding to the non-zero rows of R, totaling m-r rows
+    
+
+Eleventh Lecture: Matrix Spaces, Rank-1 Matrices, and Small-World Graphs
+========================================================================
+
+Matrix Space
+------------
+
+*   Can be regarded as a vector space, can be multiplied by a scalar, and can be added together
+    
+*   For the matrix space M with $3*3$ as an example, a basis for the space consists of 9 matrices, each containing only one element, 1. This is a set of standard basis, and thus the dimension of this matrix space is 9
+    
+    $$
+    \begin{bmatrix}
+    1 & 0 & 0  \\
+    0 & 0 & 0  \\
+    0 & 0 & 0  \\
+    \end{bmatrix}，
+    \begin{bmatrix}
+    0 & 1 & 0  \\
+    0 & 0 & 0  \\
+    0 & 0 & 0  \\
+    \end{bmatrix}，
+    \begin{bmatrix}
+    0 & 0 & 1  \\
+    0 & 0 & 0  \\
+    0 & 0 & 0  \\
+    \end{bmatrix}.....
+    \begin{bmatrix}
+    0 & 0 & 0  \\
+    0 & 0 & 0  \\
+    0 & 0 & 1  \\
+    \end{bmatrix}
+    $$
+    
+*   The dimension of the subspace S of symmetric matrices in the matrix space $3*3$ is studied again, and it can be seen that among the 9 matrices in the original space basis, 3 belong to the subspace of symmetric matrices, and there are also 3 matrices that are symmetric both above and below the diagonal, so the dimension of the subspace of symmetric matrices is 6
+    
+    $$
+    \begin{bmatrix}
+    1 & 0 & 0  \\
+    0 & 0 & 0  \\
+    0 & 0 & 0  \\
+    \end{bmatrix}，
+    \begin{bmatrix}
+    0 & 0 & 0  \\
+    0 & 1 & 0  \\
+    0 & 0 & 0  \\
+    \end{bmatrix}，
+    \begin{bmatrix}
+    0 & 0 & 0  \\
+    0 & 0 & 0  \\
+    0 & 0 & 1  \\
+    \end{bmatrix}
+    $$
+    
+    $$
+    \begin{bmatrix}
+    0 & 1 & 0  \\
+    1 & 0 & 0  \\
+    0 & 0 & 0  \\
+    \end{bmatrix}，
+    \begin{bmatrix}
+    0 & 0 & 1  \\
+    0 & 0 & 0  \\
+    1 & 0 & 0  \\
+    \end{bmatrix}，
+    \begin{bmatrix}
+    0 & 0 & 0  \\
+    0 & 0 & 1  \\
+    0 & 1 & 0  \\
+    \end{bmatrix}
+    $$
+    
+*   For the subspace U of the upper triangular matrix, it is easy to obtain that its dimension is 6, and the basis of the element space includes the basis of the subspace
+    
+*   Next, let's study $S \bigcap U$ , and it can be easily obtained that this subspace is the diagonal matrix D, with a dimension of 3
+    
+*   If it is $S \bigcup U$ , their union basis can obtain all bases of M, so its dimension is 9
+    
+*   Organize accordingly
+    
+    $$
+    dim(S)=6,dim(U)=6,dim(S \bigcap U)=3,dim(S \bigcup U)=3 \\
+    dim(S)+dim(U)=dim(S \bigcap U)+dim(S \bigcup U) \\
+    $$
+    
+*   Another example can be given to illustrate that a vector space does not necessarily contain vectors, such as the following vector space based on differential equations
+    
+    $$
+    \frac{d^2y}{dx^2}+y=0
+    $$
+    
+*   His several solutions are
+    
+    $$
+    y=cos(x),y=sin(x)
+    $$
+    
+*   Complete solution is
+    
+    $$
+    y=c_1cos(x)+c_2sin(x)
+    $$
+    
+*   A vector space is obtained, with a basis of 2
+    
+
+Rank 1 matrix
+-------------
+
+*   Write a simple rank-1 matrix
+    
+    $$
+    \begin{bmatrix}
+    1 & 4 & 5 \\
+    2 & 8 & 10 \\
+    \end{bmatrix}=
+    \begin{bmatrix}
+    1  \\
+    2  \\
+    \end{bmatrix}*
+    \begin{bmatrix}
+    1 & 4 & 5 \\
+    \end{bmatrix}
+    $$
+    
+*   All rank 1 matrices can be represented as a column multiplied by a row
+    
+*   Rank 1 matrices are like building blocks, for example, a rank 4 matrix can be constructed from 4 rank 1 matrices
+    
+*   Consider an example of a rank-1 matrix, in four-dimensional space, let vector $v=(v_1,v_2,v_3,v_4)$ , set $S=\{v|v_1+v_2+v_3+v_4=0\}$ , if S is regarded as the zero space, then the matrix A in the corresponding equation $Av=0$ is
+    
+    $$
+    A=\begin{bmatrix}
+    1 & 1 & 1 & 1 \\
+    \end{bmatrix}
+    $$
+    
+*   Easily obtainable $dimN(A)=n-r$ , thus the dimension of S is $4-1=3$ , and a set of basis for S is
+    
+    $$
+    \begin{bmatrix}
+    -1  \\
+    1  \\
+    0  \\
+    0  \\
+    \end{bmatrix},
+    \begin{bmatrix}
+    -1  \\
+    0  \\
+    1  \\
+    0  \\
+    \end{bmatrix},
+    \begin{bmatrix}
+    -1  \\
+    0  \\
+    0  \\
+    1  \\
+    \end{bmatrix}
+    $$
+    
+*   Four subspaces of matrix A: the rank (dimension) of the null space and the column space are both 1, the row space $C(A^T)=\{a,a,a,a\}​$ , the column space $C(A)=R^1​$ , the null space $N(A)​$ , which is the linear combination of the basis of S, $N(A^T)={0}​$
+    
+*   Organize
+    
+    $$
+    dim(N(A))+dim(C(A^T))=3+1=4=n \\
+    dim(C(A))+dim(N(A^T))=1+0=1=m \\
+    $$
+    
+
+Small World Graph
+-----------------
+
+*   Just introduced the concept of graphs, preparing for the next lecture
+
+Twelfth Lecture: Graphs and Networks
+====================================
+
+图
+-
+
+*   Some basic concepts of graphs, omitted
+
+Internet
+--------
+
+*   The adjacency matrix A of the graph, with columns as the nodes of the graph, rows as the edges of the matrix, the starting point as -1, the endpoint as 1, and the rest as 0
+    
+*   Several rows of linear correlation constitute the circuit, where the circuit implies correlation
+    
+*   The adjacency matrix A describes the topological structure of the graph
+    
+*   $dimN(A^T)=m-r​$
+    
+*   If the nodes of the graph are voltages, $Ax$ where x represents the voltage, $Ax=0$ yields a set of voltage difference equations, the null space is one-dimensional, $A^Ty$ where y represents the current on the edges, the relationship between current and voltage difference is Ohm's law, $A^Ty=0$ obtains Kirchhoff's laws, the null space includes two solutions of Kirchhoff's current equations, which, from the circuit diagram, correspond to two small loops
+    
+*   Tree is a graph without cycles
+    
+*   Take another look at $dimN(A^T)=m-r$
+    
+*   $dimN(A^T)$ = Number of irrelevant circuits
+    
+*   $m$ = Number of edges
+    
+*   $r=n-1$ = number of nodes - 1 (since the null space is one-dimensional)
+    
+*   The: number of nodes - number of edges + number of circuits = 1 (Euler's formula)
+    
+
+Summary
+-------
+
+*   Potential is denoted as e, $e=Ax$
+    
+*   Potential difference causes the generation of current, $y=Ce$
+    
+*   Current satisfies Kirchhoff's Current Law, $A^Ty=0$
+    
+*   Combine the three equations:
+    
+    $$
+    A^TCAx=f
+    $$
+    
+    This is the most basic balance equation in applied mathematics
+    
+
+Lecture Thirteen: Orthogonal Vectors and Subspaces
+==================================================
+
+Orthogonal vectors
+------------------
+
+*   Orthogonal means perpendicular, indicating that in n-dimensional space, the angles between these vectors are 90 degrees
+    
+*   When $x^Ty=0$ , x and y are orthogonal, prove:
+    
+*   If x is orthogonal to y, it follows that:
+    
+    $$
+    {||x||}^2+{||y||}^2={||x+y||}^2 \\
+    $$
+    
+*   That is to say:
+    
+    $$
+    x^Tx+y^Ty={(x+y)}^T(x+y)=x^Tx+y^Ty+x^Ty+xy^T=2x^Ty \\
+    $$
+    
+*   That is to say:
+    
+    $$
+    x^Ty=0 \\
+    $$
+    
+*   Subspaces are orthogonal if all vectors within one subspace are orthogonal to every vector in another subspace. It is obvious that if two two-dimensional subspaces intersect at some vector, then these two spaces are not orthogonal
+    
+*   If two subspaces are orthogonal, they must not intersect at any non-zero vector, because such a non-zero vector exists in both subspaces simultaneously, and it cannot be perpendicular to itself
+    
+*   The row space is orthogonal to the null space because $Ax=0$ , i.e., the dot product of each row of the matrix and these linear combinations of the rows (row space) with the solution vector (null space) is 0. This proves the left half of the figure.
+    
+*   In the right half of the figure, the column space and left null space are the row space and null space of the transpose of matrix A, respectively. The proof given earlier is still valid, thus the column space and left null space are orthogonal, and the right half of the figure holds
+    
+*   The figure presents the orthogonal subspaces of n-dimensional and m-dimensional spaces, the orthogonal subspace of the n-dimensional space: r-dimensional row space and (n-r)-dimensional null space. The orthogonal subspace of the m-dimensional space: r-dimensional column space and (m-r)-dimensional left null space.
+    
+
+Orthogonal subspace
+-------------------
+
+*   For example, in three-dimensional space, if the row space is one-dimensional, the null space is two-dimensional. The row space is a straight line, and the null space is a plane perpendicular to this line. This orthogonality can be intuitively seen from a geometric perspective
+*   Because the null space is the orthogonal complement of the row space, the null space contains all vectors orthogonal to the row space
+*   This is all the knowledge about solving $Ax=0$ . What should we do if we need to solve an unsolvable equation, or to find the optimal solution? We introduce an important matrix $A^TA$
+*   $A^TA$ is a $n*n$ square matrix, and it is also symmetric
+*   Transforming bad equation into good equation, multiply both sides by $A^T$
+*   Not always reversible; if reversible, then $N(A^TA)=N(A)$ , and their ranks are the same
+*   Reversible if and only if the null space contains only the zero vector, i.e., the columns are linearly independent; these properties will be proven in the next lecture
+
+14th Lecture: Subspace Projection
+=================================
+
+Projection
+----------
+
+*   Discussing projection in two-dimensional cases
+    
+*   A projection of a point b onto another line a, which is the perpendicular line segment drawn from this point to intersect line a at point p; p is the projection point of b onto a, and the vector from the origin to p is the projection vector p. The perpendicular line segment is the error e, where e = b - p
+    
+*   p in the one-dimensional subspace of a is x times a, i.e., p = xa
+    
+*   a perpendicular to e, i.e
+    
+    $$
+    a^T(b-xa)=0 \\
+    xa^Ta=a^Tb \\
+    x= \frac {a^Tb}{a^Ta} \\
+    p=a\frac {a^Tb}{a^Ta} \\
+    $$
+    
+*   From the equation, it can be seen that if b is doubled, the projection is also doubled; if a changes, the projection remains unchanged, because the numerator and denominator cancel each other out
+    
+
+Projection matrix
+-----------------
+
+*   Projection matrix P one-dimensional pattern
+*   Multiplying the projection matrix by any vector b will always lie on a line through vector a (i.e., the projection of b onto a, denoted as p), thus the column space of the projection matrix is this line, and the rank of the matrix is 1
+*   Other two properties of the projection matrix:
+    *   Symmetry, i.e., $P^T=P$
+    *   Two projections at the same location, i.e., $P^2=P$
+
+The Significance of Projection
+------------------------------
+
+*   Below is discussed in the high-dimensional case
+    
+*   When the number of equations exceeds the number of unknowns, there is often no solution, and in this case, we can only find the closest solution
+    
+*   How to find? Refine b such that b is in the column space
+    
+*   How to fine-tune? Change b to p, which is the one closest to b in the column space, i.e., the projection of b onto the column space when solving $Ax^{'}=p$ , p
+    
+*   Now we require $x^{'}$ , $p=Ax^{'}$ , the error vector $e=b-Ax^{'}$ , and according to the definition of projection, e needs to be orthogonal to the column space of A
+    
+*   In summary
+    
+    $$
+    A^T(b-Ax^{'})=0 \\
+    $$
+    
+*   From the above equation, it can be seen that e is in the left null space of A, orthogonal to the column space. Solving the equation yields
+    
+    $$
+    x^{'}=(A^TA)^{-1}A^Tb \\
+    p=Ax^{'}=A(A^TA)^{-1}A^Tb \\
+    $$
+    
+*   The n-dimensional mode of the projection matrix P:
+    
+    $$
+    A(A^TA)^{-1}A^T \\
+    $$
+    
+*   The n-dimensional mode of projection matrix P still retains the two properties of the 1-dimensional mode
+    
+*   Returning to the pursuit of the optimal solution, a common example is to fit a straight line using the least squares method
+    
+*   Known three points $a_1,a_2,a_3$ , find a straight line to fit close to the three points, $b=C+Da$
+    
+*   If $a_1=(1,1),a_2=(2,2),a_3=(3,2)$ , then
+    
+    $$
+    C+D=1 \\
+    C+2D=2 \\
+    C+3D=2 \\
+    $$
+    
+    Written in linear form as:
+    
+    $$
+    \begin{bmatrix}
+    1 & 1  \\
+    1 & 2  \\
+    1 & 3  \\
+    \end{bmatrix}
+    \begin{bmatrix}
+    C  \\
+    D  \\
+    \end{bmatrix}
+    \begin{bmatrix}
+    1  \\
+    2  \\
+    2  \\
+    \end{bmatrix}
+    $$
+    
+*   Ax=b, the number of equations is greater than the number of unknowns. If both sides are multiplied by the transpose of A, that is, to find $x^{'}$ , then the fitting line can be obtained. The next lecture will continue with this example.
+    
+
+Lecture 15: Projection Matrices and Least Squares Method
+========================================================
+
+Projection matrix
+-----------------
+
+*   Reviewing, $P=A(A^TA)^{-1}A^T$ , $Pb$ is the projection of b onto the column space of A. Now consider two extreme cases: b being in the column space and b being orthogonal to the column space: b in the column space: $Pb=b$ ; Proof: If b is in the column space, it can be expressed as $b=Ax$ , under the condition that the columns of A are linearly independent, $(A^TA)$ is invertible, substituting $P=A(A^TA)^{-1}A^T$ yields $Pb=b$ ; b is orthogonal to the column space, $Pb=0$ ; Proof: If b is orthogonal to the column space, then b is in the left null space, i.e., $A^Tb=0$ , it is obvious that substituting $P=A(A^TA)^{-1}A^T$ gives $Pb=0$
+    
+*   p is the projection of b onto the column space, since the column space is orthogonal to the left null space, and thus e is the projection of b onto the left null space, as shown in the figure:
+    
+    $$
+    b=p+e \\
+    p=Pb \\
+    $$
+    
+*   Therefore
+    
+    $$
+    e=(I-P)b \\
+    $$
+    
+*   Therefore, the projection matrix of the left null space is $(I-P)$
+    
+
+Least Squares Method
+--------------------
+
+*   Returning to the example from the previous lecture, find the optimal straight line that approximates three points, minimizing the error, as shown in the figure
+    
+*   Establish the line as $y=C+Dt$ , substitute the coordinates of three points to obtain a system of equations
+    
+    $$
+    C+D=1 \\
+    C+2D=2 \\
+    C+3D=2 \\
+    $$
+    
+*   This equation set has no solution but has an optimal price, from an algebraic perspective:
+    
+    $$
+    ||e||^2=(C+D-1)^2+(C+2D-2)^2+(C+3D-2)^2 \\
+    $$
+    
+*   分别对 C 和 D 求偏导为 0，得到方程组:
+    
+    $$
+    \begin{cases}
+    3C+6D=5\\
+    6C+14D=11\\
+    \end{cases}
+    $$
+    
+*   Written in matrix form, here, $C,D$ exists in only one form, and they are unsolvable. To solve $C,D$ , it is treated as a fitting line, i.e., b is replaced by $C,D$ when p is the projection.
+    
+    $$
+    Ax=b \\
+    \begin{bmatrix}
+    1 & 1 \\
+    1 & 2 \\
+    1 & 3 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+    C \\
+    D \\
+    \end{bmatrix}=
+    \begin{bmatrix}
+    1 \\
+    2 \\
+    2 \\
+    \end{bmatrix}
+    $$
+    
+*   A satisfies the linear independence of each column, b is not in the column space of A, now we want to minimize the error $e=Ax-b$ , how to quantify the error? By squaring its length $||e||^2$ , which in the graph is the sum of the squares of the distances of points to the fitted line along the y-axis. The error line segments $b_1,b_2,b_3$ of these points $e_1,e_2,e_3$ intersect with the fitted line at $p_1,p_2,p_3$ , and when the three b points are replaced by three p points, the system of equations has a solution.
+    
+*   To solve $x^{'},p$ , given $p=Ax^{'}=A(A^TA)^{-1}A^Tb$ , $Ax=b$ , multiplying both sides by $A^T$ and combining them yields
+    
+    $$
+    A^TAx^{'}=A^Tb
+    $$
+    
+*   Substituting the values yields
+    
+    $$
+    \begin{cases}
+    3C+6D=5\\
+    6C+14D=11\\
+    \end{cases}
+    $$
+    
+*   As with the result of taking partial derivatives algebraically, it is then possible to solve out $C,D$ , thus obtaining the fitting line
+    
+*   Review the two preceding figures, one explaining the relationship $b,p,e$ , and the other using $C,D$ to determine the fitting line, with the column combination determined by $C,D$ being vector p
+    
+*   If the columns of matrix A are linearly independent, then $A^TA$ is invertible, and this is a prerequisite for the use of the least squares method. Proof: If a matrix is invertible, then its null space consists only of the zero vector, i.e., x in $A^TAx=0$ must be the zero vector
+    
+    $$
+    A^TAx=0 \\
+    x^TA^TAx=0 \\
+    (Ax)^T(Ax)=0 \\
+    Ax=0 \\
+    $$
+    
+*   Since the columns of A are linearly independent, therefore
+    
+    $$
+    x=0
+    $$
+    
+*   Proof by construction
+    
+*   For handling mutually perpendicular unit vectors, we introduce the standard orthogonal vector group, where the columns of this matrix are both standard orthogonal and unit vectors. The next lecture will introduce more about the standard orthogonal vector group
+    
+
+Lecture 16: Orthogonal Matrices and Gram-Schmidt Orthogonalization
+==================================================================
+
+Orthogonal matrix
+-----------------
+
+*   A set of orthogonal vectors is known
+    
+    $$
+    q_i^Tq_j=
+    \begin{cases}
+    0 \quad if \quad i \neq j \\
+    1 \quad if \quad i=j \\
+    \end{cases}
+    $$
+    
+    $$
+    Q=
+    \begin{bmatrix}
+    q_1 & q_2 & ... & q_n \\
+    \end{bmatrix} \\
+    Q^TQ=I \\
+    $$
+    
+*   Therefore, for a square matrix with standard orthogonal columns, $Q^TQ=I$ , $Q^T=Q^{-1}$ , i.e., orthogonal matrices, for example
+    
+    $$
+    Q=\begin{bmatrix}
+    cos \theta & -sin \theta \\
+    sin \theta & cos \theta \\
+    \end{bmatrix}or
+    \frac {1}{\sqrt 2} 
+    \begin{bmatrix}
+    1 & 1 \\
+    1 & -1 \\
+    \end{bmatrix}
+    $$
+    
+*   Q is not necessarily a square matrix. The columns of Q will be the standard orthogonal basis of the column space.
+    
+*   What is the projection matrix P onto the column space of Q for Q?
+    
+
+Gram-Schmidt orthogonalization
+------------------------------
+
+*   Given two non-orthogonal vectors a and b, we wish to obtain two orthogonal vectors A, B from a, b, where A can be set as a, and B is the error vector e, which is the projection of b onto A:
+    
+    $$
+    B=e=b-\frac{A^Tb}{A^TA}A
+    $$
+    
+*   Orthogonal basis is A, B divided by their lengths $q_1=\frac{A}{||A||}$
+    
+*   Extended to the case of three vectors, A, B, and C, from the above formula we know that A, B, and similarly, C needs to have the projection components onto A and B subtracted
+    
+    $$
+    C=c- \frac {A^Tc}{A^TA}A- \frac {B^Tc}{B^TB} B
+    $$
+    
+*   The matrix A composed of column vectors a, b is orthogonalized into an orthogonal matrix Q through Schmidt orthogonalization, and it can be seen from the formula derivation that the columns $q_1,q_2,...$ and $a,b,....$ of Q are in the same column space; orthogonalization can be written as
+    
+    $$
+    A=QR \\
+    $$
+    
+*   即
+    
+    $$
+    \begin{bmatrix}
+    a & b \\
+    \end{bmatrix}=
+    \begin{bmatrix}
+    q_1 & q_2 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+    q_1^Ta & q_1^Tb \\
+    q_2^Ta & q_2^Tb \\
+    \end{bmatrix} \\
+    $$
+    
+*   Among them, because of $QQ^T=I$
+    
+*   Therefore $R=Q^TA$
+    
+*   $q_2$ is orthogonal to $q_1$ , while $q_1$ is just the unitization of $a$ , therefore $q_2^Ta=0$ , i.e., $R$ , is an upper triangular matrix
+    
+
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
 
 ## 生成空间、基
 
@@ -631,3 +1354,22 @@ q_2^Ta & q_2^Tb \\
 - 其中，因为$QQ^T=I$
 - 所以$R=Q^TA$
 - $q_2$与$q_1$正交，而$q_1$只是$a$的单位化，所以$q_2^Ta=0$，即$R$是上三角矩阵
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

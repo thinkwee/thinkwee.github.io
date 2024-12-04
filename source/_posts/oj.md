@@ -21,6 +21,178 @@ mathjax: true
 
 ！[mark](http://ojtdnrpmt.bkt.clouddn.com/blog/20170327/195153747.jpg)
 
+{% language_switch %}
+
+{% lang_content en %}
+
+Leetcode
+========
+
+*   [LeetCode Algorithm List](https://leetcode.com/problemset/algorithms/)
+*   Directly search for the serial number of each question
+
+Sorting
+-------
+
+*   75: Given a sequence containing only 0, 1, and 2, sort it to form the form \[0,0,...,0,1,...,1,2,...,2\], and modify it on the original sequence. Drawing inspiration from the Lomuto partition algorithm, maintain three intervals \[0,i\], \[i,j\], \[j,k\] for the ranges of 0, 1, and 2, respectively. According to priority, if the current number is 2 or 1 or 0, first set nums\[k\]=2, k++, if the current number is 1 or 0, then set nums\[j\]=1, j++, and if the current number is 0, set nums\[i\]=0, i++. The further back it is, the more it can cover the previous ones, with higher priority.
+*   Given an unordered sequence, find the maximum difference between adjacent elements after sorting the sequence in O(n) time complexity. Using bucket sort, let the maximum and minimum values in the sequence be max and min, respectively. It can be easily deduced that the maximum difference between adjacent elements must be greater than (max - min) / (n - 1), and let this value be gap, where n is the length of the sequence. Divide the value range \[min, max\] of the sequence into nums buckets with an interval of (max - min) / (n - 1), where nums is int((max - min) / gap + 1). Distribute the elements of the sequence into these buckets, storing only the maximum and minimum elements corresponding to each interval. The maximum interval must be at the boundaries between adjacent buckets (the maximum value of the previous bucket and the minimum value of the next bucket), because the maximum interval within a bucket is less than gap. Finally, traverse the buckets to find the result.
+*   179: Water problem, given a sequence of numbers, requiring the combination of the numbers into the largest possible number. String sorting
+
+Stack, Queue
+------------
+
+*   Merge K sorted linked lists into one sorted linked list, using a min-heap to store all the head nodes of the lists, and then inserting them in order into the new list
+*   Arithmetic Expression, Stack, Python's Switch Syntax
+*   224: Arithmetic expressions with parentheses, stack, an ingenious method for handling parentheses, if the sign outside the parentheses is negative, multiply by -1; otherwise, multiply by 1
+*   373: Find the k groups of number pairs with the minimum sum in 2 ordered arrays, priority queue
+
+Combinatorial Mathematics
+-------------------------
+
+*   47: Generate all combinations of n numbers, with repetitions, and sequentially insert numbers into the k+1 spaces of the already generated k-number combinations, use sets for deduplication directly, and in the Top Solution, deduplication is done by checking if the next number to be inserted is a repetition
+
+Search and Find
+---------------
+
+*   In a matrix with a specific order, find using two binary searches
+*   78: Generate subsets, recursively or iteratively, deciding for each number whether to include it in the subset or not for recursion
+*   In a letter matrix, find a word, depth-first search
+*   89: Generate Gray code, iterative, adding 1 or 0 at the front each time, Gray code is symmetrically above and below
+*   140: Convert a string into a sentence by concatenating with a given dictionary and spaces, memoized search
+*   153: Split an ordered array into two parts and concatenate them, then search, a special binary search
+*   154:153 If a transformation of repeated digits is added, with a condition that the binary start and end are the adjacent non-repeated first digits
+*   240:74 revised version, each row and column is ordered, count, and separately perform binary search on rows and columns, the number must be at the intersection of rows and columns that meet the conditions, and there are other solutions
+
+树
+-
+
+*   98: Determine if a binary tree is a search tree, i.e., the left subtree is all less than the node, and the right subtree is all greater than the node; an in-order traversal will show if it is an increasing sequence, using recursion or a stack
+*   101: Determine if a binary tree is symmetric, using recursion, note that the recursion is (left.left, right.right) and (left.right, right.left), i.e., the inner and outer pairs of child nodes, and an iterative version can also be implemented using a stack
+*   106: Given the inorder and postorder traversals, find the preorder traversal. The last node in the postorder traversal is the root node, find this root node in the inorder traversal and remove it, the nodes to the left of the root node in the inorder traversal are the left subtree, and the nodes to the right are the right subtree; at this point, the last node in the postorder traversal is the root node of the left subtree, and recursion can be used.
+*   107: Output the nodes of each level of the tree from bottom to top and from left to right, recording the answers in a two-dimensional array. If the one-dimensional length of the two-dimensional array, which represents the level, is less than the current level of the node being traversed, a new level is created to store the answers. It can be implemented directly using depth-first search (DFS), or by replacing recursion with a stack and a queue; if using a stack, it is DFS, and if using a queue, it is BFS.
+*   Construct a binary search tree, recursively
+*   114: Give a tree, compress it by preorder traversal to become a tree with only right nodes. The operation of compressing a node is defined as, setting the left subtree to empty, making the right subtree the original left subtree, and appending the original right subtree to the end of the original left subtree, with the tail node of the original left subtree being the last point reached during the preorder traversal of this subtree. Recursively, first compress the left node, then compress the right node, and then backtrack to compress the parent node.
+*   144: Obtain the preorder traversal of a tree using a stack, pop a node to record its value, and then push the right node first, followed by the left node
+*   Find the maximum value at each level of a binary tree, BFS
+
+Graph Theory
+------------
+
+*   130: Water problem, replace all white pieces surrounded by black pieces in a diagram with black pieces, directly find all the white pieces on the edge and store them, then paint the entire board black and restore the white pieces. The stored is the top solution, the writing style is very pythonic.
+
+Math problem
+------------
+
+*   Given two sorted sequences, find the median of the merged sequence with a time complexity of O(log(m+n)), so it cannot be done by comparing one by one. The significance of the median is to split the sequence into two parts of equal length, where the smallest number in the larger part is greater than the largest number in the smaller part. Based on this principle, split the two sequences into two parts, with sequence 1 split at position i and sequence 2 split at position j. It needs to be ensured: 1: If the lengths are the same, then $i+j=m-i+n-j$ ; 2: The union of the smaller parts of the two sequences has any number smaller than the union of the larger parts of the two sequences, because the split parts are still ordered, so this condition is $B[j-1] <= A[i] and A[i-1] <= B[j]$ . Once the position i is determined, the position j is also determined, so it is only necessary to perform a binary search to find the position i. Note the parity and boundary conditions.
+*   57: Given a set of intervals, insert a new interval and merge. Simulation
+*   122: Water, one line of code, find the maximum adjacent element difference in a sequence
+*   142: Given a linked list, find the starting point of the loop in the list. It still uses the two-pointer technique, with one fast and one slow pointer starting from the beginning of the list. When they meet for the first time, it indicates that there is a loop and the difference in their steps is the length of the loop. It can also be deduced that the distance from the starting point of the list to the starting point of the loop is equal to the distance from the meeting point to the starting point of the loop, thus allowing the starting point of the loop to be found.
+*   166: Write the quotient and divisor, including the display of repeating decimals, a mathematical analysis problem, continuously multiply the decimal by 10 and divide by the divisor, update the remainder, and when the remainder repeats, the decimal repeats
+*   172: Find the number of zeros in n!, a problem in mathematical analysis. The zeros come from 5\*2, so it's about how many 5s and their multiples are in n
+*   202: Two-pointer technique, a method for finding a loop
+*   263: Mathematical Problem
+*   264: Mathematical Problem
+*   313: Mathematical Problem
+
+String
+------
+
+*   Split a string into palindromic substrings; using Python's \[i::-1\] is very convenient and can be done in one line of code
+*   242: Water topic, usage of Python dictionaries
+*   Given a string, delete the minimum number of parentheses to make all parentheses in the string match, and output all possible cases. Note two points: do it in both normal and reverse order, as there are two schemes for deleting left and right parentheses; output all cases, and store them in a set.
+*   451: Frequency statistics of letters, hash, Python dictionary
+*   541: Partial string reversal, simulation, note the use of Python slicing
+
+Greed
+-----
+
+*   134: Gas stations are arranged in a circle, given the amount of fuel each station can add and the fuel consumed between stations, determine from which station one can complete a full circle. The data guarantees that the answer is unique. Greedy approach: if it's not possible to complete the circle with the first i stations, then set the starting point to station i+1
+*   402: Remove k digits from a large number to make the new number smallest, stack, greedy
+*   Overlap Interval Problem, Greedy
+
+Dynamic Programming
+-------------------
+
+*   Classic problem climbing ladder, Fibonacci sequence, dp
+    
+*   96: Given a sequence of numbers from 1 to n, ask how many different BSTs can be constructed. Let ans(i) be the number of different BSTs that can be constructed from a sequence of length i. We need to find the relationship between ans(i) and ans(i-1). Introduce the intermediate variable f(i,n), which represents the number of different BSTs that can be constructed with the i-th number as the root and a sequence of length n. Here, a recursive relationship can be found. The left subsequence of the root constructs the left subtree of the root, and there are left different left subtrees. The right subsequence right is the same. Then f(i,n) should be left \* right, i.e., f(i,n) = ans(i-1) \* ans(n-i). At the same time, with different i as the root, there will be completely different partitions. Therefore, $ans(n)=\sum _{i=1}^n f(i,n)$ , merging gives ans(i) = ans(0) \* ans(n-1) + ans(1) \* ans(n-2) + ... + ans(n-1) \* ans(0), with boundary ans(0) = ans(1) = 1.
+    
+*   139: Provide a dictionary and a string, and determine if the string can be completely composed of words from the dictionary. Define f\[i\] as true if the first i characters of the string can be completely composed of words. Then, traverse each word, with length k, if f\[i-k\] is true, then f\[i\] is true. This can also be converted into a graph and solved using depth-first search (DFS). An edge between i and j indicates that s\[i:j\] is a word, and we need to find a path from 0 to len(s).
+    
+*   174: The matrix contains positive and negative numbers, and the minimum path is sought without the intermediate value being 0. Dynamic programming, from the end to the beginning.
+    
+*   312: Given a sequence of numbers, ask how to sequentially eliminate numbers to get the maximum number of coins. The rule for getting coins is: eliminating a number yields the sum of the product of this number and its two adjacent numbers in coins. Interval dp (divide and conquer), the maximum number of coins that can be obtained in a segment is f\[x,y\], which depends on the last elimination position at i, the coins obtained being f\[x,i-1\] + num\[i-1\] \* num\[i\] \* num\[i+1\] + f\[i+1,y\]. Enumerate the position i within this interval, where the positions of the two subintervals on both sides are known, so the interval is enumerated from small to large. There are three layers of loops in total: the outer loop for the length of the interval, the middle loop for the starting position of the interval in the entire sequence, and the inner loop for enumerating the position i within the interval.
+    
+*   Determine the number of 1s in the binary representation of each number in \[1, num\], and by analyzing several numbers, it is found that for even number n, its binary representation is the binary of n/2 shifted one bit to the left, with the number of 1s unchanged. For odd number n, its binary representation is the binary of n/2 shifted one bit to the left and a 1 added at the end, which means there is one more 1. It is obvious that the state transition equation
+    
+    $$
+    f(x)=
+    \begin{cases}
+    f(n) & x=2n \\
+    f(n)+1 & x=2n+1 \\
+    \end{cases}
+    $$
+    
+*   397: If a number is even, divide it by 2; if it is odd, change it to the adjacent number. Ask how many times it takes to become 1. According to the problem, the state transition equation can be written as:
+    
+    $$
+    f(x)=
+    \begin{cases}
+    f(n)+1 & x=2n \\
+    min(f(2n+2)+1,f(2n)+1) & x=2n+1 \\
+    \end{cases}
+    $$
+    
+    Odd cases can be simplified to $min(f(2n)+1,f(n+1)+2)$ , so it can be solved by dynamic programming from 1 to n, but it may exceed time limit. The equation can be further simplified: If n % 4 = 3 and n != 3, then f(n) = f(n + 1) + 1. If n % 4 = 1 or n = 3, then f(n) = f(n - 1) + 1. Proof is here.
+    
+*   472: It is a variant of 139, still determining whether a string can be composed of words, but both the words and the string to be judged are in a dictionary. Each word needs to be checked if it can be completely composed of other words. Since there are no repeated words in the dictionary, the words are first sorted by length, and each word can only be composed of the words that come before it. The problem then transforms into 139, where the ith word is the string to be queried, and the first i-1 words form the dictionary required for the query. Dynamic programming is applied in the same way. The top solution utilizes a trie dictionary tree to accelerate, see the implementation of the dictionary tree in Python.
+    
+
+Divide and Conquer
+------------------
+
+*   247: Provide an expression without parentheses, and ask how many possible solutions there are when parentheses are added (without requiring duplicates), divide and conquer, take the i-th operation symbol, and recursively solve the partial solutions on the left and right sides of the symbol, usage of map in Python
+
+Poj
+===
+
+*   [C++ source code](https://github.com/thinkwee/Poj_Test)
+*   Dijkstra
+*   Simulation
+*   1094: Topological Sorting
+*   1328: Greedy, switch to solve variables
+*   1753: Enumeration, Bitwise Operations
+*   1789: Prim, priority queue
+*   1860: Bellman-Ford
+*   2109: Greedy, High-Precision Multiplication
+*   2965: Enumeration, Bitwise Operations
+*   Modeling, Bellman-Ford
+*   3295: Simulation, Stack
+
+Intra-school competition
+========================
+
+*   [2017pre](http://code.bupt.edu.cn/contest/650/)
+*   Finding three ordered numbers in a set that sum to 0, and then calculating the sum of their squares, original problem from LeetCode
+*   D, Find the sum of consecutive prime numbers and factorization, POJ original problem, data is large, so there is no need to use a table, and directly judge each input
+*   F, the title is misleading, no backtracking is needed, the characteristic equation can be written and solved using the recursive formula
+*   Find the largest subset of a set with binding rules, where selecting a number requires selecting several other numbers, bfs
+*   H, given the character transformation rules and cost, find the minimum cost to make two strings identical, flyod, note that two letters can be transformed into a third letter, not necessarily mutually, and the two strings may not be of equal length; if they are not of equal length, output -1 directly
+*   I, in high school physics, seek the acceleration due to gravity, the equation is difficult to solve, use bisection method to approximate the answer
+
+hiho
+====
+
+*   hiho
+*   1505: Given a set, ask how many index quadruples (i, j, p, q) satisfy that i, j, p, q are all different, and i < j, p < q, Ai + Aj = Ap + Aq. The 2sum problem, with a small data range, can directly open a hash array, where sum\[i\] records how many groups of two numbers sum to i, and use the principle of inclusion-exclusion.
+*   1506: The probability of getting heads m times out of n coin tosses, with different probabilities for each toss to land heads up. Dynamic programming, let dp\[i\]\[j\] be the probability of getting heads up j times after i tosses, with the state transition equation: dp\[i\]\[j\] = dp\[i-1\]\[j-1\] \* a\[i\] + dp\[i-1\]\[j\]; a\[i\] is the probability of getting heads up on the i-th toss, and special treatment is required for j=0.
+*   1507: Incorrect record, given a tree, given the root node number, add an error edge in the middle, and find all possible error edges. Note that since only one error edge is added, the situation can be divided into two cases: 1. This error edge connects to the root node, output directly. 2. If the root node is normal, then this error edge must be connected to a node with an in-degree of 2, and there is only one such node. Find this node, remove the two edges connected to it, and start a depth-first search (dfs) from the root node. If the dfs traversal count is n, it means that the tree still holds after removing this edge, which is the error edge. If the count is less than n, it means that the tree is broken and forms a forest after removing this edge, and this edge is not an error edge. Note the case of repeated edges, at this time only one edge is removed, but both edges are output as error edges separately. Since the number of error edges is less than or equal to 2, the dfs count is less than or equal to 2, and the time complexity, including the construction of the graph with removed edges, is O(n).
+*   1515: Given some score relationships between classmates (how many points higher or lower A is compared to B), answer q queries in the end. With weighted union-find, each set maintains the score difference between classmates and a certain root student in this set. Each time a relationship is input, merge the union-find sets of the two classmates, and update each union-find set once, where y is merged into x, the relationship value between x and y is s, and the update formula is d\[root of y\] = d\[x\] - d\[y\] - s. In the next iteration, update the values of the entire union-find set. Finally, perform the direct query.
+
+{% endlang_content %}
+
+{% lang_content zh %}
+
 # Leetcode
 
 - [Leetcode算法列表](https://leetcode.com/problemset/algorithms/)
@@ -165,3 +337,22 @@ min(f(2n+2)+1,f(2n)+1) & x=2n+1 \\
 - 1506：投掷硬币，投n次m次朝上的概率是多少，每次投正面朝上概率不同。动态规划，记dp[i][j]为投前i次j次朝上的概率，状态转移方程为:dp[i][j]=dp[i-1][j-1]a[i]+dp[i-1][j](1.0-a[i]);a[i]为第i次正面朝上的概率，注意对j=0进行特判。
 - 1507：错误的记录，给出一棵树，给出根节点编号，在中间加一条错误边，找出所有可能的错误边。注意因为只加了一条错误边，因此情况可以分为两种：1.这条错误边连向根节点，直接输出。2.根节点正常，则这条错误边一定连在入度为2的节点上，且这样的节点只有一个，找到这个节点，将连接它的两条边分别去掉并从根节点开始dfs，如果dfs遍历完次数为n，说明这条边去掉后树依然成立，这是错误边，如果次数小于n，说明去掉这条边树就断了，形成森林，这条边不是错误边。注意边重复的情况，这时候只去掉其中一条，但是两条边是分别当错误边输出。因为错误边数小于等于2，所以dfs的次数小于等于2，加上构造去掉边的图，时间复杂度是O(n)。
 - 1515：给定一些同学之间的分数关系（A比B高或低多少分），最后对q个查询给出答案。带权并查集，每个集维护同学到这个集某一个根同学的分数差。每次输入一条关系便合并两个同学所在的并查集，并对每个并查集做一次更新,加入y被x合并，x,y之间关系值是s,更新公式是d[root of y]=d[x]-d[y]-s，并在下一次循环中更新整个并查集的值。最后直接查询。
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

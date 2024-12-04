@@ -21,6 +21,235 @@ html: true
 
 ![i0onl8.jpg](https://s1.ax1x.com/2018/10/20/i0onl8.jpg)
 
+{% language_switch %}
+
+{% lang_content en %}
+
+Introduction
+============
+
+*   K-Means is a simple partition-based clustering method. The problem it aims to solve is that given n samples (point set X), their feature vectors are projected into a high-dimensional space, and according to the spatial distribution, they can be roughly divided into several subspaces, with points in each subspace belonging to the same class. Now, it is necessary to calculate the class of each point. The basic idea is to randomly select k points (center point set C) as center points, and the remaining points self-organize: they join the team of the closest among the k center points, i.e., they are assigned to the same class as that center point. This way, k classes are formed. The process is repeated, and during this time, a loss evaluation is introduced, such as using the sum of the distances from each point in the class to the center point of that class as the evaluation indicator. The repetition stops when the indicator is less than a certain degree or when the change in the indicator is less than a certain degree
+*   KNN is relatively simple and rough, its idea being similar to democratic voting. KNN does not train data; it selects a value K, and for each vector that needs to be predicted, it finds the K nearest points in the known category dataset. The category with the most points among these K points is the predicted category, i.e., it allows the K nearest points to the point to vote on the category of this point, and the category with the most votes is the category.
+
+K-means++
+=========
+
+*   k-means++ optimizes the selection of the initial k points on top of k-means. The original algorithm randomly selects k points, which is obviously too uncertain. A better scheme for selecting k points should be that they are as far apart from each other as possible, but not too far. As far apart as possible allows them to be as close as possible to the final ideal center point distribution; not too far is to prevent some erroneous points or outliers from being isolated as center points.
+*   The algorithmic implementation first randomly selects the first center point from the set X, and then repeatedly performs the following process to select center points
+    *   Calculate the distance from each point $c_i$ to the already selected center point $k_1,k_2...$ , select the smallest distance as the distance of $c_i$ , and the significance of this distance is that when $c_i$ is used as the next center point, it is at least this distance away from other center points
+    *   Normalize the distance of $c_1,c_2,c_3......$ and arrange it in a line
+    *   The line has a length of 1, which is divided into many segments. The length of each segment represents the proportion of the distance of the point it represents in normalization; the greater the distance, the greater the proportion
+    *   Select a random number between (0,1), and the point represented by the interval in which this number falls is the next centroid. Add it to the set of centroids C, and then repeat to find the next centroid
+*   It can be seen that the likelihood of being randomly selected online increases with distance, which meets our requirements
+
+K-Means code implementation
+===========================
+
+Data inspection
+---------------
+
+*   Iris is the Iris flower classification dataset, with 150 samples evenly divided into 3 classes, each sample having 4 attributes
+
+Initialization of data
+----------------------
+
+*   Initialization of data
+    
+        def init():
+           iris = load_iris()
+           X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.25, random_state=33)
+           ss = StandardScaler()
+           X_train = ss.fit_transform(X_train)
+           X_test = ss.fit_transform(X_test)
+           return X_train, X_test, y_train, y_test, iris
+        
+    
+
+    ## k-means++ initialization of k points
+    -    D2 is the distance of each point (i.e., how far it is from other center points)
+    -    probs are normalized
+    -    cumprobs sum up the normalized probabilities, forming a line
+    ```Python
+        def initk(X_train, k):
+            C = [X_train[0]]
+            for i in range(1, k):
+                D2 = scipy.array([min([scipy.inner(c - x, c - x) for c in C]) for x in X_train])
+                probs = D2 / D2.sum()
+                cumprobs = probs.cumsum()
+                r = scipy.rand()
+                for j, p in enumerate(cumprobs):
+                    if r < p:
+                        i = j
+                        break
+                C.append(X_train[i])
+            return C
+    
+
+Loss Assessment
+---------------
+
+*   The sum of the squared distances from each point to the center of the class is used as the loss evaluation here
+    
+        def evaluate(C, X_train, y_predict):
+           sum = 0
+           for i in range(len(X_train)):
+               c = C[y_predict[i]]
+               sum += scipy.inner(c - X_train[i], c - X_train[i])
+           return sum
+        
+    
+
+Clustering
+----------
+
+*   After initializing k centroids, all points can be classified
+    
+*   Re-select the centroid for each class, here taking the average coordinates of all points in a class as the centroid coordinates
+    
+        def cluster(C, X_train, y_predict, k):
+           sum = [0, 0, 0, 0] * k
+           count = [0] * k
+           newC = []
+           for i in range(len(X_train)):
+               min = 32768
+               minj = -1
+               for j in range(k):
+                   if scipy.inner(C[j] - X_train[i], C[j] - X_train[i]) < min:
+                       min = scipy.inner(C[j] - X_train[i], C[j] - X_train[i])
+                       minj = j
+               y_predict[i] = (minj + 1) % k
+           for i in range(len(X_train)):
+               sum[y_predict[i]] += X_train[i]
+               count[y_predict[i]] += 1
+           for i in range(k):
+               newC.append(sum[i] / count[i])
+           return y_predict, newC
+        
+    
+
+Main Function
+-------------
+
+*   Compute the loss, update k centroids, and then re-cluster again
+    
+*   Repeat until the change in loss is less than 10%
+    
+*   Each iteration displays the old and new losses, showing the change in loss
+    
+*   Final output classification result
+    
+        def main():
+           X_train, X_test, y_train, y_test, iris = init()
+           k = 3
+           total = len(y_train)
+           y_predict = [0] * total
+           C = initk(X_train, k)
+           oldeval = evaluate(C, X_train, y_predict)
+           while (1):
+               y_predict, C = cluster(C, X_train, y_predict, k)
+               neweval = evaluate(C, X_train, y_predict)
+               ratio = (oldeval - neweval) / oldeval * 100
+               print(oldeval, " -> ", neweval, "%f %%" % ratio)
+               oldeval = neweval
+               if ratio < 0.1:
+                   break
+        
+           print(y_train)
+           print(y_predict)
+           n = 0
+           m = 0
+           for i in range(len(y_train)):
+               m += 1
+               if y_train[i] == y_predict[i]:
+                   n += 1
+           print(n / m)
+           print(classification_report(y_train, y_predict, target_names=iris.target_names))
+        
+    
+
+    # KNN code
+    -   Just use KNeighborsClassifier
+    ```Python
+        from sklearn.datasets import load_iris
+        from sklearn.preprocessing import StandardScaler
+        from sklearn.neighbors import KNeighborsClassifier
+        from sklearn.model_selection import train_test_split
+        from sklearn.metrics import classification_report
+    
+    
+        def init():
+            iris = load_iris()
+            X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.25, random_state=33)
+            ss = StandardScaler()
+            X_train = ss.fit_transform(X_train)
+            X_test = ss.fit_transform(X_test)
+            return X_train, X_test, y_train, y_test, iris
+    
+    
+        def KNN(X_train, X_test, y_train, y_test, iris):
+            knc = KNeighborsClassifier()
+            knc.fit(X_train, y_train)
+            y_predict = knc.predict(X_test)
+            print(knc.score(X_test, y_test))
+            print(classification_report(y_test, y_predict, target_names=iris.target_names))
+    
+    
+        def main():
+            X_train, X_test, y_train, y_test, iris = init()
+            KNN(X_train, X_test, y_train, y_test, iris)
+    
+        if __name__ == "__main__":
+            main()
+    
+
+Predictive Results
+==================
+
+*   Indicator Description: For binary classification, the total number of four cases: correctly predicted as positive TP; correctly predicted as negative FN; incorrectly predicted as positive FP; incorrectly predicted as negative TN
+    
+    $$
+    Precision:P=\frac{TP}{TP+FP} \\
+    Recall:R=\frac{TP}{TP+FN} \\
+    F1:\frac {2}{F_1}=\frac1P+\frac1R \\
+    $$
+    
+*   K-Means program output: Prediction accuracy: 88.39%, Average precision: 89%, Recall rate: 0.88, F1 score: 0.88 ![i0o1Ts.jpg](https://s1.ax1x.com/2018/10/20/i0o1Ts.jpg) 
+    
+*   KNN program output: Prediction accuracy: 71.05%, Average precision: 86%, Recall rate: 0.71, F1 score: 0.70 ![i0oKOg.jpg](https://s1.ax1x.com/2018/10/20/i0oKOg.jpg) 
+    
+*   Original Classification: It can be seen that the dataset itself is spatially convenient for clustering segmentation ![i0oQmQ.gif](https://s1.ax1x.com/2018/10/20/i0oQmQ.gif) 
+    
+*   Predictive Classification ![i0o8kn.gif](https://s1.ax1x.com/2018/10/20/i0o8kn.gif) 
+    
+
+Improved
+========
+
+Unknown k situation
+-------------------
+
+*   Above is what we know about irises being divided into 3 categories; what if we don't know how many categories there are? After all, k-means is an unsupervised learning algorithm, which can be computed without labels. It is also highly possible that we do not know the number of natural labels, so how do we determine k?
+*   A type of canopy algorithm
+*   To be supplemented
+
+Handling of empty classes
+-------------------------
+
+*   To be supplemented
+
+Different distance calculation methods
+--------------------------------------
+
+*   To be supplemented
+
+ANN algorithm
+-------------
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
+
 # 简介
 
 - K-Means是简单的基于划分的聚类方法，要解决的问题是，现在有n个样本(点集X)，将他们的特征向量投射到高维空间中，根据空间分布可以大致划分成几个子空间，每个子空间中的点属于同一类，现在需要计算出每个点所在的类，大致思想就是随机选择k个点(中心点集C)作为中心点，其余的点自己站队：离k个中心点里哪个点最近就站那个点的队，即和那个中心点划分到同一类中，这样就能形成k个类，重复上过程，期间引入一个损失评估，比如以各个类中的点到这个类中心点距离的和作为评估指标，当指标小于某一程度或者指标变化小于某一程度就停止重复
@@ -241,3 +470,22 @@ html: true
 - 待补充
 
 ## ANN算法
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script> 

@@ -8,19 +8,385 @@ categories: Android
 
 ***
 
-# 简介
+# Introduction
 
-写了一个查询学校空闲教室的APP
-拉取学校教务处网站的信息，分类显示,还加了一些杂七杂八的
-毕竟第一次写android，什么都想尝试一下
-点这下载：[BuptRoom](https://fir.im/buptroom)
-repository地址:[一个简单的北邮自习室查询系统](https://github.com/thinkwee/BuptRoom)
-完成第一个版本大概是3个周末
-之后花了1个月陆陆续续更新了杂七杂八的
-很多东西写的不规范，也是临时查到了就用上
-总结一下这次写App的经过:
+
+Write an app to query the school's empty classrooms
+Pull information from the school's registration website, classify and display it, and add some miscellaneous things
+After all, it's my first time writing Android, so I want to try everything
+Download here: [BuptRoom](https://fir.im/buptroom)
+repository address: [A simple Beiyou self-study room query system](https://github.com/thinkwee/BuptRoom)
+It took about 3 weekends to complete the first version, and then I spent about 1 month updating miscellaneous things
+After that, I spent about 1 month updating miscellaneous things
+Many things written in an unstandardized manner, and I just looked up and used them temporarily
+Summarize the experience of writing the App:
 
 <!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+
+# Learning content
+
+- Android basic architecture, components, lifecycle
+- Fragment
+- Java library and library calls
+- Github usage
+- Deploy app
+- Image processing methods
+- A stupid way to pull web content
+- Utilize GitHub third-party libraries
+- Color knowledge
+- Android Material Design
+- Simple optimization
+- Multithreading and Handler
+
+# Solved problems
+
+Mainly solved the following problems:
+
+- Android 6.0 and above versions seem to require dynamic permission verification, and the current version only supports 5.0 and below, used permisson:
+
+```Java
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+```
+
+- The webpage is a jsp dynamic webpage, which cannot be simply parsed, so I finally used loadurl in webview to execute javascript commands, and need to download the jsoup-1.9.2.jar package and add it to the library file
+
+```Java
+    final class MyWebViewClient extends WebViewClient {
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            Log.d("WebView","onPageStarted");
+            super.onPageStarted(view, url, favicon);
+        }
+        public void onPageFinished(WebView view, String url) {
+            Log.d("WebView","onPageFinished ");
+            view.loadUrl("javascript:window.handler.getContent(document.body.innerHTML);");
+            super.onPageFinished(view, url);
+        }
+    }
+```
+
+- Write a handler to respond to javascript commands, so that the body content in the html file is obtained in String form
+
+```Java
+    final  class JavascriptHandler{
+        @JavascriptInterface
+        public void getContent(String htmlContent){
+            Log.i(Tag,"html content: "+htmlContent);
+            document= Jsoup.parse(htmlContent);
+            htmlstring=htmlContent;
+            content=document.getElementsByTag("body").text();
+            Toast.makeText(MainActivity.this,"加载完成",Toast.LENGTH_SHORT).show();
+        }
+    }
+```
+
+- After that, string processing, according to the format provided by the registration website
+
+```Java
+    Remove commas
+    String contenttemp=content;
+    content="";
+    String[] contentstemp=contenttemp.split(",");
+    for (String temp:contentstemp){
+        content=content+temp;
+    }
+
+    Group
+    contents=content.split(" |:");
+    String showcontent="";
+    count=0;
+    int tsgflag=0;
+    int cishu=0;
+    j12.clear();
+    j34.clear();
+    j56.clear();
+    j78.clear();
+    j9.clear();
+    j1011.clear();
+    if (keyword.contains("图书馆")) tsgflag=1;
+    for (String temp:contents){
+        if (temp.contains(keyword)){
+            cishu++;
+            SaveBuidlingInfo(count,cishu,tsgflag);
+        }
+        count++;
+    }
+
+    SaveBuildingInfo is to classify and store classrooms by building, and then classify and store them by time period in j12,j34.....
+    while (1 == 1) {
+        if (contents[k].contains("楼") || contents[k].contains("节") || contents[k].contains("图"))
+            break;
+        ;
+        switch (c) {
+            case 1:
+                j12.add(contents[k]);
+                break;
+            case 2:
+                j34.add(contents[k]);
+                break;
+            case 3:
+                j56.add(contents[k]);
+                break;
+            case 4:
+                j78.add(contents[k]);
+                break;
+            case 5:
+                j9.add(contents[k]);
+                break;
+            case 6:
+                j1011.add(contents[k]);
+                break;
+            default:
+                break;
+        }
+        k++;
+    }
+```
+
+- The NavigationView is a simple one, with no special design, because there are no multiple interfaces, just use the refresh TextView to fake multiple interfaces
+
+- Tried the MaterialDesign components, added some things about system time
+
+```Java
+    final Calendar c = Calendar.getInstance();
+     c.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
+     mYear = String.valueOf(c.get(Calendar.YEAR)); // 获取当前年份
+     mMonth = String.valueOf(c.get(Calendar.MONTH) + 1);// 获取当前月份
+     mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码
+     mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK));
+     mHour= c.get(Calendar.HOUR_OF_DAY);
+     mMinute= c.get(Calendar.MINUTE);
+
+     if (mHour>=8&&mHour<10){
+         nowtime="现在是一二节课";
+     }else
+     if (mHour>=10&&mHour<12){
+         nowtime="现在是三四节课";
+     }else
+     if ((mHour==13&&mMinute>=30)||(mHour==14)||(mHour==15&&mMinute<30)){
+         nowtime="现在是五六节课";
+     }else
+     if ((mHour==15&&mMinute>=30)||(mHour==16)||(mHour==17&&mMinute<30)){
+         nowtime="现在是七八节课";
+     }else
+     if ((mHour==17&&mMinute>=30)||(mHour==18&&mMinute<30)){
+         nowtime="现在是第九节课";
+     }else
+     if ((mHour==18&&mMinute>=30)||(mHour==19)||(mHour==20&&mMinute<30)){
+         nowtime="现在是十、十一节课";
+     }else
+    nowtime="现在是休息时间";
+
+     if("1".equals(mWay)){
+         mWay ="天";
+         daycount=6;
+     }else if("2".equals(mWay)){
+         mWay ="一";
+         daycount=0;
+     }else if("3".equals(mWay)){
+         mWay ="二";
+         daycount=1;
+     }else if("4".equals(mWay)){
+         mWay ="三";
+         daycount=2;
+     }else if("5".equals(mWay)){
+         mWay ="四";
+         daycount=3;
+     }else if("6".equals(mWay)){
+         mWay ="五";
+         daycount=4;
+     }else if("7".equals(mWay)){
+         mWay ="六";
+         daycount=5;
+     }
+     Timestring=mYear + "年" + mMonth + "月" + mDay+"日"+"星期"+mWay;
+
+     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+     fab.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+             Snackbar.make(view, "今天是"+Timestring+"\n"+nowtime+"  "+interesting[daycount], Snackbar.LENGTH_SHORT)
+                     .setAction("Action", null).show();
+         }
+     });
+```
+
+# What I learned on GitHub
+
+In addition to trying to use other GitHub libraries, I learned a lot, including color palettes, shake modules, fir update modules, sliding card interfaces, etc.
+Some GitHub repository links are here
+
+- 滑动卡片界面：[Android-SwipeToDismiss](https://github.com/romannurik/Android-SwipeToDismiss)
+- fir更新模块:[UpdateDemo](https://github.com/hugeterry/UpdateDemo)
+
+Some of them are directly written in the code, and I forgot the original address....
+
+- Sensor call for shake
+  
+  ```Java
+  public class ShakeService extends Service {
+  public static final String TAG = "ShakeService";
+  private SensorManager mSensorManager;
+  public boolean flag=false;
+  private ShakeBinder shakebinder= new ShakeBinder();
+  private String htmlbody="";
+  
+  @Override
+  public void onCreate() {
+     // TODO Auto-generated method stub
+     super.onCreate();
+     mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+     Log.i(TAG,"Shake Service Create");
+  }
+  
+  @Override
+  public void onDestroy() {
+     // TODO Auto-generated method stub
+     flag=false;
+     super.onDestroy();
+     mSensorManager.unregisterListener(mShakeListener);
+  }
+  
+  @Override
+  public void onStart(Intent intent, int startId) {
+     // TODO Auto-generated method stub
+     super.onStart(intent, startId);
+     Log.i(TAG,"Shake Service Start");
+  }
+  
+  @Override
+  public int onStartCommand(Intent intent, int flags, int startId) {
+     // TODO Auto-generated method stub
+     mSensorManager.registerListener(mShakeListener,
+             mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+             //SensorManager.SENSOR_DELAY_GAME,
+             50 * 1000); //batch every 50 milliseconds
+     htmlbody=intent.getStringExtra("htmlbody");
+  
+     return super.onStartCommand(intent, flags, startId);
+  }
+  
+  private final SensorEventListener mShakeListener = new SensorEventListener() {
+     private static final float SENSITIVITY = 10;
+     private static final int BUFFER = 5;
+     private float[] gravity = new float[3];
+     private float average = 0;
+     private int fill = 0;
+  
+     @Override
+     public void onAccuracyChanged(Sensor sensor, int acc) {
+     }
+  
+     public void onSensorChanged(SensorEvent event) {
+         final float alpha = 0.8F;
+  
+         for (int i = 0; i < 3; i++) {
+             gravity[i] = alpha * gravity[i] + (1 - alpha) * event.values[i];
+         }
+  
+         float x = event.values[0] - gravity[0];
+         float y = event.values[1] - gravity[1];
+         float z = event.values[2] - gravity[2];
+  
+         if (fill <= BUFFER) {
+             average += Math.abs(x) + Math.abs(y) + Math.abs(z);
+             fill++;
+         } else {
+             Log.i(TAG, "average:"+average);
+             Log.i(TAG, "average / BUFFER:"+(average / BUFFER));
+             if (average / BUFFER >= SENSITIVITY) {
+                 handleShakeAction();//如果达到阈值则处理摇一摇响应
+             }
+             average = 0;
+             fill = 0;
+         }
+     }
+  };
+  
+  protected void handleShakeAction() {
+     // TODO Auto-generated method stub
+     flag=true;
+     Toast.makeText(getApplicationContext(), "摇一摇成功", Toast.LENGTH_SHORT).show();
+     Intent intent= new Intent();
+     intent.putExtra("htmlbody",htmlbody);
+     intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+     intent.setClassName(this,"thinkwee.buptroom.ShakeTestActivity");
+     startActivity(intent);
+  }
+  
+  @Override
+  public IBinder onBind(Intent intent) {
+     // TODO Auto-generated method stub
+     return shakebinder;
+  }
+  class ShakeBinder extends Binder{
+  
+  }
+  }
+  ```
+
+```
+# Independent network pull and multi-threading
+-     In the previous structure, network pull was integrated in the welcome activity, in order to add a refresh function in the main interface and call the network pull at any time, I wrote the network pull as a separate class, which can be called when needed
+-     However, in the welcome activity, the welcome animation and network pull are in two separate threads (to prevent the animation from being blocked), so there may be a situation where the welcome animation is completed and the main interface is entered, but the network pull is not completed, and the content pulled cannot be passed to the main interface. The final solution is to set a 2s timeout for the network pull. If it is not pulled, an incorrect parameter is passed to the activity that starts the main interface, prompting a refresh
+```Java
+        webget = new Webget();
+        webget.init(webView);
+        HaveNetFlag = webget.WebInit();
+
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                //execute the task
+                ImageView img = (ImageView) findViewById(R.id.welcomeimg);
+                Animation animation = AnimationUtils.loadAnimation(WelcomeActivity.this, R.anim.enlarge);
+                animation.setFillAfter(true);
+                img.startAnimation(animation);
+            }
+        }, 50);
+
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                //execute the task
+                WrongNet = webget.getWrongnet();
+                HaveNetFlag = webget.getHaveNetFlag();
+                htmlbody = webget.getHtmlbody();
+                Log.i("welcome", "2HaveNetFlag: " + HaveNetFlag);
+                Log.i("welcome", "2Wrongnet: " + WrongNet);
+                Log.i("welcome", "2html: " + htmlbody);
+            }
+        }, 2000);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                intent.putExtra("WrongNet", WrongNet);
+                intent.putExtra("HtmlBody", htmlbody);
+                startActivity(intent);
+                WelcomeActivity.this.finish();
+
+            }
+
+        }, 2500);
+    }
+```
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
 
 ![i0IHL4.png](https://s1.ax1x.com/2018/10/20/i0IHL4.png)
 
@@ -379,3 +745,22 @@ repository地址:[一个简单的北邮自习室查询系统](https://github.com
         }, 2500);
     }
 ```
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

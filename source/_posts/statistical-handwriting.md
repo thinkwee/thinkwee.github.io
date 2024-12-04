@@ -16,12 +16,114 @@ html: true
 ---
 
 ***
-
-把统计学习方法十大算法精简了一些手写了出来（虽然我觉得书本身已经很精简了）
-现在只有算法本身的流程，以后如果有什么新的理解再补充
-字太丑，自己都看不下去，发上来纯粹做个备份
+The ten major algorithms of statistical learning methods have been simplified and handwritten out (although I think the book itself is already quite concise). Now there is only the process of the algorithms themselves; in the future, if I have any new understandings, I will supplement them. The writing is ugly, even I can't bear to look at it, so I post it purely as a backup
 
 <!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+
+Abstract
+========
+
+![i0HLjK.jpg](https://s1.ax1x.com/2018/10/20/i0HLjK.jpg)
+
+![i0Hb1x.jpg](https://s1.ax1x.com/2018/10/20/i0Hb1x.jpg)
+
+![i0HoN9.jpg](https://s1.ax1x.com/2018/10/20/i0HoN9.jpg)
+
+Perceptron
+==========
+
+![i0HH91.jpg](https://s1.ax1x.com/2018/10/20/i0HH91.jpg)
+
+![i0HThR.jpg](https://s1.ax1x.com/2018/10/20/i0HThR.jpg)
+
+k-Nearest Neighbors
+===================
+
+![i0Hqc6.jpg](https://s1.ax1x.com/2018/10/20/i0Hqc6.jpg)
+
+![i0HXnO.jpg](https://s1.ax1x.com/2018/10/20/i0HXnO.jpg)
+
+Naive Bayes
+===========
+
+![i0HjBD.jpg](https://s1.ax1x.com/2018/10/20/i0HjBD.jpg)
+
+Decision Tree
+=============
+
+*   GBDT is written in the improvement method, and it is also possible to expand and look at random forests, which is an bootstrap method that utilizes decision trees. ![i0HzAH.jpg](https://s1.ax1x.com/2018/10/20/i0HzAH.jpg) 
+
+![i0HvHe.jpg](https://s1.ax1x.com/2018/10/20/i0HvHe.jpg)
+
+![i0bP3t.jpg](https://s1.ax1x.com/2018/10/20/i0bP3t.jpg)
+
+![i0bSNd.jpg](https://s1.ax1x.com/2018/10/20/i0bSNd.jpg)
+
+Logistic regression, maximum entropy
+====================================
+
+*   The mutual derivation between maximum entropy and logistic regression is to be supplemented ![i0bigP.jpg](https://s1.ax1x.com/2018/10/20/i0bigP.jpg) 
+
+![i0bp4A.jpg](https://s1.ax1x.com/2018/10/20/i0bp4A.jpg)
+
+Support Vector Machine
+======================
+
+![i0bFjf.jpg](https://s1.ax1x.com/2018/10/20/i0bFjf.jpg)
+
+![i0bAu8.jpg](https://s1.ax1x.com/2018/10/20/i0bAu8.jpg)
+
+![i0bEDS.jpg](https://s1.ax1x.com/2018/10/20/i0bEDS.jpg)
+
+![i0beEQ.jpg](https://s1.ax1x.com/2018/10/20/i0beEQ.jpg)
+
+![i0bVHg.jpg](https://s1.ax1x.com/2018/10/20/i0bVHg.jpg)
+
+![i0bmNj.jpg](https://s1.ax1x.com/2018/10/20/i0bmNj.jpg)
+
+Enhancement Methods
+===================
+
+*   XGBoost ![i0bn4s.jpg](https://s1.ax1x.com/2018/10/20/i0bn4s.jpg) 
+
+![i0bKCn.jpg](https://s1.ax1x.com/2018/10/20/i0bKCn.jpg)
+
+Expectation-Maximization (EM) algorithm
+=======================================
+
+![i0bM3q.jpg](https://s1.ax1x.com/2018/10/20/i0bM3q.jpg)
+
+![i0bQg0.jpg](https://s1.ax1x.com/2018/10/20/i0bQg0.jpg)
+
+*   When performing inference on Gaussian mixture models using the EM algorithm, the parameters to be inferred include the mean, variance, and proportion coefficient of k Gaussian models. The latent variable represents the probability that the jth observation sample belongs to the kth Gaussian model, referred to as responsibility, while $n_k$ is the sum of the responsibility of the kth Gaussian model over all samples, divided by $N$ , which is used to update the GMM proportion coefficient with its mean. The mean is updated using responsibility-weighted samples, and the variance is updated in a similar manner.
+*   After updating the parameters, recalculate responsibility with these parameters, recalculate the E-step, and then proceed to the M-step, thereby completing the iteration.
+
+Hidden Markov
+=============
+
+![i0b3uT.jpg](https://s1.ax1x.com/2018/10/20/i0b3uT.jpg)
+
+![i0blvV.jpg](https://s1.ax1x.com/2018/10/20/i0blvV.jpg)
+
+![i0b8DU.jpg](https://s1.ax1x.com/2018/10/20/i0b8DU.jpg)
+
+![i0bGbF.jpg](https://s1.ax1x.com/2018/10/20/i0bGbF.jpg)
+
+Conditional Random Field
+========================
+
+*   Address the solutions for three types of problems, as conditional random fields are the conditional extension of the hidden Markov model, and the algorithms are similar ![i0bYE4.jpg](https://s1.ax1x.com/2018/10/20/i0bYE4.jpg) 
+
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
+
 
 # 概论
 
@@ -109,3 +211,22 @@ html: true
 
 - 待补充三种问题的解法，因为条件随机场是隐马尔可夫模型的条件化扩展，算法也类似
   ![i0bYE4.jpg](https://s1.ax1x.com/2018/10/20/i0bYE4.jpg)
+
+{% endlang_content %}
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>

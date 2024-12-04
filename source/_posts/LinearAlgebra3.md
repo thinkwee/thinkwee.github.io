@@ -9,26 +9,873 @@ html: true
 
 ***
 
-# 第十七讲：行列式及其性质
 
-## 行列式
+Lecture 17: Determinants and Their Properties
+=============================================
 
-- 矩阵A的行列式是与矩阵相关的一个数，记作$detA或者|A|$
-- 行列式的性质
-  - $detI=1$
-  - 交换行，行列式的值的符号会相反
-  - 一个置换矩阵的行列式是1或-1，取决于交换行次数的奇偶
-  - 两行相等使得行列式为0(由性质二可以直接推出)
-  - 矩阵消元不改变其行列式(证明见下)
-  - 某一行为0，行列式为0(与0相乘等价于某一行为0，结果为0)
-  - $detA=0$当且仅当A是奇异矩阵
-  - $det(A+B) \neq detA+detB \\ detAB=(detA)(detB)$
-  - $detA^{-1}detA=1$
-  - $detA^2=(detA)^2$
-  - $det2A=2^n detA$
-  - $detA^T=detA$(证明见下)
+Determinant
+-----------
+
+*   The determinant of matrix A is a number associated with the matrix, denoted as $detA或者|A|$
     
-    <!--more-->
+*   Properties of determinants
+    
+    *   $detI=1$
+        
+    *   The sign of the determinant value will be reversed when rows are exchanged
+        
+    *   The determinant of a permutation matrix is 1 or -1, depending on the parity of the number of rows exchanged
+        
+    *   Two rows being equal makes the determinant equal to 0 (which can be directly deduced from property two)
+        
+    *   Matrix elimination does not change its determinant (proof is below)
+        
+    *   A certain row is 0, the determinant is 0 (multiplying by 0 is equivalent to a certain row being 0, resulting in 0)
+        
+    *   When and only when A is a singular matrix
+        
+    *   $det(A+B) \neq detA+detB \\ detAB=(detA)(detB)$
+        
+    *   $detA^{-1}detA=1$
+        
+    *   $detA^2=(detA)^2$
+        
+    *   $det2A=2^n detA$
+        
+    *   $detA^T=detA$ (Proof see below)
+    
+<!--more-->
+
+{% language_switch %}
+
+{% lang_content en %}
+
+*   The determinant is linear by row, but the determinant itself is not linear
+    
+    $$
+    \begin{vmatrix}
+    1 & 0 \\
+    0 & 1 \\
+    \end{vmatrix}=1 \\
+    \begin{vmatrix}
+    0 & 1 \\
+    1 & 0 \\
+    \end{vmatrix}=-1 \\
+    \begin{vmatrix}
+    ta & tb \\
+    c & d \\
+    \end{vmatrix}=
+    t\begin{vmatrix}
+    a & b \\
+    c & d \\
+    \end{vmatrix} \\
+    \begin{vmatrix}
+    t+a & t+b \\
+    c & d \\
+    \end{vmatrix}=
+    \begin{vmatrix}
+    a & b \\
+    c & d \\
+    \end{vmatrix}+
+    \begin{vmatrix}
+    t & t \\
+    c & d \\
+    \end{vmatrix}
+    $$
+    
+*   Proof that elimination does not change the determinant
+    
+    $$
+    \begin{vmatrix}
+    a & b \\
+    c-la & d-lb \\
+    \end{vmatrix}=
+    \begin{vmatrix}
+    a & b \\
+    c & d \\
+    \end{vmatrix}-l
+    \begin{vmatrix}
+    a & b \\
+    a & b \\
+    \end{vmatrix}=
+    \begin{vmatrix}
+    a & b \\
+    c & d \\
+    \end{vmatrix}
+    $$
+    
+*   Proof that the transpose does not change the determinant
+    
+    $$
+    A=LU \\
+    $$
+    
+*   Translation: $|U^TL^T|=|LU|$ 
+    $$
+    |U^T||L^T|=|L||U|
+    $$
+    
+*   The above four matrices are all triangular matrices, the determinant equals the product of the diagonal elements, the transpose has no effect, so they are equal
+    
+
+Triangular matrix determinant
+-----------------------------
+
+*   The determinant of the triangular matrix U is the product of the elements on the diagonal (the pivot product)
+*   Why do the other elements of the triangular matrix not work? Because by elimination we can obtain a matrix with only diagonal elements, and elimination does not change the determinant
+*   Why is it the product of the diagonal elements? Because after elimination, the diagonal elements can be successively extracted, yielding $d_1d_2d_3...d_nI$ , where the determinant of the unit matrix is 1
+*   The determinant of a singular matrix is 0, and it has rows of all zeros; the determinant of an invertible matrix is not 0, and it can be reduced to a triangular matrix, with the determinant being the product of the diagonal elements of the triangular matrix
+
+A little more
+-------------
+
+*   The determinant obtained from odd-numbered permutations and even-numbered permutations is definitely different (signs differ), which means the matrices after odd-numbered and even-numbered permutations will not be the same, i.e., permutations strictly distinguish between odd and even
+
+Eighteenth Lecture: Determinant Formulas and Algebraic Cofactors
+================================================================
+
+Determinant formula
+-------------------
+
+*   Derive the 2x2 determinant
+    
+    $$
+    \begin{vmatrix}
+    a & b \\
+    c & d \\
+    \end{vmatrix}=
+    \begin{vmatrix}
+    a & 0 \\
+    c & d \\
+    \end{vmatrix}+
+    \begin{vmatrix}
+    0 & b \\
+    c & d \\
+    \end{vmatrix}=
+    \begin{vmatrix}
+    a & 0 \\
+    c & 0 \\
+    \end{vmatrix}+
+    \begin{vmatrix}
+    a & 0 \\
+    0 & d \\
+    \end{vmatrix}+
+    \begin{vmatrix}
+    0 & b \\
+    c & 0 \\
+    \end{vmatrix}+
+    \begin{vmatrix}
+    0 & b \\
+    0 & d \\
+    \end{vmatrix} \\
+    =0+ad-bc+0
+    $$
+    
+    We can find that this method involves taking one row at a time, decomposing this row (determinants are linear by rows), extracting factors, obtaining the unit matrix through row exchanges, and then obtaining the answer through properties one and two
+    
+*   If expanded to a 3x3 matrix, the first row is decomposed into three parts, each of which is further decomposed into three parts for the second row, resulting in a total of 27 parts. The parts that are not zero are those matrices where there are elements in each row and column.
+    
+*   For example
+    
+    $$
+    \begin{vmatrix}
+    a & 0 & 0\\
+    0 & 0 & b\\
+    0 & c & 0\\
+    \end{vmatrix}
+    $$
+    
+    Extract the factors to obtain $abc$ , swap the second and third rows to get the identity matrix, so the answer is $abc*detI=abc$ , and since a row swap was performed, the answer is negative, $-abc$
+    
+*   A matrix of size n\*n can be divided into $n!$ parts, because the first row is divided into n parts, the second row cannot be repeated, and n-1 rows are chosen, each with one repetition, thus obtaining $n!$ parts
+    
+*   The determinant formula is the sum of these $n!$ parts
+    
+
+Algebraic cofactor
+------------------
+
+*   $det=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(....)+a_{13}(....)$
+*   Extract a factor, the remainder formed by the remaining factors, i.e., the content within the parentheses, is the minor determinant
+*   From the matrix perspective, selecting an element, its algebraic cofactor is the determinant of the matrix obtained by excluding the row and column of this element
+*   The algebraic cofactor of $a_{ij}$ is denoted as $c_{ij}$
+*   Pay attention to the sign of the algebraic cofactor, which is related to the parity of $i+j$ . Even numbers take the positive sign, and odd numbers take the negative sign. Here, the symbol refers to the sign in front of the determinant after the normal calculation of the submatrix corresponding to the algebraic cofactor
+*   $detA=a_{11}C_{11}+a_{12}C_{12}+....+a_{1n}C_{1n}$
+
+19th Lecture: Cramer's Rule, Inverse Matrix, Volume
+===================================================
+
+Invertible matrix
+-----------------
+
+*   Only when the determinant is not zero is the matrix invertible
+    
+*   Invertible matrix formula
+    
+    $$
+    A^{-1}=\frac{1}{detA}C^T
+    $$
+    
+    The algebraic cofactor of $C_{ij}$ is $A_{ij}$
+    
+*   Proof: i.e., prove $AC^T=(detA)I$
+    
+    $$
+    \begin{bmatrix}
+    a_{11} & ... & a_{1n} \\
+    a_{n1} & ... & a_{nn} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+    c_{11} & ... & c_{n1} \\
+    c_{1n} & ... & c_{nn} \\
+    \end{bmatrix}=
+    \begin{bmatrix}
+    detA & 0 & 0 \\
+    0 & detA & 0 \\
+    0 & 0 & detA \\
+    \end{bmatrix}
+    $$
+    
+    On the diagonal are determinants, because $det=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(....)+a_{13}(....)$ other positions are all 0, because the algebraic cofactor of row a multiplied by row b is equivalent to calculating the determinant of a matrix where row a and row b are equal, and the determinant is 0
+    
+
+Kramer's Rule
+-------------
+
+*   Ax=b
+    
+    $$
+    Ax=b \\
+    x=A^{-1}b \\
+    x=\frac{1}{detA}C^Tb \\
+    \\
+    x_1=\frac{detB_1}{detA} \\
+    x_3=\frac{detB_2}{detA} \\
+    ... \\
+    $$
+    
+*   Kramer's rule states that the determinant of matrix $B_i$ is obtained by replacing the ith column of matrix $A$ with b, while keeping the rest unchanged
+    
+
+Volume
+------
+
+*   The determinant of A can represent a volume, for example, the determinant of a 3x3 matrix represents a volume within a three-dimensional space
+    
+*   Each row of the matrix represents one edge of a box (originating from the same vertex), and the determinant is the volume of the box; the sign of the determinant represents the left-hand or right-hand system.
+    
+*   (1) The unit matrix corresponds to the unit cube, with a volume of 1
+    
+*   For the orthogonal matrix Q,
+    
+    $$
+    QQ^T=I \\
+    |QQ^T|=|I| \\
+    |Q||Q^T|=1 \\
+    {|Q|}^2=1 \\
+    |Q|=1 \\
+    $$
+    
+    The box corresponding to Q is the unit cube corresponding to the unit matrix rotated by an angle in space
+    
+*   (3a) If a row of a matrix is doubled, i.e., one set of edges of the box is doubled, the volume is also doubled. From the perspective of determinants, the factor can be factored out, so the determinant is also doubled
+    
+*   (2) Swapping two rows of a permutation matrix does not change the volume of the box
+    
+*   (3b) A row of the matrix is split, and the box is also divided into two parts accordingly
+    
+*   The above, the three properties of determinants (1, 2, 3a, 3b) can all be verified in terms of volume
+    
+
+Lecture 20: Eigenvalues and Eigenvectors
+========================================
+
+Feature vector
+--------------
+
+*   Given matrix A, matrix A can be regarded as a function acting on a vector x, resulting in the vector Ax
+*   When \\( \\mathbf{A} \\) is parallel to \\( \\mathbf{x} \\), i.e., \\( \\frac{\\partial}{\\partial x} \\), we call \\( \\mathbf{v} \\) the eigenvector and \\( \\lambda \\) the eigenvalue
+*   If A is a singular matrix, $\lambda = 0$ is an eigenvalue
+
+Several examples
+----------------
+
+*   If A is a projection matrix, it can be observed that its eigenvectors are any vectors on the projection plane, because $Ax$ represents the projection onto the plane, and all vectors on the plane remain unchanged after projection, thus being parallel. At the same time, the eigenvalues are 1. If a vector is perpendicular to the plane, $Ax=0$ , the eigenvalue is 0. Therefore, the eigenvectors of the projection matrix A fall into two cases, with eigenvalues of 1 or 0.
+    
+*   Another example
+    
+    $$
+    A=
+    \begin{bmatrix}
+    0 & 1 \\
+    1 & 0 \\
+    \end{bmatrix} \\
+    \lambda =1, x=
+    \begin{bmatrix}
+    1 \\
+    1 \\
+    \end{bmatrix}
+    Ax=
+    \begin{bmatrix}
+    1 \\
+    1 \\
+    \end{bmatrix} \\
+    \lambda =-1, x=
+    \begin{bmatrix}
+    -1 \\
+    1 \\
+    \end{bmatrix}
+    Ax=
+    \begin{bmatrix}
+    1 \\
+    -1 \\
+    \end{bmatrix} \\
+    $$
+    
+*   An n\*n matrix has n eigenvalues
+    
+*   The sum of the eigenvalues equals the sum of the diagonal elements, this sum being called the trace
+    
+*   How to solve $Ax=\lambda x$
+    
+    $$
+    (A-\lambda I)x=0 \\
+    $$
+    
+*   The visible equation has non-zero solutions, $(A-\lambda I)$ must be singular, i.e.:
+    
+    $$
+    det(A-\lambda I)=0 \\
+    $$
+    
+*   $$
+    If \qquad Ax=\lambda x \\
+    Then \qquad (A+3I)x=(\lambda +3)x \\
+    $$
+    
+*   Because the unit matrix is added, the eigenvector remains unchanged as x, and the eigenvalue is increased by the coefficient of the unit matrix, i.e., $(\lambda +3)$
+    
+*   The eigenvalues of A+B are not necessarily the sum of the eigenvalues of A and B, because their eigenvectors may not be the same. Similarly, the eigenvalues of AB are not necessarily the product of their eigenvalues.
+    
+*   For another example, consider the rotation matrix Q
+    
+    $$
+    Q=
+    \begin{bmatrix}
+    0 & -1 \\
+    1 & 0 \\
+    \end{bmatrix} \\
+    trace=0=\lambda _1 +\lambda _2 \\
+    det=1=\lambda _1 \lambda _2 \\
+    $$
+    
+*   However, it can be seen that $\lambda _1，\lambda _2$ has no real solutions
+    
+*   Consider an even worse case (the matrix is more asymmetric, and it is even harder to obtain real eigenvalues)
+    
+    $$
+    A=
+    \begin{bmatrix}
+    3 & 1 \\
+    0 & 3 \\
+    \end{bmatrix} \\
+    det(A-\lambda I)=
+    \begin{vmatrix}
+    3-\lambda & 1 \\
+    0 & 3-\lambda \\
+    \end{vmatrix}
+    ==(3-\lambda )^2=0 \\
+    \lambda _1=\lambda _2=3 \\
+    x_1=
+    \begin{bmatrix}
+    1 \\
+    0 \\
+    \end{bmatrix}
+    $$
+    
+
+21st Lecture: Diagonalization and Powers of A
+=============================================
+
+Diagonalization
+---------------
+
+*   Assuming A has n linearly independent eigenvectors, arranged as columns to form the matrix S, i.e., the eigenvector matrix
+    
+*   All discussions about matrix diagonalization presented here are under the premise that S is invertible, i.e., the n eigenvectors are linearly independent
+    
+*   $$
+    AS=A[x_1,x_2...x_n]=[\lambda _1 x_1,....\lambda _n x_n] \\
+    =[x_1,x_2,...x_n]
+    \begin{bmatrix}
+    \lambda _1 & 0 & ... & 0 \\
+    0 & \lambda _2 & ... & 0 \\
+    ... & ... & ... & ... \\
+    0 & 0  & 0 & \lambda _n \\
+    \end{bmatrix} \\
+    =S \Lambda \\
+    $$
+    
+*   Assuming S is invertible, i.e., the n eigenvectors are linearly independent, we can obtain
+    
+    $$
+    S^{-1}AS=\Lambda \\
+    A=S\Lambda S^{-1} \\
+    $$
+    
+*   $\Lambda$ is a diagonal matrix, here we obtain a matrix decomposition other than $A=LU$ and $A=QR$
+    
+*   $$
+    if \qquad Ax=\lambda x \\
+    A^2 x=\lambda AX=\lambda ^2 x \\
+    A^2=S\Lambda S^{-1} S \Lambda S^{-1}=S \Lambda ^2 S^{-1} \\
+    $$
+    
+*   The two equations above regarding $A^2$ indicate that the squared eigen vectors remain unchanged, the eigenvalues are squared, and similarly for the K-th power
+    
+*   Eigenvalues and eigenvectors help us understand matrix powers. When calculating matrix powers, we can decompose the matrix into the form of a matrix of eigenvectors multiplied by a diagonal matrix, where K multiplications can cancel each other out, as shown in the above formula
+    
+*   What kind of matrix's power tends to 0 (stable)
+    
+    $$
+    A^K \rightarrow 0 \quad as \quad K \rightarrow \infty \\
+    if \quad all |\lambda _i|<1 \\
+    $$
+    
+*   Which matrices can be diagonalized? If all eigenvalues are different, then A can be diagonalized
+    
+*   If matrix A is already diagonal, then $\Lambda$ is the same as A
+    
+*   The number of times an eigenvalue repeats is called the algebraic multiplicity, for triangular matrices, such as
+    
+    $$
+    A=
+    \begin{bmatrix}
+    2 & 1 \\
+    0 & 2 \\
+    \end{bmatrix} \\
+    det(A-\lambda I)=
+    \begin{vmatrix}
+    2-\lambda & 1 \\
+    0 & 2-\lambda \\
+    \end{vmatrix}=0 \\
+    \lambda =2 \\
+    A-\lambda I=
+    \begin{bmatrix}
+    0 & 1 \\
+    0 & 0 \\
+    \end{bmatrix} \\
+    $$
+    
+*   For $A-\lambda I$ , the geometric multiplicity is 1, while the algebraic multiplicity of the eigenvalue is 2
+    
+*   The eigenvector is only (1,0), therefore, for a triangular matrix, it cannot be diagonalized, and there do not exist two linearly independent eigenvectors.
+    
+
+A's power
+---------
+
+*   Most matrices have a set of linearly independent eigenvalues that can be diagonalized. If diagonalization is possible, we need to focus on how to solve for the powers of A.
+    
+*   $$
+    give \quad u_0 \\
+    u_{k+1}=Au_k \\
+    u_k=A^ku_0 \\
+    how \quad to \quad solve \quad u_k \\
+    u_0=c_1x_1+c_2x_2+...+c_nx_n=SC \\
+    Au_0=c_1 \lambda _1 x_1 + c_2 \lambda _2 x_2 +...+c_n \lambda _n x_n \\
+    A^{100}u_0=c_1 \lambda _1^{100} x_1 + c_2 \lambda _2^{100} x_2 +...+c_n \lambda _n^{100} x_n \\
+    =S\Lambda ^{100} C \\
+    =u_{100} \\
+    $$
+    
+*   Because the n feature vectors are mutually linearly independent, they can serve as a set of bases to cover the entire n-dimensional space, and naturally, $u_0$ can be represented as a linear combination of the feature vectors, with C being the linear coefficient vector. The above formula has derived the method for solving matrix powers, and the next example will be given using the Fibonacci sequence.
+    
+    $$
+    F_0=0 \\
+    F_1=1 \\
+    F_2=1 \\
+    F_3=2 \\
+    F_4=3 \\
+    F_5=5 \\
+    ..... \\
+    F_{100}=? \\
+    $$
+    
+*   The growth rate of the Fibonacci sequence is how fast? Determined by the eigenvalues, we attempt to construct vectors to find the matrix relationship of the iterative Fibonacci sequence
+    
+    $$
+    F_{k+2}=F_{k+1}+F_k \\
+    F_{k+1}=F_{k+1} \\
+    $$
+    
+*   Define vector
+    
+    $$
+    u_k=
+    \begin{bmatrix}
+    F_{k+1} \\
+    F_k \\
+    \end{bmatrix} \\
+    $$
+    
+*   Using this vector, the first two equations can be written in matrix form
+    
+    $$
+    u_{k+1}=
+    \begin{bmatrix}
+    1 & 1 \\
+    1 & 0 \\
+    \end{bmatrix}
+    u_k \\
+    A=
+    \begin{bmatrix}
+    1 & 1 \\
+    1 & 0 \\
+    \end{bmatrix} \\
+    \lambda =\frac {1 \pm \sqrt 5}2 \\
+    $$
+    
+*   Obtaining two eigenvalues, it is easy to obtain the corresponding eigenvectors
+    
+*   Returning to the Fibonacci sequence, the growth rate of the Fibonacci sequence is determined by the eigenvalues of the "sequence update matrix" we construct, and as can be seen from $A^{100}u_0=c_1 \lambda _1^100 x_1 + c_2 \lambda _2^100 x_2 +...+c_n \lambda _n^100 x_n$ , the growth rate is mainly determined by the larger eigenvalues, therefore $F_{100}$ can be written in the following form
+    
+    $$
+    F_{100} \approx c_1 {\frac {1 + \sqrt 5}2}^{100} \\
+    $$
+    
+*   There are initial values
+    
+    $$
+    u_0=
+    \begin{bmatrix}
+    F_1 \\
+    F_0 \\
+    \end{bmatrix}=
+    \begin{bmatrix}
+    1 \\
+    0 \\
+    \end{bmatrix}
+    =c_1x_1+c_2x_2
+    $$
+    
+*   Among them, $x_1,x_2$ are two feature vectors, whose linear coefficients can be calculated, and by substituting them into the formula, an approximate value of $F_{100}$ can be obtained
+    
+
+Summary
+-------
+
+*   We find that under the condition of A being invertible, A can be decomposed into the form $S\Lambda S^{-1}$
+*   This form has a characteristic that facilitates the calculation of the power of A, as it can be observed that the unit matrix of the eigenvalues of A's power is the power of the unit matrix of A's eigenvalues
+*   We attempt to apply this feature in solving the Fibonacci sequence, first converting the sequence update into a matrix form
+*   Determine the eigenvalues and eigenvectors of the matrix
+*   From the expansion of the power series of A, it can be seen that the power of A is mainly determined by the larger eigenvalues, therefore $F_{100}$ can be written in the form of $F_{100} \approx c_1 {(\frac {1 + \sqrt 5}2)}^{100}$
+*   By the initial value $F_0$ , calculate the linear coefficients, substitute them into the above formula, and obtain the approximate value of $F_{100}$
+*   This is an example of a difference equation; the next section will discuss differential equations
+
+Lecture 22: Differential Equations and exp(At)
+==============================================
+
+Differential Equation
+---------------------
+
+*   The solutions to linear equations with constant coefficients are in exponential form; if the solution to the differential equation is in exponential form, one can find the solution by using linear algebra to determine the exponents and coefficients
+    
+*   For example
+    
+    $$
+    \frac{du_1}{dt}=-u_1+2u_2 \\
+    \frac{du_2}{dt}=u_1-2u_2 \\
+    u(0)=
+    \begin{bmatrix}
+    1 \\
+    0 \\
+    \end{bmatrix} \\
+    $$
+    
+*   First, we list the coefficient matrix and find the eigenvalues and eigenvectors of the matrix
+    
+    $$
+    A=
+    \begin{bmatrix}
+    -1 & 2 \\
+    1 & -2 \\
+    \end{bmatrix}
+    $$
+    
+*   $\lambda=0$ is a solution of this singular matrix, and from the trace it can be seen that the second eigenvalue is $\lambda=-3$ , and two eigenvectors are obtained
+    
+    $$
+    x_1=
+    \begin{bmatrix}
+    2 \\
+    1 \\
+    \end{bmatrix} \\
+    x_2=
+    \begin{bmatrix}
+    1 \\
+    -1 \\
+    \end{bmatrix}
+    $$
+    
+*   The general solution form of the differential equation will be
+    
+    $$
+    u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2
+    $$
+    
+*   Why?
+    
+    $$
+    \frac{du}{dt} \\
+    =c_1 \lambda _1 e^{\lambda _1 t}x_1 \\
+    =A c_1 e^{\lambda _1 t}x_1 \\
+    because \quad A x_1=\lambda _1 x_1 \\
+    $$
+    
+*   In the differential equation $u_{k+1}=Au_k$ , the form of the solution is $c_1\lambda _1 ^k x_1+c_2 \lambda _2 ^k x_2$
+    
+*   In the differential equation $\frac {du}{dt}=Au$ , the form of the solution is $u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2$
+    
+*   Solved from the initial values, i.e., the coefficient matrix C multiplied by the eigenvector matrix S yields the initial values
+    
+*   It can be seen that as t approaches infinity, the solution of the example equation is reduced to only the steady-state part, i.e., $(\frac 23,\frac 13)$
+    
+*   When does the solution tend towards 0? There exist negative eigenvalues because $e^{\lambda t}$ needs to tend towards 0
+    
+*   If the eigenvalues are complex? The magnitude of the imaginary part is 1, so if the real part of the complex number is negative, the solution still tends towards 0
+    
+*   When does a steady state exist? Only 0 and negative eigenvalues exist, as in the example above
+    
+*   When does the solution fail to converge? Any eigenvalue has a real part greater than 0
+    
+*   The sign of the coefficient matrix changes, the eigenvalues also change sign, the steady-state solution remains steady-state, and the convergent solution will become divergent
+    
+*   How to directly determine if the solution converges from a matrix? That is, do all the real parts of the eigenvalues have a value less than 0?
+    
+*   The trace of the matrix should be less than 0, but the sum of the diagonal elements being 0 does not necessarily converge, as
+    
+    $$
+    \begin{bmatrix}
+    -2 & 0 \\
+    0 & 1 \\
+    \end{bmatrix}
+    $$
+    
+*   Therefore, another condition is required: the value of the determinant is the product of the eigenvalues, so the value of the determinant should be greater than 0
+    
+
+exp(At)
+-------
+
+*   Can the solution be expressed in the form of $S,\Lambda$
+*   Matrix A represents $u_1,u_2$ coupling, first we need to diagonalize u to decouple
+*   $$
+    \frac{du}{dt} = Au \\
+    set \quad u=Sv \\
+    S \frac{dv}{dt} = ASv \\
+    \frac{dv}{dt}=S^{-1}ASv=\Lambda v \\
+    v(t)=e^{\Lambda t}v(0) \\
+    u(t)=Se^{\Lambda t}S^{-1}u(0) \\
+    $$
+    
+
+21st Lecture: Markov Matrix; Fourier Series
+===========================================
+
+Markov matrix
+-------------
+
+*   A typical Markov matrix
+    
+    $$
+    \begin{bmatrix}
+    0.1 & 0.01 & 0.3 \\
+    0.2 & 0.99 & 0.3 \\
+    0.7 & 0 & 0.4 \\
+    \end{bmatrix}
+    $$
+    
+*   Each element is greater than or equal to 0, the sum of each column is 1, and the powers of the Markov matrix are all Markov matrices
+    
+*   $\lambda=1$ is an eigenvalue, and the absolute values of the other eigenvalues are all less than 1
+    
+*   In the previous lecture, we discussed that the power of a matrix can be decomposed into
+    
+    $$
+    u_k=A^ku_0=c_1\lambda _1 ^kx_1+c_2\lambda _2 ^kx_2+.....
+    $$
+    
+*   When A is a Markov matrix, there is only one eigenvalue of 1, and the other eigenvalues are less than 1. As k increases, the terms with eigenvalues less than 1 tend to approach 0, retaining only the term with the eigenvalue of 1, and the elements of the corresponding eigenvector are all greater than 0
+    
+*   When the sum of each column is 1, there necessarily exists an eigenvalue $\lambda =1$
+    
+*   Proof:
+    
+    $$
+    A-I=
+    \begin{bmatrix}
+    -0.9 & 0.01 & 0.3 \\
+    0.2 & -0.01 & 0.3 \\
+    0.7 & 0 & -0.6 \\
+    \end{bmatrix}
+    $$
+    
+*   If 1 is an eigenvalue, then $A-I$ should be singular. It can be seen that the sum of each column of $A-I$ is 0, indicating that the row vectors are linearly dependent, i.e., the matrix is singular, and the all-ones vector lies in the left null space.
+    
+*   For the Markov matrix A, we study $u_{k+1}=Au_k$
+    
+*   An example, u is the population in Massachusetts and California, A is the population mobility matrix
+    
+    $$
+    \begin{bmatrix}
+    u_{cal} \\
+    u_{mass} \\
+    \end{bmatrix}_{t=k+1}
+    =
+    \begin{bmatrix}
+    0.9 & 0.2 \\
+    0.1 & 0.8 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+    u_{cal} \\
+    u_{mass} \\
+    \end{bmatrix}_{t=k}
+    $$
+    
+*   It can be seen that each year (k), 80% of people stay in Massachusetts, 20% move to California, and 10% from California also relocate to Massachusetts
+    
+*   On the Markov matrix A
+    
+    $$
+    \begin{bmatrix}
+    0.9 & 0.2 \\
+    0.1 & 0.8 \\
+    \end{bmatrix} \\
+    \lambda _1 =1 \\
+    \lambda _2 =0.7 \\
+    $$
+    
+*   For the eigenvalue of 1, the eigenvector is easily found as $(2,1)$ , and for the eigenvalue of 0.7, the eigenvector is (-1,1).
+    
+*   Obtain the formula we are to study
+    
+    $$
+    u_k=c_1*1^k*
+    \begin{bmatrix}
+    2 \\
+    1 \\
+    \end{bmatrix}
+    +c_2*(0.7)^k*
+    \begin{bmatrix}
+    -1 \\
+    1 \\
+    \end{bmatrix}
+    $$
+    
+*   Assuming there were initially 0 people in California and 1000 people in Massachusetts, i.e., $u_0$ , substituting this into the formula yields $c_1,c_2$ . It can be seen that after many years, the populations of California and Massachusetts will stabilize, each accounting for one-third and two-thirds of the total 1000 people, respectively.
+    
+*   The vector with a sum of 1 is another way to define a Markov matrix
+    
+
+Fourier Series
+--------------
+
+*   Discussion of projection problems with standard orthogonal bases
+    
+*   If $q_1....q_n$ is a set of standard orthogonal bases, any vector $v$ is a linear combination of this set of bases
+    
+*   We now need to determine the linear combination coefficients $x_1....x_n$ , $v=x_1q_1+x_2q_2+...x_nq_n$ . One method is to take the inner product of $v$ and $q_i$ , and calculate the coefficients one by one
+    
+    $$
+    q_1^Tv=x_1q_1^Tq_1+0+0+0....+0=x_1 \\
+    $$
+    
+*   Written in matrix form
+    
+    $$
+    \begin{bmatrix}
+    q_1 & q_2 & ... & q_n \\
+    \end{bmatrix}
+    \begin{bmatrix}
+    x_1 \\
+    x_2 \\
+    ... \\
+    x_n \\
+    \end{bmatrix}=
+    v \\
+    Qx=v \\
+    x=Q^{-1}v=Q^Tv \\
+    $$
+    
+*   Now discussing Fourier series
+    
+*   We hope to decompose the function
+    
+    $$
+    f(x)=a_0+a_1cosx+b_1sinx+a_2cos2x+b_2cos2x+.......
+    $$
+    
+*   The key is that in this decomposition, $coskx,sinkx$ constitutes an infinite orthogonal basis for a set of function spaces, i.e., the inner products of these functions are 0 (the inner product of vectors is a discrete value summation, while the inner product of functions is a continuous value integration).
+    
+*   How to calculate the Fourier coefficients?
+    
+*   Using the previous vector example to calculate
+    
+*   Sequentially compute the inner product of $f(x)$ with each element of the orthogonal basis, obtaining the corresponding coefficient multiplied by $\pi$ , for example
+    
+    $$
+    \int _0 ^{2\pi} f(x)cosx dx=0+ a_1 \int _0^{2\pi}(cosx)^2dx+0+0...+0=\pi a_1 \\
+    $$
+    
+
+Lecture 22: Symmetric Matrices and Positive Definiteness
+========================================================
+
+Symmetric matrix
+----------------
+
+*   The eigenvalues of a symmetric matrix are real numbers, and the eigenvectors corresponding to distinct eigenvalues are mutually orthogonal
+    
+*   For a general matrix $A=S\Lambda S^{-1}$ , S is the matrix of eigenvectors
+    
+*   For the symmetric matrix $A=Q\Lambda Q^{-1}=Q\Lambda Q^T$ , Q is the matrix of standard orthogonal eigenvectors
+    
+*   Why are all eigenvalues real numbers?
+    
+*   Conjugate both left and right, as we are now only considering the real matrix A, $Ax^{*}=\lambda ^{*} x^{*}$
+    
+*   $\lambda$ and its conjugate are eigenvalues; now take the transpose of both sides of the equation, $x^{* T}A^T=x^{* T} \lambda ^{* T}$
+    
+*   In the above formula, $A=A^T$ , and both sides are multiplied by $x$ , comparing with $x^{* T}A\lambda x^{* T}x$ yields $\lambda ^{*}=\lambda$ , i.e., the eigenvalues are real numbers
+    
+*   It is evident that for multiple matrices, the condition $A=A^{* T}$ is required to satisfy symmetry
+    
+*   For symmetric matrices
+    
+    $$
+    A=Q\Lambda Q^{-1}=Q\Lambda Q^T \\
+    =\lambda _1 q_1 q_1^T+\lambda _2 q_2 q_2^T+.... \\
+    $$
+    
+*   So every symmetric matrix is a combination of some mutually orthogonal projection matrices
+    
+*   For symmetric matrices, the number of positive principal minors is equal to the number of positive eigenvalues, and the product of the principal minors equals the product of the eigenvalues, which equals the determinant of the matrix
+    
+
+Positivity
+----------
+
+*   Positive definite matrices are symmetric matrices, a subclass of symmetric matrices, whose all eigenvalues are positive, all leading principal minors are positive, and all subdeterminants are positive
+*   The sign of eigenvalues is related to stability
+*   The eigenvalue, determinant, and main element are unified as one in linear algebra
+
+
+
+{% endlang_content %}
+
+{% lang_content zh %}
+
 - 行列式按行是线性的，但行列式本身不是线性的
   
   $$
@@ -715,3 +1562,23 @@ x=Q^{-1}v=Q^Tv \\
 - 正定矩阵都是对称矩阵，是对称矩阵的一个子类，其所有特征值为正数，所有主元为正数，所有的子行列式都是正数
 - 特征值的符号与稳定性有关
 - 主元、行列式、特征值三位一体，线性代数将其统一
+
+{% endlang_content %}
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
