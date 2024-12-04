@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="以泰坦尼克号的数据为例介绍一下前期对数据的基础操作。">
+    <meta name="description" content="Using the data from the Titanic as an example, introduce the basic operations performed on the data in the early stages.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pandas Basics">
 <meta property="og:url" content="https://thinkwee.top/2017/02/04/pandas-skill/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="以泰坦尼克号的数据为例介绍一下前期对数据的基础操作。">
+<meta property="og:description" content="Using the data from the Titanic as an example, introduce the basic operations performed on the data in the early stages.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0Tn41.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TP3V.jpg">
@@ -42,11 +42,27 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i07jFs.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0T3uD.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0T8De.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0Tn41.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TP3V.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TFjU.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TAuF.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TEB4.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TmNR.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TVHJ.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TeE9.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TK9x.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TM36.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TljO.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TcUs.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TQgK.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i07jFs.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0T3uD.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0T8De.jpg">
 <meta property="article:published_time" content="2017-02-04T13:02:39.000Z">
-<meta property="article:modified_time" content="2024-06-03T07:41:19.401Z">
+<meta property="article:modified_time" content="2024-12-04T12:48:30.449Z">
 <meta property="article:author" content="Thinkwee">
-<meta property="article:tag" content="math">
 <meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="math">
 <meta property="article:tag" content="code">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
@@ -111,7 +127,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -162,7 +178,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">引入库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">读取文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A6%82%E8%A7%88"><span class="nav-number">3.</span> <span class="nav-text">数据概览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">数据操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%80%89%E6%8B%A9"><span class="nav-number">5.</span> <span class="nav-text">数据选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">缺失值处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">7.</span> <span class="nav-text">应用函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8"><span class="nav-number">8.</span> <span class="nav-text">数据透视表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%90%88%E5%B9%B6"><span class="nav-number">9.</span> <span class="nav-text">数据合并</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#introducing-the-library"><span class="nav-number">1.</span> <span class="nav-text">Introducing the library</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#read-file"><span class="nav-number">2.</span> <span class="nav-text">Read file</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-data-overview"><span class="nav-number">3.</span> <span class="nav-text">or Data Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data-manipulation"><span class="nav-number">4.</span> <span class="nav-text">Data Manipulation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data-selection"><span class="nav-number">5.</span> <span class="nav-text">Data Selection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#handling-missing-values"><span class="nav-number">6.</span> <span class="nav-text">Handling Missing Values</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#applied-functions"><span class="nav-number">7.</span> <span class="nav-text">Applied Functions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data-%E9%80%8F%E8%A7%86%E8%A1%A8"><span class="nav-number">8.</span> <span class="nav-text">Data 透视表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data-merging"><span class="nav-number">9.</span> <span class="nav-text">Data merging</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E5%BA%93"><span class="nav-number">10.</span> <span class="nav-text">引入库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6"><span class="nav-number">11.</span> <span class="nav-text">读取文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A6%82%E8%A7%88"><span class="nav-number">12.</span> <span class="nav-text">数据概览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">13.</span> <span class="nav-text">数据操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%80%89%E6%8B%A9"><span class="nav-number">14.</span> <span class="nav-text">数据选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86"><span class="nav-number">15.</span> <span class="nav-text">缺失值处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">16.</span> <span class="nav-text">应用函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8"><span class="nav-number">17.</span> <span class="nav-text">数据透视表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%90%88%E5%B9%B6"><span class="nav-number">18.</span> <span class="nav-text">数据合并</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -175,7 +191,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -186,7 +202,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -211,6 +227,30 @@
     </div>
 
     
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2017/02/07/TitanicLinearRegression/" rel="bookmark">
+        <time class="popular-posts-time">2017-02-07</time>
+        <br>
+      ML Basic Practices
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2017/03/16/kmeans/" rel="bookmark">
+        <time class="popular-posts-time">2017-03-16</time>
+        <br>
+      K-Means and KNN
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
   </aside>
 
 
@@ -263,7 +303,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-03 15:41:19" itemprop="dateModified" datetime="2024-06-03T15:41:19+08:00">2024-06-03</time>
+      <time title="Modified: 2024-12-04 20:48:30" itemprop="dateModified" datetime="2024-12-04T20:48:30+08:00">2024-12-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -289,14 +329,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>3.4k</span>
+      <span>7.4k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>3 mins.</span>
+      <span>7 mins.</span>
     </span>
 </div>
 
@@ -307,9 +347,162 @@
     
     
     <div class="post-body" itemprop="articleBody"><hr />
-<p>以泰坦尼克号的数据为例介绍一下前期对数据的基础操作。</p>
+<p>Using the data from the Titanic as an example, introduce the basic
+operations performed on the data in the early stages.</p>
 <span id="more"></span>
-<h1 id="引入库">引入库</h1>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="introducing-the-library">Introducing the library</h1>
+<pre><code>import csv as csv 
+import pandas as pd
+import numpy as np</code></pre>
+<h1 id="read-file">Read file</h1>
+<pre><code>train = pd.read_csv(r&quot;文件目录&quot;) </code></pre>
+<p>At this moment, the style of the data is: <img data-src="https://s1.ax1x.com/2018/10/20/i0Tn41.jpg" alt="i0Tn41.jpg" /></p>
+<h1 id="or-data-overview">or Data Overview</h1>
+<ul>
+<li><p>describe the common attributes of the overall data display</p>
+<pre><code>print(train.describe())</code></pre>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TP3V.jpg" alt="i0TP3V.jpg" />
+<figcaption aria-hidden="true">i0TP3V.jpg</figcaption>
+</figure></li>
+<li><p>head tail display some data at the beginning and end</p>
+<pre><code>print(train.head(5))
+print(train.tail(3))</code></pre>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TFjU.jpg" alt="i0TFjU.jpg" />
+<figcaption aria-hidden="true">i0TFjU.jpg</figcaption>
+</figure></li>
+<li><p>index: index, default built-in integer index; columns: columns;
+values: data values</p>
+<pre><code>print(train.index)
+print(train.columns)
+print(train.values)</code></pre>
+<h1 id="data-manipulation">Data Manipulation</h1></li>
+<li><p>Data Transposition</p>
+<pre><code>print(train.T)</code></pre>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TAuF.jpg" alt="i0TAuF.jpg" />
+<figcaption aria-hidden="true">i0TAuF.jpg</figcaption>
+</figure></li>
+<li><p>sort: Can be sorted by index or value, axis selects the dimension
+(row or column), ascending selects ascending or descending order, and
+NaN is always placed at the end, regardless of ascending or descending
+order</p>
+<pre><code>print(train.sort_index(axis=0,ascending=True))
+print(train.sort_values(by=&quot;Age&quot;,ascending=False))</code></pre>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TEB4.jpg"
+alt="i0TEB4.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TmNR.jpg"
+alt="i0TmNR.jpg" /></p></li>
+</ul>
+<h1 id="data-selection">Data Selection</h1>
+<ul>
+<li><p>Select by tag, select columns, row slicing</p>
+<pre><code>print(train[&#39;Age&#39;])
+print(train[0:9])</code></pre>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TVHJ.jpg"
+alt="i0TVHJ.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TeE9.jpg"
+alt="i0TeE9.jpg" /></p></li>
+<li><p>Utilize loc to freely select certain rows and columns; at can be
+used instead</p>
+<pre><code>print(train.loc[train.index[4:6]])
+print(train.loc[:,[&#39;Age&#39;,&#39;Fare&#39;]])
+print(train.loc[3:5,[&#39;Age&#39;,&#39;Fare&#39;]])
+print(train.loc[4,&#39;Age&#39;])
+print(train.at[4,&#39;Age&#39;])</code></pre></li>
+<li><p>Using iloc to select by position</p>
+<pre><code>print(train.iloc[5])
+print(train.iloc[3:5,2:4])
+print(train.iloc[[1,2,4],[2,5]])
+print(train.iloc[3,3])</code></pre></li>
+<li><p>Boolean selection</p>
+<pre><code>print( train[ (train[&#39;Age&#39;]&gt;40) &amp; (train[&#39;Age&#39;]&lt;50) ] )
+print(train[train[&#39;Parch&#39;].isin([1,2])])
+print(train[pd.isnull(train[&#39;Age&#39;])==True])</code></pre>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0TK9x.jpg"
+alt="i0TK9x.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TM36.jpg"
+alt="i0TM36.jpg" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0TljO.jpg"
+alt="i0TljO.jpg" /></p></li>
+</ul>
+<h1 id="handling-missing-values">Handling Missing Values</h1>
+<ul>
+<li><p>Using reindex to select and copy part of the data, and then
+handle missing values. Some functions will automatically filter out
+missing values, such as mean().</p>
+<pre><code>train1=train.reindex(index=train.index[0:5],columns=[&#39;PassengerId&#39;]+[&#39;Age&#39;]+[&#39;Sex&#39;])#选择前5行，只取选定的三列
+print(train1)
+print(train1.dropna(axis=0)) #删除存在nan值的行
+print(train1.dropna(subset=[&#39;Age&#39;,&#39;Sex&#39;])) #删除年龄性别列中存在nan值的行
+print(pd.isnull(train1)) #nan值改为true，其余值改为false
+print(train1.fillna(value=2333)) #缺失值替换为2333</code></pre>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TcUs.jpg" alt="i0TcUs.jpg" />
+<figcaption aria-hidden="true">i0TcUs.jpg</figcaption>
+</figure>
+<h1 id="applied-functions">Applied Functions</h1></li>
+<li><p>Can write functions and apply them to the rows or columns of
+data, selecting rows or columns through the axis parameter</p>
+<pre><code>#写函数统计包含nan值的行数
+def null_count(column):
+column_null=pd.isnull(column)
+null=column[column_null == True]
+return len(null)
+print(train.apply(null_count))</code></pre>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TQgK.jpg" alt="i0TQgK.jpg" />
+<figcaption aria-hidden="true">i0TQgK.jpg</figcaption>
+</figure>
+<pre><code>#写函数对年龄列进行分类
+def judge(row):
+if pd.isnull(row[&#39;Age&#39;]) ==True:
+   return &#39;unknown&#39;
+return &#39;youngth&#39; if row[&#39;Age&#39;]&lt;18 else &#39;adult&#39;
+print(train.apply(judge,axis=1))</code></pre>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i07jFs.jpg" alt="i07jFs.jpg" />
+<figcaption aria-hidden="true">i07jFs.jpg</figcaption>
+</figure>
+<h1 id="data-透视表">Data 透视表</h1></li>
+<li><p>Select categories and values for data pivot, such as categorizing
+by pclass and sex, and calculating the average age and fare</p>
+<pre><code>print(train.pivot_table(index=[&quot;Pclass&quot;,&quot;Sex&quot;], values=[&quot;Age&quot;, &quot;Fare&quot;], aggfunc=np.mean))</code></pre>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0T3uD.jpg" alt="i0T3uD.jpg" />
+<figcaption aria-hidden="true">i0T3uD.jpg</figcaption>
+</figure></li>
+</ul>
+<h1 id="data-merging">Data merging</h1>
+<ul>
+<li><p>Some operations of data merging, to be completed</p>
+<pre><code>import pandas as pd
+data1 = pd.DataFrame({&#39;level&#39;:[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;],
+                 &#39;numeber&#39;:[1,3,5,7]})
+
+data2=pd.DataFrame({&#39;level&#39;:[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;e&#39;],
+                 &#39;numeber&#39;:[2,3,6,10]})
+
+print(&quot;merge:\n&quot;,pd.merge(data1,data2),&quot;\n&quot;)
+
+data3 = pd.DataFrame({&#39;level1&#39;:[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;],
+                 &#39;numeber1&#39;:[1,3,5,7]})
+data4 = pd.DataFrame({&#39;level2&#39;:[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;e&#39;],
+                 &#39;numeber2&#39;:[2,3,6,10]})
+print(&quot;merge with left_on,right_on: \n&quot;,pd.merge(data3,data4,left_on=&#39;level1&#39;,right_on=&#39;level2&#39;),&quot;\n&quot;)
+
+print(&quot;concat: \n&quot;,pd.concat([data1,data2]),&quot;\n&quot;)
+
+data3 = pd.DataFrame({&#39;level&#39;:[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;],
+                 &#39;numeber1&#39;:[1,3,5,np.nan]})
+data4=pd.DataFrame({&#39;level&#39;:[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;e&#39;],
+                 &#39;numeber2&#39;:[2,np.nan,6,10]})
+print(&quot;combine: \n&quot;,data3.combine_first(data4),&quot;\n&quot;)</code></pre>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0T8De.jpg" alt="i0T8De.jpg" />
+<figcaption aria-hidden="true">i0T8De.jpg</figcaption>
+</figure></li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="引入库">引入库</h1>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv <span class="keyword">as</span> csv </span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
 <h1 id="读取文件">读取文件</h1>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">r&quot;文件目录&quot;</span>) </span><br></pre></td></tr></table></figure>
@@ -398,6 +591,23 @@ alt="i0TljO.jpg" /></p></li>
 <figcaption aria-hidden="true">i0T8De.jpg</figcaption>
 </figure></li>
 </ul>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
 
     </div>
 
@@ -407,8 +617,8 @@ alt="i0TljO.jpg" /></p></li>
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/math/" rel="tag"># math</a>
               <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/math/" rel="tag"># math</a>
               <a href="/tags/code/" rel="tag"># code</a>
               <a href="/tags/python/" rel="tag"># python</a>
           </div>
@@ -422,8 +632,8 @@ alt="i0TljO.jpg" /></p></li>
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2017/01/23/numpycookbook/" rel="prev" title="Numpy Cookbook">
-                  <i class="fa fa-angle-left"></i> Numpy Cookbook
+                <a href="/2017/01/22/LinearAlgebra3/" rel="prev" title="Note for Linear Algebra 3">
+                  <i class="fa fa-angle-left"></i> Note for Linear Algebra 3
                 </a>
             </div>
             <div class="post-nav-item">
@@ -463,13 +673,13 @@ alt="i0TljO.jpg" /></p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">782k</span>
+    <span title="Word count total">1.1m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:51</span>
+    <span title="Reading time total">16:35</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>

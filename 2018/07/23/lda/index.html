@@ -19,25 +19,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Latent Dirichlet Allocation 文档主题生成模型学习笔记 本文主要归纳自《LDA数学八卦》，原文写的非常精彩（建议先阅读原文），有许多抛砖引玉之处，本文梳理了其一步一步推出LDA的脉络，删除了不相关的一些扩展，比较大白话的总结一下LDA。">
+    <meta name="description" content="Latent Dirichlet Allocation Document Topic Generation Model Study Notes This article mainly summarizes from &quot;Mathematical Curiosities of LDA(LDA数学八卦),&quot; which is written very beautifully (recommend re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Note for Latent Dirichlet Allocation">
 <meta property="og:url" content="https://thinkwee.top/2018/07/23/lda/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="Latent Dirichlet Allocation 文档主题生成模型学习笔记 本文主要归纳自《LDA数学八卦》，原文写的非常精彩（建议先阅读原文），有许多抛砖引玉之处，本文梳理了其一步一步推出LDA的脉络，删除了不相关的一些扩展，比较大白话的总结一下LDA。">
+<meta property="og:description" content="Latent Dirichlet Allocation Document Topic Generation Model Study Notes This article mainly summarizes from &quot;Mathematical Curiosities of LDA(LDA数学八卦),&quot; which is written very beautifully (recommend re">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oNlT.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0orkR.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oGYq.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oJf0.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oU6U.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0orkR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oGYq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oJf0.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oU6U.png">
 <meta property="article:published_time" content="2018-07-23T01:56:41.000Z">
-<meta property="article:modified_time" content="2024-06-03T07:41:19.400Z">
+<meta property="article:modified_time" content="2024-12-04T12:08:57.785Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="math">
 <meta property="article:tag" content="topic model">
-<meta property="article:tag" content="mcmc">
 <meta property="article:tag" content="lda">
+<meta property="article:tag" content="mcmc">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s1.ax1x.com/2018/10/20/i0oNlT.jpg">
 
@@ -100,7 +104,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -151,7 +155,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lda%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">LDA用来做什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">贝叶斯模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B1%E8%BD%AD"><span class="nav-number">3.</span> <span class="nav-text">共轭</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gamma%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">Gamma函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gamma%E5%88%86%E5%B8%83"><span class="nav-number">3.2.</span> <span class="nav-text">Gamma分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beta%E5%88%86%E5%B8%83"><span class="nav-number">3.3.</span> <span class="nav-text">Beta分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beta-binomial%E5%85%B1%E8%BD%AD"><span class="nav-number">3.4.</span> <span class="nav-text">Beta-Binomial共轭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dirichlet-multinomial%E5%85%B1%E8%BD%AD"><span class="nav-number">3.5.</span> <span class="nav-text">Dirichlet-Multinomial共轭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dirichlet%E5%88%86%E6%9E%90"><span class="nav-number">3.6.</span> <span class="nav-text">Dirichlet分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#role-in-lda"><span class="nav-number">3.7.</span> <span class="nav-text">Role in LDA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%89%E6%AD%A5%E6%96%AF%E9%87%87%E6%A0%B7"><span class="nav-number">4.</span> <span class="nav-text">吉步斯采样</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F"><span class="nav-number">4.1.</span> <span class="nav-text">随机模拟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A9%AC%E6%B0%8F%E9%93%BE"><span class="nav-number">4.2.</span> <span class="nav-text">马氏链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#markov-chain-monte-carlo"><span class="nav-number">4.3.</span> <span class="nav-text">Markov Chain Monte Carlo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gibbs-sampling"><span class="nav-number">4.4.</span> <span class="nav-text">Gibbs Sampling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#role-in-lda-1"><span class="nav-number">4.5.</span> <span class="nav-text">Role in LDA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E5%BB%BA%E6%A8%A1"><span class="nav-number">5.</span> <span class="nav-text">文本建模</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#unigram%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.1.</span> <span class="nav-text">Unigram模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plsa%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.2.</span> <span class="nav-text">PLSA模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#role-in-lda-2"><span class="nav-number">5.3.</span> <span class="nav-text">Role in LDA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lda%E6%96%87%E6%9C%AC%E5%BB%BA%E6%A8%A1"><span class="nav-number">6.</span> <span class="nav-text">LDA文本建模</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0"><span class="nav-number">6.1.</span> <span class="nav-text">模型概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%88%86%E5%B8%83"><span class="nav-number">6.2.</span> <span class="nav-text">建立分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%87%E6%A0%B7"><span class="nav-number">6.3.</span> <span class="nav-text">采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E4%B8%8E%E6%B5%8B%E8%AF%95"><span class="nav-number">6.4.</span> <span class="nav-text">训练与测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lda-in-gensim"><span class="nav-number">7.</span> <span class="nav-text">LDA in Gensim</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#more"><span class="nav-number">8.</span> <span class="nav-text">More</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#what-is-lda-used-for"><span class="nav-number">1.</span> <span class="nav-text">What is LDA used for</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bayesian-model"><span class="nav-number">2.</span> <span class="nav-text">Bayesian model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#conjugation"><span class="nav-number">3.</span> <span class="nav-text">Conjugation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gamma-function"><span class="nav-number">3.1.</span> <span class="nav-text">Gamma function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gamma-distribution"><span class="nav-number">3.2.</span> <span class="nav-text">Gamma distribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beta-distribution"><span class="nav-number">3.3.</span> <span class="nav-text">Beta distribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beta-binomial-conjugate"><span class="nav-number">3.4.</span> <span class="nav-text">Beta-Binomial conjugate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dirichlet-multinomial-conjugacy"><span class="nav-number">3.5.</span> <span class="nav-text">Dirichlet-Multinomial
+Conjugacy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dirichlet-analysis"><span class="nav-number">3.6.</span> <span class="nav-text">Dirichlet analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#role-in-lda"><span class="nav-number">3.7.</span> <span class="nav-text">Role in LDA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gibbs-sampling"><span class="nav-number">4.</span> <span class="nav-text">Gibbs Sampling</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#random-simulation"><span class="nav-number">4.1.</span> <span class="nav-text">Random Simulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mars-chain"><span class="nav-number">4.2.</span> <span class="nav-text">Mars Chain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#markov-chain-monte-carlo"><span class="nav-number">4.3.</span> <span class="nav-text">Markov Chain Monte Carlo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gibbs-sampling-1"><span class="nav-number">4.4.</span> <span class="nav-text">Gibbs Sampling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#role-in-lda-1"><span class="nav-number">4.5.</span> <span class="nav-text">Role in LDA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#text-modeling"><span class="nav-number">5.</span> <span class="nav-text">Text Modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#unigram-model"><span class="nav-number">5.1.</span> <span class="nav-text">Unigram model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plsa-model"><span class="nav-number">5.2.</span> <span class="nav-text">PLSA model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#role-in-lda-2"><span class="nav-number">5.3.</span> <span class="nav-text">Role in LDA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lda-text-modeling"><span class="nav-number">6.</span> <span class="nav-text">LDA text modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#model-overview"><span class="nav-number">6.1.</span> <span class="nav-text">Model Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#establish-distribution"><span class="nav-number">6.2.</span> <span class="nav-text">Establish distribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sampling"><span class="nav-number">6.3.</span> <span class="nav-text">Sampling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#training-and-testing"><span class="nav-number">6.4.</span> <span class="nav-text">Training and Testing</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lda-in-gensim"><span class="nav-number">7.</span> <span class="nav-text">LDA in Gensim</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#more"><span class="nav-number">8.</span> <span class="nav-text">More</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lda%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88"><span class="nav-number">9.</span> <span class="nav-text">LDA用来做什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%A8%A1%E5%9E%8B"><span class="nav-number">10.</span> <span class="nav-text">贝叶斯模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B1%E8%BD%AD"><span class="nav-number">11.</span> <span class="nav-text">共轭</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gamma%E5%87%BD%E6%95%B0"><span class="nav-number">11.1.</span> <span class="nav-text">Gamma函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gamma%E5%88%86%E5%B8%83"><span class="nav-number">11.2.</span> <span class="nav-text">Gamma分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beta%E5%88%86%E5%B8%83"><span class="nav-number">11.3.</span> <span class="nav-text">Beta分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beta-binomial%E5%85%B1%E8%BD%AD"><span class="nav-number">11.4.</span> <span class="nav-text">Beta-Binomial共轭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dirichlet-multinomial%E5%85%B1%E8%BD%AD"><span class="nav-number">11.5.</span> <span class="nav-text">Dirichlet-Multinomial共轭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dirichlet%E5%88%86%E6%9E%90"><span class="nav-number">11.6.</span> <span class="nav-text">Dirichlet分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#role-in-lda"><span class="nav-number">11.7.</span> <span class="nav-text">Role in LDA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%89%E6%AD%A5%E6%96%AF%E9%87%87%E6%A0%B7"><span class="nav-number">12.</span> <span class="nav-text">吉步斯采样</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%A8%A1%E6%8B%9F"><span class="nav-number">12.1.</span> <span class="nav-text">随机模拟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A9%AC%E6%B0%8F%E9%93%BE"><span class="nav-number">12.2.</span> <span class="nav-text">马氏链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#markov-chain-monte-carlo"><span class="nav-number">12.3.</span> <span class="nav-text">Markov Chain Monte Carlo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gibbs-sampling"><span class="nav-number">12.4.</span> <span class="nav-text">Gibbs Sampling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#role-in-lda-1"><span class="nav-number">12.5.</span> <span class="nav-text">Role in LDA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E5%BB%BA%E6%A8%A1"><span class="nav-number">13.</span> <span class="nav-text">文本建模</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#unigram%E6%A8%A1%E5%9E%8B"><span class="nav-number">13.1.</span> <span class="nav-text">Unigram模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plsa%E6%A8%A1%E5%9E%8B"><span class="nav-number">13.2.</span> <span class="nav-text">PLSA模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#role-in-lda-2"><span class="nav-number">13.3.</span> <span class="nav-text">Role in LDA</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lda%E6%96%87%E6%9C%AC%E5%BB%BA%E6%A8%A1"><span class="nav-number">14.</span> <span class="nav-text">LDA文本建模</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0"><span class="nav-number">14.1.</span> <span class="nav-text">模型概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%88%86%E5%B8%83"><span class="nav-number">14.2.</span> <span class="nav-text">建立分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%87%E6%A0%B7"><span class="nav-number">14.3.</span> <span class="nav-text">采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E4%B8%8E%E6%B5%8B%E8%AF%95"><span class="nav-number">14.4.</span> <span class="nav-text">训练与测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lda-in-gensim"><span class="nav-number">15.</span> <span class="nav-text">LDA in Gensim</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#more"><span class="nav-number">16.</span> <span class="nav-text">More</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -164,7 +169,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -175,7 +180,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -207,24 +212,10 @@
   </div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <a class="popular-posts-link" href="/2018/08/28/inference-algorithm/" rel="bookmark">
-        <time class="popular-posts-time">2018-08-28</time>
-        <br>
-      Note for Inference Algorithms in Probabilistic ML
-      </a>
-    </li>
-    <li class="popular-posts-item">
       <a class="popular-posts-link" href="/2019/11/15/hlda/" rel="bookmark">
         <time class="popular-posts-time">2019-11-15</time>
         <br>
       Note for Hierarchical Latent Dirichlet Allocation
-      </a>
-    </li>
-    <li class="popular-posts-item">
-      <a class="popular-posts-link" href="/2020/02/13/svm/" rel="bookmark">
-        <time class="popular-posts-time">2020-02-13</time>
-        <br>
-      SVM
       </a>
     </li>
   </ul>
@@ -283,7 +274,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-03 15:41:19" itemprop="dateModified" datetime="2024-06-03T15:41:19+08:00">2024-06-03</time>
+      <time title="Modified: 2024-12-04 20:08:57" itemprop="dateModified" datetime="2024-12-04T20:08:57+08:00">2024-12-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -309,14 +300,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>25k</span>
+      <span>77k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>23 mins.</span>
+      <span>1:10</span>
     </span>
 </div>
 
@@ -327,14 +318,1425 @@
     
     
     <div class="post-body" itemprop="articleBody"><hr />
-<p>Latent Dirichlet Allocation 文档主题生成模型学习笔记
-本文主要归纳自《LDA数学八卦》，原文写的非常精彩（建议先阅读原文），有许多抛砖引玉之处，本文梳理了其一步一步推出LDA的脉络，删除了不相关的一些扩展，比较大白话的总结一下LDA。</p>
+<p>Latent Dirichlet Allocation Document Topic Generation Model Study
+Notes This article mainly summarizes from "Mathematical Curiosities of
+LDA(LDA数学八卦)," which is written very beautifully (recommend reading
+the original first). There are many places that spark further thought,
+and this article sorts out the steps to derive LDA, removes some
+irrelevant extensions, and summarizes LDA in plain language.</p>
 <span id="more"></span>
 <figure>
 <img data-src="https://s1.ax1x.com/2018/10/20/i0oNlT.jpg" alt="i0oNlT.jpg" />
 <figcaption aria-hidden="true">i0oNlT.jpg</figcaption>
 </figure>
-<h1 id="lda用来做什么">LDA用来做什么</h1>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="what-is-lda-used-for">What is LDA used for</h1>
+<ul>
+<li>LDA is a topic model; the question is actually what is a topic model
+used for? It is used to represent documents. Here, documents are viewed
+as a bag of words.</li>
+<li>If each word in the dictionary is considered a feature and the tfidf
+value is used as the magnitude of the feature to represent a document,
+then the feature vector of the document is too sparse and has too high a
+dimensionality</li>
+<li>The solution of LSI is to perform singular value decomposition on
+the document-word matrix, reduce dimensions, but the reduced dimension
+space obtained, i.e., the latent variables between words and documents,
+is unexplainable; a purely mathematical method, too forceful</li>
+<li>PLSA proposes that latent variables should be topics, which can
+represent documents as topic vectors, and define topics as a certain
+polynomial distribution on the dictionary. This way, PLSA contains two
+layers of polynomial distributions: the polynomial distribution from
+documents to topics (the mixing proportion of various topics in a
+document, i.e., the feature vector of the document), and the polynomial
+distribution from topics to words (the probability distribution over the
+entire dictionary, representing the probability of each word appearing
+under different topics)</li>
+<li>LDA specifies Dirichlet priors for the parameters of these two
+polynomial distributions, introducing a Bayesian framework for PLSA</li>
+</ul>
+<h1 id="bayesian-model">Bayesian model</h1>
+<ul>
+<li><p>LDA is a Bayesian model</p></li>
+<li><p>Given the training data, how does a Bayesian model learn
+parameters (the distribution of parameters): Bayesian estimation</p>
+<ul>
+<li><p>Prior distribution for the parameter <span
+class="math inline">\(p(\theta)\)</span></p></li>
+<li><p>Given the data, calculate the likelihood <span
+class="math inline">\(p(X|\theta)\)</span> and evidence <span
+class="math inline">\(P(X)\)</span> , and then compute the posterior
+distribution of the parameters according to Bayes' formula</p></li>
+<li><p>Posterior distribution is the distribution of the learned
+parameters</p>
+<p><span class="math display">\[
+p(\vartheta | X)=\frac{p(X | \vartheta) \cdot
+p(\vartheta)}{p(\mathcal{X})}
+\]</span></p></li>
+</ul></li>
+<li><p>The data may be too much, so update in batches; the posterior
+obtained after the last update serves as the prior for the next update,
+similar to the idea in stochastic gradient descent</p></li>
+<li><p>For the likelihood of new data, unlike maximum likelihood
+estimation or maximum a posteriori estimation, both of which are point
+estimates, directly calculating <span
+class="math inline">\(p(x_{new}|\theta _{ML})\)</span> , <span
+class="math inline">\(p(x_{new}|\theta _{MAP})\)</span> , Bayesian
+estimation requires integrating over the parameter distribution:</p>
+<p><span class="math display">\[
+\begin{aligned}
+p(\tilde{x} | X) &amp;=\int_{\vartheta \in \Theta} p(\tilde{x} |
+\vartheta) p(\vartheta | X) \mathrm{d} \vartheta \\
+&amp;=\int_{\vartheta \in \Theta} p(\tilde{x} | \vartheta) \frac{p(X |
+\vartheta) p(\vartheta)}{p(X)} \mathrm{d} \vartheta
+\end{aligned}
+\]</span></p></li>
+<li><p>Two issues often arise in Bayesian estimation</p>
+<ul>
+<li>With prior knowledge and likelihood, the calculated posterior is
+complex</li>
+<li>evidence is hard to calculate</li>
+</ul></li>
+<li><p>Therefore, conjugate and Gibbs sampling respectively solve these
+two problems</p>
+<ul>
+<li>Conjugate: Given the likelihood, find a prior such that the
+posterior has the same form as the prior</li>
+<li>gibbs sampling: Using the idea of MCMC to approximate the posterior
+without explicit computation of the evidence</li>
+</ul></li>
+<li><p>If it is a Bayesian model with latent variables, then there
+is</p>
+<p><span class="math display">\[
+p(\vartheta|x) = \int_{z} p(\vartheta|z)p(z|x)
+\]</span></p></li>
+<li><p>In LDA, the latent variable z represents the topic to which a
+word belongs (the word's topic assignment), so <span
+class="math inline">\(p(\vartheta|z)\)</span> is naturally easy to
+calculate, and then the remaining <span
+class="math inline">\(p(z|x)\)</span> can be calculated using the
+formula for Bayesian inference:</p>
+<p><span class="math display">\[
+p(z | X)=\frac{p(X | z) \cdot p(z)}{p(\mathcal{X})}
+\]</span></p></li>
+<li><p>Before introducing LDA, two other models are introduced: the
+Bayesian unigram and PLSA. The former can be considered as LDA without a
+topic layer, and the latter as LDA without Bayesian
+regularization</p></li>
+<li><p>Next, we will separately introduce conjugate, Gibbs sampling,
+Bayesian unigram/PLSA, and finally, LDA</p></li>
+</ul>
+<h1 id="conjugation">Conjugation</h1>
+<h2 id="gamma-function">Gamma function</h2>
+<ul>
+<li><p>Definition</p>
+<p><span class="math display">\[
+\Gamma (x) = \int _0 ^{\infty} t^{x-1} e^{-t} dt
+\]</span></p></li>
+<li><p>Due to its recursive nature <span
+class="math inline">\(\Gamma(x+1)=x\Gamma(x)\)</span> , the definition
+of factorial can be extended to the real number domain, thereby
+extending the definition of the derivative of a function to the real
+set, for example, calculating the second derivative at 1/2</p></li>
+<li><p>Bohr-Mullerup theorem: If <span
+class="math inline">\(f:(0,\infty) \rightarrow (0,\infty)\)</span> and
+satisfy</p>
+<ul>
+<li><span class="math inline">\(f(1)=1\)</span></li>
+<li><span class="math inline">\(f(x+1)=xf(x)\)</span></li>
+<li>If <span class="math inline">\(log f(x)\)</span> is a convex
+function, then <span class="math inline">\(f(x)=\Gamma(x)\)</span></li>
+</ul></li>
+<li><p>Digamma function</p>
+<p><span class="math display">\[
+\psi (x)=\frac{d log \Gamma(x)}{dx}
+\]</span></p>
+<p>It has the following properties</p>
+<p><span class="math display">\[
+\psi (x+1)=\psi (x)+\frac 1x
+\]</span></p></li>
+<li><p>The result of inferring LDA using variational inference is in the
+form of the digamma function</p></li>
+</ul>
+<h2 id="gamma-distribution">Gamma distribution</h2>
+<ul>
+<li><p>Transform the above equation</p>
+<p><span class="math display">\[
+\int _0 ^{\infty} \frac{x^{\alpha -1}e^{-x}}{\Gamma(\alpha)}dx = 1
+\]</span></p>
+<p>Therefore, it is advisable to take the function in the integral as
+the probability density, obtaining the density function of the simplest
+form of the Gamma distribution:</p>
+<p><span class="math display">\[
+Gamma_{\alpha}(x)=\frac{x^{\alpha -1}e^{-x}}{\Gamma(\alpha)}
+\]</span></p></li>
+<li><p>Exponential distribution and <span class="math inline">\(\chi
+^2\)</span> distribution are both special cases of the Gamma
+distribution, and they are very useful as prior distributions, widely
+applied in Bayesian analysis.</p></li>
+<li><p>Gamma distribution and Poisson distribution have a formal
+consistency, and in their usual representations, there is only a
+difference of 1 in the parameters. As previously mentioned, factorials
+can be represented by the Gamma function, therefore, it can be
+intuitively considered that the Gamma distribution is a continuous
+version of the Poisson distribution over the set of positive real
+numbers.</p>
+<p><span class="math display">\[
+Poisson(X=k|\lambda)=\frac{\lambda ^k e^{-\lambda}}{k!}
+\]</span></p></li>
+<li><p>The limit distribution of the binomial distribution with <span
+class="math inline">\(np=\lambda\)</span> is the Poisson distribution as
+n approaches infinity and p approaches 0. A common example used to
+explain the Poisson distribution is the reception of calls by a switch.
+Assuming the entire time is divided into several time intervals, with at
+most one call per interval, the probability being p, the total number of
+calls follows a binomial distribution. When np is a constant <span
+class="math inline">\(\lambda\)</span> , dividing time into an infinite
+number of segments, which are almost continuous, substituting <span
+class="math inline">\(p=\frac{\lambda}{n}\)</span> into the binomial
+distribution, taking the limit yields the Poisson distribution. On this
+basis, by making the distribution values continuous (i.e., replacing the
+factorial of k in the Poisson distribution with the Gamma function) we
+obtain the Gamma distribution.</p></li>
+</ul>
+<h2 id="beta-distribution">Beta distribution</h2>
+<ul>
+<li>Background:
+<ul>
+<li><p>How to obtain the distribution of the kth order statistic <span
+class="math inline">\(p=x_k\)</span> when n random variables uniformly
+distributed in the interval [0,1] are sorted in ascending
+order?</p></li>
+<li><p>To obtain the distribution, by employing the idea of limits, we
+calculate the probability that this variable falls within a small
+interval <span class="math inline">\(x \leq X_{k} \leq x+\Delta
+x\)</span></p></li>
+<li><p>Divide the entire interval into three parts: before the small
+interval, the small interval, and after the small interval. If only the
+k-th largest number is present in the small interval, then there should
+be k-1 numbers before the small interval, and n-k numbers after the
+small interval. The probability of this situation is</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(E)&amp;=x^{k-1}(1-x-\Delta x)^{n-k}\Delta x \\
+&amp;=x^{k-1}(1-x)^{n-k}\Delta x+\omicron (\Delta x) \\
+\end{aligned}
+\]</span></p></li>
+<li><p>If there are two or more numbers within a small interval, the
+probability of this situation is <span class="math inline">\(\omicron
+(\Delta x)\)</span> , therefore, only consider the case where there is
+only the k-th largest number within the small interval. In this case,
+let <span class="math inline">\(\Delta x\)</span> tend towards 0, then
+we obtain the probability density function of the k-th largest number
+(note that the coefficient of event E should be <span
+class="math inline">\(nC_n^k\)</span> ):</p>
+<p><span class="math display">\[
+f(x)=\frac{n!}{(k-1)!(n-k)!}x^{k-1}(1-x)^{n-k} \quad x \in [0,1]
+\]</span></p>
+<p>Expressed in terms of the Gamma function (let <span
+class="math inline">\(\alpha =k,\beta = n-k+1\)</span> ), we obtain:</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(x)&amp;=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}
+\\
+&amp;=Beta(p|k,n-k+1) \\
+&amp;=Beta(\alpha,\beta) \\
+\end{aligned}
+\]</span></p>
+<p>This is the Beta distribution; we can take the point of the maximum
+probability distribution as the predicted value for the kth largest
+number.</p></li>
+</ul></li>
+<li>Beta distribution is actually a prediction of a distribution, that
+is, the distribution of distributions. In the background, we are looking
+for the probability distribution of the kth largest order statistic, and
+we denote this kth largest order statistic as p. Now, we know there are
+n values uniformly distributed in the interval [0,1], and n and k
+establish a relative position within the interval [0,1], which is the
+role of <span class="math inline">\(\alpha\)</span> and <span
+class="math inline">\(\beta\)</span> (because <span
+class="math inline">\(\alpha\)</span> and <span
+class="math inline">\(\beta\)</span> are calculated from n and k),
+representing where I tend to believe p is within [0,1]. Since the n
+statistics are uniformly distributed and p is the kth largest among
+them, p tends to be at the position <span class="math inline">\(\frac
+kn\)</span> .</li>
+<li>Therefore, the parameters of the Beta distribution ( <span
+class="math inline">\(\alpha\)</span> and <span
+class="math inline">\(\beta\)</span> ) are clearly meaningful,
+representing my prior belief about the possible location of p, even when
+I know nothing, that is, the prior. The result of the Beta distribution
+is the distribution of p calculated under this prior influence, and the
+actual meaning of this p is the parameter of the binomial distribution.
+Therefore, the Beta distribution can serve as a prior for the parameters
+of the binomial distribution.</li>
+</ul>
+<h2 id="beta-binomial-conjugate">Beta-Binomial conjugate</h2>
+<ul>
+<li>We can establish a Beta distribution prior for the kth largest
+number. If we now know there are m numbers uniformly distributed between
+[0,1], and some of them are larger than the kth largest number while
+others are smaller, we can incorporate this as additional data knowledge
+to form the posterior distribution.</li>
+<li>Assuming the number to be guessed is <span
+class="math inline">\(p=X_k\)</span> , now we know that there are <span
+class="math inline">\(m_1\)</span> numbers smaller than <span
+class="math inline">\(p\)</span> , and <span
+class="math inline">\(m_2\)</span> numbers larger than <span
+class="math inline">\(p\)</span> , it is obvious that the probability
+density function of <span class="math inline">\(p\)</span> becomes <span
+class="math inline">\(Beta(p|k+m_1,n-k+1+m_2)\)</span></li>
+<li>The knowledge of m numbers added into the data is equivalent to
+conducting m Bernoulli experiments, because the range we are discussing
+is on [0,1], and the m numbers only care whether they are larger or
+smaller than <span class="math inline">\(p\)</span> , the value of <span
+class="math inline">\(p=X_k\)</span> can represent this probability,
+therefore <span class="math inline">\(m_1\)</span> follows a binomial
+distribution <span class="math inline">\(B(m,p)\)</span></li>
+</ul>
+<table data-immersive-translate-walked="8b4bb475-eb27-486e-9bfc-357b87ff2cd3">
+<thead data-immersive-translate-walked="8b4bb475-eb27-486e-9bfc-357b87ff2cd3">
+<tr data-immersive-translate-walked="8b4bb475-eb27-486e-9bfc-357b87ff2cd3">
+<th align="center" data-immersive-translate-walked="8b4bb475-eb27-486e-9bfc-357b87ff2cd3" data-immersive-translate-paragraph="1">
+<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="en"><br><font class="notranslate immersive-translate-target-translation-theme-dashed immersive-translate-target-translation-block-wrapper-theme-dashed immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-dashed-inner" data-immersive-translate-translation-element-mark="1">A
+priori</font></font></font>
+</th>
+<th align="center" data-immersive-translate-walked="8b4bb475-eb27-486e-9bfc-357b87ff2cd3" data-immersive-translate-paragraph="1">
+<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="en"><br><font class="notranslate immersive-translate-target-translation-theme-dashed immersive-translate-target-translation-block-wrapper-theme-dashed immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-dashed-inner" data-immersive-translate-translation-element-mark="1">Data
+Knowledge</font></font></font>
+</th>
+<th align="center" data-immersive-translate-walked="8b4bb475-eb27-486e-9bfc-357b87ff2cd3" data-immersive-translate-paragraph="1">
+<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="en"><br><font class="notranslate immersive-translate-target-translation-theme-dashed immersive-translate-target-translation-block-wrapper-theme-dashed immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-dashed-inner" data-immersive-translate-translation-element-mark="1">Posterior</font></font></font>
+</th>
+</tr>
+</thead>
+<tbody data-immersive-translate-walked="8b4bb475-eb27-486e-9bfc-357b87ff2cd3">
+<tr data-immersive-translate-walked="8b4bb475-eb27-486e-9bfc-357b87ff2cd3">
+<td align="center" data-immersive-translate-walked="8b4bb475-eb27-486e-9bfc-357b87ff2cd3" data-immersive-translate-paragraph="1">
+<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="en"><br><font class="notranslate immersive-translate-target-translation-theme-dashed immersive-translate-target-translation-block-wrapper-theme-dashed immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-dashed-inner" data-immersive-translate-translation-element-mark="1">Beta
+distribution</font></font></font>
+</td>
+<td align="center" data-immersive-translate-walked="8b4bb475-eb27-486e-9bfc-357b87ff2cd3" data-immersive-translate-paragraph="1">
+<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="en"><br><font class="notranslate immersive-translate-target-translation-theme-dashed immersive-translate-target-translation-block-wrapper-theme-dashed immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-dashed-inner" data-immersive-translate-translation-element-mark="1">Binomial
+distribution</font></font></font>
+</td>
+<td align="center" data-immersive-translate-walked="8b4bb475-eb27-486e-9bfc-357b87ff2cd3" data-immersive-translate-paragraph="1">
+<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="en"><br><font class="notranslate immersive-translate-target-translation-theme-dashed immersive-translate-target-translation-block-wrapper-theme-dashed immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-dashed-inner" data-immersive-translate-translation-element-mark="1">Beta
+distribution</font></font></font>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Therefore, we can obtain the Beta-Binomial conjugate</p>
+<p><span class="math display">\[
+Beta(p|\alpha,\beta)+BinomCount(m_1,m_2)=Beta(p|\alpha+m_1,\beta+m_2)
+\]</span></p>
+<p>When the data conforms to a binomial distribution, both the prior
+distribution and the posterior distribution of the parameters can
+maintain the form of a Beta distribution. We can assign a clear physical
+meaning to the parameters in the prior distribution and extend this
+interpretation to the posterior distribution, therefore, the parameters
+<span class="math inline">\(\alpha,\beta\)</span> in the Beta
+distribution are generally referred to as pseudo-counts, representing
+physical counts.</p></li>
+<li><p>It can be verified that when both parameters of the Beta
+distribution are 1, it becomes a uniform distribution. At this point,
+the conjugate relationship can be considered as follows: Initially, the
+unevenness of the coin is unknown, and it is assumed that the
+probability of the coin landing on heads is uniformly distributed. After
+tossing the coin m times, data is obtained with <span
+class="math inline">\(m_1\)</span> tosses landing on heads and the rest
+landing on tails. By calculating the posterior probability using Bayes'
+formula, the probability of the coin landing on heads can be determined
+to be exactly <span
+class="math inline">\(Beta(p|m_1+1,m_2+1)\)</span></p></li>
+<li><p>Through this conjugation, we can derive an important formula
+concerning the binomial distribution:</p>
+<p><span class="math display">\[
+P(C \leq k) = \frac{n!}{k!(n-k-1)!}\int _p ^1 t^k(1-t)^{n-k-1}dt \quad C
+\sim B(n,p)
+\]</span></p>
+<p>The following can now be proven:</p>
+<ul>
+<li><p>The left side of the formula is the probability cumulative of the
+binomial distribution, and the right side is the probability integral of
+the <span class="math inline">\(Beta(t|k+1,n-k)\)</span>
+distribution</p></li>
+<li><p>Select n random variables uniformly distributed in [0,1], for the
+binomial distribution <span class="math inline">\(B(n,p)\)</span> , if
+the number is less than <span class="math inline">\(p\)</span> , it is
+considered successful; otherwise, it is a failure. The number of random
+variables less than <span class="math inline">\(p\)</span> is C and
+follows the binomial distribution <span
+class="math inline">\(B(n,p)\)</span></p></li>
+<li><p>At this point, we obtain <span class="math inline">\(P(C \leq
+k)=P(X_{k+1}&gt;p)\)</span> , which means that there are <span
+class="math inline">\(k\)</span> variables less than <span
+class="math inline">\(p\)</span> after n random variables are arranged
+in order</p></li>
+<li><p>At this point, utilizing our probability density of the k-th
+largest number, we calculate it to be a Beta distribution, and then
+substitute it into the equation</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(C \leq k) &amp;=P(X_{k+1} &gt; p) \\
+  &amp;=\int _p ^1 Beta(t|k+1,n-k)dt \\
+  &amp;=\frac{n!}{k!(n-k-1)!}\int _p ^1 t^k(1-t)^{n-k-1}dt \\
+\end{aligned}
+\]</span></p>
+<p>Proof by construction</p></li>
+</ul></li>
+<li><p>By taking the limit of n to infinity in this formula and
+converting it to a Poisson distribution, the Gamma distribution can be
+derived.</p></li>
+<li><p>In this section, we introduced other information to the prior,
+that is, there are several numbers larger and smaller than the k-th
+largest number. This information is equivalent to telling me: I can
+modify the prior of p; the position I previously tended to believe in
+has shifted. If I know several numbers are larger than p, then the prior
+position of p should be shifted to the right. If I know several numbers
+are smaller than p, then the prior position of p should be shifted to
+the left. What if I simultaneously know 100 numbers are larger than p
+and 100 numbers are smaller than p? The position of p remains unchanged,
+but I am more confident that the true position of p is now this prior
+position. Therefore, the Beta distribution is more concentrated at this
+prior position. This point will be seen again in the subsequent analysis
+of the meaning of the Dirichlet parameters. After adding prior knowledge
+and data, we form the posterior, which is the basic content of Bayes'
+formula.</p></li>
+</ul>
+<h2 id="dirichlet-multinomial-conjugacy">Dirichlet-Multinomial
+Conjugacy</h2>
+<ul>
+<li><p>How should we calculate the joint distribution of guessing two
+numbers <span class="math inline">\(x_{k_1},x_{k_1+k_2}\)</span>
+?</p></li>
+<li><p>Similarly, we set two extremely small intervals <span
+class="math inline">\(\Delta x\)</span> , dividing the entire interval
+into five parts, with the extremely small intervals being <span
+class="math inline">\(x_1,x_2,x_3\)</span> , after which the calculation
+can be obtained</p>
+<p><span class="math display">\[
+f(x_1,x_2,x_3)=\frac{\Gamma(n+1)}{\Gamma(k_1)\Gamma(k_2)\Gamma(n-k_1-k_2+1)}x_1^{k_1-1}x_2^{k_2-1}x_3^{n-k_1-k_2}
+\]</span></p></li>
+<li><p>Organize it and it can be written as</p>
+<p><span class="math display">\[
+f(x_1,x_2,x_3)=\frac{\Gamma(\alpha _1+\alpha _2+\alpha
+_3)}{\Gamma(\alpha _1)\Gamma(\alpha _2)\Gamma(\alpha _3)}x_1^{\alpha
+_1-1}x_2^{\alpha _2-1}x_3^{\alpha _3-1}
+\]</span></p>
+<p>This is the 3D form of the Dirichlet distribution. The <span
+class="math inline">\(x_1,x_2,x_3\)</span> (which actually only has two
+variables) determines the joint distribution of two order statistics,
+and <span class="math inline">\(f\)</span> represents the probability
+density.</p></li>
+<li><p>Observing that under the condition of <span
+class="math inline">\(\alpha\)</span> being determined, the preceding
+series of gamma functions are actually the denominator of the
+probability normalization, in the following text we will express the
+Dirichlet distribution in a more general form:</p>
+<p><span class="math display">\[
+Dir(\mathop{p}^{\rightarrow}|\mathop{\alpha}^{\rightarrow})=\frac{1}{\int
+\prod_{k=1}^V p_k^{\alpha _k -1}d\mathop{p}^{\rightarrow}} \prod_{k=1}^V
+p_k^{\alpha _k -1}
+\]</span></p></li>
+<li><p>The normalization denominator, that is, the entire set of gammas,
+is made to be:</p>
+<p><span class="math display">\[
+\Delta(\mathop{\alpha}^{\rightarrow})=\int \prod _{k=1}^V p_k^{\alpha _k
+-1}d\mathop{p}^{\rightarrow}
+\]</span></p></li>
+<li><p>参数</p>
+<p><span class="math display">\[
+Dir(p|\alpha)+MultCount(m)=Dir(p|\alpha+m)
+\]</span></p>
+<p>The parameters in the above formula are all vectors, corresponding to
+the multi-dimensional case.</p></li>
+<li><p>Whether it is the Beta distribution or the Dirichlet
+distribution, they both possess an important property, that is, their
+mean can be represented by the ratio of the parameters, for example, for
+the Beta distribution, <span
+class="math inline">\(E(p)=\frac{\alpha}{\alpha+\beta}\)</span> , and
+for the Dirichlet distribution, the mean is a vector corresponding to
+the vector composed of the ratios of the parameters.</p></li>
+</ul>
+<h2 id="dirichlet-analysis">Dirichlet analysis</h2>
+<ul>
+<li>According to the properties of Dirichlet, the ratio of its
+parameters represents a partition on [0,1], determining the locations of
+high probability in the Dirichlet distribution, and the magnitude of the
+parameters determines the proportion of high probability (steepness), as
+shown in the following figure, the polynomial distribution has three
+terms with parameters <span class="math inline">\(p_1,p_2,p_3\)</span> ,
+their sum is 1 and each is greater than zero, and in three-dimensional
+space it forms a triangular face, with each point on the surface
+representing a polynomial distribution; the red area has a high
+probability, and the blue area has a low probability:</li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0orkR.png" alt="i0orkR.png" />
+<figcaption aria-hidden="true">i0orkR.png</figcaption>
+</figure>
+<ul>
+<li>Controlled the mean shape and sparsity of polynomial distribution
+parameters.</li>
+<li>On the far left, the three parameters <span
+class="math inline">\(\alpha _1,\alpha _2,\alpha _3\)</span> of
+Dirichlet are equal, indicating that the red region is centered, and the
+values of the three <span class="math inline">\(\alpha\)</span> are all
+relatively large, with a smaller red region. If the heatmap is viewed as
+a contour plot, this would represent a steeper red region, suggesting
+that Dirichlet is very confident that the parameters of the polynomial
+distribution will be centered. For the parameters <span
+class="math inline">\(p_1,p_2,p_3\)</span> of the three polynomial
+distributions, a larger possibility is that all three p values are
+equal.</li>
+<li>The middle figure, with three <span
+class="math inline">\(\alpha\)</span> not equal, one <span
+class="math inline">\(\alpha\)</span> being larger, causing the red area
+to lean towards one corner of the triangular face, leading to a larger p
+value for one and a higher probability of smaller p values for the other
+two. At this point, the parameter prior acts as a concentration
+parameter, focusing the probability attention on certain terms.</li>
+<li>On the far right, like the far left, the three <span
+class="math inline">\(\alpha\)</span> are equal, the red area is
+centered, but the values of <span class="math inline">\(\alpha\)</span>
+are all smaller, causing the red area to diverge, that is, Dirichlet
+believes that the three p values should be in the center, but is not
+very certain. The result is that there is a difference between the three
+p values, but the difference will not be too great (still near the
+center), and there will not be a very steep situation (the steepest is
+the infinite height at the center, with a probability of 1, so the three
+p values must be the same).</li>
+<li>The ratio of <span class="math inline">\(\alpha\)</span> determines
+the location of high probability in the polynomial distribution, which
+mainly determines the proportions of various <span
+class="math inline">\(p\)</span> , setting the concentration, while the
+size of <span class="math inline">\(\alpha\)</span> determines the
+concentration of this location; the smaller <span
+class="math inline">\(\alpha\)</span> , the more concentrated the
+location, the more certain the distribution of p, whereas the
+distribution of p is roughly determined by the position of the red area,
+but with a larger range of variation.</li>
+<li>When <span class="math inline">\(\alpha\)</span> is much smaller
+than 1, the Dirichlet distribution approaches another extreme. In the
+example of the triangular face, the red region remains steep, but the
+steepness is at the three corners of the triangle. It can be imagined
+that <span class="math inline">\(alpha\)</span> changes from large to 1
+and then decreases, with the high-probability density region gradually
+spreading from the center to the entire face and then concentrating at
+the three corners.</li>
+<li>Intuitive Interpretations of the Parameters The concentration
+parameter Dirichlet distributions are very often used as prior
+distributions in Bayesian inference. The simplest and perhaps most
+common type of Dirichlet prior is the symmetric Dirichlet distribution,
+where all parameters are equal. This corresponds to the case where you
+have no prior information to favor one component over any other. As
+described above, the single value α to which all parameters are set is
+called the concentration parameter. If the sample space of the Dirichlet
+distribution is interpreted as a discrete probability distribution, then
+intuitively the concentration parameter can be thought of as determining
+how "concentrated" the probability mass of a sample from a Dirichlet
+distribution is likely to be. With a value much less than 1, the mass
+will be highly concentrated in a few components, and all the rest will
+have almost no mass. With a value much greater than 1, the mass will be
+dispersed almost equally among all the components. See the article on
+the concentration parameter for further discussion.</li>
+<li>When <span class="math inline">\(\alpha\)</span> is much smaller
+than 1, the probability density will mainly accumulate on one or a few
+terms, that is, the red area is concentrated at the three corners. In
+this case, the polynomial distribution obtained from Dirichlet
+distribution sampling is likely to be at the corners, that is, the
+probability density accumulates on one term, and the probabilities of
+the other two terms are approximately 0. When <span
+class="math inline">\(\alpha\)</span> is much larger than 1, the
+probability density will be dispersed to various parts, which
+corresponds to the leftmost figure in the three figures, and the
+possibility of the probabilities of the three terms being relatively
+similar is greater.</li>
+</ul>
+<h2 id="role-in-lda">Role in LDA</h2>
+<ul>
+<li>Summarizing conjugacy: Given a distribution A, the parameter
+distribution of A (or the distribution of the distribution) is B. If the
+posterior of B, obtained after knowledge of A's data, belongs to the
+same class of distribution as the prior, then A and B are conjugate, and
+B is called the parameter conjugate distribution of A (or the prior
+conjugate). In the example mentioned above, the Beta distribution is the
+parameter conjugate distribution of the binomial distribution, and the
+Dirichlet distribution is the parameter conjugate distribution of the
+multinomial distribution.</li>
+<li>LDA actually models text generation as a probabilistic generative
+model, specifically a three-layer Bayesian model, and assumes that the
+parameters of both the document-topic and topic-word multinomial
+distributions are prior Dirichlet distributions, using
+Dirichlet-Multinomial conjugacy to update its posterior with data
+knowledge.</li>
+<li>To introduce the Dirichlet-Multinomial conjugacy, it is first
+necessary to introduce the Gamma function and its distribution. The
+Gamma function extends the factorial to the real number domain. After
+that, the Beta function, which can estimate the distribution, is
+introduced. With the introduction of the Gamma function, the parameters
+of the Beta distribution can be extended to the real number domain.
+Then, the Beta-Binomial conjugacy is introduced, which brings the
+benefit that the form of the posterior distribution is known when
+correcting with data. By extending this conjugacy relationship to higher
+dimensions (estimating multiple distributions), the
+Dirichlet-Multinomial conjugacy is obtained.</li>
+<li>The benefit of adding Dirichlet distribution as a prior for the
+document-to-topic and topic-to-word polynomial distributions is that by
+treating polynomial parameters as variables, prior information guides
+the range of parameter variation rather than specific values, making the
+model's generalization ability stronger within small training
+samples.</li>
+<li>The size of <span class="math inline">\(\alpha\)</span> in the
+Dirichlet Process reflects the degree of granularity when fitting the
+Base Measure with the Dirichlet distribution; the larger <span
+class="math inline">\(\alpha\)</span> , the less granular, and each term
+receives a fairly similar probability.</li>
+<li>The degree of dispersion corresponds to the LDA model, representing
+whether the document is concentrated on a few topics or distributed
+relatively evenly across all topics, or whether the topics are
+concentrated on a few words or distributed relatively evenly across the
+entire vocabulary.</li>
+</ul>
+<h1 id="gibbs-sampling">Gibbs Sampling</h1>
+<h2 id="random-simulation">Random Simulation</h2>
+<ul>
+<li>Monte Carlo method, used for known distributions, involves
+generating a series of random samples that satisfy this distribution and
+using the statistics of these samples to estimate some parameters of the
+original distribution that are not easily analytically computed.</li>
+<li>Markov refers to a method of generating random samples where the
+process depends on the properties of Markov chains. By constructing the
+transition matrix of the Markov chain, it is possible to produce a
+sequence of samples that satisfy a given distribution when the Markov
+chain converges.</li>
+<li>A method of MCMC is random sampling, which calculates the acceptance
+rate using the known distribution and only accepts a portion of the
+samples. Gibbs sampling is an MCMC method with an acceptance rate of 1.
+It improves the acceptance rate but extends the sampling process.</li>
+</ul>
+<h2 id="mars-chain">Mars Chain</h2>
+<ul>
+<li>Markov chain refers to a state transition where the probability
+depends only on the previous state</li>
+<li>Because the transition probability only depends on the previous
+state, the state transition probabilities can be written as a transition
+probability matrix. The probability distribution of each state after n
+transitions is the result obtained by multiplying the initial state
+probability distribution vector by the nth power of the matrix</li>
+<li>The matrix power remains constant after a certain number of
+iterations, meaning each row converges to the same probability
+distribution, and the initial probability transition also converges to
+the same distribution after sufficient iterations</li>
+<li>On the Definition of the Convergence of Markov Chains
+<ul>
+<li>If a non-periodic Markov chain has a transition probability matrix P
+(which may have infinitely many states), and any two states are
+connected (any two states can be reached through a finite number of
+transitions), then <span class="math inline">\(lim_{n \rightarrow
+\infty}P_{ij}^n\)</span> exists and is independent of <span
+class="math inline">\(i\)</span> , and this convergent matrix is denoted
+as <span class="math inline">\(\pi(j)\)</span></li>
+<li><span class="math inline">\(\pi (j)=\sum _{i=0}^{\infty} \pi (i)
+P_{ij}\)</span></li>
+<li><span class="math inline">\(\pi\)</span> is the unique non-negative
+solution of equation <span class="math inline">\(\pi P =
+\pi\)</span></li>
+<li>Stable Distribution Called the Markov Chain</li>
+</ul></li>
+</ul>
+<h2 id="markov-chain-monte-carlo">Markov Chain Monte Carlo</h2>
+<ul>
+<li><p>Returning to random generation, for a given probability
+distribution, we hope to generate the corresponding samples. An idea is
+to construct a Markov chain whose stationary distribution is exactly
+this probability distribution: because when the Markov chain converges,
+its stationary distribution is the probability distribution of each
+state. After convergence, regardless of how long a state sequence is
+generated through state transitions, the distribution of states in this
+sequence maintains the stationary distribution. If the stationary
+distribution is the probability distribution to be generated, then the
+state sequence is a random sample sequence under the given probability
+distribution.</p></li>
+<li><p>Therefore, the issue is how to construct the state transition
+matrix of a Markov chain given a stationary distribution. It mainly
+utilizes the detailed stationary condition of non-periodic Markov
+chains: if <span class="math inline">\(\pi(i)P_{ij}=\pi(j)P_{ij} \quad
+for \quad all \quad i,j\)</span> , then <span
+class="math inline">\(\pi(x)\)</span> is the stationary distribution of
+the Markov chain. A physical interpretation of this theorem is: if the
+probability mass of state i is stable, then the probability mass of the
+change from state i to state j is exactly complementary to the
+probability mass of the change from state j to state i.</p></li>
+<li><p>The probability of transitioning from state i to state j is
+denoted as <span class="math inline">\(q(i,j)\)</span> . If <span
+class="math inline">\(p(i)q(i,j)=p(j)q(j,i)\)</span> , then <span
+class="math inline">\(p(x)\)</span> is the stationary distribution of
+this Markov chain, and the transition matrix does not need to be
+changed. However, in general, your luck is not that good. In the case of
+knowing <span class="math inline">\(p(x)\)</span> , we need to modify
+<span class="math inline">\(q\)</span> . To do this, we multiply by an
+acceptance rate <span class="math inline">\(\alpha\)</span> , so
+that:</p>
+<p><span class="math display">\[
+p(i)q(i,j)\alpha (i,j)=p(j)q(j,i)\alpha (j,i)
+\]</span></p>
+<p>Why is it called the acceptance rate? Because it can be understood
+that this <span class="math inline">\(\alpha\)</span> is multiplied by a
+probability after the original state transition, representing whether
+this transition is accepted.</p></li>
+<li><p>How to determine the acceptance rate? In fact, it is self-evident
+<span class="math inline">\(\alpha (i,j)=p(j)q(j,i)\)</span> , symmetric
+construction will suffice.</p></li>
+<li><p>Therefore, after each transition, we sample a variable from a
+uniform distribution, and if the variable is less than the acceptance
+rate, we transition according to the original transition matrix;
+otherwise, we do not transition.</p></li>
+<li><p>Such MCMC sampling algorithms have a problem: we actually did not
+modify the original transition probability matrix q, but calculated the
+acceptance rate based on q to ensure convergence to p. However, the
+acceptance rate may be calculated to be very small, leading to the state
+remaining stationary for a long time and slow convergence. In fact,
+multiplying both sides of the formula <span
+class="math inline">\(p(i)q(i,j)\alpha
+(i,j)=p(j)q(j,i)\alpha(j,i)\)</span> by a multiple does not break the
+detailed balance condition, but the acceptance rate is improved.
+Therefore, it is sufficient to multiply both sides of the acceptance
+rate by a multiple and ensure that the two acceptance rates, after
+doubling, do not exceed 1. The general practice is to multiply the
+larger acceptance rate by 1. At this point, the most common MCMC method
+is obtained: the Metropolis-Hastings algorithm.</p></li>
+</ul>
+<h2 id="gibbs-sampling-1">Gibbs Sampling</h2>
+<ul>
+<li><p>The previous discussion mentioned that MCMC actually does not
+alter the transition probability matrix, thus requiring an acceptance
+rate supplement. Even after scaling, there is always an acceptance rate
+less than 1, which reduces the convergence efficiency. Gibbs sampling
+aims to find a transition matrix Q such that the acceptance rate equals
+1.</p></li>
+<li><p>For the two-dimensional probability distribution <span
+class="math inline">\(p(x,y)\)</span> , it is easy to obtain</p>
+<p><span class="math display">\[
+\begin{aligned}
+p(x_1,y_1)p(y_2|x_1) &amp; =p(x_1)p(y_1|x_1)p(y_2|x_1) \\
+&amp; =p(x_1)p(y_2|x_1)p(y_1|x_1) \\
+&amp; =p(x_1,y_2)p(y_1|x_1) \\
+\end{aligned}
+\]</span></p></li>
+<li><p>From the left-hand side to the final form, this type is very
+similar to the detailed balance condition! In fact, if <span
+class="math inline">\(x=x_1\)</span> is fixed, then <span
+class="math inline">\(p(y|x_1)\)</span> can serve as the transition
+probability between any two different y-values on the line <span
+class="math inline">\(x=x_1\)</span> . And this transition satisfies the
+detailed balance condition. Fixing y yields the same conclusion,
+therefore, between any two points in this two-dimensional plane, we can
+construct a transition probability matrix:</p>
+<ul>
+<li>If two points are on the vertical line <span
+class="math inline">\(x=x_1\)</span> , then <span
+class="math inline">\(Q=p(y|x_1)\)</span></li>
+<li>If two points are on the horizontal line <span
+class="math inline">\(y=y_1\)</span> , then <span
+class="math inline">\(Q=p(x|y_1)\)</span></li>
+<li>If the line connecting two points is neither vertical nor
+horizontal, then applying the transition matrix Q to any two points on
+the plane in such a way satisfies the detailed balance condition; the
+Markov chain on this two-dimensional plane will converge to <span
+class="math inline">\(p(x,y)\)</span> .</li>
+</ul></li>
+<li><p>After Gibbs sampling yields a new x dimension, the calculation of
+the new y dimension depends on the new x dimension because it is based
+on the previously selected coordinate axis transformation; otherwise, it
+cannot jump to the new state <span
+class="math inline">\((x_2,y_2)\)</span> . What you actually get is
+<span class="math inline">\((x_1,y_2)\)</span> and <span
+class="math inline">\((x_2,y_1)\)</span> .</p></li>
+<li><p>Therefore, given a two-dimensional probability distribution, the
+transition probabilities along the horizontal or vertical directions
+satisfying the detailed balance condition on this plane can be
+calculated. Starting from any state on the plane, a single transition
+only changes the abscissa or ordinate, that is, it moves horizontally or
+vertically. From the formula of the detailed balance condition, it can
+be seen that this balance is transitive; if the transition in one
+dimension satisfies the balance condition and is followed by another
+dimension, then the equivalent single transition of the two transitions
+is also balanced.</p></li>
+<li><p>After all dimensions have been transferred once, a new sample is
+obtained. The sample sequence formed after the Markov chain converges is
+the random sample sequence we need. The state transition can be a cyclic
+transformation of the coordinate axes, i.e., this time horizontal
+transformation, next time vertical transformation, or it can be randomly
+selected each time. Although randomly selecting the coordinate axis each
+time will result in different new dimension values calculated in the
+middle, the stationary condition is not broken, and it can eventually
+converge to the same given distribution.</p></li>
+<li><p>Similarly, the aforementioned algorithm can be generalized to
+multi-dimensional spaces. When generalized to multi-dimensional spaces,
+the transition probability constructed on the <span
+class="math inline">\(x\)</span> axis is <span
+class="math inline">\(Q=p(x|¬ x)\)</span> . It is noteworthy that the
+sampling samples obtained from the above method are not mutually
+independent, but only conform to the given probability
+distribution.</p></li>
+</ul>
+<h2 id="role-in-lda-1">Role in LDA</h2>
+<ul>
+<li>Firstly, it is clear that the MCMC method is used to generate
+samples from a known distribution, but Gibbs sampling only requires the
+use of complete conditional probabilities, generating samples that
+satisfy the joint distribution, unlike general sampling methods that
+directly sample from the joint distribution</li>
+<li>Gibbs sampling has this characteristic that allows it to infer
+parameters without knowing the joint probability, and further derive the
+joint probability distribution</li>
+<li>However, in LDA, Gibbs sampling is not used to directly infer
+parameters, but rather to approximate the posterior, completing the step
+of updating the prior with data knowledge. Moreover, since LDA has the
+hidden variable of topics, the joint distribution of Gibbs sampling is
+not the topic distribution of documents or the word distribution of
+topics, and is not directly linked to the parameters of the LDA model.
+Gibbs sampling in LDA samples the topic assignment of tokens, i.e., the
+distribution of the hidden variables.</li>
+<li>However, after all token themes are assigned, the parameters of the
+LDA model are determined, and two multinomial distributions (parameters)
+can be obtained through classical probability (maximum likelihood
+estimation), and the corresponding Dirichlet distribution (posterior
+distribution of parameters) is also updated. Moreover, since the
+document-word matrix is decomposed into themes, in fact, we do not need
+to maintain the <span class="math inline">\(Document \* word\)</span>
+matrix, but rather maintain the <span class="math inline">\(Document \*
+topic + topic \* word\)</span> matrix.</li>
+<li>Gibbs sampling word topic assignment is actually calculating the
+posterior distribution of latent variables, thereby obtaining the
+posterior distribution of parameters.</li>
+<li>In Gibbs sampling, parameters are continuously updated, for
+instance, if the update in this iteration is <span
+class="math inline">\(p(x_1^{t+1})=p(x_1|x_2^t,x_3^t)\)</span> , the
+next iteration becomes <span
+class="math inline">\(p(x_2^{t+1})=p(x_2|x_1^{t+1},x_3^t)\)</span> ,
+using the updated <span class="math inline">\(x_1^{t+1}\)</span> for
+calculation. In LDA, this process is achieved by updating the topic of
+the sampled word. In Bayesian inference, data is divided into batches,
+and the posterior updates the prior in an iterative manner, which is
+further refined to each coordinate update in Gibbs sampling.</li>
+<li>The Gibbs sampling formula can be seen below, which can be
+interpreted as determining one's own theme distribution based on the
+thematic distribution of other words, and iteratively updating the
+thematic distribution of all words; how to determine it includes two
+parts, which are similar to the information provided by tf and idf.</li>
+<li>When calculating the posterior distribution of topic assignments
+based on the sampling formula, we do not directly obtain the posterior
+distribution of the parameters. However, after sampling new topics based
+on the posterior distribution of topic assignments and updating the
+statistics, since the Gibbs sampling formula itself includes the
+statistics, this is equivalent to completing the calculation of the
+posterior and updating the prior with a single step. Alternatively, it
+can also be understood that in LDA, we are always performing Bayesian
+inference on the distribution of topic assignments (latent variables),
+i.e., <span class="math inline">\(p(topic|word,doc)\)</span> , and after
+completing this, performing a maximum likelihood estimation (classical
+type) based on the topic assignments allows us to obtain the parameters
+of the model.</li>
+</ul>
+<h1 id="text-modeling">Text Modeling</h1>
+<ul>
+<li>Next, we discuss how to perform probabilistic modeling on text. The
+basic idea is that we assume all words in a document are generated
+according to a pre-set probability distribution, and we aim to find this
+probability distribution. Specifically, this is divided into the
+following two tasks:
+<ul>
+<li>What is the model like?</li>
+<li>What is the generation probability of each word or the model
+parameters?</li>
+</ul></li>
+</ul>
+<h2 id="unigram-model">Unigram model</h2>
+<ul>
+<li><p>What is the model like? The traditional unigram model, also known
+as the one-gram model, assumes that the generation of words is
+independent of each other; documents and words are independently
+exchangeable, regardless of order, as if all words are placed in a bag
+and a word is taken out each time according to a probability
+distribution, hence also known as the bag-of-words (BoW) model. The
+parameters of the bag-of-words model are the generation probabilities of
+each word, and the frequentist view holds that generation probabilities
+can be determined through word frequency statistics.</p></li>
+<li><p>Here introduces a Bayesian framework for unigrams, laying the
+groundwork for the derivation of the two-layer Bayesian framework for
+LDA in the following text. The Bayesian school believes that the
+generation of words is not only one layer: there are many kinds of
+probability distributions for word probabilities, and the probability
+distribution itself also follows a probability distribution, as if God
+has many dice, he picks one die and throws it again, generating a
+word.</p></li>
+<li><p>That is, the next document of the Unigram model is just a bag of
+words, with the generation of these words following a distribution,
+denoted as <span class="math inline">\(\mathop{p}^{\rightarrow}\)</span>
+, and the distribution of word generation itself also follows a
+distribution, denoted as <span
+class="math inline">\(p(\mathop{p}^{\rightarrow})\)</span> . Translated
+into mathematical formulas, the above two distributions represent the
+generation probability of a document:</p>
+<p><span class="math display">\[
+p(W)=\int
+p(W|\mathop{p}^{\rightarrow})p(\mathop{p}^{\rightarrow})d\mathop{p}^{\rightarrow}
+\]</span></p></li>
+<li><p>In the view of the Bayesian school, we should first assume a
+prior distribution, and then correct it using training data. Here, we
+need to assume <span
+class="math inline">\(p(\mathop{p}^{\rightarrow})\)</span> , which is
+the prior of the distribution, and what is the training data? It is the
+word frequency distribution extracted from the corpus. Assuming <span
+class="math inline">\(\mathop{n}^{\rightarrow}\)</span> is the word
+frequency sequence of all words, then this sequence satisfies the
+multinomial distribution:</p>
+<p><span class="math display">\[
+\begin{aligned}
+p(\mathop{n}^{\rightarrow}) &amp;=
+Mult(\mathop{n}^{\rightarrow}|\mathop{p}^{\rightarrow},N) \\
+&amp;= C_N ^{\mathop{n}^{\rightarrow}} \prod_{k=1}^V p_k^{n_k} \\
+\end{aligned}
+\]</span></p></li>
+<li><p>Since the training data satisfies multiple distributions, we
+naturally want to utilize the Dirichlet-Multinomial conjugacy, thus
+assuming the prior distribution of <span
+class="math inline">\(p(\mathop{p}^{\rightarrow})\)</span> to be the
+Dirichlet distribution:</p>
+<p><span class="math display">\[
+Dir(\mathop{p}^{\rightarrow}|\mathop{\alpha}^{\rightarrow})=\frac{1}{\int
+\prod_{k=1}^V p_k^{\alpha _k -1}d\mathop{p}^{\rightarrow}} \prod_{k=1}^V
+p_k^{\alpha _k -1}
+\]</span></p>
+<p><span class="math inline">\(V\)</span> is the size of the corpus
+dictionary, and the parameters <span
+class="math inline">\(\alpha\)</span> of the Dirichlet distribution need
+to be set manually. After that, the posterior distribution of <span
+class="math inline">\(p(\mathop{p}^{\rightarrow})\)</span> is obtained
+based on the conjugate after data correction:</p>
+<p><span class="math display">\[
+\begin{aligned}
+p(\mathop{p}^{\rightarrow}|W,\mathop{\alpha}^{\rightarrow}) &amp;=
+Dir(\mathop{p}^{\rightarrow}|\mathop{\alpha}^{\rightarrow})+MultCount(\mathop{n}^{\rightarrow})
+\\
+&amp;=
+Dir(\mathop{p}^{\rightarrow}|\mathop{\alpha}^{\rightarrow}+\mathop{n}^{\rightarrow})
+\\
+\end{aligned}
+\]</span></p></li>
+<li><p>After obtaining the posterior, one can use maximum likelihood
+estimation or mean estimation to calculate <span
+class="math inline">\(\mathop{p}^{\rightarrow}\)</span> , here we use
+the mean of the Dirichlet distribution from the posterior to estimate,
+combining the previously mentioned properties of the Dirichlet
+distribution, we have:</p>
+<p><span class="math display">\[
+\mathop{p_i}^{~}=\frac{n_i+\alpha _i}{\sum _{i=1}^{V} (n_i+\alpha _i)}
+\]</span></p>
+<p>The physical interpretation of this formula: Unlike the general use
+of word frequency as an estimate, we first assume the word frequency
+(i.e., the prior pseudo-count <span class="math inline">\(\alpha
+_i\)</span> ), then add the word frequency given by the data <span
+class="math inline">\(n_i\)</span> , and normalize it as a
+probability.</p></li>
+<li><p>Now that the probability distribution of word generation <span
+class="math inline">\(\mathop{p}^{\rightarrow}\)</span> has been
+obtained, the generation probability of documents under this
+distribution is obviously:</p>
+<p><span class="math display">\[
+p(W|\mathop{p}^{\rightarrow})=\prod _{k=1}^V p_k^{n_k}
+\]</span></p>
+<p>The distribution of word generation probabilities, by bringing the
+conditional generation probability of documents under the word
+generation distribution into the previously mentioned document
+probability integral formula, yields the generation probability of the
+document under all distribution scenarios. Substituting and simplifying
+it results in a very nice formula.</p>
+<p><span class="math display">\[
+p(W|\mathop{\alpha}^{\rightarrow})=\frac{\Delta(\mathop{\alpha}^{\rightarrow}+\mathop{n}^{\rightarrow})}{\Delta(\mathop{\alpha}^{\rightarrow})}
+\]</span></p>
+<p><span class="math inline">\(\Delta\)</span> is the normalization
+factor:</p>
+<p><span class="math display">\[
+\Delta(\mathop{\alpha}^{\rightarrow})=\int \prod _{k=1}^V p_k^{\alpha _k
+-1}d\mathop{p}^{\rightarrow}
+\]</span></p></li>
+</ul>
+<h2 id="plsa-model">PLSA model</h2>
+<ul>
+<li>PLSA, or Probabilistic Latent Semantic Analysis model, posits that
+there exists an implicit thematic hierarchy between documents and words.
+Documents contain multiple themes, each corresponding to a distribution
+of words. When generating words, the model first selects a theme and
+then selects words from within that theme to generate them (in actual
+computation, it is the probability summation of each theme).</li>
+<li>Compared to the unigram model without Bayes, PLSA adds an additional
+layer of topics between documents and words.</li>
+<li>PLSA does not introduce Bayesian, it is just a model containing
+latent variables, performing maximum likelihood estimation, so the
+parameters can be iteratively learned using the EM algorithm, and the
+specific calculations are omitted here.</li>
+</ul>
+<h2 id="role-in-lda-2">Role in LDA</h2>
+<ul>
+<li>Now, let's organize, the Unigram model mainly includes two parts
+<ul>
+<li>Word Generation Probability Distribution</li>
+<li>Parameter Distribution of Word Generation Probability
+Distribution</li>
+</ul></li>
+<li>PLSA model mainly consists of two parts
+<ul>
+<li>Word Generation Probability Distribution</li>
+<li>Subject Generation Probability Distribution</li>
+</ul></li>
+<li>The Unigram model exhibits the distribution of the distribution,
+which is the significance of introducing parameter priors for the word
+distribution: making the word distribution a variable, turning the
+selection of a word from rolling a die into first selecting a die, and
+then rolling it to choose a word. Whether the introduction of priors is
+actually useful is a topic of contention between the Bayesian school and
+the frequentist school.</li>
+<li>PLSA model provides a very intuitive modeling for human language
+generation, introducing topics as implicit semantics, and defining the
+distribution of topic representative words, viewing articles as a
+mixture of topics.</li>
+</ul>
+<h1 id="lda-text-modeling">LDA text modeling</h1>
+<h2 id="model-overview">Model Overview</h2>
+<ul>
+<li>LDA integrates the advantages of Unigram and PLSA, adding Dirichlet
+prior assumptions for the word and topic dice respectively
+<ul>
+<li>Word Generation Probability Distribution (Temporarily Noted as
+A)</li>
+<li>Parameter Distribution of Word Generation Probability Distribution
+(temporarily noted as B)</li>
+<li>Subject Generation Probability Distribution (Temporarily Noted as
+C)</li>
+<li>Parameter Distribution of the Probability Distribution of Topic
+Generation (temporarily denoted as D)</li>
+</ul></li>
+<li>It is easy for beginners to confuse that the topic generation
+probability distribution is not the parameter distribution of the word
+generation probability distribution; one must distinguish the
+hierarchical relationship in the LDA model from the conjugate
+relationships within each level. Additionally, the relationship between
+topics and words is not one-to-many; they are many-to-many. In fact, in
+the LDA model, a document is generated in this way (assuming there are K
+topics):
+<ul>
+<li>Sample K from the A distribution under the condition of the B
+distribution</li>
+<li>For each document, a C distribution is obtained by drawing under the
+condition of the D distribution, and the following process is repeated
+to generate words:
+<ul>
+<li>From a C distribution, a topic z is sampled</li>
+<li>From the z-th A distribution, a word is sampled</li>
+</ul></li>
+</ul></li>
+<li>Assuming there are <span class="math inline">\(m\)</span> documents,
+<span class="math inline">\(n\)</span> words, and <span
+class="math inline">\(k\)</span> topics, then <span
+class="math inline">\(D+C\)</span> is <span
+class="math inline">\(m\)</span> independent Dirichlet-Multinomial
+conjugates, and <span class="math inline">\(B+A\)</span> is <span
+class="math inline">\(k\)</span> independent Dirichlet-Multinomial
+conjugates. The two Dirichlet parameters are a k-dimensional vector (
+<span class="math inline">\(\alpha\)</span> ) and an n-dimensional
+vector ( <span class="math inline">\(\beta\)</span> ). Now we can
+understand the illustration at the beginning of this paper, where we
+express the symbols in their actual meanings, corresponding to the title
+illustration. This illustration actually describes these <span
+class="math inline">\(m+k\)</span> independent Dirichlet-Multinomial
+conjugates in LDA:</li>
+</ul>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0oGYq.png"
+alt="i0oGYq.png" /> <img data-src="https://s1.ax1x.com/2018/10/20/i0oJf0.jpg"
+alt="i0oJf0.jpg" /></p>
+<h2 id="establish-distribution">Establish distribution</h2>
+<ul>
+<li><p>Now we can model the LDA topic model with <span
+class="math inline">\(m+k\)</span> Dirichlet-Multinomial conjugate
+pairs, drawing on the final document generation distribution derived
+from the derivation of the Unigram model, we can separately
+calculate:</p>
+<p><span class="math display">\[
+\begin{aligned}
+p(\mathop{z}^{\rightarrow}|\mathop{\alpha}^{\rightarrow}) = \prod
+_{m=1}^M
+\frac{\Delta(\mathop{n_m}^{\rightarrow}+\mathop{\alpha}^{\rightarrow})}{\Delta(\mathop{\alpha}^{\rightarrow})}
+\\
+p(\mathop{w}^{\rightarrow}|\mathop{z}^{\rightarrow},\mathop{\beta}^{\rightarrow})
+= \prod _{k=1}^K
+\frac{\Delta(\mathop{n_k}^{\rightarrow}+\mathop{\beta}^{\rightarrow})}{\Delta(\mathop{\beta}^{\rightarrow})}
+\\
+\end{aligned}
+\]</span></p></li>
+<li><p>The final result is the joint distribution of words and
+topics:</p>
+<p><span class="math display">\[
+p(\mathop{w}^{\rightarrow},\mathop{z}^{\rightarrow}|\mathop{\alpha}^{\rightarrow},\mathop{\beta}^{\rightarrow})
+= \prod _{m=1}^M
+\frac{\Delta(\mathop{n_m}^{\rightarrow}+\mathop{\alpha}^{\rightarrow})}{\Delta(\mathop{\alpha}^{\rightarrow})}
+\prod _{k=1}^K
+\frac{\Delta(\mathop{n_k}^{\rightarrow}+\mathop{\beta}^{\rightarrow})}{\Delta(\mathop{\beta}^{\rightarrow})}
+\]</span></p></li>
+</ul>
+<h2 id="sampling">Sampling</h2>
+<ul>
+<li><p>We mentioned earlier that we estimate model parameters within the
+framework of Bayesian inference, which requires us to obtain the
+posterior probability of topic assignments; here, Gibbs sampling is
+needed to help approximate the posterior</p></li>
+<li><p>According to the definition of Gibbs sampling, we need to sample
+using the fully conditional probability of topic assignments <span
+class="math inline">\(p(z_i=k|\mathop{z_{¬
+i}}^{\rightarrow},\mathop{w}^{\rightarrow})\)</span> , to approximate
+<span class="math inline">\(p(z_i=k|\mathop{w}^{\rightarrow})\)</span> ,
+<span class="math inline">\(z_i\)</span> , which represent the topic of
+the ith word (here the subscript i represents the nth word in the mth
+document), while the vector w represents all the words we are currently
+observing.</p></li>
+<li><p>After establishing the entire probability model, we trained it
+using the following methods: we set the hyperparameters, randomly
+initialized various word frequency statistics (including the number of
+words of topic k in article m, the number of words of vocabulary t
+belonging to topic k, the total number of words in article m, and the
+total number of words in topic k), then sequentially performed Gibbs
+sampling on all words in the corpus, sampled their topics, and assigned
+this topic to the word, and updated the four word frequencies (i.e.,
+using conjugate posterior updates), cyclically sampled until
+convergence, that is, the topic distribution after sampling basically
+conforms to the topic distribution generated by the model under the
+posterior probability, and the data can no longer provide more knowledge
+to the model (no longer updated).</p>
+<ul>
+<li>Gibbs sampling requires restricting a certain dimension, sampling
+according to the conditional probability of the other dimensions, in
+text topic modeling, the dimension is the word, and calculating the
+conditional probability of the other dimensions is to exclude the count
+of the current word and its topic from the four word frequencies.</li>
+<li>After sampling the topic, assign this topic to words, increase the
+frequency counts of four words, if it has converged, then the topic
+before and after sampling is the same, and if the word frequencies have
+not changed, it is equivalent to the posterior not being updated with
+knowledge from the data.</li>
+</ul></li>
+<li><p>Formula Derivation: The following section introduces two
+derivation methods, the first being the derivation based on the
+conjugate relationship as presented in the article "LDA Mathematical
+Mysteries," and the second being the derivation based on the joint
+distribution as described in the article "Parameter Estimation for Text
+Analysis."</p></li>
+<li><p>Based on the conjugation relationship, the following derivation
+is obtained:</p></li>
+<li><p>The object of the sample is the theme corresponding to the word,
+with a probability of:</p>
+<p><span class="math display">\[
+p(z_i=k|\mathop{w}^{\rightarrow})
+\]</span></p></li>
+<li><p>Using Gibbs sampling to sample the topic of a word requires
+calculating conditional probabilities with the topics of other words as
+conditions:</p>
+<p><span class="math display">\[
+p(z_i=k|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w}^{\rightarrow})
+\]</span></p></li>
+<li><p>By Bayes' theorem, this conditional probability is proportional
+to (sampling, we can scale up the probabilities of each sample
+proportionally):</p>
+<p><span class="math display">\[
+p(z_i=k,w_i=t|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w_{¬
+i}}^{\rightarrow})
+\]</span></p></li>
+<li><p>Expand this formula according to thematic distribution and word
+distribution:</p>
+<p><span class="math display">\[
+\int p(z_i=k,w_i=t,\mathop{\vartheta _m}^{\rightarrow},\mathop{\varphi
+_k}^{\rightarrow}|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w_{¬
+i}}^{\rightarrow})d\mathop{\vartheta _m}^{\rightarrow} d\mathop{\varphi
+_k}^{\rightarrow}
+\]</span></p></li>
+<li><p>Since all the conjugates are independent, the above expression
+can be written as:</p>
+<p><span class="math display">\[
+\int p(z_i=k,\mathop{\vartheta _m}^{\rightarrow}|\mathop{z_{¬
+i}}^{\rightarrow},\mathop{w_{¬ i}}^{\rightarrow})p(w_i=t,\mathop{\varphi
+_k}^{\rightarrow}|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w_{¬
+i}}^{\rightarrow})d\mathop{\vartheta _m}^{\rightarrow} d\mathop{\varphi
+_k}^{\rightarrow}
+\]</span></p></li>
+<li><p>The probability chain is decomposed, and since the two
+expressions are respectively related to the topic distribution and the
+word distribution, they can be written as the product of two
+integrals:</p>
+<p><span class="math display">\[
+\int p(z_i=k|\mathop{\vartheta _m}^{\rightarrow})p(\mathop{\vartheta
+_m}^{\rightarrow}|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w_{¬
+i}}^{\rightarrow})d\mathop{\vartheta _m}^{\rightarrow} \cdot \int
+p(w_i=t|\mathop{\varphi _k}^{\rightarrow})p(\mathop{\varphi
+_k}^{\rightarrow}|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w_{¬
+i}}^{\rightarrow})d\mathop{\varphi _k}^{\rightarrow}
+\]</span></p></li>
+<li><p>Given the topic distribution of the mth document and the
+distribution of the kth topic word, we seek the probability of the ith
+word being t and the probability that the ith word corresponds to the
+kth topic, then it is obvious that:</p>
+<p><span class="math display">\[
+p(z_i=k|\mathop{\vartheta _m}^{\rightarrow})=\mathop{\vartheta _{mk}} \\
+p(w_i=t|\mathop{\varphi _k}^{\rightarrow})=\mathop{\varphi _{kt}} \\
+\]</span></p></li>
+<li><p>And according to the conjugate relationship, there is</p>
+<p><span class="math display">\[
+p(\mathop{\vartheta _m}^{\rightarrow}|\mathop{z_{¬
+i}}^{\rightarrow},\mathop{w_{¬ i}}^{\rightarrow})=Dir(\mathop{\vartheta
+_m}^{\rightarrow}|\mathop{n_{m,¬
+i}}^{\rightarrow}+\mathop{\alpha}^{\rightarrow}) \\
+p(\mathop{\varphi _k}^{\rightarrow}|\mathop{z_{¬
+i}}^{\rightarrow},\mathop{w_{¬ i}}^{\rightarrow})=Dir(\mathop{\varphi
+_k}^{\rightarrow}|\mathop{n_{k,¬
+i}}^{\rightarrow}+\mathop{\beta}^{\rightarrow}) \\
+\]</span></p></li>
+<li><p>Therefore, the entire expression can be regarded as the product
+of the k-th and t-th terms of the expected vectors of two Dirichlet
+distributions. According to the properties of Dirichlet previously
+mentioned, it is easy to obtain that these expectations are fractional
+values obtained in proportion to the Dirichlet parameters, so the final
+probability calculation is (note that it is proportional to):</p>
+<p><span class="math display">\[
+p(z_i=k|\mathop{z_{¬
+i}}^{\rightarrow},\mathop{w}^{\rightarrow})∝\frac{n_{m,¬ i}^{(k)}+\alpha
+_k}{\sum _{k=1}^K (n_{m,¬ i}^{(k)}+\alpha _k)} \cdot \frac{n_{k,¬
+i}^{(t)}+\beta _t}{\sum _{t=1}^V (n_{k,¬ i}^{(t)}+\beta _t)}
+\]</span></p></li>
+<li><p>This probability can be understood as (excluding the current i-th
+token):</p>
+<p><span class="math display">\[
+(文档m中主题k所占的比例) * (主题k中词t所占的比例）
+\]</span></p></li>
+<li><p>Observed that the denominator of the first term is the sum of the
+subject, which is actually unrelated to k, therefore it can be written
+as:</p>
+<p><span class="math display">\[
+p(z_i=k|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w}^{\rightarrow})∝
+(n_{m,¬ i}^{(k)}+\alpha _k) \cdot \frac{n_{k,¬ i}^{(t)}+\beta _t}{\sum
+_{t=1}^V (n_{k,¬ i}^{(t)}+\beta _t)}
+\]</span></p></li>
+<li><p>We take another look at how to derive based on the joint
+distribution</p></li>
+<li><p>We have previously obtained the joint distribution of words and
+topics:</p>
+<p><span class="math display">\[
+p(\mathop{w}^{\rightarrow},\mathop{z}^{\rightarrow}|\mathop{\alpha}^{\rightarrow},\mathop{\beta}^{\rightarrow})
+= \prod _{m=1}^M
+\frac{\Delta(\mathop{n_m}^{\rightarrow}+\mathop{\alpha}^{\rightarrow})}{\Delta(\mathop{\alpha}^{\rightarrow})}
+\prod _{k=1}^K
+\frac{\Delta(\mathop{n_k}^{\rightarrow}+\mathop{\beta}^{\rightarrow})}{\Delta(\mathop{\beta}^{\rightarrow})}
+\]</span></p></li>
+<li><p>According to Bayes' formula, there is</p>
+<p><span class="math display">\[
+p(z_i=k|\mathop{z_{¬
+i}}^{\rightarrow},\mathop{w}^{\rightarrow})=\frac{p(\mathop{w}^{\rightarrow},\mathop{z}^{\rightarrow})}{p(\mathop{w}^{\rightarrow},\mathop{z_{¬
+i}}^{\rightarrow})} \\
+=\frac{p(\mathop{w}^{\rightarrow}|\mathop{z}^{\rightarrow})}
+{p(\mathop{w_{¬ i}}^{\rightarrow}|\mathop{z_{¬ i}}^{\rightarrow})p(w_i)}
+\cdot \frac{p(\mathop{z}^{\rightarrow})} {\mathop{p(z_{¬
+i})}^{\rightarrow}} \\
+\]</span></p></li>
+<li><p>Since <span class="math inline">\(p(w_i)\)</span> is an
+observable variable, we omit it, obtaining an expression proportional to
+it. We then express this expression in the form of <span
+class="math inline">\(\Delta\)</span> (fraction divided by fraction, the
+denominators cancel each other out):</p>
+<p><span class="math display">\[
+∝
+\frac{\Delta(\mathop{n_{z}}^{\rightarrow})+\mathop{\beta}^{\rightarrow}}{\Delta(\mathop{n_{z,¬
+i}}^{\rightarrow})+\mathop{\beta}^{\rightarrow}} \cdot
+\frac{\Delta(\mathop{n_{m}}^{\rightarrow})+\mathop{\alpha}^{\rightarrow}}{\Delta(\mathop{n_{m,¬
+i}}^{\rightarrow})+\mathop{\alpha}^{\rightarrow}}
+\]</span></p></li>
+<li><p>By substituting the expression of <span
+class="math inline">\(\Delta\)</span> into the calculation, we can also
+obtain:</p>
+<p><span class="math display">\[
+p(z_i=k|\mathop{z_{¬ i}}^{\rightarrow},\mathop{w}^{\rightarrow})∝
+(n_{m,¬ i}^{(k)}+\alpha _k) \cdot \frac{n_{k,¬ i}^{(t)}+\beta _t}{\sum
+_{t=1}^V (n_{k,¬ i}^{(t)}+\beta _t)}
+\]</span></p></li>
+<li><p>Text Analysis: A Pseudo-Algorithm Diagram of Gibbs Sampling for
+Parameter Estimation</p></li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0oU6U.png" alt="i0oU6U.png" />
+<figcaption aria-hidden="true">i0oU6U.png</figcaption>
+</figure>
+<ul>
+<li><p>It can be seen that the conditional probability is mainly
+calculated by recording four n values (two matrices and two vectors),
+and the topic is also updated by updating four n values for incremental
+updates. The algorithm first assigns initial values by random uniform
+sampling, and then updates the topic according to the sampling formula
+(first subtracting the old topic distribution and then adding the new
+topic distribution), where formula 78 is the <span
+class="math inline">\(p(z_i=k|\mathop{z_{¬
+i}}^{\rightarrow},\mathop{w}^{\rightarrow})\)</span> we calculated
+previously, and formulas 81 and 82 are the <span
+class="math inline">\(\mathop{\vartheta _{mk}},\mathop{\varphi
+_{kt}}\)</span> . We can directly obtain them from the four n values,
+without considering the <span class="math inline">\(¬ i\)</span>
+condition during sampling, specifically:</p>
+<p><span class="math display">\[
+\mathop{\vartheta _{mk}} = \frac{n_{m}^{(k)}+\alpha _k}{\sum _{k=1}^K
+(n_{m}^{(t)}+\alpha _k)} \\
+\mathop{\varphi _{kt}} = \frac{n_{k}^{(t)}+\beta _t}{\sum _{t=1}^V
+(n_{k}^{(t)}+\beta _t)}
+\]</span></p></li>
+</ul>
+<h2 id="training-and-testing">Training and Testing</h2>
+<ul>
+<li>Next, we train the LDA model, first randomly initializing the
+Dirichlet parameters (prior), then using text to supplement data
+knowledge, and finally obtaining the correct posterior. The training
+process is iterative:
+<ul>
+<li>Iterate what? Sample and update the themes corresponding to the
+words</li>
+<li>What iteration? The complete conditional probability of Gibbs
+sampling</li>
+<li>Iterative effects? Changes in topic allocation, changes in
+statistics, and changes in the fully conditional probability for the
+next Gibbs sampling</li>
+<li>When to iterate? Gibbs sampling converges, i.e., the distribution of
+topics stabilizes and remains unchanged over a certain time interval, or
+the degree of model convergence is measured according to perplexity and
+other indicators.</li>
+</ul></li>
+<li>The difference between training and testing lies in that training
+involves sampling and updating the entire document collection, with both
+document-to-topic and topic-to-word distributions being updated, whereas
+testing retains the topic-to-word distribution unchanged, only sampling
+the current test document to convergence to obtain the topic
+distribution of that document.</li>
+<li>In fact, the two hyperparameters <span
+class="math inline">\(\alpha\)</span> and <span
+class="math inline">\(\beta\)</span> have undergone many iterations of
+posterior substitution for prior after training, with the parameter
+values becoming very large. <span class="math inline">\(\alpha\)</span>
+discarded the final posterior result, and re-used the initial prior
+values when generating the topic distribution for new documents. This
+means that the document-to-topic distributions obtained during the
+training set are actually not usable when testing new documents. We
+utilize the topic-to-word distribution: because only the set of topics
+is for the entire document space (training set and test set), the
+topic-to-word distribution is also established on the dictionary of the
+entire document space. We retain the final posterior results for these k
+<span class="math inline">\(\beta\)</span> vectors because this
+posterior has absorbed the likelihood knowledge of the data, resulting
+in large parameter values and small uncertainty. Essentially, each <span
+class="math inline">\(\beta\)</span> vector is equivalent to determining
+a polynomial distribution from a topic to words, which is to say
+determining a topic. We use these determined topics to test the
+distribution of a new document across various topics. Therefore, when
+testing new documents, the parameter <span
+class="math inline">\(\alpha\)</span> is generally set to be symmetric,
+i.e., with equal components (without prior preference for any particular
+topic), and with small values (i.e., high uncertainty; otherwise, the
+generated topic distribution would be uniform), which is analogous to
+the idea of maximum entropy. The test is conducted by using known fixed
+topics to obtain the document-to-topic distribution.</li>
+<li>LDA training is actually an unparameterized Bayesian inference,
+which can be implemented using MCMC and non-MCMC methods. Among the MCMC
+methods, Gibbs sampling is often used, while non-MCMC methods can employ
+variational inference and other iterative approaches to obtain
+parameters.</li>
+</ul>
+<h1 id="lda-in-gensim">LDA in Gensim</h1>
+<ul>
+<li>Gensim's LDA provides several parameters, among which the default
+value for <span class="math inline">\(\alpha\)</span> is as follows:
+<blockquote>
+<p>
+alpha ({numpy.ndarray, str}, optional) – Can be set to an 1D array of
+length equal to the number of expected topics that expresses our
+a-priori belief for the each topics’ probability. Alternatively, default
+prior selecting strategies can be employed by supplying a string:
+'asymmetric': Uses a fixed normalized asymmetric prior of 1.0 / topicno.
+'default': Learns an asymmetric prior from the corpus.
+</p>
+<footer>
+<strong>Gensim</strong><cite><a target="_blank" rel="noopener" href="https://radimrehurek.com/gensim/models/ldamodel.html">models.ldamodel
+– Latent Dirichlet Allocation</a></cite>
+</footer>
+</blockquote></li>
+<li>gensim does not expose <span class="math inline">\(\beta\)</span> to
+users; users can only set <span class="math inline">\(\alpha\)</span> ,
+which can be customized and can also be set as symmetric or asymmetric.
+The symmetric setting means all are 1, while the asymmetric setting fits
+the Zipf law (?), and it is possible that <span
+class="math inline">\(\beta\)</span> has an asymmetric default
+setting.</li>
+</ul>
+<h1 id="more">More</h1>
+<ul>
+<li><p>Parameter estimation for text analysis points out that hidden
+topics actually come from high-order co-occurrence relationships between
+words</p></li>
+<li><p>LDA is used for document query, where LDA is trained on
+candidates, and a test is conducted each time a new query is
+received</p>
+<ul>
+<li><p>Based on a similarity ranking method, the similarity between the
+topic distribution of candidates and queries is calculated using JS
+distance or KL divergence, and then sorted</p></li>
+<li><p>Based on the Predictive likelihood ranking method, calculate the
+probability of each candidate appearing for a given query, based on
+thematic decomposition of topic z:</p>
+<p><span class="math display">\[
+\begin{aligned}
+p\left(\vec{w}_{m} | \tilde{\vec{w}}_{\tilde{m}}\right)
+&amp;=\sum_{k=1}^{K} p\left(\vec{w}_{m} | z=k\right) p\left(z=k |
+\tilde{\vec{w}}_{\tilde{m}}\right) \\
+&amp;=\sum_{k=1}^{K} \frac{p\left(z=k | \vec{w}_{m}\right)
+p\left(\vec{w}_{m}\right)}{p(z=k)} p\left(z=k |
+\tilde{\vec{w}}_{\tilde{m}}\right) \\
+&amp;=\sum_{k=1}^{K} \vartheta_{m, k} \frac{n_{m}}{n_{k}}
+\vartheta_{\tilde{m}, k}
+\end{aligned}
+\]</span></p></li>
+</ul></li>
+<li><p>LDA for clustering</p>
+<ul>
+<li>In fact, the distribution of topics is a soft clustering division of
+documents. If each document is assigned to the topic with the highest
+probability, that would be a hard division.</li>
+<li>Or use topic distribution as the feature vector of the document and
+then further cluster using various clustering algorithms</li>
+<li>Evaluation of clustering results can utilize a known clustering
+partitioning result as a reference, and assess using the Variation of
+Information distance</li>
+</ul></li>
+<li><p>LDA evaluation metrics, perplexity, defined as the reciprocal
+geometric mean of the likelihood measured on the validation set:</p>
+<p><span class="math display">\[
+\mathrm{P}(\tilde{\boldsymbol{W}} | \boldsymbol{M})=\prod_{m=1}^{M}
+p\left(\tilde{\vec{w}}_{\tilde{m}} |
+\mathcal{M}\right)^{-\frac{1}{N}}=\exp -\frac{\sum_{m=1}^{M} \log
+p\left(\tilde{\bar{w}}_{\tilde{m}} | \mathcal{M}\right)}{\sum_{m=1}^{M}
+N_{m}}
+\]</span></p></li>
+<li><p>Assuming the distribution of the validation set and the training
+set is consistent, a high perplexity of LDA on the validation set
+indicates a larger entropy, greater uncertainty, and that the model has
+not yet learned a stable parameter.</p></li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="lda用来做什么">LDA用来做什么</h1>
 <ul>
 <li>LDA是一种主题模型，问题实际上是主题模型是用来做什么？用来表示文档
 。在这里将文档看成一个词袋。</li>
@@ -636,9 +2038,12 @@ class="math inline">\(\alpha\)</span>越小，位置越集中，p的分布越确
 class="math inline">\(\alpha\)</span>远小于1时，Dirichelt分布会走向另一个极端，在上面这个三角面的例子里，红色区域依然会陡峭，但是陡峭在三角面的三个角上，可以想成<span
 class="math inline">\(alpha\)</span>从大变到1，再变小，大概率密度区域从最中间慢慢分散到整个面，然后又聚集在三个角。</li>
 <li>再来看看维基百科中关于Dirichlet参数<span
-class="math inline">\(\alpha\)</span>的描述： <blockquote><p>The concentration parameter Dirichlet distributions are very often
-used as prior distributions in Bayesian inference. The simplest and
-perhaps most common type of Dirichlet prior is the symmetric Dirichlet
+class="math inline">\(\alpha\)</span>的描述：
+<blockquote>
+<p>
+The concentration parameter Dirichlet distributions are very often used
+as prior distributions in Bayesian inference. The simplest and perhaps
+most common type of Dirichlet prior is the symmetric Dirichlet
 distribution, where all parameters are equal. This corresponds to the
 case where you have no prior information to favor one component over any
 other. As described above, the single value α to which all parameters
@@ -651,8 +2056,13 @@ less than 1, the mass will be highly concentrated in a few components,
 and all the rest will have almost no mass. With a value much greater
 than 1, the mass will be dispersed almost equally among all the
 components. See the article on the concentration parameter for further
-discussion.</p>
-<footer><strong>Dirichlet_distribution</strong><cite><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dirichlet_distribution#Intuitive_interpretations_of_the_parameters">Intuitive interpretations of the parameters</a></cite></footer></blockquote></li>
+discussion.
+</p>
+<footer>
+<strong>Dirichlet_distribution</strong><cite><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dirichlet_distribution#Intuitive_interpretations_of_the_parameters">Intuitive
+interpretations of the parameters</a></cite>
+</footer>
+</blockquote></li>
 <li>当<span
 class="math inline">\(\alpha\)</span>远小于1时，概率密度会主要堆积在一个或少数几个项上，也就是红色区域聚集在三个角的情况，这时Dirichlet分布抽样得到的多项式分布大概率在角上，也就是概率密度堆积在一个项上，其余两个项概率近似为0。<span
 class="math inline">\(\alpha\)</span>远大于1时，概率密度会分散到各个部分，就是对应三图中最左边的图，三个项概率相差不大的可能性比较大。</li>
@@ -1097,13 +2507,21 @@ class="math inline">\(\alpha\)</span>一般设置为对称的，即各个分量�
 <h1 id="lda-in-gensim">LDA in Gensim</h1>
 <ul>
 <li>Gensim中的LDA提供了几个参数，其中<span
-class="math inline">\(\alpha\)</span>的默认值如下： <blockquote><p>alpha ({numpy.ndarray, str}, optional) – Can be set to an 1D array of
+class="math inline">\(\alpha\)</span>的默认值如下：
+<blockquote>
+<p>
+alpha ({numpy.ndarray, str}, optional) – Can be set to an 1D array of
 length equal to the number of expected topics that expresses our
 a-priori belief for the each topics’ probability. Alternatively default
 prior selecting strategies can be employed by supplying a string:
 ’asymmetric’: Uses a fixed normalized asymmetric prior of 1.0 / topicno.
-’default’: Learns an asymmetric prior from the corpus.</p>
-<footer><strong>Gensim</strong><cite><a target="_blank" rel="noopener" href="https://radimrehurek.com/gensim/models/ldamodel.html">models.ldamodel – Latent Dirichlet Allocation</a></cite></footer></blockquote></li>
+’default’: Learns an asymmetric prior from the corpus.
+</p>
+<footer>
+<strong>Gensim</strong><cite><a target="_blank" rel="noopener" href="https://radimrehurek.com/gensim/models/ldamodel.html">models.ldamodel
+– Latent Dirichlet Allocation</a></cite>
+</footer>
+</blockquote></li>
 <li>gensim中没有暴露<span
 class="math inline">\(\beta\)</span>给用户，用户只能设置<span
 class="math inline">\(\alpha\)</span>，可以自定义，也可以设置对称或者不对称。其中对称设置即全为1，不对称设置则拟合了zipf
@@ -1154,6 +2572,23 @@ N_{m}}
 \]</span></p></li>
 <li><p>假定验证集和训练集分布一致，那么LDA在验证集上的困惑度高，代表熵越大，不确定性大，模型还没有学到一个稳定的参数。</p></li>
 </ul>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
 
     </div>
 
@@ -1165,8 +2600,8 @@ N_{m}}
           <div class="post-tags">
               <a href="/tags/math/" rel="tag"># math</a>
               <a href="/tags/topic-model/" rel="tag"># topic model</a>
-              <a href="/tags/mcmc/" rel="tag"># mcmc</a>
               <a href="/tags/lda/" rel="tag"># lda</a>
+              <a href="/tags/mcmc/" rel="tag"># mcmc</a>
           </div>
 
         
@@ -1219,13 +2654,13 @@ N_{m}}
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">782k</span>
+    <span title="Word count total">1.1m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:51</span>
+    <span title="Reading time total">16:35</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>

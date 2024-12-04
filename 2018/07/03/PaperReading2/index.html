@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="分散注意力机制 外部信息注意力 指针复制网络PGNet 基于RNN的抽取式摘要 Transformer 选择门机制">
+    <meta name="description" content="Distractor Mechanism External Information Attention Pointer Copy Network PGNet Extractive Summary Based on RNN Transformer Selection gate mechanism">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Paper Reading 2">
 <meta property="og:url" content="https://thinkwee.top/2018/07/03/PaperReading2/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="分散注意力机制 外部信息注意力 指针复制网络PGNet 基于RNN的抽取式摘要 Transformer 选择门机制">
+<meta property="og:description" content="Distractor Mechanism External Information Attention Pointer Copy Network PGNet Extractive Summary Based on RNN Transformer Selection gate mechanism">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0o47d.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oh0H.png">
@@ -37,12 +37,22 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oXng.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TSNn.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/11/15/ivQCE8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oh0H.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oLjS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oIAA.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0ootI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oTht.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0ob1f.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oqc8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oXng.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TSNn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/15/ivQCE8.png">
 <meta property="article:published_time" content="2018-07-03T07:18:52.000Z">
-<meta property="article:modified_time" content="2024-06-03T07:41:19.392Z">
+<meta property="article:modified_time" content="2024-12-04T11:53:24.657Z">
 <meta property="article:author" content="Thinkwee">
-<meta property="article:tag" content="abstractive summarization">
-<meta property="article:tag" content="math">
 <meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="abstractive summarization">
 <meta property="article:tag" content="theory">
 <meta property="article:tag" content="nlp">
 <meta name="twitter:card" content="summary">
@@ -107,7 +117,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -161,9 +171,15 @@
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#distraction-based-neural-networks-for-document-summarization"><span class="nav-number">1.</span> <span class="nav-text">Distraction-Based
 Neural Networks for Document Summarization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#document-modeling-with-external-attention-for-sentence-extraction"><span class="nav-number">2.</span> <span class="nav-text">Document
 Modeling with External Attention for Sentence Extraction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#get-to-the-point-summarization-with-pointer-generator-networks"><span class="nav-number">3.</span> <span class="nav-text">Get
-To The Point: Summarization with Pointer-Generator Networks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#summarunner-a-recurrent-neural-network-based-sequence-model-for-extractive-summarization-of-documents"><span class="nav-number">4.</span> <span class="nav-text">SummaRuNNer
+To The Point: Summarization with Pointer-Generator Networks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#summarunner-a-recurrent-neural-network-based-sequence-model-for-extractive-summarization-of-documents"><span class="nav-number">4.</span> <span class="nav-text">SummaRuNNer:
 A Recurrent Neural Network based Sequence Model for Extractive
 Summarization of Documents</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#attention-is-all-you-need"><span class="nav-number">5.</span> <span class="nav-text">Attention Is All You Need</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-joint-selective-mechanism-for-abstractive-sentence-summarization"><span class="nav-number">6.</span> <span class="nav-text">A
+Joint Selective Mechanism for Abstractive Sentence Summarization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#distraction-based-neural-networks-for-document-summarization"><span class="nav-number">7.</span> <span class="nav-text">Distraction-Based
+Neural Networks for Document Summarization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#document-modeling-with-external-attention-for-sentence-extraction"><span class="nav-number">8.</span> <span class="nav-text">Document
+Modeling with External Attention for Sentence Extraction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#get-to-the-point-summarization-with-pointer-generator-networks"><span class="nav-number">9.</span> <span class="nav-text">Get
+To The Point: Summarization with Pointer-Generator Networks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#summarunner-a-recurrent-neural-network-based-sequence-model-for-extractive-summarization-of-documents"><span class="nav-number">10.</span> <span class="nav-text">SummaRuNNer
+A Recurrent Neural Network based Sequence Model for Extractive
+Summarization of Documents</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#attention-is-all-you-need"><span class="nav-number">11.</span> <span class="nav-text">Attention Is All You Need</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-joint-selective-mechanism-for-abstractive-sentence-summarization"><span class="nav-number">12.</span> <span class="nav-text">A
 Joint Selective Mechanism for Abstractive Sentence Summarization</span></a></li></ol></div>
         </div>
         <!--/noindex-->
@@ -177,7 +193,7 @@ Joint Selective Mechanism for Abstractive Sentence Summarization</span></a></li>
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -188,7 +204,7 @@ Joint Selective Mechanism for Abstractive Sentence Summarization</span></a></li>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -213,6 +229,23 @@ Joint Selective Mechanism for Abstractive Sentence Summarization</span></a></li>
     </div>
 
     
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2018/03/07/PaperReading/" rel="bookmark">
+        <time class="popular-posts-time">2018-03-07</time>
+        <br>
+      Paper Reading 1
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
   </aside>
 
 
@@ -265,7 +298,7 @@ Joint Selective Mechanism for Abstractive Sentence Summarization</span></a></li>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-03 15:41:19" itemprop="dateModified" datetime="2024-06-03T15:41:19+08:00">2024-06-03</time>
+      <time title="Modified: 2024-12-04 19:53:24" itemprop="dateModified" datetime="2024-12-04T19:53:24+08:00">2024-12-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -291,14 +324,14 @@ Joint Selective Mechanism for Abstractive Sentence Summarization</span></a></li>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>6.2k</span>
+      <span>20k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>6 mins.</span>
+      <span>18 mins.</span>
     </span>
 </div>
 
@@ -309,19 +342,413 @@ Joint Selective Mechanism for Abstractive Sentence Summarization</span></a></li>
     
     
     <div class="post-body" itemprop="articleBody"><ul>
-<li>分散注意力机制</li>
-<li>外部信息注意力</li>
-<li>指针复制网络PGNet</li>
-<li>基于RNN的抽取式摘要</li>
+<li>Distractor Mechanism</li>
+<li>External Information Attention</li>
+<li>Pointer Copy Network PGNet</li>
+<li>Extractive Summary Based on RNN</li>
 <li>Transformer</li>
-<li>选择门机制</li>
+<li>Selection gate mechanism</li>
 </ul>
 <span id="more"></span>
 <figure>
 <img data-src="https://s1.ax1x.com/2018/10/20/i0o47d.jpg" alt="i0o47d.jpg" />
 <figcaption aria-hidden="true">i0o47d.jpg</figcaption>
 </figure>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1
+id="distraction-based-neural-networks-for-document-summarization">Distraction-Based
+Neural Networks for Document Summarization</h1>
+<ul>
+<li><p>Not only using attention mechanisms but also attention dispersion
+mechanisms to better capture the overall meaning of the document.
+Experiments have shown that this mechanism is particularly effective
+when the input is long text. <img data-src="https://s1.ax1x.com/2018/10/20/i0oh0H.png"
+alt="i0oh0H.png" /></p></li>
+<li><p>Introducing a control layer between the encoder and decoder to
+achieve attention concentration and attention dispersion, using two
+layers of GRU:</p>
+<p><span class="math display">\[
+s_t = GRU _1 (s_t^{temp},c_t) \\
+s_t^{temp} = GRU _2 (s_{t-1},e(y_{t-1})) \\
+\]</span></p></li>
+<li><p>This control layer captures the connection between <span
+class="math inline">\(s_t^{&#39;}\)</span> and <span
+class="math inline">\(c_t\)</span> , where the former encodes the
+current and previous output information, and the latter encodes the
+current input that has been processed through attention focusing and
+attention dispersion, while <span
+class="math inline">\(e(y_{t-1})\)</span> is the embedding of the
+previous input.</p></li>
+<li><p>Three Attention Diversion Models</p>
+<ul>
+<li><p>M1: Calculate c_t for the control layer, distribute it over the
+inputs, where c_t is the context c_t^{temp} encoded by a standard
+attention mechanism, obtained by subtracting the historical context,
+similar to a coverage mechanism</p>
+<p><span class="math display">\[
+c_t = tanh (W_c c_t^{temp} - U_c \sum _{j=1}^{t-1} c_j) \\
+c_t^{temp} = \sum _{i=1}^{T_x} \alpha _{t,i} h_i \\
+\]</span></p></li>
+<li><p>M2: Distribute the attention weights, similarly, subtract the
+historical attention and then normalize</p>
+<p><span class="math display">\[
+\alpha _{t,i}^{temp} = v_{\alpha}^T tanh(W_a s_t^{temp} + U_a h_i - b_a
+\sum _{j=1}^{t-1}\alpha _{j,i}) \\
+\alpha _{t,i} = \frac {exp(\alpha _{t,i}^{temp})}{\sum _{j=1}^{T_x}
+exp(\alpha _{t,j}^{temp})} \\
+\]</span></p></li>
+<li><p>M3: Perform dispersion at the decoding end, calculate the
+distances between the current <span class="math inline">\(c_t\)</span> ,
+<span class="math inline">\(s_t\)</span> , <span
+class="math inline">\(\alpha _t\)</span> , and the historical <span
+class="math inline">\(c_t\)</span> , <span
+class="math inline">\(s_t\)</span> , <span class="math inline">\(\alpha
+_t\)</span> , and output the probabilities together as the scores relied
+on during the 束 search during decoding.</p>
+<p><span class="math display">\[
+d_{\alpha , t} = \min KL(\alpha _t , \alpha _i) \\
+d_{c , t} = \max cosine(c _t , c _i) \\
+d_{s , t} = \max cosine(s _t , s _i) \\
+\]</span></p></li>
+</ul></li>
+</ul>
 <h1
+id="document-modeling-with-external-attention-for-sentence-extraction">Document
+Modeling with External Attention for Sentence Extraction</h1>
+<ul>
+<li>A retrieval-based summarization model was constructed, consisting of
+a hierarchical document encoder and an extractor based on external
+information attention. In the summarization task, the external
+information is image captions and document titles.</li>
+<li>By implicitly estimating the local and global relevance of each
+sentence to the document and explicitly considering external
+information, it determines whether each sentence should be included in
+the abstract.</li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0oLjS.png" alt="i0oLjS.png" />
+<figcaption aria-hidden="true">i0oLjS.png</figcaption>
+</figure>
+<ul>
+<li>Sentence-level Encoder: As shown in the figure, using CNN encoding,
+each sentence is encoded with three convolutional kernels of sizes 2 and
+4 respectively, and the resulting vectors are subjected to maxpooling to
+generate a single value, thus the final vector is 6-dimensional.</li>
+<li>Document-level encoder: Input the 6-dimensional vector of a
+document's sentence sequentially into LSTM for encoding.</li>
+<li>Sentence Extractor: Composed of an LSTM with attention mechanism,
+unlike the general generative seq2seq, the encoding of the sentence is
+not only used as the encoding input in the seq2seq but also as the
+decoding input, with one being in reverse order and the other in normal
+order. The extractor relies on the encoding side input <span
+class="math inline">\(s_t\)</span> , the previous time step state on the
+decoding side <span class="math inline">\(h_t\)</span> , and the
+attention-weighted external information <span
+class="math inline">\(h_t^{&#39;}\)</span> .</li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0oIAA.png" alt="i0oIAA.png" />
+<figcaption aria-hidden="true">i0oIAA.png</figcaption>
+</figure>
+<h1
+id="get-to-the-point-summarization-with-pointer-generator-networks">Get
+To The Point: Summarization with Pointer-Generator Networks</h1>
+<ul>
+<li><p>Presented two mechanisms, Pointer-Generator addresses the OOV
+problem, and coverage resolves the issue of repeated words</p></li>
+<li><p>Pointer-Generator: Learning pointer probabilities through
+context, the decoder state of the current timestep, and input</p>
+<p><span class="math display">\[
+p_{gen} = \sigma (w_h^T h_t + w_s^T s_t + w_x^T x_t +b_{ptr}) \\
+P(w) = p_{gen} P_{vocab}(w) + (1-p_{gen}) \sum _{i:w_i = w} a_i^t \\
+\]</span></p></li>
+<li><p>Pointer probability indicates whether a word should be normally
+generated or sampled from the input according to the current attention
+distribution, in the above formula. If the current label is OOV, the
+left part is 0, maximizing the right part to allow the attention
+distribution to indicate the position of the copied word; if the label
+is a newly generated word (not mentioned in the original text), the
+right part is 0, and maximizing the left part means generating words
+normally using the decoder. Overall, it learns the correct pointer
+probability.</p></li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0ootI.png" alt="i0ootI.png" />
+<figcaption aria-hidden="true">i0ootI.png</figcaption>
+</figure>
+<ul>
+<li><p>Coverage: Utilizing the coverage mechanism to adjust attention,
+so that words that received more attention in previous timesteps receive
+less attention</p></li>
+<li><p>Common Attention Calculation</p>
+<p><span class="math display">\[
+e_i^t = v^T tanh(W_h h_i + W_s s_t + b_{attn}) \\
+a^t = softmax(e^t) \\
+\]</span></p></li>
+<li><p>Maintain a coverage vector indicating how much attention each
+word has received prior to this:</p>
+<p><span class="math display">\[
+c^t = \sum _{t^{temp} = 0}^t-1 a^{t^{temp}}
+\]</span></p></li>
+<li><p>Then use its corrected attention generation to make the attention
+generation consider the previous accumulated attention</p>
+<p><span class="math display">\[
+e_i^t =v^T tanh(W_h h_i + W_s s_t + w_c c_i^t + b_{attn})
+\]</span></p></li>
+<li><p>And add a coverage loss to the loss function</p>
+<p><span class="math display">\[
+covloss_t = \sum _i \min (a_i^t , c_i^t)
+\]</span></p></li>
+<li><p>The use of min means that we only penalize the overlapping parts
+of the attention and coverage distributions, i.e., if coverage is large
+and attention is also large, then covloss is large; if coverage is
+small, regardless of the attention, covloss is small</p></li>
+</ul>
+<h1
+id="summarunner-a-recurrent-neural-network-based-sequence-model-for-extractive-summarization-of-documents">SummaRuNNer:
+A Recurrent Neural Network based Sequence Model for Extractive
+Summarization of Documents</h1>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0oTht.png" alt="i0oTht.png" />
+<figcaption aria-hidden="true">i0oTht.png</figcaption>
+</figure>
+<ul>
+<li><p>Using RNN for extractive summarization, the model decision
+process can be visualized, and an end-to-end training method is
+employed</p></li>
+<li><p>Treat extraction as a sentence classification task, visit each
+sentence in the order of the original text, and decide whether to
+include it in the abstract, with this decision considering the results
+of previous decisions.</p></li>
+<li><p>Encoding at the word level using a bidirectional GRU, followed by
+encoding at the sentence level using another bidirectional GRU; the
+encodings from both layers are concatenated in reverse order and then
+averaged through pooling</p>
+<p><span class="math display">\[
+d = tanh(W_d \frac {1}{N_d} \sum _{j=1}^{N^d} [h_j^f,h_j^b]+b)
+\]</span></p></li>
+<li><p>d is the encoding of the entire document, <span
+class="math inline">\(h_j^f\)</span> and <span
+class="math inline">\(h_j^b\)</span> represent the forward and reverse
+encodings of the sentence through GRU</p></li>
+<li><p>Afterward, a neural network is trained for binary classification
+based on the coding of the entire document, the coding of the sentences,
+and the dynamic representation of the abstract at the current sentence
+position, to determine whether each sentence should be included in the
+abstract:</p></li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0ob1f.png" alt="i0ob1f.png" />
+<figcaption aria-hidden="true">i0ob1f.png</figcaption>
+</figure>
+<ul>
+<li><p>sj represents the abstraction generated up to position j,
+obtained by weighted summation of the encoding of previous sentences
+using the binary classification probability of each sentence:</p>
+<p><span class="math display">\[
+s_j = \sum _{i=1}^{j-1} h_i P(y_i = 1 | h_i,s_i,d)
+\]</span></p></li>
+<li><p>First line: The parameter is the encoding of the current
+sentence, representing the content of the current sentence</p></li>
+<li><p>Second line: Parameters are document encoding and sentence
+encoding, indicating the significance of the current sentence to the
+document</p></li>
+<li><p>Third line: The parameters are the sentence encoding and the
+dynamic encoding of the summary, indicating the redundancy of the
+current sentence to the generated summary.</p></li>
+<li><p>Fourth and fifth lines: Considered the relative and absolute
+positions of sentences within the document. (The absolute position
+denotes the actual sentence number, whereas the relative position refers
+to a quantized representation that divides each document into a fixed
+number of segments and computes the segment ID of a given
+sentence.)</p></li>
+<li><p>Finally, perform the maximum likelihood estimation on the entire
+model:</p>
+<p><span class="math display">\[
+l(W,b) = -\sum _{d=1}^N \sum _{j=1}^{N_d} (y_j^d log P(y_j^d = 1 |
+h_j^d,s_j^d,d_d)+(1-y_j^d)log(1-P(y_j^d=1|h_j^d,s_j^d,d_d)))
+\]</span></p></li>
+<li><p>The author applies this extraction method to generative
+summarization corpora, that is, how to label each sentence in the
+original text with a binary classification. The author believes that the
+subset of sentences labeled as 1 should correspond to the maximum ROUGE
+value of the generative summary, but finding all subsets is too
+time-consuming, so a greedy method is used: sentences are added one by
+one to the subset, and if no remaining sentence can increase the ROUGE
+value of the current subset, it is not added. In this way, the
+generative summarization corpora are converted into extraction
+summarization corpora.</p></li>
+<li><p>Another approach is to train directly on the generative abstract
+corpus, taking the dynamic abstract representation mentioned above,
+specifically the last sentence which contains the entire document's
+abstract representation s, and inputting it into a decoder to generate
+the generative abstract. Since the abstract representation is the only
+input to the decoder, training the decoder also allows learning good
+abstract representations, thereby completing the task of extractive
+summarization.</p></li>
+<li><p>Because several components are included in generating the binary
+classification probabilities, normalizing them allows for the
+visualization of the contributions made by each component, thereby
+illustrating the decision-making process:</p></li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0oqc8.png" alt="i0oqc8.png" />
+<figcaption aria-hidden="true">i0oqc8.png</figcaption>
+</figure>
+<h1 id="attention-is-all-you-need">Attention Is All You Need</h1>
+<ul>
+<li>Abandoned RNN and CNN for seq2seq tasks, directly using multi-head
+attention to compose network blocks and stack them, adding BN layers and
+residual connections to construct a deep network</li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0oXng.png" alt="i0oXng.png" />
+<figcaption aria-hidden="true">i0oXng.png</figcaption>
+</figure>
+<ul>
+<li>The benefit of using attention exclusively is speed.</li>
+<li>In order to utilize residuals, all submodules (multi-head attention
+and fully connected) are unified to output dimensions of 512</li>
+<li>Encoding end: 6 blocks, each containing an attention and a fully
+connected sub-module, both using residuals and batch normalization.</li>
+<li>Decoder side: Also consists of 6 blocks, the difference being the
+addition of an attention mechanism to process the output from the
+encoding side, and the attention mechanism connected to the decoder
+input uses a mask to ensure directionality, that is, the output at the
+i-th position is only related to the output at previous positions.</li>
+<li>The six blocks of encoding and decoding are all stacked
+(stacked)</li>
+<li>The general attention model refers to a mechanism that maps a query
+and a series of key-value pairs to an output, where the output is a
+weighted sum of the values, and the weight of each value is calculated
+by a compatibility function corresponding to the key and the query
+input. The traditional attention keys and values are the same, both
+being the hidden layer states at each input position, with the query
+being the current output, and the compatibility function being various
+attention calculation methods. The three arrows pointing to attention in
+the diagram represent key, value, and query respectively.</li>
+</ul>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TSNn.png" alt="i0TSNn.png" />
+<figcaption aria-hidden="true">i0TSNn.png</figcaption>
+</figure>
+<ul>
+<li><p>Multi-head attention is composed of multiple parallel scaled
+dot-product attention mechanisms.</p></li>
+<li><p>Scaled dot-product attention, as shown, first performs a dot
+product between the query and key, then scales, and if it is the
+attention from the decoder input, a mask is added. After that, it passes
+through the softmax function to perform a dot product with the value to
+obtain the attention weights. In actual computation, to accelerate, a
+series of queries, keys, and values are calculated together, so Q, K,
+and V are all matrices. The scaling is to prevent the dot product
+attention from being at the ends of softmax when the dimension of k is
+too large, resulting in small gradients.</p>
+<p><span class="math display">\[
+Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt {d_k}}) V
+\]</span></p></li>
+<li><p>Multi-head attention is a scaled dot-product attention with h
+projections on V, K, and Q, learning different features, and finally
+concatenating and performing a linear transformation. The authors
+believe that this multi-head design allows the model to learn the
+information of representation subspaces at different positions.</p>
+<p><span class="math display">\[
+MultiHead(Q,K,V) = Concat(head_1,...,head_h)W^o \\
+where \ \  head_i = Attention(QW_i^Q,KW_i^K,VW_i^V) \\
+\]</span></p></li>
+<li><p>In the paper, 8 heads are taken, and to ensure dimension
+consistency, the dimensions of individual q, k, and v are set to
+512/8=64</p></li>
+<li><p>This multi-head attention is used in three places in the
+model:</p>
+<ul>
+<li>-based attention mechanism.</li>
+<li>Self-attention between encoding blocks and blocks</li>
+<li>Decoding blocks and inter-block self-attention</li>
+</ul></li>
+<li><p>In each block, there is also a fully connected layer, which
+contains two linear transformations, with ReLU activation inserted in
+between, and the same parameters are used at each input position, but
+the parameters of the fully connected layers in different blocks are
+different</p>
+<p><span class="math display">\[
+FFN(x) =\max (0,xW_1+b_1)W_2 +b_2 \\
+\]</span></p></li>
+<li><p>The complete use of attention would discard the sequential order
+information of the sequence; to utilize this information, trigonometric
+positional encoding is added to make use of relative positional
+information:</p>
+<p><span class="math display">\[
+PE_{(pos,2i)} = sin(pos/10000 ^{2i/d_{model}}) \\
+PE_{(pos,2i+1)} = cos(pos/10000 ^{2i/d_{model}}) \\
+\]</span></p></li>
+</ul>
+<h1
+id="a-joint-selective-mechanism-for-abstractive-sentence-summarization">A
+Joint Selective Mechanism for Abstractive Sentence Summarization</h1>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/11/15/ivQCE8.png" alt="ivQCE8.png" />
+<figcaption aria-hidden="true">ivQCE8.png</figcaption>
+</figure>
+<ul>
+<li><p>Abstracts differ from translations; end-to-end frameworks should
+model the loss (information compression) rather than simply align as
+translations do</p></li>
+<li><p>The author made two improvements to loss modeling:</p>
+<ul>
+<li>After encoding is completed, a threshold is added for trimming the
+encoded information</li>
+<li>Added a selection loss, focusing on both input and output, to assist
+the threshold operation</li>
+</ul></li>
+<li><p>The selection of the threshold considers both the hidden layer
+states after encoding and the original word embeddings, and acts upon
+the hidden layer states, truncating the hidden vectors before passing
+them through attention-weighted generation of context. The authors
+believe that this process is equivalent to allowing the network to
+observe the word embeddings before and after the rnn processing, thereby
+knowing which word in the input is important for generating the
+abstract:</p>
+<p><span class="math display">\[
+g_i = \sigma (W_g h_i + U_g u_i) \\
+h_i^{&#39;} = h_i \cdot g_i \\
+\]</span></p></li>
+<li><p>The selection of the loss function constructs a review threshold
+at the decoding end, considering the hidden layers of the encoding end
+and the original input, the hidden layers of the decoding end and the
+original input, and the review threshold at each position of the
+decoding end is the average of the review thresholds at all positions of
+the encoding end:</p>
+<p><span class="math display">\[
+r_{i,t} = \sigma (W_r h_i + U_r u_i + V_r s_{t-1} + Q_r w_{t-1}) \\
+r_i = \frac 1m \sum _{t=2}^{m+1} r_{i,t} \\
+\]</span></p></li>
+<li><p>The author believes that the role of the review threshold is
+equivalent to allowing the network reading to generate abstracts and to
+review the input text, so that it knows how to select
+abstracts.</p></li>
+<li><p>Afterward, use the Euclidean distance with the selection
+threshold and review threshold as the selection loss, and add it to the
+total loss:</p>
+<p><span class="math display">\[
+d(g,r) = \frac 1n \sum _{i=1}^n |r_i - g_i | \\
+L = -p(y|x,\theta) + \lambda d(g,r) \\
+\]</span></p></li>
+<li><p>The author does not explain why the Euclidean distance between
+the review threshold and the selection threshold is taken as the loss
+function, nor does it clarify the distinction between the selection
+threshold and attention. It seems like a type of attention mechanism
+that considers the original input embedding, and it first trims each
+hidden layer at every time step before traditional attention weighting.
+The selected visual examples are also very clever, precisely
+demonstrating that this selection mechanism can identify shifts in
+sentences, thus changing the selected words, which contrasts with the
+original paper proposing the selection threshold, Selective Encoding for
+Abstractive Sentence Summarization. The original paper also does not
+explain the motivation for this design.</p></li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1
 id="distraction-based-neural-networks-for-document-summarization">Distraction-Based
 Neural Networks for Document Summarization</h1>
 <ul>
@@ -565,6 +992,7 @@ L = -p(y|x,\theta) + \lambda d(g,r) \\
 Encoding for Abstractive Sentence Summarization
 也没有说出这种设计的动机。</p></li>
 </ul>
+</div>
 
     </div>
 
@@ -574,9 +1002,9 @@ Encoding for Abstractive Sentence Summarization
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/abstractive-summarization/" rel="tag"># abstractive summarization</a>
-              <a href="/tags/math/" rel="tag"># math</a>
               <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/math/" rel="tag"># math</a>
+              <a href="/tags/abstractive-summarization/" rel="tag"># abstractive summarization</a>
               <a href="/tags/theory/" rel="tag"># theory</a>
               <a href="/tags/nlp/" rel="tag"># nlp</a>
           </div>
@@ -631,13 +1059,13 @@ Encoding for Abstractive Sentence Summarization
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">782k</span>
+    <span title="Word count total">1.1m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:51</span>
+    <span title="Reading time total">16:35</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>

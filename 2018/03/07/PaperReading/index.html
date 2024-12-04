@@ -19,13 +19,25 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="attention开山作（机器翻译） Luong attention，全局与局部注意力、 attention开山作（自动文摘） 生成式摘要技巧集合：LVT，开关网络，层次注意力 对话系统，端到端的层次RNN 微博摘要，补充micropoints disan，有向的transformer，注意力掩码 注意力抽取器 基于强化学习的生成式摘要 w2v，负采样">
+    <meta name="description" content="Opening Work on Attention (Machine Translation) Luong attention, global and local attention, Opening Work on Attention (Automatic Text Summarization) Generative Summary Techniques Collection: LVT, Sw">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Paper Reading 1">
 <meta property="og:url" content="https://thinkwee.top/2018/03/07/PaperReading/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="attention开山作（机器翻译） Luong attention，全局与局部注意力、 attention开山作（自动文摘） 生成式摘要技巧集合：LVT，开关网络，层次注意力 对话系统，端到端的层次RNN 微博摘要，补充micropoints disan，有向的transformer，注意力掩码 注意力抽取器 基于强化学习的生成式摘要 w2v，负采样">
+<meta property="og:description" content="Opening Work on Attention (Machine Translation) Luong attention, global and local attention, Opening Work on Attention (Automatic Text Summarization) Generative Summary Techniques Collection: LVT, Sw">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oB79.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oH9P.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0ost1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oyfx.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0ocp6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0og1K.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oRXD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0ofne.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0ov7j.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0ojBQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0ozAs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TicT.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0o00J.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oB79.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oH9P.png">
@@ -41,15 +53,15 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0ozAs.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TicT.png">
 <meta property="article:published_time" content="2018-03-07T02:20:14.000Z">
-<meta property="article:modified_time" content="2024-06-03T07:41:19.391Z">
+<meta property="article:modified_time" content="2024-12-04T11:54:46.267Z">
 <meta property="article:author" content="Thinkwee">
-<meta property="article:tag" content="abstractive summarization">
-<meta property="article:tag" content="math">
 <meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="abstractive summarization">
 <meta property="article:tag" content="theory">
 <meta property="article:tag" content="nlp">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/20/i0o00J.jpg">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/20/i0oB79.png">
 
 
 <link rel="canonical" href="https://thinkwee.top/2018/03/07/PaperReading/">
@@ -110,7 +122,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -163,9 +175,9 @@
         <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#neural-machine-translation-by-jointly-learning-to-align-and-translate"><span class="nav-number">1.</span> <span class="nav-text">Neural
 Machine Translation By Jointly Learning To Align And Translate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#effective-approaches-to-attention-based-neural-machine-translation"><span class="nav-number">2.</span> <span class="nav-text">Effective
-Approaches to Attention-based Neural Machine Translation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="nav-number">2.1.</span> <span class="nav-text">全局注意力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="nav-number">2.2.</span> <span class="nav-text">局部注意力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#input-feeding"><span class="nav-number">2.3.</span> <span class="nav-text">Input-feeding</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-neural-attention-model-for-abstractive-sentence-summarization"><span class="nav-number">3.</span> <span class="nav-text">A
+Approaches to Attention-based Neural Machine Translation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#global-attention"><span class="nav-number">2.1.</span> <span class="nav-text">Global Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#local-attention"><span class="nav-number">2.2.</span> <span class="nav-text">Local Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#input-feeding"><span class="nav-number">2.3.</span> <span class="nav-text">Input-feeding</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-neural-attention-model-for-abstractive-sentence-summarization"><span class="nav-number">3.</span> <span class="nav-text">A
 Neural Attention Model for Abstractive Sentence Summarization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#abstractive-text-summarization-using-sequence-to-sequence-rnns-and-beyond"><span class="nav-number">4.</span> <span class="nav-text">Abstractive
-Text Summarization using Sequence-to-sequence RNNs and Beyond</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lvt"><span class="nav-number">4.1.</span> <span class="nav-text">LVT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feature-rich-encoder"><span class="nav-number">4.2.</span> <span class="nav-text">Feature-rich Encoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switching-generator-pointer"><span class="nav-number">4.3.</span> <span class="nav-text">Switching Generator-pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B1%82%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="nav-number">4.4.</span> <span class="nav-text">分层注意力</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#recurrent-neural-network-regularization"><span class="nav-number">5.</span> <span class="nav-text">Recurrent Neural
+Text Summarization using Sequence-to-sequence RNNs and Beyond</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lvt"><span class="nav-number">4.1.</span> <span class="nav-text">LVT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feature-rich-encoder"><span class="nav-number">4.2.</span> <span class="nav-text">Feature-rich Encoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switching-generator-pointer"><span class="nav-number">4.3.</span> <span class="nav-text">Switching Generator-pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hierarchical-attention"><span class="nav-number">4.4.</span> <span class="nav-text">Hierarchical Attention</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#recurrent-neural-network-regularization"><span class="nav-number">5.</span> <span class="nav-text">Recurrent Neural
 Network Regularization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#building-end-to-end-dialogue-systems-using-generative-hierarchical-neural-network-models"><span class="nav-number">6.</span> <span class="nav-text">Building
 End-To-End Dialogue Systems Using Generative Hierarchical Neural Network
 Models</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#news-event-summarization-complemented-by-micropoints"><span class="nav-number">7.</span> <span class="nav-text">News Event
@@ -174,6 +186,19 @@ Directional Self-Attention Network for RNN&#x2F;CNN-Free Language
 Understanding</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#neural-summarization-by-extracting-sentences-and-words"><span class="nav-number">9.</span> <span class="nav-text">Neural
 Summarization by Extracting Sentences and Words</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-deep-reinforced-model-for-abstractive-summarization"><span class="nav-number">10.</span> <span class="nav-text">A DEEP
 REINFORCED MODEL FOR ABSTRACTIVE SUMMARIZATION</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#distributed-representations-of-words-and-phrases-and-their-compositionality"><span class="nav-number">11.</span> <span class="nav-text">Distributed
+Representations of Words and Phrases and their Compositionality</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#neural-machine-translation-by-jointly-learning-to-align-and-translate"><span class="nav-number">12.</span> <span class="nav-text">Neural
+Machine Translation By Jointly Learning To Align And Translate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#effective-approaches-to-attention-based-neural-machine-translation"><span class="nav-number">13.</span> <span class="nav-text">Effective
+Approaches to Attention-based Neural Machine Translation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="nav-number">13.1.</span> <span class="nav-text">全局注意力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="nav-number">13.2.</span> <span class="nav-text">局部注意力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#input-feeding"><span class="nav-number">13.3.</span> <span class="nav-text">Input-feeding</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-neural-attention-model-for-abstractive-sentence-summarization"><span class="nav-number">14.</span> <span class="nav-text">A
+Neural Attention Model for Abstractive Sentence Summarization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#abstractive-text-summarization-using-sequence-to-sequence-rnns-and-beyond"><span class="nav-number">15.</span> <span class="nav-text">Abstractive
+Text Summarization using Sequence-to-sequence RNNs and Beyond</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lvt"><span class="nav-number">15.1.</span> <span class="nav-text">LVT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feature-rich-encoder"><span class="nav-number">15.2.</span> <span class="nav-text">Feature-rich Encoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switching-generator-pointer"><span class="nav-number">15.3.</span> <span class="nav-text">Switching Generator-pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B1%82%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="nav-number">15.4.</span> <span class="nav-text">分层注意力</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#recurrent-neural-network-regularization"><span class="nav-number">16.</span> <span class="nav-text">Recurrent Neural
+Network Regularization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#building-end-to-end-dialogue-systems-using-generative-hierarchical-neural-network-models"><span class="nav-number">17.</span> <span class="nav-text">Building
+End-To-End Dialogue Systems Using Generative Hierarchical Neural Network
+Models</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#news-event-summarization-complemented-by-micropoints"><span class="nav-number">18.</span> <span class="nav-text">News Event
+Summarization Complemented by Micropoints</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#disan-directional-self-attention-network-for-rnncnn-free-language-understanding"><span class="nav-number">19.</span> <span class="nav-text">DiSAN:
+Directional Self-Attention Network for RNN&#x2F;CNN-Free Language
+Understanding</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#neural-summarization-by-extracting-sentences-and-words"><span class="nav-number">20.</span> <span class="nav-text">Neural
+Summarization by Extracting Sentences and Words</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-deep-reinforced-model-for-abstractive-summarization"><span class="nav-number">21.</span> <span class="nav-text">A DEEP
+REINFORCED MODEL FOR ABSTRACTIVE SUMMARIZATION</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#distributed-representations-of-words-and-phrases-and-their-compositionality"><span class="nav-number">22.</span> <span class="nav-text">Distributed
 Representations of Words and Phrases and their Compositionality</span></a></li></ol></div>
         </div>
         <!--/noindex-->
@@ -187,7 +212,7 @@ Representations of Words and Phrases and their Compositionality</span></a></li><
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -198,7 +223,7 @@ Representations of Words and Phrases and their Compositionality</span></a></li><
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -223,6 +248,23 @@ Representations of Words and Phrases and their Compositionality</span></a></li><
     </div>
 
     
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2018/07/03/PaperReading2/" rel="bookmark">
+        <time class="popular-posts-time">2018-07-03</time>
+        <br>
+      Paper Reading 2
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
   </aside>
 
 
@@ -275,7 +317,7 @@ Representations of Words and Phrases and their Compositionality</span></a></li><
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-03 15:41:19" itemprop="dateModified" datetime="2024-06-03T15:41:19+08:00">2024-06-03</time>
+      <time title="Modified: 2024-12-04 19:54:46" itemprop="dateModified" datetime="2024-12-04T19:54:46+08:00">2024-12-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -301,14 +343,14 @@ Representations of Words and Phrases and their Compositionality</span></a></li><
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>9k</span>
+      <span>35k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>8 mins.</span>
+      <span>31 mins.</span>
     </span>
 </div>
 
@@ -319,19 +361,589 @@ Representations of Words and Phrases and their Compositionality</span></a></li><
     
     
     <div class="post-body" itemprop="articleBody"><ul>
-<li><p>attention开山作（机器翻译）</p></li>
-<li><p>Luong attention，全局与局部注意力、</p></li>
-<li><p>attention开山作（自动文摘）</p></li>
-<li><p>生成式摘要技巧集合：LVT，开关网络，层次注意力</p></li>
-<li><p>对话系统，端到端的层次RNN</p></li>
-<li><p>微博摘要，补充micropoints</p></li>
-<li><p>disan，有向的transformer，注意力掩码</p></li>
-<li><p>注意力抽取器</p></li>
-<li><p>基于强化学习的生成式摘要</p></li>
-<li><p>w2v，负采样</p>
-<span id="more"></span></li>
+<li><p>Opening Work on Attention (Machine Translation)</p></li>
+<li><p>Luong attention, global and local attention,</p></li>
+<li><p>Opening Work on Attention (Automatic Text Summarization)</p></li>
+<li><p>Generative Summary Techniques Collection: LVT, Switching
+Networks, Hierarchical Attention</p></li>
+<li><p>Dialogue System, End-to-End Hierarchical RNN</p></li>
+<li><p>Weibo summary, supplement micropoints</p></li>
+<li><p>disan, directed transformer, attention mask</p></li>
+<li><p>Attention Extractor</p></li>
+<li><p>Generative Summary Based on Reinforcement Learning</p></li>
+<li><p>w2v, negative sampling</p></li>
 </ul>
+<span id="more"></span>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1
+id="neural-machine-translation-by-jointly-learning-to-align-and-translate">Neural
+Machine Translation By Jointly Learning To Align And Translate</h1>
+<ul>
+<li>Published in 2015.5 (ICLR2015), author Dzmitry Bahdanau.</li>
+<li>Encoder-decoder model, translation task.</li>
+<li>The bidirectional GRU serves as the encoder. The encoding hidden
+layer vectors are composed of bidirectional connections.</li>
+<li>Different representations are generated for each word.</li>
+<li>The weight is determined by the vector of the hidden layer of all
+steps and the vector of the hidden layer of the previous decoding
+step.</li>
+<li>Generate weighted representations of the hidden layer vectors for
+all step encoding. <img data-src="https://s1.ax1x.com/2018/10/20/i0oB79.png"
+alt="i0oB79.png" /></li>
+</ul>
+<h1
+id="effective-approaches-to-attention-based-neural-machine-translation">Effective
+Approaches to Attention-based Neural Machine Translation</h1>
+<ul>
+<li><p>Published in August 2015, the author (Minh-Thang Luong) used the
+RNN encoder-decoder model for the translation task.</p></li>
+<li><p>During the decoding process, the attentional representation and
+the decoding hidden layer vector corresponding to the target word are
+concatenated and then passed through an activation function to generate
+the attention vector:</p>
+<p><span class="math display">\[
+h_t = tanh(W_c[c_t;h_t])
+\]</span></p>
+<p>Afterward, the attention vector is passed through softmax to generate
+a probability distribution.</p></li>
+</ul>
+<h2 id="global-attention">Global Attention</h2>
+<ul>
+<li>The article first introduces the global attention model, which is an
+attention-weighted generation of representations for all encoding hidden
+layer information, leading to an unpredictable length of alignment
+vectors (alignment vectors weigh the input information, with the length
+being the same as the number of words in the input sentence). The model
+proposed by Dzmitry Bahdanau in the aforementioned text is the global
+attention model. The global attention model presented in this article is
+more generalized: it does not use bidirectional RNN concatenation of
+input vectors but employs a regular RNN instead; it calculates weights
+directly using the hidden layer vector at the current step, rather than
+the previous step, thus avoiding complex computations. <img data-src="https://s1.ax1x.com/2018/10/20/i0oH9P.png" alt="i0oH9P.png" /></li>
+<li>Afterward, two effective approaches were introduced, namely local
+attention and input-feeding.</li>
+</ul>
+<h2 id="local-attention">Local Attention</h2>
+<ul>
+<li><p>Local Attention: Instead of using all input information, it first
+generates an alignment position for each output word, then only
+generates representations with attention weighted to the input
+information within the window around the alignment position. The article
+proposes two methods for generating alignment positions:</p>
+<ul>
+<li><p>Monotonic alignment: Simply setting the alignment position of the
+ith output word to i is obviously not advisable in abstracts.</p></li>
+<li><p>Predictive Alignment: Training Alignment Positions.</p>
+<p><span class="math display">\[
+p_t = S \cdots sigmoid(v_p^T tanh(W_ph_t)) \\
+\]</span></p>
+<p><span class="math inline">\(h_t\)</span> is the hidden layer vector
+of the t-th generated word, and <span class="math inline">\(W_p\)</span>
+and <span class="math inline">\(v_p\)</span> are the weights that need
+to be trained. S is the length of the input word, and when multiplied by
+the sigmoid, it yields the value at any position in the input
+sentence</p></li>
+</ul></li>
+<li><p>To maximize the weight of alignment positions, first generate a
+Gaussian distribution with alignment positions as the expectation and
+half-window length as the standard deviation, and then generate weights
+based on this.</p>
+<p><span class="math display">\[
+a_t(s) = align(h_t,h_s)exp(-\frac{(s-p_t)^2}{2\sigma ^2})
+\]</span></p>
 <figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0ost1.png" alt="i0ost1.png" />
+<figcaption aria-hidden="true">i0ost1.png</figcaption>
+</figure></li>
+</ul>
+<h2 id="input-feeding">Input-feeding</h2>
+<ul>
+<li>Input-feeding: When generating alignment, it still needs to rely on
+past alignments. The actual implementation involves using the attention
+vector from the previous step as the feed for the next decoding hidden
+layer. The benefit is that the model can fully understand the previous
+alignment decisions and creates a very deep network both horizontally
+and vertically.</li>
+<li>Experimental results indicate that the use of the prediction
+alignment-based local attention model performs the best. <img data-src="https://s1.ax1x.com/2018/10/20/i0oyfx.png" alt="i0oyfx.png" /></li>
+</ul>
+<h1
+id="a-neural-attention-model-for-abstractive-sentence-summarization">A
+Neural Attention Model for Abstractive Sentence Summarization</h1>
+<ul>
+<li>Published in September 2015, author Alexander M. Rush,
+Decoder-Encoder Model, Abstract Task.</li>
+<li>Proposed an attention encoder using a standard NNLM decoder.</li>
+<li>Not using RNN, directly using word vectors.</li>
+<li>Utilize all input information and partial output information (yc) to
+construct attention weights.</li>
+<li>Directly weighting the word vector matrix of the smoothed input
+sentence rather than the RNN hidden layer vector.</li>
+<li>Model as shown in the figure: <img data-src="https://s1.ax1x.com/2018/10/20/i0ocp6.png" alt="i0ocp6.png" /></li>
+</ul>
+<h1
+id="abstractive-text-summarization-using-sequence-to-sequence-rnns-and-beyond">Abstractive
+Text Summarization using Sequence-to-sequence RNNs and Beyond</h1>
+<ul>
+<li>Published in August 2016, author Ramesh Nallapati. Encoder-decoder
+model, using RNN, attention, summarization task.</li>
+<li>Based on the machine translation model by Dzmitry Bahdanau
+(bidirectional GRU encoding, unidirectional GRU decoding) for
+improvement.</li>
+<li>Improved techniques include LVT (large vocabulary trick),
+feature-rich encoder, switching generator-pointer, and hierarchical
+attention.</li>
+</ul>
+<h2 id="lvt">LVT</h2>
+<ul>
+<li>Reduce the size of the softmax layer in the decoder to accelerate
+computation and convergence. The actual implementation is that the
+decoder's dictionary is limited to the input text within each
+mini-batch, and the most frequently occurring words from the decoder
+dictionary of the previous batch are added to the decoder dictionary of
+the subsequent batch (until a limit is reached).</li>
+</ul>
+<h2 id="feature-rich-encoder">Feature-rich Encoder</h2>
+<ul>
+<li>Not using simple word vectors that only represent semantic distance,
+but constructing new word vectors by integrating various semantic
+features such as entity information, and separately forming vectors to
+concatenate them. <img data-src="https://s1.ax1x.com/2018/10/20/i0og1K.png"
+alt="i0og1K.png" /></li>
+</ul>
+<h2 id="switching-generator-pointer">Switching Generator-pointer</h2>
+<ul>
+<li>Resolve the issues of rare words and additional words. The
+dictionary of the decoder is fixed, and how to deal with words outside
+the dictionary in the test text. The proposed solution is to add a
+switch to the decoder, where when the switch is on, it uses its own
+dictionary to generate the abstract normally, and when the switch is
+off, it generates a pointer to a word in the input text, copying it into
+the abstract. <img data-src="https://s1.ax1x.com/2018/10/20/i0oRXD.png"
+alt="i0oRXD.png" /> ) Switching generator/pointer model When the switch
+is G, use the traditional method to generate the abstract. When the
+switch is P, copy words from the input to the abstract.</li>
+</ul>
+<h2 id="hierarchical-attention">Hierarchical Attention</h2>
+<ul>
+<li>Traditional attention refers to focusing on the positions of key
+words in sentences, and the hierarchical structure includes the upper
+level, that is, the positions of key sentences in the text. Two-layer
+bidirectional RNNs are used to capture attention at both the word level
+and the sentence level. The attention mechanism runs simultaneously at
+both levels, with the attention weights at the word level being
+reweighted and adjusted by the attention weights at the sentence level.
+<img data-src="https://s1.ax1x.com/2018/10/20/i0ofne.png"
+alt="i0ofne.png" /></li>
+</ul>
+<h1 id="recurrent-neural-network-regularization">Recurrent Neural
+Network Regularization</h1>
+<ul>
+<li>This paper introduces how to use dropout in recurrent neural
+networks to prevent overfitting</li>
+<li>Dropout refers to randomly dropping certain nodes of some hidden
+layers in deep neural networks during each training, while not dropping
+nodes during testing but multiplying the node outputs by the dropout
+probability. This method can effectively solve the time-consuming and
+prone to overfitting problems in deep learning.</li>
+<li>Two understandings of dropout exist: 1: It forces a neural unit to
+work together with other randomly selected neural units to achieve good
+results. It eliminates the weakened joint adaptability between neuron
+nodes, enhancing generalization ability. 2: It is equivalent to creating
+some noisy data, increasing the sparsity of the training data, and
+enhancing the discriminability of features.</li>
+<li>It is not possible to directly discard hidden layer nodes in RNNs
+because doing so would lose the long-term dependency information
+required by RNNs, introducing a significant amount of noise that
+disrupts the learning process.</li>
+<li>The author proposes hierarchical node dropping, that is, using a
+multi-layer RNN structure, even if a node in one layer at a certain time
+step is lost, the nodes at the same time step in other layers can still
+pass through, without disrupting the long-term dependency information of
+the sequence</li>
+<li>Effect as shown: <img data-src="https://s1.ax1x.com/2018/10/20/i0ov7j.png" alt="i0ov7j.png" /></li>
+</ul>
+<h1
+id="building-end-to-end-dialogue-systems-using-generative-hierarchical-neural-network-models">Building
+End-To-End Dialogue Systems Using Generative Hierarchical Neural Network
+Models</h1>
+<ul>
+<li>This paper introduces the construction of a non-goal-driven natural
+language dialogue system using a fully data-driven hierarchical RNN
+end-to-end model.</li>
+<li>Training data consists of triples extracted from movie subtitles,
+where two speakers complete three expressions in the order of
+A-B-A.</li>
+<li>The hierarchical structure is not simply an increase in the number
+of RNN hidden layers, but rather the construction of two RNNs at the
+word level and sentence level, as shown in the figure below. The
+three-part dialogue is contained within two word-level RNN end-to-end
+systems, and the sentences generated in the middle serve as hidden layer
+vectors for the higher-level sentence-level RNN.</li>
+<li>The article employs the bootstrapping technique, using some
+pre-trained data as the initial values for the model. For example, word
+embedding matrices are initially trained in large corpora using w2v. In
+this article, the entire model is even pre-trained, with the principle
+being to pre-train the entire model using a two-stage dialogue large
+corpus of a QA system, with the third segment set to empty. In actual
+training, word embeddings are pre-trained first to complete the
+initialization of word embeddings, followed by pre-training the entire
+model for 4 epochs, and finally, the word embeddings are fixed and the
+entire model is pre-trained to the optimal value.</li>
+<li>The system infers the third segment from the first two segments of a
+given three-segment dialogue. Evaluation uses two criteria: word
+perplexity measures grammatical accuracy, and word classification error
+measures semantic accuracy.</li>
+<li>The paper finally summarized the reasons for the occurrence of a bad
+phenomenon. During the output of the maximum a posteriori probability,
+some usual answers often appear, such as "I don't know" or "I'm sorry."
+The author believes there are three reasons: 1: Insufficient data.
+Because dialogue systems have inherent ambiguity and multimodality,
+large-scale data is needed to train better results. 2: Punctuation and
+pronouns occupy a large proportion in dialogue, but the system finds it
+difficult to distinguish the meanings of punctuation and pronouns in
+different contextual environments. 3: Dialogues are generally very
+short, so a triple can provide too little information during inference,
+resulting in insufficient differentiation. Therefore, when designing
+natural language neural models, it is best to differentiate semantics
+and grammatical structures. The author also found that if the maximum a
+posteriori probability is not used and random output is employed, this
+problem does not occur, and the inferred sentences generally maintain
+the topic and appear with special words related to the topic.</li>
+</ul>
+<h1 id="news-event-summarization-complemented-by-micropoints">News Event
+Summarization Complemented by Micropoints</h1>
+<ul>
+<li>This is a paper from Peking University that uses data from Weibo.
+The work involves constructing some micropoints in Weibo posts with the
+same theme to supplement the abstracts extracted from traditional news.
+The experiment proves that this supplemented abstract can achieve better
+scores in ROUGE.</li>
+<li>The focus of the article's exposition is on extracting micropoints
+rather than on how to integrate micropoints into the original
+abstract.</li>
+<li>This team previously proposed two tools: a text clustering model CDW
+for extracting keywords from news articles; and a Snippet Growth Model
+for segmenting a blog post into segments (a few sentences each) that
+possess relatively complete meanings.</li>
+<li>Micropoints generation main steps: filtering blog posts,
+categorizing blog posts by topic, segmenting blog posts into fragments,
+selecting some fragments from blog posts of the same topic to form
+micropoints, and filtering micropoints.</li>
+<li>Screening blog posts considers two indicators: relevance and
+distinctiveness, which must be related to the original news abstract's
+theme without being too repetitive to cause redundancy. The author uses
+CDW to extract keywords from the original news from multiple
+perspectives, calculates the cosine similarity between the blog posts
+and these keywords to filter out multiple relevant blog posts.
+Additionally, the author utilizes Joint Topic Modeling (Joint topic
+modeling for event summarization across news and social media streams)
+to calculate the distinctiveness between the blog posts and the
+abstracts. The harmonic mean of the two calculated indicators is taken
+as the overall screening indicator.</li>
+<li>Categorize the blog posts by topic: obtain p(topic|tweet) by using
+LDA with restricted use, then construct a vector v(t) = (p(topic 1 |t),
+p(topic 2 |t), ..., p(topic n |t)) for each blog post using this
+conditional probability, and finally use DBSCAN to complete the topic
+clustering.</li>
+<li>Using the Snippet Growth Model proposed by the team before, the blog
+posts are divided into snippets, with the general method being to first
+take a sentence, then calculate the text similarity, distance measure,
+and influence measure between other sentences and this sentence to
+decide whether to add other sentences to the snippet where this sentence
+is located.</li>
+<li>A pile of fragments categorized by topic has been obtained, and the
+next step is to select several fragments that best represent the topic
+within a single topic's fragments. The method is to pick the few
+fragments with the smallest average distance to other fragments of the
+same topic. Since the sentences are not very long, the author represents
+a fragment with a bag-of-words, where the bag contains all the words
+that make up all the sentences in the fragment, represented by word
+vectors. The distance is measured using KL divergence. If the newly
+selected fragments are too close to the already selected fragments, they
+are discarded to ensure that the selected fragments still maintain
+diversity.</li>
+<li>The obtained fragments will form micropoints, but they need to be
+filtered before being supplemented into the abstract. The authors
+propose three indicators: information quantity, popularity, and
+conciseness. Information quantity refers to the information entropy gain
+of the abstract after supplementation; the higher the information
+quantity, the better. Popularity is measured by the number of comments
+on the original post, with more popular posts being less likely to be
+extreme. Popularity is preferred to prevent the supplementation of
+abstracts with extreme or morally incorrect posts. The higher the
+popularity, the better. Conciseness is described by the ratio of the
+length of the supplemented part to the length of the original abstract;
+the smaller the ratio, the more concise the supplementation, and it will
+not overshadow the original. At this point, the problem is reduced to a
+discrete optimization problem with constraints under a given conciseness
+requirement, where each fragment can bring benefits in terms of
+information quantity and popularity while consuming a certain amount of
+conciseness. The goal is to select fragments to maximize the benefits,
+which can be abstracted as a 0-1 knapsack problem and solved using
+dynamic programming. The authors also set thresholds and use a piecewise
+function: when popularity exceeds the threshold, the contribution of
+information gain to the benefit will be greater. This setting is to
+ensure that the abstract will not be supplemented with fragments where
+one side has a very high popularity or information gain while the other
+side is almost non-existent.</li>
+</ul>
+<h1
+id="disan-directional-self-attention-network-for-rnncnn-free-language-understanding">DiSAN:
+Directional Self-Attention Network for RNN/CNN-Free Language
+Understanding</h1>
+<ul>
+<li>Update, the author later released fast disan, it seems to have
+modified the calculation of attention, details to be supplemented</li>
+<li>The author proposes a directed self-attention network that can also
+perform the encoding task in NLP problems without relying on RNN or CNN
+structures.</li>
+<li>The authors believe that among the existing encoders, RNN can
+capture the sequence information well, but it is slow. The use of a pure
+attention mechanism (just like the attention weighting of a sequence of
+word vectors without using RNN in A Neural Attention Model for
+Abstractive Sentence Summarization) can be used to speed up the
+operation using existing distributed or parallel computing frameworks,
+but the sequence information is lost. Therefore, the authors propose a
+pure attention encoder structure that can capture sequential order
+information, which combines the advantages of both.</li>
+<li>The author first proposed three attention concepts:
+multi-dimensional attention, self-attention, and directed
+attention.</li>
+<li>Traditional attention assigns weights to each word in a sentence,
+with scalar values. In multi-dimensional attention, the weights are
+vectors, with dimensions matching those of the word vectors. The
+rationale for using multi-dimensional attention is that it applies
+attention weighting to each feature of every word. Word vectors
+inherently have polysemy, and the traditional attention mechanism that
+weights the entire word vector cannot effectively distinguish between
+the same word in different contextual environments. Multi-dimensional
+attention applies weighting to each component of the word vector,
+allowing for more attention weight to be given to features that can
+represent the current contextual environment. My understanding is that
+applying attention weighting to the components of the word vector is
+equivalent to having slightly different representations of the same word
+in different contextual environments, which can be used for distinction.
+The figure below illustrates the difference between traditional
+attention and multi-dimensional attention. <img data-src="https://s1.ax1x.com/2018/10/20/i0ojBQ.png" alt="i0ojBQ.png" /> On
+the right is multi-dimensional attention, where the attention weights
+have become vectors, matching the dimensionality of the input word
+vectors.</li>
+<li>The general attention weights are generated with encoding input and
+a decoding output as parameters, and the weights are related to the
+current output. Self-attention is unrelated to the decoding end, either
+replacing the decoding output with each word in the sentence or with the
+entire input sentence. The former, combined with multi-dimensions, forms
+token2token attention, while the latter, combined with multi-dimensions,
+forms source2token.</li>
+<li>Directed attention involves adding a mask matrix when generating
+token2token attention, with matrix elements being 0 or negative
+infinity. The matrix can be upper triangular or lower triangular,
+representing masks for two directions, for example, from i to j is 0,
+and from j to i is negative infinity. This gives the attention between
+words in token2token a direction; attention in the incorrect direction
+is reduced to 0 after softmax, while attention in the correct direction
+is unaffected. The mask matrix also has a third type, a non-diagonal
+matrix, where the diagonal values are negative infinity. This way, a
+word in token2token does not generate attention for itself. Directed
+attention is as shown in the figure: <img data-src="https://s1.ax1x.com/2018/10/20/i0ozAs.png" alt="i0ozAs.png" /></li>
+<li>The final architecture of the self-attentional network utilizes the
+above three types of attention. Firstly, the combination of the upper
+and lower triangular masks with multi-dimensional token2token generates
+two self-attention vectors, similar to BLSTM, and then these vectors are
+connected, passing through a multi-dimensional source2token to produce
+the final encoded output. The authors tested that this encoding can
+achieve the best level in natural language prediction and sentiment
+analysis tasks and can also be used as part of other models for other
+tasks.</li>
+</ul>
+<h1 id="neural-summarization-by-extracting-sentences-and-words">Neural
+Summarization by Extracting Sentences and Words</h1>
+<ul>
+<li>This paper employs a fully data-driven model to accomplish
+extractive summarization. The model structure consists of a hierarchical
+text encoder and an attention-based extractor.</li>
+<li>The difference from the generative attention mechanism summarization
+lies in: using CNN instead of w2v to construct word embeddings;
+attention is used to directly extract words rather than to weight and
+generate intermediate representations.</li>
+<li>Because this paper uses data-driven extractive summarization, it
+requires a large amount of extractive summarization training data. Such
+training data is scarce, so the authors propose a method for generating
+extractive training data at the word and sentence levels: For sentence
+extraction, the authors' approach is to convert generative summarization
+into extractive summarization. First, obtain generative summarization,
+then compare each sentence in the original text with the generative
+summarization to decide whether it should be extracted. The comparison
+criteria include the position of the sentence in the document, the
+overlap of unigram and bigram grammar, the number of named entities
+appearing, etc.; for word extraction, the same approach is used to
+compare the degree of semantic overlap between the generative
+summarization and the words in the original text to decide whether the
+word should be extracted. For words that appear in the generative
+summarization but not in the original text, the authors' solution is to
+substitute with words that have a similar embedding distance to the
+original text words to form the training data.</li>
+<li>During encoding, use CNN to form word embeddings, represent
+sentences as sequences of word embeddings, and then use RNN to encode at
+the document level (with one sentence as an input at each time
+step).</li>
+<li>When performing sentence extraction, unlike generative models, the
+dependency of the extracted RNN output is on the previous extracted
+sentence multiplied by a confidence coefficient, which represents the
+probability of the previous sentence being extracted.</li>
+<li>As with generative models, there are differences between train and
+infer, and the issues that arise during the initial infer phase will
+accumulate and grow over time. To address this problem, the authors
+employ a "curriculum learning strategy": initially setting the
+confidence level to 1 when the training cannot accurately predict, and
+then gradually restoring the confidence level to the value trained out
+as the training progresses.</li>
+<li>Compared to sentence extraction, word extraction is more closely
+aligned with generative algorithms and can be regarded as a generative
+summary at the word level under dictionary constraints.</li>
+<li>Extractions-based abstracts have advantages in handling sparse
+vocabulary and named entities, allowing the model to check the context
+and relative position of these words or entities in the sentence to
+reduce attention weights and minimize the impact of such words.</li>
+<li>The problem to be addressed in the sampling method is to determine
+the number of samples. The authors select the three sentences with the
+highest sampling confidence as the abstract. Another issue is that the
+dictionary for each batch is generally different. The authors adopt a
+negative sampling solution.</li>
+</ul>
+<h1 id="a-deep-reinforced-model-for-abstractive-summarization">A DEEP
+REINFORCED MODEL FOR ABSTRACTIVE SUMMARIZATION</h1>
+<ul>
+<li><p>Using reinforcement learning to optimize the current end-to-end
+generative summarization model <img data-src="https://s1.ax1x.com/2018/10/20/i0TicT.png"
+alt="i0TicT.png" /></p></li>
+<li><p>Addressing the issues of long text summarization and repetitive
+phrase generation</p></li>
+<li><p>Enhanced learning requires external feedback for the model, here
+the authors use 人工 evaluation of the generated abstracts and provide
+feedback to the model, enabling it to produce more readable
+abstracts</p></li>
+<li><p>The improvement of the model mainly focuses on two points:
+internal attention was added to both the encoding and decoding ends,
+where the encoding end is a previously proposed method, and this paper
+mainly introduces the internal attention mechanism at the decoding end;
+a new objective function is proposed, which combines cross-entropy loss
+with rewards from reinforcement learning</p></li>
+<li><p>The inner attention at both ends of encoding and decoding
+addresses the repetition phrase issue from two aspects, as the
+repetition problem is more severe in long text summarization compared to
+short text.</p></li>
+<li><p>The addition of inner attention at the encoding end is based on
+the belief that repetition arises from the uneven distribution of
+attention over the input long text across different decoding time steps,
+which does not fully utilize the long text. The distribution of
+attention may be similar across different decoding time steps, leading
+to the generation of repetitive segments. Therefore, the authors
+penalize input positions that have already received high attention
+weights in the model, ensuring that all parts of the input text are
+fully utilized. The method of introducing the penalty is to divide the
+attention weight of a certain encoding input position at a new decoding
+time step by the sum of attention weights from all previous time steps,
+so that if a large attention weight was produced in the past, the newly
+generated attention weight will be smaller.</p></li>
+<li><p>The addition of internal attention at the decoding end is based
+on the belief that repetition also originates from the repetition of the
+hidden states within the decoding end itself. The authors argue that the
+information relied upon during decoding should not only include the
+hidden layer state of the decoding end from the previous time step, but
+also the hidden layer states from all past time steps, with attentional
+weighting given. Therefore, a similar internal attention mechanism and
+penalty mechanism are introduced at the decoding end.</p></li>
+<li><p>In this end-to-end model, attention is not a means of
+communication between the encoding and decoding ends, but is independent
+at both ends, depending only on the state before and the current state
+of the encoding/decoding ends, thus it is intrinsic attention
+(self-attention).</p></li>
+<li><p>In constructing the end-to-end model, the authors also adopted
+some other techniques proposed by predecessors, such as using copy
+pointers and switches to solve the sparse word problem, encoding and
+decoding the shared word embedding matrix, and also particularly
+proposed a small trick: based on observation, repeated three-word
+phrases generally do not appear in abstracts, so in the 束 search at the
+decoding end, if a repeated three-word phrase appears, it should be
+pruned.</p></li>
+<li><p>Afterward, the author analyzed two reasons why static supervised
+learning often fails to achieve ideal results in abstract evaluation
+criteria: one is exposure bias, where the model is exposed to the
+correct output (ground truth) during training but lacks a correct output
+for correction during inference, thus if a word is misinterpreted during
+inference, the error accumulates increasingly; the other is that the
+generation of abstracts itself is not static, lacks a standard answer,
+and good abstracts have many possibilities (these possibilities are
+generally considered in abstract evaluation criteria), but the static
+learning method using the maximum likelihood objective function kills
+these possibilities.</p></li>
+<li><p>Therefore, the authors introduced policy learning, a strategy
+search reinforcement learning method, for the abstracting task beyond
+supervised learning. In reinforcement learning, the model is not aimed
+at generating outputs most similar to the labels, but at maximizing a
+certain indicator. Here, the authors refer to a reinforcement learning
+algorithm from the image annotation task: the self-critical policy
+gradient training algorithm:</p>
+<p><span class="math display">\[
+L_{rl} = (r(y)-r(y^s))\sum _{t=1}^n log p(y_t^s | y_1^s,...,y_{t-1}^s,x)
+\]</span></p>
+<p>r is the 人工 evaluation reward function; the parameters of the two r
+functions are: the former is the baseline sentence obtained by
+maximizing the output probability, and the latter is the sentence
+obtained by sampling from the conditional probability distribution of
+each step; the goal is to minimize this L objective function. If the
+manually awarded sentence obtained from the sampling has more rewards
+than the baseline sentence, then this minimization of the objective
+function is equivalent to maximizing the conditional probability of the
+sampled sentence (after the calculation of the first two r functions, it
+becomes a negative sign)</p></li>
+<li><p>Afterward, the author combines the two objective functions of
+supervised learning and reinforcement learning:</p></li>
+</ul>
+<h1
+id="distributed-representations-of-words-and-phrases-and-their-compositionality">Distributed
+Representations of Words and Phrases and their Compositionality</h1>
+<ul>
+<li><p>Described the negative sampling version of w2v.</p></li>
+<li><p>Training with phrases as the basic unit rather than words can
+better represent some idiomatic phrases.</p></li>
+<li><p>Using NCE (Noise Contrast Estimation) instead of hierarchical
+softmax, NCE approximates the maximization of the logarithmic
+probability of softmax, as in W2V, we only care about learning good
+representations, therefore, a simplified version of NCE, negative
+sampling, is used to replace the conditional probability of the output
+with the following formula:</p>
+<p><span class="math display">\[
+p(w_O | w_I) = \frac {exp(v_{w_O}^T v_{w_I})}{\sum _{w=1}^W
+exp(v_{w_O}^T v_{w_I})}
+\]</span></p>
+<p>$$ log \sigma (v_{w_O}^T v_{w_I}) + \sum_{i=1}^k E[w_i \sim P_n(w)]
+[log \sigma (v_{w_O}^T v_{w_I})]</p></li>
+<li><p>Each time, only the target label and k noise labels (i.e.,
+non-target labels) are activated in the softmax output layer, i.e., for
+each word, there are k+1 samples, 1 positive sample, and k negative
+samples obtained by sampling, which are then classified using logistic
+regression. The above expression is the likelihood function of logistic
+regression, where Pn is the probability distribution of the
+noise.</p></li>
+<li><p>Downsample common words because the vector representation of
+common words is easy to stabilize; even after several million training
+iterations, there is little change, so each word's training is skipped
+with a certain probability:</p></li>
+<li><p>The skip-gram model trained in this way has good additive
+semantic compositionality (the component-wise addition of two vectors),
+i.e., Russia + river is close to the Volga River, because the vectors
+are logarithmically related to the probabilities of the output layer,
+and the sum of two vectors is related to the product of two contexts,
+which is equivalent to logical AND: high probability multiplied by high
+probability results in high probability, and the rest is low
+probability. Therefore, it has this simple arithmetic semantic
+compositionality.</p></li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><figure>
 <img data-src="https://s1.ax1x.com/2018/10/20/i0o00J.jpg" alt="i0o00J.jpg" />
 <figcaption aria-hidden="true">i0o00J.jpg</figcaption>
 </figure>
@@ -572,6 +1184,23 @@ exp(v_{w_O}^T v_{w_I})}
 <li><p>对常见词进行降采样，因为常见词的向量表示容易稳定，再训练几百万次也不会发生大的改变，因此每一次对词的训练以一定概率跳过：</p></li>
 <li><p>这样训练出来的skip-gram模型具有很好的加法语义合成性（两个向量的逐分量相加），即俄国+河与伏尔加河相近，因为向量与输出层的概率对数相关，两个向量相加与两个上下文的乘积相关，这种乘积相当于逻辑与：高概率乘高概率为高概率，其余为低概率。因此具有这种简单的算术语义合成性。</p></li>
 </ul>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
 
     </div>
 
@@ -581,9 +1210,9 @@ exp(v_{w_O}^T v_{w_I})}
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/abstractive-summarization/" rel="tag"># abstractive summarization</a>
-              <a href="/tags/math/" rel="tag"># math</a>
               <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/math/" rel="tag"># math</a>
+              <a href="/tags/abstractive-summarization/" rel="tag"># abstractive summarization</a>
               <a href="/tags/theory/" rel="tag"># theory</a>
               <a href="/tags/nlp/" rel="tag"># nlp</a>
           </div>
@@ -638,13 +1267,13 @@ exp(v_{w_O}^T v_{w_I})}
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">782k</span>
+    <span title="Word count total">1.1m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:51</span>
+    <span title="Reading time total">16:35</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>

@@ -19,19 +19,22 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="记录机器学习中关于一些概念和算法的笔记，来源于:  选修课模式识别(大三北邮选修课，模式识别，教材是张学工编著的《模式识别》，清华大学出版社) 西瓜书 《统计学习方法》 《深度学习》（感谢中文翻译：exacity&#x2F;deeplearningbook-chinese）  更新：  2017-02-12 更新概论 2017-03-01 更新k近邻 2017-03-08 更新SVM 2018-01-04">
+    <meta name="description" content="Notes on some concepts and algorithms in machine learning, sourced from:  Elective Course on Pattern Recognition (An elective course for third-year students at Beijing University of Posts and Telecom">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Notes for ML">
 <meta property="og:url" content="https://thinkwee.top/2017/02/12/MachineLearningNote/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="记录机器学习中关于一些概念和算法的笔记，来源于:  选修课模式识别(大三北邮选修课，模式识别，教材是张学工编著的《模式识别》，清华大学出版社) 西瓜书 《统计学习方法》 《深度学习》（感谢中文翻译：exacity&#x2F;deeplearningbook-chinese）  更新：  2017-02-12 更新概论 2017-03-01 更新k近邻 2017-03-08 更新SVM 2018-01-04">
+<meta property="og:description" content="Notes on some concepts and algorithms in machine learning, sourced from:  Elective Course on Pattern Recognition (An elective course for third-year students at Beijing University of Posts and Telecom">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0H2cV.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0HRXT.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0opQO.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0o9yD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0HRXT.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0opQO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0o9yD.png">
 <meta property="article:published_time" content="2017-02-12T14:40:38.000Z">
-<meta property="article:modified_time" content="2024-06-03T07:41:19.391Z">
+<meta property="article:modified_time" content="2024-12-04T12:25:05.244Z">
 <meta property="article:author" content="Thinkwee">
 <meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="code">
@@ -97,7 +100,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -148,7 +151,18 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%A6%82%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">统计学习方法概论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="nav-number">1.1.</span> <span class="nav-text">统计学习，监督学习，三要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="nav-number">1.2.</span> <span class="nav-text">模型评估，模型选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="nav-number">1.3.</span> <span class="nav-text">正则化，交叉验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B"><span class="nav-number">1.4.</span> <span class="nav-text">泛化能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E5%88%A4%E5%88%AB%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.</span> <span class="nav-text">生成模型，判别模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E6%A0%87%E6%B3%A8%E5%9B%9E%E5%BD%92"><span class="nav-number">1.6.</span> <span class="nav-text">分类，标注，回归</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#k%E8%BF%91%E9%82%BB%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">k近邻法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#k%E8%BF%91%E9%82%BB%E6%B3%95-1"><span class="nav-number">2.1.</span> <span class="nav-text">k近邻法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">k近邻算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k%E8%BF%91%E9%82%BB%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">k近邻模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kd%E6%A0%91"><span class="nav-number">2.4.</span> <span class="nav-text">kd树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA"><span class="nav-number">3.</span> <span class="nav-text">支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E4%B8%8E%E7%A1%AC%E9%97%B4%E9%9A%94%E6%9C%80%E5%A4%A7%E5%8C%96"><span class="nav-number">3.1.</span> <span class="nav-text">线性可分支持向量机与硬间隔最大化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E4%BB%A3%E5%9F%BA%E7%A1%80"><span class="nav-number">4.</span> <span class="nav-text">线代基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#moore-penrose"><span class="nav-number">4.1.</span> <span class="nav-text">Moore-penrose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%B9"><span class="nav-number">4.2.</span> <span class="nav-text">迹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pca%E8%A7%A3%E9%87%8A"><span class="nav-number">4.3.</span> <span class="nav-text">PCA解释</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E8%AE%BA%E4%BF%A1%E6%81%AF%E8%AE%BA"><span class="nav-number">5.</span> <span class="nav-text">概率论信息论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic-sigmoid"><span class="nav-number">5.1.</span> <span class="nav-text">Logistic Sigmoid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kl%E6%95%A3%E5%BA%A6%E5%92%8C%E4%BA%A4%E5%8F%89%E7%86%B5"><span class="nav-number">5.2.</span> <span class="nav-text">KL散度和交叉熵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E7%86%B5%E4%B8%8E%E6%9C%80%E5%A4%A7%E5%AF%B9%E6%95%B0%E4%BC%BC%E7%84%B6%E5%85%B3%E7%B3%BB"><span class="nav-number">5.3.</span> <span class="nav-text">交叉熵与最大对数似然关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">计算方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="nav-number">6.1.</span> <span class="nav-text">梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="nav-number">6.2.</span> <span class="nav-text">牛顿法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F%E4%BC%98%E5%8C%96"><span class="nav-number">6.3.</span> <span class="nav-text">约束优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%AE%97%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">修改算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%81%87%E8%AE%BE%E7%A9%BA%E9%97%B4"><span class="nav-number">7.1.</span> <span class="nav-text">修改假设空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">7.2.</span> <span class="nav-text">正则化</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#introduction-to-statistical-learning-methods"><span class="nav-number">1.</span> <span class="nav-text">Introduction to
+Statistical Learning Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#statistical-learning-supervised-learning-three-elements"><span class="nav-number">1.1.</span> <span class="nav-text">Statistical
+Learning, Supervised Learning, Three Elements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#model-evaluation-model-selection"><span class="nav-number">1.2.</span> <span class="nav-text">Model evaluation, model
+selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#regularization-cross-validation"><span class="nav-number">1.3.</span> <span class="nav-text">Regularization,
+cross-validation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generalization-ability"><span class="nav-number">1.4.</span> <span class="nav-text">Generalization ability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generative-model-discriminative-model"><span class="nav-number">1.5.</span> <span class="nav-text">Generative model,
+discriminative model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#categorization-annotation-regression"><span class="nav-number">1.6.</span> <span class="nav-text">Categorization,
+annotation, regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#k-nearest-neighbors-method"><span class="nav-number">2.</span> <span class="nav-text">k-Nearest Neighbors method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#k-nearest-neighbors-method-1"><span class="nav-number">2.1.</span> <span class="nav-text">k-Nearest Neighbors method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-nearest-neighbors-algorithm"><span class="nav-number">2.2.</span> <span class="nav-text">k-Nearest Neighbors
+algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-nearest-neighbors-model"><span class="nav-number">2.3.</span> <span class="nav-text">k-Nearest Neighbors model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-d-tree"><span class="nav-number">2.4.</span> <span class="nav-text">k-d tree</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#support-vector-machine"><span class="nav-number">3.</span> <span class="nav-text">Support Vector Machine</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linearly-separable-support-vector-machine-and-hard-margin-maximization"><span class="nav-number">3.1.</span> <span class="nav-text">Linearly
+separable support vector machine and hard margin maximization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linear-algebra-basics"><span class="nav-number">4.</span> <span class="nav-text">Linear Algebra Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#moore-penrose"><span class="nav-number">4.1.</span> <span class="nav-text">Moore-penrose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%B9"><span class="nav-number">4.2.</span> <span class="nav-text">迹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pca-explanation"><span class="nav-number">4.3.</span> <span class="nav-text">PCA Explanation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#probability-theory-and-information-theory"><span class="nav-number">5.</span> <span class="nav-text">Probability Theory
+and Information Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic-sigmoid"><span class="nav-number">5.1.</span> <span class="nav-text">Logistic Sigmoid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kl-divergence-and-cross-entropy"><span class="nav-number">5.2.</span> <span class="nav-text">KL divergence and
+cross-entropy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cross-entropy-and-maximum-log-likelihood-relationship"><span class="nav-number">5.3.</span> <span class="nav-text">Cross-entropy
+and maximum log-likelihood relationship</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#computational-method"><span class="nav-number">6.</span> <span class="nav-text">Computational Method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-descent"><span class="nav-number">6.1.</span> <span class="nav-text">Gradient Descent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#newtons-method"><span class="nav-number">6.2.</span> <span class="nav-text">Newton&#39;s Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#constraint-optimization"><span class="nav-number">6.3.</span> <span class="nav-text">Constraint Optimization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#modify-algorithm"><span class="nav-number">7.</span> <span class="nav-text">Modify algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#modify-the-hypothesis-space"><span class="nav-number">7.1.</span> <span class="nav-text">Modify the hypothesis space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#regularization"><span class="nav-number">7.2.</span> <span class="nav-text">Regularization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E6%A6%82%E8%AE%BA"><span class="nav-number">8.</span> <span class="nav-text">统计学习方法概论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="nav-number">8.1.</span> <span class="nav-text">统计学习，监督学习，三要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="nav-number">8.2.</span> <span class="nav-text">模型评估，模型选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="nav-number">8.3.</span> <span class="nav-text">正则化，交叉验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B"><span class="nav-number">8.4.</span> <span class="nav-text">泛化能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E5%88%A4%E5%88%AB%E6%A8%A1%E5%9E%8B"><span class="nav-number">8.5.</span> <span class="nav-text">生成模型，判别模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E6%A0%87%E6%B3%A8%E5%9B%9E%E5%BD%92"><span class="nav-number">8.6.</span> <span class="nav-text">分类，标注，回归</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#k%E8%BF%91%E9%82%BB%E6%B3%95"><span class="nav-number">9.</span> <span class="nav-text">k近邻法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#k%E8%BF%91%E9%82%BB%E6%B3%95-1"><span class="nav-number">9.1.</span> <span class="nav-text">k近邻法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95"><span class="nav-number">9.2.</span> <span class="nav-text">k近邻算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k%E8%BF%91%E9%82%BB%E6%A8%A1%E5%9E%8B"><span class="nav-number">9.3.</span> <span class="nav-text">k近邻模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kd%E6%A0%91"><span class="nav-number">9.4.</span> <span class="nav-text">kd树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA"><span class="nav-number">10.</span> <span class="nav-text">支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E4%B8%8E%E7%A1%AC%E9%97%B4%E9%9A%94%E6%9C%80%E5%A4%A7%E5%8C%96"><span class="nav-number">10.1.</span> <span class="nav-text">线性可分支持向量机与硬间隔最大化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E4%BB%A3%E5%9F%BA%E7%A1%80"><span class="nav-number">11.</span> <span class="nav-text">线代基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#moore-penrose"><span class="nav-number">11.1.</span> <span class="nav-text">Moore-penrose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%B9"><span class="nav-number">11.2.</span> <span class="nav-text">迹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pca%E8%A7%A3%E9%87%8A"><span class="nav-number">11.3.</span> <span class="nav-text">PCA解释</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E8%AE%BA%E4%BF%A1%E6%81%AF%E8%AE%BA"><span class="nav-number">12.</span> <span class="nav-text">概率论信息论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic-sigmoid"><span class="nav-number">12.1.</span> <span class="nav-text">Logistic Sigmoid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kl%E6%95%A3%E5%BA%A6%E5%92%8C%E4%BA%A4%E5%8F%89%E7%86%B5"><span class="nav-number">12.2.</span> <span class="nav-text">KL散度和交叉熵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E7%86%B5%E4%B8%8E%E6%9C%80%E5%A4%A7%E5%AF%B9%E6%95%B0%E4%BC%BC%E7%84%B6%E5%85%B3%E7%B3%BB"><span class="nav-number">12.3.</span> <span class="nav-text">交叉熵与最大对数似然关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95"><span class="nav-number">13.</span> <span class="nav-text">计算方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="nav-number">13.1.</span> <span class="nav-text">梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="nav-number">13.2.</span> <span class="nav-text">牛顿法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F%E4%BC%98%E5%8C%96"><span class="nav-number">13.3.</span> <span class="nav-text">约束优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%AE%97%E6%B3%95"><span class="nav-number">14.</span> <span class="nav-text">修改算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%81%87%E8%AE%BE%E7%A9%BA%E9%97%B4"><span class="nav-number">14.1.</span> <span class="nav-text">修改假设空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">14.2.</span> <span class="nav-text">正则化</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -161,7 +175,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -172,7 +186,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -197,23 +211,6 @@
     </div>
 
     
-        <div class="sidebar-inner sidebar-post-related">
-          <div class="animated">
-              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
-    Related Posts
-  </div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <a class="popular-posts-link" href="/2018/08/28/inference-algorithm/" rel="bookmark">
-        <time class="popular-posts-time">2018-08-28</time>
-        <br>
-      Note for Inference Algorithms in Probabilistic ML
-      </a>
-    </li>
-  </ul>
-
-          </div>
-        </div>
   </aside>
 
 
@@ -266,7 +263,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-03 15:41:19" itemprop="dateModified" datetime="2024-06-03T15:41:19+08:00">2024-06-03</time>
+      <time title="Modified: 2024-12-04 20:25:05" itemprop="dateModified" datetime="2024-12-04T20:25:05+08:00">2024-12-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -292,14 +289,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>7.6k</span>
+      <span>28k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>7 mins.</span>
+      <span>26 mins.</span>
     </span>
 </div>
 
@@ -310,30 +307,617 @@
     
     
     <div class="post-body" itemprop="articleBody"><hr />
-<p>记录机器学习中关于一些概念和算法的笔记，来源于:</p>
+<p>Notes on some concepts and algorithms in machine learning, sourced
+from:</p>
 <ul>
-<li>选修课模式识别(大三北邮选修课，模式识别，教材是张学工编著的《模式识别》，清华大学出版社)</li>
-<li>西瓜书</li>
-<li>《统计学习方法》</li>
-<li>《深度学习》（感谢中文翻译：<a
-target="_blank" rel="noopener" href="https://github.com/exacity/deeplearningbook-chinese">exacity/deeplearningbook-chinese</a>）</li>
+<li>Elective Course on Pattern Recognition (An elective course for
+third-year students at Beijing University of Posts and
+Telecommunications, Pattern Recognition, textbook is "Pattern
+Recognition" compiled by Zhang Xuegong, published by Tsinghua University
+Press)</li>
+<li>Watermelon Book</li>
+<li>Statistical Learning Methods</li>
+<li>Deep Learning (Translated in Chinese: <a
+target="_blank" rel="noopener" href="https://github.com/exacity/deeplearningbook-chinese">exacity/deeplearningbook-chinese</a>)</li>
 </ul>
-<p>更新：</p>
+<p>Update:</p>
 <ul>
-<li><p>2017-02-12 更新概论</p></li>
-<li><p>2017-03-01 更新k近邻</p></li>
-<li><p>2017-03-08 更新SVM</p></li>
-<li><p>2018-01-04
-更新《深度学习》一书中的机器学习基础知识和数学知识</p></li>
-<li><p>2018-08-09
-统计学习方法的内容已经贴在另一篇《统计学习方法手写版笔记》里了，估计不会更新了，之后可能更新《深度学习》里一些剩下的内容</p>
-<span id="more"></span></li>
+<li><p>2017-02-12 Overview Update</p></li>
+<li><p>2017-03-01 Update k-Nearest Neighbors</p></li>
+<li><p>2017-03-08 Update SVM</p></li>
+<li><p>2018-01-04 Update of fundamental knowledge of machine learning
+and mathematical knowledge in the book "Deep Learning"</p></li>
+<li><p>2018-08-09 The content of Statistical Learning Methods has been
+posted in another article titled "Handwritten Notes on Statistical
+Learning Methods," and it is estimated that it will not be updated
+anymore. Later, some remaining contents in "Deep Learning" may be
+updated</p></li>
 </ul>
+<p><span id="more"></span></p>
 <figure>
 <img data-src="https://s1.ax1x.com/2018/10/20/i0H2cV.png" alt="i0H2cV.png" />
 <figcaption aria-hidden="true">i0H2cV.png</figcaption>
 </figure>
-<h1 id="统计学习方法概论"><font size=5 >统计学习方法概论</font></h1>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="introduction-to-statistical-learning-methods">Introduction to
+Statistical Learning Methods</h1>
+<h2
+id="statistical-learning-supervised-learning-three-elements">Statistical
+Learning, Supervised Learning, Three Elements</h2>
+<ul>
+<li><p>If a system can improve its performance by executing a certain
+process, that is learning</p></li>
+<li><p>The methods of statistical learning are based on constructing
+statistical models from data for the purpose of prediction and
+analysis</p></li>
+<li><p>Obtain the training dataset; determine the hypothesis space
+containing all possible models; establish the criteria for model
+selection; implement the algorithm for solving the optimal model; select
+the optimal model through learning methods; use the optimal model for
+predicting or analyzing new data</p></li>
+<li><p>The task of supervised learning is to learn a model that can make
+a good prediction for the corresponding output of any given
+input</p></li>
+<li><p>Each specific input is an instance, typically represented by a
+feature vector. It constitutes a feature space, with each dimension
+corresponding to a feature.</p></li>
+<li><p>Supervised learning learns a model from a training dataset, which
+consists of input-output pairs (samples)</p></li>
+<li><p>Supervised learning learns a model from a training set,
+represented as a conditional probability distribution or a decision
+function</p></li>
+<li><p>Statistical Learning Three Elements: Method = Model + Strategy +
+Algorithm. The model includes probabilistic models (conditional
+probability) and non-probabilistic models (decision functions); the
+strategy refers to the method of selecting the optimal model,
+introducing the concepts of loss function (cost function) and risk
+function, and realizing the optimization of empirical risk or structural
+risk; the algorithm refers to the specific computational method for
+learning the model.</p></li>
+<li><p>Loss function is used to measure the degree of error between the
+predicted values and the true values, common ones include: 0-1 loss
+function, squared loss function, absolute loss function, logarithmic
+loss function, denoted as <span
+class="math inline">\(L(Y,P(Y|X))\)</span> , risk function (expected
+loss) is the average loss below the joint distribution of the model:
+<span class="math display">\[
+R_{exp}(f)=E_p[L(Y,f(X))]=\int_{x*y}L(y,f(x))P(x,y)dxdy
+\]</span> , empirical risk (empirical loss) is the average loss of the
+model about the training set: <span class="math display">\[
+R_{emp}(f)=\frac 1N \sum_{i=1}^NL(y_i,f(x_i))
+\]</span></p></li>
+<li><p>Ideally, expected risk can be estimated using empirical risk,
+however, when the sample size is small, minimizing empirical risk is
+prone to overfitting, thus the concept of structural risk
+(regularization) is proposed: <span class="math display">\[
+R_{srm}(f)=\frac1N \sum_{i=1}^NL(y_i,f(x_i))+ \lambda J(f)
+\]</span> , where J(f) represents the complexity of the model, and the
+coefficient <span class="math inline">\(\lambda\)</span> is used to
+weigh the empirical risk and model complexity. ML belongs to empirical
+risk minimization, while MAP belongs to structural risk
+minimization.</p></li>
+</ul>
+<h2 id="model-evaluation-model-selection">Model evaluation, model
+selection</h2>
+<ul>
+<li>The error of the model on the training set and the test set is
+respectively called training error and test error. The loss function
+used may not be consistent, and making them consistent is ideal</li>
+<li>Overfitting: Learning too much, the complexity of the model is
+higher than the real model, performing well on the learned data but poor
+in predicting unknown data. To avoid overfitting, the correct number of
+features and the correct feature vectors are required.</li>
+<li>Two methods for model selection: regularization and
+cross-validation</li>
+</ul>
+<h2 id="regularization-cross-validation">Regularization,
+cross-validation</h2>
+<ul>
+<li>Add a regularization term (penalty) to the empirical risk, with
+higher penalties for more complex models</li>
+<li>The general method is to randomly divide the dataset into three
+parts: the training set, the validation set, and the test set, which are
+used respectively for training data, selecting models, and finally
+evaluating the learning method. Cross-validation involves repeatedly
+randomly splitting the data into training and test sets, learning
+multiple times, and conducting testing and model selection.</li>
+<li>Cross-validation types: Simple cross-validation; S-fold
+cross-validation; Leave-one-out cross-validation</li>
+</ul>
+<h2 id="generalization-ability">Generalization ability</h2>
+<ul>
+<li>Generalization error: Error in predicting unknown data</li>
+<li>Generalization error upper bound is generally a function of the
+sample size; as the sample size increases, the upper bound of
+generalization tends to 0. This implies that the larger the hypothesis
+space capacity, the harder the model is to learn, and the larger the
+upper bound of the generalization error</li>
+<li>For binary classification problems, the upper bound of
+generalization error: where d is the capacity of the function set, for
+any function, at least with probability <span
+class="math inline">\(1-\delta\)</span></li>
+</ul>
+<p><span class="math display">\[
+R_{exp}(f)\leq R_{emp}(f)+\varepsilon (d,N,\delta ) \\
+\varepsilon (d,N,\delta )=\sqrt{\frac 1{2N}(log d+log \frac 1 \delta)}
+\\
+\]</span></p>
+<h2 id="generative-model-discriminative-model">Generative model,
+discriminative model</h2>
+<ul>
+<li>The generation method is based on learning the joint probability
+distribution of data, and then calculating the conditional probability
+distribution as the predictive model, i.e., the generative model, such
+as the Naive Bayes method and the Hidden Markov Model</li>
+<li>Discriminant methods learn decision functions or conditional
+probability distributions directly from data as predictive models, i.e.,
+discriminant models, such as k-nearest neighbors, perceptrons, decision
+trees, logistic regression models, maximum entropy models, support
+vector machines, boosting methods, and conditional random fields,
+etc</li>
+<li>The generation method can recover the joint probability
+distribution, has a fast learning convergence speed, and is suitable for
+cases with latent variables</li>
+<li>High accuracy of discrimination methods, capable of abstracting
+data, and simplifying learning problems</li>
+</ul>
+<h2 id="categorization-annotation-regression">Categorization,
+annotation, regression</h2>
+<ul>
+<li><p>Categorization, which takes discrete finite values as output, is
+also known as a classification decision function or classifier</p></li>
+<li><p>For binary classification, the total number of four cases:
+correctly predicted as correct TP; correctly predicted as incorrect FN;
+incorrectly predicted as correct FP; incorrectly predicted as incorrect
+TN</p>
+<p><span class="math display">\[
+Precision:P=\frac{TP}{TP+FP} \\
+Recall:R=\frac{TP}{TP+FN} \\
+F1 value:\frac {2}{F_1}=\frac1P+\frac1R \\
+\]</span></p></li>
+<li><p>Annotation: Input an observation sequence, output a marked
+sequence</p></li>
+<li><p>Regression: Function fitting, the commonly used loss function is
+the squared loss function, which is fitted using the least squares
+method</p></li>
+</ul>
+<h1 id="k-nearest-neighbors-method">k-Nearest Neighbors method</h1>
+<h2 id="k-nearest-neighbors-method-1">k-Nearest Neighbors method</h2>
+<ul>
+<li>k-Nearest Neighbor method assumes that a training dataset is given,
+with instances of predetermined categories. In classification, for new
+instances, predictions are made based on the categories of the k nearest
+training instances, through majority voting or other methods.</li>
+<li>k-value selection, distance measurement, and classification decision
+rules are the three elements of the k-nearest neighbor method.</li>
+<li>k-Nearest Neighbor is a lazy learning method; it does not train the
+samples.</li>
+</ul>
+<h2 id="k-nearest-neighbors-algorithm">k-Nearest Neighbors
+algorithm</h2>
+<ul>
+<li><p>For new input instances, find the k nearest instances to the
+instance in the training dataset, and if the majority of these k
+instances belong to a certain class, classify the instance into that
+class. That is:</p>
+<p><span class="math display">\[
+y=arg \max_{c_j} \sum_{x_i \in N_k(x)} I(y_i=c_j), \  i=1,2,...,N; \
+j=1,2,...,K
+\]</span></p>
+<p>When <span class="math inline">\(y_i=c_i\)</span> is <span
+class="math inline">\(I=1\)</span> , the neighborhood <span
+class="math inline">\(N_k(x)\)</span> consists of k nearest neighbor
+points covering x.</p></li>
+<li><p>When k=1, it is called the nearest neighbor algorithm</p></li>
+<li><p>k-nearest neighbor algorithm does not have an explicit learning
+process</p></li>
+</ul>
+<h2 id="k-nearest-neighbors-model">k-Nearest Neighbors model</h2>
+<ul>
+<li><p>k-nearest neighbor model refers to the partitioning of the
+feature space.</p></li>
+<li><p>In the feature space, for each training instance point, all
+points closer to this point than others form a region called a unit.
+Each training instance point has a unit, and the units of all training
+instance points constitute a partition of the feature space, with the
+class of each instance being the class label of all points within its
+unit.</p></li>
+<li><p>Distance metrics include: Euclidean distance, <span
+class="math inline">\(L_p\)</span> distance, Minkowski
+distance.</p></li>
+<li><p>The Euclidean distance is a special case of the <span
+class="math inline">\(L_p\)</span> distance (p=2), and when p=1, it
+becomes the Manhattan distance, defined as:</p>
+<p><span class="math display">\[
+L_p(x_i,x_j)=(\sum _{l=1}^n |x_i^{(l)}-x_j^{(l)}|^p)^{\frac1p}
+\]</span></p></li>
+<li><p>k value is small, approximation error is small, estimation error
+is large, the overall model is complex, prone to overfitting. k value is
+large, estimation error is small, approximation error is large, the
+model is simple</p></li>
+<li><p>Generally, the cross-validation method is used to determine the
+value of k</p></li>
+<li><p>The majority voting rule is equivalent to empirical risk
+minimization</p></li>
+</ul>
+<h2 id="k-d-tree">k-d tree</h2>
+<ul>
+<li>kd-tree is a special structure used to store training data, which
+improves the efficiency of k-nearest neighbor search, which is
+essentially a binary search tree</li>
+<li>Each node of the k-d tree corresponds to a k-dimensional
+hyperrectangle region</li>
+<li>Method for constructing a balanced kd-tree: Divide by taking the
+median of each dimension sequentially, for example, in three dimensions,
+first draw a line at the median of the x-axis, divide it into two parts,
+then draw a line at the median of the y-axis for each part, and then
+along the z-axis, and then cycle through x, y, z.</li>
+<li>After the construction of the kd-tree is completed, it can be used
+for k-nearest neighbor searches. The following uses the nearest neighbor
+search as an example, where k=1:
+<ul>
+<li>Starting from the root node, recursively search downwards to the
+area where the target point is located, until reaching the leaf
+nodes</li>
+<li>Taking this leaf node as the current nearest point, the distance
+from the current nearest point to the target point is the current
+nearest distance, and our goal is to search the tree to find a suitable
+node to update the current nearest point and the current nearest
+distance</li>
+<li>Recursive upward rollback, perform the following operation on each
+node
+<ul>
+<li>If the instance point saved by the node is closer to the target
+point than the current nearest point, update the instance point to the
+current nearest point, and update the distance from the instance point
+to the target point to the current nearest distance</li>
+<li>The child nodes of this node are divided into two, one of which
+contains our target point. This part we have come from the target point
+all the way up recursively, and it has been updated. Therefore, we need
+to find the other child node of this node to see if it can be updated:
+Check if the corresponding area of the other child node intersects with
+the hypersphere centered at the target point and with the current
+shortest distance as the radius. If they intersect, move to this child
+node and continue the upward search; if they do not intersect, do not
+move and continue the upward search.</li>
+<li>Until the root node is searched, the current nearest point at this
+time is the nearest neighbor of the target point.</li>
+</ul></li>
+</ul></li>
+<li>The computational complexity of k-d tree search is <span
+class="math inline">\(O(logN)\)</span> , suitable for k-nearest neighbor
+search when the number of training instances is much larger than the
+number of spatial dimensions</li>
+</ul>
+<h1 id="support-vector-machine">Support Vector Machine</h1>
+<h2
+id="linearly-separable-support-vector-machine-and-hard-margin-maximization">Linearly
+separable support vector machine and hard margin maximization</h2>
+<ul>
+<li><p>The goal of learning is to find a separating hyperplane in the
+feature space that can distribute instances into different classes
+(binary classification). The separating hyperplane corresponds to the
+equation <span class="math inline">\(wx+b=0\)</span> , determined by the
+normal vector w and the intercept b, and can be represented by (w,
+b)</p></li>
+<li><p>Here, x is the feature vector <span
+class="math inline">\((x_1,x_2,...)\)</span> , and y is the label of the
+feature vector</p></li>
+<li><p>Given a linearly separable training dataset, the separating
+hyperplane learned by maximizing the margin or solving the equivalent
+convex quadratic programming problem, denoted as <span
+class="math inline">\(wx+b=0\)</span> , and the corresponding
+classification decision function denoted as <span
+class="math inline">\(f(x)=sign(wx+b)\)</span> , is called a linearly
+separable support vector machine</p></li>
+<li><p>Under the determination of the hyperplane <span
+class="math inline">\(wx+b=0\)</span> , the distance from the point
+(x,y) to the hyperplane can be</p>
+<p><span class="math display">\[
+\gamma _i=\frac{w}{||w||}x_i+\frac{b}{||w||}
+\]</span></p></li>
+<li><p>Whether the symbol of <span class="math inline">\(wx+b\)</span>
+is consistent with the symbol of class label y indicates whether the
+classification is correct, <span class="math inline">\(y=\pm 1\)</span>
+, thus obtaining the geometric distance</p>
+<p><span class="math display">\[
+\gamma _i=y_i(\frac{w}{||w||}x_i+\frac{b}{||w||}) \\
+Define the geometric interval of the hyperplane (w,b) with respect to
+the training data set T as the minimum geometric interval of all sample
+points \\
+\gamma=min\gamma _i \\
+\]</span></p></li>
+<li><p>Simultaneously define the relative distance as the function
+interval</p>
+<p><span class="math display">\[
+\gamma _i=y_i(wx_i+b) \\
+\gamma =min\gamma _i \\
+\]</span></p></li>
+<li><p>Hard margin maximization is for linearly separable hyperplanes,
+while soft margin maximization is for approximately linearly separable
+cases</p></li>
+<li><p>Finding a hyperplane with the maximum geometric margin, which can
+be represented as the following constrained optimization problem</p>
+<p><span class="math display">\[
+max_{(w,b)} \gamma \\
+s.t. \quad y_i(\frac{w}{||w||}x_i+\frac{b}{||w||})\geq \gamma
+,i=1,2,...,N \\
+\]</span></p></li>
+<li><p>We can convert geometric intervals into functional intervals,
+which has no effect on optimization. Moreover, if we fix the relative
+interval as a constant (1), the maximization of the geometric interval
+can be transformed into the minimization of <span
+class="math inline">\(||w||\)</span> , thus the constrained optimization
+problem can be rewritten as</p>
+<p><span class="math display">\[
+min_{(w,b)} \frac12 {||w||}^2 \\
+s.t. \quad y_i(wx_i+b)-1 \geq 0 \\
+\]</span></p></li>
+<li><p>The above equation is the basic form of SVM, and when the above
+optimization problem is solved, we obtain a separating hyperplane with
+the maximum margin, which is the maximum margin method</p></li>
+<li><p>The maximum margin separating hyperplane exists and is unique,
+proof omitted</p></li>
+<li><p>In the linearly separable case, the instances of the nearest
+sample points to the separating hyperplane in the training dataset are
+called support vectors</p></li>
+<li><p>For the positive example points of <span
+class="math inline">\(y_i=1\)</span> , the support vectors lie on the
+plane <span class="math inline">\(wx+b=1\)</span> , similarly, the
+negative example points lie on the plane <span
+class="math inline">\(wx+b=-1\)</span> . These two planes are parallel
+and there are no training data points between them. The distance between
+the two planes is the margin, which depends on the normal vector w of
+the separating hyperplane, as <span class="math inline">\(\frac 2
+{||w||}\)</span></p></li>
+<li><p>Thus, it can be seen that support vector machines are determined
+by a very small number of important training samples (support
+vectors)</p></li>
+<li><p>To solve the optimization problem, we introduce the dual
+algorithm and also introduce kernel functions to generalize to nonlinear
+classification problems</p></li>
+<li><p>To be supplemented</p></li>
+</ul>
+<h1 id="linear-algebra-basics">Linear Algebra Basics</h1>
+<h2 id="moore-penrose">Moore-penrose</h2>
+<ul>
+<li><p>For non-square matrices, their inverse matrix is undefined,
+therefore we specially define the pseudoinverse of non-square matrices:
+Moore-Penrose pseudoinverse <span class="math display">\[
+A^+=lim_{\alpha \rightarrow 0}(A^TA+\alpha I)^{-1}A^T
+\]</span></p></li>
+<li><p>The actual algorithms for computing the pseudo-inverse do not
+base themselves on this definition, but rather use the following
+formula:</p>
+<p><span class="math display">\[
+A^+=VD^+U^T
+\]</span></p>
+<p>U, D, and V are the matrices obtained from the singular value
+decomposition of matrix A, which are diagonal matrices. The
+pseudo-inverse <span class="math inline">\(D^+\)</span> of the diagonal
+matrix D is obtained by taking the reciprocal of its non-zero elements
+and then transposing.</p></li>
+<li><p>When the number of columns of matrix A exceeds the number of
+rows, using the pseudoinverse to solve the linear equation is one of
+many possible methods. Particularly, <span class="math inline">\(x =
+A^+y\)</span> is the one with the smallest Euclidean norm among all
+feasible solutions to the equation.</p></li>
+<li><p>When the number of rows of matrix A exceeds the number of
+columns, there may be no solution. In this case, the pseudo-inverse
+<span class="math inline">\(x\)</span> obtained minimizes the Euclidean
+distance between <span class="math inline">\(Ax\)</span> and <span
+class="math inline">\(y\)</span> .</p></li>
+<li><p>To be supplemented</p></li>
+</ul>
+<h2 id="迹">迹</h2>
+<ul>
+<li><p>Trace operation returns the sum of the diagonal elements of the
+matrix.</p></li>
+<li><p>Using trace operations, the matrix Frobenius norm can be
+described as:</p>
+<p><span class="math display">\[
+||A_F||=\sqrt{Tr(AA^T)}
+\]</span></p></li>
+<li><p>Trace has transposition invariance and permutation
+invariance</p></li>
+<li><p>The trace of a scalar is its own</p></li>
+</ul>
+<h2 id="pca-explanation">PCA Explanation</h2>
+<ul>
+<li>To be supplemented</li>
+</ul>
+<h1 id="probability-theory-and-information-theory">Probability Theory
+and Information Theory</h1>
+<h2 id="logistic-sigmoid">Logistic Sigmoid</h2>
+<ul>
+<li><p>Logistic and sigmoid are often used interchangeably, this
+function is used to compress real numbers into the interval (0,1),
+representing binary classification probabilities:</p>
+<p><span class="math display">\[
+\sigma (x) = \frac{1}{1+exp(-x)}
+\]</span></p></li>
+<li><p>Softmax is an extension of the sigmoid, being a smoothed version
+of the argmax function (argmax returns a one-hot vector while softmax
+returns probabilities for various possible outcomes), extending binary
+classification to the multi-class (disjoint) case:</p>
+<p><span class="math display">\[
+\sigma (z)_j = \frac{e^z j}{\sum _{k=1}^K e^z k}
+\]</span></p></li>
+<li><p>Both exhibit saturation phenomena when the input is too large or
+too small, but when the two functions are introduced as nonlinear
+activation units in a neural network, because the cost function takes
+the negative logarithm, this saturation phenomenon can be
+eliminated.</p></li>
+<li><p>Softmax function, due to the inclusion of exponential functions,
+also has issues with underflow and overflow. When the input is uniformly
+distributed and the number of input samples is large, the denominator
+exponential values approach 0, and the summation may also approach 0,
+leading to underflow in the denominator. Overflow can also occur when
+the parameters of the exponential function are large. The solution is to
+process the input x as z = x - max(xi), that is, subtracting the maximum
+component from each component of the vector. Adding or subtracting a
+scalar from the input vector does not change the softmax function values
+(redundancy of the softmax function), but at this point, the maximum
+value of the processed input is 0, excluding overflow. After the
+exponential function, at least one term in the summation of the
+denominator exists as 1, excluding underflow.</p></li>
+<li><p>Utilizing the redundancy of the softmax function can also deduce
+that sigmoid is a special case of softmax: <img data-src="https://s1.ax1x.com/2018/10/20/i0HRXT.png"
+alt="i0HRXT.png" /></p></li>
+</ul>
+<h2 id="kl-divergence-and-cross-entropy">KL divergence and
+cross-entropy</h2>
+<ul>
+<li><p>KL divergence: A measure of the difference between two
+distributions, PQ, non-negative and asymmetric:</p>
+<p><span class="math display">\[
+D_{KL}(P||Q) = E_{x \sim P} [log \frac{P(x)}{Q(x)}] = E_{x \sim P} [log
+P(x) - log Q(x)]
+\]</span></p></li>
+<li><p>Cross-entropy:</p>
+<p><span class="math display">\[
+H(P,Q) = -E_{x \sim P} log Q(x)
+\]</span></p></li>
+<li><p>The cross-entropy form is simple, and the minimization of KL
+divergence with respect to Q (actual output) is unrelated to the first
+term in the divergence formula, therefore, minimizing KL divergence can
+actually be seen as minimizing cross-entropy. Moreover, since KL
+divergence represents the difference between PQ (actual output and
+correct output), it can be regarded as a loss function</p></li>
+<li><p>In dealing with binary classification problems using logistic
+regression, q(x) refers to the logistic function, and p(x) refers to the
+actual distribution of the data (either 0 or 1)</p></li>
+<li><p>The expected self-information of q with respect to p, i.e., the
+binary cross-entropy (Logistic cost function):</p>
+<p><span class="math display">\[
+J(\theta) = - \frac 1m [\sum _{i=1}^m y^{(i)} log h_{\theta} (x^{(i)}) +
+(1-y^{(i)}) log (1-h_{\theta}(x^{(i)}))]
+\]</span></p></li>
+<li><p>Similarly, we can obtain the multi-class cross-entropy (Softmax
+cost function):</p>
+<p><span class="math display">\[
+J(\theta) = - \frac 1m [\sum _{i=1}^m \sum _{j=1}^k 1\{ y^{(i)}=j \} log
+\frac {e^{\theta _j ^T x^{(i)}}} {\sum _{l=1}^k e^{\theta _j ^T
+x^{(i)}}}]
+\]</span></p></li>
+</ul>
+<h2
+id="cross-entropy-and-maximum-log-likelihood-relationship">Cross-entropy
+and maximum log-likelihood relationship</h2>
+<ul>
+<li><p>Given a sample dataset X with distribution <span
+class="math inline">\(P_{data}(x)\)</span> , we aim to obtain a model
+<span class="math inline">\(P_{model}(x,\theta)\)</span> whose
+distribution is as close as possible to <span
+class="math inline">\(P_{data}(x)\)</span> . <span
+class="math inline">\(P_{model}(x,\theta)\)</span> maps any x to a real
+number to estimate the true probability <span
+class="math inline">\(P_{data}(x)\)</span> . In <span
+class="math inline">\(P_{model}(x,\theta)\)</span> , the maximum
+likelihood estimate of <span class="math inline">\(\theta\)</span> is
+the <span class="math inline">\(\theta\)</span> that maximizes the
+product of probabilities obtained by the model for the sample data:</p>
+<p><span class="math display">\[
+\theta _{ML} = \mathop{argmax}\limits_{\theta} p_{model} (X;\theta)
+\]</span></p></li>
+<li><p>Because taking the logarithm and scaling transformation does not
+change argmax, taking the logarithm transforms it into a summation and
+then dividing by the sample size to average it yields:</p>
+<p><span class="math display">\[
+\theta _{ML} = \mathop{argmax}\limits_{\theta} E_{x \sim p_{data}} log
+p_{model}(x;\theta)
+\]</span></p></li>
+<li><p>It can be observed that the above expression is the negative of
+the cross-entropy, and its value is maximized when Pdata(x) =
+Pmodel(x,θ), so:</p></li>
+<li><p>Maximum likelihood = minimum negative log-likelihood = minimizing
+cross-entropy = minimizing KL divergence = minimizing the gap between
+data and model = minimizing the cost function</p></li>
+<li><p>Maximum likelihood estimation can be extended to maximum
+conditional likelihood estimation, which constitutes the foundation of
+most supervised learning: Formula:</p>
+<p><span class="math display">\[
+\theta _{ML} = \mathop{argmax}\limits_{\theta} \sum_{i=1}^m log
+P(y^{(i)} | x^{(i)} ; \theta)
+\]</span></p></li>
+<li><p>Maximum likelihood estimation is consistent.</p></li>
+</ul>
+<h1 id="computational-method">Computational Method</h1>
+<h2 id="gradient-descent">Gradient Descent</h2>
+<ul>
+<li>How to transform parameters (inputs) to make the function smaller
+(minimize the cost function)?</li>
+<li>The principle is that moving the input in the opposite direction of
+the derivative by a small step can reduce the function's output.</li>
+<li>Extend the input to vector-form parameters, treat the function as a
+cost function, and thus obtain a gradient-based optimization
+algorithm.</li>
+<li>First-order optimization algorithm: including gradient descent,
+using the Jacobian matrix (including the relationship between partial
+derivatives of vectors), and updating the suggested parameter updates
+through gradient descent: <img data-src="https://s1.ax1x.com/2018/10/20/i0opQO.png" alt="i0opQO.png" /></li>
+</ul>
+<h2 id="newtons-method">Newton's Method</h2>
+<ul>
+<li>Second-order optimization algorithm (求最优补偿，定性临界点):
+First-order optimization requires adjusting the appropriate learning
+rate (step size), otherwise it cannot reach the optimal point or will
+produce shaking, and it cannot update the parameters at the critical
+point (gradient is 0), which reflects the need for second-order
+derivative information of the cost function, for example, when the
+function is convex or concave, the predicted value based on the gradient
+and the true value of the cost function have a deviation. The Hessian
+matrix contains second-order information. Newton's method uses the
+information of the Hessian matrix, uses the second-order Taylor
+expansion to obtain the function information, and updates the parameters
+using the following formula: <img data-src="https://s1.ax1x.com/2018/10/20/i0o9yD.png"
+alt="i0o9yD.png" /> </li>
+</ul>
+<h2 id="constraint-optimization">Constraint Optimization</h2>
+<ul>
+<li><p>Only contains equality constraint conditions: Lagrange</p></li>
+<li><p>Inequality constraint conditions: KTT</p></li>
+</ul>
+<h1 id="modify-algorithm">Modify algorithm</h1>
+<h2 id="modify-the-hypothesis-space">Modify the hypothesis space</h2>
+<ul>
+<li><p>Machine learning algorithms should avoid overfitting and
+underfitting, which can be addressed by adjusting the model capacity
+(the ability to fit various functions).</p></li>
+<li><p>Adjusting the model capacity involves selecting an appropriate
+hypothesis space (assuming input rather than parameters), for example,
+previously only fitting polynomial linear functions:</p>
+<p><span class="math display">\[
+y = b + wx
+\]</span></p></li>
+<li><p>If nonlinear units, such as higher-order terms, are introduced,
+the output remains linearly distributed relative to the parameters:</p>
+<p><span class="math display">\[
+y= b + w_1 x + w_2 x^2
+\]</span></p>
+<p>This increases the model's capacity while simplifying the generated
+parameters, making it suitable for solving complex problems; however, a
+too high capacity may also lead to overfitting.</p></li>
+</ul>
+<h2 id="regularization">Regularization</h2>
+<ul>
+<li><p>No free lunch theorem (after averaging over all possible data
+generation distributions, each classification algorithm has the same
+error rate on points that have not been observed beforehand) indicates
+that machine learning algorithms should be designed for specific tasks,
+and algorithms should have preferences. Adding regularization to the
+cost function introduces preferences, causing the learned parameters to
+be biased towards minimizing the regularization term.</p></li>
+<li><p>An example is weight decay; the cost function with the addition
+of the weight decay regularization term is:</p>
+<p><span class="math display">\[
+J(w) = MSE_{train} + \lambda w^T w
+\]</span></p>
+<p>λ controls the preference degree, and the generated models tend to
+have small parameters, which can avoid overfitting.</p></li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="统计学习方法概论"><font size=5 >统计学习方法概论</font></h1>
 <h2
 id="统计学习监督学习三要素"><font size=4 >统计学习，监督学习，三要素</font></h2>
 <ul>
@@ -661,6 +1245,23 @@ J(w) = MSE_{train} + \lambda w^T w
 \]</span></p>
 <p>λ控制偏好程度，生成的模型倾向于小参数，可以避免过拟合。</p></li>
 </ul>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
 
     </div>
 
@@ -724,13 +1325,13 @@ J(w) = MSE_{train} + \lambda w^T w
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">782k</span>
+    <span title="Word count total">1.1m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">11:51</span>
+    <span title="Reading time total">16:35</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
