@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Lecture 17: Determinants and Their Properties Determinant  The determinant of matrix A is a number associated with the matrix, denoted as \(detA或者|A|\) Properties of determinants  \(detI&#x3D;1\) The sign">
+    <meta name="description" content="Lecture 17: Determinants and Their PropertiesDeterminant The determinant of matrix A is a number associated with the matrix, denoted as $detA或者|A|$  Properties of determinants  $detI&#x3D;1$  The sign of">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Note for Linear Algebra 3">
 <meta property="og:url" content="https://thinkwee.top/2017/01/22/LinearAlgebra3/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="Lecture 17: Determinants and Their Properties Determinant  The determinant of matrix A is a number associated with the matrix, denoted as \(detA或者|A|\) Properties of determinants  \(detI&#x3D;1\) The sign">
+<meta property="og:description" content="Lecture 17: Determinants and Their PropertiesDeterminant The determinant of matrix A is a number associated with the matrix, denoted as $detA或者|A|$  Properties of determinants  $detI&#x3D;1$  The sign of">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-01-22T11:21:02.000Z">
 <meta property="article:modified_time" content="2025-01-30T02:10:45.357Z">
@@ -143,16 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-17-determinants-and-their-properties"><span class="nav-number">1.</span> <span class="nav-text">Lecture 17:
-Determinants and Their Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#determinant"><span class="nav-number">1.1.</span> <span class="nav-text">Determinant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#triangular-matrix-determinant"><span class="nav-number">1.2.</span> <span class="nav-text">Triangular matrix
-determinant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a-little-more"><span class="nav-number">1.3.</span> <span class="nav-text">A little more</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#eighteenth-lecture-determinant-formulas-and-algebraic-cofactors"><span class="nav-number">2.</span> <span class="nav-text">Eighteenth
-Lecture: Determinant Formulas and Algebraic Cofactors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#determinant-formula"><span class="nav-number">2.1.</span> <span class="nav-text">Determinant formula</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#algebraic-cofactor"><span class="nav-number">2.2.</span> <span class="nav-text">Algebraic cofactor</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#th-lecture-cramers-rule-inverse-matrix-volume"><span class="nav-number">3.</span> <span class="nav-text">19th Lecture:
-Cramer&#39;s Rule, Inverse Matrix, Volume</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#invertible-matrix"><span class="nav-number">3.1.</span> <span class="nav-text">Invertible matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kramers-rule"><span class="nav-number">3.2.</span> <span class="nav-text">Kramer&#39;s Rule</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#volume"><span class="nav-number">3.3.</span> <span class="nav-text">Volume</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-20-eigenvalues-and-eigenvectors"><span class="nav-number">4.</span> <span class="nav-text">Lecture 20: Eigenvalues
-and Eigenvectors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#feature-vector"><span class="nav-number">4.1.</span> <span class="nav-text">Feature vector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#several-examples"><span class="nav-number">4.2.</span> <span class="nav-text">Several examples</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#st-lecture-diagonalization-and-powers-of-a"><span class="nav-number">5.</span> <span class="nav-text">21st Lecture:
-Diagonalization and Powers of A</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#diagonalization"><span class="nav-number">5.1.</span> <span class="nav-text">Diagonalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#as-power"><span class="nav-number">5.2.</span> <span class="nav-text">A&#39;s power</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#summary"><span class="nav-number">5.3.</span> <span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-22-differential-equations-and-expat"><span class="nav-number">6.</span> <span class="nav-text">Lecture 22:
-Differential Equations and exp(At)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#differential-equation"><span class="nav-number">6.1.</span> <span class="nav-text">Differential Equation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#expat"><span class="nav-number">6.2.</span> <span class="nav-text">exp(At)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#st-lecture-markov-matrix-fourier-series"><span class="nav-number">7.</span> <span class="nav-text">21st Lecture: Markov
-Matrix; Fourier Series</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#markov-matrix"><span class="nav-number">7.1.</span> <span class="nav-text">Markov matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fourier-series"><span class="nav-number">7.2.</span> <span class="nav-text">Fourier Series</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-22-symmetric-matrices-and-positive-definiteness"><span class="nav-number">8.</span> <span class="nav-text">Lecture
-22: Symmetric Matrices and Positive Definiteness</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#symmetric-matrix"><span class="nav-number">8.1.</span> <span class="nav-text">Symmetric matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#positivity"><span class="nav-number">8.2.</span> <span class="nav-text">Positivity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E9%98%B5%E8%A1%8C%E5%88%97%E5%BC%8F"><span class="nav-number">8.3.</span> <span class="nav-text">三角阵行列式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a-little-more"><span class="nav-number">8.4.</span> <span class="nav-text">A little more</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2%E8%A1%8C%E5%88%97%E5%BC%8F%E5%85%AC%E5%BC%8F%E5%92%8C%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F"><span class="nav-number">9.</span> <span class="nav-text">第十八讲：行列式公式和代数余子式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E5%88%97%E5%BC%8F%E5%85%AC%E5%BC%8F"><span class="nav-number">9.1.</span> <span class="nav-text">行列式公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F"><span class="nav-number">9.2.</span> <span class="nav-text">代数余子式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B9%9D%E8%AE%B2%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99%E9%80%86%E7%9F%A9%E9%98%B5%E4%BD%93%E7%A7%AF"><span class="nav-number">10.</span> <span class="nav-text">第十九讲：克拉默法则，逆矩阵，体积</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%86%E7%9F%A9%E9%98%B5"><span class="nav-number">10.1.</span> <span class="nav-text">逆矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99"><span class="nav-number">10.2.</span> <span class="nav-text">克拉默法则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%93%E7%A7%AF"><span class="nav-number">10.3.</span> <span class="nav-text">体积</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E8%AE%B2%E7%89%B9%E5%BE%81%E5%80%BC%E5%92%8C%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F"><span class="nav-number">11.</span> <span class="nav-text">第二十讲：特征值和特征向量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F"><span class="nav-number">11.1.</span> <span class="nav-text">特征向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">11.2.</span> <span class="nav-text">几个例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2%E5%AF%B9%E8%A7%92%E5%8C%96%E5%92%8Ca%E7%9A%84%E5%B9%82"><span class="nav-number">12.</span> <span class="nav-text">第二十一讲：对角化和A的幂</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%A7%92%E5%8C%96"><span class="nav-number">12.1.</span> <span class="nav-text">对角化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a%E7%9A%84%E5%B9%82"><span class="nav-number">12.2.</span> <span class="nav-text">A的幂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">12.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%92%8Cexpat"><span class="nav-number">13.</span> <span class="nav-text">第二十二讲：微分方程和exp(At)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="nav-number">13.1.</span> <span class="nav-text">微分方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#expat"><span class="nav-number">13.2.</span> <span class="nav-text">exp(At)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E7%9F%A9%E9%98%B5%E5%82%85%E7%AB%8B%E5%8F%B6%E7%BA%A7%E6%95%B0"><span class="nav-number">14.</span> <span class="nav-text">第二十一讲：马尔科夫矩阵;傅立叶级数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E7%9F%A9%E9%98%B5"><span class="nav-number">14.1.</span> <span class="nav-text">马尔科夫矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0"><span class="nav-number">14.2.</span> <span class="nav-text">傅里叶级数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5%E5%8F%8A%E5%85%B6%E6%AD%A3%E5%AE%9A%E6%80%A7"><span class="nav-number">15.</span> <span class="nav-text">第二十二讲：对称矩阵及其正定性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5"><span class="nav-number">15.1.</span> <span class="nav-text">对称矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%AE%9A%E6%80%A7"><span class="nav-number">15.2.</span> <span class="nav-text">正定性</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-17-Determinants-and-Their-Properties"><span class="nav-number">1.</span> <span class="nav-text">Lecture 17: Determinants and Their Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Determinant"><span class="nav-number">1.1.</span> <span class="nav-text">Determinant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Triangular-matrix-determinant"><span class="nav-number">1.2.</span> <span class="nav-text">Triangular matrix determinant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-little-more"><span class="nav-number">1.3.</span> <span class="nav-text">A little more</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Eighteenth-Lecture-Determinant-Formulas-and-Algebraic-Cofactors"><span class="nav-number">2.</span> <span class="nav-text">Eighteenth Lecture: Determinant Formulas and Algebraic Cofactors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Determinant-formula"><span class="nav-number">2.1.</span> <span class="nav-text">Determinant formula</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Algebraic-cofactor"><span class="nav-number">2.2.</span> <span class="nav-text">Algebraic cofactor</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#19th-Lecture-Cramer%E2%80%99s-Rule-Inverse-Matrix-Volume"><span class="nav-number">3.</span> <span class="nav-text">19th Lecture: Cramer’s Rule, Inverse Matrix, Volume</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Invertible-matrix"><span class="nav-number">3.1.</span> <span class="nav-text">Invertible matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kramer%E2%80%99s-Rule"><span class="nav-number">3.2.</span> <span class="nav-text">Kramer’s Rule</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Volume"><span class="nav-number">3.3.</span> <span class="nav-text">Volume</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-20-Eigenvalues-and-Eigenvectors"><span class="nav-number">4.</span> <span class="nav-text">Lecture 20: Eigenvalues and Eigenvectors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature-vector"><span class="nav-number">4.1.</span> <span class="nav-text">Feature vector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Several-examples"><span class="nav-number">4.2.</span> <span class="nav-text">Several examples</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#21st-Lecture-Diagonalization-and-Powers-of-A"><span class="nav-number">5.</span> <span class="nav-text">21st Lecture: Diagonalization and Powers of A</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Diagonalization"><span class="nav-number">5.1.</span> <span class="nav-text">Diagonalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A%E2%80%99s-power"><span class="nav-number">5.2.</span> <span class="nav-text">A’s power</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">5.3.</span> <span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-22-Differential-Equations-and-exp-At"><span class="nav-number">6.</span> <span class="nav-text">Lecture 22: Differential Equations and exp(At)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Differential-Equation"><span class="nav-number">6.1.</span> <span class="nav-text">Differential Equation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exp-At"><span class="nav-number">6.2.</span> <span class="nav-text">exp(At)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#21st-Lecture-Markov-Matrix-Fourier-Series"><span class="nav-number">7.</span> <span class="nav-text">21st Lecture: Markov Matrix; Fourier Series</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Markov-matrix"><span class="nav-number">7.1.</span> <span class="nav-text">Markov matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fourier-Series"><span class="nav-number">7.2.</span> <span class="nav-text">Fourier Series</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-22-Symmetric-Matrices-and-Positive-Definiteness"><span class="nav-number">8.</span> <span class="nav-text">Lecture 22: Symmetric Matrices and Positive Definiteness</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Symmetric-matrix"><span class="nav-number">8.1.</span> <span class="nav-text">Symmetric matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Positivity"><span class="nav-number">8.2.</span> <span class="nav-text">Positivity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E9%98%B5%E8%A1%8C%E5%88%97%E5%BC%8F"><span class="nav-number">8.3.</span> <span class="nav-text">三角阵行列式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-little-more"><span class="nav-number">8.4.</span> <span class="nav-text">A little more</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AB%E8%AE%B2%EF%BC%9A%E8%A1%8C%E5%88%97%E5%BC%8F%E5%85%AC%E5%BC%8F%E5%92%8C%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F"><span class="nav-number">9.</span> <span class="nav-text">第十八讲：行列式公式和代数余子式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E5%88%97%E5%BC%8F%E5%85%AC%E5%BC%8F"><span class="nav-number">9.1.</span> <span class="nav-text">行列式公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F"><span class="nav-number">9.2.</span> <span class="nav-text">代数余子式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B9%9D%E8%AE%B2%EF%BC%9A%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99%EF%BC%8C%E9%80%86%E7%9F%A9%E9%98%B5%EF%BC%8C%E4%BD%93%E7%A7%AF"><span class="nav-number">10.</span> <span class="nav-text">第十九讲：克拉默法则，逆矩阵，体积</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%86%E7%9F%A9%E9%98%B5"><span class="nav-number">10.1.</span> <span class="nav-text">逆矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8B%E6%8B%89%E9%BB%98%E6%B3%95%E5%88%99"><span class="nav-number">10.2.</span> <span class="nav-text">克拉默法则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%93%E7%A7%AF"><span class="nav-number">10.3.</span> <span class="nav-text">体积</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E8%AE%B2%EF%BC%9A%E7%89%B9%E5%BE%81%E5%80%BC%E5%92%8C%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F"><span class="nav-number">11.</span> <span class="nav-text">第二十讲：特征值和特征向量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F"><span class="nav-number">11.1.</span> <span class="nav-text">特征向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">11.2.</span> <span class="nav-text">几个例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2%EF%BC%9A%E5%AF%B9%E8%A7%92%E5%8C%96%E5%92%8CA%E7%9A%84%E5%B9%82"><span class="nav-number">12.</span> <span class="nav-text">第二十一讲：对角化和A的幂</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%A7%92%E5%8C%96"><span class="nav-number">12.1.</span> <span class="nav-text">对角化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A%E7%9A%84%E5%B9%82"><span class="nav-number">12.2.</span> <span class="nav-text">A的幂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">12.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2%EF%BC%9A%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%92%8Cexp-At"><span class="nav-number">13.</span> <span class="nav-text">第二十二讲：微分方程和exp(At)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="nav-number">13.1.</span> <span class="nav-text">微分方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exp-At"><span class="nav-number">13.2.</span> <span class="nav-text">exp(At)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E8%AE%B2%EF%BC%9A%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E7%9F%A9%E9%98%B5-%E5%82%85%E7%AB%8B%E5%8F%B6%E7%BA%A7%E6%95%B0"><span class="nav-number">14.</span> <span class="nav-text">第二十一讲：马尔科夫矩阵;傅立叶级数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E7%9F%A9%E9%98%B5"><span class="nav-number">14.1.</span> <span class="nav-text">马尔科夫矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0"><span class="nav-number">14.2.</span> <span class="nav-text">傅里叶级数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%BA%8C%E8%AE%B2%EF%BC%9A%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5%E5%8F%8A%E5%85%B6%E6%AD%A3%E5%AE%9A%E6%80%A7"><span class="nav-number">15.</span> <span class="nav-text">第二十二讲：对称矩阵及其正定性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5"><span class="nav-number">15.1.</span> <span class="nav-text">对称矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%AE%9A%E6%80%A7"><span class="nav-number">15.2.</span> <span class="nav-text">正定性</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -310,14 +301,14 @@ Matrix; Fourier Series</span></a><ol class="nav-child"><li class="nav-item nav-l
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>32k</span>
+      <span>9.6k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>29 mins.</span>
+      <span>9 mins.</span>
     </span>
 </div>
 
@@ -327,335 +318,239 @@ Matrix; Fourier Series</span></a><ol class="nav-child"><li class="nav-item nav-l
     
     
     
-    <div class="post-body" itemprop="articleBody"><hr />
-<h1 id="lecture-17-determinants-and-their-properties">Lecture 17:
-Determinants and Their Properties</h1>
-<h2 id="determinant">Determinant</h2>
-<ul>
-<li><p>The determinant of matrix A is a number associated with the
-matrix, denoted as <span
-class="math inline">\(detA或者|A|\)</span></p></li>
+    <div class="post-body" itemprop="articleBody"><hr>
+<h1 id="Lecture-17-Determinants-and-Their-Properties"><a href="#Lecture-17-Determinants-and-Their-Properties" class="headerlink" title="Lecture 17: Determinants and Their Properties"></a>Lecture 17: Determinants and Their Properties</h1><h2 id="Determinant"><a href="#Determinant" class="headerlink" title="Determinant"></a>Determinant</h2><ul>
+<li><p>The determinant of matrix A is a number associated with the matrix, denoted as $detA或者|A|$</p>
+</li>
 <li><p>Properties of determinants</p>
 <ul>
-<li><p><span class="math inline">\(detI=1\)</span></p></li>
-<li><p>The sign of the determinant value will be reversed when rows are
-exchanged</p></li>
-<li><p>The determinant of a permutation matrix is 1 or -1, depending on
-the parity of the number of rows exchanged</p></li>
-<li><p>Two rows being equal makes the determinant equal to 0 (which can
-be directly deduced from property two)</p></li>
-<li><p>Matrix elimination does not change its determinant (proof is
-below)</p></li>
-<li><p>A certain row is 0, the determinant is 0 (multiplying by 0 is
-equivalent to a certain row being 0, resulting in 0)</p></li>
-<li><p>When and only when A is a singular matrix</p></li>
-<li><p><span class="math inline">\(det(A+B) \neq detA+detB \\
-detAB=(detA)(detB)\)</span></p></li>
-<li><p><span class="math inline">\(detA^{-1}detA=1\)</span></p></li>
-<li><p><span class="math inline">\(detA^2=(detA)^2\)</span></p></li>
-<li><p><span class="math inline">\(det2A=2^n detA\)</span></p></li>
-<li><p><span class="math inline">\(detA^T=detA\)</span> (Proof see
-below)</p></li>
-</ul></li>
+<li><p>$detI=1$</p>
+</li>
+<li><p>The sign of the determinant value will be reversed when rows are exchanged</p>
+</li>
+<li><p>The determinant of a permutation matrix is 1 or -1, depending on the parity of the number of rows exchanged</p>
+</li>
+<li><p>Two rows being equal makes the determinant equal to 0 (which can be directly deduced from property two)</p>
+</li>
+<li><p>Matrix elimination does not change its determinant (proof is below)</p>
+</li>
+<li><p>A certain row is 0, the determinant is 0 (multiplying by 0 is equivalent to a certain row being 0, resulting in 0)</p>
+</li>
+<li><p>When and only when A is a singular matrix</p>
+</li>
+<li><p>$det(A+B) \neq detA+detB \ detAB=(detA)(detB)$</p>
+</li>
+<li><p>$detA^{-1}detA=1$</p>
+</li>
+<li><p>$detA^2=(detA)^2$</p>
+</li>
+<li><p>$det2A=2^n detA$</p>
+</li>
+<li><p>$detA^T=detA$ (Proof see below)</p>
+</li>
+</ul>
+</li>
 </ul>
 <span id="more"></span>
 <style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
 <div id="en-content" class="lang-content" style="display: block;"><ul>
-<li><p>The determinant is linear by row, but the determinant itself is
-not linear</p>
-<p><span class="math display">\[
+<li><p>The determinant is linear by row, but the determinant itself is not linear</p>
+<script type="math/tex; mode=display">
 \begin{vmatrix}
-1 &amp; 0 \\
-0 &amp; 1 \\
+1 & 0 \\
+0 & 1 \\
 \end{vmatrix}=1 \\
 \begin{vmatrix}
-0 &amp; 1 \\
-1 &amp; 0 \\
+0 & 1 \\
+1 & 0 \\
 \end{vmatrix}=-1 \\
 \begin{vmatrix}
-ta &amp; tb \\
-c &amp; d \\
+ta & tb \\
+c & d \\
 \end{vmatrix}=
 t\begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
+a & b \\
+c & d \\
 \end{vmatrix} \\
 \begin{vmatrix}
-t+a &amp; t+b \\
-c &amp; d \\
+t+a & t+b \\
+c & d \\
 \end{vmatrix}=
 \begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
+a & b \\
+c & d \\
 \end{vmatrix}+
 \begin{vmatrix}
-t &amp; t \\
-c &amp; d \\
-\end{vmatrix}
-\]</span></p></li>
+t & t \\
+c & d \\
+\end{vmatrix}</script></li>
 <li><p>Proof that elimination does not change the determinant</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{vmatrix}
-a &amp; b \\
-c-la &amp; d-lb \\
+a & b \\
+c-la & d-lb \\
 \end{vmatrix}=
 \begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
+a & b \\
+c & d \\
 \end{vmatrix}-l
 \begin{vmatrix}
-a &amp; b \\
-a &amp; b \\
+a & b \\
+a & b \\
 \end{vmatrix}=
 \begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
-\end{vmatrix}
-\]</span></p></li>
+a & b \\
+c & d \\
+\end{vmatrix}</script></li>
 <li><p>Proof that the transpose does not change the determinant</p>
-<p><span class="math display">\[
-A=LU \\
-\]</span></p></li>
-<li><p>Translation: <span class="math inline">\(|U^TL^T|=|LU|\)</span>
-<span class="math display">\[
-|U^T||L^T|=|L||U|
-\]</span></p></li>
-<li><p>The above four matrices are all triangular matrices, the
-determinant equals the product of the diagonal elements, the transpose
-has no effect, so they are equal</p></li>
+<script type="math/tex; mode=display">
+A=LU \\</script></li>
+<li><p>Translation: $|U^TL^T|=|LU|$ </p>
+<script type="math/tex; mode=display">
+|U^T||L^T|=|L||U|</script></li>
+<li><p>The above four matrices are all triangular matrices, the determinant equals the product of the diagonal elements, the transpose has no effect, so they are equal</p>
+</li>
 </ul>
-<h2 id="triangular-matrix-determinant">Triangular matrix
-determinant</h2>
-<ul>
-<li>The determinant of the triangular matrix U is the product of the
-elements on the diagonal (the pivot product)</li>
-<li>Why do the other elements of the triangular matrix not work? Because
-by elimination we can obtain a matrix with only diagonal elements, and
-elimination does not change the determinant</li>
-<li>Why is it the product of the diagonal elements? Because after
-elimination, the diagonal elements can be successively extracted,
-yielding <span class="math inline">\(d_1d_2d_3...d_nI\)</span> , where
-the determinant of the unit matrix is 1</li>
-<li>The determinant of a singular matrix is 0, and it has rows of all
-zeros; the determinant of an invertible matrix is not 0, and it can be
-reduced to a triangular matrix, with the determinant being the product
-of the diagonal elements of the triangular matrix</li>
+<h2 id="Triangular-matrix-determinant"><a href="#Triangular-matrix-determinant" class="headerlink" title="Triangular matrix determinant"></a>Triangular matrix determinant</h2><ul>
+<li>The determinant of the triangular matrix U is the product of the elements on the diagonal (the pivot product)</li>
+<li>Why do the other elements of the triangular matrix not work? Because by elimination we can obtain a matrix with only diagonal elements, and elimination does not change the determinant</li>
+<li>Why is it the product of the diagonal elements? Because after elimination, the diagonal elements can be successively extracted, yielding $d_1d_2d_3…d_nI$ , where the determinant of the unit matrix is 1</li>
+<li>The determinant of a singular matrix is 0, and it has rows of all zeros; the determinant of an invertible matrix is not 0, and it can be reduced to a triangular matrix, with the determinant being the product of the diagonal elements of the triangular matrix</li>
 </ul>
-<h2 id="a-little-more">A little more</h2>
-<ul>
-<li>The determinant obtained from odd-numbered permutations and
-even-numbered permutations is definitely different (signs differ), which
-means the matrices after odd-numbered and even-numbered permutations
-will not be the same, i.e., permutations strictly distinguish between
-odd and even</li>
+<h2 id="A-little-more"><a href="#A-little-more" class="headerlink" title="A little more"></a>A little more</h2><ul>
+<li>The determinant obtained from odd-numbered permutations and even-numbered permutations is definitely different (signs differ), which means the matrices after odd-numbered and even-numbered permutations will not be the same, i.e., permutations strictly distinguish between odd and even</li>
 </ul>
-<h1
-id="eighteenth-lecture-determinant-formulas-and-algebraic-cofactors">Eighteenth
-Lecture: Determinant Formulas and Algebraic Cofactors</h1>
-<h2 id="determinant-formula">Determinant formula</h2>
-<ul>
+<h1 id="Eighteenth-Lecture-Determinant-Formulas-and-Algebraic-Cofactors"><a href="#Eighteenth-Lecture-Determinant-Formulas-and-Algebraic-Cofactors" class="headerlink" title="Eighteenth Lecture: Determinant Formulas and Algebraic Cofactors"></a>Eighteenth Lecture: Determinant Formulas and Algebraic Cofactors</h1><h2 id="Determinant-formula"><a href="#Determinant-formula" class="headerlink" title="Determinant formula"></a>Determinant formula</h2><ul>
 <li><p>Derive the 2x2 determinant</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
+a & b \\
+c & d \\
 \end{vmatrix}=
 \begin{vmatrix}
-a &amp; 0 \\
-c &amp; d \\
+a & 0 \\
+c & d \\
 \end{vmatrix}+
 \begin{vmatrix}
-0 &amp; b \\
-c &amp; d \\
+0 & b \\
+c & d \\
 \end{vmatrix}=
 \begin{vmatrix}
-a &amp; 0 \\
-c &amp; 0 \\
+a & 0 \\
+c & 0 \\
 \end{vmatrix}+
 \begin{vmatrix}
-a &amp; 0 \\
-0 &amp; d \\
+a & 0 \\
+0 & d \\
 \end{vmatrix}+
 \begin{vmatrix}
-0 &amp; b \\
-c &amp; 0 \\
+0 & b \\
+c & 0 \\
 \end{vmatrix}+
 \begin{vmatrix}
-0 &amp; b \\
-0 &amp; d \\
+0 & b \\
+0 & d \\
 \end{vmatrix} \\
-=0+ad-bc+0
-\]</span></p>
-<p>We can find that this method involves taking one row at a time,
-decomposing this row (determinants are linear by rows), extracting
-factors, obtaining the unit matrix through row exchanges, and then
-obtaining the answer through properties one and two</p></li>
-<li><p>If expanded to a 3x3 matrix, the first row is decomposed into
-three parts, each of which is further decomposed into three parts for
-the second row, resulting in a total of 27 parts. The parts that are not
-zero are those matrices where there are elements in each row and
-column.</p></li>
+=0+ad-bc+0</script><p>We can find that this method involves taking one row at a time, decomposing this row (determinants are linear by rows), extracting factors, obtaining the unit matrix through row exchanges, and then obtaining the answer through properties one and two</p>
+</li>
+<li><p>If expanded to a 3x3 matrix, the first row is decomposed into three parts, each of which is further decomposed into three parts for the second row, resulting in a total of 27 parts. The parts that are not zero are those matrices where there are elements in each row and column.</p>
+</li>
 <li><p>For example</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{vmatrix}
-a &amp; 0 &amp; 0\\
-0 &amp; 0 &amp; b\\
-0 &amp; c &amp; 0\\
-\end{vmatrix}
-\]</span></p>
-<p>Extract the factors to obtain <span
-class="math inline">\(abc\)</span> , swap the second and third rows to
-get the identity matrix, so the answer is <span
-class="math inline">\(abc*detI=abc\)</span> , and since a row swap was
-performed, the answer is negative, <span
-class="math inline">\(-abc\)</span></p></li>
-<li><p>A matrix of size n*n can be divided into <span
-class="math inline">\(n!\)</span> parts, because the first row is
-divided into n parts, the second row cannot be repeated, and n-1 rows
-are chosen, each with one repetition, thus obtaining <span
-class="math inline">\(n!\)</span> parts</p></li>
-<li><p>The determinant formula is the sum of these <span
-class="math inline">\(n!\)</span> parts</p></li>
+a & 0 & 0\\
+0 & 0 & b\\
+0 & c & 0\\
+\end{vmatrix}</script><p>Extract the factors to obtain $abc$ , swap the second and third rows to get the identity matrix, so the answer is $abc*detI=abc$ , and since a row swap was performed, the answer is negative, $-abc$</p>
+</li>
+<li><p>A matrix of size n*n can be divided into $n!$ parts, because the first row is divided into n parts, the second row cannot be repeated, and n-1 rows are chosen, each with one repetition, thus obtaining $n!$ parts</p>
+</li>
+<li><p>The determinant formula is the sum of these $n!$ parts</p>
+</li>
 </ul>
-<h2 id="algebraic-cofactor">Algebraic cofactor</h2>
-<ul>
-<li><span
-class="math inline">\(det=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(....)+a_{13}(....)\)</span></li>
-<li>Extract a factor, the remainder formed by the remaining factors,
-i.e., the content within the parentheses, is the minor determinant</li>
-<li>From the matrix perspective, selecting an element, its algebraic
-cofactor is the determinant of the matrix obtained by excluding the row
-and column of this element</li>
-<li>The algebraic cofactor of <span
-class="math inline">\(a_{ij}\)</span> is denoted as <span
-class="math inline">\(c_{ij}\)</span></li>
-<li>Pay attention to the sign of the algebraic cofactor, which is
-related to the parity of <span class="math inline">\(i+j\)</span> . Even
-numbers take the positive sign, and odd numbers take the negative sign.
-Here, the symbol refers to the sign in front of the determinant after
-the normal calculation of the submatrix corresponding to the algebraic
-cofactor</li>
-<li><span
-class="math inline">\(detA=a_{11}C_{11}+a_{12}C_{12}+....+a_{1n}C_{1n}\)</span></li>
+<h2 id="Algebraic-cofactor"><a href="#Algebraic-cofactor" class="headerlink" title="Algebraic cofactor"></a>Algebraic cofactor</h2><ul>
+<li>$det=a<em>{11}(a</em>{22}a<em>{33}-a</em>{23}a<em>{32})+a</em>{12}(….)+a_{13}(….)$</li>
+<li>Extract a factor, the remainder formed by the remaining factors, i.e., the content within the parentheses, is the minor determinant</li>
+<li>From the matrix perspective, selecting an element, its algebraic cofactor is the determinant of the matrix obtained by excluding the row and column of this element</li>
+<li>The algebraic cofactor of $a<em>{ij}$ is denoted as $c</em>{ij}$</li>
+<li>Pay attention to the sign of the algebraic cofactor, which is related to the parity of $i+j$ . Even numbers take the positive sign, and odd numbers take the negative sign. Here, the symbol refers to the sign in front of the determinant after the normal calculation of the submatrix corresponding to the algebraic cofactor</li>
+<li>$detA=a<em>{11}C</em>{11}+a<em>{12}C</em>{12}+….+a<em>{1n}C</em>{1n}$</li>
 </ul>
-<h1 id="th-lecture-cramers-rule-inverse-matrix-volume">19th Lecture:
-Cramer's Rule, Inverse Matrix, Volume</h1>
-<h2 id="invertible-matrix">Invertible matrix</h2>
-<ul>
-<li><p>Only when the determinant is not zero is the matrix
-invertible</p></li>
+<h1 id="19th-Lecture-Cramer’s-Rule-Inverse-Matrix-Volume"><a href="#19th-Lecture-Cramer’s-Rule-Inverse-Matrix-Volume" class="headerlink" title="19th Lecture: Cramer’s Rule, Inverse Matrix, Volume"></a>19th Lecture: Cramer’s Rule, Inverse Matrix, Volume</h1><h2 id="Invertible-matrix"><a href="#Invertible-matrix" class="headerlink" title="Invertible matrix"></a>Invertible matrix</h2><ul>
+<li><p>Only when the determinant is not zero is the matrix invertible</p>
+</li>
 <li><p>Invertible matrix formula</p>
-<p><span class="math display">\[
-A^{-1}=\frac{1}{detA}C^T
-\]</span></p>
-<p>The algebraic cofactor of <span class="math inline">\(C_{ij}\)</span>
-is <span class="math inline">\(A_{ij}\)</span></p></li>
-<li><p>Proof: i.e., prove <span
-class="math inline">\(AC^T=(detA)I\)</span></p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
+A^{-1}=\frac{1}{detA}C^T</script><p>The algebraic cofactor of $C<em>{ij}$ is $A</em>{ij}$</p>
+</li>
+<li><p>Proof: i.e., prove $AC^T=(detA)I$</p>
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-a_{11} &amp; ... &amp; a_{1n} \\
-a_{n1} &amp; ... &amp; a_{nn} \\
+a_{11} & ... & a_{1n} \\
+a_{n1} & ... & a_{nn} \\
 \end{bmatrix}
 \begin{bmatrix}
-c_{11} &amp; ... &amp; c_{n1} \\
-c_{1n} &amp; ... &amp; c_{nn} \\
+c_{11} & ... & c_{n1} \\
+c_{1n} & ... & c_{nn} \\
 \end{bmatrix}=
 \begin{bmatrix}
-detA &amp; 0 &amp; 0 \\
-0 &amp; detA &amp; 0 \\
-0 &amp; 0 &amp; detA \\
-\end{bmatrix}
-\]</span></p>
-<p>On the diagonal are determinants, because <span
-class="math inline">\(det=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(....)+a_{13}(....)\)</span>
-other positions are all 0, because the algebraic cofactor of row a
-multiplied by row b is equivalent to calculating the determinant of a
-matrix where row a and row b are equal, and the determinant is
-0</p></li>
+detA & 0 & 0 \\
+0 & detA & 0 \\
+0 & 0 & detA \\
+\end{bmatrix}</script><p>On the diagonal are determinants, because $det=a<em>{11}(a</em>{22}a<em>{33}-a</em>{23}a<em>{32})+a</em>{12}(….)+a_{13}(….)$ other positions are all 0, because the algebraic cofactor of row a multiplied by row b is equivalent to calculating the determinant of a matrix where row a and row b are equal, and the determinant is 0</p>
+</li>
 </ul>
-<h2 id="kramers-rule">Kramer's Rule</h2>
-<ul>
+<h2 id="Kramer’s-Rule"><a href="#Kramer’s-Rule" class="headerlink" title="Kramer’s Rule"></a>Kramer’s Rule</h2><ul>
 <li><p>Ax=b</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 Ax=b \\
 x=A^{-1}b \\
 x=\frac{1}{detA}C^Tb \\
 \\
 x_1=\frac{detB_1}{detA} \\
 x_3=\frac{detB_2}{detA} \\
-... \\
-\]</span></p></li>
-<li><p>Kramer's rule states that the determinant of matrix <span
-class="math inline">\(B_i\)</span> is obtained by replacing the ith
-column of matrix <span class="math inline">\(A\)</span> with b, while
-keeping the rest unchanged</p></li>
+... \\</script></li>
+<li><p>Kramer’s rule states that the determinant of matrix $B_i$ is obtained by replacing the ith column of matrix $A$ with b, while keeping the rest unchanged</p>
+</li>
 </ul>
-<h2 id="volume">Volume</h2>
-<ul>
-<li><p>The determinant of A can represent a volume, for example, the
-determinant of a 3x3 matrix represents a volume within a
-three-dimensional space</p></li>
-<li><p>Each row of the matrix represents one edge of a box (originating
-from the same vertex), and the determinant is the volume of the box; the
-sign of the determinant represents the left-hand or right-hand
-system.</p></li>
-<li><ol type="1">
-<li>The unit matrix corresponds to the unit cube, with a volume of
-1</li>
-</ol></li>
+<h2 id="Volume"><a href="#Volume" class="headerlink" title="Volume"></a>Volume</h2><ul>
+<li><p>The determinant of A can represent a volume, for example, the determinant of a 3x3 matrix represents a volume within a three-dimensional space</p>
+</li>
+<li><p>Each row of the matrix represents one edge of a box (originating from the same vertex), and the determinant is the volume of the box; the sign of the determinant represents the left-hand or right-hand system.</p>
+</li>
+<li><p>(1) The unit matrix corresponds to the unit cube, with a volume of 1</p>
+</li>
 <li><p>For the orthogonal matrix Q,</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 QQ^T=I \\
 |QQ^T|=|I| \\
 |Q||Q^T|=1 \\
 {|Q|}^2=1 \\
-|Q|=1 \\
-\]</span></p>
-<p>The box corresponding to Q is the unit cube corresponding to the unit
-matrix rotated by an angle in space</p></li>
-<li><p>(3a) If a row of a matrix is doubled, i.e., one set of edges of
-the box is doubled, the volume is also doubled. From the perspective of
-determinants, the factor can be factored out, so the determinant is also
-doubled</p></li>
-<li><ol start="2" type="1">
-<li>Swapping two rows of a permutation matrix does not change the volume
-of the box</li>
-</ol></li>
-<li><p>(3b) A row of the matrix is split, and the box is also divided
-into two parts accordingly</p></li>
-<li><p>The above, the three properties of determinants (1, 2, 3a, 3b)
-can all be verified in terms of volume</p></li>
+|Q|=1 \\</script><p>The box corresponding to Q is the unit cube corresponding to the unit matrix rotated by an angle in space</p>
+</li>
+<li><p>(3a) If a row of a matrix is doubled, i.e., one set of edges of the box is doubled, the volume is also doubled. From the perspective of determinants, the factor can be factored out, so the determinant is also doubled</p>
+</li>
+<li><p>(2) Swapping two rows of a permutation matrix does not change the volume of the box</p>
+</li>
+<li><p>(3b) A row of the matrix is split, and the box is also divided into two parts accordingly</p>
+</li>
+<li><p>The above, the three properties of determinants (1, 2, 3a, 3b) can all be verified in terms of volume</p>
+</li>
 </ul>
-<h1 id="lecture-20-eigenvalues-and-eigenvectors">Lecture 20: Eigenvalues
-and Eigenvectors</h1>
-<h2 id="feature-vector">Feature vector</h2>
-<ul>
-<li>Given matrix A, matrix A can be regarded as a function acting on a
-vector x, resulting in the vector Ax</li>
-<li>When \( \mathbf{A} \) is parallel to \( \mathbf{x} \), i.e., \(
-\frac{\partial}{\partial x} \), we call \( \mathbf{v} \) the eigenvector
-and \( \lambda \) the eigenvalue</li>
-<li>If A is a singular matrix, <span class="math inline">\(\lambda =
-0\)</span> is an eigenvalue</li>
+<h1 id="Lecture-20-Eigenvalues-and-Eigenvectors"><a href="#Lecture-20-Eigenvalues-and-Eigenvectors" class="headerlink" title="Lecture 20: Eigenvalues and Eigenvectors"></a>Lecture 20: Eigenvalues and Eigenvectors</h1><h2 id="Feature-vector"><a href="#Feature-vector" class="headerlink" title="Feature vector"></a>Feature vector</h2><ul>
+<li>Given matrix A, matrix A can be regarded as a function acting on a vector x, resulting in the vector Ax</li>
+<li>When \( \mathbf{A} \) is parallel to \( \mathbf{x} \), i.e., \( \frac{\partial}{\partial x} \), we call \( \mathbf{v} \) the eigenvector and \( \lambda \) the eigenvalue</li>
+<li>If A is a singular matrix, $\lambda = 0$ is an eigenvalue</li>
 </ul>
-<h2 id="several-examples">Several examples</h2>
-<ul>
-<li><p>If A is a projection matrix, it can be observed that its
-eigenvectors are any vectors on the projection plane, because <span
-class="math inline">\(Ax\)</span> represents the projection onto the
-plane, and all vectors on the plane remain unchanged after projection,
-thus being parallel. At the same time, the eigenvalues are 1. If a
-vector is perpendicular to the plane, <span
-class="math inline">\(Ax=0\)</span> , the eigenvalue is 0. Therefore,
-the eigenvectors of the projection matrix A fall into two cases, with
-eigenvalues of 1 or 0.</p></li>
+<h2 id="Several-examples"><a href="#Several-examples" class="headerlink" title="Several examples"></a>Several examples</h2><ul>
+<li><p>If A is a projection matrix, it can be observed that its eigenvectors are any vectors on the projection plane, because $Ax$ represents the projection onto the plane, and all vectors on the plane remain unchanged after projection, thus being parallel. At the same time, the eigenvalues are 1. If a vector is perpendicular to the plane, $Ax=0$ , the eigenvalue is 0. Therefore, the eigenvectors of the projection matrix A fall into two cases, with eigenvalues of 1 or 0.</p>
+</li>
 <li><p>Another example</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=
 \begin{bmatrix}
-0 &amp; 1 \\
-1 &amp; 0 \\
+0 & 1 \\
+1 & 0 \\
 \end{bmatrix} \\
 \lambda =1, x=
 \begin{bmatrix}
@@ -676,57 +571,46 @@ Ax=
 \begin{bmatrix}
 1 \\
 -1 \\
-\end{bmatrix} \\
-\]</span></p></li>
-<li><p>An n*n matrix has n eigenvalues</p></li>
-<li><p>The sum of the eigenvalues equals the sum of the diagonal
-elements, this sum being called the trace</p></li>
-<li><p>How to solve <span class="math inline">\(Ax=\lambda
-x\)</span></p>
-<p><span class="math display">\[
-(A-\lambda I)x=0 \\
-\]</span></p></li>
-<li><p>The visible equation has non-zero solutions, <span
-class="math inline">\((A-\lambda I)\)</span> must be singular, i.e.:</p>
-<p><span class="math display">\[
-det(A-\lambda I)=0 \\
-\]</span></p></li>
-<li><p><span class="math display">\[
+\end{bmatrix} \\</script></li>
+<li><p>An n*n matrix has n eigenvalues</p>
+</li>
+<li><p>The sum of the eigenvalues equals the sum of the diagonal elements, this sum being called the trace</p>
+</li>
+<li><p>How to solve $Ax=\lambda x$</p>
+<script type="math/tex; mode=display">
+(A-\lambda I)x=0 \\</script></li>
+<li><p>The visible equation has non-zero solutions, $(A-\lambda I)$ must be singular, i.e.:</p>
+<script type="math/tex; mode=display">
+det(A-\lambda I)=0 \\</script></li>
+<li><script type="math/tex; mode=display">
 If \qquad Ax=\lambda x \\
-Then \qquad (A+3I)x=(\lambda +3)x \\
-\]</span></p></li>
-<li><p>Because the unit matrix is added, the eigenvector remains
-unchanged as x, and the eigenvalue is increased by the coefficient of
-the unit matrix, i.e., <span class="math inline">\((\lambda
-+3)\)</span></p></li>
-<li><p>The eigenvalues of A+B are not necessarily the sum of the
-eigenvalues of A and B, because their eigenvectors may not be the same.
-Similarly, the eigenvalues of AB are not necessarily the product of
-their eigenvalues.</p></li>
+Then \qquad (A+3I)x=(\lambda +3)x \\</script></li>
+<li><p>Because the unit matrix is added, the eigenvector remains unchanged as x, and the eigenvalue is increased by the coefficient of the unit matrix, i.e., $(\lambda +3)$</p>
+</li>
+<li><p>The eigenvalues of A+B are not necessarily the sum of the eigenvalues of A and B, because their eigenvectors may not be the same. Similarly, the eigenvalues of AB are not necessarily the product of their eigenvalues.</p>
+</li>
 <li><p>For another example, consider the rotation matrix Q</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 Q=
 \begin{bmatrix}
-0 &amp; -1 \\
-1 &amp; 0 \\
+0 & -1 \\
+1 & 0 \\
 \end{bmatrix} \\
 trace=0=\lambda _1 +\lambda _2 \\
-det=1=\lambda _1 \lambda _2 \\
-\]</span></p></li>
-<li><p>However, it can be seen that <span class="math inline">\(\lambda
-_1，\lambda _2\)</span> has no real solutions</p></li>
-<li><p>Consider an even worse case (the matrix is more asymmetric, and
-it is even harder to obtain real eigenvalues)</p>
-<p><span class="math display">\[
+det=1=\lambda _1 \lambda _2 \\</script></li>
+<li><p>However, it can be seen that $\lambda _1，\lambda _2$ has no real solutions</p>
+</li>
+<li><p>Consider an even worse case (the matrix is more asymmetric, and it is even harder to obtain real eigenvalues)</p>
+<script type="math/tex; mode=display">
 A=
 \begin{bmatrix}
-3 &amp; 1 \\
-0 &amp; 3 \\
+3 & 1 \\
+0 & 3 \\
 \end{bmatrix} \\
 det(A-\lambda I)=
 \begin{vmatrix}
-3-\lambda &amp; 1 \\
-0 &amp; 3-\lambda \\
+3-\lambda & 1 \\
+0 & 3-\lambda \\
 \end{vmatrix}
 ==(3-\lambda )^2=0 \\
 \lambda _1=\lambda _2=3 \\
@@ -734,114 +618,83 @@ x_1=
 \begin{bmatrix}
 1 \\
 0 \\
-\end{bmatrix}
-\]</span></p></li>
+\end{bmatrix}</script></li>
 </ul>
-<h1 id="st-lecture-diagonalization-and-powers-of-a">21st Lecture:
-Diagonalization and Powers of A</h1>
-<h2 id="diagonalization">Diagonalization</h2>
-<ul>
-<li><p>Assuming A has n linearly independent eigenvectors, arranged as
-columns to form the matrix S, i.e., the eigenvector matrix</p></li>
-<li><p>All discussions about matrix diagonalization presented here are
-under the premise that S is invertible, i.e., the n eigenvectors are
-linearly independent</p></li>
-<li><p><span class="math display">\[
+<h1 id="21st-Lecture-Diagonalization-and-Powers-of-A"><a href="#21st-Lecture-Diagonalization-and-Powers-of-A" class="headerlink" title="21st Lecture: Diagonalization and Powers of A"></a>21st Lecture: Diagonalization and Powers of A</h1><h2 id="Diagonalization"><a href="#Diagonalization" class="headerlink" title="Diagonalization"></a>Diagonalization</h2><ul>
+<li><p>Assuming A has n linearly independent eigenvectors, arranged as columns to form the matrix S, i.e., the eigenvector matrix</p>
+</li>
+<li><p>All discussions about matrix diagonalization presented here are under the premise that S is invertible, i.e., the n eigenvectors are linearly independent</p>
+</li>
+<li><script type="math/tex; mode=display">
 AS=A[x_1,x_2...x_n]=[\lambda _1 x_1,....\lambda _n x_n] \\
 =[x_1,x_2,...x_n]
 \begin{bmatrix}
-\lambda _1 &amp; 0 &amp; ... &amp; 0 \\
-0 &amp; \lambda _2 &amp; ... &amp; 0 \\
-... &amp; ... &amp; ... &amp; ... \\
-0 &amp; 0  &amp; 0 &amp; \lambda _n \\
+\lambda _1 & 0 & ... & 0 \\
+0 & \lambda _2 & ... & 0 \\
+... & ... & ... & ... \\
+0 & 0  & 0 & \lambda _n \\
 \end{bmatrix} \\
-=S \Lambda \\
-\]</span></p></li>
-<li><p>Assuming S is invertible, i.e., the n eigenvectors are linearly
-independent, we can obtain</p>
-<p><span class="math display">\[
+=S \Lambda \\</script></li>
+<li><p>Assuming S is invertible, i.e., the n eigenvectors are linearly independent, we can obtain</p>
+<script type="math/tex; mode=display">
 S^{-1}AS=\Lambda \\
-A=S\Lambda S^{-1} \\
-\]</span></p></li>
-<li><p><span class="math inline">\(\Lambda\)</span> is a diagonal
-matrix, here we obtain a matrix decomposition other than <span
-class="math inline">\(A=LU\)</span> and <span
-class="math inline">\(A=QR\)</span></p></li>
-<li><p><span class="math display">\[
+A=S\Lambda S^{-1} \\</script></li>
+<li><p>$\Lambda$ is a diagonal matrix, here we obtain a matrix decomposition other than $A=LU$ and $A=QR$</p>
+</li>
+<li><script type="math/tex; mode=display">
 if \qquad Ax=\lambda x \\
 A^2 x=\lambda AX=\lambda ^2 x \\
-A^2=S\Lambda S^{-1} S \Lambda S^{-1}=S \Lambda ^2 S^{-1} \\
-\]</span></p></li>
-<li><p>The two equations above regarding <span
-class="math inline">\(A^2\)</span> indicate that the squared eigen
-vectors remain unchanged, the eigenvalues are squared, and similarly for
-the K-th power</p></li>
-<li><p>Eigenvalues and eigenvectors help us understand matrix powers.
-When calculating matrix powers, we can decompose the matrix into the
-form of a matrix of eigenvectors multiplied by a diagonal matrix, where
-K multiplications can cancel each other out, as shown in the above
-formula</p></li>
-<li><p>What kind of matrix's power tends to 0 (stable)</p>
-<p><span class="math display">\[
+A^2=S\Lambda S^{-1} S \Lambda S^{-1}=S \Lambda ^2 S^{-1} \\</script></li>
+<li><p>The two equations above regarding $A^2$ indicate that the squared eigen vectors remain unchanged, the eigenvalues are squared, and similarly for the K-th power</p>
+</li>
+<li><p>Eigenvalues and eigenvectors help us understand matrix powers. When calculating matrix powers, we can decompose the matrix into the form of a matrix of eigenvectors multiplied by a diagonal matrix, where K multiplications can cancel each other out, as shown in the above formula</p>
+</li>
+<li><p>What kind of matrix’s power tends to 0 (stable)</p>
+<script type="math/tex; mode=display">
 A^K \rightarrow 0 \quad as \quad K \rightarrow \infty \\
-if \quad all |\lambda _i|&lt;1 \\
-\]</span></p></li>
-<li><p>Which matrices can be diagonalized? If all eigenvalues are
-different, then A can be diagonalized</p></li>
-<li><p>If matrix A is already diagonal, then <span
-class="math inline">\(\Lambda\)</span> is the same as A</p></li>
-<li><p>The number of times an eigenvalue repeats is called the algebraic
-multiplicity, for triangular matrices, such as</p>
-<p><span class="math display">\[
+if \quad all |\lambda _i|<1 \\</script></li>
+<li><p>Which matrices can be diagonalized? If all eigenvalues are different, then A can be diagonalized</p>
+</li>
+<li><p>If matrix A is already diagonal, then $\Lambda$ is the same as A</p>
+</li>
+<li><p>The number of times an eigenvalue repeats is called the algebraic multiplicity, for triangular matrices, such as</p>
+<script type="math/tex; mode=display">
 A=
 \begin{bmatrix}
-2 &amp; 1 \\
-0 &amp; 2 \\
+2 & 1 \\
+0 & 2 \\
 \end{bmatrix} \\
 det(A-\lambda I)=
 \begin{vmatrix}
-2-\lambda &amp; 1 \\
-0 &amp; 2-\lambda \\
+2-\lambda & 1 \\
+0 & 2-\lambda \\
 \end{vmatrix}=0 \\
 \lambda =2 \\
 A-\lambda I=
 \begin{bmatrix}
-0 &amp; 1 \\
-0 &amp; 0 \\
-\end{bmatrix} \\
-\]</span></p></li>
-<li><p>For <span class="math inline">\(A-\lambda I\)</span> , the
-geometric multiplicity is 1, while the algebraic multiplicity of the
-eigenvalue is 2</p></li>
-<li><p>The eigenvector is only (1,0), therefore, for a triangular
-matrix, it cannot be diagonalized, and there do not exist two linearly
-independent eigenvectors.</p></li>
+0 & 1 \\
+0 & 0 \\
+\end{bmatrix} \\</script></li>
+<li><p>For $A-\lambda I$ , the geometric multiplicity is 1, while the algebraic multiplicity of the eigenvalue is 2</p>
+</li>
+<li><p>The eigenvector is only (1,0), therefore, for a triangular matrix, it cannot be diagonalized, and there do not exist two linearly independent eigenvectors.</p>
+</li>
 </ul>
-<h2 id="as-power">A's power</h2>
-<ul>
-<li><p>Most matrices have a set of linearly independent eigenvalues that
-can be diagonalized. If diagonalization is possible, we need to focus on
-how to solve for the powers of A.</p></li>
-<li><p><span class="math display">\[
+<h2 id="A’s-power"><a href="#A’s-power" class="headerlink" title="A’s power"></a>A’s power</h2><ul>
+<li><p>Most matrices have a set of linearly independent eigenvalues that can be diagonalized. If diagonalization is possible, we need to focus on how to solve for the powers of A.</p>
+</li>
+<li><script type="math/tex; mode=display">
 give \quad u_0 \\
 u_{k+1}=Au_k \\
 u_k=A^ku_0 \\
 how \quad to \quad solve \quad u_k \\
 u_0=c_1x_1+c_2x_2+...+c_nx_n=SC \\
 Au_0=c_1 \lambda _1 x_1 + c_2 \lambda _2 x_2 +...+c_n \lambda _n x_n \\
-A^{100}u_0=c_1 \lambda _1^{100} x_1 + c_2 \lambda _2^{100} x_2 +...+c_n
-\lambda _n^{100} x_n \\
+A^{100}u_0=c_1 \lambda _1^{100} x_1 + c_2 \lambda _2^{100} x_2 +...+c_n \lambda _n^{100} x_n \\
 =S\Lambda ^{100} C \\
-=u_{100} \\
-\]</span></p></li>
-<li><p>Because the n feature vectors are mutually linearly independent,
-they can serve as a set of bases to cover the entire n-dimensional
-space, and naturally, <span class="math inline">\(u_0\)</span> can be
-represented as a linear combination of the feature vectors, with C being
-the linear coefficient vector. The above formula has derived the method
-for solving matrix powers, and the next example will be given using the
-Fibonacci sequence.</p>
-<p><span class="math display">\[
+=u_{100} \\</script></li>
+<li><p>Because the n feature vectors are mutually linearly independent, they can serve as a set of bases to cover the entire n-dimensional space, and naturally, $u_0$ can be represented as a linear combination of the feature vectors, with C being the linear coefficient vector. The above formula has derived the method for solving matrix powers, and the next example will be given using the Fibonacci sequence.</p>
+<script type="math/tex; mode=display">
 F_0=0 \\
 F_1=1 \\
 F_2=1 \\
@@ -849,54 +702,39 @@ F_3=2 \\
 F_4=3 \\
 F_5=5 \\
 ..... \\
-F_{100}=? \\
-\]</span></p></li>
-<li><p>The growth rate of the Fibonacci sequence is how fast? Determined
-by the eigenvalues, we attempt to construct vectors to find the matrix
-relationship of the iterative Fibonacci sequence</p>
-<p><span class="math display">\[
+F_{100}=? \\</script></li>
+<li><p>The growth rate of the Fibonacci sequence is how fast? Determined by the eigenvalues, we attempt to construct vectors to find the matrix relationship of the iterative Fibonacci sequence</p>
+<script type="math/tex; mode=display">
 F_{k+2}=F_{k+1}+F_k \\
-F_{k+1}=F_{k+1} \\
-\]</span></p></li>
+F_{k+1}=F_{k+1} \\</script></li>
 <li><p>Define vector</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 u_k=
 \begin{bmatrix}
 F_{k+1} \\
 F_k \\
-\end{bmatrix} \\
-\]</span></p></li>
-<li><p>Using this vector, the first two equations can be written in
-matrix form</p>
-<p><span class="math display">\[
+\end{bmatrix} \\</script></li>
+<li><p>Using this vector, the first two equations can be written in matrix form</p>
+<script type="math/tex; mode=display">
 u_{k+1}=
 \begin{bmatrix}
-1 &amp; 1 \\
-1 &amp; 0 \\
+1 & 1 \\
+1 & 0 \\
 \end{bmatrix}
 u_k \\
 A=
 \begin{bmatrix}
-1 &amp; 1 \\
-1 &amp; 0 \\
+1 & 1 \\
+1 & 0 \\
 \end{bmatrix} \\
-\lambda =\frac {1 \pm \sqrt 5}2 \\
-\]</span></p></li>
-<li><p>Obtaining two eigenvalues, it is easy to obtain the corresponding
-eigenvectors</p></li>
-<li><p>Returning to the Fibonacci sequence, the growth rate of the
-Fibonacci sequence is determined by the eigenvalues of the "sequence
-update matrix" we construct, and as can be seen from <span
-class="math inline">\(A^{100}u_0=c_1 \lambda _1^100 x_1 + c_2 \lambda
-_2^100 x_2 +...+c_n \lambda _n^100 x_n\)</span> , the growth rate is
-mainly determined by the larger eigenvalues, therefore <span
-class="math inline">\(F_{100}\)</span> can be written in the following
-form</p>
-<p><span class="math display">\[
-F_{100} \approx c_1 {\frac {1 + \sqrt 5}2}^{100} \\
-\]</span></p></li>
+\lambda =\frac {1 \pm \sqrt 5}2 \\</script></li>
+<li><p>Obtaining two eigenvalues, it is easy to obtain the corresponding eigenvectors</p>
+</li>
+<li><p>Returning to the Fibonacci sequence, the growth rate of the Fibonacci sequence is determined by the eigenvalues of the “sequence update matrix” we construct, and as can be seen from $A^{100}u<em>0=c_1 \lambda _1^100 x_1 + c_2 \lambda _2^100 x_2 +…+c_n \lambda _n^100 x_n$ , the growth rate is mainly determined by the larger eigenvalues, therefore $F</em>{100}$ can be written in the following form</p>
+<script type="math/tex; mode=display">
+F_{100} \approx c_1 {\frac {1 + \sqrt 5}2}^{100} \\</script></li>
 <li><p>There are initial values</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 u_0=
 \begin{bmatrix}
 F_1 \\
@@ -906,69 +744,40 @@ F_0 \\
 1 \\
 0 \\
 \end{bmatrix}
-=c_1x_1+c_2x_2
-\]</span></p></li>
-<li><p>Among them, <span class="math inline">\(x_1,x_2\)</span> are two
-feature vectors, whose linear coefficients can be calculated, and by
-substituting them into the formula, an approximate value of <span
-class="math inline">\(F_{100}\)</span> can be obtained</p></li>
+=c_1x_1+c_2x_2</script></li>
+<li><p>Among them, $x<em>1,x_2$ are two feature vectors, whose linear coefficients can be calculated, and by substituting them into the formula, an approximate value of $F</em>{100}$ can be obtained</p>
+</li>
 </ul>
-<h2 id="summary">Summary</h2>
-<ul>
-<li>We find that under the condition of A being invertible, A can be
-decomposed into the form <span class="math inline">\(S\Lambda
-S^{-1}\)</span></li>
-<li>This form has a characteristic that facilitates the calculation of
-the power of A, as it can be observed that the unit matrix of the
-eigenvalues of A's power is the power of the unit matrix of A's
-eigenvalues</li>
-<li>We attempt to apply this feature in solving the Fibonacci sequence,
-first converting the sequence update into a matrix form</li>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>We find that under the condition of A being invertible, A can be decomposed into the form $S\Lambda S^{-1}$</li>
+<li>This form has a characteristic that facilitates the calculation of the power of A, as it can be observed that the unit matrix of the eigenvalues of A’s power is the power of the unit matrix of A’s eigenvalues</li>
+<li>We attempt to apply this feature in solving the Fibonacci sequence, first converting the sequence update into a matrix form</li>
 <li>Determine the eigenvalues and eigenvectors of the matrix</li>
-<li>From the expansion of the power series of A, it can be seen that the
-power of A is mainly determined by the larger eigenvalues, therefore
-<span class="math inline">\(F_{100}\)</span> can be written in the form
-of <span class="math inline">\(F_{100} \approx c_1 {(\frac {1 + \sqrt
-5}2)}^{100}\)</span></li>
-<li>By the initial value <span class="math inline">\(F_0\)</span> ,
-calculate the linear coefficients, substitute them into the above
-formula, and obtain the approximate value of <span
-class="math inline">\(F_{100}\)</span></li>
-<li>This is an example of a difference equation; the next section will
-discuss differential equations</li>
+<li>From the expansion of the power series of A, it can be seen that the power of A is mainly determined by the larger eigenvalues, therefore $F<em>{100}$ can be written in the form of $F</em>{100} \approx c_1 {(\frac {1 + \sqrt 5}2)}^{100}$</li>
+<li>By the initial value $F<em>0$ , calculate the linear coefficients, substitute them into the above formula, and obtain the approximate value of $F</em>{100}$</li>
+<li>This is an example of a difference equation; the next section will discuss differential equations</li>
 </ul>
-<h1 id="lecture-22-differential-equations-and-expat">Lecture 22:
-Differential Equations and exp(At)</h1>
-<h2 id="differential-equation">Differential Equation</h2>
-<ul>
-<li><p>The solutions to linear equations with constant coefficients are
-in exponential form; if the solution to the differential equation is in
-exponential form, one can find the solution by using linear algebra to
-determine the exponents and coefficients</p></li>
+<h1 id="Lecture-22-Differential-Equations-and-exp-At"><a href="#Lecture-22-Differential-Equations-and-exp-At" class="headerlink" title="Lecture 22: Differential Equations and exp(At)"></a>Lecture 22: Differential Equations and exp(At)</h1><h2 id="Differential-Equation"><a href="#Differential-Equation" class="headerlink" title="Differential Equation"></a>Differential Equation</h2><ul>
+<li><p>The solutions to linear equations with constant coefficients are in exponential form; if the solution to the differential equation is in exponential form, one can find the solution by using linear algebra to determine the exponents and coefficients</p>
+</li>
 <li><p>For example</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \frac{du_1}{dt}=-u_1+2u_2 \\
 \frac{du_2}{dt}=u_1-2u_2 \\
 u(0)=
 \begin{bmatrix}
 1 \\
 0 \\
-\end{bmatrix} \\
-\]</span></p></li>
-<li><p>First, we list the coefficient matrix and find the eigenvalues
-and eigenvectors of the matrix</p>
-<p><span class="math display">\[
+\end{bmatrix} \\</script></li>
+<li><p>First, we list the coefficient matrix and find the eigenvalues and eigenvectors of the matrix</p>
+<script type="math/tex; mode=display">
 A=
 \begin{bmatrix}
--1 &amp; 2 \\
-1 &amp; -2 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p><span class="math inline">\(\lambda=0\)</span> is a solution of
-this singular matrix, and from the trace it can be seen that the second
-eigenvalue is <span class="math inline">\(\lambda=-3\)</span> , and two
-eigenvectors are obtained</p>
-<p><span class="math display">\[
+-1 & 2 \\
+1 & -2 \\
+\end{bmatrix}</script></li>
+<li><p>$\lambda=0$ is a solution of this singular matrix, and from the trace it can be seen that the second eigenvalue is $\lambda=-3$ , and two eigenvectors are obtained</p>
+<script type="math/tex; mode=display">
 x_1=
 \begin{bmatrix}
 2 \\
@@ -978,158 +787,116 @@ x_2=
 \begin{bmatrix}
 1 \\
 -1 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>The general solution form of the differential equation will
-be</p>
-<p><span class="math display">\[
-u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2
-\]</span></p></li>
+\end{bmatrix}</script></li>
+<li><p>The general solution form of the differential equation will be</p>
+<script type="math/tex; mode=display">
+u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2</script></li>
 <li><p>Why?</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \frac{du}{dt} \\
 =c_1 \lambda _1 e^{\lambda _1 t}x_1 \\
 =A c_1 e^{\lambda _1 t}x_1 \\
-because \quad A x_1=\lambda _1 x_1 \\
-\]</span></p></li>
-<li><p>In the differential equation <span
-class="math inline">\(u_{k+1}=Au_k\)</span> , the form of the solution
-is <span class="math inline">\(c_1\lambda _1 ^k x_1+c_2 \lambda _2 ^k
-x_2\)</span></p></li>
-<li><p>In the differential equation <span class="math inline">\(\frac
-{du}{dt}=Au\)</span> , the form of the solution is <span
-class="math inline">\(u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2
-t}x_2\)</span></p></li>
-<li><p>Solved from the initial values, i.e., the coefficient matrix C
-multiplied by the eigenvector matrix S yields the initial
-values</p></li>
-<li><p>It can be seen that as t approaches infinity, the solution of the
-example equation is reduced to only the steady-state part, i.e., <span
-class="math inline">\((\frac 23,\frac 13)\)</span></p></li>
-<li><p>When does the solution tend towards 0? There exist negative
-eigenvalues because <span class="math inline">\(e^{\lambda t}\)</span>
-needs to tend towards 0</p></li>
-<li><p>If the eigenvalues are complex? The magnitude of the imaginary
-part is 1, so if the real part of the complex number is negative, the
-solution still tends towards 0</p></li>
-<li><p>When does a steady state exist? Only 0 and negative eigenvalues
-exist, as in the example above</p></li>
-<li><p>When does the solution fail to converge? Any eigenvalue has a
-real part greater than 0</p></li>
-<li><p>The sign of the coefficient matrix changes, the eigenvalues also
-change sign, the steady-state solution remains steady-state, and the
-convergent solution will become divergent</p></li>
-<li><p>How to directly determine if the solution converges from a
-matrix? That is, do all the real parts of the eigenvalues have a value
-less than 0?</p></li>
-<li><p>The trace of the matrix should be less than 0, but the sum of the
-diagonal elements being 0 does not necessarily converge, as</p>
-<p><span class="math display">\[
+because \quad A x_1=\lambda _1 x_1 \\</script></li>
+<li><p>In the differential equation $u_{k+1}=Au_k$ , the form of the solution is $c_1\lambda _1 ^k x_1+c_2 \lambda _2 ^k x_2$</p>
+</li>
+<li><p>In the differential equation $\frac {du}{dt}=Au$ , the form of the solution is $u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2$</p>
+</li>
+<li><p>Solved from the initial values, i.e., the coefficient matrix C multiplied by the eigenvector matrix S yields the initial values</p>
+</li>
+<li><p>It can be seen that as t approaches infinity, the solution of the example equation is reduced to only the steady-state part, i.e., $(\frac 23,\frac 13)$</p>
+</li>
+<li><p>When does the solution tend towards 0? There exist negative eigenvalues because $e^{\lambda t}$ needs to tend towards 0</p>
+</li>
+<li><p>If the eigenvalues are complex? The magnitude of the imaginary part is 1, so if the real part of the complex number is negative, the solution still tends towards 0</p>
+</li>
+<li><p>When does a steady state exist? Only 0 and negative eigenvalues exist, as in the example above</p>
+</li>
+<li><p>When does the solution fail to converge? Any eigenvalue has a real part greater than 0</p>
+</li>
+<li><p>The sign of the coefficient matrix changes, the eigenvalues also change sign, the steady-state solution remains steady-state, and the convergent solution will become divergent</p>
+</li>
+<li><p>How to directly determine if the solution converges from a matrix? That is, do all the real parts of the eigenvalues have a value less than 0?</p>
+</li>
+<li><p>The trace of the matrix should be less than 0, but the sum of the diagonal elements being 0 does not necessarily converge, as</p>
+<script type="math/tex; mode=display">
 \begin{bmatrix}
--2 &amp; 0 \\
-0 &amp; 1 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>Therefore, another condition is required: the value of the
-determinant is the product of the eigenvalues, so the value of the
-determinant should be greater than 0</p></li>
+-2 & 0 \\
+0 & 1 \\
+\end{bmatrix}</script></li>
+<li><p>Therefore, another condition is required: the value of the determinant is the product of the eigenvalues, so the value of the determinant should be greater than 0</p>
+</li>
 </ul>
-<h2 id="expat">exp(At)</h2>
-<ul>
-<li>Can the solution be expressed in the form of <span
-class="math inline">\(S,\Lambda\)</span></li>
-<li>Matrix A represents <span class="math inline">\(u_1,u_2\)</span>
-coupling, first we need to diagonalize u to decouple</li>
-<li><span class="math display">\[
+<h2 id="exp-At"><a href="#exp-At" class="headerlink" title="exp(At)"></a>exp(At)</h2><ul>
+<li>Can the solution be expressed in the form of $S,\Lambda$</li>
+<li>Matrix A represents $u_1,u_2$ coupling, first we need to diagonalize u to decouple</li>
+<li><script type="math/tex; mode=display">
 \frac{du}{dt} = Au \\
 set \quad u=Sv \\
 S \frac{dv}{dt} = ASv \\
 \frac{dv}{dt}=S^{-1}ASv=\Lambda v \\
 v(t)=e^{\Lambda t}v(0) \\
-u(t)=Se^{\Lambda t}S^{-1}u(0) \\
-\]</span></li>
+u(t)=Se^{\Lambda t}S^{-1}u(0) \\</script></li>
 </ul>
-<h1 id="st-lecture-markov-matrix-fourier-series">21st Lecture: Markov
-Matrix; Fourier Series</h1>
-<h2 id="markov-matrix">Markov matrix</h2>
-<ul>
+<h1 id="21st-Lecture-Markov-Matrix-Fourier-Series"><a href="#21st-Lecture-Markov-Matrix-Fourier-Series" class="headerlink" title="21st Lecture: Markov Matrix; Fourier Series"></a>21st Lecture: Markov Matrix; Fourier Series</h1><h2 id="Markov-matrix"><a href="#Markov-matrix" class="headerlink" title="Markov matrix"></a>Markov matrix</h2><ul>
 <li><p>A typical Markov matrix</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-0.1 &amp; 0.01 &amp; 0.3 \\
-0.2 &amp; 0.99 &amp; 0.3 \\
-0.7 &amp; 0 &amp; 0.4 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>Each element is greater than or equal to 0, the sum of each
-column is 1, and the powers of the Markov matrix are all Markov
-matrices</p></li>
-<li><p><span class="math inline">\(\lambda=1\)</span> is an eigenvalue,
-and the absolute values of the other eigenvalues are all less than
-1</p></li>
-<li><p>In the previous lecture, we discussed that the power of a matrix
-can be decomposed into</p>
-<p><span class="math display">\[
-u_k=A^ku_0=c_1\lambda _1 ^kx_1+c_2\lambda _2 ^kx_2+.....
-\]</span></p></li>
-<li><p>When A is a Markov matrix, there is only one eigenvalue of 1, and
-the other eigenvalues are less than 1. As k increases, the terms with
-eigenvalues less than 1 tend to approach 0, retaining only the term with
-the eigenvalue of 1, and the elements of the corresponding eigenvector
-are all greater than 0</p></li>
-<li><p>When the sum of each column is 1, there necessarily exists an
-eigenvalue <span class="math inline">\(\lambda =1\)</span></p></li>
+0.1 & 0.01 & 0.3 \\
+0.2 & 0.99 & 0.3 \\
+0.7 & 0 & 0.4 \\
+\end{bmatrix}</script></li>
+<li><p>Each element is greater than or equal to 0, the sum of each column is 1, and the powers of the Markov matrix are all Markov matrices</p>
+</li>
+<li><p>$\lambda=1$ is an eigenvalue, and the absolute values of the other eigenvalues are all less than 1</p>
+</li>
+<li><p>In the previous lecture, we discussed that the power of a matrix can be decomposed into</p>
+<script type="math/tex; mode=display">
+u_k=A^ku_0=c_1\lambda _1 ^kx_1+c_2\lambda _2 ^kx_2+.....</script></li>
+<li><p>When A is a Markov matrix, there is only one eigenvalue of 1, and the other eigenvalues are less than 1. As k increases, the terms with eigenvalues less than 1 tend to approach 0, retaining only the term with the eigenvalue of 1, and the elements of the corresponding eigenvector are all greater than 0</p>
+</li>
+<li><p>When the sum of each column is 1, there necessarily exists an eigenvalue $\lambda =1$</p>
+</li>
 <li><p>Proof:</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A-I=
 \begin{bmatrix}
--0.9 &amp; 0.01 &amp; 0.3 \\
-0.2 &amp; -0.01 &amp; 0.3 \\
-0.7 &amp; 0 &amp; -0.6 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>If 1 is an eigenvalue, then <span
-class="math inline">\(A-I\)</span> should be singular. It can be seen
-that the sum of each column of <span class="math inline">\(A-I\)</span>
-is 0, indicating that the row vectors are linearly dependent, i.e., the
-matrix is singular, and the all-ones vector lies in the left null
-space.</p></li>
-<li><p>For the Markov matrix A, we study <span
-class="math inline">\(u_{k+1}=Au_k\)</span></p></li>
-<li><p>An example, u is the population in Massachusetts and California,
-A is the population mobility matrix</p>
-<p><span class="math display">\[
+-0.9 & 0.01 & 0.3 \\
+0.2 & -0.01 & 0.3 \\
+0.7 & 0 & -0.6 \\
+\end{bmatrix}</script></li>
+<li><p>If 1 is an eigenvalue, then $A-I$ should be singular. It can be seen that the sum of each column of $A-I$ is 0, indicating that the row vectors are linearly dependent, i.e., the matrix is singular, and the all-ones vector lies in the left null space.</p>
+</li>
+<li><p>For the Markov matrix A, we study $u_{k+1}=Au_k$</p>
+</li>
+<li><p>An example, u is the population in Massachusetts and California, A is the population mobility matrix</p>
+<script type="math/tex; mode=display">
 \begin{bmatrix}
 u_{cal} \\
 u_{mass} \\
 \end{bmatrix}_{t=k+1}
 =
 \begin{bmatrix}
-0.9 &amp; 0.2 \\
-0.1 &amp; 0.8 \\
+0.9 & 0.2 \\
+0.1 & 0.8 \\
 \end{bmatrix}
 \begin{bmatrix}
 u_{cal} \\
 u_{mass} \\
-\end{bmatrix}_{t=k}
-\]</span></p></li>
-<li><p>It can be seen that each year (k), 80% of people stay in
-Massachusetts, 20% move to California, and 10% from California also
-relocate to Massachusetts</p></li>
+\end{bmatrix}_{t=k}</script></li>
+<li><p>It can be seen that each year (k), 80% of people stay in Massachusetts, 20% move to California, and 10% from California also relocate to Massachusetts</p>
+</li>
 <li><p>On the Markov matrix A</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-0.9 &amp; 0.2 \\
-0.1 &amp; 0.8 \\
+0.9 & 0.2 \\
+0.1 & 0.8 \\
 \end{bmatrix} \\
 \lambda _1 =1 \\
-\lambda _2 =0.7 \\
-\]</span></p></li>
-<li><p>For the eigenvalue of 1, the eigenvector is easily found as <span
-class="math inline">\((2,1)\)</span> , and for the eigenvalue of 0.7,
-the eigenvector is (-1,1).</p></li>
+\lambda _2 =0.7 \\</script></li>
+<li><p>For the eigenvalue of 1, the eigenvector is easily found as $(2,1)$ , and for the eigenvalue of 0.7, the eigenvector is (-1,1).</p>
+</li>
 <li><p>Obtain the formula we are to study</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 u_k=c_1*1^k*
 \begin{bmatrix}
 2 \\
@@ -1139,39 +906,24 @@ u_k=c_1*1^k*
 \begin{bmatrix}
 -1 \\
 1 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>Assuming there were initially 0 people in California and 1000
-people in Massachusetts, i.e., <span class="math inline">\(u_0\)</span>
-, substituting this into the formula yields <span
-class="math inline">\(c_1,c_2\)</span> . It can be seen that after many
-years, the populations of California and Massachusetts will stabilize,
-each accounting for one-third and two-thirds of the total 1000 people,
-respectively.</p></li>
-<li><p>The vector with a sum of 1 is another way to define a Markov
-matrix</p></li>
+\end{bmatrix}</script></li>
+<li><p>Assuming there were initially 0 people in California and 1000 people in Massachusetts, i.e., $u_0$ , substituting this into the formula yields $c_1,c_2$ . It can be seen that after many years, the populations of California and Massachusetts will stabilize, each accounting for one-third and two-thirds of the total 1000 people, respectively.</p>
+</li>
+<li><p>The vector with a sum of 1 is another way to define a Markov matrix</p>
+</li>
 </ul>
-<h2 id="fourier-series">Fourier Series</h2>
-<ul>
-<li><p>Discussion of projection problems with standard orthogonal
-bases</p></li>
-<li><p>If <span class="math inline">\(q_1....q_n\)</span> is a set of
-standard orthogonal bases, any vector <span
-class="math inline">\(v\)</span> is a linear combination of this set of
-bases</p></li>
-<li><p>We now need to determine the linear combination coefficients
-<span class="math inline">\(x_1....x_n\)</span> , <span
-class="math inline">\(v=x_1q_1+x_2q_2+...x_nq_n\)</span> . One method is
-to take the inner product of <span class="math inline">\(v\)</span> and
-<span class="math inline">\(q_i\)</span> , and calculate the
-coefficients one by one</p>
-<p><span class="math display">\[
-q_1^Tv=x_1q_1^Tq_1+0+0+0....+0=x_1 \\
-\]</span></p></li>
+<h2 id="Fourier-Series"><a href="#Fourier-Series" class="headerlink" title="Fourier Series"></a>Fourier Series</h2><ul>
+<li><p>Discussion of projection problems with standard orthogonal bases</p>
+</li>
+<li><p>If $q_1….q_n$ is a set of standard orthogonal bases, any vector $v$ is a linear combination of this set of bases</p>
+</li>
+<li><p>We now need to determine the linear combination coefficients $x_1….x_n$ , $v=x_1q_1+x_2q_2+…x_nq_n$ . One method is to take the inner product of $v$ and $q_i$ , and calculate the coefficients one by one</p>
+<script type="math/tex; mode=display">
+q_1^Tv=x_1q_1^Tq_1+0+0+0....+0=x_1 \\</script></li>
 <li><p>Written in matrix form</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-q_1 &amp; q_2 &amp; ... &amp; q_n \\
+q_1 & q_2 & ... & q_n \\
 \end{bmatrix}
 \begin{bmatrix}
 x_1 \\
@@ -1181,311 +933,237 @@ x_n \\
 \end{bmatrix}=
 v \\
 Qx=v \\
-x=Q^{-1}v=Q^Tv \\
-\]</span></p></li>
-<li><p>Now discussing Fourier series</p></li>
+x=Q^{-1}v=Q^Tv \\</script></li>
+<li><p>Now discussing Fourier series</p>
+</li>
 <li><p>We hope to decompose the function</p>
-<p><span class="math display">\[
-f(x)=a_0+a_1cosx+b_1sinx+a_2cos2x+b_2cos2x+.......
-\]</span></p></li>
-<li><p>The key is that in this decomposition, <span
-class="math inline">\(coskx,sinkx\)</span> constitutes an infinite
-orthogonal basis for a set of function spaces, i.e., the inner products
-of these functions are 0 (the inner product of vectors is a discrete
-value summation, while the inner product of functions is a continuous
-value integration).</p></li>
-<li><p>How to calculate the Fourier coefficients?</p></li>
-<li><p>Using the previous vector example to calculate</p></li>
-<li><p>Sequentially compute the inner product of <span
-class="math inline">\(f(x)\)</span> with each element of the orthogonal
-basis, obtaining the corresponding coefficient multiplied by <span
-class="math inline">\(\pi\)</span> , for example</p>
-<p><span class="math display">\[
-\int _0 ^{2\pi} f(x)cosx dx=0+ a_1 \int _0^{2\pi}(cosx)^2dx+0+0...+0=\pi
-a_1 \\
-\]</span></p></li>
+<script type="math/tex; mode=display">
+f(x)=a_0+a_1cosx+b_1sinx+a_2cos2x+b_2cos2x+.......</script></li>
+<li><p>The key is that in this decomposition, $coskx,sinkx$ constitutes an infinite orthogonal basis for a set of function spaces, i.e., the inner products of these functions are 0 (the inner product of vectors is a discrete value summation, while the inner product of functions is a continuous value integration).</p>
+</li>
+<li><p>How to calculate the Fourier coefficients?</p>
+</li>
+<li><p>Using the previous vector example to calculate</p>
+</li>
+<li><p>Sequentially compute the inner product of $f(x)$ with each element of the orthogonal basis, obtaining the corresponding coefficient multiplied by $\pi$ , for example</p>
+<script type="math/tex; mode=display">
+\int _0 ^{2\pi} f(x)cosx dx=0+ a_1 \int _0^{2\pi}(cosx)^2dx+0+0...+0=\pi a_1 \\</script></li>
 </ul>
-<h1 id="lecture-22-symmetric-matrices-and-positive-definiteness">Lecture
-22: Symmetric Matrices and Positive Definiteness</h1>
-<h2 id="symmetric-matrix">Symmetric matrix</h2>
-<ul>
-<li><p>The eigenvalues of a symmetric matrix are real numbers, and the
-eigenvectors corresponding to distinct eigenvalues are mutually
-orthogonal</p></li>
-<li><p>For a general matrix <span class="math inline">\(A=S\Lambda
-S^{-1}\)</span> , S is the matrix of eigenvectors</p></li>
-<li><p>For the symmetric matrix <span class="math inline">\(A=Q\Lambda
-Q^{-1}=Q\Lambda Q^T\)</span> , Q is the matrix of standard orthogonal
-eigenvectors</p></li>
-<li><p>Why are all eigenvalues real numbers?</p></li>
-<li><p>Conjugate both left and right, as we are now only considering the
-real matrix A, <span class="math inline">\(Ax^{*}=\lambda ^{*}
-x^{*}\)</span></p></li>
-<li><p><span class="math inline">\(\lambda\)</span> and its conjugate
-are eigenvalues; now take the transpose of both sides of the equation,
-<span class="math inline">\(x^{* T}A^T=x^{* T} \lambda ^{*
-T}\)</span></p></li>
-<li><p>In the above formula, <span class="math inline">\(A=A^T\)</span>
-, and both sides are multiplied by <span
-class="math inline">\(x\)</span> , comparing with <span
-class="math inline">\(x^{* T}A\lambda x^{* T}x\)</span> yields <span
-class="math inline">\(\lambda ^{*}=\lambda\)</span> , i.e., the
-eigenvalues are real numbers</p></li>
-<li><p>It is evident that for multiple matrices, the condition <span
-class="math inline">\(A=A^{* T}\)</span> is required to satisfy
-symmetry</p></li>
+<h1 id="Lecture-22-Symmetric-Matrices-and-Positive-Definiteness"><a href="#Lecture-22-Symmetric-Matrices-and-Positive-Definiteness" class="headerlink" title="Lecture 22: Symmetric Matrices and Positive Definiteness"></a>Lecture 22: Symmetric Matrices and Positive Definiteness</h1><h2 id="Symmetric-matrix"><a href="#Symmetric-matrix" class="headerlink" title="Symmetric matrix"></a>Symmetric matrix</h2><ul>
+<li><p>The eigenvalues of a symmetric matrix are real numbers, and the eigenvectors corresponding to distinct eigenvalues are mutually orthogonal</p>
+</li>
+<li><p>For a general matrix $A=S\Lambda S^{-1}$ , S is the matrix of eigenvectors</p>
+</li>
+<li><p>For the symmetric matrix $A=Q\Lambda Q^{-1}=Q\Lambda Q^T$ , Q is the matrix of standard orthogonal eigenvectors</p>
+</li>
+<li><p>Why are all eigenvalues real numbers?</p>
+</li>
+<li><p>Conjugate both left and right, as we are now only considering the real matrix A, $Ax^{<em>}=\lambda ^{</em>} x^{*}$</p>
+</li>
+<li><p>$\lambda$ and its conjugate are eigenvalues; now take the transpose of both sides of the equation, $x^{<em> T}A^T=x^{</em> T} \lambda ^{* T}$</p>
+</li>
+<li><p>In the above formula, $A=A^T$ , and both sides are multiplied by $x$ , comparing with $x^{<em> T}A\lambda x^{</em> T}x$ yields $\lambda ^{*}=\lambda$ , i.e., the eigenvalues are real numbers</p>
+</li>
+<li><p>It is evident that for multiple matrices, the condition $A=A^{* T}$ is required to satisfy symmetry</p>
+</li>
 <li><p>For symmetric matrices</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=Q\Lambda Q^{-1}=Q\Lambda Q^T \\
-=\lambda _1 q_1 q_1^T+\lambda _2 q_2 q_2^T+.... \\
-\]</span></p></li>
-<li><p>So every symmetric matrix is a combination of some mutually
-orthogonal projection matrices</p></li>
-<li><p>For symmetric matrices, the number of positive principal minors
-is equal to the number of positive eigenvalues, and the product of the
-principal minors equals the product of the eigenvalues, which equals the
-determinant of the matrix</p></li>
+=\lambda _1 q_1 q_1^T+\lambda _2 q_2 q_2^T+.... \\</script></li>
+<li><p>So every symmetric matrix is a combination of some mutually orthogonal projection matrices</p>
+</li>
+<li><p>For symmetric matrices, the number of positive principal minors is equal to the number of positive eigenvalues, and the product of the principal minors equals the product of the eigenvalues, which equals the determinant of the matrix</p>
+</li>
 </ul>
-<h2 id="positivity">Positivity</h2>
-<ul>
-<li>Positive definite matrices are symmetric matrices, a subclass of
-symmetric matrices, whose all eigenvalues are positive, all leading
-principal minors are positive, and all subdeterminants are positive</li>
+<h2 id="Positivity"><a href="#Positivity" class="headerlink" title="Positivity"></a>Positivity</h2><ul>
+<li>Positive definite matrices are symmetric matrices, a subclass of symmetric matrices, whose all eigenvalues are positive, all leading principal minors are positive, and all subdeterminants are positive</li>
 <li>The sign of eigenvalues is related to stability</li>
-<li>The eigenvalue, determinant, and main element are unified as one in
-linear algebra</li>
+<li>The eigenvalue, determinant, and main element are unified as one in linear algebra</li>
 </ul>
 </div>
 <div id="zh-content" class="lang-content" style="display: none;"><ul>
 <li><p>行列式按行是线性的，但行列式本身不是线性的</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{vmatrix}
-1 &amp; 0 \\
-0 &amp; 1 \\
+1 & 0 \\
+0 & 1 \\
 \end{vmatrix}=1 \\
 \begin{vmatrix}
-0 &amp; 1 \\
-1 &amp; 0 \\
+0 & 1 \\
+1 & 0 \\
 \end{vmatrix}=-1 \\
 \begin{vmatrix}
-ta &amp; tb \\
-c &amp; d \\
+ta & tb \\
+c & d \\
 \end{vmatrix}=
 t\begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
+a & b \\
+c & d \\
 \end{vmatrix} \\
 \begin{vmatrix}
-t+a &amp; t+b \\
-c &amp; d \\
+t+a & t+b \\
+c & d \\
 \end{vmatrix}=
 \begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
+a & b \\
+c & d \\
 \end{vmatrix}+
 \begin{vmatrix}
-t &amp; t \\
-c &amp; d \\
-\end{vmatrix}
-\]</span></p></li>
+t & t \\
+c & d \\
+\end{vmatrix}</script></li>
 <li><p>证明消元不改变行列式</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{vmatrix}
-a &amp; b \\
-c-la &amp; d-lb \\
+a & b \\
+c-la & d-lb \\
 \end{vmatrix}=
 \begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
+a & b \\
+c & d \\
 \end{vmatrix}-l
 \begin{vmatrix}
-a &amp; b \\
-a &amp; b \\
+a & b \\
+a & b \\
 \end{vmatrix}=
 \begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
-\end{vmatrix}
-\]</span></p></li>
+a & b \\
+c & d \\
+\end{vmatrix}</script></li>
 <li><p>证明转置不改变行列式</p>
-<p><span class="math display">\[
-A=LU \\
-\]</span></p></li>
-<li><p>即证 <span class="math inline">\(|U^TL^T|=|LU|\)</span> <span
-class="math display">\[
-|U^T||L^T|=|L||U|
-\]</span></p></li>
-<li><p>以上四个矩阵都是三角矩阵，行列式等于对角线乘积，转置没有影响，所以相等</p></li>
+<script type="math/tex; mode=display">
+A=LU \\</script></li>
+<li>即证 $|U^TL^T|=|LU|$<script type="math/tex; mode=display">
+|U^T||L^T|=|L||U|</script></li>
+<li>以上四个矩阵都是三角矩阵，行列式等于对角线乘积，转置没有影响，所以相等 </li>
 </ul>
-<h2 id="三角阵行列式">三角阵行列式</h2>
-<ul>
+<h2 id="三角阵行列式"><a href="#三角阵行列式" class="headerlink" title="三角阵行列式"></a>三角阵行列式</h2><ul>
 <li>对三角阵U的行列式,值为对角线上元素乘积(主元乘积)</li>
 <li>为什么三角阵其他元素不起作用？因为通过消元我们可以得到只有对角元素的矩阵，而消元不改变行列式</li>
-<li>为什么是对角线元素的乘积？因为可以消元后可以依次把对角元素提出来，即得到<span
-class="math inline">\(d_1d_2d_3...d_nI\)</span>，其中单位矩阵的行列式为1</li>
+<li>为什么是对角线元素的乘积？因为可以消元后可以依次把对角元素提出来，即得到$d_1d_2d_3…d_nI$，其中单位矩阵的行列式为1</li>
 <li>奇异矩阵行列式为0，存在全0行；可逆矩阵行列式不为0，能化成三角阵，行列式是三角矩阵对角元素乘积</li>
 </ul>
-<h2 id="a-little-more">A little more</h2>
-<ul>
+<h2 id="A-little-more"><a href="#A-little-more" class="headerlink" title="A little more"></a>A little more</h2><ul>
 <li>进行奇数次置换和偶数次置换得到的行列式肯定不一样(符号不同)，这意味着进行奇数次置换和偶数次置换后的矩阵不会一样，即置换是严格区分奇偶的</li>
 </ul>
-<h1
-id="第十八讲行列式公式和代数余子式">第十八讲：行列式公式和代数余子式</h1>
-<h2 id="行列式公式">行列式公式</h2>
-<ul>
+<h1 id="第十八讲：行列式公式和代数余子式"><a href="#第十八讲：行列式公式和代数余子式" class="headerlink" title="第十八讲：行列式公式和代数余子式"></a>第十八讲：行列式公式和代数余子式</h1><h2 id="行列式公式"><a href="#行列式公式" class="headerlink" title="行列式公式"></a>行列式公式</h2><ul>
 <li><p>推导2*2行列式</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{vmatrix}
-a &amp; b \\
-c &amp; d \\
+a & b \\
+c & d \\
 \end{vmatrix}=
 \begin{vmatrix}
-a &amp; 0 \\
-c &amp; d \\
+a & 0 \\
+c & d \\
 \end{vmatrix}+
 \begin{vmatrix}
-0 &amp; b \\
-c &amp; d \\
+0 & b \\
+c & d \\
 \end{vmatrix}=
 \begin{vmatrix}
-a &amp; 0 \\
-c &amp; 0 \\
+a & 0 \\
+c & 0 \\
 \end{vmatrix}+
 \begin{vmatrix}
-a &amp; 0 \\
-0 &amp; d \\
+a & 0 \\
+0 & d \\
 \end{vmatrix}+
 \begin{vmatrix}
-0 &amp; b \\
-c &amp; 0 \\
+0 & b \\
+c & 0 \\
 \end{vmatrix}+
 \begin{vmatrix}
-0 &amp; b \\
-0 &amp; d \\
+0 & b \\
+0 & d \\
 \end{vmatrix} \\
-=0+ad-bc+0
-\]</span></p>
-<p>我们可以发现这种方法是一次取一行，将这一行拆解(行列式按行是线性的)，再提取出因子，通过行交换得到单位矩阵，通过性质一和性质二得到答案</p></li>
-<li><p>如果扩展到3*3矩阵，则第一行分解成三部分，每部分针对第二行又分解成三部分，所以最后得到27部分，其中不为0的部分是那些各行各列均有元素的矩阵。</p></li>
+=0+ad-bc+0</script><p>我们可以发现这种方法是一次取一行，将这一行拆解(行列式按行是线性的)，再提取出因子，通过行交换得到单位矩阵，通过性质一和性质二得到答案</p>
+</li>
+<li>如果扩展到3*3矩阵，则第一行分解成三部分，每部分针对第二行又分解成三部分，所以最后得到27部分，其中不为0的部分是那些各行各列均有元素的矩阵。</li>
 <li><p>例如</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{vmatrix}
-a &amp; 0 &amp; 0\\
-0 &amp; 0 &amp; b\\
-0 &amp; c &amp; 0\\
-\end{vmatrix}
-\]</span></p>
-<p>先提取出因子，得到<span
-class="math inline">\(abc\)</span>，交换第二行第三行得到单位矩阵，于是答案就是<span
-class="math inline">\(abc*detI=abc\)</span>，又因为进行了一次行交换，所以答案是负的，<span
-class="math inline">\(-abc\)</span></p></li>
-<li><p>n*n的矩阵可以分成<span
-class="math inline">\(n!\)</span>个部分，因为第一行分成n个部分，第二行不能重复，选择n-1行，一次重复，所以得到<span
-class="math inline">\(n!\)</span>部分</p></li>
-<li><p>行列式公式就是这<span
-class="math inline">\(n!\)</span>个部分加起来</p></li>
+a & 0 & 0\\
+0 & 0 & b\\
+0 & c & 0\\
+\end{vmatrix}</script><p>先提取出因子，得到$abc$，交换第二行第三行得到单位矩阵，于是答案就是$abc*detI=abc$，又因为进行了一次行交换，所以答案是负的，$-abc$</p>
+</li>
+<li>n*n的矩阵可以分成$n!$个部分，因为第一行分成n个部分，第二行不能重复，选择n-1行，一次重复，所以得到$n!$部分</li>
+<li>行列式公式就是这$n!$个部分加起来</li>
 </ul>
-<h2 id="代数余子式">代数余子式</h2>
-<ul>
-<li><span
-class="math inline">\(det=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(....)+a_{13}(....)\)</span></li>
+<h2 id="代数余子式"><a href="#代数余子式" class="headerlink" title="代数余子式"></a>代数余子式</h2><ul>
+<li>$det=a<em>{11}(a</em>{22}a<em>{33}-a</em>{23}a<em>{32})+a</em>{12}(….)+a_{13}(….)$</li>
 <li>提取出一个因子，由剩余的因子即括号内的内容组成的就是余子式</li>
 <li>从矩阵上看，选择一个元素，它的代数余子式就是排除这个元素所在行和列剩下的矩阵的行列式</li>
-<li><span class="math inline">\(a_{ij}\)</span>的代数余子式记作<span
-class="math inline">\(c_{ij}\)</span></li>
-<li>注意代数余子式的正负，与<span
-class="math inline">\(i+j\)</span>的奇偶性有关，偶数取正，奇数取负，这里的符号是指代数余子式对应的子矩阵正常计算出行列式后前面的符号</li>
-<li><span
-class="math inline">\(detA=a_{11}C_{11}+a_{12}C_{12}+....+a_{1n}C_{1n}\)</span></li>
+<li>$a<em>{ij}$的代数余子式记作$c</em>{ij}$</li>
+<li>注意代数余子式的正负，与$i+j$的奇偶性有关，偶数取正，奇数取负，这里的符号是指代数余子式对应的子矩阵正常计算出行列式后前面的符号</li>
+<li>$detA=a<em>{11}C</em>{11}+a<em>{12}C</em>{12}+….+a<em>{1n}C</em>{1n}$    </li>
 </ul>
-<h1
-id="第十九讲克拉默法则逆矩阵体积">第十九讲：克拉默法则，逆矩阵，体积</h1>
-<h2 id="逆矩阵">逆矩阵</h2>
-<ul>
-<li><p>只有行列式不为0时，矩阵才是可逆的</p></li>
+<h1 id="第十九讲：克拉默法则，逆矩阵，体积"><a href="#第十九讲：克拉默法则，逆矩阵，体积" class="headerlink" title="第十九讲：克拉默法则，逆矩阵，体积"></a>第十九讲：克拉默法则，逆矩阵，体积</h1><h2 id="逆矩阵"><a href="#逆矩阵" class="headerlink" title="逆矩阵"></a>逆矩阵</h2><ul>
+<li>只有行列式不为0时，矩阵才是可逆的</li>
 <li><p>逆矩阵公式</p>
-<p><span class="math display">\[
-A^{-1}=\frac{1}{detA}C^T
-\]</span></p>
-<p>其中<span class="math inline">\(C_{ij}\)</span>是<span
-class="math inline">\(A_{ij}\)</span>的代数余子式</p></li>
-<li><p>证明：即证<span class="math inline">\(AC^T=(detA)I\)</span></p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
+A^{-1}=\frac{1}{detA}C^T</script><p>其中$C<em>{ij}$是$A</em>{ij}$的代数余子式</p>
+</li>
+<li><p>证明：即证$AC^T=(detA)I$</p>
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-a_{11} &amp; ... &amp; a_{1n} \\
-a_{n1} &amp; ... &amp; a_{nn} \\
+a_{11} & ... & a_{1n} \\
+a_{n1} & ... & a_{nn} \\
 \end{bmatrix}
 \begin{bmatrix}
-c_{11} &amp; ... &amp; c_{n1} \\
-c_{1n} &amp; ... &amp; c_{nn} \\
+c_{11} & ... & c_{n1} \\
+c_{1n} & ... & c_{nn} \\
 \end{bmatrix}=
 \begin{bmatrix}
-detA &amp; 0 &amp; 0 \\
-0 &amp; detA &amp; 0 \\
-0 &amp; 0 &amp; detA \\
-\end{bmatrix}
-\]</span></p>
-<p>对角线上都是行列式，因为<span
-class="math inline">\(det=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(....)+a_{13}(....)\)</span>
-其他位置都是0，因为行a乘以行b的代数余子式相当于求一个矩阵的行列式，这个矩阵行a与行b相等，行列式为0</p></li>
+detA & 0 & 0 \\
+0 & detA & 0 \\
+0 & 0 & detA \\
+\end{bmatrix}</script><p>对角线上都是行列式，因为$det=a<em>{11}(a</em>{22}a<em>{33}-a</em>{23}a<em>{32})+a</em>{12}(….)+a_{13}(….)$<br>其他位置都是0，因为行a乘以行b的代数余子式相当于求一个矩阵的行列式，这个矩阵行a与行b相等，行列式为0</p>
+</li>
 </ul>
-<h2 id="克拉默法则">克拉默法则</h2>
-<ul>
+<h2 id="克拉默法则"><a href="#克拉默法则" class="headerlink" title="克拉默法则"></a>克拉默法则</h2><ul>
 <li><p>解Ax=b</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 Ax=b \\
 x=A^{-1}b \\
 x=\frac{1}{detA}C^Tb \\
 \\
 x_1=\frac{detB_1}{detA} \\
 x_3=\frac{detB_2}{detA} \\
-... \\
-\]</span></p></li>
-<li><p>克拉默法则即发现矩阵<span
-class="math inline">\(B_i\)</span>就是矩阵<span
-class="math inline">\(A\)</span>的第i列换成b，其余不变</p></li>
+... \\</script></li>
+<li>克拉默法则即发现矩阵$B_i$就是矩阵$A$的第i列换成b，其余不变</li>
 </ul>
-<h2 id="体积">体积</h2>
-<ul>
-<li><p>A的行列式可以代表一个体积，例如3*3矩阵的行列式代表一个三维空间内的体积</p></li>
-<li><p>矩阵的每一行代表一个盒子的一条边(从同一顶点连出的)，行列式就是这个盒子的体积，行列式的正负代表左手或者右手系。</p></li>
-<li><p>(1)单位矩阵对应单位立方体，体积为1</p></li>
+<h2 id="体积"><a href="#体积" class="headerlink" title="体积"></a>体积</h2><ul>
+<li>A的行列式可以代表一个体积，例如3*3矩阵的行列式代表一个三维空间内的体积</li>
+<li>矩阵的每一行代表一个盒子的一条边(从同一顶点连出的)，行列式就是这个盒子的体积，行列式的正负代表左手或者右手系。</li>
+<li>(1)单位矩阵对应单位立方体，体积为1</li>
 <li><p>对正交矩阵Q,</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 QQ^T=I \\
 |QQ^T|=|I| \\
 |Q||Q^T|=1 \\
 {|Q|}^2=1 \\
-|Q|=1 \\
-\]</span></p>
-<p>Q对应的盒子是单位矩阵对应的单位立方体在空间中旋转过一个角度</p></li>
-<li><p>(3a)如果矩阵的某一行翻倍，即盒子一组边翻倍，体积也翻倍，从行列式角度可以把倍数提出来，因此行列式也是翻倍</p></li>
-<li><p>(2)交换矩阵两行，盒子的体积不变</p></li>
-<li><p>(3b)矩阵某一行拆分，盒子也相应切分为两部分</p></li>
-<li><p>以上，行列式的三条性质(1,2,3a,3b)均可以在体积上验证</p></li>
+|Q|=1 \\</script><p>Q对应的盒子是单位矩阵对应的单位立方体在空间中旋转过一个角度</p>
+</li>
+<li>(3a)如果矩阵的某一行翻倍，即盒子一组边翻倍，体积也翻倍，从行列式角度可以把倍数提出来，因此行列式也是翻倍</li>
+<li>(2)交换矩阵两行，盒子的体积不变</li>
+<li>(3b)矩阵某一行拆分，盒子也相应切分为两部分</li>
+<li>以上，行列式的三条性质(1,2,3a,3b)均可以在体积上验证</li>
 </ul>
-<h1 id="第二十讲特征值和特征向量">第二十讲：特征值和特征向量</h1>
-<h2 id="特征向量">特征向量</h2>
-<ul>
+<h1 id="第二十讲：特征值和特征向量"><a href="#第二十讲：特征值和特征向量" class="headerlink" title="第二十讲：特征值和特征向量"></a>第二十讲：特征值和特征向量</h1><h2 id="特征向量"><a href="#特征向量" class="headerlink" title="特征向量"></a>特征向量</h2><ul>
 <li>给定矩阵A，矩阵A可以看成一个函数，作用在一个向量x上，得到向量Ax</li>
-<li>当Ax平行于x时，即<span class="math inline">\(Ax=\lambda
-x\)</span>，我们称<span
-class="math inline">\(x\)</span>为特征向量，<span
-class="math inline">\(\lambda\)</span>为特征值</li>
-<li>如果A是奇异矩阵，<span class="math inline">\(\lambda =
-0\)</span>是一个特征值</li>
+<li>当Ax平行于x时，即$Ax=\lambda x$，我们称$x$为特征向量，$\lambda$为特征值</li>
+<li>如果A是奇异矩阵，$\lambda = 0$是一个特征值</li>
 </ul>
-<h2 id="几个例子">几个例子</h2>
-<ul>
-<li><p>如果A是投影矩阵，可以发现它的特征向量就是投影平面上的任意向量，因为<span
-class="math inline">\(Ax\)</span>即投影到平面上，平面上的所有向量投影后不变，自然平行，同时特征值就是1。如果向量垂直于平面，<span
-class="math inline">\(Ax=0\)</span>，特征值为0.因此投影矩阵A的特征向量就分以上两种情况，特征值为1或0.</p></li>
+<h2 id="几个例子"><a href="#几个例子" class="headerlink" title="几个例子"></a>几个例子</h2><ul>
+<li>如果A是投影矩阵，可以发现它的特征向量就是投影平面上的任意向量，因为$Ax$即投影到平面上，平面上的所有向量投影后不变，自然平行，同时特征值就是1。如果向量垂直于平面，$Ax=0$，特征值为0.因此投影矩阵A的特征向量就分以上两种情况，特征值为1或0.</li>
 <li><p>再举一例</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=
 \begin{bmatrix}
-0 &amp; 1 \\
-1 &amp; 0 \\
+0 & 1 \\
+1 & 0 \\
 \end{bmatrix} \\
 \lambda =1, x=
 \begin{bmatrix}
@@ -1506,49 +1184,41 @@ Ax=
 \begin{bmatrix}
 1 \\
 -1 \\
-\end{bmatrix} \\    
-\]</span></p></li>
-<li><p>n*n矩阵有n个特征值</p></li>
-<li><p>特征值的和等于对角线元素和，这个和称为迹(trace)，</p></li>
-<li><p>如何求解<span class="math inline">\(Ax=\lambda x\)</span></p>
-<p><span class="math display">\[
-(A-\lambda I)x=0 \\
-\]</span></p></li>
-<li><p>可见方程有非零解，<span class="math inline">\((A-\lambda
-I)\)</span>必须是奇异的 即:</p>
-<p><span class="math display">\[
-det(A-\lambda I)=0 \\
-\]</span></p></li>
-<li><p><span class="math display">\[
+\end{bmatrix} \\</script></li>
+<li>n*n矩阵有n个特征值</li>
+<li>特征值的和等于对角线元素和，这个和称为迹(trace)，</li>
+<li><p>如何求解$Ax=\lambda x$</p>
+<script type="math/tex; mode=display">
+(A-\lambda I)x=0 \\</script></li>
+<li><p>可见方程有非零解，$(A-\lambda I)$必须是奇异的<br>即: </p>
+<script type="math/tex; mode=display">
+det(A-\lambda I)=0 \\</script></li>
+<li><script type="math/tex; mode=display">
 If \qquad Ax=\lambda x \\
-Then \qquad (A+3I)x=(\lambda +3)x \\
-\]</span></p></li>
-<li><p>因为加上单位矩阵，特征向量不变依然为x，特征值加上单位矩阵的系数即<span
-class="math inline">\((\lambda +3)\)</span></p></li>
-<li><p>A+B的特征值不一定是A的特征值加上B的特征值，因为他们的特征向量不一定相同。同理AB的特征值也不一定是他们的特征值的乘积</p></li>
+Then \qquad (A+3I)x=(\lambda +3)x \\</script></li>
+<li>因为加上单位矩阵，特征向量不变依然为x，特征值加上单位矩阵的系数即$(\lambda +3)$</li>
+<li>A+B的特征值不一定是A的特征值加上B的特征值，因为他们的特征向量不一定相同。同理AB的特征值也不一定是他们的特征值的乘积</li>
 <li><p>再举一例，对旋转矩阵Q</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 Q=
 \begin{bmatrix}
-0 &amp; -1 \\
-1 &amp; 0 \\
+0 & -1 \\
+1 & 0 \\
 \end{bmatrix} \\
 trace=0=\lambda _1 +\lambda _2 \\
-det=1=\lambda _1 \lambda _2 \\
-\]</span></p></li>
-<li><p>但是可以看出 <span class="math inline">\(\lambda _1，\lambda
-_2\)</span>无实数解</p></li>
+det=1=\lambda _1 \lambda _2 \\</script></li>
+<li>但是可以看出 $\lambda _1，\lambda _2$无实数解 </li>
 <li><p>再看看更加糟糕的情况(矩阵更加不对称，更难得到实数解的特征值)</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=
 \begin{bmatrix}
-3 &amp; 1 \\
-0 &amp; 3 \\
+3 & 1 \\
+0 & 3 \\
 \end{bmatrix} \\
 det(A-\lambda I)=
 \begin{vmatrix}
-3-\lambda &amp; 1 \\
-0 &amp; 3-\lambda \\
+3-\lambda & 1 \\
+0 & 3-\lambda \\
 \end{vmatrix}
 ==(3-\lambda )^2=0 \\
 \lambda _1=\lambda _2=3 \\
@@ -1556,91 +1226,73 @@ x_1=
 \begin{bmatrix}
 1 \\
 0 \\
-\end{bmatrix}
-\]</span></p></li>
+\end{bmatrix}</script></li>
 </ul>
-<h1 id="第二十一讲对角化和a的幂">第二十一讲：对角化和A的幂</h1>
-<h2 id="对角化">对角化</h2>
-<ul>
-<li><p>假设A有n个线性无关特征向量，按列组成矩阵S，即特征向量矩阵</p></li>
-<li><p>以下所有关于矩阵对角化的讨论都在S可逆，即n个特征向量线性无关的前提下</p></li>
-<li><p><span class="math display">\[
+<h1 id="第二十一讲：对角化和A的幂"><a href="#第二十一讲：对角化和A的幂" class="headerlink" title="第二十一讲：对角化和A的幂"></a>第二十一讲：对角化和A的幂</h1><h2 id="对角化"><a href="#对角化" class="headerlink" title="对角化"></a>对角化</h2><ul>
+<li>假设A有n个线性无关特征向量，按列组成矩阵S，即特征向量矩阵</li>
+<li>以下所有关于矩阵对角化的讨论都在S可逆，即n个特征向量线性无关的前提下</li>
+<li><script type="math/tex; mode=display">
 AS=A[x_1,x_2...x_n]=[\lambda _1 x_1,....\lambda _n x_n] \\
 =[x_1,x_2,...x_n]
 \begin{bmatrix}
-\lambda _1 &amp; 0 &amp; ... &amp; 0 \\
-0 &amp; \lambda _2 &amp; ... &amp; 0 \\
-... &amp; ... &amp; ... &amp; ... \\
-0 &amp; 0  &amp; 0 &amp; \lambda _n \\
+\lambda _1 & 0 & ... & 0 \\
+0 & \lambda _2 & ... & 0 \\
+... & ... & ... & ... \\
+0 & 0  & 0 & \lambda _n \\
 \end{bmatrix} \\
-=S \Lambda \\
-\]</span></p></li>
+=S \Lambda \\</script></li>
 <li><p>假设S可逆，即n个特征向量无关，此时可以得到</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 S^{-1}AS=\Lambda \\
-A=S\Lambda S^{-1} \\
-\]</span></p></li>
-<li><p><span
-class="math inline">\(\Lambda\)</span>是对角矩阵，这里我们得到了除了<span
-class="math inline">\(A=LU\)</span>和<span
-class="math inline">\(A=QR\)</span>之外的一种矩阵分解</p></li>
-<li><p><span class="math display">\[
+A=S\Lambda S^{-1} \\</script></li>
+<li>$\Lambda$是对角矩阵，这里我们得到了除了$A=LU$和$A=QR$之外的一种矩阵分解</li>
+<li><script type="math/tex; mode=display">
 if \qquad Ax=\lambda x \\
 A^2 x=\lambda AX=\lambda ^2 x \\
-A^2=S\Lambda S^{-1} S \Lambda S^{-1}=S \Lambda ^2 S^{-1} \\
-\]</span></p></li>
-<li><p>上面关于<span
-class="math inline">\(A^2\)</span>的两式说明平方后特征向量不变，特征值平方，K次方同理</p></li>
-<li><p>特征值和特征向量帮助我们理解矩阵幂，当计算矩阵幂时，我们可以把矩阵分解成特征向量矩阵和对角阵相乘的形式，K个相乘两两可以抵消，如上式</p></li>
+A^2=S\Lambda S^{-1} S \Lambda S^{-1}=S \Lambda ^2 S^{-1} \\</script></li>
+<li>上面关于$A^2$的两式说明平方后特征向量不变，特征值平方，K次方同理</li>
+<li>特征值和特征向量帮助我们理解矩阵幂，当计算矩阵幂时，我们可以把矩阵分解成特征向量矩阵和对角阵相乘的形式，K个相乘两两可以抵消，如上式</li>
 <li><p>什么样的矩阵的幂趋向于0(稳定)</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A^K \rightarrow 0 \quad as \quad K \rightarrow \infty \\
-if \quad all |\lambda _i|&lt;1 \\
-\]</span></p></li>
-<li><p>哪些矩阵可以对角化？ 如果所有特征值不同，则A可以对角化</p></li>
-<li><p>如果矩阵A已经是对角阵，则<span
-class="math inline">\(\Lambda\)</span>与A相同</p></li>
+if \quad all |\lambda _i|<1 \\</script></li>
+<li>哪些矩阵可以对角化？<br>如果所有特征值不同，则A可以对角化</li>
+<li>如果矩阵A已经是对角阵，则$\Lambda$与A相同</li>
 <li><p>特征值重复的次数称为代数重度，对三角阵，如</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=
 \begin{bmatrix}
-2 &amp; 1 \\
-0 &amp; 2 \\
+2 & 1 \\
+0 & 2 \\
 \end{bmatrix} \\
 det(A-\lambda I)=
 \begin{vmatrix}
-2-\lambda &amp; 1 \\
-0 &amp; 2-\lambda \\
+2-\lambda & 1 \\
+0 & 2-\lambda \\
 \end{vmatrix}=0 \\
 \lambda =2 \\
 A-\lambda I=
 \begin{bmatrix}
-0 &amp; 1 \\
-0 &amp; 0 \\
-\end{bmatrix} \\
-\]</span></p></li>
-<li><p>对<span class="math inline">\(A-\lambda
-I\)</span>，几何重数是1，而特征值的代数重度是2</p></li>
-<li><p>特征向量只有(1,0)，因此对于三角阵，它不可以对角化，不存在两个线性无关的特征向量。</p></li>
+0 & 1 \\
+0 & 0 \\
+\end{bmatrix} \\</script></li>
+<li>对$A-\lambda I$，几何重数是1，而特征值的代数重度是2</li>
+<li>特征向量只有(1,0)，因此对于三角阵，它不可以对角化，不存在两个线性无关的特征向量。</li>
 </ul>
-<h2 id="a的幂">A的幂</h2>
-<ul>
-<li><p>多数矩阵拥有互相线性无关的一组特征值，可以对角化。假如可以对角化，我们需要关注如何求解A的幂</p></li>
-<li><p><span class="math display">\[
+<h2 id="A的幂"><a href="#A的幂" class="headerlink" title="A的幂"></a>A的幂</h2><ul>
+<li>多数矩阵拥有互相线性无关的一组特征值，可以对角化。假如可以对角化，我们需要关注如何求解A的幂</li>
+<li><script type="math/tex; mode=display">
 give \quad u_0 \\
 u_{k+1}=Au_k \\
 u_k=A^ku_0 \\
 how \quad to \quad solve \quad u_k \\
 u_0=c_1x_1+c_2x_2+...+c_nx_n=SC \\
 Au_0=c_1 \lambda _1 x_1 + c_2 \lambda _2 x_2 +...+c_n \lambda _n x_n \\
-A^{100}u_0=c_1 \lambda _1^{100} x_1 + c_2 \lambda _2^{100} x_2 +...+c_n
-\lambda _n^{100} x_n \\
+A^{100}u_0=c_1 \lambda _1^{100} x_1 + c_2 \lambda _2^{100} x_2 +...+c_n \lambda _n^{100} x_n \\
 =S\Lambda ^{100} C \\
-=u_{100} \\
-\]</span></p></li>
-<li><p>因为n个特征向量互相不线性相关，因此它们可以作为一组基覆盖整个n维空间，自然<span
-class="math inline">\(u_0\)</span>可以用特征向量的线性组合表示，C是线性系数向量。上式得出了矩阵幂的解法，接下来以斐波那契数列为例</p>
-<p><span class="math display">\[
+=u_{100} \\</script></li>
+<li><p>因为n个特征向量互相不线性相关，因此它们可以作为一组基覆盖整个n维空间，自然$u_0$可以用特征向量的线性组合表示，C是线性系数向量。上式得出了矩阵幂的解法，接下来以斐波那契数列为例</p>
+<script type="math/tex; mode=display">
 F_0=0 \\
 F_1=1 \\
 F_2=1 \\
@@ -1648,47 +1300,38 @@ F_3=2 \\
 F_4=3 \\
 F_5=5 \\
 ..... \\
-F_{100}=? \\
-\]</span></p></li>
+F_{100}=? \\</script></li>
 <li><p>斐波那契数列的增长速度有多快?由特征值决定，我们尝试构造向量，来找到斐波那契数列迭代的矩阵关系</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 F_{k+2}=F_{k+1}+F_k \\
-F_{k+1}=F_{k+1} \\
-\]</span></p></li>
+F_{k+1}=F_{k+1} \\</script></li>
 <li><p>定义向量</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 u_k=
 \begin{bmatrix}
 F_{k+1} \\
 F_k \\
-\end{bmatrix} \\
-\]</span></p></li>
-<li><p>利用这个向量可以将前两个等式写成矩阵形式</p>
-<p><span class="math display">\[
+\end{bmatrix} \\</script></li>
+<li><p>利用这个向量可以将前两个等式写成矩阵形式 </p>
+<script type="math/tex; mode=display">
 u_{k+1}=
 \begin{bmatrix}
-1 &amp; 1 \\
-1 &amp; 0 \\
+1 & 1 \\
+1 & 0 \\
 \end{bmatrix}
 u_k \\
 A=
 \begin{bmatrix}
-1 &amp; 1 \\
-1 &amp; 0 \\
+1 & 1 \\
+1 & 0 \\
 \end{bmatrix} \\
-\lambda =\frac {1 \pm \sqrt 5}2 \\
-\]</span></p></li>
-<li><p>得到两个特征值，我们很容易得到特征向量</p></li>
-<li><p>回到斐波那契数列，斐波那契数列的增长速率由我们构造的"数列更新矩阵"的特征值决定，而且由<span
-class="math inline">\(A^{100}u_0=c_1 \lambda _1^100 x_1 + c_2 \lambda
-_2^100 x_2 +...+c_n \lambda _n^100
-x_n\)</span>可以看出增长率主要由由较大的特征值决定，因此<span
-class="math inline">\(F_{100}\)</span>可以写成如下形式</p>
-<p><span class="math display">\[
-F_{100} \approx c_1 {\frac {1 + \sqrt 5}2}^{100} \\
-\]</span></p></li>
+\lambda =\frac {1 \pm \sqrt 5}2 \\</script></li>
+<li>得到两个特征值，我们很容易得到特征向量</li>
+<li><p>回到斐波那契数列，斐波那契数列的增长速率由我们构造的”数列更新矩阵”的特征值决定，而且由$A^{100}u<em>0=c_1 \lambda _1^100 x_1 + c_2 \lambda _2^100 x_2 +…+c_n \lambda _n^100 x_n$可以看出增长率主要由由较大的特征值决定，因此$F</em>{100}$可以写成如下形式</p>
+<script type="math/tex; mode=display">
+F_{100} \approx c_1 {\frac {1 + \sqrt 5}2}^{100} \\</script></li>
 <li><p>再有初始值有</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 u_0=
 \begin{bmatrix}
 F_1 \\
@@ -1698,54 +1341,38 @@ F_0 \\
 1 \\
 0 \\
 \end{bmatrix}
-=c_1x_1+c_2x_2
-\]</span></p></li>
-<li><p>其中<span
-class="math inline">\(x_1,x_2\)</span>是两个特征向量，线性系数可求，代入公式可求<span
-class="math inline">\(F_{100}\)</span>的近似值</p></li>
+=c_1x_1+c_2x_2</script></li>
+<li>其中$x<em>1,x_2$是两个特征向量，线性系数可求，代入公式可求$F</em>{100}$的近似值</li>
 </ul>
-<h2 id="总结">总结</h2>
-<ul>
-<li>我们发现在A可逆的情况下，A可以分解成<span
-class="math inline">\(S\Lambda S^{-1}\)</span>的形式</li>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>我们发现在A可逆的情况下，A可以分解成$S\Lambda S^{-1}$的形式</li>
 <li>这种形式有一个特点，方便求A的幂，即分解后可以看出A的幂的特征值单位矩阵是A的特征值单位矩阵的幂</li>
 <li>我们在求解斐波那契数列中尝试运用此特点，首先将数列的更新转换为矩阵形式</li>
 <li>求出矩阵的特征值，特征向量</li>
-<li>由A的幂的展开式可以看出A的幂主要由较大的特征值决定，因此<span
-class="math inline">\(F_{100}\)</span>可以写成<span
-class="math inline">\(F_{100} \approx c_1 {(\frac {1 + \sqrt
-5}2)}^{100}\)</span>的形式</li>
-<li>由初始值<span
-class="math inline">\(F_0\)</span>求出线性系数，代入上式，得到<span
-class="math inline">\(F_{100}\)</span>的近似值</li>
+<li>由A的幂的展开式可以看出A的幂主要由较大的特征值决定，因此$F<em>{100}$可以写成$F</em>{100} \approx c_1 {(\frac {1 + \sqrt 5}2)}^{100}$的形式</li>
+<li>由初始值$F<em>0$求出线性系数，代入上式，得到$F</em>{100}$的近似值</li>
 <li>以上是差分方程的一个例子，下一节将讨论微分方程</li>
 </ul>
-<h1 id="第二十二讲微分方程和expat">第二十二讲：微分方程和exp(At)</h1>
-<h2 id="微分方程">微分方程</h2>
-<ul>
-<li><p>常系数线性方程的解是指数形式的，如果微分方程的解是指数形式，只需利用线代求出指数，系数，就可以求出解</p></li>
+<h1 id="第二十二讲：微分方程和exp-At"><a href="#第二十二讲：微分方程和exp-At" class="headerlink" title="第二十二讲：微分方程和exp(At)"></a>第二十二讲：微分方程和exp(At)</h1><h2 id="微分方程"><a href="#微分方程" class="headerlink" title="微分方程"></a>微分方程</h2><ul>
+<li>常系数线性方程的解是指数形式的，如果微分方程的解是指数形式，只需利用线代求出指数，系数，就可以求出解</li>
 <li><p>举个例子</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \frac{du_1}{dt}=-u_1+2u_2 \\
 \frac{du_2}{dt}=u_1-2u_2 \\
 u(0)=
 \begin{bmatrix}
 1 \\
 0 \\
-\end{bmatrix} \\
-\]</span></p></li>
+\end{bmatrix} \\</script></li>
 <li><p>首先我们列出系数矩阵，并找出矩阵的特征值和特征向量</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=
 \begin{bmatrix}
--1 &amp; 2 \\
-1 &amp; -2 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>易得<span
-class="math inline">\(\lambda=0\)</span>是这个奇异矩阵的一个解，由迹可以看出第二个特征值是<span
-class="math inline">\(\lambda=-3\)</span>，并得到两个特征向量</p>
-<p><span class="math display">\[
+-1 & 2 \\
+1 & -2 \\
+\end{bmatrix}</script></li>
+<li><p>易得$\lambda=0$是这个奇异矩阵的一个解，由迹可以看出第二个特征值是$\lambda=-3$，并得到两个特征向量</p>
+<script type="math/tex; mode=display">
 x_1=
 \begin{bmatrix}
 2 \\
@@ -1755,128 +1382,98 @@ x_2=
 \begin{bmatrix}
 1 \\
 -1 \\
-\end{bmatrix}
-\]</span></p></li>
+\end{bmatrix}</script></li>
 <li><p>微分方程解的通解形式将是</p>
-<p><span class="math display">\[
-u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2
-\]</span></p></li>
+<script type="math/tex; mode=display">
+u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2</script></li>
 <li><p>为什么？</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \frac{du}{dt} \\
 =c_1 \lambda _1 e^{\lambda _1 t}x_1 \\
 =A c_1 e^{\lambda _1 t}x_1 \\
-because \quad A x_1=\lambda _1 x_1 \\
-\]</span></p></li>
-<li><p>在差分方程<span
-class="math inline">\(u_{k+1}=Au_k\)</span>当中，解的形式是<span
-class="math inline">\(c_1\lambda _1 ^k x_1+c_2 \lambda _2 ^k
-x_2\)</span></p></li>
-<li><p>在微分方程<span class="math inline">\(\frac
-{du}{dt}=Au\)</span>当中，解的形式是<span
-class="math inline">\(u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2
-t}x_2\)</span></p></li>
-<li><p><span
-class="math inline">\(c_1,c_2\)</span>由初始值解出，即系数矩阵C乘特征向量矩阵S得到初始值</p></li>
-<li><p>可以看出t趋于无穷时，例子方程的解只剩下稳态部分，即<span
-class="math inline">\((\frac 23,\frac 13)\)</span></p></li>
-<li><p>什么时候解趋向于0？存在负数特征值，因为<span
-class="math inline">\(e^{\lambda t}\)</span>需要趋向于0</p></li>
-<li><p>如果特征值是复数呢？虚数部分的模值是1，所以如果复数的实数部分是负数，解依然趋向于0</p></li>
-<li><p>什么时候存在稳态？特征值中只存在0和负数，就如上面的例子</p></li>
-<li><p>什么时候解无法收敛？任何特征值的实数部分大于0</p></li>
-<li><p>改变系数矩阵的符号，特征值也改变符号，稳态的解依然稳态，收敛的解就会变成发散</p></li>
-<li><p>如何从矩阵直接判断解是否收敛？即特征值的实数部分都小于0？</p></li>
+because \quad A x_1=\lambda _1 x_1 \\</script></li>
+<li>在差分方程$u_{k+1}=Au_k$当中，解的形式是$c_1\lambda _1 ^k x_1+c_2 \lambda _2 ^k x_2$</li>
+<li>在微分方程$\frac {du}{dt}=Au$当中，解的形式是$u(t)=c_1e^{\lambda _1 t}x_1+c_1e^{\lambda _2 t}x_2$</li>
+<li>$c_1,c_2$由初始值解出，即系数矩阵C乘特征向量矩阵S得到初始值</li>
+<li>可以看出t趋于无穷时，例子方程的解只剩下稳态部分，即$(\frac 23,\frac 13)$</li>
+<li>什么时候解趋向于0？存在负数特征值，因为$e^{\lambda t}$需要趋向于0</li>
+<li>如果特征值是复数呢？虚数部分的模值是1，所以如果复数的实数部分是负数，解依然趋向于0</li>
+<li>什么时候存在稳态？特征值中只存在0和负数，就如上面的例子</li>
+<li>什么时候解无法收敛？任何特征值的实数部分大于0</li>
+<li>改变系数矩阵的符号，特征值也改变符号，稳态的解依然稳态，收敛的解就会变成发散</li>
+<li>如何从矩阵直接判断解是否收敛？即特征值的实数部分都小于0？</li>
 <li><p>矩阵的迹应该小于0，但对角线之和为0依然不一定收敛，如</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
--2 &amp; 0 \\
-0 &amp; 1 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>因此还需要另一个条件：行列式的值是特征值乘积，因此行列式的值应该大于0</p></li>
+-2 & 0 \\
+0 & 1 \\
+\end{bmatrix}</script></li>
+<li>因此还需要另一个条件：行列式的值是特征值乘积，因此行列式的值应该大于0</li>
 </ul>
-<h2 id="expat">exp(At)</h2>
-<ul>
-<li>是否可以把解表示成<span
-class="math inline">\(S,\Lambda\)</span>的形式</li>
-<li>矩阵A表示<span
-class="math inline">\(u_1,u_2\)</span>耦合，首先我们需要将u对角化，解耦</li>
-<li><span class="math display">\[
+<h2 id="exp-At"><a href="#exp-At" class="headerlink" title="exp(At)"></a>exp(At)</h2><ul>
+<li>是否可以把解表示成$S,\Lambda$的形式</li>
+<li>矩阵A表示$u_1,u_2$耦合，首先我们需要将u对角化，解耦</li>
+<li><script type="math/tex; mode=display">
 \frac{du}{dt} = Au \\
 set \quad u=Sv \\
 S \frac{dv}{dt} = ASv \\
 \frac{dv}{dt}=S^{-1}ASv=\Lambda v \\
 v(t)=e^{\Lambda t}v(0) \\
-u(t)=Se^{\Lambda t}S^{-1}u(0) \\
-\]</span></li>
+u(t)=Se^{\Lambda t}S^{-1}u(0) \\</script></li>
 </ul>
-<h1
-id="第二十一讲马尔科夫矩阵傅立叶级数">第二十一讲：马尔科夫矩阵;傅立叶级数</h1>
-<h2 id="马尔科夫矩阵">马尔科夫矩阵</h2>
-<ul>
+<h1 id="第二十一讲：马尔科夫矩阵-傅立叶级数"><a href="#第二十一讲：马尔科夫矩阵-傅立叶级数" class="headerlink" title="第二十一讲：马尔科夫矩阵;傅立叶级数"></a>第二十一讲：马尔科夫矩阵;傅立叶级数</h1><h2 id="马尔科夫矩阵"><a href="#马尔科夫矩阵" class="headerlink" title="马尔科夫矩阵"></a>马尔科夫矩阵</h2><ul>
 <li><p>一个典型的马尔科夫矩阵</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-0.1 &amp; 0.01 &amp; 0.3 \\
-0.2 &amp; 0.99 &amp; 0.3 \\
-0.7 &amp; 0 &amp; 0.4 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>每一个元素大于等于0，每一列之和为1，马尔科夫矩阵的幂都是马尔科夫矩阵</p></li>
-<li><p><span
-class="math inline">\(\lambda=1\)</span>是一个特征值，其余的特征值的绝对值都小于1</p></li>
+0.1 & 0.01 & 0.3 \\
+0.2 & 0.99 & 0.3 \\
+0.7 & 0 & 0.4 \\
+\end{bmatrix}</script></li>
+<li>每一个元素大于等于0，每一列之和为1，马尔科夫矩阵的幂都是马尔科夫矩阵</li>
+<li><p>$\lambda=1$是一个特征值，其余的特征值的绝对值都小于1</p>
+</li>
 <li><p>在上一讲中我们谈到矩阵的幂可以分解为</p>
-<p><span class="math display">\[
-u_k=A^ku_0=c_1\lambda _1 ^kx_1+c_2\lambda _2 ^kx_2+.....
-\]</span></p></li>
-<li><p>当A是马尔科夫矩阵时，只有一个特征值为1，其余特征值小于1，随着k的变大，小于1的特征值所在项趋向于0，只保留特征值为1的那一项，同时对应的特征向量的元素都大于0</p></li>
-<li><p>当每一列和为1时，必然存在一个特征值<span
-class="math inline">\(\lambda =1\)</span></p></li>
+<script type="math/tex; mode=display">
+u_k=A^ku_0=c_1\lambda _1 ^kx_1+c_2\lambda _2 ^kx_2+.....</script></li>
+<li>当A是马尔科夫矩阵时，只有一个特征值为1，其余特征值小于1，随着k的变大，小于1的特征值所在项趋向于0，只保留特征值为1的那一项，同时对应的特征向量的元素都大于0</li>
+<li>当每一列和为1时，必然存在一个特征值$\lambda =1$</li>
 <li><p>证明：</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A-I=
 \begin{bmatrix}
--0.9 &amp; 0.01 &amp; 0.3 \\
-0.2 &amp; -0.01 &amp; 0.3 \\
-0.7 &amp; 0 &amp; -0.6 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>若1是一个特征值，则<span
-class="math inline">\(A-I\)</span>应该是奇异的，可以看到<span
-class="math inline">\(A-I\)</span>每一列和为0，即说明行向量线性相关，即矩阵奇异,同时全1向量在左零空间。</p></li>
-<li><p>对于马尔科夫矩阵A，我们研究<span
-class="math inline">\(u_{k+1}=Au_k\)</span></p></li>
+-0.9 & 0.01 & 0.3 \\
+0.2 & -0.01 & 0.3 \\
+0.7 & 0 & -0.6 \\
+\end{bmatrix}</script></li>
+<li>若1是一个特征值，则$A-I$应该是奇异的，可以看到$A-I$每一列和为0，即说明行向量线性相关，即矩阵奇异,同时全1向量在左零空间。</li>
+<li>对于马尔科夫矩阵A，我们研究$u_{k+1}=Au_k$</li>
 <li><p>一个例子，u是麻省和加州的人数，A是人口流动矩阵</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
 u_{cal} \\
 u_{mass} \\
 \end{bmatrix}_{t=k+1}
 =
 \begin{bmatrix}
-0.9 &amp; 0.2 \\
-0.1 &amp; 0.8 \\
+0.9 & 0.2 \\
+0.1 & 0.8 \\
 \end{bmatrix}
 \begin{bmatrix}
 u_{cal} \\
 u_{mass} \\
-\end{bmatrix}_{t=k}
-\]</span></p></li>
-<li><p>可以看到每一年(k)80%的人留在麻省，20%的人前往加州，加州那边也有10%移居麻省</p></li>
+\end{bmatrix}_{t=k}</script></li>
+<li>可以看到每一年(k)80%的人留在麻省，20%的人前往加州，加州那边也有10%移居麻省</li>
 <li><p>对马尔科夫矩阵A</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-0.9 &amp; 0.2 \\
-0.1 &amp; 0.8 \\
+0.9 & 0.2 \\
+0.1 & 0.8 \\
 \end{bmatrix} \\
 \lambda _1 =1 \\
-\lambda _2 =0.7 \\
-\]</span></p></li>
-<li><p>对特征值为1的项，容易求出特征向量为<span
-class="math inline">\((2,1)\)</span>，对特征值为0.7的项，特征向量为(-1,1)</p></li>
+\lambda _2 =0.7 \\</script></li>
+<li>对特征值为1的项，容易求出特征向量为$(2,1)$，对特征值为0.7的项，特征向量为(-1,1)</li>
 <li><p>得到我们要研究的公式</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 u_k=c_1*1^k*
 \begin{bmatrix}
 2 \\
@@ -1886,31 +1483,20 @@ u_k=c_1*1^k*
 \begin{bmatrix}
 -1 \\
 1 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>假设一开始加州有0人，麻省有1000人，即<span
-class="math inline">\(u_0\)</span>，代入公式可以得到<span
-class="math inline">\(c_1,c_2\)</span>，可以看到很多年之后，加州和麻省的人数将稳定，各占1000人中的三分之一和三分之二。</p></li>
-<li><p>行向量为和为1是另外一种定义马尔科夫矩阵的方式</p></li>
+\end{bmatrix}</script></li>
+<li>假设一开始加州有0人，麻省有1000人，即$u_0$，代入公式可以得到$c_1,c_2$，可以看到很多年之后，加州和麻省的人数将稳定，各占1000人中的三分之一和三分之二。</li>
+<li>行向量为和为1是另外一种定义马尔科夫矩阵的方式</li>
 </ul>
-<h2 id="傅里叶级数">傅里叶级数</h2>
-<ul>
-<li><p>先讨论带有标准正交基的投影问题</p></li>
-<li><p>假设<span
-class="math inline">\(q_1....q_n\)</span>是一组标准正交基，任何向量<span
-class="math inline">\(v\)</span>都是这组基的线性组合</p></li>
-<li><p>现在我们要求出线性组合系数<span
-class="math inline">\(x_1....x_n\)</span> <span
-class="math inline">\(v=x_1q_1+x_2q_2+...x_nq_n\)</span>
-一种方法是将<span class="math inline">\(v\)</span>与<span
-class="math inline">\(q_i\)</span>做内积，逐一求出系数</p>
-<p><span class="math display">\[
-q_1^Tv=x_1q_1^Tq_1+0+0+0....+0=x_1 \\
-\]</span></p></li>
+<h2 id="傅里叶级数"><a href="#傅里叶级数" class="headerlink" title="傅里叶级数"></a>傅里叶级数</h2><ul>
+<li>先讨论带有标准正交基的投影问题</li>
+<li>假设$q_1….q_n$是一组标准正交基，任何向量$v$都是这组基的线性组合</li>
+<li><p>现在我们要求出线性组合系数$x_1….x_n$<br>$v=x_1q_1+x_2q_2+…x_nq_n$<br>一种方法是将$v$与$q_i$做内积，逐一求出系数</p>
+<script type="math/tex; mode=display">
+q_1^Tv=x_1q_1^Tq_1+0+0+0....+0=x_1 \\</script></li>
 <li><p>写成矩阵形式</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-q_1 &amp; q_2 &amp; ... &amp; q_n \\
+q_1 & q_2 & ... & q_n \\
 \end{bmatrix}
 \begin{bmatrix}
 x_1 \\
@@ -1920,58 +1506,35 @@ x_n \\
 \end{bmatrix}=
 v \\
 Qx=v \\
-x=Q^{-1}v=Q^Tv \\
-\]</span></p></li>
-<li><p>现在讨论傅里叶级数</p></li>
+x=Q^{-1}v=Q^Tv \\</script></li>
+<li>现在讨论傅里叶级数</li>
 <li><p>我们希望将函数分解</p>
-<p><span class="math display">\[
-f(x)=a_0+a_1cosx+b_1sinx+a_2cos2x+b_2cos2x+.......
-\]</span></p></li>
-<li><p>关键是，在这种分解中，<span
-class="math inline">\(coskx,sinkx\)</span>构成一组函数空间的无穷正交基，即这些函数内积为0(向量的内积是离散的值累加，函数的内积是连续的值积分)。</p></li>
-<li><p>如何求出傅里叶系数？</p></li>
-<li><p>利用之前的向量例子来求</p></li>
-<li><p>将<span
-class="math inline">\(f(x)\)</span>逐一与正交基元素内积，得到这个正交基元素对应的系数乘<span
-class="math inline">\(\pi\)</span>，例如</p>
-<p><span class="math display">\[
-\int _0 ^{2\pi} f(x)cosx dx=0+ a_1 \int _0^{2\pi}(cosx)^2dx+0+0...+0=\pi
-a_1 \\
-\]</span></p></li>
+<script type="math/tex; mode=display">
+f(x)=a_0+a_1cosx+b_1sinx+a_2cos2x+b_2cos2x+.......</script></li>
+<li>关键是，在这种分解中，$coskx,sinkx$构成一组函数空间的无穷正交基，即这些函数内积为0(向量的内积是离散的值累加，函数的内积是连续的值积分)。</li>
+<li>如何求出傅里叶系数？</li>
+<li>利用之前的向量例子来求</li>
+<li><p>将$f(x)$逐一与正交基元素内积，得到这个正交基元素对应的系数乘$\pi$，例如</p>
+<script type="math/tex; mode=display">
+\int _0 ^{2\pi} f(x)cosx dx=0+ a_1 \int _0^{2\pi}(cosx)^2dx+0+0...+0=\pi a_1 \\</script></li>
 </ul>
-<h1
-id="第二十二讲对称矩阵及其正定性">第二十二讲：对称矩阵及其正定性</h1>
-<h2 id="对称矩阵">对称矩阵</h2>
-<ul>
-<li><p>对称矩阵的特征值是实数，不重复的特征值对应的特征向量互相正交</p></li>
-<li><p>对一般矩阵<span class="math inline">\(A=S\Lambda
-S^{-1}\)</span>，S为特征向量矩阵</p></li>
-<li><p>对对称矩阵<span class="math inline">\(A=Q\Lambda Q^{-1}=Q\Lambda
-Q^T\)</span>，Q为标准正交的特征向量矩阵</p></li>
-<li><p>为什么特征值都是实数？</p></li>
-<li><p><span class="math inline">\(Ax=\lambda
-x\)</span>对左右同时取共轭，因为我们现在只考虑实数矩阵A，<span
-class="math inline">\(Ax^{*}=\lambda ^{*} x^{*}\)</span></p></li>
-<li><p>即<span
-class="math inline">\(\lambda\)</span>和它的共轭都是特征值，现在再对等式两边取转置，$x<sup>{*
-T}A</sup>T=x^{* T} ^{* T} $</p></li>
-<li><p>上式中<span
-class="math inline">\(A=A^T\)</span>，且两边同乘以<span
-class="math inline">\(x\)</span>，与<span class="math inline">\(x^{*
-T}A\lambda x^{* T}x\)</span>对比可得<span class="math inline">\(\lambda
-^{*}=\lambda\)</span>，即特征值是实数</p></li>
-<li><p>可见，对于复数矩阵，需要<span class="math inline">\(A=A^{*
-T}\)</span>才满足对称</p></li>
+<h1 id="第二十二讲：对称矩阵及其正定性"><a href="#第二十二讲：对称矩阵及其正定性" class="headerlink" title="第二十二讲：对称矩阵及其正定性"></a>第二十二讲：对称矩阵及其正定性</h1><h2 id="对称矩阵"><a href="#对称矩阵" class="headerlink" title="对称矩阵"></a>对称矩阵</h2><ul>
+<li>对称矩阵的特征值是实数，不重复的特征值对应的特征向量互相正交</li>
+<li>对一般矩阵$A=S\Lambda S^{-1}$，S为特征向量矩阵</li>
+<li>对对称矩阵$A=Q\Lambda Q^{-1}=Q\Lambda Q^T$，Q为标准正交的特征向量矩阵</li>
+<li>为什么特征值都是实数？</li>
+<li>$Ax=\lambda x$对左右同时取共轭，因为我们现在只考虑实数矩阵A，$Ax^{<em>}=\lambda ^{</em>} x^{*}$</li>
+<li>即$\lambda$和它的共轭都是特征值，现在再对等式两边取转置，$x^{<em> T}A^T=x^{</em> T} \lambda ^{* T} $</li>
+<li>上式中$A=A^T$，且两边同乘以$x$，与$x^{<em> T}A\lambda x^{</em> T}x$对比可得$\lambda ^{*}=\lambda$，即特征值是实数</li>
+<li>可见，对于复数矩阵，需要$A=A^{* T}$才满足对称</li>
 <li><p>对于对称矩阵</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=Q\Lambda Q^{-1}=Q\Lambda Q^T \\
-=\lambda _1 q_1 q_1^T+\lambda _2 q_2 q_2^T+.... \\
-\]</span></p></li>
-<li><p>所以每一个对称矩阵都是一些互相垂直的投影矩阵的组合</p></li>
-<li><p>对于对称矩阵，正主元的个数等于正特征值的个数，且主元的乘积等于特征值的乘积等于矩阵的行列式</p></li>
+=\lambda _1 q_1 q_1^T+\lambda _2 q_2 q_2^T+.... \\</script></li>
+<li>所以每一个对称矩阵都是一些互相垂直的投影矩阵的组合</li>
+<li>对于对称矩阵，正主元的个数等于正特征值的个数，且主元的乘积等于特征值的乘积等于矩阵的行列式</li>
 </ul>
-<h2 id="正定性">正定性</h2>
-<ul>
+<h2 id="正定性"><a href="#正定性" class="headerlink" title="正定性"></a>正定性</h2><ul>
 <li>正定矩阵都是对称矩阵，是对称矩阵的一个子类，其所有特征值为正数，所有主元为正数，所有的子行列式都是正数</li>
 <li>特征值的符号与稳定性有关</li>
 <li>主元、行列式、特征值三位一体，线性代数将其统一</li>
@@ -1993,7 +1556,6 @@ A=Q\Lambda Q^{-1}=Q\Lambda Q^T \\
         crossorigin="anonymous"
         async>
 </script>
-
     </div>
 
     
@@ -2056,13 +1618,13 @@ A=Q\Lambda Q^{-1}=Q\Lambda Q^T \\
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">1.1m</span>
+    <span title="Word count total">1m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">16:35</span>
+    <span title="Reading time total">15:37</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
