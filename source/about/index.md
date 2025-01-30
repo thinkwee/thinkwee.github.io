@@ -80,22 +80,21 @@ html: true
     }
 
     .pv-counter {
-        display: inline-block;
-        padding: 2px 8px;
-        font-size: 14px;
-        color: #666;
-        background-color: #f5f5f5;
-        border-radius: 4px;
-        margin: 10px 0;
+        display: inline;
+        padding: 0;
+        font-size: inherit;
+        color: inherit;
+        background: none;
+        border: none;
+        transition: color 0.3s ease;
+    }
+
+    .pv-counter:hover {
+        color: #6699FF;
+        background: none;
+        border: none;
     }
 </style>
-
-<!-- PV counter display -->
-<div style="text-align: center;">
-    <span class="pv-counter">
-        Page Views: <span id="page-views">0</span>
-    </span>
-</div>
 
 <p align="center">
   <img src="/img/avatar.jpg" alt="Your Image Description" width="200" height="200">
@@ -103,7 +102,7 @@ html: true
 <center>2023.5 at XiaMen</center>
 
 # About Me
-- Hello, I'm Wei Liu (刘维). Here are my 
+- Hello, I'm Wei Liu (刘维). Welcome to my blog (<span class="pv-counter"><span id="page-views">0</span> views</span>). Here are my 
   <a href="mailto:thinkwee2767@gmail.com" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Email</a>, <a href="https://github.com/thinkwee" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Github</a>, and <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Google Scholar</a>.
     -   2014-2018: Bachelor of Communication Engineering in BUPT
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
