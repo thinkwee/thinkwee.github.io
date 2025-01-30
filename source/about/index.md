@@ -2,7 +2,40 @@
 comments: false
 html: true
 ---
-***
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
+<!-- Initialize Firebase and PV counter -->
+<script>
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    databaseURL: "FIREBASE_DATABASE_URL",
+    projectId: "FIREBASE_PROJECT_ID",
+    apiKey: "FIREBASE_API_KEY",
+    authDomain: "FIREBASE_AUTH_DOMAIN",
+    storageBucket: "FIREBASE_STORAGE_BUCKET",
+    messagingSenderId: "FIREBASE_MESSAGING_SENDER_ID",
+    appId: "FIREBASE_APP_ID"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Get a reference to the page views - update to match your database structure
+  const pvRef = firebase.database().ref('pageViews');
+
+  // Update page views
+  pvRef.transaction(currentViews => {
+    return (currentViews || 10000) + 1;  // Set default to 10000 to match your initial value
+  });
+
+  // Display page views
+  pvRef.on('value', (snapshot) => {
+    document.getElementById('page-views').textContent = snapshot.val() || 0;
+  });
+</script>
 
 <style>
     .bc {
@@ -45,9 +78,24 @@ html: true
         color: white;
         border: 1px solid transparent; /* 将边框颜色设置为透明 */
     }
+
+    .pv-counter {
+        display: inline-block;
+        padding: 2px 8px;
+        font-size: 14px;
+        color: #666;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        margin: 10px 0;
+    }
 </style>
 
-
+<!-- PV counter display -->
+<div style="text-align: center;">
+    <span class="pv-counter">
+        Page Views: <span id="page-views">0</span>
+    </span>
+</div>
 
 <p align="center">
   <img src="/img/avatar.jpg" alt="Your Image Description" width="200" height="200">
