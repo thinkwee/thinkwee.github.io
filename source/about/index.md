@@ -127,7 +127,7 @@ html: true
 -   Natural Language Generation, especially on **Compressing and Summarizing Languages**.
 -   Memorization and reasoning in LLMs.
 -   Develop robust, safe, efficient, and human-centric **LLM Multi-Agent System**.
--   Served as reviewer for ACL(2021,2022,2024)/EMNLP(2020,2023,2024)/NeurIPS(2024)/ICLR(2024).
+-   Served as reviewer for ACL(2021,2022,2024)/EMNLP(2020,2023,2024)/NeurIPS(2024)/ICLR(2024)/CVPR(2025).
 
 # Industrial Experience
 -   At Tencent, I aim to improve the performance of News Feed Recommendations and Advertising.
