@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Record some recent processing of heterogeneous information networks  PathSim HGNN HGAN HGAN for text classification Attribute, Attributed Multiplex Heterogeneous Network Meta-graph Guided Random Walks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Note for Heterogeneous Information Network">
+<meta property="og:url" content="https://thinkwee.top/2019/10/30/heterogeneous/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="Record some recent processing of heterogeneous information networks  PathSim HGNN HGAN HGAN for text classification Attribute, Attributed Multiplex Heterogeneous Network Meta-graph Guided Random Walks">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-30T10:42:00.000Z">
+<meta property="article:modified_time" content="2025-01-30T02:10:45.360Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="graph neural network">
+<meta property="article:tag" content="deep learning">
+<meta property="article:tag" content="natural language processing">
+<meta property="article:tag" content="heterogeneous information network">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://thinkwee.top/2019/10/30/heterogeneous/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2019/10/30/heterogeneous/","path":"2019/10/30/heterogeneous/","title":"Note for Heterogeneous Information Network"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Note for Heterogeneous Information Network | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pathsim-meta-path-based-top-k-similarity-search-in-heterogeneous-information-networks"><span class="nav-number">1.</span> <span class="nav-text">PathSim:
+Meta Path-Based Top-K Similarity Search in Heterogeneous Information
+Networks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#heterogeneous-graph-neural-network"><span class="nav-number">2.</span> <span class="nav-text">Heterogeneous Graph Neural
+Network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#heterogeneous-graph-attention-network"><span class="nav-number">3.</span> <span class="nav-text">Heterogeneous Graph
+Attention Network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#heterogeneous-graph-attention-networks-for-semi-supervised-short-text-classification"><span class="nav-number">4.</span> <span class="nav-text">Heterogeneous
+Graph Attention Networks for Semi-supervised Short Text
+Classification</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#representation-learning-for-attributed-multiplex-heterogeneous-network"><span class="nav-number">5.</span> <span class="nav-text">Representation
+Learning for Attributed Multiplex Heterogeneous Network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#semi-supervised-learning-over-heterogeneous-information-networks-by-ensemble-of-meta-graph-guided-random-walks"><span class="nav-number">6.</span> <span class="nav-text">Semi-supervised
+Learning over Heterogeneous Information Networks by Ensemble of
+Meta-graph Guided Random Walks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pathsim-meta-path-based-top-k-similarity-search-in-heterogeneous-information-networks"><span class="nav-number">7.</span> <span class="nav-text">PathSim:
+Meta Path-Based Top-K Similarity Search in Heterogeneous Information
+Networks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#heterogeneous-graph-neural-network"><span class="nav-number">8.</span> <span class="nav-text">Heterogeneous Graph Neural
+Network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#heterogeneous-graph-attention-network"><span class="nav-number">9.</span> <span class="nav-text">Heterogeneous Graph
+Attention Network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#heterogeneous-graph-attention-networks-for-semi-supervised-short-text-classification"><span class="nav-number">10.</span> <span class="nav-text">Heterogeneous
+Graph Attention Networks for Semi-supervised Short Text
+Classification</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#representation-learning-for-attributed-multiplex-heterogeneous-network"><span class="nav-number">11.</span> <span class="nav-text">Representation
+Learning for Attributed Multiplex Heterogeneous Network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#semi-supervised-learning-over-heterogeneous-information-networks-by-ensemble-of-meta-graph-guided-random-walks"><span class="nav-number">12.</span> <span class="nav-text">Semi-supervised
+Learning over Heterogeneous Information Networks by Ensemble of
+Meta-graph Guided Random Walks</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/02/28/structured-summarization/" rel="bookmark">
+        <time class="popular-posts-time">2020-02-28</time>
+        <br>
+      Structured Neural Summarization, Paper Reading
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2019/11/13/kg/" rel="bookmark">
+        <time class="popular-posts-time">2019-11-13</time>
+        <br>
+      Paper reading on Knowledge Graphs
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/02/13/svm/" rel="bookmark">
+        <time class="popular-posts-time">2020-02-13</time>
+        <br>
+      SVM
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2019/10/30/heterogeneous/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Note for Heterogeneous Information Network | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Note for Heterogeneous Information Network
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-10-30 18:42:00" itemprop="dateCreated datePublished" datetime="2019-10-30T18:42:00+08:00">2019-10-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-30 10:10:45" itemprop="dateModified" datetime="2025-01-30T10:10:45+08:00">2025-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2019/10/30/heterogeneous/" class="post-meta-item leancloud_visitors" data-flag-title="Note for Heterogeneous Information Network" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>14k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>12 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Record some recent processing of heterogeneous information
+networks</p>
+<ul>
+<li>PathSim</li>
+<li>HGNN</li>
+<li>HGAN</li>
+<li>HGAN for text classification</li>
+<li>Attribute, Attributed Multiplex Heterogeneous Network</li>
+<li>Meta-graph Guided Random Walks</li>
+</ul>
+<span id="more"></span>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1
+id="pathsim-meta-path-based-top-k-similarity-search-in-heterogeneous-information-networks">PathSim:
+Meta Path-Based Top-K Similarity Search in Heterogeneous Information
+Networks</h1>
+<ul>
+<li><p>An early paper (with authors all being big shots) clearly defined
+many concepts in meta paths and proposed a method for measuring node
+similarity in heterogeneous information networks.</p></li>
+<li><p>Traditional similarity measurement methods have biases, methods
+based on path count statistics and random walk have biases, favoring
+nodes with higher degree; pairwise random walk is biased towards nodes
+with more outlier neighbors</p></li>
+<li><p>The idea behind PathSim is that two similar nodes should not only
+be strongly linked to each other but also share comparable
+visibility</p></li>
+<li><p>Under the given symmetric meta path <span
+class="math inline">\(P\)</span> , the PathSim of two nodes of the same
+type <span class="math inline">\(x,y\)</span> is defined as:</p>
+<p><span class="math display">\[
+s(x, y)=\frac{2 \times\left|\left\{p_{x \leadsto y}: p_{x \sim y} \in
+\mathcal{P}\right\}\right|}{\left|\left\{p_{x \leadsto x}: p_{x
+\hookrightarrow x} \in \mathcal{P}\right\}\right|+\left|\left\{p_{y
+\leadsto y}: p_{y \leadsto y} \in \mathcal{P}\right\}\right|}
+\]</span></p></li>
+<li><p>The actual node regression probability of the denominator is
+visibility, and the author divides the traditional pathcount by
+visibility, with all paths obtained by multiplying the edge
+weights.</p></li>
+<li><p>Similar to the symmetric normalization of the degree of
+nodes.</p></li>
+</ul>
+<h1 id="heterogeneous-graph-neural-network">Heterogeneous Graph Neural
+Network</h1>
+<ul>
+<li>Task: Graph Representation Learning</li>
+<li>Heterogeneous Types: Node Heterogeneity, Edge Heterogeneity, Node
+Multi-Attribute</li>
+<li>Solution:
+<ul>
+<li>Four-step approach: Heterogeneous neighbor sampling, multi-attribute
+encoding, same-type neighbor aggregation, different-type
+aggregation</li>
+<li>Heterogeneous neighborhood sampling: Based on restart random walk,
+first perform a random walk, and with a certain probability p return to
+the initial node (restart), until a certain number of neighborhood nodes
+have been sampled. There is an upper limit for each type of neighborhood
+node to ensure that all types of neighbors can be sampled. Then, scale
+down proportionally, for each type of neighborhood node <span
+class="math inline">\(t\)</span> , only take <span
+class="math inline">\(K_t\)</span> neighborhood nodes, and group them
+accordingly.</li>
+<li>Multi-attribute coding: Pre-encoded based on multimodal content,
+such as text using paragraph2vec, images using CNN, and different
+attribute information of the same neighboring nodes using BiLSTM
+encoding</li>
+<li>Aggregation of similar neighbors: Using BiLSTM to aggregate features
+of multiple neighborhood nodes under the same type</li>
+<li>Different types of aggregation: Use an attention mechanism to
+aggregate different types of features</li>
+</ul></li>
+</ul>
+<h1 id="heterogeneous-graph-attention-network">Heterogeneous Graph
+Attention Network</h1>
+<ul>
+<li>Task: Graph Representation Learning</li>
+<li>Heterogeneous Types: Node Heterogeneity</li>
+<li>Solution:
+<ul>
+<li><p>Implementing double attention at the node level and metapath
+level.</p></li>
+<li><p>Need to add itself to all metapath neighbors, similar to the
+inner loop in GCN.</p></li>
+<li><p>node-level attention, applying attention weighting to different
+nodes along a metapath. Since nodes of different types have feature
+representations in different spaces, a feature transformation matrix is
+assigned to each type, mapping different types of nodes to the same
+space, and then attention calculation and weighting are performed on the
+nodes through the self-attention mechanism (where <span
+class="math inline">\(\phi\)</span> represents the metapath):</p>
+<p><span class="math display">\[
+h_i^{\prime} = M_{\phi _i} \cdot h_i \\
+e^{\phi}_{ij} = attn_{node}(h^{\prime}_i,h^{\prime}_j;\phi) \\
+\]</span></p>
+<p>In calculating attention, a mask needs to be applied, only
+calculating attention for neighboring nodes and performing softmax. It
+is noteworthy that the asymmetry of self-attention is important for
+heterogeneous graphs, as in a node pair, the neighborhoods of the two
+nodes are different, and their mutual influence is not equal. Simply
+put, for a certain node, calculate the attention weights of all
+neighboring nodes under a certain type of metapath, with input being the
+h of the two nodes and a parameter vector specific to the metapath,
+outputting the attention weights, and then for a certain node,
+weightedly sum the h of all neighboring nodes under a certain type of
+metapath to obtain the representation of the node under a certain
+metapath.</p>
+<p><span class="math display">\[
+\alpha_{i j}^{\Phi}=\operatorname{softmax}_{j}\left(e_{i
+j}^{\Phi}\right)=\frac{\exp
+\left(\sigma\left(\mathbf{a}_{\Phi}^{\mathrm{T}}
+\cdot\left[\mathbf{h}_{i}^{\prime} \|
+\mathbf{h}_{j}^{\prime}\right]\right)\right)}{\sum_{k \in
+\mathcal{N}_{i}^{\mathrm{\Phi}}} \exp
+\left(\sigma\left(\mathbf{a}_{\Phi}^{\mathrm{T}}
+\cdot\left[\mathbf{h}_{i}^{\prime} \|
+\mathbf{h}_{k}^{\prime}\right]\right)\right)} \\
+\]</span></p>
+<p>Calculate the attention after transforming the metapath neighborhood
+node features:</p>
+<p><span class="math display">\[
+\mathbf{z}_{i}^{\Phi}=\sigma\left(\sum_{j \in \mathcal{N}_{i}^{\Phi}}
+\alpha_{i j}^{\Phi} \cdot \mathbf{h}_{j}^{\prime}\right)
+\]</span></p></li>
+<li><p>The author referred to the multi-head approach during actual
+weighted calculation, computed k attention-weighted features and
+concatenated them together</p></li>
+<li><p>The attention at the metapath level refers to the weighted sum of
+all different class metapath embeddings for a certain node. First,
+transform the embeddings of each metapath to the same latent space, then
+parameterize to calculate the attention weights and apply softmax. It
+should be noted that the attention logits before softmax are the average
+of a certain type of metapath calculated over all nodes, with the
+denominator being the number of nodes and the numerator being the sum of
+the metapath embeddings of the nodes containing that type of metapath.
+The node-level before this is for the average of all neighboring nodes
+under a certain node and metapath:</p>
+<p><span class="math display">\[
+w_{\Phi_{i}}=\frac{1}{|\mathcal{V}|} \sum_{i \in \mathcal{V}}
+\mathbf{q}^{\mathrm{T}} \cdot \tanh \left(\mathbf{W} \cdot
+\mathbf{z}_{i}^{\Phi}+\mathbf{b}\right)
+\]</span></p></li>
+<li><p>Afterward, perform softmax on all metapath types to obtain
+weights, and weight each node's different metapath embedding to get the
+final embedding</p></li>
+<li><p>The entire range of the logit and softmax in the double-layer
+attention is a bit confusing, sometimes local and sometimes global,
+requiring careful consideration.</p></li>
+</ul></li>
+<li>The entire process can be parallelized at the node level</li>
+<li>The results show that the effectiveness has reached the SOTA, and
+the visualization results show that the clustering effect of node
+embeddings is better, and attention also brings a certain degree of
+interpretability.</li>
+</ul>
+<h1
+id="heterogeneous-graph-attention-networks-for-semi-supervised-short-text-classification">Heterogeneous
+Graph Attention Networks for Semi-supervised Short Text
+Classification</h1>
+<ul>
+<li>Task: Node Classification</li>
+<li>Heterogeneous types: Node heterogeneity, including three types of
+nodes, text, entity, and topic</li>
+<li>Solution:
+<ul>
+<li><p>The simplest: Expand the feature space of the expansion nodes,
+concatenate the feature vectors of the three types of nodes, and set the
+positions of all feature vectors not included in a specific node to
+0</p></li>
+<li><p>Heterogeneous Graph Convolution: Separates subgraphs of the same
+node type, performs convolution on each subgraph individually, projects
+different subgraphs through a parameter transformation matrix to the
+same latent space and sums the activations as the next layer.
+Specifically, the original GCN is:</p>
+<p><span class="math display">\[
+H^{(l+1)}=\sigma\left(\tilde{A} \cdot H^{(l)} \cdot W^{(l)}\right)
+\]</span></p>
+<p>And the Heterogeneous GCN is:</p>
+<p><span class="math display">\[
+H^{(l+1)}=\sigma\left(\sum_{\tau \in \mathcal{T}} \tilde{A}_{\tau} \cdot
+H_{\tau}^{(l)} \cdot W_{\tau}^{(l)}\right)
+\]</span></p>
+<p>The line <span class="math inline">\(\tilde{A}_{\tau}\)</span>
+represents all nodes, and the columns represent all nodes of a certain
+type, thus isolating isomorphic subgraphs. For each node, we separately
+consider the nodes of type a in its neighborhood, aggregate information
+to obtain encoding a, and then consider the nodes of type b in the
+neighborhood, aggregate information to obtain encoding b. Encodings a
+and b are transformed to the same latent space by their respective
+transformation matrices and then summed. This design is logically
+sound.</p></li>
+<li><p>The author also considered the following situations: the
+contributions of different types of neighboring nodes to a certain node
+are not the same, and the contributions of different neighboring nodes
+within the same type are also not the same. It is obvious that attention
+is needed here. The author proposed dual attention (i.e., two-layer
+attention), one at the type level and one at the node level. First, the
+mean of the embedding of a certain type of neighboring node is used as
+the type embedding, and then the type attention weight is calculated
+based on the current node embedding and the type embedding. Similarly,
+the node attention is obtained by using the specific neighboring node
+embedding and the current node embedding, plus the type attention, and
+the calculated node attention is used to replace the symmetric
+normalized adjacency matrix in GCN.</p></li>
+</ul></li>
+</ul>
+<h1
+id="representation-learning-for-attributed-multiplex-heterogeneous-network">Representation
+Learning for Attributed Multiplex Heterogeneous Network</h1>
+<ul>
+<li>Task: Graph Representation Learning</li>
+<li>Heterogeneous Types: Node Heterogeneity, Edge Heterogeneity, Node
+Multi-Attribute</li>
+<li>Solution:
+<ul>
+<li>Consider that a node has different embeddings under different types
+of edges, and decompose the node's total overall embedding into a base
+embedding unrelated to the edges and an edge embedding related to the
+edges</li>
+<li>edge embedding is related to edge type, and the neighboring nodes
+connected by edges of the same type are aggregated to form it. Here, the
+aggreagator function can adopt the approach from GraphSage.</li>
+<li>After k-level aggregation, each node obtains k types of edge
+embedding, which are weighted and summed through self-attention,
+multiplied by the ratio, and then added to the base embedding to obtain
+the final overall embedding</li>
+<li>This is a transductive model. For unobserved data, an inductive
+method is required. The specific approach is quite simple: parameterize
+the base embedding and edge embedding as functions of the node
+attributes, rather than randomly initializing and then completely
+learning from the existing graph. This way, even if there are nodes not
+seen in the graph, as long as the nodes have attributes, overall
+embedding extraction can still be performed.</li>
+<li>The final step is to perform a random walk based on meta-path to
+obtain training pairs, using skip-gram training and incorporating
+negative sampling.</li>
+</ul></li>
+</ul>
+<h1
+id="semi-supervised-learning-over-heterogeneous-information-networks-by-ensemble-of-meta-graph-guided-random-walks">Semi-supervised
+Learning over Heterogeneous Information Networks by Ensemble of
+Meta-graph Guided Random Walks</h1>
+<ul>
+<li>Task: Node Classification</li>
+<li>Heterogeneous types: Node heterogeneity, including three types of
+nodes, text, entity, and topic</li>
+<li>Solution: meta-path guided random walk</li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1
+id="pathsim-meta-path-based-top-k-similarity-search-in-heterogeneous-information-networks">PathSim:
+Meta Path-Based Top-K Similarity Search in Heterogeneous Information
+Networks</h1>
+<ul>
+<li><p>较早的一篇论文（作者都是大神），定义清楚了meta
+path中的很多概念，提出了衡量异构信息网络中节点相似度的一种方法。</p></li>
+<li><p>传统的相似度衡量方法存在偏差，基于路径数统计和随机游走的方法存在偏差，偏向度数较多的节点；pair-wise的随机游走偏向具有较多离群点邻居的节点</p></li>
+<li><p>PathSim的想法是，两个相似的节点不仅仅应该相互强链接，还需要share
+comparable visibility</p></li>
+<li><p>在给定对称的meta path <span
+class="math inline">\(P\)</span>下，两个同类型节点<span
+class="math inline">\(x,y\)</span>的PathSim定义为：</p>
+<p><span class="math display">\[
+s(x, y)=\frac{2 \times\left|\left\{p_{x \leadsto y}: p_{x \sim y} \in
+\mathcal{P}\right\}\right|}{\left|\left\{p_{x \leadsto x}: p_{x
+\hookrightarrow x} \in \mathcal{P}\right\}\right|+\left|\left\{p_{y
+\leadsto y}: p_{y \leadsto y} \in \mathcal{P}\right\}\right|}
+\]</span></p></li>
+<li><p>实际分母的节点回归概率就是visibility，作者在传统的pathcount上除以visibility，所有的路径都由edge
+weight累乘得到。</p></li>
+<li><p>类似于对节点的度做了对称归一化。</p></li>
+</ul>
+<h1 id="heterogeneous-graph-neural-network">Heterogeneous Graph Neural
+Network</h1>
+<ul>
+<li>任务：图表示学习</li>
+<li>异构类型：节点异构、边异构、节点多属性</li>
+<li>解决办法：
+<ul>
+<li>四步走：异构邻居采样、多属性编码、同类型邻居聚合、不同类型聚合</li>
+<li>异构邻居采样：基于重启的随机游走，先随机游走，且有一定概率p返回初始节点（重启），直到采样了一定数量的邻域节点。每种类型的邻域节点有上限值以确保所有类型的邻居都能采样到。再等比例缩小，对每个邻域节点类型<span
+class="math inline">\(t\)</span>，只取<span
+class="math inline">\(K_t\)</span>个邻域节点，分好组。</li>
+<li>多属性编码：根据多模态内容，预先编好码，例如文本用paragraph2vec，图像用CNN，同一邻域节点的不同属性信息用BiLSTM编码</li>
+<li>同类型邻居聚合：用BiLSTM聚合同类型下多个邻域节点的特征</li>
+<li>不同类型聚合：再用一个注意力机制聚合不同类型的特征</li>
+</ul></li>
+</ul>
+<h1 id="heterogeneous-graph-attention-network">Heterogeneous Graph
+Attention Network</h1>
+<ul>
+<li>任务：图表示学习</li>
+<li>异构类型：节点异构</li>
+<li>解决办法：
+<ul>
+<li><p>实现node-level和metapath-level的双层注意力。</p></li>
+<li><p>需要在所有的metapath
+neighbour里加上自身，类似于GCN里的内环。</p></li>
+<li><p>node-level注意力，对一条metapath上的不同节点进行注意力加权。因为不同类型的节点特征表示空间不同，因此针对每一种类型对应一个特征转换矩阵，将不同类型节点映射到同一空间，之后通过自注意力机制对节点进行注意力的计算和加权(其中<span
+class="math inline">\(\phi\)</span>代表metapath)：</p>
+<p><span class="math display">\[
+h_i^{\prime} = M_{\phi _i} \cdot h_i \\
+e^{\phi}_{ij} = attn_{node}(h^{\prime}_i,h^{\prime}_j;\phi) \\
+\]</span></p>
+<p>在计算attention需要做mask，只对邻域节点计算attention并做softmax。值得注意的是这里的自注意力的非对称性对异构图来说很重要，因为在一个节点对里，两个节点的邻域不同，相互的影响不是等量的。简单来说，对某一个节点，计算其在某一类metapath下所有邻域节点的注意力权重,输入是两个节点的h以及metapath
+specific的一个参数向量，输出注意力权重，然后对某一节点，加权求和其某一类metapath下所有邻域节点的h，得到该节点的某一metapath的表示。</p>
+<p><span class="math display">\[
+\alpha_{i j}^{\Phi}=\operatorname{softmax}_{j}\left(e_{i
+j}^{\Phi}\right)=\frac{\exp
+\left(\sigma\left(\mathbf{a}_{\Phi}^{\mathrm{T}}
+\cdot\left[\mathbf{h}_{i}^{\prime} \|
+\mathbf{h}_{j}^{\prime}\right]\right)\right)}{\sum_{k \in
+\mathcal{N}_{i}^{\mathrm{\Phi}}} \exp
+\left(\sigma\left(\mathbf{a}_{\Phi}^{\mathrm{T}}
+\cdot\left[\mathbf{h}_{i}^{\prime} \|
+\mathbf{h}_{k}^{\prime}\right]\right)\right)} \\
+\]</span></p>
+<p>计算出注意力之后对变换后的metapath邻域节点特征加权：</p>
+<p><span class="math display">\[
+\mathbf{z}_{i}^{\Phi}=\sigma\left(\sum_{j \in \mathcal{N}_{i}^{\Phi}}
+\alpha_{i j}^{\Phi} \cdot \mathbf{h}_{j}^{\prime}\right)
+\]</span></p></li>
+<li><p>在实际加权的时候作者参考了multi-head的做法，计算了k个attention加权特征并拼接起来</p></li>
+<li><p>metapath-level的attention即对某一节点所有不同类的metapath
+embedding进行加权。先将每一条metapath的embedding变换到同一隐空间，然后参数化计算出注意力权重并softmax。需要注意的是softmax之前的attention
+logit是在所有节点上计算某一类型metapath的平均，分母是节点数，分子是包含该类型metapath的节点的metapath
+embedding累加，而之前的node-level是针对某一节点某一metapath下所有的邻域节点平均：</p>
+<p><span class="math display">\[
+w_{\Phi_{i}}=\frac{1}{|\mathcal{V}|} \sum_{i \in \mathcal{V}}
+\mathbf{q}^{\mathrm{T}} \cdot \tanh \left(\mathbf{W} \cdot
+\mathbf{z}_{i}^{\Phi}+\mathbf{b}\right)
+\]</span></p></li>
+<li><p>之后再在所有metapath类型上做softmax，得到权重，加权每个节点不同metapath
+embedding得到最终embedding</p></li>
+<li><p>整个双层attention的logit以及softmax的范围有点绕，时而局部时而全局，需要仔细考虑清楚。</p></li>
+</ul></li>
+<li>可以看到整个过程是可以在节点层次并行化计算的</li>
+<li>从结果来看效果达到了SOTA，而且可视化的结果可以看到节点embedding的聚类效果更好，attention也带来了一定可解释性。</li>
+</ul>
+<h1
+id="heterogeneous-graph-attention-networks-for-semi-supervised-short-text-classification">Heterogeneous
+Graph Attention Networks for Semi-supervised Short Text
+Classification</h1>
+<ul>
+<li>任务：节点分类</li>
+<li>异构类型：节点异构，包含三类节点，文本、实体、主题</li>
+<li>解决办法：
+<ul>
+<li><p>最朴素：扩充节点的特征空间，将三类节点的特征向量拼接起来，对于具体的某一节点，其不包含的特征向量位置全设为0</p></li>
+<li><p>异构图卷积：将相同节点类型的子图分离，每个子图单独做卷积，不同的子图通过参数变换矩阵投影到相同隐空间并相加激活作为下一层，具体而言，原始GCN为：</p>
+<p><span class="math display">\[
+H^{(l+1)}=\sigma\left(\tilde{A} \cdot H^{(l)} \cdot W^{(l)}\right)
+\]</span></p>
+<p>而异构GCN为：</p>
+<p><span class="math display">\[
+H^{(l+1)}=\sigma\left(\sum_{\tau \in \mathcal{T}} \tilde{A}_{\tau} \cdot
+H_{\tau}^{(l)} \cdot W_{\tau}^{(l)}\right)
+\]</span></p>
+<p>其中<span
+class="math inline">\(\tilde{A}_{\tau}\)</span>的行是所有节点，列是某一类型的所有节点，这样就抽离出了同构的连接子图，即对于每个节点，我们分别考虑他的邻域里类型a的节点，做信息聚合得到编码a，再考虑邻域里类型b的节点，做信息聚合得到编码b，编码a和b通过各自的变换矩阵变换到同一隐空间再相加。这样的设计是符合逻辑的。</p></li>
+<li><p>作者还考虑了以下情况：对于某一节点，不同类型的邻域节点的贡献不一样，同一类型下不同的邻域节点贡献也不一样。显然这里需要注意力。作者就提出了对偶注意力(即双层注意力)，一层是type
+level的，一层是node level的，先用某一类型邻域节点embedding的均值作为type
+embedding，然后根据当前节点embedding与type embedding 计算出type
+attention
+weight，同理用具体的邻域节点embedding和当前节点embedding再加上type
+attention得到node attention，利用计算出的node
+attention替换GCN里的对称归一化邻接矩阵。</p></li>
+</ul></li>
+</ul>
+<h1
+id="representation-learning-for-attributed-multiplex-heterogeneous-network">Representation
+Learning for Attributed Multiplex Heterogeneous Network</h1>
+<ul>
+<li>任务：图表示学习</li>
+<li>异构类型：节点异构、边异构、节点多属性</li>
+<li>解决办法：
+<ul>
+<li>考虑某一节点在不同类型边连接下有不同的embedding，将节点总的overall
+embedding拆成与边无关的base embedding和与边相关的edge embedding</li>
+<li>edge
+embedding与边类型相关，通过相同类型的边相连的邻域节点aggregate得到，这里的aggreagator
+function可以采用GraphSage里的做法。</li>
+<li>经过k层聚合之后，对于每个节点都得到了k种边类型的edge
+embedding，通过self attention将这些edge
+embedding加权求和，乘上比例再加上base embedding就得到了最终的overall
+embedding</li>
+<li>以上是直推式(transductive)模型，对于未观测数据，需要归纳式(inductive)的方法。具体做法很简单，将base
+embedding和edge
+embedding参数化为节点attribute的函数，而不是随机初始化之后完全根据已有的图学习。这样即便有图中没看见的节点，只要节点有属性，一样可以进行overall
+embedding的提取</li>
+<li>最后做基于meta-path的random walk得到训练对，使用skip
+gram训练，加入了负采样。</li>
+</ul></li>
+</ul>
+<h1
+id="semi-supervised-learning-over-heterogeneous-information-networks-by-ensemble-of-meta-graph-guided-random-walks">Semi-supervised
+Learning over Heterogeneous Information Networks by Ensemble of
+Meta-graph Guided Random Walks</h1>
+<ul>
+<li>任务：节点分类</li>
+<li>异构类型：节点异构，包含三类节点，文本、实体、主题</li>
+<li>解决办法：meta-path guided random walk</li>
+</ul>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/graph-neural-network/" rel="tag"># graph neural network</a>
+              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+              <a href="/tags/natural-language-processing/" rel="tag"># natural language processing</a>
+              <a href="/tags/heterogeneous-information-network/" rel="tag"># heterogeneous information network</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/10/03/graph-summarization/" rel="prev" title="Note for Graph-based Summarization">
+                  <i class="fa fa-angle-left"></i> Note for Graph-based Summarization
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/11/13/kg/" rel="next" title="Paper reading on Knowledge Graphs">
+                  Paper reading on Knowledge Graphs <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">16:35</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2019/10/30/heterogeneous/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>

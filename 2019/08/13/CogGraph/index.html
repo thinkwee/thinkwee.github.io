@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Note for paper &quot;Cognitive Graph for Multi-Hop Reading Comprehension at Scale.&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Study Notes for Cognitive Graph">
+<meta property="og:url" content="https://thinkwee.top/2019/08/13/CogGraph/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="Note for paper &quot;Cognitive Graph for Multi-Hop Reading Comprehension at Scale.&quot;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/13/mClGgH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/13/mClr8g.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/08/13/mClr8g.png">
+<meta property="article:published_time" content="2019-08-13T06:22:49.000Z">
+<meta property="article:modified_time" content="2025-01-30T02:10:45.357Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="natural language processing">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="gnn">
+<meta property="article:tag" content="bert">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/08/13/mClGgH.png">
+
+
+<link rel="canonical" href="https://thinkwee.top/2019/08/13/CogGraph/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2019/08/13/CogGraph/","path":"2019/08/13/CogGraph/","title":"Study Notes for Cognitive Graph"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Study Notes for Cognitive Graph | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#task"><span class="nav-number">1.</span> <span class="nav-text">Task</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#two-process-model"><span class="nav-number">2.</span> <span class="nav-text">Two-process model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#how-to-construct-a-graph"><span class="nav-number">3.</span> <span class="nav-text">How to Construct a Graph</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#how-to-reason-on-graphs"><span class="nav-number">4.</span> <span class="nav-text">How to Reason on Graphs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data"><span class="nav-number">5.</span> <span class="nav-text">Data</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#overall-process"><span class="nav-number">6.</span> <span class="nav-text">Overall Process</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#other-details"><span class="nav-number">7.</span> <span class="nav-text">Other details</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#results"><span class="nav-number">8.</span> <span class="nav-text">Results</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#conclusion"><span class="nav-number">9.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1"><span class="nav-number">10.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8C%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">11.</span> <span class="nav-text">双过程模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%9E%84%E9%80%A0%E5%9B%BE"><span class="nav-number">12.</span> <span class="nav-text">如何构造图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E5%9B%BE%E4%B8%8A%E6%8E%A8%E7%90%86"><span class="nav-number">13.</span> <span class="nav-text">如何在图上推理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE"><span class="nav-number">14.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="nav-number">15.</span> <span class="nav-text">总体流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%BB%86%E8%8A%82"><span class="nav-number">16.</span> <span class="nav-text">其他细节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-number">17.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">18.</span> <span class="nav-text">结论</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2019/11/13/kg/" rel="bookmark">
+        <time class="popular-posts-time">2019-11-13</time>
+        <br>
+      Paper reading on Knowledge Graphs
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2019/08/13/CogGraph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Study Notes for Cognitive Graph | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Study Notes for Cognitive Graph
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-08-13 14:22:49" itemprop="dateCreated datePublished" datetime="2019-08-13T14:22:49+08:00">2019-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-30 10:10:45" itemprop="dateModified" datetime="2025-01-30T10:10:45+08:00">2025-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2019/08/13/CogGraph/" class="post-meta-item leancloud_visitors" data-flag-title="Study Notes for Cognitive Graph" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>19k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>17 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Note for paper "Cognitive Graph for Multi-Hop Reading Comprehension
+at Scale."</p>
+<span id="more"></span>
+<figure>
+<img data-src="https://s2.ax1x.com/2019/08/13/mClGgH.png" alt="mClGgH.png" />
+<figcaption aria-hidden="true">mClGgH.png</figcaption>
+</figure>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="task">Task</h1>
+<ul>
+<li>The framework proposed by the author is called CogQA, which is a
+framework based on cognitive graphs to address question-answering in
+machine reading comprehension, including general question-answering
+(selecting entities) and comparative question-answering (the
+relationship between two entities). Setting cognitive graphs aside for
+the moment, let's look at what this task is.</li>
+<li>The uniqueness of this question-answering task lies in its extension
+to multi-hop. Multi-hop should not be a task type but rather a method
+for completing entity-based question-answering tasks, that is, finding
+entities in the question, then locating clues in their corresponding
+context descriptions, and using these clues to find the next entity as
+the next hop. The next-hop entity is used to jump to the corresponding
+context, where clues are then found again, and this process is repeated
+until, after multiple hops, the correct entity is found in the correct
+description as the answer. For a question, you can solve it using a
+single-hop approach or a multi-hop approach. In fact, most
+question-answering models based on information retrieval are based on a
+single-hop approach, which simply compares the question and the context
+to find the most relevant sentence and then extract entities from these
+sentences. Essentially, this is a pattern matching approach, but the
+problem is that if the question itself is multi-hop, then the single-hop
+pattern matching may not be able to find the correct entity at all,
+because the answer is not in the candidate sentences.</li>
+<li>This is actually very similar to the way humans answer questions.
+For example, if we ask who the authors are of the cognitive graph
+published in ACL2019, we would first find the two entities, ACL2019 and
+cognitive graph, and then separately find all the corresponding authors
+of ACL2019 papers and the various meanings of the cognitive graph (it
+may be neuroscience, it may be education, it may be natural language
+processing), and then find more entities and descriptions (different
+authors of different papers, different explanations of meanings),
+ultimately finding one or more answers. Humans might directly search for
+the term "cognitive graph" in all the paper titles of ACL2019, while
+computers might extend and jump between ACL2019 and cognitive graph
+multiple times before merging into a single entity, namely the author's
+name, and then output it as an answer.</li>
+<li>The multi-hop connections among multiple entities and their
+topological relationships constitute the cognitive graph, a directed
+graph. This directed graph is both inferable and interpretable, unlike
+black-box models, with a clear inference path. Therefore, the issue
+boils down to:
+<ul>
+<li>How to construct a graph?</li>
+<li>With the diagram, how to reason?</li>
+</ul></li>
+<li>The author first proposed using the dual-process theory from
+cognitive science to explain their approach.</li>
+</ul>
+<h1 id="two-process-model">Two-process model</h1>
+<ul>
+<li>The dual-process model in cognitive science refers to the fact that
+humans solve problems in two steps:
+<ul>
+<li>System 1: Initially, attention is allocated through an implicit,
+unconscious, and intuitive process to retrieve relevant information</li>
+<li>System Two: Reasoning is completed through another explicit,
+conscious, and controllable process</li>
+<li>System one provides resources to system two, system two guides the
+search of system one, and they iterate in this manner</li>
+</ul></li>
+<li>The above two processes can actually correspond to two major schools
+of thought in artificial intelligence, connectionism and symbolism. The
+first process, although difficult to explain and completed through
+intuition, is not innate but actually obtained through hidden knowledge
+gained from life experience. This part can correspond to the black-box
+models currently completed by deep learning, which learn from a large
+amount of data to produce models that are unexplainable but can achieve
+the intended purpose. While the second process requires causal
+relationships or explicit structures to assist in reasoning.</li>
+<li>In the context of machine question answering, the authors naturally
+employed existing neural network models to accomplish these two tasks:
+<ul>
+<li>The first item requires attention to retrieve relevant information,
+so I directly use the self-attention model to complete entity
+retrieval.</li>
+<li>The second item requires an explicit structure, so I construct a
+directed cognitive graph and complete reasoning on the cognitive
+graph.</li>
+</ul></li>
+</ul>
+<h1 id="how-to-construct-a-graph">How to Construct a Graph</h1>
+<ul>
+<li>The author uses BERT to complete the work of System 1. BERT itself
+can be used as a one-step machine reading comprehension, and here the
+author follows the one-step approach, with the input sentence pairs
+being the question and the sentence to be annotated, and the output
+being the annotation probability, i.e., the probability that each word
+is the start or end position of an entity. However, to achieve
+multi-hop, the author made some modifications:
+<ul>
+<li>The input sentence pairs are not based on the problem as a unit, but
+on each entity within each problem. Specifically, the A sentence of each
+input sentence pair is composed of the problem and a clue to a certain
+entity within the problem, while the B sentence is about all the
+sentences in the descriptive context of that entity.
+<ul>
+<li>sentence A:<span
+class="math inline">\([CLS]Question[SEP]clues(x,G)[SEP]\)</span></li>
+<li>sentence B:<span class="math inline">\(Para(x)\)</span></li>
+</ul></li>
+<li>What is the clue of a certain entity? The clue is the sentence
+describing the entity extracted from the context of all parent nodes in
+the cognitive graph. It may sound a bit awkward, but this design runs
+through the entire system and is the essence of its cognitive reasoning,
+as illustrated by the examples given in the paper:
+<ul>
+<li>Who made a movie in 2003 with a scene shot at the Los Angeles
+Quality Cafe?</li>
+<li>We found the entity "quality cafe," and found its introduction
+context: "......This is a coffee shop in Los Angeles. The shop is famous
+for being the filming location for several movies, including Old School,
+Gone in 60s, and so on."</li>
+<li>We then proceed to traverse these movie name entities, and then find
+the introduction context of the movies, such as "Old School is an
+American comedy film released in 2003, directed by Todd Phillips," and
+through other cognitive reasoning, we deduce that this "Todd Phillips"
+is the correct answer. Then, what is the clue for this director entity?
+What kind of clues do we need as supplementary input to obtain "Old
+School is an American comedy film released in 2003, directed by Todd
+Phillips," where "Todd Phillips" is the answer we seek?</li>
+<li>The answer is "This store is famous for being the filming location
+for several movies, including Old School, Gone in 60 Seconds, etc." This
+sentence corresponds to the input format in BERT.</li>
+<li>sentence A:
+<ul>
+<li>Who made a movie in 2003 with a scene shot at the Los Angeles
+Quality Cafe?</li>
+<li>clues(x,G): “This store is famous for being the filming location for
+several movies, including 'Old School' and 'Gone in 60 Seconds'
+etc.”</li>
+</ul></li>
+<li>"Old School is an American comedy film released in 2003, directed by
+Todd Phillips."</li>
+<li>Entity x is referred to as "old school."</li>
+</ul></li>
+<li>This design completes the iterative part in both System 1 and System
+2, connecting the two systems. This part allows System 2 to use graph
+structures to guide System 1 in retrieval. And through cycles, it is
+possible that System 2 updates the features of a certain entity's parent
+node or adds a new parent node, all of which may lead to the acquisition
+of new clues. System 1 can then use these clues again to predict and
+find new answer entities or next-hop entities that were not previously
+identified.</li>
+<li>How does System 2 depend on the results of System 1? This also
+divides into two parts
+<ul>
+<li>Perform two span predictions: System 1's BERT separates the
+prediction start and end positions of the answer entity and the next-hop
+entity, using four parameter vectors to combine the word feature vectors
+output by BERT to predict the start and end positions of the answer
+entity, the start and end positions of the next-hop entity, totaling
+four quantities. After obtaining the answer and next-hop entities, they
+are added to the cognitive graph as sub-nodes of the current entity,
+connecting the edges.</li>
+<li>Of course, it is not enough to just connect the edges; node features
+are also required. Just as BERT's position 0 extracts features of the
+entire sentence pair, the authors use it as a node feature <span
+class="math inline">\(sem(x,Q,clues)\)</span> and supplement it to the
+diagram.</li>
+</ul></li>
+<li>This system one provides topological relationships and node features
+for the expansion of the graph, thereby providing resources for system
+two.</li>
+</ul></li>
+</ul>
+<h1 id="how-to-reason-on-graphs">How to Reason on Graphs</h1>
+<ul>
+<li><p>This section directly employs GNN to perform spectral
+transformation on a directed graph to extract one layer of node
+features</p>
+<p><span class="math display">\[
+\Delta = \sigma ((AD^{-1})^T) \sigma (XW_1)) \\
+X^1 = \sigma (XW_2 + \Delta) \\
+\]</span></p></li>
+<li><p>The subsequent predictions only require adding a simple network
+on top of the transformed node features for regression or
+classification.</p></li>
+<li><p>Note that although model one extracts the answer span, both the
+answer span and the next-hop entity span are added as nodes to the
+cognitive graph, because there may be multiple answer nodes that require
+judgment of confidence by System Two. The reason for BERT to predict
+both the answer and the next-hop separately is:</p>
+<ul>
+<li>Both should have different features obtained through BERT and
+require independent parameter vectors to assist in updating</li>
+<li>Both are equally included in the cognitive graph, but only the
+next-hop node will continue to input into the system to make further
+predictions</li>
+</ul></li>
+<li><p>The model's loss consists of two parts, namely the System One's
+span prediction (answer &amp; next hop) loss and the System Two's answer
+prediction loss, both of which are relatively simple and can be directly
+referred to in the paper.</p></li>
+</ul>
+<h1 id="data">Data</h1>
+<ul>
+<li>Authors used the full-wiki part of HotpotQA for training and
+testing, with 84% of the data requiring multi-hop reasoning. Each
+question in the training set provided two useful entities, as well as
+multiple descriptions of the context and 8 irrelevant descriptions for
+negative sampling. During validation and testing, only the questions
+were provided, requiring answers and relevant descriptions of the
+context.</li>
+<li>To construct a gold-only cognitive graph, i.e., the initialized
+total cognitive graph, the authors perform fuzzy matching on every
+sentence in the description context of all entities y and a certain
+entity x. If a match is found, (x, y) is added as an edge to the
+initialized graph</li>
+</ul>
+<h1 id="overall-process">Overall Process</h1>
+<ul>
+<li>Input: System One, System Two, Issue, Prediction Network, Wiki
+Dataset</li>
+<li>Initialize the gold-only graph with entities from the problem and
+mark these entities as parent nodes, and add the entities found through
+fuzzy matching during initialization to the boundary queue (the queue to
+be processed)</li>
+<li>Repeat the following process
+<ul>
+<li>Pop an entity x from the boundary queue</li>
+<li>Collect clues from all ancestors of x</li>
+<li>Input the clues, issues, and descriptive context of the entity into
+the unified system, obtaining the cognitive graph node representation
+<span class="math inline">\(sem(x^1,Q,clues)\)</span></li>
+<li>If entity x is the next-hop node, then:
+<ul>
+<li>Entity span for generating answers and next-hop</li>
+<li>For the next-hop entity span, if it exists in the Wiki database,
+create a new next-hop node in the diagram and establish an edge; if it
+is already in the diagram but has not established an edge with the
+current entity x, add an edge and include the node in the boundary
+queue</li>
+<li>For the answer entity span, nodes and edges are directly added
+without the need for judgment from the Wikipedia database, because the
+answer may not be in the database</li>
+</ul></li>
+<li>Through the second system updating node features</li>
+</ul></li>
+<li>Until there are no nodes in the boundary queue, or the cognitive
+graph is sufficiently large</li>
+<li>Through predicting the network's return results.</li>
+<li>Through the above process, it can be seen that for each training
+data, before using the prediction network to predict the results, two
+systems need to interact iteratively multiple times until feature
+extraction is complete. The condition for stopping iteration is when the
+boundary queue is empty. Then, what kind of nodes will join the boundary
+queue? Nodes that have already been in the graph and established new
+edges for the next hop may bring new clues, therefore, all such nodes
+must be processed, allowing system two to see all clues before making
+predictions.</li>
+</ul>
+<h1 id="other-details">Other details</h1>
+<ul>
+<li>In System One, there may not be Sentence B, i.e., there may be no
+descriptive context for a certain entity. In this case, we can simply
+obtain the node features <span
+class="math inline">\(sem(x^1,Q,clues)\)</span> through BERT, without
+predicting the answer and the next-hop entity, i.e., this node acts as a
+leaf node in the directed graph and no longer expands.</li>
+<li>At the initialization of the cognitive graph, it is not necessary to
+obtain node features; only the prediction of spans is needed to
+construct edges</li>
+<li>The author found that using the feature at position 0 of the last
+layer of BERT as node features was not very good, because the features
+of higher layers are transformed to be suitable for span prediction, so
+after experimentation, the author took the third-to-last layer of BERT
+to construct node features</li>
+<li>When performing span prediction, it actually specifies a maximum
+span length, then predicts the top k beginning positions, and then
+predicts the end positions within the span maximum length</li>
+<li>The author also employed negative sampling to prevent span
+prediction on irrelevant sentences. Specifically, it first samples
+irrelevant samples, sets the [CLS] position probability of these samples
+to 0, and sets the position probability of the positive samples to 1. In
+this way, BERT can learn the probability that sentence B is a positive
+sample at the [CLS] position. Only the topk spans selected previously
+will be retained if their begin position probability is greater than the
+[CLS] position probability.</li>
+<li>In the process described in the pseudo-algorithm, every time the
+system updates the cognitive graph structure, system two runs once. In
+fact, the author found that it is the same effect, and more efficient,
+to let system one traverse all the boundary nodes first, wait until the
+graph no longer changes, and then let system two run multiple times. In
+actual implementation, this algorithm is also adopted.</li>
+<li>HotpotQA includes special questions, non-traditional questions, and
+traditional questions. The author has constructed prediction networks
+for each, where special questions are regression models, and the other
+two types are classification models.</li>
+<li>When initializing the cognitive graph, it is not only necessary to
+establish edges between entities and the next-hop entities, but also to
+mark the begin and end positions of the next-hop entities and feed them
+into the BERT model</li>
+<li>The author also conducted an ablation study, mainly focusing on the
+differences in the initial entity sets, and the experimental results
+show that the model is relatively dependent on the quality of the
+initial entities</li>
+</ul>
+<h1 id="results">Results</h1>
+<ul>
+<li>Dominating the HotpotQA leaderboard for several months before this
+April, until recently being surpassed by a new BERT model, but at least
+this model can provide a good interpretability, as shown in the three
+cognitive graph reasoning scenarios in the following figure <img data-src="https://s2.ax1x.com/2019/08/13/mClr8g.png" alt="mClr8g.png" /></li>
+</ul>
+<h1 id="conclusion">Conclusion</h1>
+<ul>
+<li>This model can be simply regarded as an extension of GNN in NLP,
+with the powerful BERT used for node feature extraction. However, the
+difficulty of using GNN in NLP lies in the definition of edge
+relationships. This paper presents a very natural definition of
+relationships, consistent with the intuition of humans in completing
+question-answering tasks, and BERT not only extracts node features but
+also completes the construction of edges. I feel that this framework is
+a good way to combine black-box models and interpretable models, rather
+than necessarily explaining black-box models. The black box will let it
+do what it is good at, including feature extraction of natural language
+and reasoning networks, while humans can design explicit rules for
+adding edge relationships. Both work together, complementing each other
+rather than being mutually exclusive.</li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="任务">任务</h1>
+<ul>
+<li>作者提出的框架叫CogQA，也就是用基于认知图谱的框架来解决机器阅读理解里的问答，包括一般性问答（选择实体），以及比较性问答（两个实体之间的关系）。先抛开认知图谱不说，看看这个任务是什么。</li>
+<li>这个问答任务特殊的地方在于延伸到了多跳，multi-hop。多跳其实不应该是任务类型，而是指完成实体类问答任务的一种方式，即找到问题中的实体，根据这些实体在其对应介绍上下文中找到线索（clues),在这些线索里接着找实体作为下一跳(hop),下一跳的实体用于跳转到对应的介绍上下文，并在其中接着找线索，如此往复，直到多跳之后在正确的描述中找到正确的实体作为答案。一个问答，你可以用一跳的思路解决，也可以用多跳的思路解决。实际上大多数基于信息检索的问答模型就是基于一跳的，这类模型就只是比较问题和上下文，找出最相关的句子，再从这些句子中找出实体。这样做本质上是一种模式匹配，其问题在于，加入问题本身是多跳的，那么基于一跳的模式匹配可能根本找不出正确的实体，因为答案都不在候选的句子里。</li>
+<li>这和人类回答问题的方式其实很类似，比方我们问发表于ACL2019的认知图谱的作者是谁，我们会先找到ACL2019和认知图谱这两个实体，再分别到其线索中找到ACL2019所有论文对应作者和认知图谱的多种含义（可能有神经科学，可能有教育学，可能有自然语言处理），再找到更多的实体和描述（不同论文作者、不同含义的解释），最终找到一个或者多个答案。人类的思路可能会直接在ACL2019的所有论文标题里找认知图谱四个字，而计算机处理起来可能是ACL2019和认知图谱两部分延伸多跳之后在某一节点合并到一个实体，即作者的名字，然后作为答案输出。</li>
+<li>以上多个实体的多跳以及它们之间的拓扑关系就组成了认知图谱，一个有向图。这个有向图是可推理可解释的，不同于黑箱模型，有清晰的推理路线。那么问题就归结为：
+<ul>
+<li>如何构造图？</li>
+<li>有了图，如何推理？</li>
+</ul></li>
+<li>作者首先提出了用认知科学里的双过程解释他们的做法。</li>
+</ul>
+<h1 id="双过程模型">双过程模型</h1>
+<ul>
+<li>认知科学里的双过程是指，人类解决问题时会分两个步骤：
+<ul>
+<li>系统一：先通过一个隐式的、无意识的、符合直觉的过程来分配注意力，检索相关信息</li>
+<li>系统二：再通过另一个显式的、有意识的、可控的过程来完成推理</li>
+<li>系统一给系统二提供资源，系统二指导系统一的检索，两者迭代进行</li>
+</ul></li>
+<li>这上面两个过程，其实可以对应到人工智能里的两大流派，联结主义和符号主义。第一个过程虽然是难以解释的、通过直觉完成的，但直觉不是天生的，实际上是通过生活经验得到的隐藏知识。这部分可以对应现在用深度学习完成的黑箱模型，通过对大量数据学习得到不可解释，但是能完成目的的模型。而第二个过程需要因果关系，或者需要显式的结构来帮助推理。</li>
+<li>具体到机器问答中，作者很自然的用了现有的神经网络模型来完成这两项工作：
+<ul>
+<li>第一项需要分配注意力来检索相关信息，那么我就直接用自注意力模型，来完成实体的检索。</li>
+<li>第二项需要显式的结构，那么我就构造有向认知图谱，在认知图谱上完成推理。</li>
+</ul></li>
+</ul>
+<h1 id="如何构造图">如何构造图</h1>
+<ul>
+<li>作者使用BERT来完成系统一的工作。BERT本身就可以用作一跳机器阅读理解，在这里作者沿用了一跳的做法，输入的句子对是问题和待标记实体的句子，输出是标记概率，即每个词是实体开始位置或者结束位置的概率。但是为了实现多跳，作者做了一点改动：
+<ul>
+<li>输入的句子对不是以问题为基本单位，而是以每个问题中的每个实体为基本单位，具体而言，每个输入句子对的A句子由问题和问题中某一实体的线索(clue)拼接而成，而句子B是关于该实体的描述上下文中的所有句子。即
+<ul>
+<li>sentence A:<span
+class="math inline">\([CLS]Question[SEP]clues(x,G)[SEP]\)</span></li>
+<li>sentence B:<span class="math inline">\(Para(x)\)</span></li>
+</ul></li>
+<li>那么某一实体的线索究竟是什么？<strong>线索是该实体在认知图谱里的所有父节点的介绍上下文中，提取出该实体的那一句话</strong>。可能有些拗口，但是这个设计是贯穿了整个系统，是其认知推理断的精髓所在，用论文给出的例子就是：
+<ul>
+<li>问题：“谁在2003年拍了部电影，其中有一幕是在洛杉矶quality
+cafe拍的？”</li>
+<li>我们找到实体quality
+cafe，找到其介绍上下文：“......这是洛杉矶的一家咖啡店。这家店因其作为多部电影的取景地而出名，包括old
+school, gone in 60s等等。......”</li>
+<li>我们接着遍历这些电影名实体，接着找电影的介绍上下文，例如“old
+school是一部美国喜剧电影，拍于2003年，导演是todd
+phillips”，并且通过其他认知推理得到这个“todd
+phillips”就是正确答案，那么，这个导演实体的线索是什么？我们需要什么样的线索作为补充输入来得到“old
+school是一部美国喜剧电影，拍于2003年，导演是todd phillips”这句话中“todd
+phillips”就是我们想要的答案？</li>
+<li>答案就是“这家店因其作为多部电影的取景地而出名，包括old school, gone
+in 60s等等。”这句话。对应成BERT里的输入格式就是</li>
+<li>sentence A:
+<ul>
+<li>Question：“谁在2003年拍了部电影，其中有一幕是在洛杉矶quality
+cafe拍的？”</li>
+<li>clues(x,G)：“这家店因其作为多部电影的取景地而出名，包括old school,
+gone in 60s等等。”</li>
+</ul></li>
+<li>sentence B:“old school是一部美国喜剧电影，拍于2003年，导演是todd
+phillips”</li>
+<li>其中实体x是“old school”</li>
+</ul></li>
+<li>这个设计完成了系统一和系统二中的迭代部分，将两个系统连接了起来。这部分是让系统二利用图结构来指导系统一检索。并且通过循环往复，可能系统二更新了某一实体的父节点的特征，或者添加了新的父节点，这些都可能会导致有新的线索获得，系统一可以再次把这些线索拿来预测，找出之前没有找出的新的答案实体或者下一跳实体。</li>
+<li>那么系统二如何依赖系统一的结果呢？这里也分为两个部分
+<ul>
+<li>做两个span
+prediction：系统一的BERT将答案实体和下一跳实体的预测起始结束位置分开，用四个参数向量来分别结合BERT输出的词特征向量来预测答案实体、下一跳实体的预测开始、结束位置共四个量。获得了答案和下一跳实体之后，将其加入认知图谱当中，作为当前实体的子节点，连上边。</li>
+<li>单单连上边当然不够，还需要节点特征。刚好BERT的位置0是提取整个句子对的特征，作者就将其作为节点特征<span
+class="math inline">\(sem(x,Q,clues)\)</span>补充到图中。</li>
+</ul></li>
+<li>这样系统一就为图的扩展提供了拓扑关系和节点特征，从而为系统二提供了资源。</li>
+</ul></li>
+</ul>
+<h1 id="如何在图上推理">如何在图上推理</h1>
+<ul>
+<li><p>这一部分就直接使用了GNN，在有向图上进行谱变换提取一层节点特征</p>
+<p><span class="math display">\[
+\Delta = \sigma ((AD^{-1})^T) \sigma (XW_1)) \\
+X^1 = \sigma (XW_2 + \Delta) \\
+\]</span></p></li>
+<li><p>之后的预测也只需要在变换后的节点特征上接一层简单网络来做回归或者分类就好了。</p></li>
+<li><p>注意虽然模型一提取了答案的span，但是答案span和下一跳实体span都作为节点加入到认知图谱当中，因为可能有多个答案节点，需要经过系统二来判断置信度，而需要BERT分别预测答案和下一跳的理由是：</p>
+<ul>
+<li>两者通过BERT得到的特征应该不同，需要独立的参数向量来辅助更新</li>
+<li>两者虽然是同等的加入认知图谱当中，但是只有下一跳节点会接着输入系统一来继续预测</li>
+</ul></li>
+<li><p>模型的损失包含两部分，分别是系统一的span prediction(answer &amp;
+next hop) loss和系统二的answer prediction
+loss，都比较简单，可以直接看论文。</p></li>
+</ul>
+<h1 id="数据">数据</h1>
+<ul>
+<li>作者使用了HotpotQA的full-wiki部分来做训练测试，84%的数据需要多跳推理。训练集中每个问题提供了两个有用的实体，以及多个描述上下文和8个不相关描述上下文用于负采样。验证和测试时只有问题，需要给出答案和相关的描述上下文。</li>
+<li>为了构造gold-only认知图谱，即初始化的总的认知图谱，作者将所有的实体y和某一实体x的描述上下文中每一句做模糊匹配，匹配上了就将(x,y)作为一条边加入初始化的图谱中</li>
+</ul>
+<h1 id="总体流程">总体流程</h1>
+<ul>
+<li>输入：系统一、系统二、问题、预测网络、维基数据集</li>
+<li>用问题里的实体初始化构造gold-only图谱，并把这些实体标记为父节点，把初始化中模糊匹配找到的实体加入边界队列（待处理队列）</li>
+<li>重复以下过程
+<ul>
+<li>从边界队列中弹出一个实体x</li>
+<li>从x的所有父节点那收集线索</li>
+<li>将该实体的线索、问题、该实体的描述上下文输入系统一，得到认知图谱节点表示<span
+class="math inline">\(sem(x^1,Q,clues)\)</span></li>
+<li>假如实体x是下一跳节点，那么：
+<ul>
+<li>生成答案和下一跳的实体span</li>
+<li>对于下一跳实体span，假如其在维基数据库当中，就在图中创建新的下一跳节点并建立边；假如已经在图中，但是没有和当前实体x建立边，那就添加一条边，并把该节点加入边界队列</li>
+<li>对于答案实体span，直接加节点和边，而不需要经过维基数据库的判断，因为答案有可能不在数据库中</li>
+</ul></li>
+<li>通过系统二更新节点特征</li>
+</ul></li>
+<li>直到边界队列中没有节点，或者认知图谱足够大</li>
+<li>通过预测网络返回结果。</li>
+<li>通过以上流程可以看到，对每一条训练数据，在使用预测网络预测结果之前，需要两个系统交互迭代多次直到特征提取完全。迭代的条件是边界队列为空时停止，那么什么样的节点会加入边界队列？<strong>已经在图中且建立了新的边的下一跳节点</strong>，这一类节点可能带来新的线索，因此必须把这类节点都处理完，让系统二看到所有线索，之后才能做预测。</li>
+</ul>
+<h1 id="其他细节">其他细节</h1>
+<ul>
+<li>在系统一当中可能没有sentence
+B，即没有某个实体的描述上下文，这时我们可以仅仅通过BERT得到节点特征<span
+class="math inline">\(sem(x^1,Q,clues)\)</span>，而不预测答案和下一跳实体，即这个节点就作为有向图中的叶子节点，不再扩展。</li>
+<li>在初始化认知图谱时，不需要得到节点特征，仅仅预测span来构建边</li>
+<li>作者发现使用BERT的最后一层的位置0的特征作为节点特征不太好，因为高层的特征被转换成适用于span
+prediction，因此作者试验之后取BERT的倒数第三层来构建节点特征</li>
+<li>在做span prediction的时候，实际上是规定了一个span maximum
+length，然后预测top k个begin position，然后在span maximum
+length内预测end position</li>
+<li>作者还做了负采样来防止在无关句子上做span
+prediction，具体做法是先负采样出不相关的样本，将这些样本的[CLS]位置概率设为0，而正样本的该位置概率设为1。这样BERT就能在[CLS]位置学到这个sentence
+B是正样本的概率。之前选出的topk个span，只有begin position
+probability大于[CLS]位置概率才会被保留下来</li>
+<li>在伪算法描述的流程里，每次系统一更新了认知图谱结构，系统二就运行一次，实际上作者发现让系统一先把所有的边界节点遍历完，等图不再改变，再让系统二运行多次是一样的效果，而且效率更高。实际实现上也是采用这种算法。</li>
+<li>HotpotQA包含特殊问题、非传统问题和传统问题，作者分别构建了预测网络，其中特殊问题是回归模型，其余两类是分类模型。</li>
+<li>初始化认知图谱的时候，不仅仅需要建立实体与下一跳实体之间的边，下一跳实体的begin和end位置也要标出来，feed给BERT模型</li>
+<li>作者还做了ablation
+study，主要是初始化的实体集不同，可以通过实验结果看出该模型还是比较依赖初始化的实体质量</li>
+</ul>
+<h1 id="结果">结果</h1>
+<ul>
+<li>在今年4月份以前一直霸榜HotpotQA几个月，直到最近被一个新的BERT模型打破，但至少该模型能够提供一个很好的解释性，例如下图所示的三种认知图谱推理情况
+<img data-src="https://s2.ax1x.com/2019/08/13/mClr8g.png"
+alt="mClr8g.png" /></li>
+</ul>
+<h1 id="结论">结论</h1>
+<ul>
+<li>这个模型可以简单的看成是GNN在NLP的扩展，只不过用了强大的BERT做节点特征提取，但是GNN用于NLP的难点在于边关系的定义。本文对于关系的定义非常自然，和人类完成问答任务的直觉保持一致，并且BERT也不仅仅是提取节点特征，还完成了边的构建。这样的框架我感觉是很好的将黑盒模型和可解释模型结合起来，而不是一定要解释黑盒模型。黑盒将让他做黑盒擅长的部分，包括自然语言和推理网络的特征提取，而人类可以设计显式的边关系添加规则，两者合作，互补而不是互斥。</li>
+</ul>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/natural-language-processing/" rel="tag"># natural language processing</a>
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/gnn/" rel="tag"># gnn</a>
+              <a href="/tags/bert/" rel="tag"># bert</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/07/29/CorEx/" rel="prev" title="Study Notes for Correlation Explaination">
+                  <i class="fa fa-angle-left"></i> Study Notes for Correlation Explaination
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/08/15/acl2019-summarization/" rel="next" title="Summarization-Related Papers Reading (ACL/NAACL 2019)">
+                  Summarization-Related Papers Reading (ACL/NAACL 2019) <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">16:35</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2019/08/13/CogGraph/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>

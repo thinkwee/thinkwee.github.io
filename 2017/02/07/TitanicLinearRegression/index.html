@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Introduction In November 2016, the decision was made to start delving into machine learning. Initially, I followed the official example on the Kaggle platform for the first task, &quot;Titanic Survivor An">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ML Basic Practices">
+<meta property="og:url" content="https://thinkwee.top/2017/02/07/TitanicLinearRegression/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="Introduction In November 2016, the decision was made to start delving into machine learning. Initially, I followed the official example on the Kaggle platform for the first task, &quot;Titanic Survivor An">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TjxK.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TzrD.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0TxKO.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i07DRx.jpg">
+<meta property="article:published_time" content="2017-02-07T13:57:22.000Z">
+<meta property="article:modified_time" content="2025-01-30T02:10:45.358Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/20/i0TjxK.jpg">
+
+
+<link rel="canonical" href="https://thinkwee.top/2017/02/07/TitanicLinearRegression/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2017/02/07/TitanicLinearRegression/","path":"2017/02/07/TitanicLinearRegression/","title":"ML Basic Practices"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ML Basic Practices | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#not-an-algorithm-algorithm"><span class="nav-number">2.</span> <span class="nav-text">Not an Algorithm Algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-number">3.</span> <span class="nav-text">多元线性回归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scikit-learn%E4%B8%AD%E7%9A%84%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-number">4.</span> <span class="nav-text">scikit-learn中的多元线性回归</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2017/02/04/pandas-skill/" rel="bookmark">
+        <time class="popular-posts-time">2017-02-04</time>
+        <br>
+      Pandas Basics
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2017/02/07/TitanicLinearRegression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ML Basic Practices | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ML Basic Practices
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-02-07 21:57:22" itemprop="dateCreated datePublished" datetime="2017-02-07T21:57:22+08:00">2017-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-30 10:10:45" itemprop="dateModified" datetime="2025-01-30T10:10:45+08:00">2025-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2017/02/07/TitanicLinearRegression/" class="post-meta-item leancloud_visitors" data-flag-title="ML Basic Practices" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>23k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>21 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><hr />
+<h1 id="introduction">Introduction</h1>
+<p>In November 2016, the decision was made to start delving into machine
+learning. Initially, I followed the official example on the Kaggle
+platform for the first task, "Titanic Survivor Analysis."</p>
+<p>2017 February Update: Data was reorganized using pandas, detailed
+accuracy was calculated, and Linear Regression from scikit-learn was
+tested</p>
+<p>Title Introduction is here: <a
+target="_blank" rel="noopener" href="https://www.kaggle.com/c/titanic">Titanic: Machine Learning from
+Disaster</a></p>
+<p>Below is the dataset table style, each person has 12 attributes</p>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TjxK.jpg" alt="i0TjxK.jpg" />
+<figcaption aria-hidden="true">i0TjxK.jpg</figcaption>
+</figure>
+<span id="more"></span>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="not-an-algorithm-algorithm">Not an Algorithm Algorithm</h1>
+<p>The official example is to classify by several attributes, such as
+age, gender, ticket price (.....) and then sum up the survival data (0
+or 1) for all individuals within each attribute to calculate the
+average. The English comments are all explanations from the official
+documentation; I used them as an introductory tutorial and included them
+all. The code is as follows:</p>
+<pre><code>    # -*- coding: utf-8 -*-
+    &quot;&quot;&quot;
+    Created on Sun Oct 30 15:28:22 2016
+
+    @author: thinkwee
+    &quot;&quot;&quot;
+
+    import csv as csv 
+    import numpy as np
+    from glue import qglue
+
+
+    test_file=(open(r&#39;文件目录略&#39;, &#39;r&#39;))
+    test_file_object = csv.reader(open(r&#39;文件目录略&#39;, &#39;r&#39;))
+    testheader = next(test_file_object)
+    predictions_file = open(r&quot;文件目录略&quot;, &quot;w&quot;)
+    predictions_file_object = csv.writer(predictions_file)
+    p = csv.writer(predictions_file)
+    p.writerow([&quot;PassengerId&quot;, &quot;Survived&quot;])
+    csv_file_object = csv.reader(open(r&#39;文件目录略&#39;, &#39;r&#39;)) 
+    trainheader = next(csv_file_object)  # The next() command just skips the 
+                                         # first line which is a header
+    data=[]                               # Create a variable called &#39;data&#39;.
+    for row in csv_file_object:           # Run through each row in the csv file,
+        data.append(row)                  # adding each row to the data variable
+    print(type(data))
+    data = np.array(data)                   # Then convert from a list to an array
+                                         # Be aware that each item is currently
+                                         # a string in this format
+
+    number_passengers = np.size(data[0::,1].astype(np.float))
+    number_survived = np.sum(data[0::,1].astype(np.float))
+    proportion_survivors = number_survived / number_passengers
+
+    women_only_stats = data[0::,4] == &quot;female&quot; # This finds where all 
+                                               # the elements in the gender
+                                               # column that equals “female”
+    men_only_stats = data[0::,4] != &quot;female&quot;   # This finds where all the 
+                                               # elements do not equal 
+                                               # female (i.e. male)
+
+    # Using the index from above we select the females and males separately
+    women_onboard = data[women_only_stats,1].astype(np.float)     
+    men_onboard = data[men_only_stats,1].astype(np.float)
+
+    # Then we finds the proportions of them that survived
+    proportion_women_survived = \
+                           np.sum(women_onboard) / np.size(women_onboard)  
+    proportion_men_survived = \
+                           np.sum(men_onboard) / np.size(men_onboard) 
+
+    # and then print it out
+    print (&#39;Proportion of women who survived is %s&#39; % proportion_women_survived)
+    print (&#39;Proportion of men who survived is %s&#39; % proportion_men_survived)
+
+
+
+
+    # The script will systematically will loop through each combination 
+    # and use the &#39;where&#39; function in python to search the passengers that fit that combination of variables. 
+    # Just like before, you can ask what indices in your data equals female, 1st class, and paid more than $30. 
+    # The problem is that looping through requires bins of equal sizes, i.e. $-9,  undefined-29,  $30-39.  
+    # For the sake of binning let&#39;s say everything equal to and above 40 &quot;equals&quot; 39 so it falls in this bin. 
+    # So then you can set the bins
+
+    # So we add a ceiling
+    fare_ceiling = 40
+
+    # then modify the data in the Fare column to = 39, if it is greater or equal to the ceiling
+    data[ data[0::,9].astype(np.float) &gt;= fare_ceiling, 9 ] = fare_ceiling - 1.0
+
+    fare_bracket_size = 10
+    number_of_price_brackets = fare_ceiling // fare_bracket_size
+
+    # Take the length of an array of unique values in column index 2
+    number_of_classes = len(np.unique(data[0::,2]))
+
+    number_of_age_brackets=8 
+
+    # Initialize the survival table with all zeros
+    survival_table = np.zeros((2, number_of_classes, 
+                               number_of_price_brackets,
+                               number_of_age_brackets))
+
+
+
+    #Now that these are set up, 
+    #you can loop through each variable 
+    #and find all those passengers that agree with the statements
+
+    for i in range(number_of_classes):               #loop through each class
+      for j in range(number_of_price_brackets):       #loop through each price bin
+        for k in range(number_of_age_brackets):     #loop through each age bin
+            women_only_stats_plus = data[                 #Which element           
+                            (data[0::,4] == &quot;female&quot;)     #is a female
+                           &amp;(data[0::,2].astype(np.float) #and was ith class
+                                 == i+1)                        
+                           &amp;(data[0:,9].astype(np.float)  #was greater 
+                                &gt;= j*fare_bracket_size)   #than this bin              
+                           &amp;(data[0:,9].astype(np.float)  #and less than
+                                &lt; (j+1)*fare_bracket_size)
+                           &amp;(data[0:,5].astype(np.float)&gt;=k*10)
+                           &amp;(data[0:,5].astype(np.float)&lt;(k+1)*10)#the next bin
+
+                              , 1]                        #in the 2nd col                           
+
+
+            men_only_stats_plus = data[                   #Which element           
+                             (data[0::,4] != &quot;female&quot;)    #is a male
+                           &amp;(data[0::,2].astype(np.float) #and was ith class
+                                 == i+1)                                       
+                           &amp;(data[0:,9].astype(np.float)  #was greater 
+                                &gt;= j*fare_bracket_size)   #than this bin              
+                           &amp;(data[0:,9].astype(np.float)  #and less than
+                                &lt; (j+1)*fare_bracket_size)#the next bin
+                           &amp;(data[0:,5].astype(np.float)&gt;=k*10)
+                           &amp;(data[0:,5].astype(np.float)&lt;(k+1)*10)
+                              , 1]
+
+            survival_table[0,i,j,k] = np.mean(women_only_stats_plus.astype(np.float)) 
+            survival_table[1,i,j,k] = np.mean(men_only_stats_plus.astype(np.float))
+
+            #if nan then the type will change to string from float so this sentence can set nan to 0. 
+            survival_table[ survival_table != survival_table ] = 0.
+
+    #Notice that  data[ where function, 1]  means 
+    #it is finding the Survived column for the conditional criteria which is being called. 
+    #As the loop starts with i=0 and j=0, 
+    #the first loop will return the Survived values for all the 1st-class females (i + 1) 
+    #who paid less than 10 ((j+1)*fare_bracket_size) 
+    #and similarly all the 1st-class males who paid less than 10.  
+    #Before resetting to the top of the loop, 
+    #we can calculate the proportion of survivors for this particular 
+    #combination of criteria and record it to our survival table
+
+
+    #In the official example, probabilities greater than 0.5 are considered survivors, 
+    #here we skip it directly
+    #Print detailed probabilities
+    #survival_table[ survival_table &lt; 0.5 ] = 0
+    #survival_table[ survival_table &gt;= 0.5 ] = 1 
+
+
+    #Then we can make the prediction
+
+    for row in test_file_object:                  # We are going to loop
+                                                  # through each passenger
+                                                  # in the test set                     
+      for j in range(number_of_price_brackets):   # For each passenger we
+                                                  # loop thro each price bin
+        try:                                      # Some passengers have no
+                                                  # Fare data so try to make
+          row[8] = float(row[8])                  # a float
+        except:                                   # If fails: no data, so 
+          bin_fare = 3 - float(row[1])            # bin the fare according Pclass
+          break                                   # Break from the loop
+        if row[8] &gt; fare_ceiling:                    # If there is data see if
+                                                  # it is greater than fare
+                                                  # ceiling we set earlier
+          bin_fare = number_of_price_brackets-1   # If so set to highest bin
+          break                                   # And then break loop
+        if row[8] &gt;= j * fare_bracket_size\
+           and row[8] &lt; \
+           (j+1) * fare_bracket_size:             # If passed these tests 
+                                                  # then loop through each bin 
+          bin_fare = j                            # then assign index
+          break
+
+      for j in range(number_of_age_brackets): 
+
+        try:                                    
+
+          row[4] = float(row[4])              
+        except:                                   
+          bin_age = -1      
+          break                                  
+
+        if row[4] &gt;= j * 10\
+           and row[4] &lt; \
+           (j+1) * 10:             # If passed these tests 
+                                   # then loop through each bin 
+          bin_age = j              # then assign index
+          break
+
+      if row[3] == &#39;female&#39;:       #If the passenger is female
+            p.writerow([row[0], &quot;%f %%&quot; % \
+                       (survival_table[0, int(row[1])-1, bin_fare,bin_age]*100)])
+      else:                        #else if male
+            p.writerow([row[0], &quot;%f %%&quot; % \
+                       (survival_table[1, int(row[1])-1, bin_fare,bin_age]*100)])
+
+    # Close out the files.
+    test_file.close() 
+    predictions_file.close()
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">    ***</span><br><span class="line">    </span><br><span class="line">    # Multivariate Linear Regression</span><br><span class="line">    </span><br><span class="line">    After buying the watermelon book, I changed this example to a linear regression model:</span><br><span class="line">    Assume that each person&#x27;s survival may be linearly related to the person&#x27;s gender, price, cabin, and age,</span><br><span class="line">    we use the least squares method to find a set of linear coefficients, </span><br><span class="line">    so that the distance between all samples and the linear function is minimized</span><br><span class="line">    </span><br><span class="line">    Use mean squared error as performance measurement, mean squared error is a function of linear coefficients</span><br><span class="line">    Derivative of linear coefficients w can get the closed-form solution of w</span><br><span class="line">    </span><br><span class="line">    The key formula is</span><br><span class="line">        ** $$ w^*=(X^TX)^&#123;-1&#125;X^Ty $$ **</span><br><span class="line">    </span><br><span class="line">    - X:data set matrix, each row corresponds to a person&#x27;s data, and a 1 is added at the end of each row,</span><br><span class="line">        if the training set has m people and n attributes, the matrix size is m*(n+1)</span><br><span class="line">    - w:linear coefficients</span><br><span class="line">    - y:survival result $$ y=w^T*x $$</span><br><span class="line">    </span><br><span class="line">    When writing, all missing values in age were deleted, 891 data were given, 193 were used to verify the calculation accuracy, and the final accuracy was 75.155280 %</span><br><span class="line">    </span><br><span class="line">    ![i0TzrD.jpg](https://s1.ax1x.com/2018/10/20/i0TzrD.jpg)</span><br><span class="line">    </span><br><span class="line">    The code is as follows</span><br><span class="line">    </span><br><span class="line">    ```Python</span><br><span class="line">        train1=train.dropna(subset=([&#x27;Age&#x27;]),axis=0)</span><br><span class="line">        vali1=vali.dropna(subset=([&#x27;Age&#x27;]),axis=0)</span><br><span class="line">    </span><br><span class="line">        validata=np.array(vali1)</span><br><span class="line">        data=np.array(train1)</span><br><span class="line">    </span><br><span class="line">        fare_ceiling = 40</span><br><span class="line">        data[data[0::,9].astype(np.float)&gt;=fare_ceiling,9] = fare_ceiling - 1.0</span><br><span class="line">    </span><br><span class="line">        train = np.column_stack((data[0::,9],data[0::,2],data[0::,5],data[0::,4]))</span><br><span class="line">        predict=np.column_stack((validata[0::,9],validata[0::,2],validata[0::,5],validata[0::,4]))</span><br><span class="line">        survive = np.column_stack((data[0::,1]))</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">        for i in range(train.shape[0]):</span><br><span class="line">            if (train[i][3]==&#x27;male&#x27;):</span><br><span class="line">                train[i][3]=0.00</span><br><span class="line">            else:</span><br><span class="line">                train[i][3]=1.00</span><br><span class="line">        for i in range(predict.shape[0]):</span><br><span class="line">            if (predict[i][3]==&#x27;male&#x27;):</span><br><span class="line">                predict[i][3]=0.00</span><br><span class="line">            else:</span><br><span class="line">                predict[i][3]=1.00</span><br><span class="line">    </span><br><span class="line">        x0=np.ones((train.shape[0],1))</span><br><span class="line">        train=np.concatenate((train,x0),axis=1)</span><br><span class="line">    </span><br><span class="line">        x0=np.ones((predict.shape[0],1))</span><br><span class="line">        predict=np.concatenate((predict,x0),axis=1)</span><br><span class="line">    </span><br><span class="line">        print(&#x27;raw data finish&#x27;)</span><br><span class="line">    </span><br><span class="line">        survive=survive.T.astype(np.float)</span><br><span class="line">        traint=train.T.astype(np.float)</span><br><span class="line">        w0=traint.dot(train.astype(np.float))</span><br><span class="line">        w1=(np.linalg.inv(w0))  </span><br><span class="line">        w2=w1.dot(traint)</span><br><span class="line">        w=w2.dot(survive)  #w=(Xt*X)^-1*Xt*y</span><br><span class="line">        print(&#x27;w calc finish&#x27;)</span><br><span class="line">    </span><br><span class="line">        feature=[&#x27;Fare&#x27;,&#x27;Pclass&#x27;,&#x27;Age&#x27;,&#x27;Sex&#x27;,&#x27;b&#x27;]</span><br><span class="line">        for i in zip(feature,w):</span><br><span class="line">            print(i)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">        valipredict_file_object.writerow([&quot;PassengerName&quot;, &quot;Actual Survived&quot;,&quot;Predict Survived&quot;,&quot;XO&quot;])</span><br><span class="line">        count=0.0</span><br><span class="line">        for i in range(predict.shape[0]):</span><br><span class="line">            temp=predict[i,0::].T.astype(float)</span><br><span class="line">            answer=temp.dot(w)</span><br><span class="line">            answer=answer[0]</span><br><span class="line">            if ((answer&gt;0.5 and validata[i][1]==1) or (answer&lt;0.5 and validata[i][1]==0)):</span><br><span class="line">                flag=&quot;Correct&quot;</span><br><span class="line">                count=count+1.0;</span><br><span class="line">            else:</span><br><span class="line">                flag=&quot;Error&quot;</span><br><span class="line">            valipredict_file_object.writerow([validata[i][3],validata[i][1],answer,flag])</span><br><span class="line">    </span><br><span class="line">        print(&quot;prediction finish&quot;)</span><br><span class="line">        print(&quot;prediction ratio:&quot;,&quot;%f %%&quot;%(count/predict.shape[0]*100))  </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">* * *</span><br><span class="line"></span><br><span class="line">Multivariate Linear Regression in scikit-learn</span><br><span class="line">==============================================</span><br><span class="line"></span><br><span class="line">Experimented with scikit, added several attributes, with the same data, but some attributes seem not very good, resulting in the accuracy dropping to 64.375000 %.</span><br><span class="line"></span><br><span class="line">![i0TxKO.jpg](https://s1.ax1x.com/2018/10/20/i0TxKO.jpg)</span><br><span class="line"></span><br><span class="line">If errors occur during the model fitting stage, please check if there are any empty elements, infinite elements, or inconsistent lengths of attributes in the x, y dataset you are fitting, and you can use info() to get an overview</span><br><span class="line"></span><br><span class="line">![i07DRx.jpg](https://s1.ax1x.com/2018/10/20/i07DRx.jpg)</span><br><span class="line"></span><br><span class="line">        train=train.dropna(subset=[&#x27;Age&#x27;,&#x27;Embarked&#x27;],axis=0)</span><br><span class="line">        vali=vali.dropna(subset=([&#x27;Age&#x27;,&#x27;Embarked&#x27;]),axis=0)</span><br><span class="line">    </span><br><span class="line">        train.loc[train[&quot;Sex&quot;]==&quot;male&quot;,&quot;Sex&quot;]=0</span><br><span class="line">        train.loc[train[&quot;Sex&quot;]==&quot;female&quot;,&quot;Sex&quot;]=1</span><br><span class="line">        train.loc[train[&quot;Embarked&quot;] == &quot;S&quot;, &quot;Embarked&quot;] = 0</span><br><span class="line">        train.loc[train[&quot;Embarked&quot;] == &quot;C&quot;, &quot;Embarked&quot;] = 1</span><br><span class="line">        train.loc[train[&quot;Embarked&quot;] == &quot;Q&quot;, &quot;Embarked&quot;] = 2</span><br><span class="line">        trainx=train.reindex(index=train.index[:],columns=[&#x27;Age&#x27;]+[&#x27;Sex&#x27;]+[&#x27;Parch&#x27;]+[&#x27;Fare&#x27;]+[&#x27;Embarked&#x27;]+[&#x27;SibSp&#x27;])</span><br><span class="line">    </span><br><span class="line">        vali.loc[vali[&quot;Sex&quot;]==&quot;male&quot;,&quot;Sex&quot;]=0</span><br><span class="line">        vali.loc[vali[&quot;Sex&quot;]==&quot;female&quot;,&quot;Sex&quot;]=1</span><br><span class="line">        vali.loc[vali[&quot;Embarked&quot;] == &quot;S&quot;, &quot;Embarked&quot;] = 0</span><br><span class="line">        vali.loc[vali[&quot;Embarked&quot;] == &quot;C&quot;, &quot;Embarked&quot;] = 1</span><br><span class="line">        vali.loc[vali[&quot;Embarked&quot;] == &quot;Q&quot;, &quot;Embarked&quot;] = 2</span><br><span class="line">        vali1=vali.reindex(index=vali.index[:],columns=[&#x27;Age&#x27;]+[&#x27;Sex&#x27;]+[&#x27;Parch&#x27;]+[&#x27;Fare&#x27;]+[&#x27;Embarked&#x27;]+[&#x27;SibSp&#x27;])</span><br><span class="line">    </span><br><span class="line">        survive=vali.reindex(index=vali.index[:],columns=[&#x27;Survived&#x27;])</span><br><span class="line">        survive=np.array(survive)</span><br><span class="line">    </span><br><span class="line">        feature=[&#x27;Age&#x27;,&#x27;Sex&#x27;,&#x27;Parch&#x27;,&#x27;Fare&#x27;,&#x27;Embarked&#x27;,&#x27;SibSp&#x27;]</span><br><span class="line">    </span><br><span class="line">        trainy=train.reindex(index=train.index[:],columns=[&#x27;Survived&#x27;])  </span><br><span class="line">        trainy=trainy.Survived</span><br><span class="line">    </span><br><span class="line">        X_train, X_test, y_train, y_test = train_test_split(trainx, trainy, random_state=1)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">        model=LinearRegression()</span><br><span class="line">        model.fit(X_train,y_train)</span><br><span class="line">        print(model)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">        for i in zip(feature,model.coef_):</span><br><span class="line">            print(i)</span><br><span class="line">    </span><br><span class="line">        predict=model.predict(vali1)</span><br><span class="line">    </span><br><span class="line">        count=0</span><br><span class="line">        for i in range(len(predict)):</span><br><span class="line">            if (predict[i]&gt;1 and survive[i] == 1) or  (predict[i]&lt;1 and survive [i]== 0 ):</span><br><span class="line">                count=count+1.0</span><br><span class="line">    </span><br><span class="line">        print(&quot;prediction finish&quot;)</span><br><span class="line">        print(&quot;prediction ratio:&quot;,&quot;%f %%&quot;%(count/len(predict)*100))</span><br><span class="line">    </span><br><span class="line">&#123;% endlang_content %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% lang_content zh %&#125;</span><br><span class="line"></span><br><span class="line">***</span><br><span class="line"></span><br><span class="line"># 不是算法的算法</span><br><span class="line"></span><br><span class="line">官方示例就是按几个属性分类，比如年龄，性别，票价(.....)</span><br><span class="line">然后对每个属性内所有人的生还数据（0或者1）加一起求平均。</span><br><span class="line">英文注释都是官方文档的说明</span><br><span class="line">我就当入门教程学了，也全打了上去</span><br><span class="line">代码如下：</span><br><span class="line"></span><br><span class="line">```Python</span><br><span class="line">    # -*- coding: utf-8 -*-</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Created on Sun Oct 30 15:28:22 2016</span><br><span class="line"></span><br><span class="line">    @author: thinkwee</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    import csv as csv </span><br><span class="line">    import numpy as np</span><br><span class="line">    from glue import qglue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    test_file=(open(r&#x27;文件目录略&#x27;, &#x27;r&#x27;))</span><br><span class="line">    test_file_object = csv.reader(open(r&#x27;文件目录略&#x27;, &#x27;r&#x27;))</span><br><span class="line">    testheader = next(test_file_object)</span><br><span class="line">    predictions_file = open(r&quot;文件目录略&quot;, &quot;w&quot;)</span><br><span class="line">    predictions_file_object = csv.writer(predictions_file)</span><br><span class="line">    p = csv.writer(predictions_file)</span><br><span class="line">    p.writerow([&quot;PassengerId&quot;, &quot;Survived&quot;])</span><br><span class="line">    csv_file_object = csv.reader(open(r&#x27;文件目录略&#x27;, &#x27;r&#x27;)) </span><br><span class="line">    trainheader = next(csv_file_object)  # The next() command just skips the </span><br><span class="line">                                         # first line which is a header</span><br><span class="line">    data=[]                               # Create a variable called &#x27;data&#x27;.</span><br><span class="line">    for row in csv_file_object:           # Run through each row in the csv file,</span><br><span class="line">        data.append(row)                  # adding each row to the data variable</span><br><span class="line">    print(type(data))</span><br><span class="line">    data = np.array(data)                   # Then convert from a list to an array</span><br><span class="line">                                         # Be aware that each item is currently</span><br><span class="line">                                         # a string in this format</span><br><span class="line"></span><br><span class="line">    number_passengers = np.size(data[0::,1].astype(np.float))</span><br><span class="line">    number_survived = np.sum(data[0::,1].astype(np.float))</span><br><span class="line">    proportion_survivors = number_survived / number_passengers</span><br><span class="line"></span><br><span class="line">    women_only_stats = data[0::,4] == &quot;female&quot; # This finds where all </span><br><span class="line">                                               # the elements in the gender</span><br><span class="line">                                               # column that equals “female”</span><br><span class="line">    men_only_stats = data[0::,4] != &quot;female&quot;   # This finds where all the </span><br><span class="line">                                               # elements do not equal </span><br><span class="line">                                               # female (i.e. male)</span><br><span class="line"></span><br><span class="line">    # Using the index from above we select the females and males separately</span><br><span class="line">    women_onboard = data[women_only_stats,1].astype(np.float)     </span><br><span class="line">    men_onboard = data[men_only_stats,1].astype(np.float)</span><br><span class="line"></span><br><span class="line">    # Then we finds the proportions of them that survived</span><br><span class="line">    proportion_women_survived = \</span><br><span class="line">                           np.sum(women_onboard) / np.size(women_onboard)  </span><br><span class="line">    proportion_men_survived = \</span><br><span class="line">                           np.sum(men_onboard) / np.size(men_onboard) </span><br><span class="line"></span><br><span class="line">    # and then print it out</span><br><span class="line">    print (&#x27;Proportion of women who survived is %s&#x27; % proportion_women_survived)</span><br><span class="line">    print (&#x27;Proportion of men who survived is %s&#x27; % proportion_men_survived)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # The script will systematically will loop through each combination </span><br><span class="line">    # and use the &#x27;where&#x27; function in python to search the passengers that fit that combination of variables. </span><br><span class="line">    # Just like before, you can ask what indices in your data equals female, 1st class, and paid more than $30. </span><br><span class="line">    # The problem is that looping through requires bins of equal sizes, i.e. $0-9,  $10-19,  $20-29,  $30-39.  </span><br><span class="line">    # For the sake of binning let&#x27;s say everything equal to and above 40 &quot;equals&quot; 39 so it falls in this bin. </span><br><span class="line">    # So then you can set the bins</span><br><span class="line"></span><br><span class="line">    # So we add a ceiling</span><br><span class="line">    fare_ceiling = 40</span><br><span class="line"></span><br><span class="line">    # then modify the data in the Fare column to = 39, if it is greater or equal to the ceiling</span><br><span class="line">    data[ data[0::,9].astype(np.float) &gt;= fare_ceiling, 9 ] = fare_ceiling - 1.0</span><br><span class="line"></span><br><span class="line">    fare_bracket_size = 10</span><br><span class="line">    number_of_price_brackets = fare_ceiling // fare_bracket_size</span><br><span class="line"></span><br><span class="line">    # Take the length of an array of unique values in column index 2</span><br><span class="line">    number_of_classes = len(np.unique(data[0::,2]))</span><br><span class="line"></span><br><span class="line">    number_of_age_brackets=8 </span><br><span class="line"></span><br><span class="line">    # Initialize the survival table with all zeros</span><br><span class="line">    survival_table = np.zeros((2, number_of_classes, </span><br><span class="line">                               number_of_price_brackets,</span><br><span class="line">                               number_of_age_brackets))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    #Now that these are set up, </span><br><span class="line">    #you can loop through each variable </span><br><span class="line">    #and find all those passengers that agree with the statements</span><br><span class="line"></span><br><span class="line">    for i in range(number_of_classes):               #loop through each class</span><br><span class="line">      for j in range(number_of_price_brackets):       #loop through each price bin</span><br><span class="line">        for k in range(number_of_age_brackets):     #loop through each age bin</span><br><span class="line">            women_only_stats_plus = data[                 #Which element           </span><br><span class="line">                            (data[0::,4] == &quot;female&quot;)     #is a female</span><br><span class="line">                           &amp;(data[0::,2].astype(np.float) #and was ith class</span><br><span class="line">                                 == i+1)                        </span><br><span class="line">                           &amp;(data[0:,9].astype(np.float)  #was greater </span><br><span class="line">                                &gt;= j*fare_bracket_size)   #than this bin              </span><br><span class="line">                           &amp;(data[0:,9].astype(np.float)  #and less than</span><br><span class="line">                                &lt; (j+1)*fare_bracket_size)</span><br><span class="line">                           &amp;(data[0:,5].astype(np.float)&gt;=k*10)</span><br><span class="line">                           &amp;(data[0:,5].astype(np.float)&lt;(k+1)*10)#the next bin</span><br><span class="line"></span><br><span class="line">                              , 1]                        #in the 2nd col                           </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            men_only_stats_plus = data[                   #Which element           </span><br><span class="line">                             (data[0::,4] != &quot;female&quot;)    #is a male</span><br><span class="line">                           &amp;(data[0::,2].astype(np.float) #and was ith class</span><br><span class="line">                                 == i+1)                                       </span><br><span class="line">                           &amp;(data[0:,9].astype(np.float)  #was greater </span><br><span class="line">                                &gt;= j*fare_bracket_size)   #than this bin              </span><br><span class="line">                           &amp;(data[0:,9].astype(np.float)  #and less than</span><br><span class="line">                                &lt; (j+1)*fare_bracket_size)#the next bin</span><br><span class="line">                           &amp;(data[0:,5].astype(np.float)&gt;=k*10)</span><br><span class="line">                           &amp;(data[0:,5].astype(np.float)&lt;(k+1)*10)</span><br><span class="line">                              , 1]</span><br><span class="line"></span><br><span class="line">            survival_table[0,i,j,k] = np.mean(women_only_stats_plus.astype(np.float)) </span><br><span class="line">            survival_table[1,i,j,k] = np.mean(men_only_stats_plus.astype(np.float))</span><br><span class="line"></span><br><span class="line">            #if nan then the type will change to string from float so this sentence can set nan to 0. </span><br><span class="line">            survival_table[ survival_table != survival_table ] = 0.</span><br><span class="line"></span><br><span class="line">    #Notice that  data[ where function, 1]  means </span><br><span class="line">    #it is finding the Survived column for the conditional criteria which is being called. </span><br><span class="line">    #As the loop starts with i=0 and j=0, </span><br><span class="line">    #the first loop will return the Survived values for all the 1st-class females (i + 1) </span><br><span class="line">    #who paid less than 10 ((j+1)*fare_bracket_size) </span><br><span class="line">    #and similarly all the 1st-class males who paid less than 10.  </span><br><span class="line">    #Before resetting to the top of the loop, </span><br><span class="line">    #we can calculate the proportion of survivors for this particular </span><br><span class="line">    #combination of criteria and record it to our survival table</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    #官方示例中将概率大于0.5的视为生还，这里我们略过</span><br><span class="line">    #直接打印详细概率</span><br><span class="line">    #survival_table[ survival_table &lt; 0.5 ] = 0</span><br><span class="line">    #survival_table[ survival_table &gt;= 0.5 ] = 1 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    #Then we can make the prediction</span><br><span class="line"></span><br><span class="line">    for row in test_file_object:                  # We are going to loop</span><br><span class="line">                                                  # through each passenger</span><br><span class="line">                                                  # in the test set                     </span><br><span class="line">      for j in range(number_of_price_brackets):   # For each passenger we</span><br><span class="line">                                                  # loop thro each price bin</span><br><span class="line">        try:                                      # Some passengers have no</span><br><span class="line">                                                  # Fare data so try to make</span><br><span class="line">          row[8] = float(row[8])                  # a float</span><br><span class="line">        except:                                   # If fails: no data, so </span><br><span class="line">          bin_fare = 3 - float(row[1])            # bin the fare according Pclass</span><br><span class="line">          break                                   # Break from the loop</span><br><span class="line">        if row[8] &gt; fare_ceiling:                    # If there is data see if</span><br><span class="line">                                                  # it is greater than fare</span><br><span class="line">                                                  # ceiling we set earlier</span><br><span class="line">          bin_fare = number_of_price_brackets-1   # If so set to highest bin</span><br><span class="line">          break                                   # And then break loop</span><br><span class="line">        if row[8] &gt;= j * fare_bracket_size\</span><br><span class="line">           and row[8] &lt; \</span><br><span class="line">           (j+1) * fare_bracket_size:             # If passed these tests </span><br><span class="line">                                                  # then loop through each bin </span><br><span class="line">          bin_fare = j                            # then assign index</span><br><span class="line">          break</span><br><span class="line"></span><br><span class="line">      for j in range(number_of_age_brackets): </span><br><span class="line"></span><br><span class="line">        try:                                    </span><br><span class="line"></span><br><span class="line">          row[4] = float(row[4])              </span><br><span class="line">        except:                                   </span><br><span class="line">          bin_age = -1      </span><br><span class="line">          break                                  </span><br><span class="line"></span><br><span class="line">        if row[4] &gt;= j * 10\</span><br><span class="line">           and row[4] &lt; \</span><br><span class="line">           (j+1) * 10:             # If passed these tests </span><br><span class="line">                                   # then loop through each bin </span><br><span class="line">          bin_age = j              # then assign index</span><br><span class="line">          break</span><br><span class="line"></span><br><span class="line">      if row[3] == &#x27;female&#x27;:       #If the passenger is female</span><br><span class="line">            p.writerow([row[0], &quot;%f %%&quot; % \</span><br><span class="line">                       (survival_table[0, int(row[1])-1, bin_fare,bin_age]*100)])</span><br><span class="line">      else:                        #else if male</span><br><span class="line">            p.writerow([row[0], &quot;%f %%&quot; % \</span><br><span class="line">                       (survival_table[1, int(row[1])-1, bin_fare,bin_age]*100)])</span><br><span class="line"></span><br><span class="line">    # Close out the files.</span><br><span class="line">    test_file.close() </span><br><span class="line">    predictions_file.close()</span><br></pre></td></tr></table></figure></code></pre>
+<hr />
+<h1 id="多元线性回归">多元线性回归</h1>
+<p>之后买了西瓜书，我把这个例题改成了线性回归模型：
+假设每一个人生还可能与这个人的性别，价位，舱位，年龄四个属性成线性关系，
+我们就利用最小二乘法找到一组线性系数，是所有样本到这个线性函数直线上的距离最小
+用均方误差作为性能度量，均方误差是线性系数的函数
+对线性系数w求导，可以得到w最优解的闭式</p>
+<p>关键公式是 ** <span class="math display">\[ w^*=(X^TX)^{-1}X^Ty
+\]</span> **</p>
+<ul>
+<li>X:数据集矩阵，每一行对应一个人的数据，每一行最后添加一个1，
+假如训练集有m个人，n个属性，则矩阵大小为m*(n+1)</li>
+<li>w:线性系数</li>
+<li>y:生还结果 <span class="math display">\[ y=w^T*x \]</span></li>
+</ul>
+<p>写的时候把年龄中缺失值全删除了，官方给了891条数据，我分了193条用于验证计算正确率，最后正确率是75.155280
+%</p>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TzrD.jpg" alt="i0TzrD.jpg" />
+<figcaption aria-hidden="true">i0TzrD.jpg</figcaption>
+</figure>
+<p>代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">    train1=train.dropna(subset=([<span class="string">&#x27;Age&#x27;</span>]),axis=<span class="number">0</span>)</span><br><span class="line">vali1=vali.dropna(subset=([<span class="string">&#x27;Age&#x27;</span>]),axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">validata=np.array(vali1)</span><br><span class="line">data=np.array(train1)</span><br><span class="line"></span><br><span class="line">fare_ceiling = <span class="number">40</span></span><br><span class="line">data[data[<span class="number">0</span>::,<span class="number">9</span>].astype(np.<span class="built_in">float</span>)&gt;=fare_ceiling,<span class="number">9</span>] = fare_ceiling - <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">train = np.column_stack((data[<span class="number">0</span>::,<span class="number">9</span>],data[<span class="number">0</span>::,<span class="number">2</span>],data[<span class="number">0</span>::,<span class="number">5</span>],data[<span class="number">0</span>::,<span class="number">4</span>]))</span><br><span class="line">predict=np.column_stack((validata[<span class="number">0</span>::,<span class="number">9</span>],validata[<span class="number">0</span>::,<span class="number">2</span>],validata[<span class="number">0</span>::,<span class="number">5</span>],validata[<span class="number">0</span>::,<span class="number">4</span>]))</span><br><span class="line">survive = np.column_stack((data[<span class="number">0</span>::,<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(train.shape[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">if</span> (train[i][<span class="number">3</span>]==<span class="string">&#x27;male&#x27;</span>):</span><br><span class="line">        train[i][<span class="number">3</span>]=<span class="number">0.00</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        train[i][<span class="number">3</span>]=<span class="number">1.00</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(predict.shape[<span class="number">0</span>]):</span><br><span class="line">    <span class="keyword">if</span> (predict[i][<span class="number">3</span>]==<span class="string">&#x27;male&#x27;</span>):</span><br><span class="line">        predict[i][<span class="number">3</span>]=<span class="number">0.00</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        predict[i][<span class="number">3</span>]=<span class="number">1.00</span></span><br><span class="line"></span><br><span class="line">x0=np.ones((train.shape[<span class="number">0</span>],<span class="number">1</span>))</span><br><span class="line">train=np.concatenate((train,x0),axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">x0=np.ones((predict.shape[<span class="number">0</span>],<span class="number">1</span>))</span><br><span class="line">predict=np.concatenate((predict,x0),axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;raw data finish&#x27;</span>)</span><br><span class="line"></span><br><span class="line">survive=survive.T.astype(np.<span class="built_in">float</span>)</span><br><span class="line">traint=train.T.astype(np.<span class="built_in">float</span>)</span><br><span class="line">w0=traint.dot(train.astype(np.<span class="built_in">float</span>))</span><br><span class="line">w1=(np.linalg.inv(w0))  </span><br><span class="line">w2=w1.dot(traint)</span><br><span class="line">w=w2.dot(survive)  <span class="comment">#w=(Xt*X)^-1*Xt*y</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;w calc finish&#x27;</span>)</span><br><span class="line"></span><br><span class="line">feature=[<span class="string">&#x27;Fare&#x27;</span>,<span class="string">&#x27;Pclass&#x27;</span>,<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Sex&#x27;</span>,<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">zip</span>(feature,w):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">valipredict_file_object.writerow([<span class="string">&quot;PassengerName&quot;</span>, <span class="string">&quot;Actual Survived&quot;</span>,<span class="string">&quot;Predict Survived&quot;</span>,<span class="string">&quot;XO&quot;</span>])</span><br><span class="line">count=<span class="number">0.0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(predict.shape[<span class="number">0</span>]):</span><br><span class="line">    temp=predict[i,<span class="number">0</span>::].T.astype(<span class="built_in">float</span>)</span><br><span class="line">    answer=temp.dot(w)</span><br><span class="line">    answer=answer[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> ((answer&gt;<span class="number">0.5</span> <span class="keyword">and</span> validata[i][<span class="number">1</span>]==<span class="number">1</span>) <span class="keyword">or</span> (answer&lt;<span class="number">0.5</span> <span class="keyword">and</span> validata[i][<span class="number">1</span>]==<span class="number">0</span>)):</span><br><span class="line">        flag=<span class="string">&quot;Correct&quot;</span></span><br><span class="line">        count=count+<span class="number">1.0</span>;</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag=<span class="string">&quot;Error&quot;</span></span><br><span class="line">    valipredict_file_object.writerow([validata[i][<span class="number">3</span>],validata[i][<span class="number">1</span>],answer,flag])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;prediction finish&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;prediction ratio:&quot;</span>,<span class="string">&quot;%f %%&quot;</span>%(count/predict.shape[<span class="number">0</span>]*<span class="number">100</span>))  </span><br></pre></td></tr></table></figure>
+<hr />
+<h1 id="scikit-learn中的多元线性回归">scikit-learn中的多元线性回归</h1>
+<p>试了一下scikit,增加了几个属性，一样的数据，但是好像有些属性不太好，导致正确率下降至64.375000
+%</p>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0TxKO.jpg" alt="i0TxKO.jpg" />
+<figcaption aria-hidden="true">i0TxKO.jpg</figcaption>
+</figure>
+<p>如果再模型的fit阶段出现错误，请检查你fit的x,y数据集是否出现了空元素，无限大元素，或者各个属性的长度不一致，可以用info()做一个概览</p>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i07DRx.jpg" alt="i07DRx.jpg" />
+<figcaption aria-hidden="true">i07DRx.jpg</figcaption>
+</figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">train=train.dropna(subset=[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Embarked&#x27;</span>],axis=<span class="number">0</span>)</span><br><span class="line">vali=vali.dropna(subset=([<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Embarked&#x27;</span>]),axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">train.loc[train[<span class="string">&quot;Sex&quot;</span>]==<span class="string">&quot;male&quot;</span>,<span class="string">&quot;Sex&quot;</span>]=<span class="number">0</span></span><br><span class="line">train.loc[train[<span class="string">&quot;Sex&quot;</span>]==<span class="string">&quot;female&quot;</span>,<span class="string">&quot;Sex&quot;</span>]=<span class="number">1</span></span><br><span class="line">train.loc[train[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;S&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">0</span></span><br><span class="line">train.loc[train[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;C&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">1</span></span><br><span class="line">train.loc[train[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;Q&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">2</span></span><br><span class="line">trainx=train.reindex(index=train.index[:],columns=[<span class="string">&#x27;Age&#x27;</span>]+[<span class="string">&#x27;Sex&#x27;</span>]+[<span class="string">&#x27;Parch&#x27;</span>]+[<span class="string">&#x27;Fare&#x27;</span>]+[<span class="string">&#x27;Embarked&#x27;</span>]+[<span class="string">&#x27;SibSp&#x27;</span>])</span><br><span class="line"></span><br><span class="line">vali.loc[vali[<span class="string">&quot;Sex&quot;</span>]==<span class="string">&quot;male&quot;</span>,<span class="string">&quot;Sex&quot;</span>]=<span class="number">0</span></span><br><span class="line">vali.loc[vali[<span class="string">&quot;Sex&quot;</span>]==<span class="string">&quot;female&quot;</span>,<span class="string">&quot;Sex&quot;</span>]=<span class="number">1</span></span><br><span class="line">vali.loc[vali[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;S&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">0</span></span><br><span class="line">vali.loc[vali[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;C&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">1</span></span><br><span class="line">vali.loc[vali[<span class="string">&quot;Embarked&quot;</span>] == <span class="string">&quot;Q&quot;</span>, <span class="string">&quot;Embarked&quot;</span>] = <span class="number">2</span></span><br><span class="line">vali1=vali.reindex(index=vali.index[:],columns=[<span class="string">&#x27;Age&#x27;</span>]+[<span class="string">&#x27;Sex&#x27;</span>]+[<span class="string">&#x27;Parch&#x27;</span>]+[<span class="string">&#x27;Fare&#x27;</span>]+[<span class="string">&#x27;Embarked&#x27;</span>]+[<span class="string">&#x27;SibSp&#x27;</span>])</span><br><span class="line"></span><br><span class="line">survive=vali.reindex(index=vali.index[:],columns=[<span class="string">&#x27;Survived&#x27;</span>])</span><br><span class="line">survive=np.array(survive)</span><br><span class="line"></span><br><span class="line">feature=[<span class="string">&#x27;Age&#x27;</span>,<span class="string">&#x27;Sex&#x27;</span>,<span class="string">&#x27;Parch&#x27;</span>,<span class="string">&#x27;Fare&#x27;</span>,<span class="string">&#x27;Embarked&#x27;</span>,<span class="string">&#x27;SibSp&#x27;</span>]</span><br><span class="line"></span><br><span class="line">trainy=train.reindex(index=train.index[:],columns=[<span class="string">&#x27;Survived&#x27;</span>])  </span><br><span class="line">trainy=trainy.Survived</span><br><span class="line"></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(trainx, trainy, random_state=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">model=LinearRegression()</span><br><span class="line">model.fit(X_train,y_train)</span><br><span class="line"><span class="built_in">print</span>(model)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">zip</span>(feature,model.coef_):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line">predict=model.predict(vali1)</span><br><span class="line"></span><br><span class="line">count=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(predict)):</span><br><span class="line">    <span class="keyword">if</span> (predict[i]&gt;<span class="number">1</span> <span class="keyword">and</span> survive[i] == <span class="number">1</span>) <span class="keyword">or</span>  (predict[i]&lt;<span class="number">1</span> <span class="keyword">and</span> survive [i]== <span class="number">0</span> ):</span><br><span class="line">        count=count+<span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;prediction finish&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;prediction ratio:&quot;</span>,<span class="string">&quot;%f %%&quot;</span>%(count/<span class="built_in">len</span>(predict)*<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/code/" rel="tag"># code</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/02/04/pandas-skill/" rel="prev" title="Pandas Basics">
+                  <i class="fa fa-angle-left"></i> Pandas Basics
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/02/12/MachineLearningNote/" rel="next" title="Notes for ML">
+                  Notes for ML <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">16:35</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2017/02/07/TitanicLinearRegression/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>

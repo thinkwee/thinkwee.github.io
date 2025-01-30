@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Reading note for reformer.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reformer - Paper Reading">
+<meta property="og:url" content="https://thinkwee.top/2020/02/07/reformer/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="Reading note for reformer.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/16/39Y8pt.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/16/39l0tP.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/16/39Y8pt.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/16/39l0tP.png">
+<meta property="article:published_time" content="2020-02-07T13:18:11.000Z">
+<meta property="article:modified_time" content="2025-01-30T02:10:45.363Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="deep learning">
+<meta property="article:tag" content="natural language processing">
+<meta property="article:tag" content="local sensitive hashing">
+<meta property="article:tag" content="transformer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/02/16/39Y8pt.png">
+
+
+<link rel="canonical" href="https://thinkwee.top/2020/02/07/reformer/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2020/02/07/reformer/","path":"2020/02/07/reformer/","title":"Reformer - Paper Reading"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Reformer - Paper Reading | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#efficiently-and-economically"><span class="nav-number">1.</span> <span class="nav-text">Efficiently and Economically</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lsh-attention"><span class="nav-number">2.</span> <span class="nav-text">LSH Attention</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reversible-transformer"><span class="nav-number">3.</span> <span class="nav-text">Reversible Transformer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%BF%AB%E5%A5%BD%E7%9C%81"><span class="nav-number">4.</span> <span class="nav-text">多快好省</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lsh-attention"><span class="nav-number">5.</span> <span class="nav-text">LSH Attention</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reversible-transformer"><span class="nav-number">6.</span> <span class="nav-text">Reversible Transformer</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/02/28/structured-summarization/" rel="bookmark">
+        <time class="popular-posts-time">2020-02-28</time>
+        <br>
+      Structured Neural Summarization, Paper Reading
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2020/02/07/reformer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Reformer - Paper Reading | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Reformer - Paper Reading
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-07 21:18:11" itemprop="dateCreated datePublished" datetime="2020-02-07T21:18:11+08:00">2020-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-30 10:10:45" itemprop="dateModified" datetime="2025-01-30T10:10:45+08:00">2025-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/02/07/reformer/" class="post-meta-item leancloud_visitors" data-flag-title="Reformer - Paper Reading" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>9k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>8 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Reading note for reformer.</p>
+<span id="more"></span>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="efficiently-and-economically">Efficiently and Economically</h1>
+<ul>
+<li>The author primarily proposes two methods to reduce memory usage of
+Transformers, especially when processing extremely long sequences,
+significantly reducing computational load and improving speed.</li>
+</ul>
+<h1 id="lsh-attention">LSH Attention</h1>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/39Y8pt"><img data-src="https://s2.ax1x.com/2020/02/16/39Y8pt.png"
+alt="39Y8pt.png" /></a></p>
+<ul>
+<li><p>The original idea is that in Transformer's self-attention, each
+token as a query needs to calculate attention with all tokens in the
+sequence, and then weight them to obtain a representation of the current
+token. However, we know that attention is generally very sparse, with
+weights concentrated on just a few tokens. So why not calculate weights
+and apply weighting only on those few tokens, thereby greatly reducing
+the <span class="math inline">\(O(N^2)\)</span> computational and memory
+overhead in self-attention?</p></li>
+<li><p>How can we know which few tokens these are? If we could only
+determine this by calculating attention, how could we possibly know
+which tokens have high weights before computing attention? It's
+impossible. But in self-attention, computing weights between query and
+key is simply an inner product, where keys similar to the query have
+higher weights. The model learns attention by learning to generate
+correct query and key representations, and only needs to compare query
+and key when calculating attention.</p></li>
+<li><p>So the problem transforms into finding a few keys similar to each
+query for attention calculation. How? Certainly not by calculating all
+and taking the top k, as that would contradict our initial goal of
+reducing computational complexity. Here, the author uses Local Sensitive
+Hashing (LSH), which means that similar vectors are more likely to be
+mapped to the same hash value, with multiple similar vectors essentially
+placed in the same "bucket". We only need to calculate self-attention
+within each bucket. More specifically, for two vectors <span
+class="math inline">\(q_1, q_2\)</span>, an LSH hash function <span
+class="math inline">\(h\)</span> can achieve:</p>
+<p><span class="math display">\[
+for \ dis(q_1,q_2) &lt;= d_1 , \ p(h(q_1)==h(q_2)) &gt;= p_1 \\
+for \ dis(q_1,q_2) &gt;= d_2 , \ p(h(q_1)==h(q_2)) &lt;= p_2 \\
+\]</span></p></li>
+<li><p>Existing research in related fields has various hash functions
+<span class="math inline">\(h\)</span> for different distance metrics
+<span class="math inline">\(dis\)</span>. Evidently, our distance metric
+here is cosine distance, corresponding to spherical projection LSH,
+which projects vectors onto a b-dimensional hypersphere divided into
+<span class="math inline">\(n_{buckets}\)</span> quadrants. Vectors
+projected into the same quadrant are in the same bucket. The specific
+projection hash is:</p>
+<p><span class="math display">\[
+h(x) = argmax[xR;-xR] \\
+\]</span></p>
+<p>Where <span class="math inline">\(R\)</span> is a random projection
+matrix of <span class="math inline">\([d_k,b/2]\)</span></p></li>
+<li><p>The next challenge is that the number of queries and keys in a
+bucket might not be equal, and many queries might lack keys. So the
+author simply shares QK by making queries and keys emerge from the same
+linear transformation, with keys just normalized: <span
+class="math inline">\(k_{j}=\frac{q_{j}}{\left\|q_{j}\right\|}\)</span></p></li>
+<li><p>Chunk Operation: Instead of performing self-attention separately
+in each bucket, the author segments them, rearranging bucket contents
+into a sequence, cutting it into equal-length segments, performing
+self-attention within segments, and also performing attention between
+adjacent segments. There's some doubt here: the paper's diagram looks
+ideal, with buckets of almost equal size that can be compensated by
+adjacent segment attention. But the actual bucket sizes are unknown.
+Perhaps by artificially setting this, the author is imposing a prior
+constraint on attention learning, suggesting bucket sizes tend to be
+equal and match segment length.</p></li>
+<li><p>Multi-round LSH: LSH involves probability and thus error. The
+author devised a clever experiment to verify LSH's restoration of
+original attention, finding single-round performance unsatisfactory.
+Therefore, multiple hash rounds are used to ensure probability, taking
+the union of multiple hash rounds to ensure similar vectors land in the
+same bucket. Taking the union instead of intersection is likely because
+with many buckets, hashing becomes sparse, and the probability of
+dissimilar vectors landing in the same bucket is far lower than similar
+vectors landing in different buckets. Some details here remain to be
+elaborated.</p></li>
+<li><p>Causal Masking: Normal transformers do temporal masking at the
+decoder, but LSH scrambles sequence order, so corresponding processing
+is needed to ensure temporal mask correctness.</p></li>
+<li><p>Notably, most self-attention implementations include the self in
+value, but in LSH, this can't be done because key and value share
+values, and the self is always the most similar.</p></li>
+</ul>
+<h1 id="reversible-transformer">Reversible Transformer</h1>
+<ul>
+<li><p>This section's idea references the paper: "The Reversible
+Residual Network: Backpropagation Without Storing Activations".</p></li>
+<li><p>The basic idea is to modify the residual structure into a
+reversible residual structure to save GPU memory. During
+backpropagation, networks need to store activation values for each layer
+to conduct automatic differentiation, calculate each layer's
+derivatives, and chain-rule differentiate. Storing these activation
+values consumes significant GPU memory. The reversible residual idea is
+to split channels into two paths with mutual residuals, modifying the
+computational graph's topology so that path activations can be
+calculated from the previous layer's activations, as shown in the
+image:<br />
+<img data-src="https://s2.ax1x.com/2020/02/16/39l0tP.png"
+alt="39l0tP.png" /></p></li>
+<li><p>Forward propagation process:</p>
+<p><span class="math display">\[
+\begin{array}{l}{y_{1}=x_{1}+\mathcal{F}\left(x_{2}\right)} \\
+{y_{2}=x_{2}+\mathcal{G}\left(y_{1}\right)}\end{array}
+\]</span></p></li>
+<li><p>Backward propagation:</p>
+<p><span class="math display">\[
+\begin{array}{l}{x_{2}=y_{2}-\mathcal{G}\left(y_{1}\right)} \\
+{x_{1}=y_{1}-\mathcal{F}\left(x_{2}\right)}\end{array}
+\]</span></p></li>
+<li><p>Note that calculating <span class="math inline">\(x_2\)</span>
+only uses previous layer activations <span
+class="math inline">\(y_1,y_2\)</span>, and calculating <span
+class="math inline">\(x_1\)</span> uses the previously computed <span
+class="math inline">\(x_1\)</span>, thus avoiding activation value
+storage. Although space is saved, activation functions must be
+recalculated, essentially trading time for space.</p></li>
+<li><p>The original paper applied this to ResNet, saving GPU memory to
+enable larger batch sizes. In transformers, it can be used to train
+longer sequences.</p></li>
+<li><p>In Reformer, functions <span
+class="math inline">\(\mathcal{F}\)</span> and <span
+class="math inline">\(\mathcal{G}\)</span> are respectively changed to
+self-attention and fully connected layers, corresponding to the
+transformer's reversible structure.</p></li>
+<li><p>While the reversible structure eliminates layer-count impact on
+space complexity, the feed-forward network (FFN) in transformers, which
+consumes the most memory, is still influenced by sequence length. To
+reduce FFN memory usage, the author again employs chunking, as FFN lacks
+sequence dependencies and can be computed in segments. Correspondingly,
+reversible structure inputs and outputs are also computed in segments.
+For scenarios with large vocabularies, loss log-probabilities are also
+computed segmentally.</p></li>
+<li><p>The author additionally notes that this saves intermediate
+variables during backpropagation gradient computation, not model
+parameters. Saving parameter memory can be achieved by transferring to
+CPU memory, typically uneconomical due to high data transfer overhead
+between CPU and GPU. However, since Reformer can process more data in
+each transformation, this becomes more feasible.</p></li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="多快好省">多快好省</h1>
+<ul>
+<li>作者主要提出了两点操作来降低Transformer，尤其是在处理超长序列时的内存占用，减少了大量运算，提升了速度。</li>
+</ul>
+<h1 id="lsh-attention">LSH Attention</h1>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/39Y8pt"><img data-src="https://s2.ax1x.com/2020/02/16/39Y8pt.png"
+alt="39Y8pt.png" /></a></p>
+<ul>
+<li><p>这一部分最原始的想法就是，Transformer当中的self
+attention，每一个token作为query时，要把序列中所有token当成key去计算注意力，再在所有token上加权得到当前token的一个表示，但我们知道注意力一般是非常稀疏的，权重就集中于少数几个token上，那不如只在这几个token上计算权重并加权，这样就大大减少了self
+attention里<span
+class="math inline">\(O(N^2)\)</span>的计算量和内存占用量。</p></li>
+<li><p>那么怎么才知道那少数几个token是哪几个？假如要完全靠注意力计算出来才能得到的话，怎么可能在计算注意力之前就知道哪几个token权重大？是不可能，但是在self
+attention里，query和key计算权重，就是简单的内积，和query相似的key权重大。模型学习到注意力，是指学习到生成正确的query以及key的表示，在计算注意力时只需要比对query和key就可以了。</p></li>
+<li><p>所以问题转换成，对每一个query，我先找到相近的几个key计算注意力就好了。怎么找？当然不是全部算一遍取top
+k，那就与我们减少计算量的初衷相悖，在这里作者用到了Local Sensitive
+Hashing(LSH)，局部敏感哈希，大意就是相近的向量，映射到同一哈希值的概率较大，多个相近的、映射到同一哈希值的向量相当于装进了同一个桶里(bucket)，那么我们只需要对每个桶里的向量计算self
+attention。详细一点的描述是，两个向量<span
+class="math inline">\(q_1,q_2\)</span>，满足LSH的哈希函数<span
+class="math inline">\(h\)</span>能做到</p>
+<p><span class="math display">\[
+for \ dis(q_1,q_2) &lt;= d_1 , \ p(h(q_1)==h(q_2)) &gt;= p_1 \\
+for \ dis(q_1,q_2) &gt;= d_2 , \ p(h(q_1)==h(q_2)) &lt;= p_2 \\
+\]</span></p></li>
+<li><p>相关领域已经有很多研究，对于不同的距离度量<span
+class="math inline">\(dis\)</span>，有不同的<span
+class="math inline">\(h\)</span>满足LSH。显然在这里我们的距离度量是cosine距离，对应的LSH哈希是球形投影，即将向量投影到一个b维超球面上，该球面被分成了<span
+class="math inline">\(n_{buckets}\)</span>个象限，投影到同一象限的向量即在同一个桶中，该投影哈希具体写出来是：</p>
+<p><span class="math display">\[
+h(x) = argmax[xR;-xR] \\
+\]</span></p>
+<p><span class="math inline">\(R\)</span>是一个<span
+class="math inline">\([d_k,b/2]\)</span>的随机投影矩阵</p></li>
+<li><p>接下来的一个问题是，一个桶里面，query和key的数量不一定相等，而且有可能一个桶里许多query，没有key。于是作者干脆share
+QK，即令query和key相同，都是embedding从同一个线性变换出来的，只不过key做了归一化操作<span
+class="math inline">\(k_{j}=\frac{q_{j}}{\left\|q_{j}\right\|}\)</span></p></li>
+<li><p>chunk操作：接下来作者并不是让每个桶里分别做self
+attention，而是做了分段，即把同一个桶里的放在一起，重新排成一个序列，然后等长切成若干个段，段内做self
+attention，相邻的段也做一次attention。这里其实有点疑问，论文的图画的非常理想，每个桶的大小差不多，可能差了一两个可以通过相邻段做attention来弥补，但是实际情况并不知道每个桶的大小。也许是因为attention本身也是学习出来的，作者这么人为设置，是不是相当于给了一个每个桶大小都趋于相同且等于段长的先验限制了attention的学习。</p></li>
+<li><p>Multi-round
+lsh：lsh是讲概率的，有概率就有误差，作者构造了一个巧妙的实验来验证lsh对原始attention的还原度，发现单轮的效果并不好。因此就多次hash来保证概率，取多轮hash的并集来保证相似的向量能落到同一个桶里。这里取并集而不是交集，个人理解是桶一多，hash其实很稀疏，不相似的向量落在同一个桶的概率远小于相似的向量落在不同桶的概率。这里还有一些细节待补充</p></li>
+<li><p>casual
+masking：正常的transformer在decoder端是要做时序掩码的，这里lsh把序列顺序打乱了，因此也要做对应的处理，保证时序掩码的正确性。</p></li>
+<li><p>值得一提的是大部分self
+attention的实现，value包括了自身，但是在lsh里不能包含自身，因为key和value共享值，自身永远是最相似的。</p></li>
+</ul>
+<h1 id="reversible-transformer">Reversible Transformer</h1>
+<ul>
+<li><p>这一部分的想法参照了论文：The Reversible Residual Network:
+Backpropagation Without Storing Activations。</p></li>
+<li><p>基本思想就是，将残差结构改为可逆残差结构，从而节省了显存。网络在做方向传播的时候，需要存储每一层的激活值，带入自动微分计算每一层的导数，再链式求导，其中存储每一层的激活值占了很大的显存。可逆残差的思想就是，通过将channel一分为二，做成两路，互相残差，更改计算图的拓扑结构，使得两路的激活值能够通过上一层的激活值计算出来，如图：<br />
+<img data-src="https://s2.ax1x.com/2020/02/16/39l0tP.png"
+alt="39l0tP.png" /></p></li>
+<li><p>前向传播过程为：</p>
+<p><span class="math display">\[
+\begin{array}{l}{y_{1}=x_{1}+\mathcal{F}\left(x_{2}\right)} \\
+{y_{2}=x_{2}+\mathcal{G}\left(y_{1}\right)}\end{array}
+\]</span></p></li>
+<li><p>反向传播为：</p>
+<p><span class="math display">\[
+\begin{array}{l}{x_{2}=y_{2}-\mathcal{G}\left(y_{1}\right)} \\
+{x_{1}=y_{1}-\mathcal{F}\left(x_{2}\right)}\end{array}
+\]</span></p></li>
+<li><p>可以看到计算<span
+class="math inline">\(x_2\)</span>时只用了上一层的激活值<span
+class="math inline">\(y_1,y_2\)</span>，计算<span
+class="math inline">\(x_1\)</span>时用了上一步计算出来的<span
+class="math inline">\(x_1\)</span>，因此不需要存储这两个激活值。虽然节省了空间，但是激活函数需要重新算一遍，相当于用时间换空间。</p></li>
+<li><p>原始论文用在resnet里，节约显存可以换得更大的batch_size，在transformer中就可以用来训练更长的sequence</p></li>
+<li><p>reformer中把两个函数<span
+class="math inline">\(\mathcal{F}\)</span>和<span
+class="math inline">\(\mathcal{G}\)</span>分别改成了自注意力层和全连接层，这样就对应了transformer的可逆结构</p></li>
+<li><p>可逆结构虽然消除了层数对于空间复杂度的影响，但是transformer里占显存最大的FFN，其依然受序列长度影响，为了减少这一部分显存占用，作者有一次采用了chunking，因为FFN这里是不存在序列依赖的，完全可以拆成几段计算，相应的，可逆结构的输入输出也拆成几段计算，又一次用时间换空间。此外，对于词典较大的应用场景，作者在计算损失log-probabilities时也是分段的。</p></li>
+<li><p>作者还额外提到，这样节省的是反向传播计算梯度时用到的中间临时变量，并不会节省参数量，节省参数量在GPU的消耗可以通过将其转到CPU内存来解决，通常这样的操作得不偿失，因为在CPU和GPU之间传输数据非常耗时，但是由于reformer在每次转换时可以处理更多的数据，就“得能尝失”了。</p></li>
+</ul>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+              <a href="/tags/natural-language-processing/" rel="tag"># natural language processing</a>
+              <a href="/tags/local-sensitive-hashing/" rel="tag"># local sensitive hashing</a>
+              <a href="/tags/transformer/" rel="tag"># transformer</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/12/16/201912/" rel="prev" title="Paper Reading 4">
+                  <i class="fa fa-angle-left"></i> Paper Reading 4
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/02/13/svm/" rel="next" title="SVM">
+                  SVM <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">16:35</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2020/02/07/reformer/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="reading note for STRUCTURED NEURAL SUMMARIZATION.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Structured Neural Summarization, Paper Reading">
+<meta property="og:url" content="https://thinkwee.top/2020/02/28/structured-summarization/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="reading note for STRUCTURED NEURAL SUMMARIZATION.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/11/1Toe6P.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/27/3082wD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/28/3BkTun.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/11/1TTHPJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/11/1Toe6P.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/27/3082wD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/28/3BkTun.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/11/1TTHPJ.png">
+<meta property="article:published_time" content="2020-02-28T02:22:26.000Z">
+<meta property="article:modified_time" content="2025-01-30T02:10:45.363Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="graph neural network">
+<meta property="article:tag" content="deep learning">
+<meta property="article:tag" content="summarization">
+<meta property="article:tag" content="natural language processing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/02/11/1Toe6P.png">
+
+
+<link rel="canonical" href="https://thinkwee.top/2020/02/28/structured-summarization/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2020/02/28/structured-summarization/","path":"2020/02/28/structured-summarization/","title":"Structured Neural Summarization, Paper Reading"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Structured Neural Summarization, Paper Reading | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#intuition"><span class="nav-number">1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ggnn"><span class="nav-number">2.</span> <span class="nav-text">GGNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ggsnn"><span class="nav-number">3.</span> <span class="nav-text">GGSNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sequence-gnns"><span class="nav-number">4.</span> <span class="nav-text">Sequence GNNs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#intuition"><span class="nav-number">5.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ggnn"><span class="nav-number">6.</span> <span class="nav-text">GGNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ggsnn"><span class="nav-number">7.</span> <span class="nav-text">GGSNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sequence-gnns"><span class="nav-number">8.</span> <span class="nav-text">Sequence GNNs</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2019/11/13/kg/" rel="bookmark">
+        <time class="popular-posts-time">2019-11-13</time>
+        <br>
+      Paper reading on Knowledge Graphs
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2019/10/30/heterogeneous/" rel="bookmark">
+        <time class="popular-posts-time">2019-10-30</time>
+        <br>
+      Note for Heterogeneous Information Network
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/02/13/svm/" rel="bookmark">
+        <time class="popular-posts-time">2020-02-13</time>
+        <br>
+      SVM
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2019/10/03/graph-summarization/" rel="bookmark">
+        <time class="popular-posts-time">2019-10-03</time>
+        <br>
+      Note for Graph-based Summarization
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2019/12/16/201912/" rel="bookmark">
+        <time class="popular-posts-time">2019-12-16</time>
+        <br>
+      Paper Reading 4
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2020/02/28/structured-summarization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Structured Neural Summarization, Paper Reading | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Structured Neural Summarization, Paper Reading
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-28 10:22:26" itemprop="dateCreated datePublished" datetime="2020-02-28T10:22:26+08:00">2020-02-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-30 10:10:45" itemprop="dateModified" datetime="2025-01-30T10:10:45+08:00">2025-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/02/28/structured-summarization/" class="post-meta-item leancloud_visitors" data-flag-title="Structured Neural Summarization, Paper Reading" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>12k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>11 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>reading note for STRUCTURED NEURAL SUMMARIZATION.</p>
+<span id="more"></span>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="intuition">Intuition</h1>
+<ul>
+<li>A natural idea of introducing GNN into seq2seq is to first obtain
+token representations using a sequence encoder, then construct
+relationships between tokens, build a graph, and feed the graph and
+token representations into a GNN to obtain new token
+representations.</li>
+<li>The problem is that for summarization, the intuitive approach would
+be to use sentences as nodes and construct a relationship graph between
+sentences. This would result in sentence-level representations, lacking
+word-level granularity, which would make it difficult to implement an
+attention-based decoder.</li>
+<li>The authors' approach is quite straightforward: directly create a
+word-level GNN, where a document with 900 words becomes a graph with 900
+nodes. The edge relationships are heterogeneous, consisting of three
+types:
+<ul>
+<li>All words in a sentence connect to an additional sentence node, and
+all words in an entity connect to an additional entity node. These edges
+are called IN</li>
+<li>Connecting the previous word to the next word, and the previous
+sentence to the next sentence. These edges are called NEXT</li>
+<li>Coreference resolution, referred to as REF The overall structure is
+shown in the following image: <img data-src="https://s2.ax1x.com/2020/02/11/1Toe6P.png" alt="1Toe6P.png" /></li>
+</ul></li>
+</ul>
+<h1 id="ggnn">GGNN</h1>
+<ul>
+<li><p>The GNN used by the authors is a Gated Graph Neural Network. The
+original paper: GATED GRAPH SEQUENCE NEURAL NETWORKS</p>
+<p><span class="math display">\[
+\begin{aligned} \mathbf{h}_{v}^{(1)}
+&amp;=\left[\boldsymbol{x}_{v}^{\top}, \mathbf{0}\right]^{\top} \\
+\mathbf{a}_{v}^{(t)}
+&amp;=\mathbf{A}_{v:}^{\top}\left[\mathbf{h}_{1}^{(t-1) \top} \ldots
+\mathbf{h}_{|\mathcal{V}|}^{(t-1) \top}\right]^{\top}+\mathbf{b} \\
+\mathbf{z}_{v}^{t} &amp;=\sigma\left(\mathbf{W}^{z}
+\mathbf{a}_{v}^{(t)}+\mathbf{U}^{z} \mathbf{h}_{v}^{(t-1)}\right)
+\end{aligned} \\
+\begin{aligned} \mathbf{r}_{v}^{t} &amp;=\sigma\left(\mathbf{W}^{r}
+\mathbf{a}_{v}^{(t)}+\mathbf{U}^{r} \mathbf{h}_{v}^{(t-1)}\right) \\
+\widetilde{\mathbf{h}_{v}^{(t)}} &amp;=\tanh \left(\mathbf{W}
+\mathbf{a}_{v}^{(t)}+\mathbf{U}\left(\mathbf{r}_{v}^{t} \odot
+\mathbf{h}_{v}^{(t-1)}\right)\right) \\ \mathbf{h}_{v}^{(t)}
+&amp;=\left(1-\mathbf{z}_{v}^{t}\right) \odot
+\mathbf{h}_{v}^{(t-1)}+\mathbf{z}_{v}^{t} \odot
+\widetilde{\mathbf{h}_{v}^{(t)}} \end{aligned} \\
+\]</span></p></li>
+<li><p>GGNN was published in 2015, improving upon the GNN model from
+2009.</p></li>
+<li><p>The original GNN model essentially uses the graph's topological
+relationships, masking some edges in a multi-layer linear network. The
+representation of nodes at each layer is obtained through linear
+transformations of neighboring nodes from the previous layer
+(propagation), with the final layer using a linear layer to output node
+labels. <img data-src="https://s2.ax1x.com/2020/02/27/3082wD.png"
+alt="3082wD.png" /></p></li>
+<li><p>GGNN considers directed and heterogeneous edges. Its adjacency
+matrix A, as shown in the figure, is a linear layer of <span
+class="math inline">\(\mathbf{A} \in \mathbb{R}^{D|\mathcal{V}| \times 2
+D|\mathcal{V}|}\)</span>, with twice the width representing two output
+channels in both directions. The input node representation matrix is
+<span class="math inline">\(\mathbb{R}^{D|\mathcal{V}|}\)</span>, where
+<span class="math inline">\(A\)</span> contains parameters that depend
+on edge type and direction, essentially obtained through embedding
+lookup. This is followed by a GRU-like update, with <span
+class="math inline">\(z\)</span> and <span
+class="math inline">\(r\)</span> being the update and reset gates,
+respectively. The formula meanings are as follows:</p>
+<ul>
+<li>1: Initialize node embeddings by adding hand-crafted features
+according to the specific task and padding to the same length</li>
+<li>2: Obtain propagated information through a linear layer containing
+adjacency information</li>
+<li>3: Calculate the update gate based on the previous layer's state and
+propagated information</li>
+<li>4: Calculate the reset gate based on the previous layer's state and
+propagated information</li>
+<li>5,6: Similar to GRU</li>
+</ul></li>
+<li><p>For the output part, a simple linear layer can be applied to each
+node for node-level tasks. To obtain the graph's representation, a
+gating mechanism can be used (originally described as attention):</p>
+<p><span class="math display">\[
+\mathbf{h}_{\mathcal{G}}=\tanh \left(\sum_{v \in \mathcal{V}}
+\sigma\left(i\left(\mathbf{h}_{v}^{(T)},
+\boldsymbol{x}_{v}\right)\right) \odot \tanh
+\left(j\left(\mathbf{h}_{v}^{(T)},
+\boldsymbol{x}_{v}\right)\right)\right)
+\]</span></p></li>
+</ul>
+<h1 id="ggsnn">GGSNN</h1>
+<ul>
+<li><p>The gated GNN can be extended to sequence output, namely GATED
+GRAPH SEQUENCE NEURAL NETWORK. <img data-src="https://s2.ax1x.com/2020/02/28/3BkTun.png"
+alt="3BkTun.png" /></p></li>
+<li><p>As shown in the figure, a typical seq2seq model needs to encode
+the input sequence and then decode step by step. However, in a graph,
+one step already contains all sequence token information, with multiple
+layers being a stacking of depth rather than temporal layers. Therefore,
+we can start decoding at any depth, similar to CRF, as shown in the
+figure: <span class="math inline">\(o\)</span> is the output, <span
+class="math inline">\(X^k\)</span> is the input embedding matrix at the
+k-th output step, <span class="math inline">\(H^{k,t}\)</span>
+represents the k-th output, and the node embedding of the entire input
+is propagated t steps in depth. Similar to transition and emission
+matrices, the authors used two GGNNs <span
+class="math inline">\(F_o,F_x\)</span> to complete the transfer and
+emission of hidden states. They can share parameters in the propagation
+part. Although only <span class="math inline">\(F_x\)</span>
+transferring <span class="math inline">\(H\)</span> to <span
+class="math inline">\(X\)</span> is written, in practice, similar to
+LSTM, <span class="math inline">\(X^{k+1}\)</span> is also determined by
+<span class="math inline">\(X^k\)</span>:</p>
+<p><span class="math display">\[
+\boldsymbol{x}_{v}^{(k+1)}=\sigma\left(j\left(\mathbf{h}_{v}^{(k, T)},
+\boldsymbol{x}_{v}^{(k)}\right)\right)
+\]</span></p></li>
+<li><p>Similarly, it's possible to directly input <span
+class="math inline">\(X\)</span> for each decoding step, similar to
+teacher forcing</p></li>
+<li><p>The experiments in the paper were on relatively small state
+spaces, different from text tasks. Refer to the usage in STRUCTURED
+NEURAL SUMMARIZATION</p></li>
+</ul>
+<h1 id="sequence-gnns">Sequence GNNs</h1>
+<ul>
+<li><p>The authors introduced GGNN into the encoding side, equivalent to
+supplementing the traditional seq2seq encoder with a GNN, but the
+encoder output remains unchanged, and the decoder remains unchanged
+(abandoning the GGSNN decoder design)</p></li>
+<li><p>First, the authors described GGNN in clearer language, with each
+step including propagation and update</p>
+<ul>
+<li>Propagation: <span
+class="math inline">\(\boldsymbol{m}_{v}^{(i)}=g\left(\left\{f_{k}\left(\boldsymbol{h}_{u}^{(i)}\right)
+| \text { there is an edge of type } k \text { from } u \text { to }
+v\right\}\right.)\)</span>, i.e., collecting and summing neighboring
+node information using edge-related linear transformations, where <span
+class="math inline">\(f\)</span> is a linear layer and <span
+class="math inline">\(g\)</span> is summation</li>
+<li>Update: <span
+class="math inline">\(\boldsymbol{h}_{v}^{(i+1)}=\operatorname{GRU}\left(\boldsymbol{m}_{v}^{(i)},
+\boldsymbol{h}_{v}^{(i)}\right)\)</span></li>
+</ul></li>
+<li><p>In seq2seq, the encoder must provide two pieces of information:
+token representation and context representation. Token-level
+representation is obtained through GNN node embeddings, and for
+context-level representation, in addition to the gated weighted sum of
+nodes used in GGNN, they also concatenated the hidden state before and
+after inputting the graph, seemingly concatenating the hidden states of
+all nodes before and after graph input as the final node embedding. The
+RNN output is directly concatenated with the graph embedding and then
+passed through a linear layer. Note that the RNN output is essentially a
+representation of the graph (entire sequence), so it can be directly
+concatenated:</p>
+<p><span class="math display">\[
+\left[\mathbf{e}_{1}^{\prime} \ldots
+\mathbf{e}_{N}^{\prime}\right]=\operatorname{GNN}\left(\left(S,\left[R_{1}
+\ldots R_{K}\right],\left[\mathbf{e}_{1} \ldots
+\mathbf{e}_{N}\right]\right)\right) \\
+\]</span></p>
+<p><span class="math display">\[
+\sigma\left(w\left(\boldsymbol{h}_{v}^{(T)}\right)\right) \in[0,1] \\
+\]</span></p>
+<p><span class="math display">\[
+\hat{\mathbf{e}}=\sum_{1&lt;i&lt;N}
+\sigma\left(w\left(\mathbf{e}_{i}^{\prime}\right)\right) \cdot
+\aleph\left(\mathbf{e}_{i}^{\prime}\right) \\
+\]</span></p>
+<p><span class="math display">\[
+Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\
+\]</span></p></li>
+<li><p>In practical engineering implementation, batching graphs of
+different sizes is inconvenient. The authors used two tricks:</p>
+<ul>
+<li>Standard GNN approach: Combine small graphs into a large graph with
+multiple connected subgraphs as a batch</li>
+<li>Since copy and attention mechanisms require calculating weights
+across the entire input sequence, after combining into a large graph,
+the authors also preserved each node's index in the small graph. Then,
+using TensorFlow's unsorted segment * operator (performing operations on
+segments of different lengths), they can efficiently and numerically
+stably perform softmax over the variable number of node representations
+for each graph</li>
+</ul></li>
+<li><p>The authors used a simple LSTM encoder and decoder configuration,
+mainly modifying the pointer generator code. GNN was stacked eight
+layers</p></li>
+<li><p>The final results did not surpass the pointer generator, but the
+ablation with the pointer mechanism was quite significant, as shown in
+the following figure: <img data-src="https://s2.ax1x.com/2020/02/11/1TTHPJ.png"
+alt="1TTHPJ.png" /></p></li>
+<li><p>The authors did not provide much analysis of the results, as the
+paper used three datasets, with the other two being code summaries that
+have naturally structured data, thus performing well. On purely natural
+language datasets like CNNDM, the performance was not particularly
+outstanding</p></li>
+<li><p>However, in the ablation experiments, it's worth noting that even
+without adding coreference information, simply using GNN to process
+sentence structure performed better than LSTM</p></li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="intuition">Intuition</h1>
+<ul>
+<li>将GNN引入seq2seq的一个很自然的想法就是先用sequence encoder得到token
+representations，然后再构建token之间的关系，建图，将图和token
+representations送入GNN，得到新的token表示。</li>
+<li>问题在于，对于摘要，直觉的想法是以句子为节点，构建句子之间的关系图，这样最后得到的是句子的表示，不能到词级别的细粒度，这样的话attention
+based decoder就不太好做。</li>
+<li>本文作者的想法就很粗暴，干脆就做词级别的GNN，一篇文章900个词，就构建900个节点的图，而边的关系是异构的，分三种：
+<ul>
+<li>一句里的所有词连向一个额外添加的句子节点、一个实体里的所有词连向一个额外添加的实体节点，这类边都叫做IN</li>
+<li>前一个词连后一个词，前一句连后一句，这类边叫NEXT</li>
+<li>指代消解，这部分叫做REF 整体如下图所示： <img data-src="https://s2.ax1x.com/2020/02/11/1Toe6P.png" alt="1Toe6P.png" /></li>
+</ul></li>
+</ul>
+<h1 id="ggnn">GGNN</h1>
+<ul>
+<li><p>作者使用的GNN是Gated Graph Neural Network。原论文见：GATED GRAPH
+SEQUENCE NEURAL NETWORKS</p>
+<p><span class="math display">\[
+\begin{aligned} \mathbf{h}_{v}^{(1)}
+&amp;=\left[\boldsymbol{x}_{v}^{\top}, \mathbf{0}\right]^{\top} \\
+\mathbf{a}_{v}^{(t)}
+&amp;=\mathbf{A}_{v:}^{\top}\left[\mathbf{h}_{1}^{(t-1) \top} \ldots
+\mathbf{h}_{|\mathcal{V}|}^{(t-1) \top}\right]^{\top}+\mathbf{b} \\
+\mathbf{z}_{v}^{t} &amp;=\sigma\left(\mathbf{W}^{z}
+\mathbf{a}_{v}^{(t)}+\mathbf{U}^{z} \mathbf{h}_{v}^{(t-1)}\right)
+\end{aligned} \\
+\begin{aligned} \mathbf{r}_{v}^{t} &amp;=\sigma\left(\mathbf{W}^{r}
+\mathbf{a}_{v}^{(t)}+\mathbf{U}^{r} \mathbf{h}_{v}^{(t-1)}\right) \\
+\widetilde{\mathbf{h}_{v}^{(t)}} &amp;=\tanh \left(\mathbf{W}
+\mathbf{a}_{v}^{(t)}+\mathbf{U}\left(\mathbf{r}_{v}^{t} \odot
+\mathbf{h}_{v}^{(t-1)}\right)\right) \\ \mathbf{h}_{v}^{(t)}
+&amp;=\left(1-\mathbf{z}_{v}^{t}\right) \odot
+\mathbf{h}_{v}^{(t-1)}+\mathbf{z}_{v}^{t} \odot
+\widetilde{\mathbf{h}_{v}^{(t)}} \end{aligned} \\
+\]</span></p></li>
+<li><p>GGNN发布于2015年，在2009年的GNN模型上改进。</p></li>
+<li><p>原始的GNN模型相当于用图的拓扑关系，在多层线性网络中Mask掉部分边，节点在每一层的表示通过上一层中相邻的节点线性变换而来，即propagation，最后一层linear做output输出节点标签
+<img data-src="https://s2.ax1x.com/2020/02/27/3082wD.png"
+alt="3082wD.png" /></p></li>
+<li><p>GGNN考虑了边的有向和异构。其邻接矩阵A如上图所示，是一个<span
+class="math inline">\(\mathbf{A} \in \mathbb{R}^{D|\mathcal{V}| \times 2
+D|\mathcal{V}|}\)</span>的线性层，两倍的宽代表双向两个输出频道，输入节点的表示矩阵<span
+class="math inline">\(\mathbb{R}^{D|\mathcal{V}|}\)</span>，这里的<span
+class="math inline">\(A\)</span>包含了参数，依赖于边的类型和方向，相当于这个包含了邻接信息的线性层也是通过embedding
+lookup得到的。接下来就是类似于GRU的更新，<span
+class="math inline">\(z\)</span>和<span
+class="math inline">\(r\)</span>分别是更新门和重置门。所以公式含义如下</p>
+<ul>
+<li>1:初始化节点embedding，根据具体任务给每个节点补上手工特征，并Padding到相同长度</li>
+<li>2:通过包含了邻接信息的线性层，得到propagate之后的信息</li>
+<li>3:根据上一层状态和propagate信息计算更新门</li>
+<li>4:根据上一层状态和propagate信息计算重置门</li>
+<li>5,6:同GRU</li>
+</ul></li>
+<li><p>output部分，简单的线性层作用于每一个节点就可以做节点级别的任务，如果要获得整张图的表示，可以用一个门控机制来获取（原文表述为attention）：</p>
+<p><span class="math display">\[
+\mathbf{h}_{\mathcal{G}}=\tanh \left(\sum_{v \in \mathcal{V}}
+\sigma\left(i\left(\mathbf{h}_{v}^{(T)},
+\boldsymbol{x}_{v}\right)\right) \odot \tanh
+\left(j\left(\mathbf{h}_{v}^{(T)},
+\boldsymbol{x}_{v}\right)\right)\right)
+\]</span></p></li>
+</ul>
+<h1 id="ggsnn">GGSNN</h1>
+<ul>
+<li><p>门控的GNN还可以扩展为sequence output，即GATED GRAPH SEQUENCE
+NEURAL NETWORK。 <img data-src="https://s2.ax1x.com/2020/02/28/3BkTun.png"
+alt="3BkTun.png" /></p></li>
+<li><p>如上图所示，一般的seq2seq，需要把输入的seq编码，之后再逐步解码，但是再graph当中，一步的graph就已经包含了所有seq
+token信息，多层只是深度层次上的叠加，而不是时序的层次，因此我们可以在任意的深度层次开始解码，类似于CRF，如图所示：<span
+class="math inline">\(o\)</span>为输出，<span
+class="math inline">\(X^k\)</span>为第k步输出时节点的input embedding
+matrix，<span
+class="math inline">\(H^{k,t}\)</span>代表第k步输出，同时整个输入的节点embedding在深度上传递了t步时，节点的hidden
+state matrix。类似于转移与发射矩阵，作者分别用了两个GGNN<span
+class="math inline">\(F_o,F_x\)</span>来完成hidden
+state的转移和发射。两者可以共享propagation部分的参数。虽然只写了<span
+class="math inline">\(F_x\)</span>将<span
+class="math inline">\(H\)</span>转移到<span
+class="math inline">\(X\)</span>，但实际上类似于LSTM，<span
+class="math inline">\(X^{k+1}\)</span>同时还由<span
+class="math inline">\(X^k\)</span>决定：</p>
+<p><span class="math display">\[
+\boldsymbol{x}_{v}^{(k+1)}=\sigma\left(j\left(\mathbf{h}_{v}^{(k, T)},
+\boldsymbol{x}_{v}^{(k)}\right)\right)
+\]</span></p></li>
+<li><p>同样，也可以不需要从<span class="math inline">\(H\)</span>到<span
+class="math inline">\(X\)</span>的转移，直接输入每一解码步的<span
+class="math inline">\(X\)</span>，类似于teacher forcing</p></li>
+<li><p>论文里的实验都是状态空间比较小，不同于文本任务。直接看STRUCTURED
+NEURAL SUMMARIZATION里的用法</p></li>
+</ul>
+<h1 id="sequence-gnns">Sequence GNNs</h1>
+<ul>
+<li><p>作者将GGNN引入编码端，相当于传统的seq2seq
+encoder最后用GNN补充了一次编码，但是encoder的输出不变，decoder不变（抛弃了GGSNN的decoder设计）</p></li>
+<li><p>首先作者用更加清晰的语言描述了GGNN，每一步包含propagation 与
+update</p>
+<ul>
+<li>propagation：<span
+class="math inline">\(\boldsymbol{m}_{v}^{(i)}=g\left(\left\{f_{k}\left(\boldsymbol{h}_{u}^{(i)}\right)
+| \text { there is an edge of type } k \text { from } u \text { to }
+v\right\}\right.)\)</span>，即用边相关的线性变换收集邻域节点信息求和，其中<span
+class="math inline">\(f\)</span>是线性层，<span
+class="math inline">\(g\)</span>是求和</li>
+<li>update：<span
+class="math inline">\(\boldsymbol{h}_{v}^{(i+1)}=\operatorname{GRU}\left(\boldsymbol{m}_{v}^{(i)},
+\boldsymbol{h}_{v}^{(i)}\right)\)</span></li>
+</ul></li>
+<li><p>seq2seq中的encoder至少要提供两点信息：token representation 和
+context representation。token级别的已经拿到了，即GNN之后的节点
+embedding，context级别即图的表示，这里作者除了沿用GGNN里门控算权重求和各节点之外，还拼接了输入图之前、RNN编码之后的hidden
+state，看代码貌似是把所有节点输入图前后的hidden
+state拼接起来，作为最终的节点embedding；把RNN的输出直接和图embedding表示拼接起来再过一个线性层。这里注意RNN的输出实际上是对图（整个序列）的一个表示，和graph
+embedding是同一级别的，所以直接拼接：</p>
+<p><span class="math display">\[
+\left[\mathbf{e}_{1}^{\prime} \ldots
+\mathbf{e}_{N}^{\prime}\right]=\operatorname{GNN}\left(\left(S,\left[R_{1}
+\ldots R_{K}\right],\left[\mathbf{e}_{1} \ldots
+\mathbf{e}_{N}\right]\right)\right) \\
+\]</span></p>
+<p><span class="math display">\[
+\sigma\left(w\left(\boldsymbol{h}_{v}^{(T)}\right)\right) \in[0,1] \\
+\]</span></p>
+<p><span class="math display">\[
+\hat{\mathbf{e}}=\sum_{1&lt;i&lt;N}
+\sigma\left(w\left(\mathbf{e}_{i}^{\prime}\right)\right) \cdot
+\aleph\left(\mathbf{e}_{i}^{\prime}\right) \\
+\]</span></p>
+<p><span class="math display">\[
+Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\
+\]</span></p></li>
+<li><p>在实际工程实现中，不同大小的图打包成batch不方便，作者也是采用了两个trick</p>
+<ul>
+<li>GNN的常规做法：把小图拼接成有多个连接子图的大图作为一个batch</li>
+<li>由于copy和attention机制需要在整个输入序列上计算权重，拼接成大图之后作者也保留了每个节点在小图当中的index，然后通过tensorflow的unsorted
+segment *操作符（即对不同长度的段分别做操作），可以完成一个efficient and
+numerically stable softmax over the variable number of representations
+of the nodes of each graph.</li>
+</ul></li>
+<li><p>作者只用了简单的LSTM的encoder和decoder配置，基本在pointer
+generator的代码上做改动。GNN叠加八层</p></li>
+<li><p>最后的结果并没有超过pointer
+generator，但是引入pointer机制后的ablation比较明显，如下图， <img data-src="https://s2.ax1x.com/2020/02/11/1TTHPJ.png"
+alt="1TTHPJ.png" /></p></li>
+<li><p>作者也没有对结果做太多分析，因为论文做了三个数据集，其余两个是代码摘要，有比较自然的结构化数据，因此表现很好，在CNNDM这种纯自然语言数据集上表现并不是特别亮眼。</p></li>
+<li><p>但是在消融实验中值得注意的是即便不添加指代信息，仅仅是让GNN处理句子结构，表现也比LSTM要好。</p></li>
+</ul>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/graph-neural-network/" rel="tag"># graph neural network</a>
+              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+              <a href="/tags/summarization/" rel="tag"># summarization</a>
+              <a href="/tags/natural-language-processing/" rel="tag"># natural language processing</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/02/13/svm/" rel="prev" title="SVM">
+                  <i class="fa fa-angle-left"></i> SVM
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/02/bertology/" rel="next" title="BERTology">
+                  BERTology <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">16:35</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2020/02/28/structured-summarization/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>

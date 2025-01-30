@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Record the mathematical derivation of GloVe word vectors, as the original paper does not derive the model graphically but rather calculates the objective function through pure mathematical operation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Glove Embedding - Mathematical Derivation">
+<meta property="og:url" content="https://thinkwee.top/2019/01/13/glove/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="Record the mathematical derivation of GloVe word vectors, as the original paper does not derive the model graphically but rather calculates the objective function through pure mathematical operation">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-01-13T01:42:37.000Z">
+<meta property="article:modified_time" content="2025-01-30T02:10:45.360Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="glove">
+<meta property="article:tag" content="word embedding">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://thinkwee.top/2019/01/13/glove/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2019/01/13/glove/","path":"2019/01/13/glove/","title":"Glove Embedding - Mathematical Derivation"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Glove Embedding - Mathematical Derivation | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#word-vectors"><span class="nav-number">1.</span> <span class="nav-text">Word vectors</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#discovery"><span class="nav-number">2.</span> <span class="nav-text">Discovery</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#design"><span class="nav-number">3.</span> <span class="nav-text">Design</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#comparing-with-word2vec"><span class="nav-number">4.</span> <span class="nav-text">Comparing with Word2vec</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#concept"><span class="nav-number">5.</span> <span class="nav-text">Concept</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%8D%E5%90%91%E9%87%8F"><span class="nav-number">6.</span> <span class="nav-text">词向量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E7%8E%B0"><span class="nav-number">7.</span> <span class="nav-text">发现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1"><span class="nav-number">8.</span> <span class="nav-text">设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8Eword2vec%E6%AF%94%E8%BE%83"><span class="nav-number">9.</span> <span class="nav-text">与Word2vec比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">10.</span> <span class="nav-text">思路</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2019/01/13/glove/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Glove Embedding - Mathematical Derivation | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Glove Embedding - Mathematical Derivation
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-01-13 09:42:37" itemprop="dateCreated datePublished" datetime="2019-01-13T09:42:37+08:00">2019-01-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-30 10:10:45" itemprop="dateModified" datetime="2025-01-30T10:10:45+08:00">2025-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2019/01/13/glove/" class="post-meta-item leancloud_visitors" data-flag-title="Glove Embedding - Mathematical Derivation" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>12k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>11 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><hr />
+<ul>
+<li>Record the mathematical derivation of GloVe word vectors, as the
+original paper does not derive the model graphically but rather
+calculates the objective function through pure mathematical operations.
+This design approach is very interesting, and it also writes out and
+compares the mathematical essence of word2vec.</li>
+<li>GloVe: Global Vectors for Word Representation</li>
+</ul>
+<span id="more"></span>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="word-vectors">Word vectors</h1>
+<ul>
+<li>Whether based on global matrix factorization or local window-based
+word vectors, the method of extracting semantics is to mine meaning from
+the co-occurrence statistical information between words.</li>
+<li>Clearly, the global approach does not make use of the advantages of
+the local one: for example, global techniques such as LSA are
+insensitive to local contextual information, making it difficult to mine
+synonyms based on context; the local approach does not make use of the
+advantages of the global one, as it only relies on independent local
+contexts, and if the window is too small, it cannot effectively utilize
+the information of the entire document or corpus.</li>
+<li>The GloVe approach is to utilize the global word co-occurrence
+matrix while also calculating relevance using local contextual
+relationships.</li>
+<li>The result of word vectors is a mapping that generates meaningful
+semantic relationships based on distance relationships. To achieve this
+goal, GloVe designed a log-bilinear regression model and specifically
+adopted a weighted least mean square regression model to train word
+vectors.</li>
+</ul>
+<h1 id="discovery">Discovery</h1>
+<ul>
+<li>Definition:
+<ul>
+<li>For a single word.</li>
+<li>The number of occurrences of <span
+class="math inline">\(x_j\)</span> in the context of <span
+class="math inline">\(x_i\)</span> .</li>
+<li>The number of times all words appear in the context of <span
+class="math inline">\(x_i\)</span> .</li>
+<li>The probability of <span class="math inline">\(x_j\)</span>
+appearing in the context of <span class="math inline">\(x_i\)</span> ,
+which is the probabilization of the frequency count of the context
+occurrence, referred to as "co-occurrence probabilities" in the
+paper.</li>
+<li><span class="math inline">\(r = \frac {P_{ik}}{P_{jk}}\)</span> :
+Introduce an intermediate word <span class="math inline">\(x_k\)</span>
+, referred to as "probe word" in the paper, by introducing this <span
+class="math inline">\(x_k\)</span> , it can indirectly measure the
+relationship between <span class="math inline">\(x_i\)</span> and <span
+class="math inline">\(x_j\)</span> , represented by <span
+class="math inline">\(r\)</span> , i.e., the ratio.</li>
+</ul></li>
+<li>The role of introduction is reflected in two aspects:
+<ul>
+<li>For the <span class="math inline">\(x_i\)</span> and <span
+class="math inline">\(x_j\)</span> to be compared, filter out the <span
+class="math inline">\(x_k\)</span> without discriminative power, which
+is noise. When <span class="math inline">\(r \approx 1\)</span> , <span
+class="math inline">\(x_k\)</span> is considered noise.</li>
+<li>Given <span class="math inline">\(x_k\)</span> , such that those
+<span class="math inline">\(r &gt;&gt; 1\)</span> of <span
+class="math inline">\(x_i\)</span> have similar meanings, and those
+<span class="math inline">\(r &lt;&lt; 1\)</span> of <span
+class="math inline">\(x_j\)</span> have similar meanings.</li>
+</ul></li>
+<li>Therefore, we can filter out noise and only mine word sense
+relationships from co-occurrence data where <span
+class="math inline">\(r\)</span> is very large or very small.</li>
+</ul>
+<h1 id="design">Design</h1>
+<ul>
+<li><p>Next, the author directly applies the target design
+function.</p></li>
+<li><p>The goal is: the distance calculation results between the word
+vectors designed should reflect the ratio previously discovered from the
+word co-occurrence matrix, specifically for the triplet, words i, j, and
+the probe word k, the word vectors of these three words should embody
+r</p></li>
+<li><p>Then, directly designing, defining <span
+class="math inline">\(w_i\)</span> as the word vector corresponding to
+<span class="math inline">\(x_i\)</span> , we assume <span
+class="math inline">\(F\)</span> to be the function for calculating
+distance:</p>
+<p><span class="math display">\[
+F(w_i,w_j,w^{*}_k) = r \\
+= \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
+<li><p>The word vectors of above <span
+class="math inline">\(w_k\)</span> are distinguished by asterisks from
+the word vectors of <span class="math inline">\(w_i\)</span> and <span
+class="math inline">\(w_j\)</span> , because <span
+class="math inline">\(w_k\)</span> is an independent context word
+vector, parallel to the required word vectors, similar to the forward
+and backward word embedding matrices in word2vec.</p></li>
+<li><p>Next, a natural thought is to reduce the parameters, i.e., only
+the word vectors and the context word vectors are needed, because it is
+a distance calculation function and the vector space is a linear space;
+we use the vector difference between <span
+class="math inline">\(w_i\)</span> and <span
+class="math inline">\(w_j\)</span> as the parameters:</p>
+<p><span class="math display">\[
+F(w_i - w_j,w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
+<li><p>The current function takes a vector as its parameter, and outputs
+a tensor. The simplest structure is to perform a dot product:</p>
+<p><span class="math display">\[
+F((w_i-w_j)^T w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
+<li><p>The next key point is symmetry. Noticing that although context
+and non-context word vectors are distinguished, since the co-occurrence
+matrix <span class="math inline">\(X\)</span> is symmetric, the two sets
+of word vectors <span class="math inline">\(w\)</span> and <span
+class="math inline">\(w^{\*}\)</span> should have the same effect. This
+is because the values of the two sets of word vectors are different due
+to different random initialization, but they should be the same in terms
+of measuring similarity, that is, <span class="math inline">\(w_i^T
+w^{\*}_j\)</span> and <span class="math inline">\(w_j^T
+w^{\*}_i\)</span> should be the same.</p></li>
+<li><p>Due to symmetry, <span class="math inline">\(x_i,x_j,x_k\)</span>
+can be any word in the corpus, so the two parameters of the <span
+class="math inline">\(F\)</span> function should be interchangeable (
+<span class="math inline">\(w\)</span> and <span
+class="math inline">\(w^{\*}\)</span> , <span
+class="math inline">\(X\)</span> and <span
+class="math inline">\(X^T\)</span> ), and here a bit of mathematical
+technique is further applied to symmetrize the function:</p>
+<ul>
+<li><p>Design:</p>
+<p><span class="math display">\[
+F((w_i-w_j)^T w^{*}_k) = \frac {F(w_i w^{*}_k)} {F(w_j w^{*}_k)} \\
+\]</span></p></li>
+<li><p>Then both the numerator and denominator are of the same form,
+that is</p>
+<p><span class="math display">\[
+F(w_i w^{*}_k) = P_{ik} = \frac {X_{ik}} {X_i} \\
+\]</span></p></li>
+<li><p>To satisfy the above <span class="math inline">\(F\)</span> , it
+can be decomposed into two sub- <span class="math inline">\(F\)</span> ,
+and then <span class="math inline">\(F\)</span> can be the <span
+class="math inline">\(exp\)</span> function, i.e</p>
+<p><span class="math display">\[
+w_i^T w_k^{*} = log(X_{ik}) - log {X_i} \\
+\]</span></p></li>
+<li><p>The indices k, i, j can be interchanged without changing the
+meaning. Since the numerator and denominator have the same form, we only
+need to ensure that this form is satisfied; the fraction will naturally
+satisfy the mapping from the triplet to the ratio thereafter.</p></li>
+<li><p>Noticing that in the above formula, the inner product of the two
+vectors on the left remains unchanged when the i,k symbols are
+interchanged, while the subtraction of the two log expressions on the
+right does not satisfy this symmetry. Therefore, we add an <span
+class="math inline">\(log{x_k}\)</span> to make it symmetric and
+simplify it to the bias <span class="math inline">\(b^{*}\)</span> .
+Similarly, after interchanging the i,k symbols, we add an <span
+class="math inline">\(Log{x_i}\)</span> to make it symmetric, i.e., the
+bias <span class="math inline">\(b_i\)</span> . The bias, like word
+vectors, also consists of two sets:</p>
+<p><span class="math display">\[
+w_i^Tw_k^{*} + b_i + b_k^{*} = log(X_{ik}) \\
+\]</span></p></li>
+<li><p>Finally, add smoothing to prevent the log parameter from being
+0:</p>
+<p><span class="math display">\[
+w_i^Tw_k^{*} + b_i + b_k^{*} = log(1 + X_{ik}) \\
+\]</span></p></li>
+</ul></li>
+<li><p>Here we have preliminarily completed the design of the <span
+class="math inline">\(F\)</span> function, but there is still an issue
+that it averages the weights of each co-occurrence, while in general
+corpora, most co-occurrences have very low frequencies</p></li>
+<li><p>The solution for Glove is to use weighted functions. After
+weighting, the training of word vectors is regarded as a least mean
+square error regression of the F function, and the loss function is
+designed:</p>
+<p><span class="math display">\[
+J = \sum _{i,j}^V f(X_{ij}) (w_i^T w_j^{*} + b_i + b_j^{*} - log (1 +
+X_{ij}))^2 \\
+\]</span></p></li>
+<li><p>Among which, f is the weighted function, with its parameters
+being the co-occurrence frequency; the author points out that this
+function must satisfy three properties:</p>
+<ul>
+<li>Clearly, if no co-occurrence occurs, the weight is 0.</li>
+<li>Non-decreasing: The higher the co-occurrence frequency, the greater
+the weight.</li>
+<li>relatively small for large X: To prevent over-weighting for certain
+common co-occurrences with high frequencies, which may affect the
+results.</li>
+</ul></li>
+<li><p>Based on the above three properties, the author designed a
+truncated weighted function within the threshold <span
+class="math inline">\(X_{max}\)</span></p>
+<p><span class="math display">\[
+f(x) = (\frac {x}{X_{max}}) ^ {\alpha} \\
+\]</span></p>
+<p>If exceeding the threshold, the function value is 1.</p></li>
+</ul>
+<h1 id="comparing-with-word2vec">Comparing with Word2vec</h1>
+<ul>
+<li><p>For the skip-gram model in Word2vec, the goal is to maximize the
+probability of predicting the correct central word given the context,
+which is generally probabilized through the softmax function, i.e.:</p>
+<p><span class="math display">\[
+Q_{ij} = \frac {exp (w_i^T w_j^{*})} { \sum _{k=1}^V exp(w_i^T w_k^{*})}
+\\
+\]</span></p></li>
+<li><p>Through gradient descent, the overall loss function can be
+written as:</p>
+<p><span class="math display">\[
+J = - \sum _{i \in corpus , j \in context(i)} log Q_{ij} \\
+\]</span></p></li>
+<li><p>Group the same <span class="math inline">\(Q_{ij}\)</span> first
+and then sum up to get:</p>
+<p><span class="math display">\[
+J = - \sum _{i=1}^V \sum _{j=1}^V X_{ij} log Q_{ij} \\
+\]</span></p></li>
+<li><p>Next, further transformations are made using the previously
+defined symbols:</p>
+<p><span class="math display">\[
+J = - \sum _{i=1^V} X_i \sum _{j=1}^V P_{ij} log Q_{ij} \\
+= \sum _{i=1}^V X_i H(P_i,Q_i) \\
+\]</span></p></li>
+<li><p>That is to say, the loss function of Word2vec is actually
+weighted cross-entropy, however, cross-entropy is only one possible
+measure and has many drawbacks:</p>
+<ul>
+<li>Probability requiring normalization as a parameter</li>
+<li>Softmax computation is computationally intensive, referred to as the
+model's computational bottleneck</li>
+<li>For long-tailed distributions, cross-entropy often assigns too much
+weight to less likely items</li>
+</ul></li>
+<li><p>Solution to the above problems: Simply do not normalize, directly
+use co-occurrence counts, do not use cross-entropy and softmax, directly
+use mean squared error, let <span class="math inline">\(Q_{ij} =
+exp(w_i^T w_j^{*})\)</span> , <span class="math inline">\(P_{ij} =
+X_{ij}\)</span> , then:</p>
+<p><span class="math display">\[
+J = \sum _{i,j} X_i (P_{ij} - Q_{ij})^2 \\
+\]</span></p></li>
+<li><p>However, non-normalization can cause numerical overflow, so take
+the logarithm again:</p>
+<p><span class="math display">\[
+J = \sum _{i,j} X_i (log P_{ij} - log Q_{ij})^2 \\
+=  \sum _{i,j} X_i (w_i^T w_j^{*} - log X_{ij})^2 \\
+\]</span></p></li>
+<li><p>Thus, the simplest objective function of GloVe is
+obtained.</p></li>
+<li><p>The authors of Word2vec found that filtering out some common
+words could improve the effectiveness of word vectors, and the weighted
+function in Word2vec is denoted as <span
+class="math inline">\(f(X_i)=X_i\)</span> , thus filtering out common
+words is equivalent to designing a non-decreasing weighted function.
+GloVe designed a more sophisticated weighted function.</p></li>
+<li><p>Therefore, from the perspective of mathematical derivation, GloVe
+simplifies the objective function of Word2vec, replacing cross-entropy
+with mean squared error and redesigning the weighting function.</p></li>
+</ul>
+<h1 id="concept">Concept</h1>
+<ul>
+<li>The paper provides a good idea for designing a model, namely,
+designing the objective function based on evaluation indicators, and
+then training the model to obtain the parameters (by-products) as the
+desired results.</li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="词向量">词向量</h1>
+<ul>
+<li>无论是基于全局矩阵分解的还是基于局部窗口的词向量，其提取semantic的方式都是从词与词的共现统计信息中挖掘意义。</li>
+<li>显然，全局的方式没有利用到局部的优点：全局例如LSA等技术对于局部上下文信息不敏感，难以根据上下文挖掘近义词；局部的方式没有利用到全局的优点，它只依赖于独立的局部上下文，窗口太小的话不能有效利用整个文档乃至语料的信息。</li>
+<li>Glove的思路是利用全局的词与词共现矩阵，同时利用局部上下文关系计算相关性。</li>
+<li>词向量的结果是能产生有意义的语义关系到距离关系的映射，针对这个目标，Glove设计了一个log-bilinear回归模型，并具体采用一个加权最小均方回归模型来训练词向量。</li>
+</ul>
+<h1 id="发现">发现</h1>
+<ul>
+<li>定义：
+<ul>
+<li><span class="math inline">\(x\)</span>：为单个词。</li>
+<li><span class="math inline">\(X_{ij}\)</span>：<span
+class="math inline">\(x_j\)</span> 出现在<span
+class="math inline">\(x_i\)</span>的上下文中的次数。</li>
+<li><span class="math inline">\(X_i = \sum _k
+x_{ik}\)</span>：所有词出现在<span
+class="math inline">\(x_i\)</span>的上下文中的次数。</li>
+<li><span class="math inline">\(P_{ij} = P(j|i) = \frac {x_{ij}}
+{X_i}\)</span>：<span class="math inline">\(x_j\)</span>出现在<span
+class="math inline">\(x_i\)</span>的上下文中的概率，即上下文出现频次计数概率化，论文中称之为"co-occurrence
+probabilities"。</li>
+<li><span class="math inline">\(r = \frac
+{P_{ik}}{P_{jk}}\)</span>：引入中间词<span
+class="math inline">\(x_k\)</span>，论文中叫"probe
+word"，通过引入这个<span
+class="math inline">\(x_k\)</span>可以间接的衡量<span
+class="math inline">\(x_i\)</span>和<span
+class="math inline">\(x_j\)</span>的关系，通过<span
+class="math inline">\(r\)</span>即ratio表示。</li>
+</ul></li>
+<li><span class="math inline">\(r\)</span>引入的作用体现在两个方面：
+<ul>
+<li>对于要比较的<span class="math inline">\(x_i\)</span>和<span
+class="math inline">\(x_j\)</span>，筛除对于没有区分度的<span
+class="math inline">\(x_k\)</span>，也就是噪音。当<span
+class="math inline">\(r \approx 1\)</span>时，<span
+class="math inline">\(x_k\)</span>即为噪音。</li>
+<li>给定<span class="math inline">\(x_k\)</span>，使得<span
+class="math inline">\(r &gt;&gt; 1\)</span>的那些<span
+class="math inline">\(x_i\)</span>具有相近的词义，使得<span
+class="math inline">\(r &lt;&lt; 1\)</span>的那些<span
+class="math inline">\(x_j\)</span>具有相近的词义。</li>
+</ul></li>
+<li>因此，我们可以过滤噪音，仅仅在<span
+class="math inline">\(r\)</span>很大或很小的词共现数据中挖掘词义关系。</li>
+</ul>
+<h1 id="设计">设计</h1>
+<ul>
+<li><p>接下来，作者直接根据目标设计函数。</p></li>
+<li><p>目标是：设计出来的词向量之间的距离计算结果应该能够反映之前我们从词共现矩阵中发现的ratio，具体而言是对于三元组，词i,j和probe
+word k，这三个词的词向量能够体现r</p></li>
+<li><p>那么直接设计,定义<span class="math inline">\(w_i\)</span>为<span
+class="math inline">\(x_i\)</span>对应的词向量，则假设<span
+class="math inline">\(F\)</span>为计算距离的函数：</p>
+<p><span class="math display">\[
+F(w_i,w_j,w^{*}_k) = r \\
+= \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
+<li><p>上面<span
+class="math inline">\(w_k\)</span>的词向量加了星号区别于<span
+class="math inline">\(w_i\)</span>和<span
+class="math inline">\(w_j\)</span>的词向量，因为<span
+class="math inline">\(w_k\)</span>是独立的上下文词向量，与我们需要的词向量是平行的两套，类似于word2vec里面的前后词嵌入矩阵。</p></li>
+<li><p>接下来，一个自然的想法是，减少参数，即只需要词向量和上下文词向量，因为是距离计算函数且向量空间是线性空间，我们使用<span
+class="math inline">\(w_i\)</span>和<span
+class="math inline">\(w_j\)</span>的向量差作为参数：</p>
+<p><span class="math display">\[
+F(w_i - w_j,w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
+<li><p>现在函数的参数是向量，输出是张量，最简单的一个结构就是做点乘：</p>
+<p><span class="math display">\[
+F((w_i-w_j)^T w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
+<li><p>接下来的一个关键点：对称。注意到虽然区分了上下文和非上下文词向量，但是由于共现矩阵<span
+class="math inline">\(X\)</span>是对称的，因此两套词向量<span
+class="math inline">\(w\)</span>和<span
+class="math inline">\(w^{\*}\)</span>应该具有相同的效果，只是由于随机初始化不同，两套词向量的值不一样，在衡量相似度时应该是一样的目标，即<span
+class="math inline">\(w_i^T w^{\*}_j\)</span>和<span
+class="math inline">\(w_j^T w^{\*}_i\)</span>一样。</p></li>
+<li><p>由于对称性，<span
+class="math inline">\(x_i,x_j,x_k\)</span>可以是语料中任意词，因此<span
+class="math inline">\(F\)</span>函数的两个参数应该是可以交换位置（<span
+class="math inline">\(w\)</span>和<span
+class="math inline">\(w^{\*}\)</span>，<span
+class="math inline">\(X\)</span>和<span
+class="math inline">\(X^T\)</span>），那这里进一步运用了一点数学技巧将函数对称化：</p>
+<ul>
+<li><p>设计：</p>
+<p><span class="math display">\[
+F((w_i-w_j)^T w^{*}_k) = \frac {F(w_i w^{*}_k)} {F(w_j w^{*}_k)} \\
+\]</span></p></li>
+<li><p>那么分子分母都是一样的形式，即</p>
+<p><span class="math display">\[
+F(w_i w^{*}_k) = P_{ik} = \frac {X_{ik}} {X_i} \\
+\]</span></p></li>
+<li><p>要满足上面<span
+class="math inline">\(F\)</span>可以拆分为两个子<span
+class="math inline">\(F\)</span>的比，则<span
+class="math inline">\(F\)</span>可以为<span
+class="math inline">\(exp\)</span>函数，即</p>
+<p><span class="math display">\[
+w_i^T w_k^{*} = log(X_{ik}) - log {X_i} \\
+\]</span></p></li>
+<li><p>这样k,i,j下标可互换位置且表达意思一致。由于分子分母形式一致，因此我们只要关注这个形式能够满足就行了，之后求分数自然会满足从三元组到ratio的映射。</p></li>
+<li><p>注意到上面式子当中，左边的两个向量内积，i,k符号互换值不变，而右边的两个log式子相减并不满足这种对称，因此我们补上一个<span
+class="math inline">\(log{x_k}\)</span>使之对称，并将其简化为偏置<span
+class="math inline">\(b^{*}\)</span>，同样的道理，i,k符号互换后，补上一个<span
+class="math inline">\(Log{x_i}\)</span>使之对称，即偏置<span
+class="math inline">\(b_i\)</span>，偏置和词向量一样，也是两套：</p>
+<p><span class="math display">\[
+w_i^Tw_k^{*} + b_i + b_k^{*} = log(X_{ik}) \\
+\]</span></p></li>
+<li><p>最后加上平滑，防止log的参数取0：</p>
+<p><span class="math display">\[
+w_i^Tw_k^{*} + b_i + b_k^{*} = log(1 + X_{ik}) \\
+\]</span></p></li>
+</ul></li>
+<li><p>到这里我们已经初步完成了<span
+class="math inline">\(F\)</span>函数的设计，但这个还存在的一个问题是，它是平均加权每一个共现的，而一般语料中大部分共现都频次很低</p></li>
+<li><p>Glove的解决办法是使用加权函数。加权之后将词向量的训练看成是F函数的最小均方误差回归，设计损失函数：</p>
+<p><span class="math display">\[
+J = \sum _{i,j}^V f(X_{ij}) (w_i^T w_j^{*} + b_i + b_j^{*} - log (1 +
+X_{ij}))^2 \\
+\]</span></p></li>
+<li><p>其中f为加权函数，其参数是共现频次，作者指出该函数必须满足三条性质：</p>
+<ul>
+<li><span
+class="math inline">\(f(0)=0\)</span>：显然，没有出现共现则权重为0。</li>
+<li>Non-decreasing：共现频次越大则权重越大。</li>
+<li>relatively small for large
+X：防止对于某些频次很高的常见共现加权过大，影响结果。</li>
+</ul></li>
+<li><p>基于以上三种性质，作者设计了截尾的加权函数，在阈值<span
+class="math inline">\(X_{max}\)</span>以内：</p>
+<p><span class="math display">\[
+f(x) = (\frac {x}{X_{max}}) ^ {\alpha} \\
+\]</span></p>
+<p>超过阈值则函数值为1.</p></li>
+</ul>
+<h1 id="与word2vec比较">与Word2vec比较</h1>
+<ul>
+<li><p>对于Word2vec中的skip-gram模型，其目标是最大化给定上下文之后预测正确中心词的概率，一般通过softmax函数将其概率化，即：</p>
+<p><span class="math display">\[
+Q_{ij} = \frac {exp (w_i^T w_j^{*})} { \sum _{k=1}^V exp(w_i^T w_k^{*})}
+\\
+\]</span></p></li>
+<li><p>通过梯度下降求解，则整体损失函数可以写成：</p>
+<p><span class="math display">\[
+J = - \sum _{i \in corpus , j \in context(i)} log Q_{ij} \\
+\]</span></p></li>
+<li><p>将相同的<span
+class="math inline">\(Q_{ij}\)</span>先分组再累加，得到：</p>
+<p><span class="math display">\[
+J = - \sum _{i=1}^V \sum _{j=1}^V X_{ij} log Q_{ij} \\
+\]</span></p></li>
+<li><p>接下来用之前定义的符号进一步变换：</p>
+<p><span class="math display">\[
+J = - \sum _{i=1^V} X_i \sum _{j=1}^V P_{ij} log Q_{ij} \\
+= \sum _{i=1}^V X_i H(P_i,Q_i) \\
+\]</span></p></li>
+<li><p>也就是说，Word2vec的损失函数实际上是加权的交叉熵，然而交叉熵只是一种可能的度量，且具有很多缺点：</p>
+<ul>
+<li>需要归一化的概率作为参数</li>
+<li>softmax计算量大，称为模型的计算瓶颈</li>
+<li>对于长尾分布，交叉熵常常分配给不太可能的项太多权重</li>
+</ul></li>
+<li><p>解决以上问题的方法：干脆不归一化，直接用共现计数，不用交叉熵和softmax，直接用均方误差，令<span
+class="math inline">\(Q_{ij} = exp(w_i^T w_j^{*})\)</span>，<span
+class="math inline">\(P_{ij} = X_{ij}\)</span>，则：</p>
+<p><span class="math display">\[
+J = \sum _{i,j} X_i (P_{ij} - Q_{ij})^2 \\
+\]</span></p></li>
+<li><p>但是不归一化会造成数值上溢，那就再取个对数：</p>
+<p><span class="math display">\[
+J = \sum _{i,j} X_i (log P_{ij} - log Q_{ij})^2 \\
+=  \sum _{i,j} X_i (w_i^T w_j^{*} - log X_{ij})^2 \\
+\]</span></p></li>
+<li><p>这样就得到了Glove最朴素的目标函数。</p></li>
+<li><p>Word2vec的作者发现筛除一些常见词能够提高词向量效果，而Word2vec中的加权函数即<span
+class="math inline">\(f(X_i)=X_i\)</span>，因此筛除常见词等价于设计一个非降的加权函数。Glove则设计了更为精巧的加权函数。</p></li>
+<li><p>因此从数学公式推导上看，Glove简化了Word2vec的目标函数，用均方误差替换交叉熵，并重新设计了加权函数。</p></li>
+</ul>
+<h1 id="思路">思路</h1>
+<ul>
+<li>该文提供了一个很好的设计模型的思路，即根据评测指标设计目标函数，反过来训练模型，得到函数的参数（副产品）作为所需的结果。</li>
+</ul>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/math/" rel="tag"># math</a>
+              <a href="/tags/glove/" rel="tag"># glove</a>
+              <a href="/tags/word-embedding/" rel="tag"># word embedding</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/01/03/PaperReading3/" rel="prev" title="Paper Reading 3">
+                  <i class="fa fa-angle-left"></i> Paper Reading 3
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/03/20/vae/" rel="next" title="Note for Variational Auto-Encoder">
+                  Note for Variational Auto-Encoder <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">16:35</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2019/01/13/glove/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Record the incremental decoding processing of parallel decoding models such as CNN seq2seq and Transformer in the inference phase in Fairseq.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Incremental Decoding">
+<meta property="og:url" content="https://thinkwee.top/2020/03/17/incremental-decoding/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="Record the incremental decoding processing of parallel decoding models such as CNN seq2seq and Transformer in the inference phase in Fairseq.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-17T07:27:27.000Z">
+<meta property="article:modified_time" content="2025-01-30T02:10:45.361Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="inference">
+<meta property="article:tag" content="seq2seq">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://thinkwee.top/2020/03/17/incremental-decoding/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2020/03/17/incremental-decoding/","path":"2020/03/17/incremental-decoding/","title":"Incremental Decoding"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Incremental Decoding | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fairseq-architecture"><span class="nav-number">1.</span> <span class="nav-text">Fairseq Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#training-parallelization-and-inference-incrementation"><span class="nav-number">2.</span> <span class="nav-text">Training
+Parallelization and Inference Incrementation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cnn"><span class="nav-number">3.</span> <span class="nav-text">CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#transformer"><span class="nav-number">4.</span> <span class="nav-text">Transformer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#generate"><span class="nav-number">5.</span> <span class="nav-text">Generate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reorder"><span class="nav-number">6.</span> <span class="nav-text">Reorder</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fairseq%E6%9E%B6%E6%9E%84"><span class="nav-number">7.</span> <span class="nav-text">Fairseq架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E5%B9%B6%E8%A1%8C%E6%8E%A8%E7%90%86%E5%A2%9E%E9%87%8F"><span class="nav-number">8.</span> <span class="nav-text">训练并行，推理增量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cnn"><span class="nav-number">9.</span> <span class="nav-text">CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#transformer"><span class="nav-number">10.</span> <span class="nav-text">Transformer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#generate"><span class="nav-number">11.</span> <span class="nav-text">Generate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reorder"><span class="nav-number">12.</span> <span class="nav-text">Reorder</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2020/03/17/incremental-decoding/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Incremental Decoding | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Incremental Decoding
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-17 15:27:27" itemprop="dateCreated datePublished" datetime="2020-03-17T15:27:27+08:00">2020-03-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-30 10:10:45" itemprop="dateModified" datetime="2025-01-30T10:10:45+08:00">2025-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/03/17/incremental-decoding/" class="post-meta-item leancloud_visitors" data-flag-title="Incremental Decoding" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>16k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>15 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Record the incremental decoding processing of parallel decoding
+models such as CNN seq2seq and Transformer in the inference phase in
+Fairseq.</p>
+<span id="more"></span>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="fairseq-architecture">Fairseq Architecture</h1>
+<ul>
+<li>In Facebook's seq2seq library Fairseq, all models inherit the
+FairseqEncoderDecoder class, all Encoders inherit the FairseqEncoder
+class, all Decoders inherit the FairseqIncrementalDecoder class, and
+FairseqIncrementalDecoder inherits from the FairseqDecoder class.</li>
+<li>The FairseqEncoder class only defines forward, reorder_encoder_out,
+max_positions, and upgrade_state_dict, with forward being the most
+important method, defining the forward propagation process of encoding.
+Reorder is actually more important in the decoder, but it is defined
+here as well.</li>
+<li>The FairseqDecoder class defines forward, extract_features,
+output_layer, get_normalized_probs, max_positions, upgrade_state_dict,
+and prepare_for_onnx_export_. forward = extract_features + output_layer,
+which means forward defines the entire forward process of decoding a
+sequence, while extract_features only defines obtaining the decoder's
+state sequence.</li>
+<li>The Incremental Decoder additionally defines
+reorder_incremental_state and set_beam_size. Reorder is closely related
+to incremental decoding and beam search, which will be detailed
+later.</li>
+</ul>
+<h1 id="training-parallelization-and-inference-incrementation">Training
+Parallelization and Inference Incrementation</h1>
+<ul>
+<li>Models like CNN seq2seq and Transformer break the sequentiality of
+RNN models, enabling the encoder and decoder in the seq2seq architecture
+to be trained in parallel during training.</li>
+<li>Parallel training of the encoder is quite obvious, and the decoder
+is essentially a language model that can be parallelized during training
+because of teacher forcing, where the input at each time step is assumed
+to be known. Thus, the entire decoder input of (Batch, Length, Hidden)
+can be directly input into the model for training.</li>
+<li>However, during testing (inference), the input at each time step is
+determined by the output of the previous time step, which cannot be
+parallelized. If the entire decoder is run repeatedly, it would run
+Length times, and only the information of the first i positions is
+useful in the i-th run, with the remaining calculations completely
+wasted, significantly reducing inference efficiency.</li>
+<li>At this point, incremental decoding becomes necessary. During the
+inference phase, whether it's CNN or Transformer, decoding is done step
+by step like an RNN, using information previously inferred at each step,
+rather than starting from scratch.</li>
+</ul>
+<h1 id="cnn">CNN</h1>
+<ul>
+<li><p>For CNN, it can be observed that at each layer of the decoder,
+the i-th position only needs information from the [i-k, i) positions,
+where k is the window size of the one-dimensional convolution.
+Therefore, by maintaining a queue of length k to save the states
+calculated by each layer, the model can reuse information previously
+inferred.</p></li>
+<li><p>Each calculation only needs to decode the i-th position, i.e.,
+operate on (Batch, 1, Hidden) data Length times.</p></li>
+<li><p>In the code, FConvDecoder passes input x and incremental_state to
+LinearizedConvolution, which is described as:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;An optimized version of nn.Conv1d.</span><br><span class="line">At training time, this module uses ConvTBC, which is an optimized version</span><br><span class="line">of Conv1d. At inference time, it optimizes incremental generation (i.e.,</span><br><span class="line">one time step at a time) by replacing the convolutions with linear layers.</span><br><span class="line">Note that the input order changes from training to inference.</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>During training, data is organized in a Time-First format for
+convolution to fully utilize GPU parallel performance. During inference,
+convolution layers are replaced with equivalent linear layers for
+frame-by-frame inference</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if incremental_state is None:</span><br><span class="line">   output = super().forward(input) # Here, LinearizedConvolution&#x27;s parent class is ConvTBC, so if there&#x27;s no inference, the entire sequence is sent to ConvTBC</span><br><span class="line">   if self.kernel_size[0] &gt; 1 and self.padding[0] &gt; 0:</span><br><span class="line">       # remove future timesteps added by padding</span><br><span class="line">       output = output[:-self.padding[0], :, :]</span><br><span class="line">return output</span><br></pre></td></tr></table></figure></li>
+<li><p>Otherwise, inference is done layer by layer using linear layers,
+and the input buffer is updated to update incremental_state</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># reshape weight</span><br><span class="line">weight = self._get_linearized_weight()</span><br><span class="line">kw = self.kernel_size[0]</span><br><span class="line">bsz = input.size(0)  # input: bsz x len x dim</span><br><span class="line">if kw &gt; 1:</span><br><span class="line">   input = input.data</span><br><span class="line">   input_buffer = self._get_input_buffer(incremental_state)</span><br><span class="line">   if input_buffer is None:</span><br><span class="line">       input_buffer = input.new(bsz, kw, input.size(2)).zero_()</span><br><span class="line">       self._set_input_buffer(incremental_state, input_buffer)</span><br><span class="line">   else:</span><br><span class="line">       # shift buffer</span><br><span class="line">       input_buffer[:, :-1, :] = input_buffer[:, 1:, :].clone()</span><br><span class="line">   # append next input</span><br><span class="line">   input_buffer[:, -1, :] = input[:, -1, :]</span><br><span class="line">   input = input_buffer</span><br><span class="line">with torch.no_grad():</span><br><span class="line">   output = F.linear(input.view(bsz, -1), weight, self.bias)</span><br><span class="line">return output.view(bsz, 1, -1)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="transformer">Transformer</h1>
+<ul>
+<li><p>Similarly, let's look at how self-attention-based models maintain
+an incremental state</p></li>
+<li><p>Clearly, when inferring the token at the i-th position, it's not
+just related to the history of a window size like CNN, but to the first
+i-1 positions. However, note that the key and value computed for the
+first i-1 positions remain unchanged and can be reused. The i-th
+position only generates its own key, value, and query, and uses the
+query to query itself and the reusable key and value of the first i-1
+positions. Therefore, the incremental state should include key and value
+information, maintaining not a window size, but the entire
+sequence.</p></li>
+<li><p>In the code, TransformerDecoder passes the current layer input
+and encoder output to TransformerDecoderLayer, updating the buffer</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if prev_self_attn_state is not None:</span><br><span class="line">   prev_key, prev_value = prev_self_attn_state[:2]</span><br><span class="line">   saved_state: Dict[str, Optional[Tensor]] = &#123;</span><br><span class="line">       &quot;prev_key&quot;: prev_key,</span><br><span class="line">       &quot;prev_value&quot;: prev_value,</span><br><span class="line">   &#125;</span><br><span class="line">   if len(prev_self_attn_state) &gt;= 3:</span><br><span class="line">       saved_state[&quot;prev_key_padding_mask&quot;] = prev_self_attn_state[2]</span><br><span class="line">   assert incremental_state is not None</span><br><span class="line">   self.self_attn._set_input_buffer(incremental_state, saved_state)</span><br><span class="line">_self_attn_input_buffer = self.self_attn._get_input_buffer(incremental_state)</span><br></pre></td></tr></table></figure></li>
+<li><p>And in MultiHeadAttention, if incremental_state exists, set key
+and value to None, and subsequent calculations will skip when they are
+None</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if incremental_state is not None:</span><br><span class="line">   saved_state = self._get_input_buffer(incremental_state)</span><br><span class="line">   if saved_state is not None and &quot;prev_key&quot; in saved_state:</span><br><span class="line">       # previous time steps are cached - no need to recompute</span><br><span class="line">       # key and value if they are static</span><br><span class="line">       if static_kv:</span><br><span class="line">           assert self.encoder_decoder_attention and not self.self_attention</span><br><span class="line">           key = value = None</span><br></pre></td></tr></table></figure></li>
+<li><p>Then read, calculate, and update, with detailed code</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">if saved_state is not None:</span><br><span class="line">   # saved states are stored with shape (bsz, num_heads, seq_len, head_dim)</span><br><span class="line">   if &quot;prev_key&quot; in saved_state:</span><br><span class="line">       _prev_key = saved_state[&quot;prev_key&quot;]</span><br><span class="line">       assert _prev_key is not None</span><br><span class="line">       prev_key = _prev_key.view(bsz * self.num_heads, -1, self.head_dim)</span><br><span class="line">       if static_kv:</span><br><span class="line">           k = prev_key</span><br><span class="line">       else:</span><br><span class="line">           assert k is not None</span><br><span class="line">           k = torch.cat([prev_key, k], dim=1)</span><br><span class="line">   if &quot;prev_value&quot; in saved_state:</span><br><span class="line">       _prev_value = saved_state[&quot;prev_value&quot;]</span><br><span class="line">       assert _prev_value is not None</span><br><span class="line">       prev_value = _prev_value.view(bsz * self.num_heads, -1, self.head_dim)</span><br><span class="line">       if static_kv:</span><br><span class="line">           v = prev_value</span><br><span class="line">       else:</span><br><span class="line">           assert v is not None</span><br><span class="line">           v = torch.cat([prev_value, v], dim=1)</span><br><span class="line">   prev_key_padding_mask: Optional[Tensor] = None</span><br><span class="line">   if &quot;prev_key_padding_mask&quot; in saved_state:</span><br><span class="line">       prev_key_padding_mask = saved_state[&quot;prev_key_padding_mask&quot;]</span><br><span class="line">   assert k is not None and v is not None</span><br><span class="line">   key_padding_mask = MultiheadAttention._append_prev_key_padding_mask(</span><br><span class="line">       key_padding_mask=key_padding_mask,</span><br><span class="line">       prev_key_padding_mask=prev_key_padding_mask,</span><br><span class="line">       batch_size=bsz,</span><br><span class="line">       src_len=k.size(1),</span><br><span class="line">       static_kv=static_kv,</span><br><span class="line">   )</span><br><span class="line"></span><br><span class="line">   saved_state[&quot;prev_key&quot;] = k.view(bsz, self.num_heads, -1, self.head_dim)</span><br><span class="line">   saved_state[&quot;prev_value&quot;] = v.view(bsz, self.num_heads, -1, self.head_dim)</span><br><span class="line">   saved_state[&quot;prev_key_padding_mask&quot;] = key_padding_mask</span><br><span class="line">   # In this branch incremental_state is never None</span><br><span class="line">   assert incremental_state is not None</span><br><span class="line">   incremental_state = self._set_input_buffer(incremental_state, saved_state)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="generate">Generate</h1>
+<ul>
+<li><p>Fairseq's models define all forward processes, and which forward
+process is used depends on whether it's training or inference. Inference
+uses fairseq-generate.</p></li>
+<li><p>To complete a seq2seq, you need to specify the task and model,
+along with other learning hyperparameters. The task determines dataset
+parameters, establishes evaluation metrics, vocabulary, data batches,
+and model instantiation.</p></li>
+<li><p>The most important parts are train_step and inference_step, let's
+look at inference_step</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def inference_step(self, generator, models, sample, prefix_tokens=None):</span><br><span class="line">   with torch.no_grad():</span><br><span class="line">       return generator.generate(models, sample, prefix_tokens=prefix_tokens)</span><br></pre></td></tr></table></figure></li>
+<li><p>Here, the generator is a sequence_generator object, with the
+generation part</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">for step in range(max_len + 1):  # one extra step for EOS marker</span><br><span class="line">   # reorder decoder internal states based on the prev choice of beams</span><br><span class="line">   if reorder_state is not None:</span><br><span class="line">       if batch_idxs is not None:</span><br><span class="line">           # update beam indices to take into account removed sentences</span><br><span class="line">           corr = batch_idxs - torch.arange(batch_idxs.numel()).type_as(batch_idxs)</span><br><span class="line">           reorder_state.view(-1, beam_size).add_(corr.unsqueeze(-1) * beam_size)</span><br><span class="line">       model.reorder_incremental_state(reorder_state)</span><br><span class="line">       encoder_outs = model.reorder_encoder_out(encoder_outs, reorder_state)</span><br><span class="line"></span><br><span class="line">   lprobs, avg_attn_scores = model.forward_decoder(</span><br><span class="line">       tokens[:, :step + 1], encoder_outs, temperature=self.temperature,</span><br><span class="line">   )</span><br></pre></td></tr></table></figure></li>
+<li><p>This wraps an ensemble model. If we only have one decoder model,
+then forward_decoder actually executes</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def _decode_one(</span><br><span class="line">   self, tokens, model, encoder_out, incremental_states, log_probs,</span><br><span class="line">   temperature=1.,</span><br><span class="line">):</span><br><span class="line">   if self.incremental_states is not None:</span><br><span class="line">       decoder_out = list(model.forward_decoder(</span><br><span class="line">           tokens,</span><br><span class="line">           encoder_out=encoder_out,</span><br><span class="line">           incremental_state=self.incremental_states[model],</span><br><span class="line">       ))</span><br><span class="line">   else:</span><br><span class="line">       decoder_out = list(model.forward_decoder(tokens, encoder_out=encoder_out))</span><br></pre></td></tr></table></figure></li>
+<li><p>Here you can see that incremental decoding is used to decode the
+sentence step by step</p></li>
+</ul>
+<h1 id="reorder">Reorder</h1>
+<ul>
+<li>For more detailed information, refer to this blog post, which is
+very well written and even officially endorsed by being added to the
+code comments <a
+target="_blank" rel="noopener" href="http://www.telesens.co/2019/04/21/understanding-incremental-decoding-in-fairseq/">understanding-incremental-decoding-in-fairseq</a></li>
+<li>There's another point about reorder in the decoder, also mentioned
+in this blog post.</li>
+<li>During inference, unlike training, beam search is used. So we
+maintain not just one cache queue, but beam_size number of queues.</li>
+<li>When selecting the i-th word, the input token stored in the k-th
+beam's cache queue might have come from the j-th beam's cache queue
+during beam search at the i-1 position. Therefore, reordering is needed
+to ensure consistency.</li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="fairseq架构">Fairseq架构</h1>
+<ul>
+<li>在Facebook推出的seq2seq库Fairseq当中，所有模型继承FairseqEncdoerDecoder类，所有的Encoder继承FairseqEncoder类，所有的Decoder继承FairseqIncrementalDecoder类，而FairseqIncrementalDecoder继承自FairseqDecoder类。</li>
+<li>FairseqEncoder类只定义了forward，reorder_encoder_out,max_positions，upgrade_state_dict，最重要的就是forward，即定义编码的前向传播过程。reorder其实在decoder中更重要，但是这里也定义了。</li>
+<li>FairseqDecoder类定义了forward，extract_features,output_layer，get_normalized_probs，max_positions，upgrade_state_dict，prepare_for_onnx_export_。forward=extract_features+output_layer，即forward定义了解码出序列的整个前向过程，而extract_features只定义到获得整个decoder的state
+sequence。</li>
+<li>Incremental
+Decoder额外定义了reorder_incremental_state，set_beam_size。reorder是和incremental以及beam
+search密切相关的，后文将详细介绍。</li>
+</ul>
+<h1 id="训练并行推理增量">训练并行，推理增量</h1>
+<ul>
+<li>像CNN seq2seq，
+Transformer之类的模型打破了RNN模型的顺序性，使得seq2seq架构中的编码器和解码器在训练是都可以并行训练。</li>
+<li>编码器并行训练非常显然，而解码器实际上是一个语言模型，之所以可以并行是因为在训练时采用了teacher
+forcing，因此语言模型的每一时间步输入在训练时我们假设是已知的，就可以一整个(Batch,Length,Hidden)的decoder
+input输入模型，直接训练。</li>
+<li>但是在测试（推理）阶段，每一时间步的输入由上一时间步的输出决定，无法并行操作，如果反复运行整个decoder，那么就要运行Length次，且第i次只有前i个位置的信息是有用的，剩下部分的计算完全浪费掉了，推理的效率大大降低。</li>
+<li>这个时候就需要incremental
+decoding，即在推理阶段，无论是CNN还是Transformer，都想RNN一样一步一步解码，每一步使用之前推理得到的信息，而不是完全从头开始计算。</li>
+</ul>
+<h1 id="cnn">CNN</h1>
+<ul>
+<li><p>对于CNN，可以发现，decoder无论哪一层，第i个位置都只需要该层[i-k,i)位置上内的信息，其中k为一维卷积的窗长。因此，只需要维护一个长度为k的队列，保存各层计算出来的state，就可以复用模型之前推理得到的信息，之后再把当前的state更新到队列中。</p></li>
+<li><p>每次计算时只需要对第i个位置进行decoding，即操作(Batch,1,Hidden)的数据Length次。</p></li>
+<li><p>在代码里，FConvDecoder将输入x和incremental_state一起传给了LinearizedConvolution，这里的介绍是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;An optimized version of nn.Conv1d.</span><br><span class="line">At training time, this module uses ConvTBC, which is an optimized version</span><br><span class="line">of Conv1d. At inference time, it optimizes incremental generation (i.e.,</span><br><span class="line">one time step at a time) by replacing the convolutions with linear layers.</span><br><span class="line">Note that the input order changes from training to inference.</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>即训练时使用Time-First的形式组织数据进行卷积，充分利用GPU的并行性能，在推断时，将卷积层换成相同效果的线性层，逐帧进行推断</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if incremental_state is None:</span><br><span class="line">   output = super().forward(input) # 这里 LinearizedConvolution的父类是ConvTBC，即没有推断时，直接将整个序列送入ConvTBC</span><br><span class="line">   if self.kernel_size[0] &gt; 1 and self.padding[0] &gt; 0:</span><br><span class="line">       # remove future timesteps added by padding</span><br><span class="line">       output = output[:-self.padding[0], :, :]</span><br><span class="line">return output</span><br></pre></td></tr></table></figure></li>
+<li><p>否则，就逐层用线性层推断，并更新input
+buffer进而更新incremental_state</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># reshape weight</span><br><span class="line">weight = self._get_linearized_weight()</span><br><span class="line">kw = self.kernel_size[0]</span><br><span class="line">bsz = input.size(0)  # input: bsz x len x dim</span><br><span class="line">if kw &gt; 1:</span><br><span class="line">   input = input.data</span><br><span class="line">   input_buffer = self._get_input_buffer(incremental_state)</span><br><span class="line">   if input_buffer is None:</span><br><span class="line">       input_buffer = input.new(bsz, kw, input.size(2)).zero_()</span><br><span class="line">       self._set_input_buffer(incremental_state, input_buffer)</span><br><span class="line">   else:</span><br><span class="line">       # shift buffer</span><br><span class="line">       input_buffer[:, :-1, :] = input_buffer[:, 1:, :].clone()</span><br><span class="line">   # append next input</span><br><span class="line">   input_buffer[:, -1, :] = input[:, -1, :]</span><br><span class="line">   input = input_buffer</span><br><span class="line">with torch.no_grad():</span><br><span class="line">   output = F.linear(input.view(bsz, -1), weight, self.bias)</span><br><span class="line">return output.view(bsz, 1, -1)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="transformer">Transformer</h1>
+<ul>
+<li><p>同样的，我们看基于自注意力的模型如何去维护一个incremental
+state</p></li>
+<li><p>显然，在推断第i个位置的token时，不像CNN只与窗口大小的history相关，而是与前i-1个位置相关，但是注意，前i-1个位置计算出来的key和value是不变的，是可以复用的，第i位置只生成该位置的key，value以及query，并用query查询自己以及前i-1个位置复用的key,value，因此，incremental
+state应该包含了key与value的信息，且维护的不是窗口大小，而是整个序列。</p></li>
+<li><p>在代码里，TransformerDecoder将当前层输入和encoder输出传给TransformerDecoderLayer，更新buffer</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if prev_self_attn_state is not None:</span><br><span class="line">   prev_key, prev_value = prev_self_attn_state[:2]</span><br><span class="line">   saved_state: Dict[str, Optional[Tensor]] = &#123;</span><br><span class="line">       &quot;prev_key&quot;: prev_key,</span><br><span class="line">       &quot;prev_value&quot;: prev_value,</span><br><span class="line">   &#125;</span><br><span class="line">   if len(prev_self_attn_state) &gt;= 3:</span><br><span class="line">       saved_state[&quot;prev_key_padding_mask&quot;] = prev_self_attn_state[2]</span><br><span class="line">   assert incremental_state is not None</span><br><span class="line">   self.self_attn._set_input_buffer(incremental_state, saved_state)</span><br><span class="line">_self_attn_input_buffer = self.self_attn._get_input_buffer(incremental_state)</span><br></pre></td></tr></table></figure></li>
+<li><p>并在MultiHeadAttention里，假如incremental_state存在，将key和value设为None，后面的计算判断为None时就跳过计算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if incremental_state is not None:</span><br><span class="line">   saved_state = self._get_input_buffer(incremental_state)</span><br><span class="line">   if saved_state is not None and &quot;prev_key&quot; in saved_state:</span><br><span class="line">       # previous time steps are cached - no need to recompute</span><br><span class="line">       # key and value if they are static</span><br><span class="line">       if static_kv:</span><br><span class="line">           assert self.encoder_decoder_attention and not self.self_attention</span><br><span class="line">           key = value = None</span><br></pre></td></tr></table></figure></li>
+<li><p>之后读取、计算、更新，代码写的很详细。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">if saved_state is not None:</span><br><span class="line">   # saved states are stored with shape (bsz, num_heads, seq_len, head_dim)</span><br><span class="line">   if &quot;prev_key&quot; in saved_state:</span><br><span class="line">       _prev_key = saved_state[&quot;prev_key&quot;]</span><br><span class="line">       assert _prev_key is not None</span><br><span class="line">       prev_key = _prev_key.view(bsz * self.num_heads, -1, self.head_dim)</span><br><span class="line">       if static_kv:</span><br><span class="line">           k = prev_key</span><br><span class="line">       else:</span><br><span class="line">           assert k is not None</span><br><span class="line">           k = torch.cat([prev_key, k], dim=1)</span><br><span class="line">   if &quot;prev_value&quot; in saved_state:</span><br><span class="line">       _prev_value = saved_state[&quot;prev_value&quot;]</span><br><span class="line">       assert _prev_value is not None</span><br><span class="line">       prev_value = _prev_value.view(bsz * self.num_heads, -1, self.head_dim)</span><br><span class="line">       if static_kv:</span><br><span class="line">           v = prev_value</span><br><span class="line">       else:</span><br><span class="line">           assert v is not None</span><br><span class="line">           v = torch.cat([prev_value, v], dim=1)</span><br><span class="line">   prev_key_padding_mask: Optional[Tensor] = None</span><br><span class="line">   if &quot;prev_key_padding_mask&quot; in saved_state:</span><br><span class="line">       prev_key_padding_mask = saved_state[&quot;prev_key_padding_mask&quot;]</span><br><span class="line">   assert k is not None and v is not None</span><br><span class="line">   key_padding_mask = MultiheadAttention._append_prev_key_padding_mask(</span><br><span class="line">       key_padding_mask=key_padding_mask,</span><br><span class="line">       prev_key_padding_mask=prev_key_padding_mask,</span><br><span class="line">       batch_size=bsz,</span><br><span class="line">       src_len=k.size(1),</span><br><span class="line">       static_kv=static_kv,</span><br><span class="line">   )</span><br><span class="line"></span><br><span class="line">   saved_state[&quot;prev_key&quot;] = k.view(bsz, self.num_heads, -1, self.head_dim)</span><br><span class="line">   saved_state[&quot;prev_value&quot;] = v.view(bsz, self.num_heads, -1, self.head_dim)</span><br><span class="line">   saved_state[&quot;prev_key_padding_mask&quot;] = key_padding_mask</span><br><span class="line">   # In this branch incremental_state is never None</span><br><span class="line">   assert incremental_state is not None</span><br><span class="line">   incremental_state = self._set_input_buffer(incremental_state, saved_state)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="generate">Generate</h1>
+<ul>
+<li><p>Fairseq的模型定义了所有前向过程，至于具体选择哪个前向过程则依据训练还是推断来决定。推断使用了fairseq-generate。</p></li>
+<li><p>要完成一次seq2seq，需要指定task和model，以及其他学习超参数。其中task确定了数据集参数，建立评价指标、词典、data_batch、实例化模型等等。</p></li>
+<li><p>其中最重要的就是train_step和inference_step，我们看看inference_step</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def inference_step(self, generator, models, sample, prefix_tokens=None):</span><br><span class="line">   with torch.no_grad():</span><br><span class="line">       return generator.generate(models, sample, prefix_tokens=prefix_tokens)</span><br></pre></td></tr></table></figure></li>
+<li><p>这里的generator是一个sequence_generator对象，其中生成的部分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">for step in range(max_len + 1):  # one extra step for EOS marker</span><br><span class="line">   # reorder decoder internal states based on the prev choice of beams</span><br><span class="line">   if reorder_state is not None:</span><br><span class="line">       if batch_idxs is not None:</span><br><span class="line">           # update beam indices to take into account removed sentences</span><br><span class="line">           corr = batch_idxs - torch.arange(batch_idxs.numel()).type_as(batch_idxs)</span><br><span class="line">           reorder_state.view(-1, beam_size).add_(corr.unsqueeze(-1) * beam_size)</span><br><span class="line">       model.reorder_incremental_state(reorder_state)</span><br><span class="line">       encoder_outs = model.reorder_encoder_out(encoder_outs, reorder_state)</span><br><span class="line"></span><br><span class="line">   lprobs, avg_attn_scores = model.forward_decoder(</span><br><span class="line">       tokens[:, :step + 1], encoder_outs, temperature=self.temperature,</span><br><span class="line">   )</span><br></pre></td></tr></table></figure></li>
+<li><p>这里做了一层emsemble
+model的包装，假如我们只有一个decoder模型，那么实际上forward_decoder执行的是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def _decode_one(</span><br><span class="line">   self, tokens, model, encoder_out, incremental_states, log_probs,</span><br><span class="line">   temperature=1.,</span><br><span class="line">):</span><br><span class="line">   if self.incremental_states is not None:</span><br><span class="line">       decoder_out = list(model.forward_decoder(</span><br><span class="line">           tokens,</span><br><span class="line">           encoder_out=encoder_out,</span><br><span class="line">           incremental_state=self.incremental_states[model],</span><br><span class="line">       ))</span><br><span class="line">   else:</span><br><span class="line">       decoder_out = list(model.forward_decoder(tokens, encoder_out=encoder_out))</span><br></pre></td></tr></table></figure></li>
+<li><p>这里可以看到是用incremental decoding逐步解码出句子</p></li>
+</ul>
+<h1 id="reorder">Reorder</h1>
+<ul>
+<li>更多的详细信息可以参考这篇博文，写的非常好，甚至被官方钦点加入了代码注释里<a
+target="_blank" rel="noopener" href="http://www.telesens.co/2019/04/21/understanding-incremental-decoding-in-fairseq/">understanding-incremental-decoding-in-fairseq</a></li>
+<li>还有一点，就是decoder中的reorder，在这篇博文里也有提到。</li>
+<li>在推断时和训练不同的另一点就是beam
+search。因此我们不止维护一个缓存队列，而是beam_size个队列。</li>
+<li>那么在挑选第i个词的时候，第k个beam缓存队列的存的输入token可能是第i-1个位置时第j个beam缓存队列beam
+search出来的，因此需要重新排序保证一致。</li>
+</ul>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/math/" rel="tag"># math</a>
+              <a href="/tags/inference/" rel="tag"># inference</a>
+              <a href="/tags/seq2seq/" rel="tag"># seq2seq</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/02/bertology/" rel="prev" title="BERTology">
+                  <i class="fa fa-angle-left"></i> BERTology
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/27/clscisumm/" rel="next" title="CLSciSumm summary">
+                  CLSciSumm summary <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">16:35</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2020/03/17/incremental-decoding/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>

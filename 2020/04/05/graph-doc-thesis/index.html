@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Read Dr. Bang Liu’s paper Natural Language Processing and Text Mining with Graph-Structured Representations from the University of Alberta and take some notes.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notes for NLP with Graph-Structured Representations">
+<meta property="og:url" content="https://thinkwee.top/2020/04/05/graph-doc-thesis/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="Read Dr. Bang Liu’s paper Natural Language Processing and Text Mining with Graph-Structured Representations from the University of Alberta and take some notes.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/02/GG2kes.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/05/GrQJun.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/05/GrQUEV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/05/GrQrv9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/11/GbgQUA.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/02/GG2kes.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/05/GrQJun.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/05/GrQUEV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/05/GrQrv9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/11/GbgQUA.png">
+<meta property="article:published_time" content="2020-04-05T13:22:54.000Z">
+<meta property="article:modified_time" content="2025-01-30T02:10:45.360Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="gnn">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="graph">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/02/GG2kes.png">
+
+
+<link rel="canonical" href="https://thinkwee.top/2020/04/05/graph-doc-thesis/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2020/04/05/graph-doc-thesis/","path":"2020/04/05/graph-doc-thesis/","title":"Notes for NLP with Graph-Structured Representations"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Notes for NLP with Graph-Structured Representations | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#natural-language-processing-based-on-graph-structural-representation"><span class="nav-number">1.</span> <span class="nav-text">Natural
+Language Processing Based on Graph Structural Representation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#related-fields-and-methodology"><span class="nav-number">2.</span> <span class="nav-text">Related Fields and
+Methodology</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#event-extraction-and-story-generation"><span class="nav-number">3.</span> <span class="nav-text">Event Extraction and
+Story Generation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">3.1.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#story-forest-extracting-events-and-telling-stories-from-breaking-newstkdd"><span class="nav-number">3.2.</span> <span class="nav-text">Story
+Forest: Extracting Events and Telling Stories from Breaking
+News(TKDD)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#semantic-matching"><span class="nav-number">4.</span> <span class="nav-text">Semantic Matching</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work-1"><span class="nav-number">4.1.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#matching-article-pairs-with-graphical-decomposition-and-convolutionsacl-2019"><span class="nav-number">4.2.</span> <span class="nav-text">Matching
+Article Pairs with Graphical Decomposition and Convolutions(ACL
+2019)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#matching-natural-language-sentences-with-hierarchical-sentence-factorizationwww-2018"><span class="nav-number">4.3.</span> <span class="nav-text">Matching
+Natural Language Sentences with Hierarchical Sentence Factorization(WWW
+2018)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%BB%93%E6%9E%84%E8%A1%A8%E7%A4%BA%E7%9A%84%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">基于图结构表示的自然语言处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%A2%86%E5%9F%9F%E5%8F%8A%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="nav-number">6.</span> <span class="nav-text">相关领域及方法论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96%E5%8F%8A%E6%95%85%E4%BA%8B%E7%94%9F%E6%88%90"><span class="nav-number">7.</span> <span class="nav-text">事件抽取及故事生成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">7.1.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#story-forest-extracting-events-and-telling-stories-from-breaking-newstkdd"><span class="nav-number">7.2.</span> <span class="nav-text">Story
+Forest: Extracting Events and Telling Stories from Breaking
+News(TKDD)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E5%8C%B9%E9%85%8D"><span class="nav-number">8.</span> <span class="nav-text">语义匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C-1"><span class="nav-number">8.1.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#matching-article-pairs-with-graphical-decomposition-and-convolutionsacl-2019"><span class="nav-number">8.2.</span> <span class="nav-text">Matching
+Article Pairs with Graphical Decomposition and Convolutions(ACL
+2019)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#matching-natural-language-sentences-with-hierarchical-sentence-factorizationwww-2018"><span class="nav-number">8.3.</span> <span class="nav-text">Matching
+Natural Language Sentences with Hierarchical Sentence Factorization(WWW
+2018)</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2019/11/13/kg/" rel="bookmark">
+        <time class="popular-posts-time">2019-11-13</time>
+        <br>
+      Paper reading on Knowledge Graphs
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2020/04/05/graph-doc-thesis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Notes for NLP with Graph-Structured Representations | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Notes for NLP with Graph-Structured Representations
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-04-05 21:22:54" itemprop="dateCreated datePublished" datetime="2020-04-05T21:22:54+08:00">2020-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-30 10:10:45" itemprop="dateModified" datetime="2025-01-30T10:10:45+08:00">2025-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/04/05/graph-doc-thesis/" class="post-meta-item leancloud_visitors" data-flag-title="Notes for NLP with Graph-Structured Representations" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>14k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>13 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Read Dr. Bang Liu’s paper Natural Language Processing and Text Mining
+with Graph-Structured Representations from the University of Alberta and
+take some notes. <span id="more"></span></p>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1
+id="natural-language-processing-based-on-graph-structural-representation">Natural
+Language Processing Based on Graph Structural Representation</h1>
+<ul>
+<li>The paper mainly encompasses work in four primary directions:
+<ul>
+<li>Event Extraction, Story Generation</li>
+<li>Semantic Matching</li>
+<li>Recommendation</li>
+<li>Reading Comprehension</li>
+</ul></li>
+</ul>
+<h1 id="related-fields-and-methodology">Related Fields and
+Methodology</h1>
+<ul>
+<li>Graph construction related work in NLP</li>
+<li>Words as nodes
+<ul>
+<li>Syntactic information as edges: Learning substructures of document
+semantic graphs for document summarization</li>
+<li>Co-occurrence information as edges: Graph-of-word and tw-idf: new
+approach to ad hoc ir; Shortest-path graph kernels for document
+similarity; Directional skip-gram: Explicitly distinguishing left and
+right context for word embeddings;</li>
+</ul></li>
+<li>Sentences, paragraphs, documents as nodes
+<ul>
+<li>Word co-occurrence, position as edges: Textrank: Bringing order into
+texts;</li>
+<li>Similarity as edges: Evaluating text coherence based on semantic
+similarity graph;</li>
+<li>Links as edges: Pagerank</li>
+<li>Hybrid: Graph methods for multilingual framenets</li>
+</ul></li>
+<li>Methodology
+<ul>
+<li>Clarify input and output, determine semantic granularity, graph
+construction (define nodes and edges, extract node and edge features),
+graph representation reconstruction, conduct experiments</li>
+<li>The key to introducing graphs in NLP is introducing structural and
+relational information.</li>
+<li>Graph representation reconstruction problems, such as
+<ul>
+<li>Semantic matching: Tree or graph matching</li>
+<li>Event discovery: Community detection</li>
+<li>Phrase mining: Node classification and ranking</li>
+<li>Ontology creation: Relationship identification</li>
+<li>Question generation: Node selection <img data-src="https://s1.ax1x.com/2020/04/02/GG2kes.png" alt="GG2kes.png" /></li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="event-extraction-and-story-generation">Event Extraction and
+Story Generation</h1>
+<h2 id="related-work">Related Work</h2>
+<ul>
+<li>Text Clustering
+<ul>
+<li>Similarity-based methods requiring specified cluster count</li>
+<li>Density-based methods less suitable for high-dimensional sparse text
+spaces</li>
+<li>Non-negative matrix factorization methods (spectral clustering)</li>
+<li>Probabilistic models, such as PLSA, LDA, GMM</li>
+</ul></li>
+<li>Story Structure Generation
+<ul>
+<li>Continuously categorizing new events into existing clusters</li>
+<li>Generating story summaries for time-sequential events; traditional
+summarization methods cannot continuously generate; currently using
+Bayesian model methods, but Gibbs sampling is too time-consuming</li>
+</ul></li>
+<li>Authors proposed EventX method, constructed Story Forest system,
+related to above two approaches, focusing on open-domain news document
+event extraction</li>
+</ul>
+<h2
+id="story-forest-extracting-events-and-telling-stories-from-breaking-newstkdd">Story
+Forest: Extracting Events and Telling Stories from Breaking
+News(TKDD)</h2>
+<ul>
+<li>Story Forest: Extracting events and generating stories from
+news</li>
+<li>Definition: A topic is equivalent to a story forest, containing
+multiple story trees; each story tree's nodes are events, with events as
+the minimal processing unit, essentially multiple news documents about a
+single event. The system assumes each article reports only one
+event</li>
+<li>Overall Architecture: <img data-src="https://s1.ax1x.com/2020/04/05/GrQJun.png" alt="GrQJun.png" /></li>
+<li>Primary focus on EventX's event clustering method, a two-layer
+clustering
+<ul>
+<li><p>Construct a keyword co-occurrence graph, with keywords as nodes,
+considering two points for edge creation: intra-document relevance
+(co-occurrence exceeding threshold in same document); corpus relevance
+(conditional probability exceeding threshold):</p>
+<p><span class="math display">\[
+\operatorname{Pr}\left\{w_{i} | w_{j}\right\}=\frac{D F_{i, j}}{D F_{j}}
+\]</span></p></li>
+<li><p>Perform community detection on this keyword graph, clustering
+keywords, with each cluster considered to describe the same topic. Each
+topic is a collection of keywords, equivalent to a document (bag of
+words)</p></li>
+<li><p>Calculate similarity between each document and each topic,
+assigning documents to the topic with maximum similarity, completing the
+first layer: document clustering by theme</p></li>
+<li><p>After separating documents by topic, further subdivide events
+within each topic, the second clustering layer. Event cluster sizes are
+typically severely imbalanced; authors propose a supervised
+learning-guided clustering method</p></li>
+<li><p>Now viewing each document as a node, aiming to create edges
+between documents discussing the same event. Unable to manually design
+rules, they used supervised learning, training an SVM to judge whether
+documents describe the same event. After obtaining the document graph,
+perform community detection to complete the second clustering
+layer</p></li>
+</ul></li>
+</ul>
+<h1 id="semantic-matching">Semantic Matching</h1>
+<h2 id="related-work-1">Related Work</h2>
+<ul>
+<li>Document-level semantic matching, related work: Text matching,
+document graph structural representation</li>
+<li>Text Matching
+<ul>
+<li>Interaction placed last, first extracting embeddings via Siamese
+networks, then scoring matched embedding pairs</li>
+<li>Early interaction, first extracting pair-wise interactions as
+features, then aggregating interactions through neural networks, finally
+scoring</li>
+</ul></li>
+<li>Document Graph Structural Representation
+<ul>
+<li>Word graph: Constructing graphs via syntactic parsing to obtain SPO
+triples, potentially extended via Wordnet; window-based methods with
+nodes representing unique terms and directed edges representing
+co-occurrences within a fixed-size sliding window; using dependency
+relationships as edges; hyperlink-based graph construction</li>
+<li>Text graph: Nodes are sentences, paragraphs, documents; edges
+established based on word-level similarity, position, co-occurrence</li>
+<li>Concept graph: Based on knowledge graphs, extracting document
+entities as nodes (e.g., DBpedia), then performing DFS within 2 hops to
+find outgoing relations and entities; or based on Wordnet, Verbnet,
+finding semantic roles, constructing edges with semantic/syntactic
+relations</li>
+<li>Hybrid graph: Heterogeneous graph with multiple node and edge types,
+including lexical, tokens, syntactic structure nodes, part of speech
+nodes</li>
+</ul></li>
+</ul>
+<h2
+id="matching-article-pairs-with-graphical-decomposition-and-convolutionsacl-2019">Matching
+Article Pairs with Graphical Decomposition and Convolutions(ACL
+2019)</h2>
+<ul>
+<li>Authors' work in text matching and document graph structural
+representation involves proposing a document graph construction method,
+using GCN to extract document features for document-level matching</li>
+<li>This section can improve the previous work's method of determining
+whether two documents discuss the same event</li>
+<li>Overall process: <img data-src="https://s1.ax1x.com/2020/04/05/GrQUEV.png" alt="GrQUEV.png" /></li>
+<li>Graph Construction: Concept Interaction Graph
+<ul>
+<li>First construct key graph, extracting keywords and entities from
+articles as nodes, creating edges if two nodes appear in the same
+sentence</li>
+<li>Key graph nodes can be directly used as concepts, or overlapping
+community detection can be performed to divide the key graph into
+multiple intersecting subgraphs, with subgraphs serving as concept
+nodes, intersections creating edges</li>
+<li>Concepts and sentences are now bag-of-words, enabling similarity
+calculation and sentence assignment to concepts</li>
+<li>Concepts are now sentence collections, viewed as bag-of-words, with
+edges between concepts based on sentence set TF-IDF vector
+similarity</li>
+<li>Critically, since matching is performed, input is sentence pairs,
+transformed into graph pairs. Authors merge two CIGs into a large CIG,
+placing sentence sets from two articles describing the same concept in
+one concept node</li>
+</ul></li>
+<li>Constructing Matching Network with GCN
+<ul>
+<li><p>After obtaining a large CIG, matching between two documents
+becomes matching between sentence sets from two documents within each
+node</p></li>
+<li><p>Construct an end-to-end process: use Siamese networks to extract
+node features, use GCN for inter-node feature interaction, aggregate
+features for prediction</p></li>
+<li><p>Each node contains two sentence sets, concatenated into two long
+sentences, input into Siamese networks, extracting features using BiLSTM
+or CNN, then feature aggregation:</p>
+<p><span class="math display">\[
+\mathbf{m}_{A
+B}(v)=\left(\left|\mathbf{c}_{A}(v)-\mathbf{c}_{B}(v)\right|,
+\mathbf{c}_{A}(v) \circ \mathbf{c}_{B}(v)\right)
+\]</span></p></li>
+<li><p>Obtaining matching vector for each node, representing
+similarity-related features between two documents at that concept.
+Additionally, authors extracted traditional similarity features (TF-IDF,
+BM25, Jaccard, Ochiai) and concatenated them with matching
+vectors</p></li>
+<li><p>Next, pass through GCN</p></li>
+<li><p>Aggregate all node features using simple mean pooling, then pass
+through a linear layer for classification (0, 1)</p></li>
+</ul></li>
+<li>On long news corpora (avg 734 tokens), graph matching significantly
+outperforms traditional two-tower models (DUET, DSSM, ARC at 50-60 F1,
+graph model reaching 70-80)</li>
+</ul>
+<h2
+id="matching-natural-language-sentences-with-hierarchical-sentence-factorizationwww-2018">Matching
+Natural Language Sentences with Hierarchical Sentence Factorization(WWW
+2018)</h2>
+<figure>
+<img data-src="https://s1.ax1x.com/2020/04/05/GrQrv9.png" alt="GrQrv9.png" />
+<figcaption aria-hidden="true">GrQrv9.png</figcaption>
+</figure>
+<ul>
+<li>Sentence pair semantic matching task, primarily utilizing AMR
+parsing to obtain sentence structure</li>
+<li>Five steps
+<ul>
+<li>AMR parsing and alignment: AMR represents sentences as directed
+acyclic graphs; by copying and splitting nodes with multiple parents,
+the directed acyclic graph can be converted to a tree. AMR leaf nodes
+represent concepts, others are relationships representing concept
+connections or concept parameters. After obtaining AMR graph, alignment
+is needed to connect specific tokens with concepts. Authors used
+existing tool JAMR</li>
+<li>AMR purification: A token might connect to multiple concepts;
+authors select only the shallowest concept connection, remove
+relationship content, retain edges without edge labels, obtaining
+simplified AMR tree</li>
+<li>Index mapping: Add root node, reset node coordinates</li>
+<li>Node completion: Similar to padding, ensuring tree depths are
+identical</li>
+<li>Node traversal: Perform depth-first search, concatenating child tree
+content to each non-leaf node</li>
+</ul></li>
+<li>The root node obtains a reorganized sentence representation, similar
+to predicate-argument form. Authors suggest this can uniformly express
+two sentences, avoiding semantic matching errors caused by word order
+and less important words</li>
+<li>Subsequently use Ordered Word Mover Distance. The formula represents
+transportation cost (embedding distance), transportation volume (word
+proportion), α, β represent word frequency vectors of both sentences,
+with uniform distribution directly substituted. Traditional WMD didn't
+consider word order; authors introduced two penalty terms, with T
+primarily concentrated on diagonal when I is large. P is an ideal T
+distribution, with row-column elements satisfying standard Gaussian
+distribution distance from diagonal, hoping T becomes a diagonal
+matrix</li>
+<li>This method calculates OWMD distance for AMR representations of two
+sentences, completing unsupervised text similarity calculation. Can also
+utilize AMR Tree for supervised learning</li>
+<li>Note that different AMR tree layers represent different semantic
+granularities of the entire sentence. Authors selected first three
+layers, inputting different granularity semantic units into context
+layer, summing token embeddings within the same semantic unit, assuming
+maximum k child nodes per layer, padding if insufficient <img data-src="https://s1.ax1x.com/2020/04/11/GbgQUA.png" alt="GbgQUA.png" /></li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="基于图结构表示的自然语言处理">基于图结构表示的自然语言处理</h1>
+<ul>
+<li>论文主要囊括了主要包含四个方向的工作：
+<ul>
+<li>事件抽取、故事生成</li>
+<li>语义匹配</li>
+<li>推荐</li>
+<li>阅读理解</li>
+</ul></li>
+</ul>
+<h1 id="相关领域及方法论">相关领域及方法论</h1>
+<ul>
+<li>在NLP当中构图的相关工作</li>
+<li>词作为节点
+<ul>
+<li>syntactic信息作为边：Learning substructures of document semantic
+graphs for document summarization</li>
+<li>共现信息作为边： Graph-of-word and tw-idf: new approach to ad hoc
+ir； Shortest-path graph kernels for document similarity；Directional
+skip-gram: Explicitly distinguishing left and right context for word
+embeddings；</li>
+</ul></li>
+<li>句子、段落、文档作为节点
+<ul>
+<li>词共现、位置作为边：Textrank: Bringing order into texts；</li>
+<li>相似度作为边：Evaluating text coherence based on semantic similarity
+graph；</li>
+<li>链接作为边：Pagerank</li>
+<li>混合：Graph methods for multilingual framenets</li>
+</ul></li>
+<li>方法论
+<ul>
+<li>明确输入输出、决定语义的细粒度、构图（定义节点和边，抽取节点和边的特征）、基于图的表示重构问题、进行实验</li>
+<li>在NLP中引入图的关键是引入结构信息和关系信息。</li>
+<li>基于图的表示重构问题，例如
+<ul>
+<li>语义匹配：树或者图的匹配</li>
+<li>事件发现：社区发现</li>
+<li>phrase挖掘：节点分类和排序</li>
+<li>ontology creation： 关系鉴别</li>
+<li>问题生成：节点选择 <img data-src="https://s1.ax1x.com/2020/04/02/GG2kes.png" alt="GG2kes.png" /></li>
+</ul></li>
+</ul></li>
+</ul>
+<h1 id="事件抽取及故事生成">事件抽取及故事生成</h1>
+<h2 id="相关工作">相关工作</h2>
+<ul>
+<li>文本聚类
+<ul>
+<li>基于相似度的方法，需要指定聚类数目</li>
+<li>基于密度的方法，不太适合文本这样的高维稀疏空间</li>
+<li>基于非负矩阵分解的方法（谱聚类）</li>
+<li>基于概率模型，例如PLSA，LDA，GMM</li>
+</ul></li>
+<li>故事结构生成
+<ul>
+<li>持续的将新事件归类到已有聚类当中</li>
+<li>想要为一系列时序事件生成故事总结，传统的基于summarization的方法不能持续生成，现在多采用基于贝叶斯模型的方法，但是gibbs
+sampling太耗时</li>
+</ul></li>
+<li>作者提出了EventX方法，构建了Story
+Forest系统，与以上两个路线相关，做的是开放域新闻文档事件抽取</li>
+</ul>
+<h2
+id="story-forest-extracting-events-and-telling-stories-from-breaking-newstkdd">Story
+Forest: Extracting Events and Telling Stories from Breaking
+News(TKDD)</h2>
+<ul>
+<li>Story Forest：从新闻中抽取事件，生成故事</li>
+<li>定义：一个topic相当于一个story forest，包含多个story tree；每个story
+tree的节点是一个event，event作为最小处理单元，实际上是关于某一个event的多篇新闻文档。本系统假设每篇文章只报道一个event</li>
+<li>整体架构： <img data-src="https://s1.ax1x.com/2020/04/05/GrQJun.png"
+alt="GrQJun.png" /></li>
+<li>主要关注EventX中如何做cluster events，是一个两层聚类
+<ul>
+<li><p>构建一个keyword co-occurrence
+graph，节点是keyword，建边考虑两点：单篇文档内的相关性，即同一篇文档内共现次数超过阈值就建边；语料上的相关性，即条件概率超过阈值：</p>
+<p><span class="math display">\[
+\operatorname{Pr}\left\{w_{i} | w_{j}\right\}=\frac{D F_{i, j}}{D F_{j}}
+\]</span></p></li>
+<li><p>在这个keyword graph上做community
+detection，将keyword做一次聚类，认为每个类的Keyword描述同一个topic。这样每个topic是一系列keywords的集合，相当于一个文档（bag
+of words）</p></li>
+<li><p>计算每篇文档和每个topic之间的相似度，将文档分配给具有最大相似度的topic，这样就完成了第一层：文档按主题聚类</p></li>
+<li><p>将文档按topic分开之后，每个topic下还要细分event，这就是第二层聚类，event
+cluster的大小通常严重不均衡，作者提出了一种基于监督学习指导的聚类方法</p></li>
+<li><p>现在将每篇文档看成节点，希望谈论同一个event的文档之间建边，这里不太好人为设计规则，就使用了监督学习，训练了一个SVM来判断是否描述同一个event，获得document
+graph之后接着做community detection，完成第二层聚类</p></li>
+</ul></li>
+</ul>
+<h1 id="语义匹配">语义匹配</h1>
+<h2 id="相关工作-1">相关工作</h2>
+<ul>
+<li>文档级别的语义匹配，相关工作：文本匹配、文档图结构表示</li>
+<li>文本匹配
+<ul>
+<li>交互放在最后，先通过孪生网络提取embedding，然后待匹配的embedding
+pair进行score</li>
+<li>交互提前，先提取pair-wise的交互作为特征，然后通过神经网络聚合交互，最后score</li>
+</ul></li>
+<li>文档图结构表示
+<ul>
+<li>word
+graph:通过句法剖析得到spo三元组构图，还可以通过wordnet扩展合并；基于窗口的方法，nodes
+represent unique terms and directed edges represent co-occurrences
+between the terms within a fixed-size sliding
+window；将依存关系作为边；基于超链接的构图；</li>
+<li>text
+graph:节点是句子、段落、文档，边基于词级别的相似度、位置、共现建立。</li>
+<li>concept
+graph:基于知识图谱，提取文档中的实体作为节点，例如DBpedia，然后通过最多两跳在知识图谱中进行dfs，找出outgoing
+relation and entity，构图；或者基于wordnet,verbnet，找出semantic
+role，用semantic/syntactic relation建边</li>
+<li>hybrid graph:即异构图，多种节点以及多种边，lexical，tokens,
+syntactic structure nodes, part of speech nodes</li>
+</ul></li>
+</ul>
+<h2
+id="matching-article-pairs-with-graphical-decomposition-and-convolutionsacl-2019">Matching
+Article Pairs with Graphical Decomposition and Convolutions(ACL
+2019)</h2>
+<ul>
+<li>作者在文本匹配和文档图结构表示方向的工作是提出了一种文档建图的方式，然后用GCN提取文档特征，进行文档级别的匹配</li>
+<li>这一部分可以改进上一个工作中两篇文档是否讨论同一个event的部分。</li>
+<li>整体流程： <img data-src="https://s1.ax1x.com/2020/04/05/GrQUEV.png"
+alt="GrQUEV.png" /></li>
+<li>构图：Concept Interaction Graph
+<ul>
+<li>先构建key
+graph，抽取文章中的keywords和实体作为节点，假如两个节点出现在同一句中就建边</li>
+<li>可以将key graph中的节点直接作为concept，也可以在key
+graph上做一个overlapping community detection,将Key
+graph切分成多个相交的子图，子图作为concept节点，相交就建边</li>
+<li>现在concept 和 sentence都是bag of
+words，就可以计算相似度，将句子分配到concept</li>
+<li>现在concept是句子的集合，将其看成bag of
+words，concept之间就可以根据句子集合之间的tfidf vector
+similarity建边</li>
+<li>很关键的一点，由于是做matching，输入是句子对，在这一步变成了图对，作者将两个CIG合并成一个大CIG，将描述同一个concept的两篇文章的句子集合放在一个concept
+节点中</li>
+</ul></li>
+<li>构建matching network with GCN
+<ul>
+<li><p>得到一个大的CIG之后，两篇文档之间的matching变成了大CIG当中每一个节点里来自两篇文档的sentence
+set之间的matching</p></li>
+<li><p>构建了一个端到端的流程：用孪生网络提取节点特征、用GCN做节点直接的特征交互、聚合所有特征做预测</p></li>
+<li><p>这里每个节点包含了两个句子集，将其拼接成两个长句，进孪生网络，分别用bilstm或者cnn提取到特征，再进行一个特征的聚合：</p>
+<p><span class="math display">\[
+\mathbf{m}_{A
+B}(v)=\left(\left|\mathbf{c}_{A}(v)-\mathbf{c}_{B}(v)\right|,
+\mathbf{c}_{A}(v) \circ \mathbf{c}_{B}(v)\right)
+\]</span></p></li>
+<li><p>这样就得到每个节点上的matching
+vector，可以理解为在该节点(concept)上两篇文档的相似度相关特征。此外作者还提取了一些传统特征相似度（tfidf,bm25,jaccard,Ochiai）的值拼接到matching
+vector当中</p></li>
+<li><p>接下来过GCN</p></li>
+<li><p>聚合所有节点特征就是一个简单的mean
+pooling，然后过一个线性层做分类（0，1）</p></li>
+</ul></li>
+<li>在长篇新闻语料上（avg 734 token)，graph
+matching的效果远好于传统的双塔模型(DUET,DSSM,ARC都在50~60的f1，graph
+model达到了70~80)</li>
+</ul>
+<h2
+id="matching-natural-language-sentences-with-hierarchical-sentence-factorizationwww-2018">Matching
+Natural Language Sentences with Hierarchical Sentence Factorization(WWW
+2018)</h2>
+<figure>
+<img data-src="https://s1.ax1x.com/2020/04/05/GrQrv9.png" alt="GrQrv9.png" />
+<figcaption aria-hidden="true">GrQrv9.png</figcaption>
+</figure>
+<ul>
+<li><p>句子对语义匹配任务，主要利用的是AMR剖析得到的句子结构</p></li>
+<li><p>五个步骤</p>
+<ul>
+<li>AMR parsing and
+alignment：AMR将句子表示为有向无环图，如果将有多个父节点的节点复制拆分，则可以将有向无环图转换为树。AMR的叶子节点代表一个概念，其余的是关系，代表概念之间的关联或者某个概念是另外一个概念的参数。得到AMR图之后还需要对齐，将句子中具体的token和概念建立连接。作者使用了现有的工具JAMR</li>
+<li>AMR
+purification：一个token可能与多个概念建立连接，作者只选择最浅层的概念建立连接，之后将关系的内容删去，只保留边不保留边的label，得到简化之后的AMR
+tree，如上图所示</li>
+<li>Index mapping：加入root节点，重设节点坐标</li>
+<li>Node completion：类似于padding，保证两个句子的树的深度一样</li>
+<li>Node
+traversal：做一次dfs,使得每个非叶子节点的内容拼接了其子树的内容</li>
+</ul></li>
+<li><p>这样root节点就得到原句子的一个重新组织方式，类似于predicate-argument的形式，即谓语接谓语操作的词，类似于最初始的AMR
+purification得到的只保留概念的N叉树先做后序遍历再逆序，作者的意思大致是这样可以统一的表达两个句子，避免原文表示中各种因词序和其他不那么重要的词（助词介词）的现象导致接下来语义匹配中产生错误。</p></li>
+<li><p>接下来使用Ordered Word Mover
+Distance。如下式，D代表传输的cost(embedding距离），T代表传输量(词占比），<span
+class="math inline">\(\alpha,\beta\)</span>代表两个句子中各个词的词频向量，这里作者直接用均匀分布替代。传统的WMD没有考虑词的顺序，作者引入了两个惩罚项，当T主要集中在对角线上时I较大，P是T的一个理想分布，其第i行第j列个元素满足i,j到对角线位置的距离的标准高斯分布，也是希望T是一个对角阵。对角阵的意义就是会在传输时考虑顺序，不发生相对距离较远的传输。</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+\underset{T \in \mathbb{R}_{+}^{M \mathrm{XN}}}{\operatorname{minimize}}
+&amp; \sum_{i, j} T_{i j} D_{i j}-\lambda_{1} I(T)+\lambda_{2} K L(T \|
+P) \\
+\text { subject to } &amp; \sum_{i=1}^{M} T_{i j}=\beta_{j}^{\prime}
+\quad 1 \leq j \leq N^{\prime} \\
+&amp; \sum_{j=1}^{N} T_{i j}=\alpha_{i}^{\prime} \quad 1 \leq i \leq
+M^{\prime}
+\end{array} \\
+\]</span></p>
+<p><span class="math display">\[
+I(T)=\sum_{i=1}^{M^{\prime}} \sum_{j=1}^{N^{\prime}} \frac{T_{i
+j}}{\left(\frac{i}{M^{\prime}}-\frac{j}{N^{\prime}}\right)^{2}+1} \\
+\]</span></p>
+<p><span class="math display">\[
+P_{i j}=\frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{l^{2}(i, j)}{2
+\sigma^{2}}} \\
+\]</span></p>
+<p><span class="math display">\[
+l(i, j)=\frac{\left|i / M^{\prime}-j / N^{\prime}\right|}{\sqrt{1 /
+M^{\prime 2}+1 / N^{\prime 2}}} \\
+\]</span></p></li>
+<li><p>通过上述方法就能得到针对两个句子AMR表示的OWMD距离，完成无监督的文本相似度计算。也可以充分利用AMR
+Tree来完成监督学习。</p></li>
+<li><p>注意到在AMR树中，不同层的节点其实代表了整句不同粒度的语义切分，例如第0层是整句，第一层是短句"Jerry
+little",第二层是单一的概念"Jerry"，作者选取前三层，将每一层不同粒度的语义单元之间输入context
+layer，同一语义单元内的token
+embedding相加作为单一embedding，并假设每一层的子节点最多k个，不足的padding。
+<img data-src="https://s1.ax1x.com/2020/04/11/GbgQUA.png"
+alt="GbgQUA.png" /></p></li>
+</ul>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/gnn/" rel="tag"># gnn</a>
+              <a href="/tags/math/" rel="tag"># math</a>
+              <a href="/tags/graph/" rel="tag"># graph</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/30/cs224w/" rel="prev" title="Study Notes for CS224w">
+                  <i class="fa fa-angle-left"></i> Study Notes for CS224w
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/05/15/vc-dimension/" rel="next" title="Note for VC Dimension">
+                  Note for VC Dimension <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">16:35</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2020/04/05/graph-doc-thesis/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>

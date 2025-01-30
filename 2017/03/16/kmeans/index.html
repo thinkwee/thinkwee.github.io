@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="以简单的Iris数据集做测试，实现了K-means++聚类算法，并与sklearn中自带的KNN算法进行比较 标题本来是K-Means&amp;KNN，把&amp;改成了和，因为标题中出现特殊符号&amp;会导致我的sitemap生成错误......">
+<meta property="og:type" content="article">
+<meta property="og:title" content="K-Means and KNN">
+<meta property="og:url" content="https://thinkwee.top/2017/03/16/kmeans/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="以简单的Iris数据集做测试，实现了K-means++聚类算法，并与sklearn中自带的KNN算法进行比较 标题本来是K-Means&amp;KNN，把&amp;改成了和，因为标题中出现特殊符号&amp;会导致我的sitemap生成错误......">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0onl8.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0o1Ts.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oKOg.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0oQmQ.gif">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0o8kn.gif">
+<meta property="article:published_time" content="2017-03-16T07:51:11.000Z">
+<meta property="article:modified_time" content="2025-01-30T02:10:45.361Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/20/i0onl8.jpg">
+
+
+<link rel="canonical" href="https://thinkwee.top/2017/03/16/kmeans/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2017/03/16/kmeans/","path":"2017/03/16/kmeans/","title":"K-Means and KNN"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>K-Means and KNN | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#k-means"><span class="nav-number">2.</span> <span class="nav-text">K-means++</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#k-means-code-implementation"><span class="nav-number">3.</span> <span class="nav-text">K-Means code implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#data-inspection"><span class="nav-number">3.1.</span> <span class="nav-text">Data inspection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initialization-of-data"><span class="nav-number">3.2.</span> <span class="nav-text">Initialization of data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-means-initialization-of-k-points"><span class="nav-number">3.3.</span> <span class="nav-text">k-means++ initialization of
+k points</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E8%AF%84%E4%BC%B0"><span class="nav-number">3.4.</span> <span class="nav-text">损失评估</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB"><span class="nav-number">3.5.</span> <span class="nav-text">聚类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E5%87%BD%E6%95%B0"><span class="nav-number">3.6.</span> <span class="nav-text">主函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C"><span class="nav-number">4.</span> <span class="nav-text">预测结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B"><span class="nav-number">5.</span> <span class="nav-text">改进</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E7%9F%A5k%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">5.1.</span> <span class="nav-text">未知k的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E7%B1%BB%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">5.2.</span> <span class="nav-text">空类的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E8%B7%9D%E7%A6%BB%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F"><span class="nav-number">5.3.</span> <span class="nav-text">不同距离计算方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ann%E7%AE%97%E6%B3%95"><span class="nav-number">5.4.</span> <span class="nav-text">ANN算法</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2017/02/04/pandas-skill/" rel="bookmark">
+        <time class="popular-posts-time">2017-02-04</time>
+        <br>
+      Pandas Basics
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2017/03/16/kmeans/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="K-Means and KNN | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          K-Means and KNN
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-03-16 15:51:11" itemprop="dateCreated datePublished" datetime="2017-03-16T15:51:11+08:00">2017-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-30 10:10:45" itemprop="dateModified" datetime="2025-01-30T10:10:45+08:00">2025-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2017/03/16/kmeans/" class="post-meta-item leancloud_visitors" data-flag-title="K-Means and KNN" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>12k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>11 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><ul>
+<li>以简单的Iris数据集做测试，实现了K-means++聚类算法，并与sklearn中自带的KNN算法进行比较</li>
+<li>标题本来是K-Means&amp;KNN，把&amp;改成了和，因为标题中出现特殊符号&amp;会导致我的sitemap生成错误......</li>
+</ul>
+<hr />
+<span id="more"></span>
+<figure>
+<img data-src="https://s1.ax1x.com/2018/10/20/i0onl8.jpg" alt="i0onl8.jpg" />
+<figcaption aria-hidden="true">i0onl8.jpg</figcaption>
+</figure>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="introduction">Introduction</h1>
+<ul>
+<li>K-Means is a simple partition-based clustering method. The problem
+it aims to solve is that given n samples (point set X), their feature
+vectors are projected into a high-dimensional space, and according to
+the spatial distribution, they can be roughly divided into several
+subspaces, with points in each subspace belonging to the same class.
+Now, it is necessary to calculate the class of each point. The basic
+idea is to randomly select k points (center point set C) as center
+points, and the remaining points self-organize: they join the team of
+the closest among the k center points, i.e., they are assigned to the
+same class as that center point. This way, k classes are formed. The
+process is repeated, and during this time, a loss evaluation is
+introduced, such as using the sum of the distances from each point in
+the class to the center point of that class as the evaluation indicator.
+The repetition stops when the indicator is less than a certain degree or
+when the change in the indicator is less than a certain degree</li>
+<li>KNN is relatively simple and rough, its idea being similar to
+democratic voting. KNN does not train data; it selects a value K, and
+for each vector that needs to be predicted, it finds the K nearest
+points in the known category dataset. The category with the most points
+among these K points is the predicted category, i.e., it allows the K
+nearest points to the point to vote on the category of this point, and
+the category with the most votes is the category.</li>
+</ul>
+<h1 id="k-means">K-means++</h1>
+<ul>
+<li>k-means++ optimizes the selection of the initial k points on top of
+k-means. The original algorithm randomly selects k points, which is
+obviously too uncertain. A better scheme for selecting k points should
+be that they are as far apart from each other as possible, but not too
+far. As far apart as possible allows them to be as close as possible to
+the final ideal center point distribution; not too far is to prevent
+some erroneous points or outliers from being isolated as center
+points.</li>
+<li>The algorithmic implementation first randomly selects the first
+center point from the set X, and then repeatedly performs the following
+process to select center points
+<ul>
+<li>Calculate the distance from each point <span
+class="math inline">\(c_i\)</span> to the already selected center point
+<span class="math inline">\(k_1,k_2...\)</span> , select the smallest
+distance as the distance of <span class="math inline">\(c_i\)</span> ,
+and the significance of this distance is that when <span
+class="math inline">\(c_i\)</span> is used as the next center point, it
+is at least this distance away from other center points</li>
+<li>Normalize the distance of <span
+class="math inline">\(c_1,c_2,c_3......\)</span> and arrange it in a
+line</li>
+<li>The line has a length of 1, which is divided into many segments. The
+length of each segment represents the proportion of the distance of the
+point it represents in normalization; the greater the distance, the
+greater the proportion</li>
+<li>Select a random number between (0,1), and the point represented by
+the interval in which this number falls is the next centroid. Add it to
+the set of centroids C, and then repeat to find the next centroid</li>
+</ul></li>
+<li>It can be seen that the likelihood of being randomly selected online
+increases with distance, which meets our requirements</li>
+</ul>
+<h1 id="k-means-code-implementation">K-Means code implementation</h1>
+<h2 id="data-inspection">Data inspection</h2>
+<ul>
+<li>Iris is the Iris flower classification dataset, with 150 samples
+evenly divided into 3 classes, each sample having 4 attributes</li>
+</ul>
+<h2 id="initialization-of-data">Initialization of data</h2>
+<ul>
+<li><p>Initialization of data</p>
+<pre><code>def init():
+   iris = load_iris()
+   X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.25, random_state=33)
+   ss = StandardScaler()
+   X_train = ss.fit_transform(X_train)
+   X_test = ss.fit_transform(X_test)
+   return X_train, X_test, y_train, y_test, iris</code></pre>
+<h2 id="k-means-initialization-of-k-points">k-means++ initialization of
+k points</h2>
+<ul>
+<li>D2 is the distance of each point (i.e., how far it is from other
+center points)</li>
+<li>probs are normalized</li>
+<li>cumprobs sum up the normalized probabilities, forming a line
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br></pre></td><td class="code"><pre><span class="line">        <span class="keyword">def</span> <span class="title function_">initk</span>(<span class="params">X_train, k</span>):</span><br><span class="line">            C = [X_train[<span class="number">0</span>]]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, k):</span><br><span class="line">                D2 = scipy.array([<span class="built_in">min</span>([scipy.inner(c - x, c - x) <span class="keyword">for</span> c <span class="keyword">in</span> C]) <span class="keyword">for</span> x <span class="keyword">in</span> X_train])</span><br><span class="line">                probs = D2 / D2.<span class="built_in">sum</span>()</span><br><span class="line">                cumprobs = probs.cumsum()</span><br><span class="line">                r = scipy.rand()</span><br><span class="line">                <span class="keyword">for</span> j, p <span class="keyword">in</span> <span class="built_in">enumerate</span>(cumprobs):</span><br><span class="line">                    <span class="keyword">if</span> r &lt; p:</span><br><span class="line">                        i = j</span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">                C.append(X_train[i])</span><br><span class="line">            <span class="keyword">return</span> C</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">Loss Assessment</span><br><span class="line">---------------</span><br><span class="line"></span><br><span class="line">*   The <span class="built_in">sum</span> of the squared distances <span class="keyword">from</span> each point to the center of the <span class="keyword">class</span> <span class="title class_">is</span> used <span class="keyword">as</span> the loss evaluation here</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">evaluate</span>(<span class="params">C, X_train, y_predict</span>):</span><br><span class="line">           <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">           <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train)):</span><br><span class="line">               c = C[y_predict[i]]</span><br><span class="line">               <span class="built_in">sum</span> += scipy.inner(c - X_train[i], c - X_train[i])</span><br><span class="line">           <span class="keyword">return</span> <span class="built_in">sum</span></span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">Clustering</span><br><span class="line">----------</span><br><span class="line"></span><br><span class="line">*   After initializing k centroids, <span class="built_in">all</span> points can be classified</span><br><span class="line">    </span><br><span class="line">*   Re-select the centroid <span class="keyword">for</span> each <span class="keyword">class</span>, here taking the average coordinates of <span class="built_in">all</span> points <span class="keyword">in</span> a <span class="keyword">class</span> <span class="title class_">as</span> the centroid coordinates</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">cluster</span>(<span class="params">C, X_train, y_predict, k</span>):</span><br><span class="line">           <span class="built_in">sum</span> = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>] * k</span><br><span class="line">           count = [<span class="number">0</span>] * k</span><br><span class="line">           newC = []</span><br><span class="line">           <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train)):</span><br><span class="line">               <span class="built_in">min</span> = <span class="number">32768</span></span><br><span class="line">               minj = -<span class="number">1</span></span><br><span class="line">               <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">                   <span class="keyword">if</span> scipy.inner(C[j] - X_train[i], C[j] - X_train[i]) &lt; <span class="built_in">min</span>:</span><br><span class="line">                       <span class="built_in">min</span> = scipy.inner(C[j] - X_train[i], C[j] - X_train[i])</span><br><span class="line">                       minj = j</span><br><span class="line">               y_predict[i] = (minj + <span class="number">1</span>) % k</span><br><span class="line">           <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train)):</span><br><span class="line">               <span class="built_in">sum</span>[y_predict[i]] += X_train[i]</span><br><span class="line">               count[y_predict[i]] += <span class="number">1</span></span><br><span class="line">           <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">               newC.append(<span class="built_in">sum</span>[i] / count[i])</span><br><span class="line">           <span class="keyword">return</span> y_predict, newC</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">Main Function</span><br><span class="line">-------------</span><br><span class="line"></span><br><span class="line">*   Compute the loss, update k centroids, <span class="keyword">and</span> then re-cluster again</span><br><span class="line">    </span><br><span class="line">*   Repeat until the change <span class="keyword">in</span> loss <span class="keyword">is</span> less than <span class="number">10</span>%</span><br><span class="line">    </span><br><span class="line">*   Each iteration displays the old <span class="keyword">and</span> new losses, showing the change <span class="keyword">in</span> loss</span><br><span class="line">    </span><br><span class="line">*   Final output classification result</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">           X_train, X_test, y_train, y_test, iris = init()</span><br><span class="line">           k = <span class="number">3</span></span><br><span class="line">           total = <span class="built_in">len</span>(y_train)</span><br><span class="line">           y_predict = [<span class="number">0</span>] * total</span><br><span class="line">           C = initk(X_train, k)</span><br><span class="line">           oldeval = evaluate(C, X_train, y_predict)</span><br><span class="line">           <span class="keyword">while</span> (<span class="number">1</span>):</span><br><span class="line">               y_predict, C = cluster(C, X_train, y_predict, k)</span><br><span class="line">               neweval = evaluate(C, X_train, y_predict)</span><br><span class="line">               ratio = (oldeval - neweval) / oldeval * <span class="number">100</span></span><br><span class="line">               <span class="built_in">print</span>(oldeval, <span class="string">&quot; -&gt; &quot;</span>, neweval, <span class="string">&quot;%f %%&quot;</span> % ratio)</span><br><span class="line">               oldeval = neweval</span><br><span class="line">               <span class="keyword">if</span> ratio &lt; <span class="number">0.1</span>:</span><br><span class="line">                   <span class="keyword">break</span></span><br><span class="line">        </span><br><span class="line">           <span class="built_in">print</span>(y_train)</span><br><span class="line">           <span class="built_in">print</span>(y_predict)</span><br><span class="line">           n = <span class="number">0</span></span><br><span class="line">           m = <span class="number">0</span></span><br><span class="line">           <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(y_train)):</span><br><span class="line">               m += <span class="number">1</span></span><br><span class="line">               <span class="keyword">if</span> y_train[i] == y_predict[i]:</span><br><span class="line">                   n += <span class="number">1</span></span><br><span class="line">           <span class="built_in">print</span>(n / m)</span><br><span class="line">           <span class="built_in">print</span>(classification_report(y_train, y_predict, target_names=iris.target_names))</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment"># KNN code</span></span><br><span class="line">    -   Just use KNeighborsClassifier</span><br><span class="line">    ```Python</span><br><span class="line">        <span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line">        <span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">        <span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">        <span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">        <span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> classification_report</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">init</span>():</span><br><span class="line">            iris = load_iris()</span><br><span class="line">            X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=<span class="number">0.25</span>, random_state=<span class="number">33</span>)</span><br><span class="line">            ss = StandardScaler()</span><br><span class="line">            X_train = ss.fit_transform(X_train)</span><br><span class="line">            X_test = ss.fit_transform(X_test)</span><br><span class="line">            <span class="keyword">return</span> X_train, X_test, y_train, y_test, iris</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">KNN</span>(<span class="params">X_train, X_test, y_train, y_test, iris</span>):</span><br><span class="line">            knc = KNeighborsClassifier()</span><br><span class="line">            knc.fit(X_train, y_train)</span><br><span class="line">            y_predict = knc.predict(X_test)</span><br><span class="line">            <span class="built_in">print</span>(knc.score(X_test, y_test))</span><br><span class="line">            <span class="built_in">print</span>(classification_report(y_test, y_predict, target_names=iris.target_names))</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">            X_train, X_test, y_train, y_test, iris = init()</span><br><span class="line">            KNN(X_train, X_test, y_train, y_test, iris)</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">            main()</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">Predictive Results</span><br><span class="line">==================</span><br><span class="line"></span><br><span class="line">*   Indicator Description: For binary classification, the total number of four cases: correctly predicted <span class="keyword">as</span> positive TP; correctly predicted <span class="keyword">as</span> negative FN; incorrectly predicted <span class="keyword">as</span> positive FP; incorrectly predicted <span class="keyword">as</span> negative TN</span><br><span class="line">    </span><br><span class="line">    $$</span><br><span class="line">    Precision:P=\frac&#123;TP&#125;&#123;TP+FP&#125; \\</span><br><span class="line">    Recall:R=\frac&#123;TP&#125;&#123;TP+FN&#125; \\</span><br><span class="line">    F1:\frac &#123;<span class="number">2</span>&#125;&#123;F_1&#125;=\frac1P+\frac1R \\</span><br><span class="line">    $$</span><br><span class="line">    </span><br><span class="line">*   K-Means program output: Prediction accuracy: <span class="number">88.39</span>%, Average precision: <span class="number">89</span>%, Recall rate: <span class="number">0.88</span>, F1 score: <span class="number">0.88</span> ![i0o1Ts.jpg](https://s1.ax1x.com/<span class="number">2018</span>/<span class="number">10</span>/<span class="number">20</span>/i0o1Ts.jpg) </span><br><span class="line">    </span><br><span class="line">*   KNN program output: Prediction accuracy: <span class="number">71.05</span>%, Average precision: <span class="number">86</span>%, Recall rate: <span class="number">0.71</span>, F1 score: <span class="number">0.70</span> ![i0oKOg.jpg](https://s1.ax1x.com/<span class="number">2018</span>/<span class="number">10</span>/<span class="number">20</span>/i0oKOg.jpg) </span><br><span class="line">    </span><br><span class="line">*   Original Classification: It can be seen that the dataset itself <span class="keyword">is</span> spatially convenient <span class="keyword">for</span> clustering segmentation ![i0oQmQ.gif](https://s1.ax1x.com/<span class="number">2018</span>/<span class="number">10</span>/<span class="number">20</span>/i0oQmQ.gif) </span><br><span class="line">    </span><br><span class="line">*   Predictive Classification ![i0o8kn.gif](https://s1.ax1x.com/<span class="number">2018</span>/<span class="number">10</span>/<span class="number">20</span>/i0o8kn.gif) </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">Improved</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">Unknown k situation</span><br><span class="line">-------------------</span><br><span class="line"></span><br><span class="line">*   Above <span class="keyword">is</span> what we know about irises being divided into <span class="number">3</span> categories; what <span class="keyword">if</span> we don<span class="string">&#x27;t know how many categories there are? After all, k-means is an unsupervised learning algorithm, which can be computed without labels. It is also highly possible that we do not know the number of natural labels, so how do we determine k?</span></span><br><span class="line"><span class="string">*   A type of canopy algorithm</span></span><br><span class="line"><span class="string">*   To be supplemented</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Handling of empty classes</span></span><br><span class="line"><span class="string">-------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">*   To be supplemented</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Different distance calculation methods</span></span><br><span class="line"><span class="string">--------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">*   To be supplemented</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ANN algorithm</span></span><br><span class="line"><span class="string">-------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;% endlang_content %&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;% lang_content zh %&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 简介</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">- K-Means是简单的基于划分的聚类方法，要解决的问题是，现在有n个样本(点集X)，将他们的特征向量投射到高维空间中，根据空间分布可以大致划分成几个子空间，每个子空间中的点属于同一类，现在需要计算出每个点所在的类，大致思想就是随机选择k个点(中心点集C)作为中心点，其余的点自己站队：离k个中心点里哪个点最近就站那个点的队，即和那个中心点划分到同一类中，这样就能形成k个类，重复上过程，期间引入一个损失评估，比如以各个类中的点到这个类中心点距离的和作为评估指标，当指标小于某一程度或者指标变化小于某一程度就停止重复</span></span><br><span class="line"><span class="string">- KNN则比较简单粗暴，其思想类似于民主投票。KNN不训练数据，选定一个值K，对于每一个需要预测的向量，在已知类别的数据集中找到与这个向量最近的K，这K个点中拥有最多点个数的类别就是预测类别，即让离某个点最近的K个点投票决定这个点的类别，哪个类别的点票数多就是哪个类别</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># K-means++</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">- k-means++在k-means上优化了初始k个点的选择。原始算法是随机取k个点，显然这样随机不确定性太大，比较好的k个点的选择方案应该是他们离彼此尽量远，但不能太远。尽量远，就能尽可能贴近最终理想中心点分布；不能太远，是为了防止将一些错误点孤立点作为中心点</span></span><br><span class="line"><span class="string">- 算法上的实现是先随机从X集中取第一个中心点，之后反复以下过程取中心点</span></span><br><span class="line"><span class="string">  - 计算每个点$c_i$到已经选出的中心点$k_1,k_2...$的距离，选取最小的一个距离作为$c_i$的距离，这个距离的意义即$c_i$作为下一个中心点时离其他中心点至少有多远</span></span><br><span class="line"><span class="string">  - 将$c_1,c_2,c_3......$的距离归一化，并排成一条线</span></span><br><span class="line"><span class="string">  - 这条线长度为1，分成了许多段，每一段的长度就代表了这一段所代表的点的距离在归一化中所占的比例，距离越大，比例越大</span></span><br><span class="line"><span class="string">  - 在(0,1)之间随机取一个数，这个数所在的段区间所代表的点就是下一个中心点，将其加入中心点集C，接着重复找下一个中心点</span></span><br><span class="line"><span class="string">- 可以看出，如果距离够远，在线上被随机抽到的可能越大，符合我们的需求</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># K-Means代码实现</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 数据检视</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">- Iris是鸢尾花分类数据集，150个样本，均匀分成3类，每一个样本有4个属性</span></span><br><span class="line"><span class="string">  ![i0otpV.jpg](https://s1.ax1x.com/2018/10/20/i0otpV.jpg)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 初始化数据</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">- 初始化数据</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  ```Python</span></span><br><span class="line"><span class="string">  def init():</span></span><br><span class="line"><span class="string">     iris = load_iris()</span></span><br><span class="line"><span class="string">     X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.25, random_state=33)</span></span><br><span class="line"><span class="string">     ss = StandardScaler()</span></span><br><span class="line"><span class="string">     X_train = ss.fit_transform(X_train)</span></span><br><span class="line"><span class="string">     X_test = ss.fit_transform(X_test)</span></span><br><span class="line"><span class="string">     return X_train, X_test, y_train, y_test, iris</span></span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">## k-means++初始化k个点</span><br><span class="line">-    D2是每个点的距离(即之前定义的里其他中心点至少有多远)</span><br><span class="line">-    probs归一化</span><br><span class="line">-    cumprobs将归一化的概率累加，排列成一条线</span><br><span class="line">```Python</span><br><span class="line">    def initk(X_train, k):</span><br><span class="line">        C = [X_train[0]]</span><br><span class="line">        for i in range(1, k):</span><br><span class="line">            D2 = scipy.array([min([scipy.inner(c - x, c - x) for c in C]) for x in X_train])</span><br><span class="line">            probs = D2 / D2.sum()</span><br><span class="line">            cumprobs = probs.cumsum()</span><br><span class="line">            r = scipy.rand()</span><br><span class="line">            for j, p in enumerate(cumprobs):</span><br><span class="line">                if r &lt; p:</span><br><span class="line">                    i = j</span><br><span class="line">                    break</span><br><span class="line">            C.append(X_train[i])</span><br><span class="line">        return C</span><br></pre></td></tr></table></figure>
+<h2 id="损失评估">损失评估</h2>
+<ul>
+<li><p>在这里用每个类内点到中心点距离平方和的总和作为损失评估</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">evaluate</span>(<span class="params">C, X_train, y_predict</span>):</span><br><span class="line">   <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train)):</span><br><span class="line">       c = C[y_predict[i]]</span><br><span class="line">       <span class="built_in">sum</span> += scipy.inner(c - X_train[i], c - X_train[i])</span><br><span class="line">   <span class="keyword">return</span> <span class="built_in">sum</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="聚类">聚类</h2>
+<ul>
+<li><p>初始化k个中心点后，所有的点就可以分类</p></li>
+<li><p>重新在每个类中取中心点，在这里取一个类中所有点坐标平均作为中心点坐标</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cluster</span>(<span class="params">C, X_train, y_predict, k</span>):</span><br><span class="line">   <span class="built_in">sum</span> = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>] * k</span><br><span class="line">   count = [<span class="number">0</span>] * k</span><br><span class="line">   newC = []</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train)):</span><br><span class="line">       <span class="built_in">min</span> = <span class="number">32768</span></span><br><span class="line">       minj = -<span class="number">1</span></span><br><span class="line">       <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">           <span class="keyword">if</span> scipy.inner(C[j] - X_train[i], C[j] - X_train[i]) &lt; <span class="built_in">min</span>:</span><br><span class="line">               <span class="built_in">min</span> = scipy.inner(C[j] - X_train[i], C[j] - X_train[i])</span><br><span class="line">               minj = j</span><br><span class="line">       y_predict[i] = (minj + <span class="number">1</span>) % k</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train)):</span><br><span class="line">       <span class="built_in">sum</span>[y_predict[i]] += X_train[i]</span><br><span class="line">       count[y_predict[i]] += <span class="number">1</span></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">       newC.append(<span class="built_in">sum</span>[i] / count[i])</span><br><span class="line">   <span class="keyword">return</span> y_predict, newC</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="主函数">主函数</h2>
+<ul>
+<li><p>计算损失，更新k个中心点，再站队(聚类)一次</p></li>
+<li><p>重复，直到损失变化小于10%</p></li>
+<li><p>每次迭代显示新旧损失，显示损失变化</p></li>
+<li><p>最后输出分类结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">   X_train, X_test, y_train, y_test, iris = init()</span><br><span class="line">   k = <span class="number">3</span></span><br><span class="line">   total = <span class="built_in">len</span>(y_train)</span><br><span class="line">   y_predict = [<span class="number">0</span>] * total</span><br><span class="line">   C = initk(X_train, k)</span><br><span class="line">   oldeval = evaluate(C, X_train, y_predict)</span><br><span class="line">   <span class="keyword">while</span> (<span class="number">1</span>):</span><br><span class="line">       y_predict, C = cluster(C, X_train, y_predict, k)</span><br><span class="line">       neweval = evaluate(C, X_train, y_predict)</span><br><span class="line">       ratio = (oldeval - neweval) / oldeval * <span class="number">100</span></span><br><span class="line">       <span class="built_in">print</span>(oldeval, <span class="string">&quot; -&gt; &quot;</span>, neweval, <span class="string">&quot;%f %%&quot;</span> % ratio)</span><br><span class="line">       oldeval = neweval</span><br><span class="line">       <span class="keyword">if</span> ratio &lt; <span class="number">0.1</span>:</span><br><span class="line">           <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in">print</span>(y_train)</span><br><span class="line">   <span class="built_in">print</span>(y_predict)</span><br><span class="line">   n = <span class="number">0</span></span><br><span class="line">   m = <span class="number">0</span></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(y_train)):</span><br><span class="line">       m += <span class="number">1</span></span><br><span class="line">       <span class="keyword">if</span> y_train[i] == y_predict[i]:</span><br><span class="line">           n += <span class="number">1</span></span><br><span class="line">   <span class="built_in">print</span>(n / m)</span><br><span class="line">   <span class="built_in">print</span>(classification_report(y_train, y_predict, target_names=iris.target_names))</span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># KNN代码</span><br><span class="line">-    直接使用了sklearn中的KNeighborsClassifier</span><br><span class="line">```Python</span><br><span class="line">    from sklearn.datasets import load_iris</span><br><span class="line">    from sklearn.preprocessing import StandardScaler</span><br><span class="line">    from sklearn.neighbors import KNeighborsClassifier</span><br><span class="line">    from sklearn.model_selection import train_test_split</span><br><span class="line">    from sklearn.metrics import classification_report</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def init():</span><br><span class="line">        iris = load_iris()</span><br><span class="line">        X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.25, random_state=33)</span><br><span class="line">        ss = StandardScaler()</span><br><span class="line">        X_train = ss.fit_transform(X_train)</span><br><span class="line">        X_test = ss.fit_transform(X_test)</span><br><span class="line">        return X_train, X_test, y_train, y_test, iris</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def KNN(X_train, X_test, y_train, y_test, iris):</span><br><span class="line">        knc = KNeighborsClassifier()</span><br><span class="line">        knc.fit(X_train, y_train)</span><br><span class="line">        y_predict = knc.predict(X_test)</span><br><span class="line">        print(knc.score(X_test, y_test))</span><br><span class="line">        print(classification_report(y_test, y_predict, target_names=iris.target_names))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def main():</span><br><span class="line">        X_train, X_test, y_train, y_test, iris = init()</span><br><span class="line">        KNN(X_train, X_test, y_train, y_test, iris)</span><br><span class="line"></span><br><span class="line">    if __name__ == &quot;__main__&quot;:</span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
+<h1 id="预测结果">预测结果</h1>
+<ul>
+<li><p>指标说明
+对于二分类，四种情况的总数:对的预测成对的TP;对的预测成错的FN；错的预测成对的FP；错的预测成错的TN</p>
+<p><span class="math display">\[
+精确率:P=\frac{TP}{TP+FP} \\
+召回率:R=\frac{TP}{TP+FN} \\
+1F值:\frac {2}{F_1}=\frac1P+\frac1R \\
+\]</span></p></li>
+<li><p>K-Means程序输出 预测正确率:88.39% 平均精确率:89% 召回率:0.88
+F1指标:0.88 <img data-src="https://s1.ax1x.com/2018/10/20/i0o1Ts.jpg"
+alt="i0o1Ts.jpg" /></p></li>
+<li><p>KNN程序输出 预测正确率:71.05% 平均精确率:86% 召回率:0.71
+F1指标:0.70 <img data-src="https://s1.ax1x.com/2018/10/20/i0oKOg.jpg"
+alt="i0oKOg.jpg" /></p></li>
+<li><p>原始分类 可以看到这个数据集本身在空间上就比较方便聚类划分 <img data-src="https://s1.ax1x.com/2018/10/20/i0oQmQ.gif"
+alt="i0oQmQ.gif" /></p></li>
+<li><p>预测分类 <img data-src="https://s1.ax1x.com/2018/10/20/i0o8kn.gif"
+alt="i0o8kn.gif" /></p></li>
+</ul>
+<h1 id="改进">改进</h1>
+<h2 id="未知k的情况">未知k的情况</h2>
+<ul>
+<li>以上是我们已知鸢尾花会分成3类，加入我们不知道有几类呢？毕竟k-means是无监督学习，可以在无标签的情况下计算，自然标签的个数我们也极有可能不知道，那么如何确定k?</li>
+<li>一种方式是canopy算法</li>
+<li>待补充</li>
+</ul>
+<h2 id="空类的处理">空类的处理</h2>
+<ul>
+<li>待补充</li>
+</ul>
+<h2 id="不同距离计算方式">不同距离计算方式</h2>
+<ul>
+<li>待补充</li>
+</ul>
+<h2 id="ann算法">ANN算法</h2>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/code/" rel="tag"># code</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/03/09/dachuang/" rel="prev" title="Notes for my Android app - Melodia">
+                  <i class="fa fa-angle-left"></i> Notes for my Android app - Melodia
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/03/18/Lagrange/" rel="next" title="Lagrange,KKT,PCA,SVM">
+                  Lagrange,KKT,PCA,SVM <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">16:35</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2017/03/16/kmeans/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>

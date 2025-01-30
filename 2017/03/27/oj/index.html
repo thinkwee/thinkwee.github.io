@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="算法刷题目录，方便自己查找回忆复习 之后(2018.9.27)只更新leetcode上的题了，也懒得整理源码了，leetcode上都存了，只记录思路吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OJ">
+<meta property="og:url" content="https://thinkwee.top/2017/03/27/oj/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="算法刷题目录，方便自己查找回忆复习 之后(2018.9.27)只更新leetcode上的题了，也懒得整理源码了，leetcode上都存了，只记录思路吧">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-03-27T11:47:54.000Z">
+<meta property="article:modified_time" content="2025-01-30T02:10:45.362Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="code">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="c++">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://thinkwee.top/2017/03/27/oj/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2017/03/27/oj/","path":"2017/03/27/oj/","title":"OJ"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>OJ | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">50</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">1.</span> <span class="nav-text">Leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sorting"><span class="nav-number">1.1.</span> <span class="nav-text">Sorting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stack-queue"><span class="nav-number">1.2.</span> <span class="nav-text">Stack, Queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#combinatorial-mathematics"><span class="nav-number">1.3.</span> <span class="nav-text">Combinatorial Mathematics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#search-and-find"><span class="nav-number">1.4.</span> <span class="nav-text">Search and Find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91"><span class="nav-number">1.5.</span> <span class="nav-text">树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#graph-theory"><span class="nav-number">1.6.</span> <span class="nav-text">Graph Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#math-problem"><span class="nav-number">1.7.</span> <span class="nav-text">Math problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string"><span class="nav-number">1.8.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#greed"><span class="nav-number">1.9.</span> <span class="nav-text">Greed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dynamic-programming"><span class="nav-number">1.10.</span> <span class="nav-text">Dynamic Programming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#divide-and-conquer"><span class="nav-number">1.11.</span> <span class="nav-text">Divide and Conquer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#poj"><span class="nav-number">2.</span> <span class="nav-text">Poj</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#intra-school-competition"><span class="nav-number">3.</span> <span class="nav-text">Intra-school competition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hiho"><span class="nav-number">4.</span> <span class="nav-text">hiho</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode"><span class="nav-number">5.</span> <span class="nav-text">Leetcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F"><span class="nav-number">5.1.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E6%A0%88%E9%98%9F%E5%88%97"><span class="nav-number">5.2.</span> <span class="nav-text">堆、栈、队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6"><span class="nav-number">5.3.</span> <span class="nav-text">组合数学</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%9F%A5%E6%89%BE"><span class="nav-number">5.4.</span> <span class="nav-text">搜索与查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91"><span class="nav-number">5.5.</span> <span class="nav-text">树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA"><span class="nav-number">5.6.</span> <span class="nav-text">图论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E9%A2%98"><span class="nav-number">5.7.</span> <span class="nav-text">数学题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">5.8.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83"><span class="nav-number">5.9.</span> <span class="nav-text">贪心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">5.10.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%B2%BB"><span class="nav-number">5.11.</span> <span class="nav-text">分治</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#poj"><span class="nav-number">6.</span> <span class="nav-text">Poj</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%A1%E5%86%85%E8%B5%9B"><span class="nav-number">7.</span> <span class="nav-text">校内赛</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hiho"><span class="nav-number">8.</span> <span class="nav-text">hiho</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2017/03/27/oj/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="OJ | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OJ
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-03-27 19:47:54" itemprop="dateCreated datePublished" datetime="2017-03-27T19:47:54+08:00">2017-03-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-30 10:10:45" itemprop="dateModified" datetime="2025-01-30T10:10:45+08:00">2025-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algo/" itemprop="url" rel="index"><span itemprop="name">Algo</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2017/03/27/oj/" class="post-meta-item leancloud_visitors" data-flag-title="OJ" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>21k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>19 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><hr />
+<p>算法刷题目录，方便自己查找回忆复习
+之后(2018.9.27)只更新leetcode上的题了，也懒得整理源码了，leetcode上都存了，只记录思路吧</p>
+<span id="more"></span>
+<p>！<a
+target="_blank" rel="noopener" href="http://ojtdnrpmt.bkt.clouddn.com/blog/20170327/195153747.jpg">mark</a></p>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="leetcode">Leetcode</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.com/problemset/algorithms/">LeetCode
+Algorithm List</a></li>
+<li>Directly search for the serial number of each question</li>
+</ul>
+<h2 id="sorting">Sorting</h2>
+<ul>
+<li>75: Given a sequence containing only 0, 1, and 2, sort it to form
+the form [0,0,...,0,1,...,1,2,...,2], and modify it on the original
+sequence. Drawing inspiration from the Lomuto partition algorithm,
+maintain three intervals [0,i], [i,j], [j,k] for the ranges of 0, 1, and
+2, respectively. According to priority, if the current number is 2 or 1
+or 0, first set nums[k]=2, k++, if the current number is 1 or 0, then
+set nums[j]=1, j++, and if the current number is 0, set nums[i]=0, i++.
+The further back it is, the more it can cover the previous ones, with
+higher priority.</li>
+<li>Given an unordered sequence, find the maximum difference between
+adjacent elements after sorting the sequence in O(n) time complexity.
+Using bucket sort, let the maximum and minimum values in the sequence be
+max and min, respectively. It can be easily deduced that the maximum
+difference between adjacent elements must be greater than (max - min) /
+(n - 1), and let this value be gap, where n is the length of the
+sequence. Divide the value range [min, max] of the sequence into nums
+buckets with an interval of (max - min) / (n - 1), where nums is
+int((max - min) / gap + 1). Distribute the elements of the sequence into
+these buckets, storing only the maximum and minimum elements
+corresponding to each interval. The maximum interval must be at the
+boundaries between adjacent buckets (the maximum value of the previous
+bucket and the minimum value of the next bucket), because the maximum
+interval within a bucket is less than gap. Finally, traverse the buckets
+to find the result.</li>
+<li>179: Water problem, given a sequence of numbers, requiring the
+combination of the numbers into the largest possible number. String
+sorting</li>
+</ul>
+<h2 id="stack-queue">Stack, Queue</h2>
+<ul>
+<li>Merge K sorted linked lists into one sorted linked list, using a
+min-heap to store all the head nodes of the lists, and then inserting
+them in order into the new list</li>
+<li>Arithmetic Expression, Stack, Python's Switch Syntax</li>
+<li>224: Arithmetic expressions with parentheses, stack, an ingenious
+method for handling parentheses, if the sign outside the parentheses is
+negative, multiply by -1; otherwise, multiply by 1</li>
+<li>373: Find the k groups of number pairs with the minimum sum in 2
+ordered arrays, priority queue</li>
+</ul>
+<h2 id="combinatorial-mathematics">Combinatorial Mathematics</h2>
+<ul>
+<li>47: Generate all combinations of n numbers, with repetitions, and
+sequentially insert numbers into the k+1 spaces of the already generated
+k-number combinations, use sets for deduplication directly, and in the
+Top Solution, deduplication is done by checking if the next number to be
+inserted is a repetition</li>
+</ul>
+<h2 id="search-and-find">Search and Find</h2>
+<ul>
+<li>In a matrix with a specific order, find using two binary
+searches</li>
+<li>78: Generate subsets, recursively or iteratively, deciding for each
+number whether to include it in the subset or not for recursion</li>
+<li>In a letter matrix, find a word, depth-first search</li>
+<li>89: Generate Gray code, iterative, adding 1 or 0 at the front each
+time, Gray code is symmetrically above and below</li>
+<li>140: Convert a string into a sentence by concatenating with a given
+dictionary and spaces, memoized search</li>
+<li>153: Split an ordered array into two parts and concatenate them,
+then search, a special binary search</li>
+<li>154:153 If a transformation of repeated digits is added, with a
+condition that the binary start and end are the adjacent non-repeated
+first digits</li>
+<li>240:74 revised version, each row and column is ordered, count, and
+separately perform binary search on rows and columns, the number must be
+at the intersection of rows and columns that meet the conditions, and
+there are other solutions</li>
+</ul>
+<h2 id="树">树</h2>
+<ul>
+<li>98: Determine if a binary tree is a search tree, i.e., the left
+subtree is all less than the node, and the right subtree is all greater
+than the node; an in-order traversal will show if it is an increasing
+sequence, using recursion or a stack</li>
+<li>101: Determine if a binary tree is symmetric, using recursion, note
+that the recursion is (left.left, right.right) and (left.right,
+right.left), i.e., the inner and outer pairs of child nodes, and an
+iterative version can also be implemented using a stack</li>
+<li>106: Given the inorder and postorder traversals, find the preorder
+traversal. The last node in the postorder traversal is the root node,
+find this root node in the inorder traversal and remove it, the nodes to
+the left of the root node in the inorder traversal are the left subtree,
+and the nodes to the right are the right subtree; at this point, the
+last node in the postorder traversal is the root node of the left
+subtree, and recursion can be used.</li>
+<li>107: Output the nodes of each level of the tree from bottom to top
+and from left to right, recording the answers in a two-dimensional
+array. If the one-dimensional length of the two-dimensional array, which
+represents the level, is less than the current level of the node being
+traversed, a new level is created to store the answers. It can be
+implemented directly using depth-first search (DFS), or by replacing
+recursion with a stack and a queue; if using a stack, it is DFS, and if
+using a queue, it is BFS.</li>
+<li>Construct a binary search tree, recursively</li>
+<li>114: Give a tree, compress it by preorder traversal to become a tree
+with only right nodes. The operation of compressing a node is defined
+as, setting the left subtree to empty, making the right subtree the
+original left subtree, and appending the original right subtree to the
+end of the original left subtree, with the tail node of the original
+left subtree being the last point reached during the preorder traversal
+of this subtree. Recursively, first compress the left node, then
+compress the right node, and then backtrack to compress the parent
+node.</li>
+<li>144: Obtain the preorder traversal of a tree using a stack, pop a
+node to record its value, and then push the right node first, followed
+by the left node</li>
+<li>Find the maximum value at each level of a binary tree, BFS</li>
+</ul>
+<h2 id="graph-theory">Graph Theory</h2>
+<ul>
+<li>130: Water problem, replace all white pieces surrounded by black
+pieces in a diagram with black pieces, directly find all the white
+pieces on the edge and store them, then paint the entire board black and
+restore the white pieces. The stored is the top solution, the writing
+style is very pythonic.</li>
+</ul>
+<h2 id="math-problem">Math problem</h2>
+<ul>
+<li>Given two sorted sequences, find the median of the merged sequence
+with a time complexity of O(log(m+n)), so it cannot be done by comparing
+one by one. The significance of the median is to split the sequence into
+two parts of equal length, where the smallest number in the larger part
+is greater than the largest number in the smaller part. Based on this
+principle, split the two sequences into two parts, with sequence 1 split
+at position i and sequence 2 split at position j. It needs to be
+ensured: 1: If the lengths are the same, then <span
+class="math inline">\(i+j=m-i+n-j\)</span> ; 2: The union of the smaller
+parts of the two sequences has any number smaller than the union of the
+larger parts of the two sequences, because the split parts are still
+ordered, so this condition is <span class="math inline">\(B[j-1] &lt;=
+A[i] and A[i-1] &lt;= B[j]\)</span> . Once the position i is determined,
+the position j is also determined, so it is only necessary to perform a
+binary search to find the position i. Note the parity and boundary
+conditions.</li>
+<li>57: Given a set of intervals, insert a new interval and merge.
+Simulation</li>
+<li>122: Water, one line of code, find the maximum adjacent element
+difference in a sequence</li>
+<li>142: Given a linked list, find the starting point of the loop in the
+list. It still uses the two-pointer technique, with one fast and one
+slow pointer starting from the beginning of the list. When they meet for
+the first time, it indicates that there is a loop and the difference in
+their steps is the length of the loop. It can also be deduced that the
+distance from the starting point of the list to the starting point of
+the loop is equal to the distance from the meeting point to the starting
+point of the loop, thus allowing the starting point of the loop to be
+found.</li>
+<li>166: Write the quotient and divisor, including the display of
+repeating decimals, a mathematical analysis problem, continuously
+multiply the decimal by 10 and divide by the divisor, update the
+remainder, and when the remainder repeats, the decimal repeats</li>
+<li>172: Find the number of zeros in n!, a problem in mathematical
+analysis. The zeros come from 5*2, so it's about how many 5s and their
+multiples are in n</li>
+<li>202: Two-pointer technique, a method for finding a loop</li>
+<li>263: Mathematical Problem</li>
+<li>264: Mathematical Problem</li>
+<li>313: Mathematical Problem</li>
+</ul>
+<h2 id="string">String</h2>
+<ul>
+<li>Split a string into palindromic substrings; using Python's [i::-1]
+is very convenient and can be done in one line of code</li>
+<li>242: Water topic, usage of Python dictionaries</li>
+<li>Given a string, delete the minimum number of parentheses to make all
+parentheses in the string match, and output all possible cases. Note two
+points: do it in both normal and reverse order, as there are two schemes
+for deleting left and right parentheses; output all cases, and store
+them in a set.</li>
+<li>451: Frequency statistics of letters, hash, Python dictionary</li>
+<li>541: Partial string reversal, simulation, note the use of Python
+slicing</li>
+</ul>
+<h2 id="greed">Greed</h2>
+<ul>
+<li>134: Gas stations are arranged in a circle, given the amount of fuel
+each station can add and the fuel consumed between stations, determine
+from which station one can complete a full circle. The data guarantees
+that the answer is unique. Greedy approach: if it's not possible to
+complete the circle with the first i stations, then set the starting
+point to station i+1</li>
+<li>402: Remove k digits from a large number to make the new number
+smallest, stack, greedy</li>
+<li>Overlap Interval Problem, Greedy</li>
+</ul>
+<h2 id="dynamic-programming">Dynamic Programming</h2>
+<ul>
+<li><p>Classic problem climbing ladder, Fibonacci sequence, dp</p></li>
+<li><p>96: Given a sequence of numbers from 1 to n, ask how many
+different BSTs can be constructed. Let ans(i) be the number of different
+BSTs that can be constructed from a sequence of length i. We need to
+find the relationship between ans(i) and ans(i-1). Introduce the
+intermediate variable f(i,n), which represents the number of different
+BSTs that can be constructed with the i-th number as the root and a
+sequence of length n. Here, a recursive relationship can be found. The
+left subsequence of the root constructs the left subtree of the root,
+and there are left different left subtrees. The right subsequence right
+is the same. Then f(i,n) should be left * right, i.e., f(i,n) = ans(i-1)
+* ans(n-i). At the same time, with different i as the root, there will
+be completely different partitions. Therefore, <span
+class="math inline">\(ans(n)=\sum _{i=1}^n f(i,n)\)</span> , merging
+gives ans(i) = ans(0) * ans(n-1) + ans(1) * ans(n-2) + ... + ans(n-1) *
+ans(0), with boundary ans(0) = ans(1) = 1.</p></li>
+<li><p>139: Provide a dictionary and a string, and determine if the
+string can be completely composed of words from the dictionary. Define
+f[i] as true if the first i characters of the string can be completely
+composed of words. Then, traverse each word, with length k, if f[i-k] is
+true, then f[i] is true. This can also be converted into a graph and
+solved using depth-first search (DFS). An edge between i and j indicates
+that s[i:j] is a word, and we need to find a path from 0 to
+len(s).</p></li>
+<li><p>174: The matrix contains positive and negative numbers, and the
+minimum path is sought without the intermediate value being 0. Dynamic
+programming, from the end to the beginning.</p></li>
+<li><p>312: Given a sequence of numbers, ask how to sequentially
+eliminate numbers to get the maximum number of coins. The rule for
+getting coins is: eliminating a number yields the sum of the product of
+this number and its two adjacent numbers in coins. Interval dp (divide
+and conquer), the maximum number of coins that can be obtained in a
+segment is f[x,y], which depends on the last elimination position at i,
+the coins obtained being f[x,i-1] + num[i-1] * num[i] * num[i+1] +
+f[i+1,y]. Enumerate the position i within this interval, where the
+positions of the two subintervals on both sides are known, so the
+interval is enumerated from small to large. There are three layers of
+loops in total: the outer loop for the length of the interval, the
+middle loop for the starting position of the interval in the entire
+sequence, and the inner loop for enumerating the position i within the
+interval.</p></li>
+<li><p>Determine the number of 1s in the binary representation of each
+number in [1, num], and by analyzing several numbers, it is found that
+for even number n, its binary representation is the binary of n/2
+shifted one bit to the left, with the number of 1s unchanged. For odd
+number n, its binary representation is the binary of n/2 shifted one bit
+to the left and a 1 added at the end, which means there is one more 1.
+It is obvious that the state transition equation</p>
+<p><span class="math display">\[
+f(x)=
+\begin{cases}
+f(n) &amp; x=2n \\
+f(n)+1 &amp; x=2n+1 \\
+\end{cases}
+\]</span></p></li>
+<li><p>397: If a number is even, divide it by 2; if it is odd, change it
+to the adjacent number. Ask how many times it takes to become 1.
+According to the problem, the state transition equation can be written
+as:</p>
+<p><span class="math display">\[
+f(x)=
+\begin{cases}
+f(n)+1 &amp; x=2n \\
+min(f(2n+2)+1,f(2n)+1) &amp; x=2n+1 \\
+\end{cases}
+\]</span></p>
+<p>Odd cases can be simplified to <span
+class="math inline">\(min(f(2n)+1,f(n+1)+2)\)</span> , so it can be
+solved by dynamic programming from 1 to n, but it may exceed time limit.
+The equation can be further simplified: If n % 4 = 3 and n != 3, then
+f(n) = f(n + 1) + 1. If n % 4 = 1 or n = 3, then f(n) = f(n - 1) + 1.
+Proof is here.</p></li>
+<li><p>472: It is a variant of 139, still determining whether a string
+can be composed of words, but both the words and the string to be judged
+are in a dictionary. Each word needs to be checked if it can be
+completely composed of other words. Since there are no repeated words in
+the dictionary, the words are first sorted by length, and each word can
+only be composed of the words that come before it. The problem then
+transforms into 139, where the ith word is the string to be queried, and
+the first i-1 words form the dictionary required for the query. Dynamic
+programming is applied in the same way. The top solution utilizes a trie
+dictionary tree to accelerate, see the implementation of the dictionary
+tree in Python.</p></li>
+</ul>
+<h2 id="divide-and-conquer">Divide and Conquer</h2>
+<ul>
+<li>247: Provide an expression without parentheses, and ask how many
+possible solutions there are when parentheses are added (without
+requiring duplicates), divide and conquer, take the i-th operation
+symbol, and recursively solve the partial solutions on the left and
+right sides of the symbol, usage of map in Python</li>
+</ul>
+<h1 id="poj">Poj</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/thinkwee/Poj_Test">C++ source
+code</a></li>
+<li>Dijkstra</li>
+<li>Simulation</li>
+<li>1094: Topological Sorting</li>
+<li>1328: Greedy, switch to solve variables</li>
+<li>1753: Enumeration, Bitwise Operations</li>
+<li>1789: Prim, priority queue</li>
+<li>1860: Bellman-Ford</li>
+<li>2109: Greedy, High-Precision Multiplication</li>
+<li>2965: Enumeration, Bitwise Operations</li>
+<li>Modeling, Bellman-Ford</li>
+<li>3295: Simulation, Stack</li>
+</ul>
+<h1 id="intra-school-competition">Intra-school competition</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://code.bupt.edu.cn/contest/650/">2017pre</a></li>
+<li>Finding three ordered numbers in a set that sum to 0, and then
+calculating the sum of their squares, original problem from
+LeetCode</li>
+<li>D, Find the sum of consecutive prime numbers and factorization, POJ
+original problem, data is large, so there is no need to use a table, and
+directly judge each input</li>
+<li>F, the title is misleading, no backtracking is needed, the
+characteristic equation can be written and solved using the recursive
+formula</li>
+<li>Find the largest subset of a set with binding rules, where selecting
+a number requires selecting several other numbers, bfs</li>
+<li>H, given the character transformation rules and cost, find the
+minimum cost to make two strings identical, flyod, note that two letters
+can be transformed into a third letter, not necessarily mutually, and
+the two strings may not be of equal length; if they are not of equal
+length, output -1 directly</li>
+<li>I, in high school physics, seek the acceleration due to gravity, the
+equation is difficult to solve, use bisection method to approximate the
+answer</li>
+</ul>
+<h1 id="hiho">hiho</h1>
+<ul>
+<li>hiho</li>
+<li>1505: Given a set, ask how many index quadruples (i, j, p, q)
+satisfy that i, j, p, q are all different, and i &lt; j, p &lt; q, Ai +
+Aj = Ap + Aq. The 2sum problem, with a small data range, can directly
+open a hash array, where sum[i] records how many groups of two numbers
+sum to i, and use the principle of inclusion-exclusion.</li>
+<li>1506: The probability of getting heads m times out of n coin tosses,
+with different probabilities for each toss to land heads up. Dynamic
+programming, let dp[i][j] be the probability of getting heads up j times
+after i tosses, with the state transition equation: dp[i][j] =
+dp[i-1][j-1] * a[i] + dp[i-1][j]; a[i] is the probability of getting
+heads up on the i-th toss, and special treatment is required for
+j=0.</li>
+<li>1507: Incorrect record, given a tree, given the root node number,
+add an error edge in the middle, and find all possible error edges. Note
+that since only one error edge is added, the situation can be divided
+into two cases: 1. This error edge connects to the root node, output
+directly. 2. If the root node is normal, then this error edge must be
+connected to a node with an in-degree of 2, and there is only one such
+node. Find this node, remove the two edges connected to it, and start a
+depth-first search (dfs) from the root node. If the dfs traversal count
+is n, it means that the tree still holds after removing this edge, which
+is the error edge. If the count is less than n, it means that the tree
+is broken and forms a forest after removing this edge, and this edge is
+not an error edge. Note the case of repeated edges, at this time only
+one edge is removed, but both edges are output as error edges
+separately. Since the number of error edges is less than or equal to 2,
+the dfs count is less than or equal to 2, and the time complexity,
+including the construction of the graph with removed edges, is
+O(n).</li>
+<li>1515: Given some score relationships between classmates (how many
+points higher or lower A is compared to B), answer q queries in the end.
+With weighted union-find, each set maintains the score difference
+between classmates and a certain root student in this set. Each time a
+relationship is input, merge the union-find sets of the two classmates,
+and update each union-find set once, where y is merged into x, the
+relationship value between x and y is s, and the update formula is
+d[root of y] = d[x] - d[y] - s. In the next iteration, update the values
+of the entire union-find set. Finally, perform the direct query.</li>
+</ul>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="leetcode">Leetcode</h1>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.com/problemset/algorithms/">Leetcode算法列表</a></li>
+<li>直接搜每道题的序号即可</li>
+</ul>
+<h2 id="排序">排序</h2>
+<ul>
+<li>75:给出一个只包含0，1，2的数列，排序形成[0,0,...,0,1,...,1,2,...,2]的形式，在原数列上修改。借鉴Lomuto
+partition
+algorithm，维护三个区间[0,i],[i,j],[j,k]为0，1，2的范围，按优先级，若当前数为2或1或0，先将nums[k]=2，k++，若当前数为1或0，则nums[j]=1,j++，若当前数为0,则nums[i]=0,i++，越往后能覆盖前面的，优先级越高。</li>
+<li>164：给出一个无序数列，请在O(n)时间复杂度内找到数列有序化后相隔元素差最大值。桶排序，设数列中最大值最小值分别为max,min,易得这个相邻元素差最大值肯定大于(max-min)/(n-1)并设这个值为gap，n是数列长度。将数列的取值区间[min,max]以(max-min)/(n-1)为间隔分成nums个桶，nums是int((max
+- min) / gap +
+1)，把数列各个元素分到桶中，每个桶只存对应区间内的最大元素和最小元素，把那么最大间隔肯定在相邻两个桶的边界处（前一个桶的最大值和后一个桶的最小值），因为桶内的最大间隔小于gap。最后遍历一遍桶就可以了。</li>
+<li>179：水题，给出一个数列，要求把各个数连起来组合成一个最大的数。字符串排序</li>
+</ul>
+<h2 id="堆栈队列">堆、栈、队列</h2>
+<ul>
+<li>23:合并K个有序链表为1个有序链表，用最小堆存所有链表头节点，依次取出插入到新链表中</li>
+<li>150:算术表达式，栈，python的switch写法</li>
+<li>224:带括号的算术表达式，栈,巧妙地方法处理括号，如果括号外是负号则符号乘-1否则乘1</li>
+<li>373:在2对有序数组中找出有最小和的k组数对，优先队列</li>
+</ul>
+<h2 id="组合数学">组合数学</h2>
+<ul>
+<li>47:生成n个数字的所有组合，数字有重复，依次插入数字到已生成k个数字组合的k+1个空中，排重直接用集合，Top
+Solution中用插入处后一个数字是否重复来排重</li>
+</ul>
+<h2 id="搜索与查找">搜索与查找</h2>
+<ul>
+<li>74:在一个有有特定顺序的矩阵中查找，两次二分查找</li>
+<li>78:生成子集，递归或者迭代，每个数字分加入子集或者不加入子集进行递归</li>
+<li>79:在一个字母矩阵中查找单词，深搜</li>
+<li>89:生成格雷码，迭代，每次在最前面加1或0，格雷码上下对称</li>
+<li>140:将一个字符串按给定词典加空格成句子，记忆化搜索</li>
+<li>153:一个有序数组拆成两部分再倒接一起，查找，特殊的二分查找</li>
+<li>154:153如果加入重复数字的变形，加入一个条件，二分的start和end是相邻不重复的第一个</li>
+<li>240:74的改版，每一行每一列有序，查数，对行和列分别做二分，数肯定在满足条件的行与列的交集处，还有其他解法</li>
+</ul>
+<h2 id="树">树</h2>
+<ul>
+<li>98:判断一颗二叉树是不是查找树，即左子树都小于节点，右子树都大于节点，中序遍历看看是不是递增数列即可，递归或者栈</li>
+<li>101:判断一棵二叉树是不是对称的，递归，注意递归的是(left.left,right.right)和(left.right,right.left)即内外两队子节点，另外可以用栈实现迭代版本</li>
+<li>106:给出中序遍历后序遍历，求前序遍历。后序遍历的最后一个是根节点，在中序遍历中找到这个根节点并在后序遍历中删除，根节点以左是左子树，以右是右子树，这时后序遍历的最后一个节点就是左子树的根节点，递归即可</li>
+<li>107:从下往上从左往右输出树每一层的节点，用二维数组记录答案，如果二维数组的一维长度即层数比当前遍历的节点层数少就新建一层存答案。可以直接dfs，或者用栈和队列替代递归，如果用栈就是dfs，如果用队列就是bfs</li>
+<li>108:构造一棵二叉查找树，递归</li>
+<li>114:给一棵树，按前序遍历将其压扁，变成一棵只有右节点的树。将一个节点压扁操作定义为，把左子树置空，右子树变成原左子树，原右子树接在原左子树的尾节点上，原左子树的尾节点就是按前序遍历这个子树遍历到的最后一个点。递归，先压扁左节点，再压扁右节点，再回溯压父节点</li>
+<li>144:求一棵树的前序遍历，利用栈，弹出一个节点记录值，并先压入右节点，再压入左节点</li>
+<li>515:求二叉树每一层的最大值，BFS</li>
+</ul>
+<h2 id="图论">图论</h2>
+<ul>
+<li>130:水题，把一个图中被黑子包围的白子全部替换成黑子，直接从边上找出所有白子并存起来，再将整个棋盘涂黑，把白子复原。存的是top
+solution，写法很pythonic</li>
+</ul>
+<h2 id="数学题">数学题</h2>
+<ul>
+<li>4:给出两个有序数列，求出两个数列合并后的中位数，要求时间复杂度O(log(m+n))，所以不能直接一个一个比较。中位数的意义是把序列拆成长度相等两部分，大部分中最小数比小部分中最大数大，根据这个原理将两个序列拆成两部分，设两个数列长度分别为m,n，设数列1在i位置拆开，数列2在j位置拆开，则需要保证：1：两个长度一样，则<span
+class="math inline">\(i+j=m-i+n-j\)</span>；2：两个数列的小部分的并集的任意数比两个数列大部分的并集的任意数要小，因为拆开后的部分依然有序，因此这个条件就是<span
+class="math inline">\(B[j-1] &lt;= A[i] and A[i-1] &lt;=
+B[j]\)</span>，i的位置确定，j的位置就确定，因此只需二分查找i的位置即可。注意奇偶性和边界判断。</li>
+<li>57：给出一组区间，插入一个新区间并合并。模拟</li>
+<li>122:水，一行代码，找一个序列中的最大相邻元素差</li>
+<li>142:给出一个链表，找出链表中环的起点。依然是快慢钟算法，设一快一慢两个指针一起从链表开始走，第一次相遇时说明存在环且他们步数之差是环的长度，而且可以推算出链表起点到环起点的距离等于相遇点到环起点的距离，就可以找到环的起点</li>
+<li>166:给出除数被除数写出结果，包括循环小数显示，数学分析题，小数不断乘10除除数，更新余数，余数出现重复即小数出现重复</li>
+<li>172:求n!中0的个数，数学分析题，0来自5*2，就看n中有多少5及其倍数</li>
+<li>202:快慢指针，求循环的一种方法</li>
+<li>263:数学题</li>
+<li>264:数学题</li>
+<li>313:数学题</li>
+</ul>
+<h2 id="字符串">字符串</h2>
+<ul>
+<li>131:将一个字符串分成回文子串，用python的[i::-1]很好找，也是一行代码</li>
+<li>242:水题，python字典的使用</li>
+<li>301:给定字符串，删除最小数目的括号使得字符串中所有括号匹配，输出所有情况。注意两点：正序逆序各做一遍，因为有删左括号和右括号两种方案；所有情况都要输出，用集合存取所有情况</li>
+<li>451:按频率统计字母，哈希，python字典</li>
+<li>541:部分字符串翻转，模拟，注意python切片的使用</li>
+</ul>
+<h2 id="贪心">贪心</h2>
+<ul>
+<li>134:加油站排成一圈，给定各个加油站可以加的油和站与站之间路程所耗的油，问可以走完一圈需要从哪个加油站出发，数据保证答案唯一，贪心，如果前i个加油站走不完了，那么出发点就设成i+1</li>
+<li>402:从一个大数中移除k个数字，使得新的数最小，栈，贪心</li>
+<li>452:重叠区间问题，贪心</li>
+</ul>
+<h2 id="动态规划">动态规划</h2>
+<ul>
+<li><p>70:经典问题爬梯子，斐波那契数列，dp</p></li>
+<li><p>96:给一个1到n的数列，问可以构造出多少不同的bst。设ans(i)为长度为i的数列能构造不同的bst的个数，我们需要找到ans(i)与ans(i-1)的关系，引入中间变量f(i,n)，指以第i个数字为根构造bst，长度为n的数列能构造不同的bst的个数，这里可以找到递归关系，根左边的子数列构造出根的左子树，设有left种不同的左子树，右数列right同理，则f(i,n)应该是left*right，即f(i,n)=ans(i-1)*ans(n-i)，同时以不同的i为根会有完全不同的划分，则<span
+class="math inline">\(ans(n)=\sum _{i=1}^n
+f(i,n)\)</span>，合并可以得到ans(i)=ans(0) * ans(n-1) + ans(1) *
+ans(n-2) + … + ans(n-1) * ans(0)，边界ans(0)=ans(1)=1。</p></li>
+<li><p>139:给出词典，给出一个字符串，判断字符串是否可以完全由词典内的单词构成。设f[i]==true即前字符串前i位都可以完全由单词构成，则遍历每个单词，单词长度为k，若f[i-k]为真则f[i]为真，也可以转换为图用dfs做，i与j之间有一条边说明s[i:j]是一个单词，我们要找到一条路径从0到len(s)</p></li>
+<li><p>174:矩阵中有正数负数，在中途不为0的情况下求最小路径。动态规划，从后往前</p></li>
+<li><p>312:给出一个数列，问怎样依次消去数能得到最多硬币，得硬币的规则：消掉一个数得到这个数和相邻两个数累乘的数量的硬币。区间dp(分治)，一段区间内能得到的最多硬币f[x,y]是看其最后一次消去位置在i，得到的硬币就是f[x,i-1]+num[i-1]*num[i]*num[i+1]+f[i+1,y]，在这个区间内枚举位置i,其中需要左右两个小区间的位置已知，因此将区间从小到大枚举。总共三层循环：外循环区间长度，中循环区间在整个序列中的开始位置，内循环枚举区间内位置i。</p></li>
+<li><p>338:求出[1,num]内每个数字二进制中有多少个1，列举几个数分析发现对偶数n，它的二进制就是n/2的二进制左移一位，1的个数不变，对奇数n，它的二进制就是n/2的二进制左移一位并末尾加1，即1的个数多一个，显然状态转移方程</p>
+<p><span class="math display">\[
+f(x)=
+\begin{cases}
+f(n) &amp; x=2n \\
+f(n)+1 &amp; x=2n+1 \\
+\end{cases}
+\]</span></p></li>
+<li><p>397:一个数是偶数就除2，是奇数就变到相邻数，问最少几次变成1，根据题意可以写出状态转移方程:</p>
+<p><span class="math display">\[
+f(x)=
+\begin{cases}
+f(n)+1 &amp; x=2n \\
+min(f(2n+2)+1,f(2n)+1) &amp; x=2n+1 \\
+\end{cases}
+\]</span></p>
+<p>奇数情况可以化简为<span
+class="math inline">\(min(f(2n)+1,f(n+1)+2)\)</span>，这样就可以从1到n动规了，但是会超时
+可以将方程进一步化简 If n % 4 = 3 and n != 3, then f(n) = f(n + 1) + 1.
+If n % 4 = 1 or n = 3, then f(n) = f(n - 1) + 1. <a
+target="_blank" rel="noopener" href="https://discuss.leetcode.com/topic/59350/python-o-log-n-time-o-1-space-with-explanation-and-proof">证明在这里</a><br />
+</p></li>
+<li><p>472:是139的变式，依然是判断字符串是否可以由单词构成，但单词和要判断的字符串都在一个词典里，每个单词都需要判断是否完全能被其他单词组成。因为词典中无重复单词，所以先按单词长度排序，每个单词只能由它前面的单词构成，然后问题就转变成了139，第i个单词为要查询的字符串，前i-1个单词构成了查询所需的词典，一样的进行动态规划。top
+solution中利用了trie字典树加速，见<a
+href="http://thinkwee.top/2017/05/02/trie/#more">Python中实现字典树</a></p></li>
+</ul>
+<h2 id="分治">分治</h2>
+<ul>
+<li>247:给出一个算式，无括号，问加括号的情况下有多少种可能的解(不要求去重)，分治，取第i个运算符号，对符号左边和右边分别递归求解部分解，python中map的用法</li>
+</ul>
+<h1 id="poj">Poj</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/thinkwee/Poj_Test">C++源码</a></li>
+<li>1062:Dijkstra</li>
+<li>1068:模拟</li>
+<li>1094:拓扑排序</li>
+<li>1328:贪心，换求解变量</li>
+<li>1753:枚举，位运算</li>
+<li>1789:Prim，优先队列</li>
+<li>1860:bellman-ford</li>
+<li>2109:贪心，高精度乘法</li>
+<li>2965:枚举，位运算</li>
+<li>3259:建模，bellman-ford</li>
+<li>3295:模拟，栈</li>
+</ul>
+<h1 id="校内赛">校内赛</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://code.bupt.edu.cn/contest/650/">2017pre</a></li>
+<li>A,集合中找有序三个数，满足和为0，求这些数平方和，Leetcode原题</li>
+<li>D,求一个数的连续质数和分解，poj原题，数据大，因此没必要打表，直接对每一个输入判断</li>
+<li>F,题目骗人，不需要回溯，递推公式可以写出特征方程求解</li>
+<li>G,找一个集合中的最大子集，有绑定规则，选一个数必须选其他几个数，bfs</li>
+<li>H,给出字符变换规则和代价，求把两个字符串变成一样的最小代价，flyod，注意两个字母可以变成第三个字母，不一定是互相变，两个字符串可能不等长，不等长直接输出-1</li>
+<li>I,高中物理，求重力加速度，方程不好解，二分法逼近答案</li>
+</ul>
+<h1 id="hiho">hiho</h1>
+<ul>
+<li>hiho</li>
+<li>1505：给定一个组，问有多少种下标四元组(i, j, p, q)满足i, j, p,
+q两两不同，并且i &lt; j, p &lt; q, Ai + Aj = Ap +
+Aq。2sum问题，数据范围不大，直接开哈希数组，sum[i]记录两个数之和为i有多少组，利用容斥定理解。</li>
+<li>1506：投掷硬币，投n次m次朝上的概率是多少，每次投正面朝上概率不同。动态规划，记dp[i][j]为投前i次j次朝上的概率，状态转移方程为:dp[i][j]=dp[i-1][j-1]a[i]+dp[i-1][j](1.0-a[i]);a[i]为第i次正面朝上的概率，注意对j=0进行特判。</li>
+<li>1507：错误的记录，给出一棵树，给出根节点编号，在中间加一条错误边，找出所有可能的错误边。注意因为只加了一条错误边，因此情况可以分为两种：1.这条错误边连向根节点，直接输出。2.根节点正常，则这条错误边一定连在入度为2的节点上，且这样的节点只有一个，找到这个节点，将连接它的两条边分别去掉并从根节点开始dfs，如果dfs遍历完次数为n，说明这条边去掉后树依然成立，这是错误边，如果次数小于n，说明去掉这条边树就断了，形成森林，这条边不是错误边。注意边重复的情况，这时候只去掉其中一条，但是两条边是分别当错误边输出。因为错误边数小于等于2，所以dfs的次数小于等于2，加上构造去掉边的图，时间复杂度是O(n)。</li>
+<li>1515：给定一些同学之间的分数关系（A比B高或低多少分），最后对q个查询给出答案。带权并查集，每个集维护同学到这个集某一个根同学的分数差。每次输入一条关系便合并两个同学所在的并查集，并对每个并查集做一次更新,加入y被x合并，x,y之间关系值是s,更新公式是d[root
+of
+y]=d[x]-d[y]-s，并在下一次循环中更新整个并查集的值。最后直接查询。</li>
+</ul>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/code/" rel="tag"># code</a>
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/c/" rel="tag"># c++</a>
+              <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/03/18/Lagrange/" rel="prev" title="Lagrange,KKT,PCA,SVM">
+                  <i class="fa fa-angle-left"></i> Lagrange,KKT,PCA,SVM
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/03/07/NLPBasic/" rel="next" title="NLP Basics">
+                  NLP Basics <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">16:35</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2017/03/27/oj/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>
