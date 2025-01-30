@@ -104,17 +104,7 @@ html: true
 
 # About Me
 - Hello, I'm Wei Liu (刘维). Here are my 
-  <a href="mailto:thinkwee2767@gmail.com" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg" style="height: 1em; width: 1em; margin: 0 0.2em; display: inline-block; vertical-align: -0.1em;" alt="Email">Email
-  </a>, 
-  <a href="https://github.com/thinkwee" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" style="height: 1em; width: 1em; margin: 0 0.2em; display: inline-block; vertical-align: -0.1em;" alt="GitHub">Github
-  </a>, 
-  and 
-  <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/googlescholar.svg" style="height: 1em; width: 1em; margin: 0 0.2em; display: inline-block; vertical-align: -0.1em;" alt="Google Scholar">Google Scholar
-  </a>.
-  **I am now actively looking for PhD positions and job positions (NLP/LLM/Agent), feel free to contact me~**
+  <a href="mailto:thinkwee2767@gmail.com" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Email</a>, <a href="https://github.com/thinkwee" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Github</a>, and <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Google Scholar</a>.
     -   2014-2018: Bachelor of Communication Engineering in BUPT
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
     -   2021-2023: Application Research, [Tencent](https://www.tencent.com/en-us/about.html)
