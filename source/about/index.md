@@ -107,16 +107,18 @@ html: true
     -   2014-2018: Bachelor of Communication Engineering in BUPT
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
     -   2021-2023: Application Research, [Tencent](https://www.tencent.com/en-us/about.html)
-    -   2023.8-present: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) with a focus on LLM Multi-Agent System.
+    -   2023.8-2025.1: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) and Prof. [Chen Qian](http://qianc62.github.io) with a focus on LLM Multi-Agent System.
         -   See my works [here](https://thinkwee.top/multiagent_ebook/#more-works).
         -   Our LLM Multi-Agent framework, [ChatDev](https://github.com/OpenBMB/ChatDev), has reached [Github \#1 for 3 times and has earned 26k 🌟](https://trendshift.io/repositories/1245)!
-        -   **2024.9 Our paper about human-agent coexist society, [iAgents](https://arxiv.org/abs/2406.14928), is accepted by NeurIPS 2024!**. Try demo [here](https://thinkwee.top/iagents/).
+        -   2024.9 Our paper about human-agent coexist society, [iAgents](https://arxiv.org/abs/2406.14928), is accepted by NeurIPS 2024!. Try demo [here](https://thinkwee.top/iagents/).
+    -   **2025.2 Proud to be a PhD advised by [Prof. Yulan He](https://sites.google.com/view/yulanhe) and a member of [KCLNLP](https://kclnlp.github.io/)!**.
+    -   **2025.5 Checkout KCLNLP's amazing works [here](https://x.com/kclnlp/status/1923409800009748788), with 15 papers accepted by ACL 2025 and 3 papers accepted by ICML 2025!**.
 
 # Research Interests
--   Natural Language Generation, especially on **Compressing and Summarizing Languages**.
--   Memorization and reasoning in LLMs.
+-   Natural Language Generation, especially on Compressing and Summarizing Languages.
+-   **Memorization and reasoning in LLMs**.
 -   Develop robust, safe, efficient, and human-centric **LLM Multi-Agent System**.
--   Served as reviewer for ACL(2021,2022,2024)/EMNLP(2020,2023,2024)/NeurIPS(2024)/ICLR(2024)/CVPR(2025).
+-   Served as reviewer for ACL(2021,2022,2024)/EMNLP(2020,2023,2024,2025)/NeurIPS(2024,2025)/ICLR(2024)/CVPR(2025).
 
 # Industrial Experience
 -   At Tencent, I aim to improve the performance of News Feed Recommendations and Advertising.
@@ -128,11 +130,12 @@ html: true
 # Publications
 -   Multi-Agents powered by LLMs:
     -   <a href="https://arxiv.org/abs/2406.14928" class="bp">paper</a>  <a href="https://github.com/thinkwee/iAgents" class="bc">code</a> Autonomous Agents for Collaborative Task under Information Asymmetry. NeurIPS 2024
+    -   <a href="https://arxiv.org/pdf/2406.07155" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Scaling Large-Language-Model-based Multi-Agent Collaboration. ICLR 2025
     -   <a href="https://arxiv.org/abs/2307.07924" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Communicative Agents for Software Development. ACL 2024
     -   <a href="https://arxiv.org/abs/2312.17025" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Experiential Co-Learning of Software-Developing Agents. ACL 2024
     -   <a href="https://arxiv.org/pdf/2405.04219" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Iterative Experience Refinement of Software-Developing Agents. Arxiv
-    -   <a href="https://arxiv.org/pdf/2406.07155" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Scaling Large-Language-Model-based Multi-Agent Collaboration. Arxiv
-    -   <a href="https://arxiv.org/pdf/2406.08979" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Multi-Agent Software Development through Cross-Team Collaboration. Arxiv
+    -   <a href="https://arxiv.org/pdf/2406.08979" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Multi-Agent Software Development through Cross-Team Collaboration. ACL 2025
+    -   <a href="https://arxiv.org/pdf/2505.06904" class="bp">paper</a>  <a href="https://github.com/xymou/EcoLANG" class="bc">code</a> EcoLANG: Efficient and Effective Agent Communication Language Induction for Social Simulation. Arxiv
 -   More Accurate and Controllable Keyphrase Prediction: 
     -   <a href="https://arxiv.org/pdf/2106.04847.pdf" class="bp">paper</a> <a href="https://github.com/thinkwee/UniKeyphrase" class="bc">code</a> UniKeyphrase: A Unified Extraction and Generation Framework for Keyphrase Prediction. ACL 2021 findings
     -   <a href="https://ojs.aaai.org/index.php/AAAI/article/download/21402/version/19689/21151" class="bp">paper</a> <a href="https://github.com/m1594730237/FastAndConstrainedKeyphrase" class="bc">code</a> Fast and Constrained Absent Keyphrase Generation by Prompt-Based Learning. AAAI 2022
