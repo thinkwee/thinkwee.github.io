@@ -19,18 +19,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Lecture 9: Linear Correlation, Basis, DimensionLinear Correlation Background knowledge: Assume a matrix A, where m &lt; n, i.e., the number of unknowns is greater than the number of equations. Theref">
+    <meta name="description" content="Lecture 9: Linear Correlation, Basis, Dimension Linear Correlation  Background knowledge: Assume a matrix A, where m &lt; n, i.e., the number of unknowns is greater than the number of equations. Ther">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Note for Linear Algebra 2">
 <meta property="og:url" content="https://thinkwee.top/2017/01/21/LinearAlgebra2/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="Lecture 9: Linear Correlation, Basis, DimensionLinear Correlation Background knowledge: Assume a matrix A, where m &lt; n, i.e., the number of unknowns is greater than the number of equations. Theref">
+<meta property="og:description" content="Lecture 9: Linear Correlation, Basis, Dimension Linear Correlation  Background knowledge: Assume a matrix A, where m &lt; n, i.e., the number of unknowns is greater than the number of equations. Ther">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-01-21T11:28:03.000Z">
 <meta property="article:modified_time" content="2025-01-30T02:10:45.357Z">
 <meta property="article:author" content="Thinkwee">
-<meta property="article:tag" content="linearalgebra">
 <meta property="article:tag" content="math">
+<meta property="article:tag" content="linearalgebra">
 <meta name="twitter:card" content="summary">
 
 
@@ -143,7 +143,17 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-9-Linear-Correlation-Basis-Dimension"><span class="nav-number">1.</span> <span class="nav-text">Lecture 9: Linear Correlation, Basis, Dimension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Correlation"><span class="nav-number">1.1.</span> <span class="nav-text">Linear Correlation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generated-space-base"><span class="nav-number">1.2.</span> <span class="nav-text">Generated space, base</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dimension"><span class="nav-number">1.3.</span> <span class="nav-text">Dimension</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Give-an-example"><span class="nav-number">1.4.</span> <span class="nav-text">Give an example</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tenth-Lecture-Four-Basic-Subspaces"><span class="nav-number">2.</span> <span class="nav-text">Tenth Lecture: Four Basic Subspaces</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Eleventh-Lecture-Matrix-Spaces-Rank-1-Matrices-and-Small-World-Graphs"><span class="nav-number">3.</span> <span class="nav-text">Eleventh Lecture: Matrix Spaces, Rank-1 Matrices, and Small-World Graphs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrix-Space"><span class="nav-number">3.1.</span> <span class="nav-text">Matrix Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rank-1-matrix"><span class="nav-number">3.2.</span> <span class="nav-text">Rank 1 matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Small-World-Graph"><span class="nav-number">3.3.</span> <span class="nav-text">Small World Graph</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Twelfth-Lecture-Graphs-and-Networks"><span class="nav-number">4.</span> <span class="nav-text">Twelfth Lecture: Graphs and Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Internet"><span class="nav-number">4.1.</span> <span class="nav-text">Internet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">4.2.</span> <span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-Thirteen-Orthogonal-Vectors-and-Subspaces"><span class="nav-number">5.</span> <span class="nav-text">Lecture Thirteen: Orthogonal Vectors and Subspaces</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Orthogonal-vectors"><span class="nav-number">5.1.</span> <span class="nav-text">Orthogonal vectors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Orthogonal-subspace"><span class="nav-number">5.2.</span> <span class="nav-text">Orthogonal subspace</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14th-Lecture-Subspace-Projection"><span class="nav-number">6.</span> <span class="nav-text">14th Lecture: Subspace Projection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Projection"><span class="nav-number">6.1.</span> <span class="nav-text">Projection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Projection-matrix"><span class="nav-number">6.2.</span> <span class="nav-text">Projection matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Significance-of-Projection"><span class="nav-number">6.3.</span> <span class="nav-text">The Significance of Projection</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-15-Projection-Matrices-and-Least-Squares-Method"><span class="nav-number">7.</span> <span class="nav-text">Lecture 15: Projection Matrices and Least Squares Method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Projection-matrix-1"><span class="nav-number">7.1.</span> <span class="nav-text">Projection matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Least-Squares-Method"><span class="nav-number">7.2.</span> <span class="nav-text">Least Squares Method</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-16-Orthogonal-Matrices-and-Gram-Schmidt-Orthogonalization"><span class="nav-number">8.</span> <span class="nav-text">Lecture 16: Orthogonal Matrices and Gram-Schmidt Orthogonalization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Orthogonal-matrix"><span class="nav-number">8.1.</span> <span class="nav-text">Orthogonal matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gram-Schmidt-orthogonalization"><span class="nav-number">8.2.</span> <span class="nav-text">Gram-Schmidt orthogonalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%A9%BA%E9%97%B4%E3%80%81%E5%9F%BA"><span class="nav-number">8.3.</span> <span class="nav-text">生成空间、基</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%B4%E6%95%B0"><span class="nav-number">8.4.</span> <span class="nav-text">维数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90"><span class="nav-number">8.5.</span> <span class="nav-text">最后举个栗子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E8%AE%B2%EF%BC%9A%E5%9B%9B%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">9.</span> <span class="nav-text">第十讲：四个基本子空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AE%B2%EF%BC%9A%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4%E3%80%81%E7%A7%A91%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE"><span class="nav-number">10.</span> <span class="nav-text">第十一讲：矩阵空间、秩1矩阵和小世界图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4"><span class="nav-number">10.1.</span> <span class="nav-text">矩阵空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%A91%E7%9F%A9%E9%98%B5"><span class="nav-number">10.2.</span> <span class="nav-text">秩1矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE"><span class="nav-number">10.3.</span> <span class="nav-text">小世界图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AE%B2%EF%BC%9A%E5%9B%BE%E5%92%8C%E7%BD%91%E7%BB%9C"><span class="nav-number">11.</span> <span class="nav-text">第十二讲：图和网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-number">11.1.</span> <span class="nav-text">图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C"><span class="nav-number">11.2.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">11.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AE%B2%EF%BC%9A%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F%E4%B8%8E%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">12.</span> <span class="nav-text">第十三讲：正交向量与子空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F"><span class="nav-number">12.1.</span> <span class="nav-text">正交向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">12.2.</span> <span class="nav-text">正交子空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%9B%9B%E8%AE%B2%EF%BC%9A%E5%AD%90%E7%A9%BA%E9%97%B4%E6%8A%95%E5%BD%B1"><span class="nav-number">13.</span> <span class="nav-text">第十四讲：子空间投影</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1"><span class="nav-number">13.1.</span> <span class="nav-text">投影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5"><span class="nav-number">13.2.</span> <span class="nav-text">投影矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">13.3.</span> <span class="nav-text">投影的意义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%94%E8%AE%B2%EF%BC%9A%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="nav-number">14.</span> <span class="nav-text">第十五讲：投影矩阵和最小二乘法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5-1"><span class="nav-number">14.1.</span> <span class="nav-text">投影矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="nav-number">14.2.</span> <span class="nav-text">最小二乘法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AD%E8%AE%B2%EF%BC%9A%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5%E5%92%8CGram-Schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96"><span class="nav-number">15.</span> <span class="nav-text">第十六讲：正交矩阵和Gram-Schmidt正交化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5"><span class="nav-number">15.1.</span> <span class="nav-text">正交矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gram-Schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96"><span class="nav-number">15.2.</span> <span class="nav-text">Gram-Schmidt正交化</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-9-linear-correlation-basis-dimension"><span class="nav-number">1.</span> <span class="nav-text">Lecture 9: Linear
+Correlation, Basis, Dimension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linear-correlation"><span class="nav-number">1.1.</span> <span class="nav-text">Linear Correlation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generated-space-base"><span class="nav-number">1.2.</span> <span class="nav-text">Generated space, base</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dimension"><span class="nav-number">1.3.</span> <span class="nav-text">Dimension</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#give-an-example"><span class="nav-number">1.4.</span> <span class="nav-text">Give an example</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tenth-lecture-four-basic-subspaces"><span class="nav-number">2.</span> <span class="nav-text">Tenth Lecture: Four Basic
+Subspaces</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#eleventh-lecture-matrix-spaces-rank-1-matrices-and-small-world-graphs"><span class="nav-number">3.</span> <span class="nav-text">Eleventh
+Lecture: Matrix Spaces, Rank-1 Matrices, and Small-World Graphs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#matrix-space"><span class="nav-number">3.1.</span> <span class="nav-text">Matrix Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rank-1-matrix"><span class="nav-number">3.2.</span> <span class="nav-text">Rank 1 matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#small-world-graph"><span class="nav-number">3.3.</span> <span class="nav-text">Small World Graph</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#twelfth-lecture-graphs-and-networks"><span class="nav-number">4.</span> <span class="nav-text">Twelfth Lecture: Graphs and
+Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-number">4.1.</span> <span class="nav-text">图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#internet"><span class="nav-number">4.2.</span> <span class="nav-text">Internet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#summary"><span class="nav-number">4.3.</span> <span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-thirteen-orthogonal-vectors-and-subspaces"><span class="nav-number">5.</span> <span class="nav-text">Lecture
+Thirteen: Orthogonal Vectors and Subspaces</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#orthogonal-vectors"><span class="nav-number">5.1.</span> <span class="nav-text">Orthogonal vectors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orthogonal-subspace"><span class="nav-number">5.2.</span> <span class="nav-text">Orthogonal subspace</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#th-lecture-subspace-projection"><span class="nav-number">6.</span> <span class="nav-text">14th Lecture: Subspace
+Projection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#projection"><span class="nav-number">6.1.</span> <span class="nav-text">Projection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#projection-matrix"><span class="nav-number">6.2.</span> <span class="nav-text">Projection matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-significance-of-projection"><span class="nav-number">6.3.</span> <span class="nav-text">The Significance of
+Projection</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-15-projection-matrices-and-least-squares-method"><span class="nav-number">7.</span> <span class="nav-text">Lecture
+15: Projection Matrices and Least Squares Method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#projection-matrix-1"><span class="nav-number">7.1.</span> <span class="nav-text">Projection matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#least-squares-method"><span class="nav-number">7.2.</span> <span class="nav-text">Least Squares Method</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-16-orthogonal-matrices-and-gram-schmidt-orthogonalization"><span class="nav-number">8.</span> <span class="nav-text">Lecture
+16: Orthogonal Matrices and Gram-Schmidt Orthogonalization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#orthogonal-matrix"><span class="nav-number">8.1.</span> <span class="nav-text">Orthogonal matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gram-schmidt-orthogonalization"><span class="nav-number">8.2.</span> <span class="nav-text">Gram-Schmidt
+orthogonalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%A9%BA%E9%97%B4%E5%9F%BA"><span class="nav-number">8.3.</span> <span class="nav-text">生成空间、基</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%B4%E6%95%B0"><span class="nav-number">8.4.</span> <span class="nav-text">维数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90"><span class="nav-number">8.5.</span> <span class="nav-text">最后举个栗子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E8%AE%B2%E5%9B%9B%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">9.</span> <span class="nav-text">第十讲：四个基本子空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AE%B2%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4%E7%A7%A91%E7%9F%A9%E9%98%B5%E5%92%8C%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE"><span class="nav-number">10.</span> <span class="nav-text">第十一讲：矩阵空间、秩1矩阵和小世界图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4"><span class="nav-number">10.1.</span> <span class="nav-text">矩阵空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%A91%E7%9F%A9%E9%98%B5"><span class="nav-number">10.2.</span> <span class="nav-text">秩1矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E4%B8%96%E7%95%8C%E5%9B%BE"><span class="nav-number">10.3.</span> <span class="nav-text">小世界图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AE%B2%E5%9B%BE%E5%92%8C%E7%BD%91%E7%BB%9C"><span class="nav-number">11.</span> <span class="nav-text">第十二讲：图和网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-number">11.1.</span> <span class="nav-text">图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C"><span class="nav-number">11.2.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">11.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%89%E8%AE%B2%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F%E4%B8%8E%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">12.</span> <span class="nav-text">第十三讲：正交向量与子空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F"><span class="nav-number">12.1.</span> <span class="nav-text">正交向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">12.2.</span> <span class="nav-text">正交子空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%9B%9B%E8%AE%B2%E5%AD%90%E7%A9%BA%E9%97%B4%E6%8A%95%E5%BD%B1"><span class="nav-number">13.</span> <span class="nav-text">第十四讲：子空间投影</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1"><span class="nav-number">13.1.</span> <span class="nav-text">投影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5"><span class="nav-number">13.2.</span> <span class="nav-text">投影矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">13.3.</span> <span class="nav-text">投影的意义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%94%E8%AE%B2%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5%E5%92%8C%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="nav-number">14.</span> <span class="nav-text">第十五讲：投影矩阵和最小二乘法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5-1"><span class="nav-number">14.1.</span> <span class="nav-text">投影矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="nav-number">14.2.</span> <span class="nav-text">最小二乘法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%AD%E8%AE%B2%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5%E5%92%8Cgram-schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96"><span class="nav-number">15.</span> <span class="nav-text">第十六讲：正交矩阵和Gram-Schmidt正交化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E7%9F%A9%E9%98%B5"><span class="nav-number">15.1.</span> <span class="nav-text">正交矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gram-schmidt%E6%AD%A3%E4%BA%A4%E5%8C%96"><span class="nav-number">15.2.</span> <span class="nav-text">Gram-Schmidt正交化</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -294,14 +304,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>25k</span>
+      <span>26k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>23 mins.</span>
+      <span>24 mins.</span>
     </span>
 </div>
 
@@ -311,25 +321,49 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><hr>
-<h1 id="Lecture-9-Linear-Correlation-Basis-Dimension"><a href="#Lecture-9-Linear-Correlation-Basis-Dimension" class="headerlink" title="Lecture 9: Linear Correlation, Basis, Dimension"></a>Lecture 9: Linear Correlation, Basis, Dimension</h1><h2 id="Linear-Correlation"><a href="#Linear-Correlation" class="headerlink" title="Linear Correlation"></a>Linear Correlation</h2><ul>
-<li>Background knowledge: Assume a matrix A, where m &lt; n, i.e., the number of unknowns is greater than the number of equations. Therefore, in the null space, there are vectors other than the zero vector, up to m leading principal elements, and there exist n-m free vectors, and the entire equation system has non-zero solutions.</li>
-<li>Under what conditions is the vector $x_1,x_2,x_3…x_n$ linearly independent? If there exists a combination of coefficients not all equal to zero such that the linear sum results in 0, then it is linearly dependent; otherwise, it is linearly independent.</li>
-<li>If there exists a zero vector in the set of vectors, then the set of vectors cannot be linearly independent.</li>
-<li>If three vectors are randomly drawn in two-dimensional space, they must be linearly dependent. Why? This can be deduced from background knowledge.</li>
-<li>For a matrix A, we are concerned with whether the columns are linearly dependent; if there exists a non-zero vector in the null space, then the columns are dependent.</li>
-<li>When $v_1,v_2…v_n$ is the columns of A, if they are unrelated, then what is the null space of A? Only the zero vector. If they are related, then in addition to the zero vector, there exists a non-zero vector in the null space.</li>
-<li>When the column vectors are linearly independent, all column vectors are leading vectors, and the rank is n. When the column vectors are linearly dependent, the rank is less than n.</li>
+    <div class="post-body" itemprop="articleBody"><hr />
+<h1 id="lecture-9-linear-correlation-basis-dimension">Lecture 9: Linear
+Correlation, Basis, Dimension</h1>
+<h2 id="linear-correlation">Linear Correlation</h2>
+<ul>
+<li>Background knowledge: Assume a matrix A, where m &lt; n, i.e., the
+number of unknowns is greater than the number of equations. Therefore,
+in the null space, there are vectors other than the zero vector, up to m
+leading principal elements, and there exist n-m free vectors, and the
+entire equation system has non-zero solutions.</li>
+<li>Under what conditions is the vector <span
+class="math inline">\(x_1,x_2,x_3...x_n\)</span> linearly independent?
+If there exists a combination of coefficients not all equal to zero such
+that the linear sum results in 0, then it is linearly dependent;
+otherwise, it is linearly independent.</li>
+<li>If there exists a zero vector in the set of vectors, then the set of
+vectors cannot be linearly independent.</li>
+<li>If three vectors are randomly drawn in two-dimensional space, they
+must be linearly dependent. Why? This can be deduced from background
+knowledge.</li>
+<li>For a matrix A, we are concerned with whether the columns are
+linearly dependent; if there exists a non-zero vector in the null space,
+then the columns are dependent.</li>
+<li>When <span class="math inline">\(v_1,v_2...v_n\)</span> is the
+columns of A, if they are unrelated, then what is the null space of A?
+Only the zero vector. If they are related, then in addition to the zero
+vector, there exists a non-zero vector in the null space.</li>
+<li>When the column vectors are linearly independent, all column vectors
+are leading vectors, and the rank is n. When the column vectors are
+linearly dependent, the rank is less than n.</li>
 </ul>
 <span id="more"></span>
 <style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
-<div id="en-content" class="lang-content" style="display: block;"><h2 id="Generated-space-base"><a href="#Generated-space-base" class="headerlink" title="Generated space, base"></a>Generated space, base</h2><ul>
-<li><p>Generated a space, referring to the space containing all linear combinations of these vectors.</p>
-</li>
-<li><p>A set of basis in a vector space refers to a group of vectors that have two characteristics: they are linearly independent, and they generate the entire space.</p>
-</li>
-<li><p>For example: The most easily thought of basis for $R^3$ is</p>
-<script type="math/tex; mode=display">
+<div id="en-content" class="lang-content" style="display: block;"><h2 id="generated-space-base">Generated space, base</h2>
+<ul>
+<li><p>Generated a space, referring to the space containing all linear
+combinations of these vectors.</p></li>
+<li><p>A set of basis in a vector space refers to a group of vectors
+that have two characteristics: they are linearly independent, and they
+generate the entire space.</p></li>
+<li><p>For example: The most easily thought of basis for <span
+class="math inline">\(R^3\)</span> is</p>
+<p><span class="math display">\[
 \begin{bmatrix}
 1   \\
 0   \\
@@ -346,9 +380,10 @@
 0   \\
 0   \\
 1   \\
-\end{bmatrix}</script></li>
+\end{bmatrix}
+\]</span></p></li>
 <li><p>This is a set of standard bases, another example:</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{bmatrix}
 1   \\
 1   \\
@@ -359,36 +394,47 @@
 2   \\
 2   \\
 5   \\
-\end{bmatrix}</script></li>
-<li><p>It is evident that a space cannot be formed, as taking any vector that does not lie in the plane spanned by these two vectors will suffice.</p>
-</li>
-<li><p>How to test if they form a basis? Treat them as columns to form a matrix, which must be invertible (since it is a square matrix in this example).</p>
-</li>
-<li><p>If the two vectors in Example 2 cannot form a basis for three-dimensional space, then what space can they form a basis for? The plane formed by these two vectors.</p>
-</li>
-<li><p>The basis is not uniquely determined, but all bases share a common feature: the number of vectors in the basis is the same.</p>
-</li>
+\end{bmatrix}
+\]</span></p></li>
+<li><p>It is evident that a space cannot be formed, as taking any vector
+that does not lie in the plane spanned by these two vectors will
+suffice.</p></li>
+<li><p>How to test if they form a basis? Treat them as columns to form a
+matrix, which must be invertible (since it is a square matrix in this
+example).</p></li>
+<li><p>If the two vectors in Example 2 cannot form a basis for
+three-dimensional space, then what space can they form a basis for? The
+plane formed by these two vectors.</p></li>
+<li><p>The basis is not uniquely determined, but all bases share a
+common feature: the number of vectors in the basis is the same.</p></li>
 </ul>
-<h2 id="Dimension"><a href="#Dimension" class="headerlink" title="Dimension"></a>Dimension</h2><ul>
-<li>The number of all the basis vectors mentioned above is the same, and this number is the dimension of the space. It is not the dimension of the basis vectors, but the number of basis vectors.</li>
+<h2 id="dimension">Dimension</h2>
+<ul>
+<li>The number of all the basis vectors mentioned above is the same, and
+this number is the dimension of the space. It is not the dimension of
+the basis vectors, but the number of basis vectors.</li>
 </ul>
-<h2 id="Give-an-example"><a href="#Give-an-example" class="headerlink" title="Give an example"></a>Give an example</h2><p>On matrix A </p>
-<script type="math/tex; mode=display">
+<h2 id="give-an-example">Give an example</h2>
+<p>On matrix A <span class="math display">\[
 \begin{bmatrix}
-1 & 2 & 3 &1  \\
-1 & 1 & 2 & 1   \\
-1 & 2 & 3 & 1 \\
-\end{bmatrix}</script><ul>
-<li><p>Four columns are not linearly independent; the first and second columns can be taken as the main columns</p>
-</li>
-<li><p>2 = rank of A = number of leading columns = dimension of column space</p>
-</li>
-<li><p>The first and second columns form a set of basis for the column space.</p>
-</li>
-<li><p>If you know the dimension of the column space, you have determined the number of vectors, and as long as they are linearly independent, these vectors can form a basis.</p>
-</li>
-<li><p>What is the dimension of the null space? In this example, the two vectors in the null space (special solutions) are:</p>
-<script type="math/tex; mode=display">
+1 &amp; 2 &amp; 3 &amp;1  \\
+1 &amp; 1 &amp; 2 &amp; 1   \\
+1 &amp; 2 &amp; 3 &amp; 1 \\
+\end{bmatrix}
+\]</span></p>
+<ul>
+<li><p>Four columns are not linearly independent; the first and second
+columns can be taken as the main columns</p></li>
+<li><p>2 = rank of A = number of leading columns = dimension of column
+space</p></li>
+<li><p>The first and second columns form a set of basis for the column
+space.</p></li>
+<li><p>If you know the dimension of the column space, you have
+determined the number of vectors, and as long as they are linearly
+independent, these vectors can form a basis.</p></li>
+<li><p>What is the dimension of the null space? In this example, the two
+vectors in the null space (special solutions) are:</p>
+<p><span class="math display">\[
 \begin{bmatrix}
 -1   \\
 -1  \\
@@ -401,142 +447,184 @@
 0  \\
 0   \\
 1    \\
-\end{bmatrix}</script></li>
-<li><p>Yes, these two special solutions form a basis for the null space. The dimension of the null space is the number of free variables, which is n-r, i.e., 4-2=2 in this case.</p>
-</li>
+\end{bmatrix}
+\]</span></p></li>
+<li><p>Yes, these two special solutions form a basis for the null space.
+The dimension of the null space is the number of free variables, which
+is n-r, i.e., 4-2=2 in this case.</p></li>
 </ul>
-<h1 id="Tenth-Lecture-Four-Basic-Subspaces"><a href="#Tenth-Lecture-Four-Basic-Subspaces" class="headerlink" title="Tenth Lecture: Four Basic Subspaces"></a>Tenth Lecture: Four Basic Subspaces</h1><ul>
-<li><p>C(A), N(A), C( $A^T$ ), N( $A^T$ ).</p>
-</li>
-<li><p>Respectively located in the $R^m、R^n、R^n、R^m$ space</p>
-</li>
-<li><p>The dimension of the column space and the row space are both rank r, the dimension of the null space is n-r, and the dimension of the left null space is m-r</p>
-</li>
-<li><p>Basis of the column space: the leading columns, a total of r columns. Basis of the null space: special solutions (free columns), a total of n-r columns. Basis of the row space: non-zero rows in the reduced form of R, a total of r rows.</p>
-</li>
-<li><p>Row transformations are linear combinations of row vectors, thus the row spaces of A and R are the same, but the column spaces have changed</p>
-</li>
+<h1 id="tenth-lecture-four-basic-subspaces">Tenth Lecture: Four Basic
+Subspaces</h1>
+<ul>
+<li><p>C(A), N(A), C( <span class="math inline">\(A^T\)</span> ), N(
+<span class="math inline">\(A^T\)</span> ).</p></li>
+<li><p>Respectively located in the <span
+class="math inline">\(R^m、R^n、R^n、R^m\)</span> space</p></li>
+<li><p>The dimension of the column space and the row space are both rank
+r, the dimension of the null space is n-r, and the dimension of the left
+null space is m-r</p></li>
+<li><p>Basis of the column space: the leading columns, a total of r
+columns. Basis of the null space: special solutions (free columns), a
+total of n-r columns. Basis of the row space: non-zero rows in the
+reduced form of R, a total of r rows.</p></li>
+<li><p>Row transformations are linear combinations of row vectors, thus
+the row spaces of A and R are the same, but the column spaces have
+changed</p></li>
 <li><p>Why is it called the left null space?</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 rref\begin{bmatrix}
-A_{m*n} & I_{m*n}
+A_{m*n} &amp; I_{m*n}
 \end{bmatrix}\rightarrow
 \begin{bmatrix}
-R_{m*n} & E_{m*n}
-\end{bmatrix} \\</script></li>
-<li><p>rref=E, i.e., EA=R</p>
-</li>
-<li><p>Through E, the left zero 空洞 can be calculated</p>
-</li>
-<li><p>Find the row combination that generates a zero row vector</p>
-</li>
-<li><p>The basis of the left null space is the rows corresponding to the non-zero rows of R, totaling m-r rows</p>
-</li>
+R_{m*n} &amp; E_{m*n}
+\end{bmatrix} \\
+\]</span></p></li>
+<li><p>rref=E, i.e., EA=R</p></li>
+<li><p>Through E, the left zero 空洞 can be calculated</p></li>
+<li><p>Find the row combination that generates a zero row
+vector</p></li>
+<li><p>The basis of the left null space is the rows corresponding to the
+non-zero rows of R, totaling m-r rows</p></li>
 </ul>
-<h1 id="Eleventh-Lecture-Matrix-Spaces-Rank-1-Matrices-and-Small-World-Graphs"><a href="#Eleventh-Lecture-Matrix-Spaces-Rank-1-Matrices-and-Small-World-Graphs" class="headerlink" title="Eleventh Lecture: Matrix Spaces, Rank-1 Matrices, and Small-World Graphs"></a>Eleventh Lecture: Matrix Spaces, Rank-1 Matrices, and Small-World Graphs</h1><h2 id="Matrix-Space"><a href="#Matrix-Space" class="headerlink" title="Matrix Space"></a>Matrix Space</h2><ul>
-<li><p>Can be regarded as a vector space, can be multiplied by a scalar, and can be added together</p>
-</li>
-<li><p>For the matrix space M with $3*3$ as an example, a basis for the space consists of 9 matrices, each containing only one element, 1. This is a set of standard basis, and thus the dimension of this matrix space is 9</p>
-<script type="math/tex; mode=display">
+<h1
+id="eleventh-lecture-matrix-spaces-rank-1-matrices-and-small-world-graphs">Eleventh
+Lecture: Matrix Spaces, Rank-1 Matrices, and Small-World Graphs</h1>
+<h2 id="matrix-space">Matrix Space</h2>
+<ul>
+<li><p>Can be regarded as a vector space, can be multiplied by a scalar,
+and can be added together</p></li>
+<li><p>For the matrix space M with <span
+class="math inline">\(3*3\)</span> as an example, a basis for the space
+consists of 9 matrices, each containing only one element, 1. This is a
+set of standard basis, and thus the dimension of this matrix space is
+9</p>
+<p><span class="math display">\[
 \begin{bmatrix}
-1 & 0 & 0  \\
-0 & 0 & 0  \\
-0 & 0 & 0  \\
+1 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 1 & 0  \\
-0 & 0 & 0  \\
-0 & 0 & 0  \\
+0 &amp; 1 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 0 & 1  \\
-0 & 0 & 0  \\
-0 & 0 & 0  \\
+0 &amp; 0 &amp; 1  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}.....
 \begin{bmatrix}
-0 & 0 & 0  \\
-0 & 0 & 0  \\
-0 & 0 & 1  \\
-\end{bmatrix}</script></li>
-<li><p>The dimension of the subspace S of symmetric matrices in the matrix space $3*3$ is studied again, and it can be seen that among the 9 matrices in the original space basis, 3 belong to the subspace of symmetric matrices, and there are also 3 matrices that are symmetric both above and below the diagonal, so the dimension of the subspace of symmetric matrices is 6</p>
-<script type="math/tex; mode=display">
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 1  \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>The dimension of the subspace S of symmetric matrices in the
+matrix space <span class="math inline">\(3*3\)</span> is studied again,
+and it can be seen that among the 9 matrices in the original space
+basis, 3 belong to the subspace of symmetric matrices, and there are
+also 3 matrices that are symmetric both above and below the diagonal, so
+the dimension of the subspace of symmetric matrices is 6</p>
+<p><span class="math display">\[
 \begin{bmatrix}
-1 & 0 & 0  \\
-0 & 0 & 0  \\
-0 & 0 & 0  \\
+1 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 0 & 0  \\
-0 & 1 & 0  \\
-0 & 0 & 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 1 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 0 & 0  \\
-0 & 0 & 0  \\
-0 & 0 & 1  \\
-\end{bmatrix}</script><script type="math/tex; mode=display">
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 1  \\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
 \begin{bmatrix}
-0 & 1 & 0  \\
-1 & 0 & 0  \\
-0 & 0 & 0  \\
+0 &amp; 1 &amp; 0  \\
+1 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 0 & 1  \\
-0 & 0 & 0  \\
-1 & 0 & 0  \\
+0 &amp; 0 &amp; 1  \\
+0 &amp; 0 &amp; 0  \\
+1 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 0 & 0  \\
-0 & 0 & 1  \\
-0 & 1 & 0  \\
-\end{bmatrix}</script></li>
-<li><p>For the subspace U of the upper triangular matrix, it is easy to obtain that its dimension is 6, and the basis of the element space includes the basis of the subspace</p>
-</li>
-<li><p>Next, let’s study $S \bigcap U$ , and it can be easily obtained that this subspace is the diagonal matrix D, with a dimension of 3</p>
-</li>
-<li><p>If it is $S \bigcup U$ , their union basis can obtain all bases of M, so its dimension is 9</p>
-</li>
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 1  \\
+0 &amp; 1 &amp; 0  \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>For the subspace U of the upper triangular matrix, it is easy to
+obtain that its dimension is 6, and the basis of the element space
+includes the basis of the subspace</p></li>
+<li><p>Next, let's study <span class="math inline">\(S \bigcap
+U\)</span> , and it can be easily obtained that this subspace is the
+diagonal matrix D, with a dimension of 3</p></li>
+<li><p>If it is <span class="math inline">\(S \bigcup U\)</span> , their
+union basis can obtain all bases of M, so its dimension is 9</p></li>
 <li><p>Organize accordingly</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 dim(S)=6,dim(U)=6,dim(S \bigcap U)=3,dim(S \bigcup U)=3 \\
-dim(S)+dim(U)=dim(S \bigcap U)+dim(S \bigcup U) \\</script></li>
-<li><p>Another example can be given to illustrate that a vector space does not necessarily contain vectors, such as the following vector space based on differential equations</p>
-<script type="math/tex; mode=display">
-\frac{d^2y}{dx^2}+y=0</script></li>
+dim(S)+dim(U)=dim(S \bigcap U)+dim(S \bigcup U) \\
+\]</span></p></li>
+<li><p>Another example can be given to illustrate that a vector space
+does not necessarily contain vectors, such as the following vector space
+based on differential equations</p>
+<p><span class="math display">\[
+\frac{d^2y}{dx^2}+y=0
+\]</span></p></li>
 <li><p>His several solutions are</p>
-<script type="math/tex; mode=display">
-y=cos(x),y=sin(x)</script></li>
+<p><span class="math display">\[
+y=cos(x),y=sin(x)
+\]</span></p></li>
 <li><p>Complete solution is</p>
-<script type="math/tex; mode=display">
-y=c_1cos(x)+c_2sin(x)</script></li>
-<li><p>A vector space is obtained, with a basis of 2</p>
-</li>
+<p><span class="math display">\[
+y=c_1cos(x)+c_2sin(x)
+\]</span></p></li>
+<li><p>A vector space is obtained, with a basis of 2</p></li>
 </ul>
-<h2 id="Rank-1-matrix"><a href="#Rank-1-matrix" class="headerlink" title="Rank 1 matrix"></a>Rank 1 matrix</h2><ul>
+<h2 id="rank-1-matrix">Rank 1 matrix</h2>
+<ul>
 <li><p>Write a simple rank-1 matrix</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{bmatrix}
-1 & 4 & 5 \\
-2 & 8 & 10 \\
+1 &amp; 4 &amp; 5 \\
+2 &amp; 8 &amp; 10 \\
 \end{bmatrix}=
 \begin{bmatrix}
 1  \\
 2  \\
 \end{bmatrix}*
 \begin{bmatrix}
-1 & 4 & 5 \\
-\end{bmatrix}</script></li>
-<li><p>All rank 1 matrices can be represented as a column multiplied by a row</p>
-</li>
-<li><p>Rank 1 matrices are like building blocks, for example, a rank 4 matrix can be constructed from 4 rank 1 matrices</p>
-</li>
-<li><p>Consider an example of a rank-1 matrix, in four-dimensional space, let vector $v=(v_1,v_2,v_3,v_4)$ , set $S={v|v_1+v_2+v_3+v_4=0}$ , if S is regarded as the zero space, then the matrix A in the corresponding equation $Av=0$ is</p>
-<script type="math/tex; mode=display">
+1 &amp; 4 &amp; 5 \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>All rank 1 matrices can be represented as a column multiplied by
+a row</p></li>
+<li><p>Rank 1 matrices are like building blocks, for example, a rank 4
+matrix can be constructed from 4 rank 1 matrices</p></li>
+<li><p>Consider an example of a rank-1 matrix, in four-dimensional
+space, let vector <span
+class="math inline">\(v=(v_1,v_2,v_3,v_4)\)</span> , set <span
+class="math inline">\(S=\{v|v_1+v_2+v_3+v_4=0\}\)</span> , if S is
+regarded as the zero space, then the matrix A in the corresponding
+equation <span class="math inline">\(Av=0\)</span> is</p>
+<p><span class="math display">\[
 A=\begin{bmatrix}
-1 & 1 & 1 & 1 \\
-\end{bmatrix}</script></li>
-<li><p>Easily obtainable $dimN(A)=n-r$ , thus the dimension of S is $4-1=3$ , and a set of basis for S is</p>
-<script type="math/tex; mode=display">
+1 &amp; 1 &amp; 1 &amp; 1 \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>Easily obtainable <span
+class="math inline">\(dimN(A)=n-r\)</span> , thus the dimension of S is
+<span class="math inline">\(4-1=3\)</span> , and a set of basis for S
+is</p>
+<p><span class="math display">\[
 \begin{bmatrix}
 -1  \\
 1  \\
@@ -554,153 +642,238 @@ A=\begin{bmatrix}
 0  \\
 0  \\
 1  \\
-\end{bmatrix}</script></li>
-<li><p>Four subspaces of matrix A: the rank (dimension) of the null space and the column space are both 1, the row space $C(A^T)={a,a,a,a}​$ , the column space $C(A)=R^1​$ , the null space $N(A)​$ , which is the linear combination of the basis of S, $N(A^T)={0}​$</p>
-</li>
+\end{bmatrix}
+\]</span></p></li>
+<li><p>Four subspaces of matrix A: the rank (dimension) of the null
+space and the column space are both 1, the row space <span
+class="math inline">\(C(A^T)=\{a,a,a,a\}​\)</span> , the column space
+<span class="math inline">\(C(A)=R^1​\)</span> , the null space <span
+class="math inline">\(N(A)​\)</span> , which is the linear combination of
+the basis of S, <span class="math inline">\(N(A^T)={0}​\)</span></p></li>
 <li><p>Organize</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 dim(N(A))+dim(C(A^T))=3+1=4=n \\
-dim(C(A))+dim(N(A^T))=1+0=1=m \\</script></li>
+dim(C(A))+dim(N(A^T))=1+0=1=m \\
+\]</span></p></li>
 </ul>
-<h2 id="Small-World-Graph"><a href="#Small-World-Graph" class="headerlink" title="Small World Graph"></a>Small World Graph</h2><ul>
-<li>Just introduced the concept of graphs, preparing for the next lecture</li>
+<h2 id="small-world-graph">Small World Graph</h2>
+<ul>
+<li>Just introduced the concept of graphs, preparing for the next
+lecture</li>
 </ul>
-<h1 id="Twelfth-Lecture-Graphs-and-Networks"><a href="#Twelfth-Lecture-Graphs-and-Networks" class="headerlink" title="Twelfth Lecture: Graphs and Networks"></a>Twelfth Lecture: Graphs and Networks</h1><p>图<br>-</p>
+<h1 id="twelfth-lecture-graphs-and-networks">Twelfth Lecture: Graphs and
+Networks</h1>
+<h2 id="图">图</h2>
 <ul>
 <li>Some basic concepts of graphs, omitted</li>
 </ul>
-<h2 id="Internet"><a href="#Internet" class="headerlink" title="Internet"></a>Internet</h2><ul>
-<li><p>The adjacency matrix A of the graph, with columns as the nodes of the graph, rows as the edges of the matrix, the starting point as -1, the endpoint as 1, and the rest as 0</p>
-</li>
-<li><p>Several rows of linear correlation constitute the circuit, where the circuit implies correlation</p>
-</li>
-<li><p>The adjacency matrix A describes the topological structure of the graph</p>
-</li>
-<li><p>$dimN(A^T)=m-r​$</p>
-</li>
-<li><p>If the nodes of the graph are voltages, $Ax$ where x represents the voltage, $Ax=0$ yields a set of voltage difference equations, the null space is one-dimensional, $A^Ty$ where y represents the current on the edges, the relationship between current and voltage difference is Ohm’s law, $A^Ty=0$ obtains Kirchhoff’s laws, the null space includes two solutions of Kirchhoff’s current equations, which, from the circuit diagram, correspond to two small loops</p>
-</li>
-<li><p>Tree is a graph without cycles</p>
-</li>
-<li><p>Take another look at $dimN(A^T)=m-r$</p>
-</li>
-<li><p>$dimN(A^T)$ = Number of irrelevant circuits</p>
-</li>
-<li><p>$m$ = Number of edges</p>
-</li>
-<li><p>$r=n-1$ = number of nodes - 1 (since the null space is one-dimensional)</p>
-</li>
-<li><p>The: number of nodes - number of edges + number of circuits = 1 (Euler’s formula)</p>
-</li>
+<h2 id="internet">Internet</h2>
+<ul>
+<li><p>The adjacency matrix A of the graph, with columns as the nodes of
+the graph, rows as the edges of the matrix, the starting point as -1,
+the endpoint as 1, and the rest as 0</p></li>
+<li><p>Several rows of linear correlation constitute the circuit, where
+the circuit implies correlation</p></li>
+<li><p>The adjacency matrix A describes the topological structure of the
+graph</p></li>
+<li><p><span class="math inline">\(dimN(A^T)=m-r​\)</span></p></li>
+<li><p>If the nodes of the graph are voltages, <span
+class="math inline">\(Ax\)</span> where x represents the voltage, <span
+class="math inline">\(Ax=0\)</span> yields a set of voltage difference
+equations, the null space is one-dimensional, <span
+class="math inline">\(A^Ty\)</span> where y represents the current on
+the edges, the relationship between current and voltage difference is
+Ohm's law, <span class="math inline">\(A^Ty=0\)</span> obtains
+Kirchhoff's laws, the null space includes two solutions of Kirchhoff's
+current equations, which, from the circuit diagram, correspond to two
+small loops</p></li>
+<li><p>Tree is a graph without cycles</p></li>
+<li><p>Take another look at <span
+class="math inline">\(dimN(A^T)=m-r\)</span></p></li>
+<li><p><span class="math inline">\(dimN(A^T)\)</span> = Number of
+irrelevant circuits</p></li>
+<li><p><span class="math inline">\(m\)</span> = Number of edges</p></li>
+<li><p><span class="math inline">\(r=n-1\)</span> = number of nodes - 1
+(since the null space is one-dimensional)</p></li>
+<li><p>The: number of nodes - number of edges + number of circuits = 1
+(Euler's formula)</p></li>
 </ul>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
-<li><p>Potential is denoted as e, $e=Ax$</p>
-</li>
-<li><p>Potential difference causes the generation of current, $y=Ce$</p>
-</li>
-<li><p>Current satisfies Kirchhoff’s Current Law, $A^Ty=0$</p>
-</li>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><p>Potential is denoted as e, <span
+class="math inline">\(e=Ax\)</span></p></li>
+<li><p>Potential difference causes the generation of current, <span
+class="math inline">\(y=Ce\)</span></p></li>
+<li><p>Current satisfies Kirchhoff's Current Law, <span
+class="math inline">\(A^Ty=0\)</span></p></li>
 <li><p>Combine the three equations:</p>
-<script type="math/tex; mode=display">
-A^TCAx=f</script><p>This is the most basic balance equation in applied mathematics</p>
-</li>
+<p><span class="math display">\[
+A^TCAx=f
+\]</span></p>
+<p>This is the most basic balance equation in applied
+mathematics</p></li>
 </ul>
-<h1 id="Lecture-Thirteen-Orthogonal-Vectors-and-Subspaces"><a href="#Lecture-Thirteen-Orthogonal-Vectors-and-Subspaces" class="headerlink" title="Lecture Thirteen: Orthogonal Vectors and Subspaces"></a>Lecture Thirteen: Orthogonal Vectors and Subspaces</h1><h2 id="Orthogonal-vectors"><a href="#Orthogonal-vectors" class="headerlink" title="Orthogonal vectors"></a>Orthogonal vectors</h2><ul>
-<li><p>Orthogonal means perpendicular, indicating that in n-dimensional space, the angles between these vectors are 90 degrees</p>
-</li>
-<li><p>When $x^Ty=0$ , x and y are orthogonal, prove:</p>
-</li>
+<h1 id="lecture-thirteen-orthogonal-vectors-and-subspaces">Lecture
+Thirteen: Orthogonal Vectors and Subspaces</h1>
+<h2 id="orthogonal-vectors">Orthogonal vectors</h2>
+<ul>
+<li><p>Orthogonal means perpendicular, indicating that in n-dimensional
+space, the angles between these vectors are 90 degrees</p></li>
+<li><p>When <span class="math inline">\(x^Ty=0\)</span> , x and y are
+orthogonal, prove:</p></li>
 <li><p>If x is orthogonal to y, it follows that:</p>
-<script type="math/tex; mode=display">
-{||x||}^2+{||y||}^2={||x+y||}^2 \\</script></li>
+<p><span class="math display">\[
+{||x||}^2+{||y||}^2={||x+y||}^2 \\
+\]</span></p></li>
 <li><p>That is to say:</p>
-<script type="math/tex; mode=display">
-x^Tx+y^Ty={(x+y)}^T(x+y)=x^Tx+y^Ty+x^Ty+xy^T=2x^Ty \\</script></li>
+<p><span class="math display">\[
+x^Tx+y^Ty={(x+y)}^T(x+y)=x^Tx+y^Ty+x^Ty+xy^T=2x^Ty \\
+\]</span></p></li>
 <li><p>That is to say:</p>
-<script type="math/tex; mode=display">
-x^Ty=0 \\</script></li>
-<li><p>Subspaces are orthogonal if all vectors within one subspace are orthogonal to every vector in another subspace. It is obvious that if two two-dimensional subspaces intersect at some vector, then these two spaces are not orthogonal</p>
-</li>
-<li><p>If two subspaces are orthogonal, they must not intersect at any non-zero vector, because such a non-zero vector exists in both subspaces simultaneously, and it cannot be perpendicular to itself</p>
-</li>
-<li><p>The row space is orthogonal to the null space because $Ax=0$ , i.e., the dot product of each row of the matrix and these linear combinations of the rows (row space) with the solution vector (null space) is 0. This proves the left half of the figure.</p>
-</li>
-<li><p>In the right half of the figure, the column space and left null space are the row space and null space of the transpose of matrix A, respectively. The proof given earlier is still valid, thus the column space and left null space are orthogonal, and the right half of the figure holds</p>
-</li>
-<li><p>The figure presents the orthogonal subspaces of n-dimensional and m-dimensional spaces, the orthogonal subspace of the n-dimensional space: r-dimensional row space and (n-r)-dimensional null space. The orthogonal subspace of the m-dimensional space: r-dimensional column space and (m-r)-dimensional left null space.</p>
-</li>
+<p><span class="math display">\[
+x^Ty=0 \\
+\]</span></p></li>
+<li><p>Subspaces are orthogonal if all vectors within one subspace are
+orthogonal to every vector in another subspace. It is obvious that if
+two two-dimensional subspaces intersect at some vector, then these two
+spaces are not orthogonal</p></li>
+<li><p>If two subspaces are orthogonal, they must not intersect at any
+non-zero vector, because such a non-zero vector exists in both subspaces
+simultaneously, and it cannot be perpendicular to itself</p></li>
+<li><p>The row space is orthogonal to the null space because <span
+class="math inline">\(Ax=0\)</span> , i.e., the dot product of each row
+of the matrix and these linear combinations of the rows (row space) with
+the solution vector (null space) is 0. This proves the left half of the
+figure.</p></li>
+<li><p>In the right half of the figure, the column space and left null
+space are the row space and null space of the transpose of matrix A,
+respectively. The proof given earlier is still valid, thus the column
+space and left null space are orthogonal, and the right half of the
+figure holds</p></li>
+<li><p>The figure presents the orthogonal subspaces of n-dimensional and
+m-dimensional spaces, the orthogonal subspace of the n-dimensional
+space: r-dimensional row space and (n-r)-dimensional null space. The
+orthogonal subspace of the m-dimensional space: r-dimensional column
+space and (m-r)-dimensional left null space.</p></li>
 </ul>
-<h2 id="Orthogonal-subspace"><a href="#Orthogonal-subspace" class="headerlink" title="Orthogonal subspace"></a>Orthogonal subspace</h2><ul>
-<li>For example, in three-dimensional space, if the row space is one-dimensional, the null space is two-dimensional. The row space is a straight line, and the null space is a plane perpendicular to this line. This orthogonality can be intuitively seen from a geometric perspective</li>
-<li>Because the null space is the orthogonal complement of the row space, the null space contains all vectors orthogonal to the row space</li>
-<li>This is all the knowledge about solving $Ax=0$ . What should we do if we need to solve an unsolvable equation, or to find the optimal solution? We introduce an important matrix $A^TA$</li>
-<li>$A^TA$ is a $n*n$ square matrix, and it is also symmetric</li>
-<li>Transforming bad equation into good equation, multiply both sides by $A^T$</li>
-<li>Not always reversible; if reversible, then $N(A^TA)=N(A)$ , and their ranks are the same</li>
-<li>Reversible if and only if the null space contains only the zero vector, i.e., the columns are linearly independent; these properties will be proven in the next lecture</li>
+<h2 id="orthogonal-subspace">Orthogonal subspace</h2>
+<ul>
+<li>For example, in three-dimensional space, if the row space is
+one-dimensional, the null space is two-dimensional. The row space is a
+straight line, and the null space is a plane perpendicular to this line.
+This orthogonality can be intuitively seen from a geometric
+perspective</li>
+<li>Because the null space is the orthogonal complement of the row
+space, the null space contains all vectors orthogonal to the row
+space</li>
+<li>This is all the knowledge about solving <span
+class="math inline">\(Ax=0\)</span> . What should we do if we need to
+solve an unsolvable equation, or to find the optimal solution? We
+introduce an important matrix <span
+class="math inline">\(A^TA\)</span></li>
+<li><span class="math inline">\(A^TA\)</span> is a <span
+class="math inline">\(n*n\)</span> square matrix, and it is also
+symmetric</li>
+<li>Transforming bad equation into good equation, multiply both sides by
+<span class="math inline">\(A^T\)</span></li>
+<li>Not always reversible; if reversible, then <span
+class="math inline">\(N(A^TA)=N(A)\)</span> , and their ranks are the
+same</li>
+<li>Reversible if and only if the null space contains only the zero
+vector, i.e., the columns are linearly independent; these properties
+will be proven in the next lecture</li>
 </ul>
-<h1 id="14th-Lecture-Subspace-Projection"><a href="#14th-Lecture-Subspace-Projection" class="headerlink" title="14th Lecture: Subspace Projection"></a>14th Lecture: Subspace Projection</h1><h2 id="Projection"><a href="#Projection" class="headerlink" title="Projection"></a>Projection</h2><ul>
-<li><p>Discussing projection in two-dimensional cases</p>
-</li>
-<li><p>A projection of a point b onto another line a, which is the perpendicular line segment drawn from this point to intersect line a at point p; p is the projection point of b onto a, and the vector from the origin to p is the projection vector p. The perpendicular line segment is the error e, where e = b - p</p>
-</li>
-<li><p>p in the one-dimensional subspace of a is x times a, i.e., p = xa</p>
-</li>
+<h1 id="th-lecture-subspace-projection">14th Lecture: Subspace
+Projection</h1>
+<h2 id="projection">Projection</h2>
+<ul>
+<li><p>Discussing projection in two-dimensional cases</p></li>
+<li><p>A projection of a point b onto another line a, which is the
+perpendicular line segment drawn from this point to intersect line a at
+point p; p is the projection point of b onto a, and the vector from the
+origin to p is the projection vector p. The perpendicular line segment
+is the error e, where e = b - p</p></li>
+<li><p>p in the one-dimensional subspace of a is x times a, i.e., p =
+xa</p></li>
 <li><p>a perpendicular to e, i.e</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 a^T(b-xa)=0 \\
 xa^Ta=a^Tb \\
 x= \frac {a^Tb}{a^Ta} \\
-p=a\frac {a^Tb}{a^Ta} \\</script></li>
-<li><p>From the equation, it can be seen that if b is doubled, the projection is also doubled; if a changes, the projection remains unchanged, because the numerator and denominator cancel each other out</p>
-</li>
+p=a\frac {a^Tb}{a^Ta} \\
+\]</span></p></li>
+<li><p>From the equation, it can be seen that if b is doubled, the
+projection is also doubled; if a changes, the projection remains
+unchanged, because the numerator and denominator cancel each other
+out</p></li>
 </ul>
-<h2 id="Projection-matrix"><a href="#Projection-matrix" class="headerlink" title="Projection matrix"></a>Projection matrix</h2><ul>
+<h2 id="projection-matrix">Projection matrix</h2>
+<ul>
 <li>Projection matrix P one-dimensional pattern</li>
-<li>Multiplying the projection matrix by any vector b will always lie on a line through vector a (i.e., the projection of b onto a, denoted as p), thus the column space of the projection matrix is this line, and the rank of the matrix is 1</li>
-<li>Other two properties of the projection matrix:<ul>
-<li>Symmetry, i.e., $P^T=P$</li>
-<li>Two projections at the same location, i.e., $P^2=P$</li>
+<li>Multiplying the projection matrix by any vector b will always lie on
+a line through vector a (i.e., the projection of b onto a, denoted as
+p), thus the column space of the projection matrix is this line, and the
+rank of the matrix is 1</li>
+<li>Other two properties of the projection matrix:
+<ul>
+<li>Symmetry, i.e., <span class="math inline">\(P^T=P\)</span></li>
+<li>Two projections at the same location, i.e., <span
+class="math inline">\(P^2=P\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="The-Significance-of-Projection"><a href="#The-Significance-of-Projection" class="headerlink" title="The Significance of Projection"></a>The Significance of Projection</h2><ul>
-<li><p>Below is discussed in the high-dimensional case</p>
-</li>
-<li><p>When the number of equations exceeds the number of unknowns, there is often no solution, and in this case, we can only find the closest solution</p>
-</li>
-<li><p>How to find? Refine b such that b is in the column space</p>
-</li>
-<li><p>How to fine-tune? Change b to p, which is the one closest to b in the column space, i.e., the projection of b onto the column space when solving $Ax^{‘}=p$ , p</p>
-</li>
-<li><p>Now we require $x^{‘}$ , $p=Ax^{‘}$ , the error vector $e=b-Ax^{‘}$ , and according to the definition of projection, e needs to be orthogonal to the column space of A</p>
-</li>
+<h2 id="the-significance-of-projection">The Significance of
+Projection</h2>
+<ul>
+<li><p>Below is discussed in the high-dimensional case</p></li>
+<li><p>When the number of equations exceeds the number of unknowns,
+there is often no solution, and in this case, we can only find the
+closest solution</p></li>
+<li><p>How to find? Refine b such that b is in the column space</p></li>
+<li><p>How to fine-tune? Change b to p, which is the one closest to b in
+the column space, i.e., the projection of b onto the column space when
+solving <span class="math inline">\(Ax^{&#39;}=p\)</span> , p</p></li>
+<li><p>Now we require <span class="math inline">\(x^{&#39;}\)</span> ,
+<span class="math inline">\(p=Ax^{&#39;}\)</span> , the error vector
+<span class="math inline">\(e=b-Ax^{&#39;}\)</span> , and according to
+the definition of projection, e needs to be orthogonal to the column
+space of A</p></li>
 <li><p>In summary</p>
-<script type="math/tex; mode=display">
-A^T(b-Ax^{'})=0 \\</script></li>
-<li><p>From the above equation, it can be seen that e is in the left null space of A, orthogonal to the column space. Solving the equation yields</p>
-<script type="math/tex; mode=display">
-x^{'}=(A^TA)^{-1}A^Tb \\
-p=Ax^{'}=A(A^TA)^{-1}A^Tb \\</script></li>
+<p><span class="math display">\[
+A^T(b-Ax^{&#39;})=0 \\
+\]</span></p></li>
+<li><p>From the above equation, it can be seen that e is in the left
+null space of A, orthogonal to the column space. Solving the equation
+yields</p>
+<p><span class="math display">\[
+x^{&#39;}=(A^TA)^{-1}A^Tb \\
+p=Ax^{&#39;}=A(A^TA)^{-1}A^Tb \\
+\]</span></p></li>
 <li><p>The n-dimensional mode of the projection matrix P:</p>
-<script type="math/tex; mode=display">
-A(A^TA)^{-1}A^T \\</script></li>
-<li><p>The n-dimensional mode of projection matrix P still retains the two properties of the 1-dimensional mode</p>
-</li>
-<li><p>Returning to the pursuit of the optimal solution, a common example is to fit a straight line using the least squares method</p>
-</li>
-<li><p>Known three points $a_1,a_2,a_3$ , find a straight line to fit close to the three points, $b=C+Da$</p>
-</li>
-<li><p>If $a_1=(1,1),a_2=(2,2),a_3=(3,2)$ , then</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
+A(A^TA)^{-1}A^T \\
+\]</span></p></li>
+<li><p>The n-dimensional mode of projection matrix P still retains the
+two properties of the 1-dimensional mode</p></li>
+<li><p>Returning to the pursuit of the optimal solution, a common
+example is to fit a straight line using the least squares
+method</p></li>
+<li><p>Known three points <span
+class="math inline">\(a_1,a_2,a_3\)</span> , find a straight line to fit
+close to the three points, <span
+class="math inline">\(b=C+Da\)</span></p></li>
+<li><p>If <span
+class="math inline">\(a_1=(1,1),a_2=(2,2),a_3=(3,2)\)</span> , then</p>
+<p><span class="math display">\[
 C+D=1 \\
 C+2D=2 \\
-C+3D=2 \\</script><p>Written in linear form as:</p>
-<script type="math/tex; mode=display">
+C+3D=2 \\
+\]</span></p>
+<p>Written in linear form as:</p>
+<p><span class="math display">\[
 \begin{bmatrix}
-1 & 1  \\
-1 & 2  \\
-1 & 3  \\
+1 &amp; 1  \\
+1 &amp; 2  \\
+1 &amp; 3  \\
 \end{bmatrix}
 \begin{bmatrix}
 C  \\
@@ -710,47 +883,84 @@ D  \\
 1  \\
 2  \\
 2  \\
-\end{bmatrix}</script></li>
-<li><p>Ax=b, the number of equations is greater than the number of unknowns. If both sides are multiplied by the transpose of A, that is, to find $x^{‘}$ , then the fitting line can be obtained. The next lecture will continue with this example.</p>
-</li>
+\end{bmatrix}
+\]</span></p></li>
+<li><p>Ax=b, the number of equations is greater than the number of
+unknowns. If both sides are multiplied by the transpose of A, that is,
+to find <span class="math inline">\(x^{&#39;}\)</span> , then the
+fitting line can be obtained. The next lecture will continue with this
+example.</p></li>
 </ul>
-<h1 id="Lecture-15-Projection-Matrices-and-Least-Squares-Method"><a href="#Lecture-15-Projection-Matrices-and-Least-Squares-Method" class="headerlink" title="Lecture 15: Projection Matrices and Least Squares Method"></a>Lecture 15: Projection Matrices and Least Squares Method</h1><h2 id="Projection-matrix-1"><a href="#Projection-matrix-1" class="headerlink" title="Projection matrix"></a>Projection matrix</h2><ul>
-<li><p>Reviewing, $P=A(A^TA)^{-1}A^T$ , $Pb$ is the projection of b onto the column space of A. Now consider two extreme cases: b being in the column space and b being orthogonal to the column space: b in the column space: $Pb=b$ ; Proof: If b is in the column space, it can be expressed as $b=Ax$ , under the condition that the columns of A are linearly independent, $(A^TA)$ is invertible, substituting $P=A(A^TA)^{-1}A^T$ yields $Pb=b$ ; b is orthogonal to the column space, $Pb=0$ ; Proof: If b is orthogonal to the column space, then b is in the left null space, i.e., $A^Tb=0$ , it is obvious that substituting $P=A(A^TA)^{-1}A^T$ gives $Pb=0$</p>
-</li>
-<li><p>p is the projection of b onto the column space, since the column space is orthogonal to the left null space, and thus e is the projection of b onto the left null space, as shown in the figure:</p>
-<script type="math/tex; mode=display">
+<h1 id="lecture-15-projection-matrices-and-least-squares-method">Lecture
+15: Projection Matrices and Least Squares Method</h1>
+<h2 id="projection-matrix-1">Projection matrix</h2>
+<ul>
+<li><p>Reviewing, <span class="math inline">\(P=A(A^TA)^{-1}A^T\)</span>
+, <span class="math inline">\(Pb\)</span> is the projection of b onto
+the column space of A. Now consider two extreme cases: b being in the
+column space and b being orthogonal to the column space: b in the column
+space: <span class="math inline">\(Pb=b\)</span> ; Proof: If b is in the
+column space, it can be expressed as <span
+class="math inline">\(b=Ax\)</span> , under the condition that the
+columns of A are linearly independent, <span
+class="math inline">\((A^TA)\)</span> is invertible, substituting <span
+class="math inline">\(P=A(A^TA)^{-1}A^T\)</span> yields <span
+class="math inline">\(Pb=b\)</span> ; b is orthogonal to the column
+space, <span class="math inline">\(Pb=0\)</span> ; Proof: If b is
+orthogonal to the column space, then b is in the left null space, i.e.,
+<span class="math inline">\(A^Tb=0\)</span> , it is obvious that
+substituting <span class="math inline">\(P=A(A^TA)^{-1}A^T\)</span>
+gives <span class="math inline">\(Pb=0\)</span></p></li>
+<li><p>p is the projection of b onto the column space, since the column
+space is orthogonal to the left null space, and thus e is the projection
+of b onto the left null space, as shown in the figure:</p>
+<p><span class="math display">\[
 b=p+e \\
-p=Pb \\</script></li>
+p=Pb \\
+\]</span></p></li>
 <li><p>Therefore</p>
-<script type="math/tex; mode=display">
-e=(I-P)b \\</script></li>
-<li><p>Therefore, the projection matrix of the left null space is $(I-P)$</p>
-</li>
+<p><span class="math display">\[
+e=(I-P)b \\
+\]</span></p></li>
+<li><p>Therefore, the projection matrix of the left null space is <span
+class="math inline">\((I-P)\)</span></p></li>
 </ul>
-<h2 id="Least-Squares-Method"><a href="#Least-Squares-Method" class="headerlink" title="Least Squares Method"></a>Least Squares Method</h2><ul>
-<li><p>Returning to the example from the previous lecture, find the optimal straight line that approximates three points, minimizing the error, as shown in the figure</p>
-</li>
-<li><p>Establish the line as $y=C+Dt$ , substitute the coordinates of three points to obtain a system of equations</p>
-<script type="math/tex; mode=display">
+<h2 id="least-squares-method">Least Squares Method</h2>
+<ul>
+<li><p>Returning to the example from the previous lecture, find the
+optimal straight line that approximates three points, minimizing the
+error, as shown in the figure</p></li>
+<li><p>Establish the line as <span class="math inline">\(y=C+Dt\)</span>
+, substitute the coordinates of three points to obtain a system of
+equations</p>
+<p><span class="math display">\[
 C+D=1 \\
 C+2D=2 \\
-C+3D=2 \\</script></li>
-<li><p>This equation set has no solution but has an optimal price, from an algebraic perspective:</p>
-<script type="math/tex; mode=display">
-||e||^2=(C+D-1)^2+(C+2D-2)^2+(C+3D-2)^2 \\</script></li>
+C+3D=2 \\
+\]</span></p></li>
+<li><p>This equation set has no solution but has an optimal price, from
+an algebraic perspective:</p>
+<p><span class="math display">\[
+||e||^2=(C+D-1)^2+(C+2D-2)^2+(C+3D-2)^2 \\
+\]</span></p></li>
 <li><p>分别对 C 和 D 求偏导为 0，得到方程组:</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{cases}
 3C+6D=5\\
 6C+14D=11\\
-\end{cases}</script></li>
-<li><p>Written in matrix form, here, $C,D$ exists in only one form, and they are unsolvable. To solve $C,D$ , it is treated as a fitting line, i.e., b is replaced by $C,D$ when p is the projection.</p>
-<script type="math/tex; mode=display">
+\end{cases}
+\]</span></p></li>
+<li><p>Written in matrix form, here, <span
+class="math inline">\(C,D\)</span> exists in only one form, and they are
+unsolvable. To solve <span class="math inline">\(C,D\)</span> , it is
+treated as a fitting line, i.e., b is replaced by <span
+class="math inline">\(C,D\)</span> when p is the projection.</p>
+<p><span class="math display">\[
 Ax=b \\
 \begin{bmatrix}
-1 & 1 \\
-1 & 2 \\
-1 & 3 \\
+1 &amp; 1 \\
+1 &amp; 2 \\
+1 &amp; 3 \\
 \end{bmatrix}
 \begin{bmatrix}
 C \\
@@ -760,104 +970,163 @@ D \\
 1 \\
 2 \\
 2 \\
-\end{bmatrix}</script></li>
-<li><p>A satisfies the linear independence of each column, b is not in the column space of A, now we want to minimize the error $e=Ax-b$ , how to quantify the error? By squaring its length $||e||^2$ , which in the graph is the sum of the squares of the distances of points to the fitted line along the y-axis. The error line segments $b_1,b_2,b_3$ of these points $e_1,e_2,e_3$ intersect with the fitted line at $p_1,p_2,p_3$ , and when the three b points are replaced by three p points, the system of equations has a solution.</p>
-</li>
-<li><p>To solve $x^{‘},p$ , given $p=Ax^{‘}=A(A^TA)^{-1}A^Tb$ , $Ax=b$ , multiplying both sides by $A^T$ and combining them yields</p>
-<script type="math/tex; mode=display">
-A^TAx^{'}=A^Tb</script></li>
+\end{bmatrix}
+\]</span></p></li>
+<li><p>A satisfies the linear independence of each column, b is not in
+the column space of A, now we want to minimize the error <span
+class="math inline">\(e=Ax-b\)</span> , how to quantify the error? By
+squaring its length <span class="math inline">\(||e||^2\)</span> , which
+in the graph is the sum of the squares of the distances of points to the
+fitted line along the y-axis. The error line segments <span
+class="math inline">\(b_1,b_2,b_3\)</span> of these points <span
+class="math inline">\(e_1,e_2,e_3\)</span> intersect with the fitted
+line at <span class="math inline">\(p_1,p_2,p_3\)</span> , and when the
+three b points are replaced by three p points, the system of equations
+has a solution.</p></li>
+<li><p>To solve <span class="math inline">\(x^{&#39;},p\)</span> , given
+<span class="math inline">\(p=Ax^{&#39;}=A(A^TA)^{-1}A^Tb\)</span> ,
+<span class="math inline">\(Ax=b\)</span> , multiplying both sides by
+<span class="math inline">\(A^T\)</span> and combining them yields</p>
+<p><span class="math display">\[
+A^TAx^{&#39;}=A^Tb
+\]</span></p></li>
 <li><p>Substituting the values yields</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{cases}
 3C+6D=5\\
 6C+14D=11\\
-\end{cases}</script></li>
-<li><p>As with the result of taking partial derivatives algebraically, it is then possible to solve out $C,D$ , thus obtaining the fitting line</p>
-</li>
-<li><p>Review the two preceding figures, one explaining the relationship $b,p,e$ , and the other using $C,D$ to determine the fitting line, with the column combination determined by $C,D$ being vector p</p>
-</li>
-<li><p>If the columns of matrix A are linearly independent, then $A^TA$ is invertible, and this is a prerequisite for the use of the least squares method. Proof: If a matrix is invertible, then its null space consists only of the zero vector, i.e., x in $A^TAx=0$ must be the zero vector</p>
-<script type="math/tex; mode=display">
+\end{cases}
+\]</span></p></li>
+<li><p>As with the result of taking partial derivatives algebraically,
+it is then possible to solve out <span
+class="math inline">\(C,D\)</span> , thus obtaining the fitting
+line</p></li>
+<li><p>Review the two preceding figures, one explaining the relationship
+<span class="math inline">\(b,p,e\)</span> , and the other using <span
+class="math inline">\(C,D\)</span> to determine the fitting line, with
+the column combination determined by <span
+class="math inline">\(C,D\)</span> being vector p</p></li>
+<li><p>If the columns of matrix A are linearly independent, then <span
+class="math inline">\(A^TA\)</span> is invertible, and this is a
+prerequisite for the use of the least squares method. Proof: If a matrix
+is invertible, then its null space consists only of the zero vector,
+i.e., x in <span class="math inline">\(A^TAx=0\)</span> must be the zero
+vector</p>
+<p><span class="math display">\[
 A^TAx=0 \\
 x^TA^TAx=0 \\
 (Ax)^T(Ax)=0 \\
-Ax=0 \\</script></li>
+Ax=0 \\
+\]</span></p></li>
 <li><p>Since the columns of A are linearly independent, therefore</p>
-<script type="math/tex; mode=display">
-x=0</script></li>
-<li><p>Proof by construction</p>
-</li>
-<li><p>For handling mutually perpendicular unit vectors, we introduce the standard orthogonal vector group, where the columns of this matrix are both standard orthogonal and unit vectors. The next lecture will introduce more about the standard orthogonal vector group</p>
-</li>
+<p><span class="math display">\[
+x=0
+\]</span></p></li>
+<li><p>Proof by construction</p></li>
+<li><p>For handling mutually perpendicular unit vectors, we introduce
+the standard orthogonal vector group, where the columns of this matrix
+are both standard orthogonal and unit vectors. The next lecture will
+introduce more about the standard orthogonal vector group</p></li>
 </ul>
-<h1 id="Lecture-16-Orthogonal-Matrices-and-Gram-Schmidt-Orthogonalization"><a href="#Lecture-16-Orthogonal-Matrices-and-Gram-Schmidt-Orthogonalization" class="headerlink" title="Lecture 16: Orthogonal Matrices and Gram-Schmidt Orthogonalization"></a>Lecture 16: Orthogonal Matrices and Gram-Schmidt Orthogonalization</h1><h2 id="Orthogonal-matrix"><a href="#Orthogonal-matrix" class="headerlink" title="Orthogonal matrix"></a>Orthogonal matrix</h2><ul>
+<h1
+id="lecture-16-orthogonal-matrices-and-gram-schmidt-orthogonalization">Lecture
+16: Orthogonal Matrices and Gram-Schmidt Orthogonalization</h1>
+<h2 id="orthogonal-matrix">Orthogonal matrix</h2>
+<ul>
 <li><p>A set of orthogonal vectors is known</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 q_i^Tq_j=
 \begin{cases}
 0 \quad if \quad i \neq j \\
 1 \quad if \quad i=j \\
-\end{cases}</script><script type="math/tex; mode=display">
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
 Q=
 \begin{bmatrix}
-q_1 & q_2 & ... & q_n \\
+q_1 &amp; q_2 &amp; ... &amp; q_n \\
 \end{bmatrix} \\
-Q^TQ=I \\</script></li>
-<li><p>Therefore, for a square matrix with standard orthogonal columns, $Q^TQ=I$ , $Q^T=Q^{-1}$ , i.e., orthogonal matrices, for example</p>
-<script type="math/tex; mode=display">
+Q^TQ=I \\
+\]</span></p></li>
+<li><p>Therefore, for a square matrix with standard orthogonal columns,
+<span class="math inline">\(Q^TQ=I\)</span> , <span
+class="math inline">\(Q^T=Q^{-1}\)</span> , i.e., orthogonal matrices,
+for example</p>
+<p><span class="math display">\[
 Q=\begin{bmatrix}
-cos \theta & -sin \theta \\
-sin \theta & cos \theta \\
+cos \theta &amp; -sin \theta \\
+sin \theta &amp; cos \theta \\
 \end{bmatrix}or
-\frac {1}{\sqrt 2} 
+\frac {1}{\sqrt 2}
 \begin{bmatrix}
-1 & 1 \\
-1 & -1 \\
-\end{bmatrix}</script></li>
-<li><p>Q is not necessarily a square matrix. The columns of Q will be the standard orthogonal basis of the column space.</p>
-</li>
-<li><p>What is the projection matrix P onto the column space of Q for Q?</p>
-</li>
+1 &amp; 1 \\
+1 &amp; -1 \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>Q is not necessarily a square matrix. The columns of Q will be
+the standard orthogonal basis of the column space.</p></li>
+<li><p>What is the projection matrix P onto the column space of Q for
+Q?</p></li>
 </ul>
-<h2 id="Gram-Schmidt-orthogonalization"><a href="#Gram-Schmidt-orthogonalization" class="headerlink" title="Gram-Schmidt orthogonalization"></a>Gram-Schmidt orthogonalization</h2><ul>
-<li><p>Given two non-orthogonal vectors a and b, we wish to obtain two orthogonal vectors A, B from a, b, where A can be set as a, and B is the error vector e, which is the projection of b onto A:</p>
-<script type="math/tex; mode=display">
-B=e=b-\frac{A^Tb}{A^TA}A</script></li>
-<li><p>Orthogonal basis is A, B divided by their lengths $q_1=\frac{A}{||A||}$</p>
-</li>
-<li><p>Extended to the case of three vectors, A, B, and C, from the above formula we know that A, B, and similarly, C needs to have the projection components onto A and B subtracted</p>
-<script type="math/tex; mode=display">
-C=c- \frac {A^Tc}{A^TA}A- \frac {B^Tc}{B^TB} B</script></li>
-<li><p>The matrix A composed of column vectors a, b is orthogonalized into an orthogonal matrix Q through Schmidt orthogonalization, and it can be seen from the formula derivation that the columns $q_1,q_2,…$ and $a,b,….$ of Q are in the same column space; orthogonalization can be written as</p>
-<script type="math/tex; mode=display">
-A=QR \\</script></li>
+<h2 id="gram-schmidt-orthogonalization">Gram-Schmidt
+orthogonalization</h2>
+<ul>
+<li><p>Given two non-orthogonal vectors a and b, we wish to obtain two
+orthogonal vectors A, B from a, b, where A can be set as a, and B is the
+error vector e, which is the projection of b onto A:</p>
+<p><span class="math display">\[
+B=e=b-\frac{A^Tb}{A^TA}A
+\]</span></p></li>
+<li><p>Orthogonal basis is A, B divided by their lengths <span
+class="math inline">\(q_1=\frac{A}{||A||}\)</span></p></li>
+<li><p>Extended to the case of three vectors, A, B, and C, from the
+above formula we know that A, B, and similarly, C needs to have the
+projection components onto A and B subtracted</p>
+<p><span class="math display">\[
+C=c- \frac {A^Tc}{A^TA}A- \frac {B^Tc}{B^TB} B
+\]</span></p></li>
+<li><p>The matrix A composed of column vectors a, b is orthogonalized
+into an orthogonal matrix Q through Schmidt orthogonalization, and it
+can be seen from the formula derivation that the columns <span
+class="math inline">\(q_1,q_2,...\)</span> and <span
+class="math inline">\(a,b,....\)</span> of Q are in the same column
+space; orthogonalization can be written as</p>
+<p><span class="math display">\[
+A=QR \\
+\]</span></p></li>
 <li><p>即</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{bmatrix}
-a & b \\
+a &amp; b \\
 \end{bmatrix}=
 \begin{bmatrix}
-q_1 & q_2 \\
+q_1 &amp; q_2 \\
 \end{bmatrix}
 \begin{bmatrix}
-q_1^Ta & q_1^Tb \\
-q_2^Ta & q_2^Tb \\
-\end{bmatrix} \\</script></li>
-<li><p>Among them, because of $QQ^T=I$</p>
-</li>
-<li><p>Therefore $R=Q^TA$</p>
-</li>
-<li><p>$q_2$ is orthogonal to $q_1$ , while $q_1$ is just the unitization of $a$ , therefore $q_2^Ta=0$ , i.e., $R$ , is an upper triangular matrix</p>
-</li>
+q_1^Ta &amp; q_1^Tb \\
+q_2^Ta &amp; q_2^Tb \\
+\end{bmatrix} \\
+\]</span></p></li>
+<li><p>Among them, because of <span
+class="math inline">\(QQ^T=I\)</span></p></li>
+<li><p>Therefore <span class="math inline">\(R=Q^TA\)</span></p></li>
+<li><p><span class="math inline">\(q_2\)</span> is orthogonal to <span
+class="math inline">\(q_1\)</span> , while <span
+class="math inline">\(q_1\)</span> is just the unitization of <span
+class="math inline">\(a\)</span> , therefore <span
+class="math inline">\(q_2^Ta=0\)</span> , i.e., <span
+class="math inline">\(R\)</span> , is an upper triangular
+matrix</p></li>
 </ul>
 </div>
-<div id="zh-content" class="lang-content" style="display: none;"><h2 id="生成空间、基"><a href="#生成空间、基" class="headerlink" title="生成空间、基"></a>生成空间、基</h2><ul>
-<li><p>$v_1…,v_l$生成了一个空间，是指这个空间包含这些向量的所有线性组合。</p>
-</li>
-<li><p>向量空间的一组基是指一个向量组，这些向量有两个特性：他们线性无关、他们生成整个空间。</p>
-</li>
-<li><p>举个栗子：求$R^3$的一组基，最容易想到的是</p>
-<script type="math/tex; mode=display">
+<div id="zh-content" class="lang-content" style="display: none;"><h2 id="生成空间基">生成空间、基</h2>
+<ul>
+<li><p><span
+class="math inline">\(v_1...,v_l\)</span>生成了一个空间，是指这个空间包含这些向量的所有线性组合。</p></li>
+<li><p>向量空间的一组基是指一个向量组，这些向量有两个特性：他们线性无关、他们生成整个空间。</p></li>
+<li><p>举个栗子：求<span
+class="math inline">\(R^3\)</span>的一组基，最容易想到的是</p>
+<p><span class="math display">\[
 \begin{bmatrix}
 1   \\
 0   \\
@@ -874,9 +1143,10 @@ q_2^Ta & q_2^Tb \\
 0   \\
 0   \\
 1   \\
-\end{bmatrix}</script></li>
+\end{bmatrix}
+\]</span></p></li>
 <li><p>这是一组标准基，另一个栗子:</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{bmatrix}
 1   \\
 1   \\
@@ -887,32 +1157,32 @@ q_2^Ta & q_2^Tb \\
 2   \\
 2   \\
 5   \\
-\end{bmatrix}</script></li>
-<li><p>显然无法构成一个空间，只要再取一个不在这两个向量构成的平面上的任意一个向量即可。</p>
-</li>
-<li><p>如何检验他们是一组基？将他们作为列构成一个矩阵，矩阵必须可逆(因为此例中为方阵)。</p>
-</li>
-<li><p>若只有例2中2个向量，他们无法构成三维空间的基，那么他们能构成什么空间的基呢？这两个向量所构成的平面。</p>
-</li>
-<li><p>基不是唯一确定的，但所有的基都有共同点：基中向量的个数是相同的。</p>
-</li>
+\end{bmatrix}
+\]</span></p></li>
+<li><p>显然无法构成一个空间，只要再取一个不在这两个向量构成的平面上的任意一个向量即可。</p></li>
+<li><p>如何检验他们是一组基？将他们作为列构成一个矩阵，矩阵必须可逆(因为此例中为方阵)。</p></li>
+<li><p>若只有例2中2个向量，他们无法构成三维空间的基，那么他们能构成什么空间的基呢？这两个向量所构成的平面。</p></li>
+<li><p>基不是唯一确定的，但所有的基都有共同点：基中向量的个数是相同的。</p></li>
 </ul>
-<h2 id="维数"><a href="#维数" class="headerlink" title="维数"></a>维数</h2><ul>
+<h2 id="维数">维数</h2>
+<ul>
 <li>上面提到的所有基向量的个数相同，这个个数就是空间的维数。<strong>不是基向量的维数，而是基向量的个数</strong></li>
 </ul>
-<h2 id="最后举个栗子"><a href="#最后举个栗子" class="headerlink" title="最后举个栗子"></a>最后举个栗子</h2><p>对矩阵A</p>
-<script type="math/tex; mode=display">
+<h2 id="最后举个栗子">最后举个栗子</h2>
+<p>对矩阵A <span class="math display">\[
 \begin{bmatrix}
-1 & 2 & 3 &1  \\
-1 & 1 & 2 & 1   \\
-1 & 2 & 3 & 1 \\
-\end{bmatrix}</script><ul>
-<li>四列并不线性无关，可取第一列第二列为主列</li>
-<li>2=A的秩=主列数=列空间维数</li>
-<li>第一列和第二列构成列空间的一组基。</li>
-<li>如果你知道列空间的维数，则确定了向量的个数，再满足线性无关，这些向量就可以构成一组基。</li>
+1 &amp; 2 &amp; 3 &amp;1  \\
+1 &amp; 1 &amp; 2 &amp; 1   \\
+1 &amp; 2 &amp; 3 &amp; 1 \\
+\end{bmatrix}
+\]</span></p>
+<ul>
+<li><p>四列并不线性无关，可取第一列第二列为主列</p></li>
+<li><p>2=A的秩=主列数=列空间维数</p></li>
+<li><p>第一列和第二列构成列空间的一组基。</p></li>
+<li><p>如果你知道列空间的维数，则确定了向量的个数，再满足线性无关，这些向量就可以构成一组基。</p></li>
 <li><p>零空间的维数是多少？在本例中零空间中的两个向量(特殊解)为：</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{bmatrix}
 -1   \\
 -1  \\
@@ -925,125 +1195,154 @@ q_2^Ta & q_2^Tb \\
 0  \\
 0   \\
 1    \\
-\end{bmatrix}</script></li>
-<li>这两个特殊解是否构成了零空间的一组基？是的，零空间的维数就是自由变量的个数,即n-r,在本例中是4-2=2。</li>
+\end{bmatrix}
+\]</span></p></li>
+<li><p>这两个特殊解是否构成了零空间的一组基？是的，零空间的维数就是自由变量的个数,即n-r,在本例中是4-2=2。</p></li>
 </ul>
-<h1 id="第十讲：四个基本子空间"><a href="#第十讲：四个基本子空间" class="headerlink" title="第十讲：四个基本子空间"></a>第十讲：四个基本子空间</h1><ul>
-<li>列空间C(A)，零空间N(A)，行空间C($A^T$)，左零空间N($A^T$)。</li>
-<li>分别处于$R^m、R^n、R^n、R^m$空间中</li>
-<li>列空间与行空间的维数都是秩r，零空间维数是n-r，左零空间维数是m-r</li>
-<li>列空间的基：主列，共r列。零空间的基：特殊解(自由列)，共n-r个。行空间的基：最简形式R的非0行,共r行</li>
-<li>行变换是行向量的线性组合，因此A和R的行空间相同，列空间发生了变化</li>
+<h1 id="第十讲四个基本子空间">第十讲：四个基本子空间</h1>
+<ul>
+<li><p>列空间C(A)，零空间N(A)，行空间C(<span
+class="math inline">\(A^T\)</span>)，左零空间N(<span
+class="math inline">\(A^T\)</span>)。</p></li>
+<li><p>分别处于<span
+class="math inline">\(R^m、R^n、R^n、R^m\)</span>空间中</p></li>
+<li><p>列空间与行空间的维数都是秩r，零空间维数是n-r，左零空间维数是m-r</p></li>
+<li><p>列空间的基：主列，共r列。零空间的基：特殊解(自由列)，共n-r个。行空间的基：最简形式R的非0行,共r行</p></li>
+<li><p>行变换是行向量的线性组合，因此A和R的行空间相同，列空间发生了变化</p></li>
 <li><p>为什么叫做左零空间？</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 rref\begin{bmatrix}
-A_{m*n} & I_{m*n}
+A_{m*n} &amp; I_{m*n}
 \end{bmatrix}\rightarrow
 \begin{bmatrix}
-R_{m*n} & E_{m*n}
-\end{bmatrix} \\</script></li>
-<li>易得rref=E，即EA=R </li>
-<li>通过E可以计算左零空</li>
-<li>求左零空间即找一个产生零行向量的行组合 </li>
-<li>左零空间的基就是R非0行对应的E行,共m-r行 </li>
+R_{m*n} &amp; E_{m*n}
+\end{bmatrix} \\
+\]</span></p></li>
+<li><p>易得rref=E，即EA=R</p></li>
+<li><p>通过E可以计算左零空</p></li>
+<li><p>求左零空间即找一个产生零行向量的行组合</p></li>
+<li><p>左零空间的基就是R非0行对应的E行,共m-r行</p></li>
 </ul>
-<h1 id="第十一讲：矩阵空间、秩1矩阵和小世界图"><a href="#第十一讲：矩阵空间、秩1矩阵和小世界图" class="headerlink" title="第十一讲：矩阵空间、秩1矩阵和小世界图"></a>第十一讲：矩阵空间、秩1矩阵和小世界图</h1><h2 id="矩阵空间"><a href="#矩阵空间" class="headerlink" title="矩阵空间"></a>矩阵空间</h2><ul>
-<li>可以看成向量空间，可以数乘，可以相加</li>
-<li><p>以$3*3$矩阵空间M为例，空间的一组基即9个矩阵，每个矩阵中只包含一个元素1,这是一组标准基，可得这个矩阵空间维数是9</p>
-<script type="math/tex; mode=display">
+<h1
+id="第十一讲矩阵空间秩1矩阵和小世界图">第十一讲：矩阵空间、秩1矩阵和小世界图</h1>
+<h2 id="矩阵空间">矩阵空间</h2>
+<ul>
+<li><p>可以看成向量空间，可以数乘，可以相加</p></li>
+<li><p>以<span
+class="math inline">\(3*3\)</span>矩阵空间M为例，空间的一组基即9个矩阵，每个矩阵中只包含一个元素1,这是一组标准基，可得这个矩阵空间维数是9</p>
+<p><span class="math display">\[
 \begin{bmatrix}
-1 & 0 & 0  \\
-0 & 0 & 0  \\
-0 & 0 & 0  \\
+1 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 1 & 0  \\
-0 & 0 & 0  \\
-0 & 0 & 0  \\
+0 &amp; 1 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 0 & 1  \\
-0 & 0 & 0  \\
-0 & 0 & 0  \\
+0 &amp; 0 &amp; 1  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}.....
 \begin{bmatrix}
-0 & 0 & 0  \\
-0 & 0 & 0  \\
-0 & 0 & 1  \\
-\end{bmatrix}</script></li>
-<li><p>再来研究$3*3$矩阵空间中对称矩阵子空间S的维数，可以看到原空间基中9个矩阵，有3个矩阵属于对称矩阵子空间，另外还有上三角与下三角对称的三个矩阵，所以对称矩阵子空间的维数是6</p>
-<script type="math/tex; mode=display">
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 1  \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>再来研究<span
+class="math inline">\(3*3\)</span>矩阵空间中对称矩阵子空间S的维数，可以看到原空间基中9个矩阵，有3个矩阵属于对称矩阵子空间，另外还有上三角与下三角对称的三个矩阵，所以对称矩阵子空间的维数是6</p>
+<p><span class="math display">\[
 \begin{bmatrix}
-1 & 0 & 0  \\
-0 & 0 & 0  \\
-0 & 0 & 0  \\
+1 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 0 & 0  \\
-0 & 1 & 0  \\
-0 & 0 & 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 1 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 0 & 0  \\
-0 & 0 & 0  \\
-0 & 0 & 1  \\
-\end{bmatrix}</script><script type="math/tex; mode=display">
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 1  \\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
 \begin{bmatrix}
-0 & 1 & 0  \\
-1 & 0 & 0  \\
-0 & 0 & 0  \\
+0 &amp; 1 &amp; 0  \\
+1 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 0 & 1  \\
-0 & 0 & 0  \\
-1 & 0 & 0  \\
+0 &amp; 0 &amp; 1  \\
+0 &amp; 0 &amp; 0  \\
+1 &amp; 0 &amp; 0  \\
 \end{bmatrix}，
 \begin{bmatrix}
-0 & 0 & 0  \\
-0 & 0 & 1  \\
-0 & 1 & 0  \\
-\end{bmatrix}</script></li>
-<li>对于上三角矩阵子空间U，易得维数为6，且元空间的基包含了子空间的基</li>
-<li>接着再来研究$S \bigcap U$ ，易得这个子空间即对角矩阵D，维度为3</li>
-<li>如果是$S \bigcup U $呢？他们的并的基可以得到所有M的基，所以其维数是9</li>
+0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 1  \\
+0 &amp; 1 &amp; 0  \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>对于上三角矩阵子空间U，易得维数为6，且元空间的基包含了子空间的基</p></li>
+<li><p>接着再来研究<span class="math inline">\(S \bigcap U\)</span>
+，易得这个子空间即对角矩阵D，维度为3</p></li>
+<li><p>如果是$S U
+$呢？他们的并的基可以得到所有M的基，所以其维数是9</p></li>
 <li><p>整理一下可得</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 dim(S)=6,dim(U)=6,dim(S \bigcap U)=3,dim(S \bigcup U)=3 \\
-dim(S)+dim(U)=dim(S \bigcap U)+dim(S \bigcup U) \\</script></li>
+dim(S)+dim(U)=dim(S \bigcap U)+dim(S \bigcup U) \\
+\]</span></p></li>
 <li><p>再来举一个栗子，说明向量空间不一定有向量，比如下面这个基于微分方程的向量空间</p>
-<script type="math/tex; mode=display">
-\frac{d^2y}{dx^2}+y=0</script></li>
-<li><p>他的几个解为 </p>
-<script type="math/tex; mode=display">
-y=cos(x),y=sin(x)</script></li>
-<li><p>完整解为  </p>
-<script type="math/tex; mode=display">
-y=c_1cos(x)+c_2sin(x)</script></li>
-<li>即得到一个向量空间，基为2</li>
+<p><span class="math display">\[
+\frac{d^2y}{dx^2}+y=0
+\]</span></p></li>
+<li><p>他的几个解为</p>
+<p><span class="math display">\[
+y=cos(x),y=sin(x)
+\]</span></p></li>
+<li><p>完整解为</p>
+<p><span class="math display">\[
+y=c_1cos(x)+c_2sin(x)
+\]</span></p></li>
+<li><p>即得到一个向量空间，基为2</p></li>
 </ul>
-<h2 id="秩1矩阵"><a href="#秩1矩阵" class="headerlink" title="秩1矩阵"></a>秩1矩阵</h2><ul>
+<h2 id="秩1矩阵">秩1矩阵</h2>
+<ul>
 <li><p>先写一个简单的秩1矩阵</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{bmatrix}
-1 & 4 & 5 \\
-2 & 8 & 10 \\
+1 &amp; 4 &amp; 5 \\
+2 &amp; 8 &amp; 10 \\
 \end{bmatrix}=
 \begin{bmatrix}
 1  \\
 2  \\
 \end{bmatrix}*
 \begin{bmatrix}
-1 & 4 & 5 \\
-\end{bmatrix}</script></li>
-<li>所有的秩1矩阵都可以表示为一列乘一行</li>
-<li>秩1矩阵就像积木，比如一个秩为4的矩阵可以由4个秩1矩阵构建而成</li>
-<li><p>再来看一个秩1矩阵的栗子，在四维空间中，设向量$v=(v_1,v_2,v_3,v_4)$,集合$S={v|v_1+v_2+v_3+v_4=0}$,假如把S看成零空间，则相应的方程$Av=0$中的矩阵A为</p>
-<script type="math/tex; mode=display">
+1 &amp; 4 &amp; 5 \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>所有的秩1矩阵都可以表示为一列乘一行</p></li>
+<li><p>秩1矩阵就像积木，比如一个秩为4的矩阵可以由4个秩1矩阵构建而成</p></li>
+<li><p>再来看一个秩1矩阵的栗子，在四维空间中，设向量<span
+class="math inline">\(v=(v_1,v_2,v_3,v_4)\)</span>,集合<span
+class="math inline">\(S=\{v|v_1+v_2+v_3+v_4=0\}\)</span>,假如把S看成零空间，则相应的方程<span
+class="math inline">\(Av=0\)</span>中的矩阵A为</p>
+<p><span class="math display">\[
 A=\begin{bmatrix}
-1 & 1 & 1 & 1 \\
-\end{bmatrix}</script></li>
-<li><p>易得$dimN(A)=n-r$，所以S的维数是$4-1=3$，S的一组基为</p>
-<script type="math/tex; mode=display">
+1 &amp; 1 &amp; 1 &amp; 1 \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>易得<span
+class="math inline">\(dimN(A)=n-r\)</span>，所以S的维数是<span
+class="math inline">\(4-1=3\)</span>，S的一组基为</p>
+<p><span class="math display">\[
 \begin{bmatrix}
 -1  \\
 1  \\
@@ -1061,133 +1360,172 @@ A=\begin{bmatrix}
 0  \\
 0  \\
 1  \\
-\end{bmatrix}</script></li>
-<li>矩阵A的四个子空间:易得行空间和列空间的秩(维数)均为1，行空间$C(A^T)={a,a,a,a}​$，列空间$C(A)=R^1​$，零空间$N(A)​$即S的基线性组合，$N(A^T)={0}​$</li>
+\end{bmatrix}
+\]</span></p></li>
+<li><p>矩阵A的四个子空间:易得行空间和列空间的秩(维数)均为1，行空间<span
+class="math inline">\(C(A^T)=\{a,a,a,a\}​\)</span>，列空间<span
+class="math inline">\(C(A)=R^1​\)</span>，零空间<span
+class="math inline">\(N(A)​\)</span>即S的基线性组合，<span
+class="math inline">\(N(A^T)={0}​\)</span></p></li>
 <li><p>整理一下</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 dim(N(A))+dim(C(A^T))=3+1=4=n \\
-dim(C(A))+dim(N(A^T))=1+0=1=m \\</script></li>
+dim(C(A))+dim(N(A^T))=1+0=1=m \\
+\]</span></p></li>
 </ul>
-<h2 id="小世界图"><a href="#小世界图" class="headerlink" title="小世界图"></a>小世界图</h2><ul>
+<h2 id="小世界图">小世界图</h2>
+<ul>
 <li>仅仅引入了图的概念，为下一讲准备</li>
 </ul>
-<h1 id="第十二讲：图和网络"><a href="#第十二讲：图和网络" class="headerlink" title="第十二讲：图和网络"></a>第十二讲：图和网络</h1><h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><ul>
+<h1 id="第十二讲图和网络">第十二讲：图和网络</h1>
+<h2 id="图">图</h2>
+<ul>
 <li>图的一些基础概念，略过</li>
 </ul>
-<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><ul>
-<li><p>图的关联矩阵A，将列作为图的节点，行作为矩阵的边，起点为-1，终点为1，其余为0</p>
-</li>
-<li><p>构成回路的几行线性相关，回路意味着相关</p>
-</li>
-<li><p>关联矩阵A描述了图的拓扑结构</p>
-</li>
-<li><p>$dimN(A^T)=m-r​$</p>
-</li>
-<li><p>假如图的节点是电势，$Ax$中x即电势，$Ax=0$得到一组电势差方程，零空间是一维的，$A^Ty$中y即边上的电流，电流与电势差的关系即欧姆定律，$A^Ty=0$得到基尔霍夫定律，零空间包含了基尔霍夫电流方程的两个解，从电路图上看即两个小回路</p>
-</li>
-<li><p>树就是没有回路的图</p>
-</li>
-<li><p>再来看看$dimN(A^T)=m-r$</p>
-</li>
-<li><p>$dimN(A^T)$=无关回路数  </p>
-</li>
-<li><p>$m$=边数 </p>
-</li>
-<li><p>$r=n-1$=节点数-1 (因为零空间是一维的) </p>
-</li>
-<li><p>即:节点数-边数+回路数=1(欧拉公式) </p>
-</li>
+<h2 id="网络">网络</h2>
+<ul>
+<li><p>图的关联矩阵A，将列作为图的节点，行作为矩阵的边，起点为-1，终点为1，其余为0</p></li>
+<li><p>构成回路的几行线性相关，回路意味着相关</p></li>
+<li><p>关联矩阵A描述了图的拓扑结构</p></li>
+<li><p><span class="math inline">\(dimN(A^T)=m-r​\)</span></p></li>
+<li><p>假如图的节点是电势，<span
+class="math inline">\(Ax\)</span>中x即电势，<span
+class="math inline">\(Ax=0\)</span>得到一组电势差方程，零空间是一维的，<span
+class="math inline">\(A^Ty\)</span>中y即边上的电流，电流与电势差的关系即欧姆定律，<span
+class="math inline">\(A^Ty=0\)</span>得到基尔霍夫定律，零空间包含了基尔霍夫电流方程的两个解，从电路图上看即两个小回路</p></li>
+<li><p>树就是没有回路的图</p></li>
+<li><p>再来看看<span
+class="math inline">\(dimN(A^T)=m-r\)</span></p></li>
+<li><p><span
+class="math inline">\(dimN(A^T)\)</span>=无关回路数</p></li>
+<li><p><span class="math inline">\(m\)</span>=边数</p></li>
+<li><p><span class="math inline">\(r=n-1\)</span>=节点数-1
+(因为零空间是一维的)</p></li>
+<li><p>即:节点数-边数+回路数=1(欧拉公式)</p></li>
 </ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><font size=4>总结</h2><ul>
-<li><p>将电势记为e,$e=Ax$</p>
-</li>
-<li><p>电势差导致电流产生，$y=Ce$</p>
-</li>
-<li><p>电流满足基尔霍夫电流方程,$A^Ty=0$</p>
-</li>
+<h2 id="总结"><font size=4>总结</h2>
+<ul>
+<li><p>将电势记为e,<span class="math inline">\(e=Ax\)</span></p></li>
+<li><p>电势差导致电流产生，<span
+class="math inline">\(y=Ce\)</span></p></li>
+<li><p>电流满足基尔霍夫电流方程,<span
+class="math inline">\(A^Ty=0\)</span></p></li>
 <li><p>将三个方程联立：</p>
-<script type="math/tex; mode=display">
-A^TCAx=f</script><p>这就是应用数学中最基本的平衡方程</p>
-</li>
+<p><span class="math display">\[
+A^TCAx=f
+\]</span></p>
+<p>这就是应用数学中最基本的平衡方程</p></li>
 </ul>
-<h1 id="第十三讲：正交向量与子空间"><a href="#第十三讲：正交向量与子空间" class="headerlink" title="第十三讲：正交向量与子空间"></a>第十三讲：正交向量与子空间</h1><h2 id="正交向量"><a href="#正交向量" class="headerlink" title="正交向量"></a>正交向量</h2><ul>
-<li>正交即垂直，意味着在n维空间内，这些向量的夹角是90度</li>
-<li>当$x^Ty=0$,x与y正交，证明：</li>
+<h1 id="第十三讲正交向量与子空间">第十三讲：正交向量与子空间</h1>
+<h2 id="正交向量">正交向量</h2>
+<ul>
+<li><p>正交即垂直，意味着在n维空间内，这些向量的夹角是90度</p></li>
+<li><p>当<span
+class="math inline">\(x^Ty=0\)</span>,x与y正交，证明：</p></li>
 <li><p>若x与y正交，易得:</p>
-<script type="math/tex; mode=display">
-{||x||}^2+{||y||}^2={||x+y||}^2 \\</script></li>
+<p><span class="math display">\[
+{||x||}^2+{||y||}^2={||x+y||}^2 \\
+\]</span></p></li>
 <li><p>即：</p>
-<script type="math/tex; mode=display">
-x^Tx+y^Ty={(x+y)}^T(x+y)=x^Tx+y^Ty+x^Ty+xy^T=2x^Ty \\</script></li>
+<p><span class="math display">\[
+x^Tx+y^Ty={(x+y)}^T(x+y)=x^Tx+y^Ty+x^Ty+xy^T=2x^Ty \\
+\]</span></p></li>
 <li><p>即：</p>
-<script type="math/tex; mode=display">
-x^Ty=0 \\</script></li>
-<li><p>子空间正交意味着一个子空间内的所有向量与另一个子空间内的每一个向量正交，显然，如果两个二维子空间在某一向量处相交，则这两个空间一定不正交</p>
-</li>
-<li>若两个子空间正交，则他们一定不会相交于某一个非零向量，因为这个非零向量同时存在于两个子空间内，它不可能自己垂直于自己</li>
-<li>行空间正交于零空间，因为$Ax=0$，即矩阵的每一行以及这些行的线性组合(行空间)与解向量(零空间)点乘都为0。这样就证明了图中左半部分</li>
-<li>图中右半部份，列空间和左零空间分别是矩阵A的转置矩阵的行空间和零空间，刚才的证明同样有效，因此列空间和左零空间正交，图中右半部份成立</li>
-<li>图中给出了n维空间和m维空间的正交子空间，n维空间的正交子空间:r维行空间和n-r维零空间。m维空间的正交子空间:r维列空间和m-r维左零空间。</li>
+<p><span class="math display">\[
+x^Ty=0 \\
+\]</span></p></li>
+<li><p>子空间正交意味着一个子空间内的所有向量与另一个子空间内的每一个向量正交，显然，如果两个二维子空间在某一向量处相交，则这两个空间一定不正交</p></li>
+<li><p>若两个子空间正交，则他们一定不会相交于某一个非零向量，因为这个非零向量同时存在于两个子空间内，它不可能自己垂直于自己</p></li>
+<li><p>行空间正交于零空间，因为<span
+class="math inline">\(Ax=0\)</span>，即矩阵的每一行以及这些行的线性组合(行空间)与解向量(零空间)点乘都为0。这样就证明了图中左半部分</p></li>
+<li><p>图中右半部份，列空间和左零空间分别是矩阵A的转置矩阵的行空间和零空间，刚才的证明同样有效，因此列空间和左零空间正交，图中右半部份成立</p></li>
+<li><p>图中给出了n维空间和m维空间的正交子空间，n维空间的正交子空间:r维行空间和n-r维零空间。m维空间的正交子空间:r维列空间和m-r维左零空间。</p></li>
 </ul>
-<h2 id="正交子空间"><a href="#正交子空间" class="headerlink" title="正交子空间"></a>正交子空间</h2><ul>
+<h2 id="正交子空间">正交子空间</h2>
+<ul>
 <li>例如三维空间，假如行空间是一维的，则零空间是二维的，行空间是一条直线，零空间是垂直于这个直线的平面，从几何上可以直观看出他们正交</li>
 <li>因为零空间是行空间的正交补集，所以零空间包含了所有正交于行空间的向量</li>
-<li>以上是所有关于解$Ax=0$的知识，如果要解不可解的方程，或者说求最优解，该怎么办呢？我们引入一个重要的矩阵$A^TA$</li>
-<li>$A^TA$是一个$n*n$的方阵，而且对称</li>
-<li>坏方程转换为好方程，两边同乘$A^T$</li>
-<li>$A^TA$不总是可逆，若可逆，则$N(A^TA)=N(A)$，且他们的秩相同</li>
-<li>$A^TA$可逆当且仅当零空间内只有零向量，即各列线性无关，下一讲将证明这些性质</li>
+<li>以上是所有关于解<span
+class="math inline">\(Ax=0\)</span>的知识，如果要解不可解的方程，或者说求最优解，该怎么办呢？我们引入一个重要的矩阵<span
+class="math inline">\(A^TA\)</span></li>
+<li><span class="math inline">\(A^TA\)</span>是一个<span
+class="math inline">\(n*n\)</span>的方阵，而且对称</li>
+<li>坏方程转换为好方程，两边同乘<span
+class="math inline">\(A^T\)</span></li>
+<li><span class="math inline">\(A^TA\)</span>不总是可逆，若可逆，则<span
+class="math inline">\(N(A^TA)=N(A)\)</span>，且他们的秩相同</li>
+<li><span
+class="math inline">\(A^TA\)</span>可逆当且仅当零空间内只有零向量，即各列线性无关，下一讲将证明这些性质</li>
 </ul>
-<h1 id="第十四讲：子空间投影"><a href="#第十四讲：子空间投影" class="headerlink" title="第十四讲：子空间投影"></a>第十四讲：子空间投影</h1><h2 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h2><ul>
-<li>在二维情况下讨论投影</li>
-<li>一个点b到另一条直线a的投影，即从这个点做垂直于a的垂线段交a于p点，p即b在a上的投影点，以p为终点的向量即投影p，垂线段即误差e，e=b-p</li>
-<li>p在a的一维子空间里，是a的x倍，即p=xa</li>
+<h1 id="第十四讲子空间投影">第十四讲：子空间投影</h1>
+<h2 id="投影">投影</h2>
+<ul>
+<li><p>在二维情况下讨论投影</p></li>
+<li><p>一个点b到另一条直线a的投影，即从这个点做垂直于a的垂线段交a于p点，p即b在a上的投影点，以p为终点的向量即投影p，垂线段即误差e，e=b-p</p></li>
+<li><p>p在a的一维子空间里，是a的x倍，即p=xa</p></li>
 <li><p>a垂直于e，即</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 a^T(b-xa)=0 \\
 xa^Ta=a^Tb \\
 x= \frac {a^Tb}{a^Ta} \\
-p=a\frac {a^Tb}{a^Ta} \\</script></li>
-<li>从式子中可以看到，若b翻倍，则投影翻倍，若a变化，则投影不变，因为分子分母抵消了</li>
+p=a\frac {a^Tb}{a^Ta} \\
+\]</span></p></li>
+<li><p>从式子中可以看到，若b翻倍，则投影翻倍，若a变化，则投影不变，因为分子分母抵消了</p></li>
 </ul>
-<h2 id="投影矩阵"><a href="#投影矩阵" class="headerlink" title="投影矩阵"></a>投影矩阵</h2><ul>
-<li>现在可以引入投影矩阵P的一维模式(projection matrix)，$p=Pb$,$P= \frac {aa^T}{a^Ta}$</li>
+<h2 id="投影矩阵">投影矩阵</h2>
+<ul>
+<li>现在可以引入投影矩阵P的一维模式(projection matrix)，<span
+class="math inline">\(p=Pb\)</span>,<span class="math inline">\(P= \frac
+{aa^T}{a^Ta}\)</span></li>
 <li>用任意b乘投影矩阵，总会落在通过a的一条线上(即b在a上的投影p),所以投影矩阵的列空间是这条线，矩阵的秩为1</li>
-<li>投影矩阵的另外两条性质：<ul>
-<li>对称,即$P^T=P$</li>
-<li>两次投影在相同的位置，即$P^2=P$</li>
+<li>投影矩阵的另外两条性质：
+<ul>
+<li>对称,即<span class="math inline">\(P^T=P\)</span></li>
+<li>两次投影在相同的位置，即<span
+class="math inline">\(P^2=P\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="投影的意义"><a href="#投影的意义" class="headerlink" title="投影的意义"></a>投影的意义</h2><ul>
-<li>下面在高维情况下讨论</li>
-<li>当方程数大于未知数个数时，经常无解，这时我们只能找出最接近的解</li>
-<li>如何找？将b微调，使得b在列空间中</li>
-<li>怎么微调？将b变成p，即列空间中最接近b的那一个，即转换求解$Ax^{‘}=p$,p时b在列空间上的投影</li>
-<li>现在我们要求$x^{‘}$,$p=Ax^{‘}$，误差向量$e=b-Ax^{‘}$，由投影定义可知e需要垂直于A的列空间</li>
+<h2 id="投影的意义">投影的意义</h2>
+<ul>
+<li><p>下面在高维情况下讨论</p></li>
+<li><p>当方程数大于未知数个数时，经常无解，这时我们只能找出最接近的解</p></li>
+<li><p>如何找？将b微调，使得b在列空间中</p></li>
+<li><p>怎么微调？将b变成p，即列空间中最接近b的那一个，即转换求解<span
+class="math inline">\(Ax^{&#39;}=p\)</span>,p时b在列空间上的投影</p></li>
+<li><p>现在我们要求<span class="math inline">\(x^{&#39;}\)</span>,<span
+class="math inline">\(p=Ax^{&#39;}\)</span>，误差向量<span
+class="math inline">\(e=b-Ax^{&#39;}\)</span>，由投影定义可知e需要垂直于A的列空间</p></li>
 <li><p>综上可得</p>
-<script type="math/tex; mode=display">
-A^T(b-Ax^{'})=0 \\</script></li>
+<p><span class="math display">\[
+A^T(b-Ax^{&#39;})=0 \\
+\]</span></p></li>
 <li><p>由上式可以看出e在A的左零空间，与列空间正交。解上式可得</p>
-<script type="math/tex; mode=display">
-x^{'}=(A^TA)^{-1}A^Tb \\
-p=Ax^{'}=A(A^TA)^{-1}A^Tb \\</script></li>
+<p><span class="math display">\[
+x^{&#39;}=(A^TA)^{-1}A^Tb \\
+p=Ax^{&#39;}=A(A^TA)^{-1}A^Tb \\
+\]</span></p></li>
 <li><p>即投影矩阵P的n维模式:</p>
-<script type="math/tex; mode=display">
-A(A^TA)^{-1}A^T \\</script></li>
-<li>投影矩阵P的n维模式依然保留了1维模式的两个性质</li>
-<li>现在回到求最优解，最常见的一个例子是通过最小二乘法拟合一条直线</li>
-<li>已知三个点$a_1,a_2,a_3$，找出一条直线拟合接近三个点,$b=C+Da$</li>
-<li><p>假如$a_1=(1,1),a_2=(2,2),a_3=(3,2)$,则</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
+A(A^TA)^{-1}A^T \\
+\]</span></p></li>
+<li><p>投影矩阵P的n维模式依然保留了1维模式的两个性质</p></li>
+<li><p>现在回到求最优解，最常见的一个例子是通过最小二乘法拟合一条直线</p></li>
+<li><p>已知三个点<span
+class="math inline">\(a_1,a_2,a_3\)</span>，找出一条直线拟合接近三个点,<span
+class="math inline">\(b=C+Da\)</span></p></li>
+<li><p>假如<span
+class="math inline">\(a_1=(1,1),a_2=(2,2),a_3=(3,2)\)</span>,则</p>
+<p><span class="math display">\[
 C+D=1 \\
 C+2D=2 \\
-C+3D=2 \\</script><p>写成线代形式为:</p>
-<script type="math/tex; mode=display">
+C+3D=2 \\
+\]</span></p>
+<p>写成线代形式为:</p>
+<p><span class="math display">\[
 \begin{bmatrix}
-1 & 1  \\
-1 & 2  \\
-1 & 3  \\
+1 &amp; 1  \\
+1 &amp; 2  \\
+1 &amp; 3  \\
 \end{bmatrix}
 \begin{bmatrix}
 C  \\
@@ -1197,45 +1535,71 @@ D  \\
 1  \\
 2  \\
 2  \\
-\end{bmatrix}</script></li>
-<li>即Ax=b,方程数大于未知数个数，若两边乘以A转置，即求$x^{‘}$，这样就可以求出拟合直线。下一讲继续此例</li>
+\end{bmatrix}
+\]</span></p></li>
+<li><p>即Ax=b,方程数大于未知数个数，若两边乘以A转置，即求<span
+class="math inline">\(x^{&#39;}\)</span>，这样就可以求出拟合直线。下一讲继续此例</p></li>
 </ul>
-<h1 id="第十五讲：投影矩阵和最小二乘法"><a href="#第十五讲：投影矩阵和最小二乘法" class="headerlink" title="第十五讲：投影矩阵和最小二乘法"></a>第十五讲：投影矩阵和最小二乘法</h1><h2 id="投影矩阵-1"><a href="#投影矩阵-1" class="headerlink" title="投影矩阵"></a>投影矩阵</h2><ul>
-<li><p>回顾，$P=A(A^TA)^{-1}A^T$,$Pb$即b在A的列空间上的投影，现在考虑两种极端情况，b在列空间上和b正交于列空间：<br>b在列空间上：$Pb=b$；证明：若b在列空间上，则可以表示为$b=Ax$，在A各列线性无关的条件下，$(A^TA)$可逆，代入$P=A(A^TA)^{-1}A^T$有$Pb=b$<br>b正交于列空间，$Pb=0$；证明：若b正交于列空间则b在左零空间内，即$A^Tb=0$，显然代入$P=A(A^TA)^{-1}A^T$有$Pb=0$</p>
-</li>
+<h1
+id="第十五讲投影矩阵和最小二乘法">第十五讲：投影矩阵和最小二乘法</h1>
+<h2 id="投影矩阵-1">投影矩阵</h2>
+<ul>
+<li><p>回顾，<span
+class="math inline">\(P=A(A^TA)^{-1}A^T\)</span>,<span
+class="math inline">\(Pb\)</span>即b在A的列空间上的投影，现在考虑两种极端情况，b在列空间上和b正交于列空间：
+b在列空间上：<span
+class="math inline">\(Pb=b\)</span>；证明：若b在列空间上，则可以表示为<span
+class="math inline">\(b=Ax\)</span>，在A各列线性无关的条件下，<span
+class="math inline">\((A^TA)\)</span>可逆，代入<span
+class="math inline">\(P=A(A^TA)^{-1}A^T\)</span>有<span
+class="math inline">\(Pb=b\)</span> b正交于列空间，<span
+class="math inline">\(Pb=0\)</span>；证明：若b正交于列空间则b在左零空间内，即<span
+class="math inline">\(A^Tb=0\)</span>，显然代入<span
+class="math inline">\(P=A(A^TA)^{-1}A^T\)</span>有<span
+class="math inline">\(Pb=0\)</span></p></li>
 <li><p>p是b在列空间上的投影，因为列空间正交于左零空间，自然e就是b在左零空间上的投影，如图：</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 b=p+e \\
-p=Pb \\</script></li>
+p=Pb \\
+\]</span></p></li>
 <li><p>所以</p>
-<script type="math/tex; mode=display">
-e=(I-P)b \\</script></li>
-<li>所以左零空间的投影矩阵为$(I-P)$ </li>
+<p><span class="math display">\[
+e=(I-P)b \\
+\]</span></p></li>
+<li><p>所以左零空间的投影矩阵为<span
+class="math inline">\((I-P)\)</span></p></li>
 </ul>
-<h2 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h2><ul>
-<li><p>回到上一讲的例子，找到一条最优直线接近三个点，最小化误差，如图</p>
-</li>
-<li><p>设直线为$y=C+Dt$，代入三个点坐标得到一个方程组</p>
-<script type="math/tex; mode=display">
+<h2 id="最小二乘法">最小二乘法</h2>
+<ul>
+<li><p>回到上一讲的例子，找到一条最优直线接近三个点，最小化误差，如图</p></li>
+<li><p>设直线为<span
+class="math inline">\(y=C+Dt\)</span>，代入三个点坐标得到一个方程组</p>
+<p><span class="math display">\[
 C+D=1 \\
 C+2D=2 \\
-C+3D=2 \\</script></li>
+C+3D=2 \\
+\]</span></p></li>
 <li><p>此方程组无解但是存在最优价，从代数角度看：</p>
-<script type="math/tex; mode=display">
-||e||^2=(C+D-1)^2+(C+2D-2)^2+(C+3D-2)^2 \\</script></li>
-<li><p>分别对C和D求偏导为0，得到方程组: </p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
+||e||^2=(C+D-1)^2+(C+2D-2)^2+(C+3D-2)^2 \\
+\]</span></p></li>
+<li><p>分别对C和D求偏导为0，得到方程组:</p>
+<p><span class="math display">\[
 \begin{cases}
 3C+6D=5\\
 6C+14D=11\\
-\end{cases}</script></li>
-<li><p>写成矩阵形式，这里的$C,D$仅仅存在一个形式，他们无解，要解出$C,D$是将其作为拟合直线，即b被替换为投影p时的$C,D$。</p>
-<script type="math/tex; mode=display">
+\end{cases}
+\]</span></p></li>
+<li><p>写成矩阵形式，这里的<span
+class="math inline">\(C,D\)</span>仅仅存在一个形式，他们无解，要解出<span
+class="math inline">\(C,D\)</span>是将其作为拟合直线，即b被替换为投影p时的<span
+class="math inline">\(C,D\)</span>。</p>
+<p><span class="math display">\[
 Ax=b \\
 \begin{bmatrix}
-1 & 1 \\
-1 & 2 \\
-1 & 3 \\
+1 &amp; 1 \\
+1 &amp; 2 \\
+1 &amp; 3 \\
 \end{bmatrix}
 \begin{bmatrix}
 C \\
@@ -1245,89 +1609,128 @@ D \\
 1 \\
 2 \\
 2 \\
-\end{bmatrix}</script></li>
-<li><p>A满足各列线性无关，b不在A的列空间里，现在我们想最小化误差$e=Ax-b$，怎么量化误差？求其长度的平方$||e||^2$，在图中即y轴方向上点到拟合直线的距离的平方和。这些点$b_1,b_2,b_3$的误差线段$e_1,e_2,e_3$与拟合直线交于$p_1,p_2,p_3$，当将三个b点用三个p点取代时，方程组有解。</p>
-</li>
-<li><p>现在要解出$x^{‘},p$，已知$p=Ax^{‘}=A(A^TA)^{-1}A^Tb$，$Ax=b$，两边同乘$A^T$联立有</p>
-<script type="math/tex; mode=display">
-A^TAx^{'}=A^Tb</script></li>
+\end{bmatrix}
+\]</span></p></li>
+<li><p>A满足各列线性无关，b不在A的列空间里，现在我们想最小化误差<span
+class="math inline">\(e=Ax-b\)</span>，怎么量化误差？求其长度的平方<span
+class="math inline">\(||e||^2\)</span>，在图中即y轴方向上点到拟合直线的距离的平方和。这些点<span
+class="math inline">\(b_1,b_2,b_3\)</span>的误差线段<span
+class="math inline">\(e_1,e_2,e_3\)</span>与拟合直线交于<span
+class="math inline">\(p_1,p_2,p_3\)</span>，当将三个b点用三个p点取代时，方程组有解。</p></li>
+<li><p>现在要解出<span
+class="math inline">\(x^{&#39;},p\)</span>，已知<span
+class="math inline">\(p=Ax^{&#39;}=A(A^TA)^{-1}A^Tb\)</span>，<span
+class="math inline">\(Ax=b\)</span>，两边同乘<span
+class="math inline">\(A^T\)</span>联立有</p>
+<p><span class="math display">\[
+A^TAx^{&#39;}=A^Tb
+\]</span></p></li>
 <li><p>代入数值可得</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{cases}
 3C+6D=5\\
 6C+14D=11\\
-\end{cases}</script></li>
-<li><p>与代数求偏导数结果一样,之后可以解出$C,D$，也就得到了拟合直线</p>
-</li>
-<li><p>回顾一下上面两幅图，一张解释了$b,p,e$的关系，另一张用$C,D$确定了拟合直线，由$C,D$确定的列组合就是向量p</p>
-</li>
-<li><p>如果A的各列线性无关，则$A^TA$是可逆的，这时最小二乘法使用的前提，证明：<br>如果矩阵可逆，则它的零空间仅为零向量，即$A^TAx=0$中x必须是零向量</p>
-<script type="math/tex; mode=display">
+\end{cases}
+\]</span></p></li>
+<li><p>与代数求偏导数结果一样,之后可以解出<span
+class="math inline">\(C,D\)</span>，也就得到了拟合直线</p></li>
+<li><p>回顾一下上面两幅图，一张解释了<span
+class="math inline">\(b,p,e\)</span>的关系，另一张用<span
+class="math inline">\(C,D\)</span>确定了拟合直线，由<span
+class="math inline">\(C,D\)</span>确定的列组合就是向量p</p></li>
+<li><p>如果A的各列线性无关，则<span
+class="math inline">\(A^TA\)</span>是可逆的，这时最小二乘法使用的前提，证明：
+如果矩阵可逆，则它的零空间仅为零向量，即<span
+class="math inline">\(A^TAx=0\)</span>中x必须是零向量</p>
+<p><span class="math display">\[
 A^TAx=0 \\
 x^TA^TAx=0 \\
 (Ax)^T(Ax)=0 \\
-Ax=0 \\</script></li>
+Ax=0 \\
+\]</span></p></li>
 <li><p>又因为A各列线性无关，所以</p>
-<script type="math/tex; mode=display">
-x=0</script></li>
-<li><p>即证</p>
-</li>
-<li><p>对于处理相互垂直的单位向量，我们引入标准正交向量组，这个矩阵的各列是标准正交而且是单位向量组，下一讲将介绍更多关于标准正交向量组的内容</p>
-</li>
+<p><span class="math display">\[
+x=0
+\]</span></p></li>
+<li><p>即证</p></li>
+<li><p>对于处理相互垂直的单位向量，我们引入标准正交向量组，这个矩阵的各列是标准正交而且是单位向量组，下一讲将介绍更多关于标准正交向量组的内容</p></li>
 </ul>
-<h1 id="第十六讲：正交矩阵和Gram-Schmidt正交化"><a href="#第十六讲：正交矩阵和Gram-Schmidt正交化" class="headerlink" title="第十六讲：正交矩阵和Gram-Schmidt正交化"></a>第十六讲：正交矩阵和Gram-Schmidt正交化</h1><h2 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h2><ul>
+<h1
+id="第十六讲正交矩阵和gram-schmidt正交化">第十六讲：正交矩阵和Gram-Schmidt正交化</h1>
+<h2 id="正交矩阵">正交矩阵</h2>
+<ul>
 <li><p>已知一组正交向量集</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 q_i^Tq_j=
 \begin{cases}
 0 \quad if \quad i \neq j \\
 1 \quad if \quad i=j \\
-\end{cases}</script><script type="math/tex; mode=display">
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
 Q=
 \begin{bmatrix}
-q_1 & q_2 & ... & q_n \\
+q_1 &amp; q_2 &amp; ... &amp; q_n \\
 \end{bmatrix} \\
-Q^TQ=I \\</script></li>
-<li><p>所以，对有标准正交列的方阵，$Q^TQ=I$,$Q^T=Q^{-1}$,即正交矩阵，例如</p>
-<script type="math/tex; mode=display">
+Q^TQ=I \\
+\]</span></p></li>
+<li><p>所以，对有标准正交列的方阵，<span
+class="math inline">\(Q^TQ=I\)</span>,<span
+class="math inline">\(Q^T=Q^{-1}\)</span>,即正交矩阵，例如</p>
+<p><span class="math display">\[
 Q=\begin{bmatrix}
-cos \theta & -sin \theta \\
-sin \theta & cos \theta \\
+cos \theta &amp; -sin \theta \\
+sin \theta &amp; cos \theta \\
 \end{bmatrix}or
-\frac {1}{\sqrt 2} 
+\frac {1}{\sqrt 2}
 \begin{bmatrix}
-1 & 1 \\
-1 & -1 \\
-\end{bmatrix}</script></li>
-<li>Q不一定是方阵。Q的各列将是列空间的标准正交基</li>
-<li>对Q，投影到Q的列空间的投影矩阵P是什么？$P=Q(Q^TQ)^{-1}Q^T=QQ^T$</li>
+1 &amp; 1 \\
+1 &amp; -1 \\
+\end{bmatrix}
+\]</span></p></li>
+<li><p>Q不一定是方阵。Q的各列将是列空间的标准正交基</p></li>
+<li><p>对Q，投影到Q的列空间的投影矩阵P是什么？<span
+class="math inline">\(P=Q(Q^TQ)^{-1}Q^T=QQ^T\)</span></p></li>
 </ul>
-<h2 id="Gram-Schmidt正交化"><a href="#Gram-Schmidt正交化" class="headerlink" title="Gram-Schmidt正交化"></a>Gram-Schmidt正交化</h2><ul>
+<h2 id="gram-schmidt正交化">Gram-Schmidt正交化</h2>
+<ul>
 <li><p>给定两个不正交的向量a和b，我们希望从a,b中得到两个正交向量A,B，可设A=a，则B就是b投影到A上的误差向量e：</p>
-<script type="math/tex; mode=display">
-B=e=b-\frac{A^Tb}{A^TA}A</script></li>
-<li>正交基就是A,B除以他们的长度$q_1=\frac{A}{||A||}$</li>
+<p><span class="math display">\[
+B=e=b-\frac{A^Tb}{A^TA}A
+\]</span></p></li>
+<li><p>正交基就是A,B除以他们的长度<span
+class="math inline">\(q_1=\frac{A}{||A||}\)</span></p></li>
 <li><p>扩展到求三个向量，即A,B,C的情况，从上式我们已知A，B，同理，C需要c剪去在A和B上的投影分量</p>
-<script type="math/tex; mode=display">
-C=c- \frac {A^Tc}{A^TA}A- \frac {B^Tc}{B^TB} B</script></li>
-<li><p>由a,b组成列向量的矩阵A就通过施密特正交化变成了正交矩阵Q,用公式推导可以看出，Q的各列$q_1,q_2,…$与$a,b,….$在同一列空间内，正交化可以写成</p>
-<script type="math/tex; mode=display">
-A=QR \\</script></li>
+<p><span class="math display">\[
+C=c- \frac {A^Tc}{A^TA}A- \frac {B^Tc}{B^TB} B
+\]</span></p></li>
+<li><p>由a,b组成列向量的矩阵A就通过施密特正交化变成了正交矩阵Q,用公式推导可以看出，Q的各列<span
+class="math inline">\(q_1,q_2,...\)</span>与<span
+class="math inline">\(a,b,....\)</span>在同一列空间内，正交化可以写成</p>
+<p><span class="math display">\[
+A=QR \\
+\]</span></p></li>
 <li><p>即</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{bmatrix}
-a & b \\
+a &amp; b \\
 \end{bmatrix}=
 \begin{bmatrix}
-q_1 & q_2 \\
+q_1 &amp; q_2 \\
 \end{bmatrix}
 \begin{bmatrix}
-q_1^Ta & q_1^Tb \\
-q_2^Ta & q_2^Tb \\
-\end{bmatrix} \\</script></li>
-<li>其中，因为$QQ^T=I$</li>
-<li>所以$R=Q^TA$</li>
-<li>$q_2$与$q_1$正交，而$q_1$只是$a$的单位化，所以$q_2^Ta=0$，即$R$是上三角矩阵</li>
+q_1^Ta &amp; q_1^Tb \\
+q_2^Ta &amp; q_2^Tb \\
+\end{bmatrix} \\
+\]</span></p></li>
+<li><p>其中，因为<span class="math inline">\(QQ^T=I\)</span></p></li>
+<li><p>所以<span class="math inline">\(R=Q^TA\)</span></p></li>
+<li><p><span class="math inline">\(q_2\)</span>与<span
+class="math inline">\(q_1\)</span>正交，而<span
+class="math inline">\(q_1\)</span>只是<span
+class="math inline">\(a\)</span>的单位化，所以<span
+class="math inline">\(q_2^Ta=0\)</span>，即<span
+class="math inline">\(R\)</span>是上三角矩阵</p></li>
 </ul>
 </div>
 <script src="https://giscus.app/client.js"
@@ -1346,6 +1749,7 @@ q_2^Ta & q_2^Tb \\
         crossorigin="anonymous"
         async>
 </script>
+
     </div>
 
     
@@ -1354,8 +1758,8 @@ q_2^Ta & q_2^Tb \\
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/linearalgebra/" rel="tag"># linearalgebra</a>
               <a href="/tags/math/" rel="tag"># math</a>
+              <a href="/tags/linearalgebra/" rel="tag"># linearalgebra</a>
           </div>
 
         
@@ -1408,13 +1812,13 @@ q_2^Ta & q_2^Tb \\
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">1m</span>
+    <span title="Word count total">1.1m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">15:37</span>
+    <span title="Reading time total">16:35</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
