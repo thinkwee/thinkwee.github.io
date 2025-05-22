@@ -1,0 +1,7 @@
+databaseURL: "https://blog-a38f5-default-rtdb.asia-southeast1.firebasedatabase.app",
+projectId: "blog-a38f5",
+apiKey: "AIzaSyDgs_qagScUwYJr0O1MUyc3EcWbhyWzoCw",
+authDomain: "blog-a38f5.firebaseapp.com",
+storageBucket: "blog-a38f5.appspot.com",
+messagingSenderId: "1091568780806",
+appId: "1:1091568780806:web:774c32a22ef91802d92587"
