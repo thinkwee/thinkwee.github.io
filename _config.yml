@@ -139,4 +139,4 @@ baidu_url_submit:
   path: baidu_urls.txt
 
 related_posts:
-  enable: false
+  enable: true
