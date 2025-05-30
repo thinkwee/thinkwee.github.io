@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="The second post on my &quot;some very-personal questions to myself&quot; series. It&#39;s been over a year since last post and many progress on LLM have been made from academic&#x2F;industry, which partially solves my q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Some Questions asking Myself 2025.5]">
+<meta property="og:url" content="https://thinkwee.top/2025/05/21/next-on-llm-2/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="The second post on my &quot;some very-personal questions to myself&quot; series. It&#39;s been over a year since last post and many progress on LLM have been made from academic&#x2F;industry, which partially solves my q">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-21T04:36:43.000Z">
+<meta property="article:modified_time" content="2025-05-30T21:16:35.583Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="inference">
+<meta property="article:tag" content="seq2seq">
+<meta property="article:tag" content="llm">
+<meta property="article:tag" content="agent">
+<meta property="article:tag" content="questions">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://thinkwee.top/2025/05/21/next-on-llm-2/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2025/05/21/next-on-llm-2/","path":"2025/05/21/next-on-llm-2/","title":"[Some Questions asking Myself 2025.5]"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Some Questions asking Myself 2025.5] | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Learning</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">52</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#questions-from-a-year-ago"><span class="nav-number">1.</span> <span class="nav-text">Questions from a Year Ago</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#can-compression-solve-everything"><span class="nav-number">1.1.</span> <span class="nav-text">Can Compression Solve
+Everything?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#world-models-data-driven"><span class="nav-number">1.2.</span> <span class="nav-text">World Models: Data-Driven?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-bitter-lesson-of-agents"><span class="nav-number">1.3.</span> <span class="nav-text">The &quot;Bitter Lesson&quot; of Agents?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#alignment-and-feedback"><span class="nav-number">1.4.</span> <span class="nav-text">Alignment and Feedback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#beyond-language"><span class="nav-number">1.5.</span> <span class="nav-text">Beyond Language</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#new-questions"><span class="nav-number">2.</span> <span class="nav-text">New Questions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#beyond-pretraining-and-post-training"><span class="nav-number">2.1.</span> <span class="nav-text">Beyond Pretraining and
+Post-training</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#self-evolution"><span class="nav-number">2.2.</span> <span class="nav-text">Self-Evolution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what-am-i-overlooking"><span class="nav-number">2.3.</span> <span class="nav-text">What Am I Overlooking?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#if-llms-are-agi"><span class="nav-number">2.4.</span> <span class="nav-text">If LLMs Are AGI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-second-half"><span class="nav-number">2.5.</span> <span class="nav-text">“The Second Half”</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#citation"><span class="nav-number">3.</span> <span class="nav-text">Citation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E4%B8%80%E5%B9%B4%E5%89%8D%E7%9A%84%E7%96%91%E9%97%AE"><span class="nav-number">4.</span> <span class="nav-text">关于一年前的疑问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E8%83%BD%E5%90%A6%E8%A7%A3%E5%86%B3%E4%B8%80%E5%88%87"><span class="nav-number">4.1.</span> <span class="nav-text">压缩能否解决一切？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E4%BB%A5%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8"><span class="nav-number">4.2.</span> <span class="nav-text">世界模型：以数据驱动？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%BA%E8%83%BD%E4%BD%93%E7%9A%84%E8%8B%A6%E6%B6%A9%E6%95%99%E8%AE%AD"><span class="nav-number">4.3.</span> <span class="nav-text">智能体的“苦涩教训”？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E9%BD%90%E4%B8%8E%E5%8F%8D%E9%A6%88"><span class="nav-number">4.4.</span> <span class="nav-text">对齐与反馈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E8%B6%8A%E8%AF%AD%E8%A8%80"><span class="nav-number">4.5.</span> <span class="nav-text">超越语言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">新的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E8%B6%8A%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%90%8E%E8%AE%AD%E7%BB%83"><span class="nav-number">5.1.</span> <span class="nav-text">超越预训练与后训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E6%88%91%E8%BF%9B%E5%8C%96"><span class="nav-number">5.2.</span> <span class="nav-text">自我进化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%BF%BD%E8%A7%86%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-number">5.3.</span> <span class="nav-text">我忽视了什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C-llm-%E6%98%AF-agi"><span class="nav-number">5.4.</span> <span class="nav-text">如果 LLM 是 AGI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E5%8D%8A%E5%9C%BA"><span class="nav-number">5.5.</span> <span class="nav-text">“下半场”</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">引用</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2025/05/21/next-on-llm-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Some Questions asking Myself 2025.5] | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Some Questions asking Myself 2025.5]
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-05-21 12:36:43" itemprop="dateCreated datePublished" datetime="2025-05-21T12:36:43+08:00">2025-05-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-05-31 05:16:35" itemprop="dateModified" datetime="2025-05-31T05:16:35+08:00">2025-05-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MyQuestion/" itemprop="url" rel="index"><span itemprop="name">MyQuestion</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2025/05/21/next-on-llm-2/" class="post-meta-item leancloud_visitors" data-flag-title="[Some Questions asking Myself 2025.5]" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>17k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>15 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>The second post on my "some very-personal questions to myself"
+series. It's been over a year since last post and many progress on LLM
+have been made from academic/industry, which partially solves my
+questions. I will introduce these works and ask myself some new
+questions. <a href="https://thinkwee.top/2024/04/23/next-on-llm/#more">see last post
+here</a><sup class="refplus-num"><a href="#ref-previous_post">[17]</a></sup>. This post is about Pretrain Ceiling, Second Half, Scaling the Environment.
+
+<span id="more"></span>
+
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style></p><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="questions-from-a-year-ago">Questions from a Year Ago</h1>
+<h2 id="can-compression-solve-everything">Can Compression Solve
+Everything?</h2>
+<ul>
+<li>One year later, it appears that mainstream AI research still adheres
+to the LLM compression paradigm: using pretraining to compress world
+knowledge, then relying on post-training to extract it.</li>
+<li>As for whether LLMs can discover entirely new knowledge, research
+has now largely shifted to the AI4Science domain.</li>
+<li>Regarding the example from the previous blog post involving
+mathematicians and biologists:
+<ul>
+<li>In foundational fields like mathematics, new breakthroughs can often
+be achieved via interpolation within existing research ideas and
+paradigms. For example, DeepMind’s <a target="_blank" rel="noopener" href="https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/">AlphaEvolve</a><sup class="refplus-num"><a href="#ref-alphaevolve">[2]</a></sup>
+combines evolutionary algorithms with LLMs to discover new fast matrix
+multiplication algorithms. The foundational algorithmic knowledge
+required was already encoded in the model via compression. Through
+prompt engineering and evolutionary iteration, the system uncovered
+“low-hanging fruit” that humans had yet to explore.</li>
+<li>In empirical sciences like biology, which rely heavily on large
+amounts of new observations, an agentic approach can allow LLMs to
+interact with the real world using tools to synthesize new knowledge. In
+this paradigm, the LLM acts more like a scientist’s tool than a
+replacement. Another path is to bypass the reasoning abilities of LLMs
+altogether and build domain-specific models directly from field
+data—like <a target="_blank" rel="noopener" href="https://news.stanford.edu/stories/2025/02/generative-ai-tool-marks-a-milestone-in-biology-and-accelerates-the-future-of-life-sciences">Evo2</a><sup class="refplus-num"><a href="#ref-evo2">[3]</a></sup>,
+which trains on genome sequences. For naturally sequential data (like
+genomes), retraining domain-specific models makes sense; for
+non-sequential data, one can structure it as text, using language models
+for knowledge organization and reasoning.</li>
+</ul></li>
+</ul>
+<h2 id="world-models-data-driven">World Models: Data-Driven?</h2>
+<ul>
+<li>There has been no substantial breakthrough in world modeling so
+far.</li>
+<li>Researchers have found that using LLMs to simulate both the world
+and the agent requires <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2407.02446">different
+capabilities</a><sup class="refplus-num"><a href="#ref-tradeoff_world_agent">[1]</a></sup>.</li>
+<li>More practical progress lies in the domain of LLM Agents: using
+models to construct interactive environments, such as video generation
+models or 3D space models—collectively referred to as world models. This
+reflects another extension trend in agent research: scaling the
+environment.</li>
+<li>In <em>Advances and Challenges in Foundation Agents</em>, scholars
+provided a comprehensive overview of the <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2504.01990">current state of world model
+research</a><sup class="refplus-num"><a href="#ref-foundation_agents">[6]</a></sup>
+from the agent perspective; most current approaches rely on models or
+external simulators and treat world models as single-task modeling
+problems that ultimately reduce to traditional single-step
+prediction.</li>
+</ul>
+<h2 id="the-bitter-lesson-of-agents">The "Bitter Lesson" of Agents?</h2>
+<ul>
+<li>The “bitter lesson” still holds true. For instance, <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.20286">Alita: Generalist
+Agent</a><sup class="refplus-num"><a href="#ref-alita">[5]</a></sup>
+minimizes prior design and maximizes freedom, autonomously building and
+invoking MCP tools and achieving impressive results on the GAIA
+platform.</li>
+<li>Minimal priors and maximal freedom mean the agent’s capabilities are
+internalized within the base model, requiring no additional framework or
+scaffolding. We have yet to see truly “agent-native” application
+scenarios.</li>
+<li>Since the release of OpenAI’s o1 and DeepSeek, the industry
+consensus is that even the most basic LLM responses can shift from
+System 1 to System 2 reasoning.</li>
+</ul>
+<h2 id="alignment-and-feedback">Alignment and Feedback</h2>
+<ul>
+<li>As mentioned a year ago, post-training is essentially about steering
+LLMs: traditional alignment sacrifices some capability to guide models
+toward safer behavior; similarly, we can steer models toward more
+intelligent yet more hallucination-prone behavior, as demonstrated by
+DeepSeek R1’s "reasoning" capabilities.</li>
+<li>Our understanding of post-training continues to deepen. Looking at
+the <a target="_blank" rel="noopener" href="https://llmknowledgelifecycle.github.io/AAAI2025_Tutorial_LLMKnowledge/">life
+cycle of
+LLMs</a><sup class="refplus-num"><a href="#ref-llm_knowledge_lifecycle">[7]</a></sup>,
+we find that knowledge is hard to truly add, remove, or edit during the
+post-training phase—retrieval is the most viable option. Hence, the
+“incentive, not memorize” principle seems reasonable.</li>
+<li>Pretraining has already endowed models with powerful knowledge.
+Traditional supervised-learning-based post-training can only introduce
+limited new knowledge. If we wish to add knowledge and capability, it’s
+better to stick with next-token-prediction rather than simple
+input-output pairs. So far, reinforcement learning appears to be a more
+suitable direction for post-training, enabling models to explore
+autonomously and truly grow in ability, rather than merely memorizing
+narrowly defined tasks.</li>
+<li>From a reward perspective, just as alignment uses human data to
+train reward models and inject values, we can also design rule-based
+rewards to encode natural laws into models.</li>
+<li>Recent discussions about the <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2504.13837">limits of post-trained models
+not exceeding pretraining
+ceilings</a><sup class="refplus-num"><a href="#ref-reasoning_limit">[8]</a></sup>
+show that if post-training is used only for steering without new
+knowledge input, it aligns with entropy-reduction expectations. In RL
+processes, the policy rolls out and only strengthens the good parts; if
+the correct solution never appears, pretraining ceilings can’t be
+breached. Traditional alignment data flywheels may face similar
+bottlenecks, though their knowledge scope is so broad it’s hard to
+investigate.</li>
+</ul>
+<h2 id="beyond-language">Beyond Language</h2>
+<ul>
+<li>The multimodal field has surged forward over the past year. Many
+advances are not in foundational techniques but in improved user
+experiences—combining multiple modalities better appeals to the senses.
+For example, <a target="_blank" rel="noopener" href="https://deepmind.google/models/veo/">Google
+VEO3</a><sup class="refplus-num"><a href="#ref-google_veo3">[9]</a></sup>
+can generate both video and audio simultaneously.</li>
+<li>At the same time, we’ve seen fascinating new pretraining paradigms
+such as <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2502.17437">fractal neural
+networks</a><sup class="refplus-num"><a href="#ref-fractal_neural_net">[10]</a></sup>
+and <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2502.09992">diffusion language
+models</a><sup class="refplus-num"><a href="#ref-diffusion_lm">[11]</a></sup>.</li>
+<li>What do additional modalities mean for reasoning capabilities? Most
+researchers respond: using text reasoning capabilities for visual
+reasoning. This isn’t about introducing new modalities for reasoning,
+but feeding other modalities into text-based reasoning. What I hope to
+see is “purely visual chain-of-thought” reasoning. Some recent efforts
+like <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.11409">Visual Planning: Let’s
+Think Only with
+Images</a><sup class="refplus-num"><a href="#ref-visual_planning">[4]</a></sup>
+attempt image-only reasoning. But such tasks are often limited to
+navigation, maps, or Frozen Lake scenarios, and still require
+interpreting intermediate images into action commands. To achieve true
+“image-to-image” reasoning, clearer problem definitions and task setups
+may be needed.</li>
+</ul>
+<hr>
+<h1 id="new-questions">New Questions</h1>
+<h2 id="beyond-pretraining-and-post-training">Beyond Pretraining and
+Post-training</h2>
+<ul>
+<li>The field continues to explore scaling laws, revealing from
+perspectives like <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.00660v2">communication</a><sup class="refplus-num"><a href="#ref-communication_scaling">[12]</a></sup>
+and <a target="_blank" rel="noopener" href="https://physics.allen-zhu.com/">physics</a><sup class="refplus-num"><a href="#ref-physics_llm">[13]</a></sup>
+that knowledge can be transferred effectively to models via
+next-token-prediction and that model capacity can be expressed
+predictably.</li>
+<li>Is it possible to go beyond the pretraining and post-training
+paradigm to truly enable adding, deleting, updating, and querying
+knowledge and capabilities? This is crucial for personalized LLMs.</li>
+<li>Existing knowledge editing methods remain too simplistic and
+intrusive.</li>
+</ul>
+<h2 id="self-evolution">Self-Evolution</h2>
+<ul>
+<li>Recently, research on "model self-evolution" has grown rapidly.
+Nearly all unsupervised, weakly supervised, and self-supervised
+post-training approaches claim self-evolution capabilities. But is this
+truly self-evolution? Just as AlphaGo evolved through self-play, can
+LLMs under RLVR paradigms achieve genuine self-evolution? Or is this
+still just “self-entertainment” within the boundaries of
+pretraining?</li>
+</ul>
+<h2 id="what-am-i-overlooking">What Am I Overlooking?</h2>
+<ul>
+<li>Both academia and industry are being driven by a blind arms race:
+<ul>
+<li>When industry makes a breakthrough with large-scale models or
+reduces research costs, academia quickly follows to harvest the
+benefits. Academia becomes the tester for breakthroughs made by
+industry. From “Can LLM do sth?” benchmark-style papers to “XXPO”
+studies applying DeepSeek GRPO to various domains, researchers now
+sometimes don’t even test other domains—just overfit some math
+benchmarks.</li>
+<li>Industry too faces competitive pressure, like smartphone vendors
+releasing new iPhones, LLM companies roll out new versions monthly. If
+one company introduces a new model feature, competitors often replicate
+it by the next release cycle. If a competitor can replicate it quickly,
+it means the breakthrough falls within a foreseeable range of the
+scaling law.</li>
+<li>This causes researchers to be constrained by low-hanging fruit and
+predictable problems, overlooking broader questions. Problems can remain
+unsolved, but critical thinking should never stop. In this LLM era, what
+overlooked domains are still worth examining?</li>
+</ul></li>
+<li>Don’t underestimate applications. Applications are the final link of
+science serving society, and they can also reverse-inspire new research
+trends. ChatGPT is a classic example: by combining a simple chat
+interface with post-training, it brought the value of LLMs into the
+homes of everyday users—and in turn spurred academic interest in LLM
+research.</li>
+<li>Why did I once overlook large models? And what am I overlooking
+now?</li>
+</ul>
+<h2 id="if-llms-are-agi">If LLMs Are AGI</h2>
+<ul>
+<li>Then should we use LLMs to build real AGI applications? Suppose AGI
+has arrived, and we can operate an entity equivalent to an ordinary
+person or even superhuman. What valuable things could we attempt?</li>
+<li>“Operate” sounds very negative, but operating a human being is
+actually simple—it doesn’t require science. Many industries throughout
+history have relied on humans functioning as operated entities to keep
+running.</li>
+<li>Our first thought is workers—blue-collar, white-collar, industry
+employees—can they be replaced by AI? But there’s also a different
+angle, like <a target="_blank" rel="noopener" href="https://www.pnas.org/doi/10.1073/pnas.2407639121">recruiting
+ancient human
+subjects</a><sup class="refplus-num"><a href="#ref-ancient_human_subjects">[14]</a></sup>.
+This line of thinking doesn’t just ask which jobs can be replaced, but
+explores what things require humans yet are impossible for humans to
+achieve—perhaps AI can step in.</li>
+</ul>
+<h2 id="the-second-half">“The Second Half”</h2>
+<ul>
+<li>Recent works such as <a target="_blank" rel="noopener" href="https://ysymyth.github.io/The-Second-Half/">The Second
+Half</a><sup class="refplus-num"><a href="#ref-the_second_half">[15]</a></sup>
+and <a target="_blank" rel="noopener" href="https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf">Welcome
+to the Era of
+Experience</a><sup class="refplus-num"><a href="#ref-era_of_experience">[16]</a></sup>
+suggest that research should shift from “how to solve problems” to “how
+to define problems.”</li>
+<li>I strongly agree, but I see this as a terminology update following
+the rise of powerful LLMs—the paradigm itself hasn’t changed: we still
+define tasks and solve them with models. What’s changed is that we’ve
+moved from constructing datasets to designing new environments, and from
+proposing new models to enabling models to learn online in environments
+and outperform others. We’re not scaling datasets—we’re scaling
+environments.</li>
+<li>In what directions should we “scale the environments”?
+<ul>
+<li>A quality environment should generate infinite data; data volume
+should no longer be the only axis of expansion.</li>
+<li>The environment’s difficulty should become the focus of
+expansion.</li>
+<li>Beyond digital environments, real-world environments may be an
+important milestone—for instance, agents physically building cities on
+Earth.</li>
+<li>Scientific environments may offer even higher ceilings.</li>
+</ul></li>
+<li>In this “second half,” is RL the only thing we need?</li>
+</ul>
+<h1 id="citation">Citation</h1>
+<p>If you find this blog post interesting and wish to cite it, you may
+use the following bibtex:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@article{next_on_llm_2025_5,</span><br><span class="line">  author = {Wei Liu},</span><br><span class="line">  title = {[Some Questions asking Myself 2025.5] Pretrain Ceiling, Second Half, Scaling the Environment},</span><br><span class="line">  year = {2025},</span><br><span class="line">  month = {5},</span><br><span class="line">  url = {https://thinkwee.top/2025/05/21/next-on-llm-2/},</span><br><span class="line">  note = {Blog post}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="关于一年前的疑问">关于一年前的疑问</h1>
+<h2 id="压缩能否解决一切">压缩能否解决一切？</h2>
+<ul>
+<li>时隔一年，目前看来，主流的 AI 研究依然未能突破 LLM
+压缩理论的范式：依靠预训练来压缩世界知识，再通过后训练来提取这些知识。</li>
+<li>关于 LLM 是否能够发现全新的知识，研究已聚焦于 AI4Science 领域。</li>
+<li>针对上一篇博客中数学家与生物学家的例子：
+<ul>
+<li>数学等基础学科，往往可以基于现有研究思路与范式进行插值，从而取得新成果。例如
+DeepMind 推出的 <a target="_blank" rel="noopener" href="https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/">AlphaEvolve</a><sup class="refplus-num"><a href="#ref-alphaevolve">[2]</a></sup>，通过结合进化算法与
+LLM，发现了新的快速矩阵乘法算法。该方法所需的基础算法知识，已经以压缩形式编码于模型，通过
+prompt engineering
+与进化算法迭代，便可挖掘人类尚未充分探索的“漏网之鱼”。</li>
+<li>对于生物学这类高度依赖大量新观测才能得出结论的经验科学，则可通过
+agentic
+方式，让大模型借助工具与真实世界交互，从而总结新知识。在此范式中，LLM
+更像科学家的工具，而非替代者。另一种途径是摒弃语言大模型的推理能力，直接基于领域数据构建专用大模型，例如
+<a target="_blank" rel="noopener" href="https://news.stanford.edu/stories/2025/02/generative-ai-tool-marks-a-milestone-in-biology-and-accelerates-the-future-of-life-sciences">Evo2</a><sup class="refplus-num"><a href="#ref-evo2">[3]</a></sup>，以基因组序列训练模型。对于天然呈序列形式的数据（如基因组），适合重训领域专用模型；而对于非序列数据，则可将其整理为文本，借助语言模型进行知识整理与推理。</li>
+</ul></li>
+</ul>
+<h2 id="世界模型以数据驱动">世界模型：以数据驱动？</h2>
+<ul>
+<li>世界模型方面尚未出现实质性进展。</li>
+<li>研究者发现，用 LLM 同时模拟世界与 agent 需要<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2407.02446">不同的能力</a><sup class="refplus-num"><a href="#ref-tradeoff_world_agent">[1]</a></sup>。</li>
+<li>更为实用的进展体现在 LLM Agent
+领域：利用模型来构建与之交互的环境，如视频生成模型、3D
+空间生成模型，将此类模型称为世界模型。这体现了 Agent
+研究的另一种扩展趋势——scale the environment。</li>
+<li>在《Advances and Challenges in Foundation Agents》中，学者们从 Agent
+视角梳理了<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2504.01990">世界模型研究现状</a><sup class="refplus-num"><a href="#ref-foundation_agents">[6]</a></sup>；当前大多依赖模型或外部
+simulator，从不同的 (state, observation, action)
+拓扑结构出发，将世界模型视作单一任务的建模，而终归回到传统的单步预测。</li>
+</ul>
+<h2 id="智能体的苦涩教训">智能体的“苦涩教训”？</h2>
+<ul>
+<li>“苦涩教训”依然有效，例如 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.20286">Alita: Generalist
+Agent</a><sup class="refplus-num"><a href="#ref-alita">[5]</a></sup>，以最少的先验设计赋予模型最大自由度，自建并调用
+MCP 工具，在 GAIA 平台上取得亮眼成果。</li>
+<li>最少先验、最大自由度，意味着 Agent
+能力被基础模型内化，无需额外框架或脚手架。迄今尚未出现真正“Agent
+原生”（Agent-Native）的应用场景。</li>
+<li>自 OpenAI o1 与 DeepSeek 以来，业界共识是：最朴素的 LLM
+响应，能够从系统 1 过渡到系统 2。</li>
+</ul>
+<h2 id="对齐与反馈">对齐与反馈</h2>
+<ul>
+<li>正如一年前所述，post-training 本质上是为语言模型定向：传统的
+alignment
+用以牺牲部分能力，将模型引导至更安全的方向；同理，也可将模型引向更高智能却更易幻觉的方向，DeepSeek
+R1 已展现此种“推理”能力。</li>
+<li>对 post-training 的理解愈发深化。观察整个 LLM 的<a target="_blank" rel="noopener" href="https://llmknowledgelifecycle.github.io/AAAI2025_Tutorial_LLMKnowledge/">生命周期</a><sup class="refplus-num"><a href="#ref-llm_knowledge_lifecycle">[7]</a></sup>，我们发现“知识”在后训练阶段难以真正增删改，仅适合检索。因此，“incentive,
+not memorize” 的理念显得合理。</li>
+<li>预训练已赋予模型强大知识，传统 supervised-learning-based 的
+post-training
+一方面能引入的知识有限，另一方面若要添加知识与能力，更应沿用
+next-token-prediction，而非简单的 input-output
+对；当前来看，强化学习是更适宜的 post-training
+方向，通过目标奖励让模型自主探索，促进真正能力的增长，而非狭隘的记忆。</li>
+<li>从奖励角度看，正如 alignment
+可通过人类数据训练奖励模型注入价值观，我们亦可设计基于客观规则的
+reward，将自然法则注入模型。</li>
+<li>近期关于 post-trained model 无法超越 pre-trained <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2504.13837">上限的讨论</a><sup class="refplus-num"><a href="#ref-reasoning_limit">[8]</a></sup>亦表明：若后训练仅用于
+steering 而不引入新知识，则符合熵减预期。RL 流程中，我们让 policy 自行
+roll
+out，再强化好的部分；因此若正确解法从未出现，则难以突破预训练上限。传统
+alignment
+数据飞轮或许也存在类似瓶颈，只是其涵盖的知识过于广泛，不易探查。</li>
+</ul>
+<h2 id="超越语言">超越语言</h2>
+<ul>
+<li>多模态领域在过去一年突飞猛进，许多进展并非底层技术突破，而是改善用户体验——融合多种模态更易打动感官，例如
+<a target="_blank" rel="noopener" href="https://deepmind.google/models/veo/">Google
+VEO3</a><sup class="refplus-num"><a href="#ref-google_veo3">[9]</a></sup>，可同时生成视频与声音。</li>
+<li>同时，出现了诸多有趣的新预训练范式，如<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2502.17437">分形神经网络</a><sup class="refplus-num"><a href="#ref-fractal_neural_net">[10]</a></sup>及<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2502.09992">扩散语言模型</a><sup class="refplus-num"><a href="#ref-diffusion_lm">[11]</a></sup>。</li>
+<li>更多模态对推理能力有何意义？大多数研究者的回答是：将文本推理能力用于视觉推理。这并非为推理引入新模态，而是为文本推理输入其他模态。我期待的路径是“纯视觉链式推理”，近期已有工作如
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.11409">Visual Planning: Let’s Think
+Only with
+Images</a><sup class="refplus-num"><a href="#ref-visual_planning">[4]</a></sup>，尝试通过纯图像进行推理。但此类任务多局限于导航、地图、Frozen
+Lake
+等场景，且依旧需从中间生成的图像解析行动指令。要实现纯粹的“图像到图像”推理，或需更明确的问题与任务定义。</li>
+</ul>
+<hr>
+<h1 id="新的问题">新的问题</h1>
+<h2 id="超越预训练与后训练">超越预训练与后训练</h2>
+<ul>
+<li>业界不断在 scaling law 方面探索，从<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.00660v2">通信</a><sup class="refplus-num"><a href="#ref-communication_scaling">[12]</a></sup>与<a target="_blank" rel="noopener" href="https://physics.allen-zhu.com/">物理学</a><sup class="refplus-num"><a href="#ref-physics_llm">[13]</a></sup>等角度揭示：知识可通过
+next-token-prediction 有效迁移至模型，并对容量进行可预测性表达。</li>
+<li>有没有可能超越预训练和后训练范式，实现对知识与能力的真正增删改查？这对个性化
+LLM 至关重要。</li>
+<li>现有的知识编辑方法仍过于简单且侵入性强。</li>
+</ul>
+<h2 id="自我进化">自我进化</h2>
+<ul>
+<li>近期“模型自我进化”研究日益增多，几乎所有无监督、弱监督、自监督的
+post-training 均声称能自我进化。它们是真正的自进化吗？如同 AlphaGo
+的自对弈，LLM 在 RLVR
+范式下能否实现同样的自进化？还是说，这不过还是在预训练范围内的“自娱自乐”？</li>
+</ul>
+<h2 id="我忽视了什么">我忽视了什么</h2>
+<ul>
+<li>学术界与工业界均被盲目的军备竞赛所牵引：
+<ul>
+<li>一旦工业界在大规模模型上取得新突破，或在研究成本上作出有效降低，学术界便会紧随其后，啃食红利。学术界沦为工业界突破后，在各领域的测试者。从“Can
+LLM do sth?” 类型的 Benchmark 文章，到将 DeepSeek GRPO
+应用于各领域的“XXPO”研究，甚至近期都不愿意在其他领域做一个测试者，而是仅仅过拟合一些数学领域的benchmark。</li>
+<li>工业界亦面临竞争压力，如同手机厂商不断推出新
+iPhone，大模型厂商以月为单位发布新版本的模型。一家厂商模型推出的新功能，往往在下一发布季度就被友商复现。问题在于，若能被友商迅速复现，说明其技术突破在可预见的
+scaling law 射程范围内。</li>
+<li>这导致研究者被低悬果实与可预测问题局限，忽视更宽广的议题。问题可暂未解决，但思考不可放弃：在当下
+LLM 时代，还有哪些值得审视的被忽略领域？</li>
+</ul></li>
+<li>别轻视应用。应用是科学服务社会的最终环节，也可反向引领研究新潮流。ChatGPT
+即是经典案例，通过简易对话界面与 post-training，将 LLM
+的价值以普罗大众可接受的方式推向千家万户，反过来促进学术界对 LLM
+的研究。</li>
+<li>我自己为何曾忽视大模型？而今又在忽视什么？</li>
+</ul>
+<h2 id="如果-llm-是-agi">如果 LLM 是 AGI</h2>
+<ul>
+<li>那么，我们是否该用 LLM 构建真正的 AGI
+应用？设想AGI已经出现，我们可以操纵一个普通人乃至超人类的实体，我们能做何有益尝试？</li>
+<li>操纵这个词听起来非常的负面，但其实操纵一个人类非常简单，无需科学。自古以来很多产业也需要人类以一个被操作的实体来工作，来运转。</li>
+<li>我们第一想到的是工人，是白领，是行业里的打工人，能否被AI替代。但其实也有完全不同的角度，例如<a target="_blank" rel="noopener" href="https://www.pnas.org/doi/10.1073/pnas.2407639121">招募古代人类被试</a><sup class="refplus-num"><a href="#ref-ancient_human_subjects">[14]</a></sup>。这个角度所代表的方向不是仅仅考虑哪些岗位能被替代，而是考虑用AI做那些需要人类才能做好，但无法由人类完成的事。</li>
+</ul>
+<h2 id="下半场">“下半场”</h2>
+<ul>
+<li>近期诸如<a target="_blank" rel="noopener" href="https://ysymyth.github.io/The-Second-Half/">The
+Second
+Half</a><sup class="refplus-num"><a href="#ref-the_second_half">[15]</a></sup>及<a target="_blank" rel="noopener" href="https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf">Welcome
+to the Era of
+Experience</a><sup class="refplus-num"><a href="#ref-era_of_experience">[16]</a></sup>等文章指出：研究应从“如何解决问题”转向“如何定义问题”。</li>
+<li>我非常赞同，但我觉得这是当 LLM
+足够强大后，研究术语的更新，范式仍旧未变：提出任务并通过模型解决。不同的是，从构造数据集转向设计新环境，从提出新模型转向让模型在环境中在线学习并胜出。我们要scale的不是dataset，而是environment</li>
+<li>我们应朝哪些方向“scale the environments”？
+<ul>
+<li>优质环境应能生成无限数据，数据量不应再是唯一的扩展维度。</li>
+<li>环境的难度更应成为扩展目标。</li>
+<li>超越数字环境，现实环境或是重要里程碑，例如让 agent
+在地球上实际建立城市。</li>
+<li>而科学环境或许有更高上限。</li>
+</ul></li>
+<li>在这“下半场”，RL 是否为唯一所需？</li>
+</ul>
+<h1 id="引用">引用</h1>
+<p>如果你觉得这篇博文的话题很有趣，需要引用时，可以使用如下bibtex:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@article{next_on_llm_2025_5,</span><br><span class="line">  author = {Wei Liu},</span><br><span class="line">  title = {[Some Questions asking Myself 2025.5] Pretrain Ceiling, Second Half, Scaling the Environment},</span><br><span class="line">  year = {2025},</span><br><span class="line">  month = {5},</span><br><span class="line">  url = {https://thinkwee.top/2025/05/21/next-on-llm-2/},</span><br><span class="line">  note = {Blog post}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+
+<script src="https://giscus.app/client.js" data-repo="thinkwee/thinkwee.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA==" data-category="Announcements" data-category-id="DIC_kwDOBL7ZNM4CkozI" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" data-loading="lazy" crossorigin="anonymous" async>
+</script>
+
+<ul id="refplus"><li id="ref-tradeoff_world_agent" data-num="1">[1]  Li, M., Shi, W., Pagnoni, A., West, P., &amp; Holtzman, A. (2024). Predicting vs. Acting: A Trade-off Between World Modeling &amp; Agent Modeling. In arXiv: Vol. abs/2407.02446. https://doi.org/10.48550/ARXIV.2407.02446</li><li id="ref-alphaevolve" data-num="2">[2]  Google DeepMind. (2025). AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms. https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/</li><li id="ref-evo2" data-num="3">[3]  Stanford University. (2025). Evo2: Generative AI tool marks a milestone in biology and accelerates the future of life sciences. https://news.stanford.edu/stories/2025/02/generative-ai-tool-marks-a-milestone-in-biology-and-accelerates-the-future-of-life-sciences</li><li id="ref-visual_planning" data-num="4">[4]  Xu, K., Wang, Y., Zhang, R., &amp; Chen, X. (2025). Visual Planning: Let's Think Only with Images. In arXiv: Vol. abs/2505.11409. https://arxiv.org/abs/2505.11409</li><li id="ref-alita" data-num="5">[5]  Qiu, H., Xiao, C., Yang, Y., Wang, H., &amp; Zheng, L. (2025). Alita: Generalist Agent with Minimal Predefinition and Maximal Self-Evolution. In arXiv: Vol. abs/2505.20286. https://arxiv.org/abs/2505.20286</li><li id="ref-foundation_agents" data-num="6">[6]  Liu, M., Tian, Y., Yang, S., Chen, B., &amp; Zhou, B. (2025). Advances and Challenges in Foundation Agents. In arXiv: Vol. abs/2504.01990. https://arxiv.org/abs/2504.01990</li><li id="ref-llm_knowledge_lifecycle" data-num="7">[7]  Zhang, S., Chen, J., &amp; Wang, W. Y. (2025). The LLM Knowledge Lifecycle: An AAAI 2025 Tutorial. https://llmknowledgelifecycle.github.io/AAAI2025_Tutorial_LLMKnowledge/</li><li id="ref-reasoning_limit" data-num="8">[8]  Wei, J., Chen, X., &amp; Bubeck, S. (2025). Can reasoning emerge from large language models? Investigating the limits of reasoning capabilities in pre-trained and fine-tuned models. In arXiv: Vol. abs/2504.13837. https://arxiv.org/abs/2504.13837</li><li id="ref-google_veo3" data-num="9">[9]  Google DeepMind. (2025). Veo3: Advancing text-to-video generation with synchronized audio. https://deepmind.google/models/veo/</li><li id="ref-fractal_neural_net" data-num="10">[10]  Chen, L., Dai, Y., &amp; He, K. (2025). Fractal Neural Networks: Scaling Deep Learning Beyond Linear Paradigms. In arXiv: Vol. abs/2502.17437. https://arxiv.org/abs/2502.17437</li><li id="ref-diffusion_lm" data-num="11">[11]  Yang, M., Tian, Y., &amp; Lin, Z. (2025). Diffusion Language Models: Toward Controllable Text Generation with Guided Diffusion. In arXiv: Vol. abs/2502.09992. https://arxiv.org/abs/2502.09992</li><li id="ref-communication_scaling" data-num="12">[12]  Rao, S., Knight, W., &amp; Sutskever, I. (2024). Scaling Laws from an Information-Theoretic Perspective. In arXiv: Vol. abs/2411.00660. https://arxiv.org/abs/2411.00660v2</li><li id="ref-physics_llm" data-num="13">[13]  Allen-Zhu, Z., &amp; Li, Y. (2025). On the Connection between Physical Laws and Neural Scaling Laws. https://physics.allen-zhu.com/</li><li id="ref-ancient_human_subjects" data-num="14">[14]  Jiang, L., Cohen, J., &amp; Griffiths, T. L. (2024). Recruiting ancient human subjects with large language models. Proceedings of the National Academy of Sciences, 121(21), e2407639121. https://www.pnas.org/doi/10.1073/pnas.2407639121</li><li id="ref-the_second_half" data-num="15">[15]  Chen, K., Liu, H., &amp; Zhang, D. (2025). The Second Half: From Solving Problems to Defining Problems. https://ysymyth.github.io/The-Second-Half/</li><li id="ref-era_of_experience" data-num="16">[16]  DeepMind. (2025). Welcome to the Era of Experience. https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf</li><li id="ref-previous_post" data-num="17">[17]  Liu, W. (2024). [Some Questions asking Myself 2024.4] Compression, World Model, Agent and Alignment. https://thinkwee.top/2024/04/23/next-on-llm/</li></ul><p></p>
+
+    <style>
+    #refplus, #refplus li{ 
+        padding:0;
+        margin:0;
+        list-style:none;
+    }；
+    </style>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script>
+    document.querySelectorAll(".refplus-num").forEach((ref) => {
+        let refid = ref.firstChild.href.replace(location.origin+location.pathname,'');
+        let refel = document.querySelector(refid);
+        let refnum = refel.dataset.num;
+        let ref_content = refel.innerText.replace(`[${refnum}]`,'');
+        tippy(ref, {
+            content: ref_content,
+        });
+    });
+    </script>
+    
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/math/" rel="tag"># math</a>
+              <a href="/tags/inference/" rel="tag"># inference</a>
+              <a href="/tags/seq2seq/" rel="tag"># seq2seq</a>
+              <a href="/tags/llm/" rel="tag"># llm</a>
+              <a href="/tags/agent/" rel="tag"># agent</a>
+              <a href="/tags/questions/" rel="tag"># questions</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/23/next-on-llm/" rel="prev" title="[Some Questions asking Myself 2024.4]">
+                  <i class="fa fa-angle-left"></i> [Some Questions asking Myself 2024.4]
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/30/reasoning-2025-1/" rel="next" title="LLM Reasoning in 2025, Violent Delights Have Violent Ends">
+                  LLM Reasoning in 2025, Violent Delights Have Violent Ends <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">16:51</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":null,"security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2025/05/21/next-on-llm-2/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>
