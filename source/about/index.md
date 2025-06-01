@@ -97,13 +97,13 @@ html: true
 </style>
 
 <p align="center">
-  <img src="/img/avatar.jpg" alt="Your Image Description" width="200" height="200">
+  <img src="/img/bg_blog.jpg" alt="I'm in London" width="1000">
 </p>
-<center>2023.5 at XiaMen</center>
+<center>Since February 2025, I've been based in London pursuing my PhD journey!</center>
+<center>Fun Fact: My giraffe icon isn't random - I actually have a long neck! See for yourself and meet other talented researchers on our <a href="https://kclnlp.github.io/team.html" target="_blank" rel="noopener">team page</a>.</center>
 
 # About Me
-- Hello, I'm Wei Liu (刘维). Welcome to my blog (<span class="pv-counter"><span id="page-views">0</span> views</span>). Here are my 
-  <a href="mailto:thinkwee2767@gmail.com" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Email</a>, <a href="https://github.com/thinkwee" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Github</a>, and <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Google Scholar</a>.
+- Hello, I'm Wei Liu (刘维). Welcome to my blog (<span class="pv-counter"><span id="page-views">0</span> views</span>). Here are my <a href="mailto:thinkwee2767@gmail.com" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Email</a>, <a href="https://github.com/thinkwee" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Github</a>, and <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Google Scholar</a>.
 - My previous experience
     -   2014-2018: Bachelor of Communication Engineering in BUPT
     -   2018-2021: Master of Computer Engineering in CIST Lab@BUPT
