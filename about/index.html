@@ -27,8 +27,9 @@
 <meta property="og:description" content="&#x2F;&#x2F; Your web app&#39;s Firebase configuration   const firebaseConfig &#x3D; {     databaseURL: &quot;https:&#x2F;&#x2F;blog-a38f5-default-rtdb.asia-southeast1.firebasedatabase.app&quot;,     projectId: &quot;blog-a38f5&quot;,     api">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://thinkwee.top/img/bg_blog.jpg">
-<meta property="article:published_time" content="2025-06-01T21:15:14.108Z">
-<meta property="article:modified_time" content="2025-06-01T21:15:14.108Z">
+<meta property="og:image" content="https://thinkwee.top/img/wechat.png">
+<meta property="article:published_time" content="2025-07-15T20:05:20.014Z">
+<meta property="article:modified_time" content="2025-07-15T20:05:20.014Z">
 <meta property="article:author" content="Thinkwee">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://thinkwee.top/img/bg_blog.jpg">
@@ -93,7 +94,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">52</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">53</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -157,18 +158,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">61</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -292,6 +293,237 @@
         border: 1px solid transparent; /* 将边框颜色设置为透明 */
     }
 
+    /* Conference button styles - different colors for different conferences */
+    .conf-neurips {
+        display: inline-block;
+        padding: 0px 5px;
+        font-size: 14px;
+        text-align: center;
+        width: 110px;
+        text-decoration: none;
+        background-color: #FFFFFF !important; /* White background by default */
+        color: black !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        transition: background-color 0.3s ease;
+        cursor: default;
+    }
+
+    .conf-neurips:hover {
+        background-color: #8668a3 !important; /* Red for NeurIPS on hover */
+        color: white !important;
+        border: 1px solid transparent;
+    }
+
+    .conf-iclr {
+        display: inline-block;
+        padding: 0px 5px;
+        font-size: 14px;
+        text-align: center;
+        width: 110px;
+        text-decoration: none;
+        background-color: #FFFFFF !important; /* White background by default */
+        color: black !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        transition: background-color 0.3s ease;
+        cursor: default;
+    }
+
+    .conf-iclr:hover {
+        background-color: #6fca62 !important; /* Teal for ICLR on hover */
+        color: white !important;
+        border: 1px solid transparent;
+    }
+
+    .conf-acl {
+        display: inline-block;
+        padding: 0px 5px;
+        font-size: 14px;
+        text-align: center;
+        width: 110px;
+        text-decoration: none;
+        background-color: #FFFFFF !important; /* White background by default */
+        color: black !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        transition: background-color 0.3s ease;
+        cursor: default;
+    }
+
+    .conf-acl:hover {
+        background-color: #f14950 !important; /* Blue for ACL on hover */
+        color: white !important;
+        border: 1px solid transparent;
+    }
+
+    .conf-aaai {
+        display: inline-block;
+        padding: 0px 5px;
+        font-size: 14px;
+        text-align: center;
+        width: 110px;
+        text-decoration: none;
+        background-color: #FFFFFF !important; /* White background by default */
+        color: black !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        transition: background-color 0.3s ease;
+        cursor: default;
+    }
+
+    .conf-aaai:hover {
+        background-color: #5b90a8 !important; /* Orange for AAAI on hover */
+        color: white !important;
+        border: 1px solid transparent;
+    }
+
+    .conf-conll {
+        display: inline-block;
+        padding: 0px 5px;
+        font-size: 14px;
+        text-align: center;
+        width: 110px;
+        text-decoration: none;
+        background-color: #FFFFFF !important; /* White background by default */
+        color: black !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        transition: background-color 0.3s ease;
+        cursor: default;
+    }
+
+    .conf-conll:hover {
+        background-color: #f14950 !important; /* Purple for CoNLL on hover */
+        color: white !important;
+        border: 1px solid transparent;
+    }
+
+    .conf-emnlp {
+        display: inline-block;
+        padding: 0px 5px;
+        font-size: 14px;
+        text-align: center;
+        width: 110px;
+        text-decoration: none;
+        background-color: #FFFFFF !important; /* White background by default */
+        color: black !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        transition: background-color 0.3s ease;
+        cursor: default;
+    }
+
+    .conf-emnlp:hover {
+        background-color: #f14950 !important; /* Green for EMNLP on hover */
+        color: white !important;
+        border: 1px solid transparent;
+    }
+
+    .conf-sigir {
+        display: inline-block;
+        padding: 0px 5px;
+        font-size: 14px;
+        text-align: center;
+        width: 110px;
+        text-decoration: none;
+        background-color: #FFFFFF !important; /* White background by default */
+        color: black !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        transition: background-color 0.3s ease;
+        cursor: default;
+    }
+
+    .conf-sigir:hover {
+        background-color: #e6a800 !important; /* Dark red for SIGIR on hover */
+        color: white !important;
+        border: 1px solid transparent;
+    }
+
+    .conf-ranlp {
+        display: inline-block;
+        padding: 0px 5px;
+        font-size: 14px;
+        text-align: center;
+        width: 110px;
+        text-decoration: none;
+        background-color: #FFFFFF !important; /* White background by default */
+        color: black !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        transition: background-color 0.3s ease;
+        cursor: default;
+    }
+
+    .conf-ranlp:hover {
+        background-color: #f14950  !important; /* Dark blue for RANLP on hover */
+        color: white !important;
+        border: 1px solid transparent;
+    }
+
+    .conf-ccis {
+        display: inline-block;
+        padding: 0px 5px;
+        font-size: 14px;
+        text-align: center;
+        width: 110px;
+        text-decoration: none;
+        background-color: #FFFFFF !important; /* White background by default */
+        color: black !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        transition: background-color 0.3s ease;
+        cursor: default;
+    }
+
+    .conf-ccis:hover {
+        background-color: #f14950 !important; /* Gray for CCIS on hover */
+        color: white !important;
+        border: 1px solid transparent;
+    }
+
+    .conf-arxiv {
+        display: inline-block;
+        padding: 0px 5px;
+        font-size: 14px;
+        text-align: center;
+        width: 110px;
+        text-decoration: none;
+        background-color: #FFFFFF !important; /* White background by default */
+        color: black !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        transition: background-color 0.3s ease;
+        cursor: default;
+    }
+
+    .conf-arxiv:hover {
+        background-color: #c45569 !important; /* Light gray for arXiv on hover */
+        color: white !important;
+        border: 1px solid transparent;
+    }
+
     .pv-counter {
         display: inline;
         padding: 0;
@@ -309,22 +541,37 @@
     }
 </style>
 <p align="center">
-<img data-src="/img/bg_blog.jpg" alt="I'm in London" width="1000">
+<img data-src="/img/bg_blog.jpg" alt="I'm in London" width="600">
 </p>
 <center>
 Since February 2025, I've been based in London pursuing my PhD journey!
 </center>
 <center>
 Fun Fact: My giraffe icon isn't random - I actually have a long neck!
+</center>
+<center>
 See for yourself and meet other talented researchers on our
 <a href="https://kclnlp.github.io/team.html" target="_blank" rel="noopener">team
 page</a>.
 </center>
+<center>
+<style>.libutton { display: flex; flex-direction: column; justify-content: center; padding: 7px; text-align: center; outline: none; text-decoration: none !important; color: #ffffff !important; width: 200px; height: 20px; border-radius: 16px; background-color: #769ecb; font-family: "SF Pro Text", Helvetica, sans-serif; } </style>
+<a class="libutton" href="http://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=thinkwee" target="_black">Follow
+This Guy on Linkedin</a>
+</center>
+<center>
+or Find This Guy on WeChat
+</center>
+<p align="center">
+<img data-src="/img/wechat.png" alt="wechat" width="350">
+</p>
 <h1 id="about-me">About Me</h1>
 <ul>
 <li>Hello, I'm Wei Liu (刘维). Welcome to my blog (<span
-class="pv-counter"><span id="page-views">0</span> views</span>). Here
-are my
+class="pv-counter"><span id="page-views">0</span> views</span>). You can
+search me on google with keyword "thinkwee", which means "The Thinking
+Wei".</li>
+<li>Here are my
 <a href="mailto:thinkwee2767@gmail.com" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Email</a>,
 <a href="https://github.com/thinkwee" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Github</a>,
 and
@@ -332,8 +579,8 @@ and
 Scholar</a>.</li>
 <li>My previous experience
 <ul>
-<li>2014-2018: Bachelor of Communication Engineering in BUPT</li>
-<li>2018-2021: Master of Computer Engineering in CIST Lab@BUPT</li>
+<li>2014-2021: Bachelor of Communication Engineering in BUPT, and Master
+of Computer Engineering in CIST Lab@BUPT</li>
 <li>2021-2023: Application Research, <a
 target="_blank" rel="noopener" href="https://www.tencent.com/en-us/about.html">Tencent</a></li>
 <li>2023.8-2025.1: Working at <a
@@ -359,11 +606,8 @@ Train your own R1-Zero-like reasoning model on ANY DATA!</strong></li>
 </ul>
 <h1 id="research-interests">Research Interests</h1>
 <ul>
-<li>Natural Language Generation, especially on Compressing and
-Summarizing Languages.</li>
-<li><strong>Inference Time Scaling in LLMs</strong>.</li>
-<li>Develop robust, safe, efficient, and human-centric <strong>LLM
-Multi-Agent System</strong>.</li>
+<li><strong>Inference Time Scaling and Agentic AI</strong>.</li>
+<li>Compression Intelligence in NLP.</li>
 <li>Served as reviewer for
 <ul>
 <li>ACL(2021,2022,2024)</li>
@@ -375,8 +619,8 @@ Multi-Agent System</strong>.</li>
 </ul>
 <h1 id="industrial-experience">Industrial Experience</h1>
 <ul>
-<li>At Tencent, I aim to improve the performance of News Feed
-Recommendations and Advertising.
+<li>At Tencent, I aim to bridge the gap between technology in NLP and
+scenario in Recommendation &amp; Advertisement.
 <ul>
 <li>Improving the NLU ability for News Feed Recommendation.</li>
 <li>Resolving the mismatch between commercial inclinations and content
@@ -388,78 +632,93 @@ interests for Wechat Ads.</li>
 </ul>
 <h1 id="publications">Publications</h1>
 <ul>
-<li>Reasoning in LLMs:
+<li>Personal Agentic AI:
 <ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.16022" class="bp">paper</a>
+<li><span class="conf-neurips">NeurIPS 2024</span>
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.14928" class="bp">paper</a>
+<a target="_blank" rel="noopener" href="https://github.com/thinkwee/iAgents" class="bc">code</a>
+Autonomous Agents for Collaborative Task under Information
+Asymmetry.</li>
+</ul></li>
+<li>Inference Time Scaling:
+<ul>
+<li><span class="conf-arxiv">arXiv 2025</span>
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2505.16022" class="bp">paper</a>
 <a target="_blank" rel="noopener" href="https://github.com/thinkwee/NOVER" class="bc">code</a> NOVER:
 Incentive Training for Language Models via Verifier-Free Reinforcement
-Learning. arXiv</li>
-</ul></li>
-<li>Multi-Agents powered by LLMs:
-<ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.14928" class="bp">paper</a>
-<a target="_blank" rel="noopener" href="https://github.com/thinkwee/iAgents" class="bc">code</a>
-Autonomous Agents for Collaborative Task under Information Asymmetry.
-NeurIPS 2024</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2406.07155" class="bp">paper</a>
+Learning.</li>
+<li><span class="conf-iclr">ICLR 2025</span>
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2406.07155" class="bp">paper</a>
 <a target="_blank" rel="noopener" href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Scaling
-Large-Language-Model-based Multi-Agent Collaboration. ICLR 2025</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2307.07924" class="bp">paper</a>
+Large-Language-Model-based Multi-Agent Collaboration.</li>
+</ul></li>
+<li>Multi-Agents System with LLMs:
+<ul>
+<li><span class="conf-acl">ACL 2024</span>
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2307.07924" class="bp">paper</a>
 <a target="_blank" rel="noopener" href="https://github.com/OpenBMB/ChatDev" class="bc">code</a>
-Communicative Agents for Software Development. ACL 2024</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.17025" class="bp">paper</a>
+Communicative Agents for Software Development.</li>
+<li><span class="conf-acl">ACL 2024</span>
+<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.17025" class="bp">paper</a>
 <a target="_blank" rel="noopener" href="https://github.com/OpenBMB/ChatDev" class="bc">code</a>
-Experiential Co-Learning of Software-Developing Agents. ACL 2024</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2405.04219" class="bp">paper</a>
+Experiential Co-Learning of Software-Developing Agents.</li>
+<li><span class="conf-acl">ACL 2025</span>
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2406.08979" class="bp">paper</a>
 <a target="_blank" rel="noopener" href="https://github.com/OpenBMB/ChatDev" class="bc">code</a>
-Iterative Experience Refinement of Software-Developing Agents.arXiv</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2406.08979" class="bp">paper</a>
+Multi-Agent Software Development through Cross-Team Collaboration.</li>
+<li><span class="conf-arxiv">arXiv 2024</span>
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2405.04219" class="bp">paper</a>
 <a target="_blank" rel="noopener" href="https://github.com/OpenBMB/ChatDev" class="bc">code</a>
-Multi-Agent Software Development through Cross-Team Collaboration. ACL
-2025</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.06904" class="bp">paper</a>
+Iterative Experience Refinement of Software-Developing Agents.</li>
+<li><span class="conf-arxiv">arXiv 2025</span>
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2505.06904" class="bp">paper</a>
 <a target="_blank" rel="noopener" href="https://github.com/xymou/EcoLANG" class="bc">code</a> EcoLANG:
 Efficient and Effective Agent Communication Language Induction for
-Social Simulation.arXiv</li>
+Social Simulation.</li>
 </ul></li>
-<li>More Accurate and Controllable Keyphrase Prediction:
+<li>Compression Intelligence in NLP:
 <ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.04847.pdf" class="bp">paper</a>
+<li><span class="conf-acl">ACL 2021</span>
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.04847.pdf" class="bp">paper</a>
 <a target="_blank" rel="noopener" href="https://github.com/thinkwee/UniKeyphrase" class="bc">code</a>
 UniKeyphrase: A Unified Extraction and Generation Framework for
-Keyphrase Prediction. ACL 2021 findings</li>
-<li><a target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/download/21402/version/19689/21151" class="bp">paper</a>
+Keyphrase Prediction.</li>
+<li><span class="conf-aaai">AAAI 2022</span>
+<a target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/download/21402/version/19689/21151" class="bp">paper</a>
 <a target="_blank" rel="noopener" href="https://github.com/m1594730237/FastAndConstrainedKeyphrase" class="bc">code</a>
 Fast and Constrained Absent Keyphrase Generation by Prompt-Based
-Learning. AAAI 2022</li>
-</ul></li>
-<li>More Comprehensive and Factual Summarization:
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.aclweb.org/anthology/K19-1077/" class="bp">paper</a>
+Learning.</li>
+<li><span class="conf-conll">CoNLL 2021</span>
+<a target="_blank" rel="noopener" href="https://www.aclweb.org/anthology/K19-1077/" class="bp">paper</a>
 <a target="_blank" rel="noopener" href="https://github.com/thinkwee/DPP_CNN_Summarization" class="bc">code</a>
 In Conclusion Not Repetition: Comprehensive Abstractive Summarization
-with Diversified Attention Based on Determinantal Point Processes. CoNLL
-2021</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.10084.pdf" class="bp">paper</a>
-<a target="_blank" rel="noopener" href="https://github.com/thinkwee/SubjectiveBiasABS" class="bc">code</a>
-Subjective Bias in Abstractive Summarization.arXiv</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2112.01147.pdf" class="bp">paper</a>
-<a target="_blank" rel="noopener" href="https://github.com/thinkwee/co2sum" class="bc">code</a> CO2Sum:
-Contrastive Learning for Factual-Consistent Abstractive
-Summarization.arXiv</li>
-<li><a target="_blank" rel="noopener" href="https://www.aclweb.org/anthology/W19-8904.pdf" class="bp">paper</a>
+with Diversified Attention Based on Determinantal Point Processes.</li>
+<li><span class="conf-sigir">SIGIR 2019</span>
+<a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2414/paper20.pdf" class="bp">paper</a>
+CIST@CLSciSumm-19: Automatic Scientific Paper Summarization with
+Citances and Facets.</li>
+<li><span class="conf-emnlp">EMNLP 2020</span>
+<a target="_blank" rel="noopener" href="https://www.aclweb.org/anthology/2020.sdp-1.25.pdf" class="bp">paper</a>
+CIST@CL-SciSumm 2020, LongSumm 2020: Automatic Scientific Document
+Summarization.</li>
+<li><span class="conf-ranlp">RANLP 2019</span>
+<a target="_blank" rel="noopener" href="https://www.aclweb.org/anthology/W19-8904.pdf" class="bp">paper</a>
 <a target="_blank" rel="noopener" href="https://github.com/thinkwee/multiling2019_wiki" class="bc">code</a>
 Multi-lingual Wikipedia Summarization and Title Generation On Low
-Resource Corpus. RANLP 2019 workshop</li>
-<li><a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/332432404_A_Multi-View_Abstractive_Summarization_Model_Jointly_Considering_Semantics_and_Sentiment" class="bp">paper</a>
+Resource Corpus.</li>
+<li><span class="conf-ccis">CCIS 2018</span>
+<a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/332432404_A_Multi-View_Abstractive_Summarization_Model_Jointly_Considering_Semantics_and_Sentiment" class="bp">paper</a>
 A Multi-View Abstractive Summarization Model Jointly Considering
-Semantics and Sentiment. CCIS 2018</li>
-<li><a target="_blank" rel="noopener" href="http://ceur-ws.org/Vol-2414/paper20.pdf" class="bp">paper</a>
-CIST@CLSciSumm-19: Automatic Scientific Paper Summarization with
-Citances and Facets. SIGIR 2019 workhop</li>
-<li><a target="_blank" rel="noopener" href="https://www.aclweb.org/anthology/2020.sdp-1.25.pdf" class="bp">paper</a>
-CIST@CL-SciSumm 2020, LongSumm 2020: Automatic Scientific Document
-Summarization. EMNLP 2020 workshop</li>
+Semantics and Sentiment.</li>
+<li><span class="conf-arxiv">arXiv 2021</span>
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2112.01147.pdf" class="bp">paper</a>
+<a target="_blank" rel="noopener" href="https://github.com/thinkwee/co2sum" class="bc">code</a> CO2Sum:
+Contrastive Learning for Factual-Consistent Abstractive
+Summarization.</li>
+<li><span class="conf-arxiv">arXiv 2021</span>
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.10084.pdf" class="bp">paper</a>
+<a target="_blank" rel="noopener" href="https://github.com/thinkwee/SubjectiveBiasABS" class="bc">code</a>
+Subjective Bias in Abstractive Summarization.</li>
 </ul></li>
 </ul>
 
@@ -501,7 +760,7 @@ Summarization. EMNLP 2020 workshop</li>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">16:52</span>
+    <span title="Reading time total">17:04</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
