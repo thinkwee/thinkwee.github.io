@@ -15,8 +15,6 @@ html: true
 
 ---
 
-***
-
 Note for CorEx(Correlation Explaination).
 
 <!--more-->

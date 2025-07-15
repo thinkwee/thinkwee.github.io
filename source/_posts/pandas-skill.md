@@ -7,8 +7,6 @@ categories: Python
 
 ---
 
-***
-
 Using the data from the Titanic as an example, introduce the basic operations performed on the data in the early stages.
 
 <!--more-->

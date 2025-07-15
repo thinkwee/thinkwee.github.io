@@ -10,7 +10,12 @@ mathjax: true
 html: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/39f4cd2114b7e9c3f742909d3b176d01.png" width="500"/>
+
+
+
 Read Dr. Bang Liu’s paper Natural Language Processing and Text Mining with Graph-Structured Representations from the University of Alberta and take some notes.
+
 <!--more-->
 
 {% language_switch %}

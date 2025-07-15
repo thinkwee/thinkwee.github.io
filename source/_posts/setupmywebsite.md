@@ -12,8 +12,6 @@ date: 2017-01-16 12:01:00
 
 ---
 
-***
-
 Always wanted to build my own blog, previously thought of using WordPress, but suffered from laziness, didn't want to mess with the server. Later, I stumbled upon GitHub Pages, which automatically generates a website by uploading a js project, and everything is hosted on GitHub. The official instructions also recommend using this for writing blogs, so I started to try it. The general framework should be that GitHub Pages generates the website from your github.io project on GitHub, Hexo generates the static web page project from your blog content and custom settings, and then uploads it to your repository. To back up, we will establish two branches in the repository: one master for Hexo to upload static web page files, and one hexo for saving the local Hexo project. Below, I share some experiences and pitfalls encountered.
 
 

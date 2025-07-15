@@ -12,6 +12,8 @@ html: true
 
 ---
 
+<img src="https://i.mji.rip/2025/07/16/598fac8fa369cf85729973005cc0b37a.png" width="500"/>
+
 A simple note on the RL used in single-agent and multi-agent.
 
 <!--more-->

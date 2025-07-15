@@ -40,8 +40,5 @@
     "hexo-theme-next": "^8.21.1",
     "hexo-translation-switch": "file:../hexo-translation-switch"
   },
-  "snyk": true,
-  "devDependencies": {
-    "hexo-related-posts": "^1.5.2"
-  }
+  "snyk": true
 }

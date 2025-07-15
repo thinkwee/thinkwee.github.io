@@ -10,6 +10,9 @@ mathjax: true
 html: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/94237772906ab6b432dad7cb2a98d766.png" width="500"/>
+
+
 Long time no see, SVM.
 
 <!--more-->

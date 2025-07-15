@@ -9,6 +9,9 @@ tags:
 mathjax: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/6fa1d7f38e6bc1445a5434a93f3a92ad.png" width="500"/>
+
+
 Record the incremental decoding processing of parallel decoding models such as CNN seq2seq and Transformer in the inference phase in Fairseq.
 
 <!--more-->

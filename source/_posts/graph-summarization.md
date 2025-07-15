@@ -11,6 +11,8 @@ mathjax: true
 html: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/a6b15b07f962e85095eeb3cccc5afda8.png" width="500"/>
+
 Graph-based Automatic Summary Related Paper Selection Reading
 
 - AMR Generative Summary

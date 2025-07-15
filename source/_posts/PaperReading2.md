@@ -14,6 +14,9 @@ mathjax: true
 html: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/814348a7a047f33afd7b70e437cf6ddb.png" width="500"/>
+
+
 *   Distractor Mechanism
 *   External Information Attention
 *   Pointer Copy Network PGNet

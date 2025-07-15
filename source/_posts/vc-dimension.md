@@ -12,6 +12,9 @@ mathjax: true
 html: true 
 ---
 
+<img src="https://i.mji.rip/2025/07/16/abd4e74033f7fc6f361451c8ccf02dfa.png" width="500"/>
+
+
 A brief review of the VC dimension. All discussions are based on the simple case of binary classification.
 
 <!--more-->

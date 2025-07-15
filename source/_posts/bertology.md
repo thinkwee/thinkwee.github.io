@@ -10,6 +10,9 @@ mathjax: true
 html: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/22e2424125902e1e41bef204406c76eb.png" width="500"/>
+
+
 note for [A Primer in BERTology: What we know about how BERT works](https://arxiv.org/pdf/2002.12327.pdf)
 
 <!--more-->

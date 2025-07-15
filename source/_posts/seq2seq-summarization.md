@@ -15,6 +15,8 @@ mathjax: true
 html: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/a6b15b07f962e85095eeb3cccc5afda8.png" width="500"/>
+
 A bachelor's graduation project involves developing a short sentence summarization model based on seq2seq and designing an emotional fusion mechanism. Now, let's provide a brief summary of the entire model
 
 <!--more-->

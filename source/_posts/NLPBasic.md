@@ -15,6 +15,8 @@ mathjax: true
 
 ---
 
+<img src="https://i.mji.rip/2025/07/16/a6b15b07f962e85095eeb3cccc5afda8.png" width="500"/>
+
 Recorded some basic knowledge of deep learning learned when recording the seq2seq model in the entry-level NLP.
 
 <!--more-->

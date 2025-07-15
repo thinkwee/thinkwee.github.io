@@ -13,6 +13,9 @@ refplus: true
 mathjax: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/122eedc8f2f91dc50d74b7b244718f69.png" width="500"/>
+
+
 Some very-personal questions, assumptions and predictions on the future after the large model era. I hope to keep it a habit for writing such future-ask post for every half year to keep me thinking about the "next token" in the AI era. This post is about Compression, World Model, Agent and Alignment.
 
 <!--more-->

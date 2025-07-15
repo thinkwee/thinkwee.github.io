@@ -15,7 +15,6 @@ html: true
 - 以简单的Iris数据集做测试，实现了K-means++聚类算法，并与sklearn中自带的KNN算法进行比较
 - 标题本来是K-Means&KNN，把&改成了和，因为标题中出现特殊符号&会导致我的sitemap生成错误......
 
-***
 
 <!--more-->
 

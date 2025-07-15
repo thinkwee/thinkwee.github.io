@@ -11,6 +11,9 @@ mathjax: true
 html: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/fe446d582e4167ad3d7cc0318571c810.png" width="500"/>
+
+
 Reading note for reformer.
 
 <!--more-->

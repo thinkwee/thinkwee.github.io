@@ -1,5 +1,5 @@
 ---
-title: LLM Reasoning in 2025, Violent Delights Have Violent Ends
+title: LLM Reasoning in 2025
 date: 2025-05-30 18:09:13
 categories: MyQuestion
 tags:
@@ -11,7 +11,10 @@ refplus: true
 mathjax: true
 ---
 
-LLM Reasoning in 2025.
+
+<img src="https://i.mji.rip/2025/07/16/bf9ca47310c9ee5c25c72925061f7d4b.png" width="500"/>
+
+What LLM Reasoning be like in the first half of 2025.
 
 <!--more-->
 

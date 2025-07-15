@@ -13,7 +13,9 @@ html: true
 
 ---
 
-***
+<img src="https://i.mji.rip/2025/07/16/b5a1dc675aad283afdf2928bfd7163bf.png" width="500"/>
+
+
 - A webpage based on [ChatGPT-Shortcut](https://github.com/rockbenben/ChatGPT-Shortcut) that shows some interesting debates that took place between GPTs.
 - The experience website is [here](https://thinkwee.top/debate/)
 

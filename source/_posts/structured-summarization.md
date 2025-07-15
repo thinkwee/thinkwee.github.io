@@ -11,6 +11,9 @@ mathjax: true
 html: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/325846e40f5450b0be19b6dd4c59bd38.png" width="500"/>
+
+
 reading note for STRUCTURED NEURAL SUMMARIZATION.
 
 <!--more-->

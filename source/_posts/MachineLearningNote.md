@@ -10,8 +10,6 @@ html: true
 date: 2017-02-12 22:40:38
 ---
 
-***
-
 Notes on some concepts and algorithms in machine learning, sourced from:
 
 *   Elective Course on Pattern Recognition (An elective course for third-year students at Beijing University of Posts and Telecommunications, Pattern Recognition, textbook is "Pattern Recognition" compiled by Zhang Xuegong, published by Tsinghua University Press)

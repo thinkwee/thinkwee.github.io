@@ -16,7 +16,9 @@ mathjax: true
 
 ---
 
-***
+
+<img src="https://i.mji.rip/2025/07/16/ea5f8ed907cd529450d9e9793f9aa94a.png" width="500"/>
+
 
 - Record of recent task reconstruction methods based on templates, a particularly interesting direction since the appearance of GPT-3. These methods typically design prompts for tasks, converting samples and tasks into natural language templates, which are then directly input into pre-trained language models to generate text, thereby indirectly completing the tasks. The construction of prompts standardizes the form of downstream tasks and pre-trained tasks (language models), achieving good results in few-shot learning. Key papers to read include the following nine:
   - Early work that converts questions into natural language and uses pre-trained language models for answers:

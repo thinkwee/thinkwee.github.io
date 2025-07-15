@@ -12,7 +12,10 @@ tags:
 refplus: true
 mathjax: true
 ---
-The second post on my "some very-personal questions to myself" series. It's been over a year since last post and many progress on LLM have been made from academic/industry, which partially solves my questions. I will introduce these works and ask myself some new questions. [see last post here](https://thinkwee.top/2024/04/23/next-on-llm/#more){% ref previous_post %}. This post is about Pretrain Ceiling, Second Half, Scaling the Environment.
+
+<img src="https://i.mji.rip/2025/07/16/0de1613151fa41695f480a9e134dc3f2.png" width="500"/>
+
+The second post on my "some very-personal questions to myself" series. It's been over a year since last post and many progress on LLM have been made from academic/industry, which partially solves my questions. I will introduce these works and ask myself some new questions. This post is about Pretrain Ceiling, Second Half, Scaling the Environment.
 
 <!--more-->
 

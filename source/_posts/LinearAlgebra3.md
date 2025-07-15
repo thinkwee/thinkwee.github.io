@@ -7,7 +7,7 @@ mathjax: true
 html: true
 ---
 
-***
+<img src="https://i.mji.rip/2025/07/16/fcab3101f40bfbdcf2ec3e30b6171a26.png" width="500"/>
 
 
 Lecture 17: Determinants and Their Properties

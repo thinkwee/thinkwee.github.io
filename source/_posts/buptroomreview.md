@@ -6,8 +6,6 @@ categories: Android
 
 ---
 
-***
-
 # Introduction
 
 

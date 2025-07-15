@@ -13,7 +13,6 @@ html: true
 
 ---
 
-***
 
 *   Variational Autoencoder Learning Notes
     

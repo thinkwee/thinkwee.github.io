@@ -16,7 +16,9 @@ mathjax: true
 
 ---
 
-***
+
+<img src="https://i.mji.rip/2025/07/16/c762f093907fbcdae6c6077555cb0552.png" width="500"/>
+
 
 - Record the methods of editing seq2seq in recent years, which have the advantages of high efficiency (partially autoregressive or non-autoregressive decoding) and less data hungry (small output vocabulary) for tasks with the same language input and output and minor changes (error correction, simplification, summarization).
 - Mainly read five papers, sorted by their publication date on arXiv:
