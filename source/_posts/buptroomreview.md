@@ -6,6 +6,10 @@ categories: Android
 
 ---
 
+
+<img src="https://i.mji.rip/2025/07/16/50e93d01eefd2d64738c372694d4f1fd.png" width="500"/>
+
+
 # Introduction
 
 

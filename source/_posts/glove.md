@@ -13,6 +13,9 @@ html: true
 
 ---
 
+<img src="https://i.mji.rip/2025/07/16/681b34e5ff4f1b7bf5780a5eb7a984ce.png" width="500"/>
+
+
 
 *   Record the mathematical derivation of GloVe word vectors, as the original paper does not derive the model graphically but rather calculates the objective function through pure mathematical operations. This design approach is very interesting, and it also writes out and compares the mathematical essence of word2vec.
 *   GloVe: Global Vectors for Word Representation

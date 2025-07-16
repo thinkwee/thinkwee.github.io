@@ -13,6 +13,9 @@ mathjax: true
 html: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/d1c3632ae2916e58df8591e7ac188747.png" width="500"/>
+
+
 Course Notes on Computational Linguistics, Reference Textbook: Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition.
 
 

@@ -14,6 +14,8 @@ html: true
 
 ---
 
+<img src="https://i.mji.rip/2025/07/16/cbd846ecd88abb611db2c204930d896d.png" width="500"/>
+
 
 Latent Dirichlet Allocation Document Topic Generation Model Study Notes This article mainly summarizes from "Mathematical Curiosities of LDA(LDA数学八卦)," which is written very beautifully (recommend reading the original first). There are many places that spark further thought, and this article sorts out the steps to derive LDA, removes some irrelevant extensions, and summarizes LDA in plain language.
 

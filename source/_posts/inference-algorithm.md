@@ -11,6 +11,10 @@ tags:
 mathjax: true
 ---
 
+
+<img src="https://i.mji.rip/2025/07/16/cbd846ecd88abb611db2c204930d896d.png" width="500"/>
+
+
 Record the principles and derivations of algorithms used for inferring unknown variables in probabilistic machine learning, such as Variational Inference, Expectation Maximization, and Markov Chain Monte Carlo. Many contents and derivations, as well as images, come from the online course and lecture notes of Professor Xu Yida at the University of Technology Sydney. Professor Xu's series of videos on non-parametric Bayesian methods are very good, and you can find the videos by searching his name on Bilibili or Youku. The address of Professor Xu's course notes is [roboticcam/machine-learning-notes](https://github.com/roboticcam/machine-learning-notes). Unless otherwise specified, some screenshots and code are from Professor Xu's lecture notes. Other contents come from various books or tutorials, and the references will be indicated in the text.
 
 

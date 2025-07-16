@@ -12,6 +12,9 @@ photo:
 mathjax: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/86c202d0b5712f432526beca2939166e.png" width="500"/>
+
+
 算法刷题目录，方便自己查找回忆复习
 之后(2018.9.27)只更新leetcode上的题了，也懒得整理源码了，leetcode上都存了，只记录思路吧
 

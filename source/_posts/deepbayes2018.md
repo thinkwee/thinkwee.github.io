@@ -6,6 +6,8 @@ categories: Math
 mathjax: true
 html: true
 ---
+<img src="https://i.mji.rip/2025/07/16/fb319b1deaab8213b5f89adf14512e93.png" width="500"/>
+
 
 Deep-Bayes 2018 Summer Camp的习题
 填不动了，就到这吧

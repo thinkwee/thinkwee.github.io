@@ -10,7 +10,7 @@ mathjax: true
 html: true
 ---
 
-<img src="https://i.mji.rip/2025/07/16/a6b15b07f962e85095eeb3cccc5afda8.png" width="500"/>
+<img src="https://i.mji.rip/2025/07/16/2f67b4f7fae34b1e08aa1c7cc17df6b8.png" width="500"/>
 
 
 Selected Reading of ACL/NAACL 2019 Automatic Summarization Papers

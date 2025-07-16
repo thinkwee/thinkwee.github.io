@@ -5,6 +5,8 @@ tags: [comprehension,NLI,]
 categories: NLP
 ---
 
+<img src="https://i.mji.rip/2025/07/16/d1c3632ae2916e58df8591e7ac188747.png" width="500"/>
+
 Attended a light salon at Tsinghua University's FIT, which introduced some advancements in machine reading comprehension. Interestingly, the PhD who spoke at 9 am also mentioned an unpublished work: BERT, which is very impressive and well-funded; it took eight p100 GPUs to train for a year. By 10:30, Machine Intelligence had already published a report, and by the afternoon, Zhihu was buzzing with discussions, saying that a new era for NLP had arrived... This salon is part of a series, and there may be future sessions on machine translation, deep Bayesian, transfer learning, and knowledge graphs, so if you have the time, you might as well listen and take notes.
 
 

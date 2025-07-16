@@ -7,6 +7,10 @@ mathjax: true
 html: true
 ---
 
+
+<img src="https://i.mji.rip/2025/07/16/50e93d01eefd2d64738c372694d4f1fd.png" width="500"/>
+
+
 Note for John Mount's "The Equivalence of Logistic Regression and Maximum Entropy Models" and explains that this proof is a special case of the general derivation proof of the maximum entropy model introduced in statistical learning methods
 
 Conclusion

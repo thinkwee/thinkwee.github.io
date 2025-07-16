@@ -7,6 +7,8 @@ categories: Android
 
 ---
 
+<img src="https://i.mji.rip/2025/07/16/881fef7085a3a58b245072cf7c2b8e81.png" width="500"/>
+
 
 The school's innovation project has a simple app that implements the following functions: recording sound and saving it as a wav file, using JSON to communicate with the server, uploading the wav file to the server, converting it to a midi file on the server, downloading the midi file and sheet music from the server for playback. At the same time, the modified electronic piano can also communicate with the server, with the phone providing auxiliary parameters to the electronic piano, which reads the intermediate key value file of the music from the server via Arduino to play.
 

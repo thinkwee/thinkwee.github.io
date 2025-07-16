@@ -12,6 +12,8 @@ html: true
 
 ---
 
+<img src="https://i.mji.rip/2025/07/16/681b34e5ff4f1b7bf5780a5eb7a984ce.png" width="500"/>
+
 
 Introduction of the Lagrange multiplier method and its extension KKT conditions, as well as their applications in PCA and SVM
 

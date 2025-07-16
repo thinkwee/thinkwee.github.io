@@ -13,9 +13,9 @@ html: true
 
 ---
 
+<img src="https://i.mji.rip/2025/07/16/86c202d0b5712f432526beca2939166e.png" width="500"/>
 
 *   Variational Autoencoder Learning Notes
-    
 *   Reference Article:
     
     *   [Auto-Encoding Variational Bayes](https://arxiv.org/pdf/1312.6114.pdf)

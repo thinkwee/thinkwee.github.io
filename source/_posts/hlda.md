@@ -11,6 +11,8 @@ html: true
 refplus: true
 ---
 
+<img src="https://i.mji.rip/2025/07/16/cbd846ecd88abb611db2c204930d896d.png" width="500"/>
+
 Note for Hierarchical Latent Dirichlet Allocation
 
 

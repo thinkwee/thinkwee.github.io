@@ -15,6 +15,9 @@ html: true
 
 ---
 
+<img src="https://i.mji.rip/2025/07/16/d67b97f7a9ddae88afabc277d249b281.png" width="500"/>
+
+
 The ten major algorithms of statistical learning methods have been simplified and handwritten out (although I think the book itself is already quite concise). Now there is only the process of the algorithms themselves; in the future, if I have any new understandings, I will supplement them. The writing is ugly, even I can't bear to look at it, so I post it purely as a backup
 
 <!--more-->

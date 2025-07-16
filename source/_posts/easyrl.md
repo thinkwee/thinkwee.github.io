@@ -12,6 +12,8 @@ html: true
 
 ---
 
+<img src="https://i.mji.rip/2025/07/16/d67b97f7a9ddae88afabc277d249b281.png" width="500"/>
+
 rl study note, minimalist style
 
 *   Q-learning
