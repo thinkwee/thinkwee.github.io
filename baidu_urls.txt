@@ -41,10 +41,10 @@ https://thinkwee.top/2018/03/07/PaperReading/
 https://thinkwee.top/2018/03/07/NLPBasic/
 https://thinkwee.top/2017/03/27/oj/
 https://thinkwee.top/2017/03/18/Lagrange/
-https://thinkwee.top/2017/03/16/kmeans/
 https://thinkwee.top/2017/03/09/dachuang/
 https://thinkwee.top/2017/02/12/MachineLearningNote/
-https://thinkwee.top/2017/02/07/TitanicLinearRegression/
-https://thinkwee.top/2017/02/04/pandas-skill/
 https://thinkwee.top/2017/01/22/LinearAlgebra3/
 https://thinkwee.top/2017/01/21/LinearAlgebra2/
+https://thinkwee.top/2017/01/21/LinearAlgebra1/
+https://thinkwee.top/2017/01/16/setupmywebsite/
+https://thinkwee.top/2017/01/16/buptroomreview/

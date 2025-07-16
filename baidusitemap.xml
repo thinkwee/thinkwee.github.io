@@ -1,6 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://thinkwee.top/2017/03/09/dachuang/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2017/01/16/buptroomreview/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2017/01/16/setupmywebsite/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2017/02/12/MachineLearningNote/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2017/03/18/Lagrange/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2017/03/27/oj/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2018/08/09/statistical-handwriting/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2018/08/28/inference-algorithm/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2018/09/22/deepbayes2018/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2018/10/14/lr-and-me/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2018/10/13/compute-future/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2018/11/16/coling/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2019/01/13/glove/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2019/03/20/vae/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2019/09/23/easyrl/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2019/11/15/hlda/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2018/07/23/lda/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2018/03/07/NLPBasic/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2019/08/15/acl2019-summarization/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2020/03/27/clscisumm/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2019/10/03/graph-summarization/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
+    <loc>https://thinkwee.top/2018/07/04/seq2seq-summarization/</loc>
+    <lastmod>2025-07-16</lastmod>
+  </url>
+  <url>
     <loc>https://thinkwee.top/2017/01/22/LinearAlgebra3/</loc>
     <lastmod>2025-07-15</lastmod>
   </url>
@@ -10,58 +98,6 @@
   </url>
   <url>
     <loc>https://thinkwee.top/2017/01/21/LinearAlgebra2/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2019/03/20/vae/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2017/02/07/TitanicLinearRegression/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2018/08/09/statistical-handwriting/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2017/01/16/setupmywebsite/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2017/02/04/pandas-skill/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2017/03/27/oj/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2017/02/12/MachineLearningNote/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2018/07/23/lda/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2017/03/18/Lagrange/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2017/03/16/kmeans/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2019/01/13/glove/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2017/03/09/dachuang/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2017/01/16/buptroomreview/</loc>
     <lastmod>2025-07-15</lastmod>
   </url>
   <url>
@@ -85,27 +121,7 @@
     <lastmod>2025-07-15</lastmod>
   </url>
   <url>
-    <loc>https://thinkwee.top/2018/07/04/seq2seq-summarization/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2018/03/07/NLPBasic/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2019/10/03/graph-summarization/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2019/08/15/acl2019-summarization/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
     <loc>https://thinkwee.top/2020/05/15/vc-dimension/</loc>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2020/03/27/clscisumm/</loc>
     <lastmod>2025-07-15</lastmod>
   </url>
   <url>
@@ -183,33 +199,5 @@
   <url>
     <loc>https://thinkwee.top/2025/05/21/next-on-llm-2/</loc>
     <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2018/10/14/lr-and-me/</loc>
-    <lastmod>2025-01-30</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2019/11/15/hlda/</loc>
-    <lastmod>2025-01-30</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2018/08/28/inference-algorithm/</loc>
-    <lastmod>2025-01-30</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2018/09/22/deepbayes2018/</loc>
-    <lastmod>2025-01-30</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2019/09/23/easyrl/</loc>
-    <lastmod>2025-01-30</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2018/10/13/compute-future/</loc>
-    <lastmod>2025-01-30</lastmod>
-  </url>
-  <url>
-    <loc>https://thinkwee.top/2018/11/16/coling/</loc>
-    <lastmod>2025-01-30</lastmod>
   </url>
 </urlset> 
