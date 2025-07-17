@@ -354,14 +354,14 @@ html: true
       outline: none; 
       text-decoration: none !important; 
       color: #ffffff !important; 
-      background: linear-gradient(135deg, #a8c5e8 0%, #4a6b95 100%);
+      background: linear-gradient(135deg, #8fa6c4 0%, #3d5470 100%);
       border: none;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       font-size: 14px;
       font-weight: 500;
       height: 32px;
-      box-shadow: 0 2px 8px rgba(118, 158, 203, 0.2);
+      box-shadow: 0 2px 8px rgba(118, 158, 203, 0.15);
       transition: all 0.3s ease;
       cursor: pointer;
       margin: 0 5px;
@@ -369,13 +369,13 @@ html: true
     
     .libutton:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(118, 158, 203, 0.3);
-      background: linear-gradient(135deg, #8db4e0 0%, #3a5a85 100%);
+      box-shadow: 0 4px 12px rgba(118, 158, 203, 0.25);
+      background: linear-gradient(135deg, #7a95b8 0%, #324660 100%);
     }
     
     .libutton:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(118, 158, 203, 0.2);
+      box-shadow: 0 2px 6px rgba(118, 158, 203, 0.15);
     }
     
     .gsbutton { 
@@ -387,14 +387,14 @@ html: true
       outline: none; 
       text-decoration: none !important; 
       color: #ffffff !important; 
-      background: linear-gradient(135deg, #74a9ff 0%, #1a4bb8 100%);
+      background: linear-gradient(135deg, #6090d4 0%, #2d4a8a 100%);
       border: none;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       font-size: 14px;
       font-weight: 500;
       height: 32px;
-      box-shadow: 0 2px 8px rgba(66, 133, 244, 0.2);
+      box-shadow: 0 2px 8px rgba(66, 133, 244, 0.15);
       transition: all 0.3s ease;
       cursor: pointer;
       margin: 0 5px;
@@ -402,13 +402,13 @@ html: true
     
     .gsbutton:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
-      background: linear-gradient(135deg, #5a95ff 0%, #1440a8 100%);
+      box-shadow: 0 4px 12px rgba(66, 133, 244, 0.25);
+      background: linear-gradient(135deg, #5280c8 0%, #253f7a 100%);
     }
     
     .gsbutton:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(66, 133, 244, 0.2);
+      box-shadow: 0 2px 6px rgba(66, 133, 244, 0.15);
     }
     
     .ghbutton { 
@@ -420,14 +420,14 @@ html: true
       outline: none; 
       text-decoration: none !important; 
       color: #ffffff !important; 
-      background: linear-gradient(135deg, #8b7db8 0%, #1a1a1a 100%);
+      background: linear-gradient(135deg, #706a90 0%, #2a2a2a 100%);
       border: none;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       font-size: 14px;
       font-weight: 500;
       height: 32px;
-      box-shadow: 0 2px 8px rgba(139, 125, 184, 0.2);
+      box-shadow: 0 2px 8px rgba(139, 125, 184, 0.15);
       transition: all 0.3s ease;
       cursor: pointer;
       margin: 0 5px;
@@ -435,13 +435,13 @@ html: true
     
     .ghbutton:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(139, 125, 184, 0.3);
-      background: linear-gradient(135deg, #7a6ba5 0%, #0d0d0d 100%);
+      box-shadow: 0 4px 12px rgba(139, 125, 184, 0.25);
+      background: linear-gradient(135deg, #625d80 0%, #1d1d1d 100%);
     }
     
     .ghbutton:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(139, 125, 184, 0.2);
+      box-shadow: 0 2px 6px rgba(139, 125, 184, 0.15);
     }
     
     .gmbutton { 
@@ -453,14 +453,14 @@ html: true
       outline: none; 
       text-decoration: none !important; 
       color: #ffffff !important; 
-      background: linear-gradient(135deg, #ff8a80 0%, #c62828 100%);
+      background: linear-gradient(135deg, #d47570 0%, #a03838 100%);
       border: none;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       font-size: 14px;
       font-weight: 500;
       height: 32px;
-      box-shadow: 0 2px 8px rgba(255, 138, 128, 0.2);
+      box-shadow: 0 2px 8px rgba(255, 138, 128, 0.15);
       transition: all 0.3s ease;
       cursor: pointer;
       margin: 0 5px;
@@ -468,13 +468,13 @@ html: true
     
     .gmbutton:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(255, 138, 128, 0.3);
-      background: linear-gradient(135deg, #ff7569 0%, #b71c1c 100%);
+      box-shadow: 0 4px 12px rgba(255, 138, 128, 0.25);
+      background: linear-gradient(135deg, #c86560 0%, #902828 100%);
     }
     
     .gmbutton:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(255, 138, 128, 0.2);
+      box-shadow: 0 2px 6px rgba(255, 138, 128, 0.15);
     }
     
     @media (max-width: 768px) {
