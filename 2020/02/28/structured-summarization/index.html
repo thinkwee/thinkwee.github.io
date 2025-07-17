@@ -155,7 +155,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#intuition"><span class="nav-number">1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ggnn"><span class="nav-number">2.</span> <span class="nav-text">GGNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ggsnn"><span class="nav-number">3.</span> <span class="nav-text">GGSNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sequence-gnns"><span class="nav-number">4.</span> <span class="nav-text">Sequence GNNs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#intuition"><span class="nav-number">5.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ggnn"><span class="nav-number">6.</span> <span class="nav-text">GGNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ggsnn"><span class="nav-number">7.</span> <span class="nav-text">GGSNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sequence-gnns"><span class="nav-number">8.</span> <span class="nav-text">Sequence GNNs</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intuition"><span class="nav-number">1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GGNN"><span class="nav-number">2.</span> <span class="nav-text">GGNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GGSNN"><span class="nav-number">3.</span> <span class="nav-text">GGSNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sequence-GNNs"><span class="nav-number">4.</span> <span class="nav-text">Sequence GNNs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Intuition"><span class="nav-number">5.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GGNN"><span class="nav-number">6.</span> <span class="nav-text">GGNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GGSNN"><span class="nav-number">7.</span> <span class="nav-text">GGSNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sequence-GNNs"><span class="nav-number">8.</span> <span class="nav-text">Sequence GNNs</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -282,14 +282,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>12k</span>
+      <span>6.3k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>11 mins.</span>
+      <span>6 mins.</span>
     </span>
 </div>
 
@@ -303,357 +303,126 @@
 <p>reading note for STRUCTURED NEURAL SUMMARIZATION.</p>
 <span id="more"></span>
 <style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
-<div id="en-content" class="lang-content" style="display: block;"><h1 id="intuition">Intuition</h1>
-<ul>
-<li>A natural idea of introducing GNN into seq2seq is to first obtain
-token representations using a sequence encoder, then construct
-relationships between tokens, build a graph, and feed the graph and
-token representations into a GNN to obtain new token
-representations.</li>
-<li>The problem is that for summarization, the intuitive approach would
-be to use sentences as nodes and construct a relationship graph between
-sentences. This would result in sentence-level representations, lacking
-word-level granularity, which would make it difficult to implement an
-attention-based decoder.</li>
-<li>The authors' approach is quite straightforward: directly create a
-word-level GNN, where a document with 900 words becomes a graph with 900
-nodes. The edge relationships are heterogeneous, consisting of three
-types:
-<ul>
-<li>All words in a sentence connect to an additional sentence node, and
-all words in an entity connect to an additional entity node. These edges
-are called IN</li>
-<li>Connecting the previous word to the next word, and the previous
-sentence to the next sentence. These edges are called NEXT</li>
-<li>Coreference resolution, referred to as REF The overall structure is
-shown in the following image: <img data-src="https://s2.ax1x.com/2020/02/11/1Toe6P.png" alt="1Toe6P.png" /></li>
-</ul></li>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h1><ul>
+<li>A natural idea of introducing GNN into seq2seq is to first obtain token representations using a sequence encoder, then construct relationships between tokens, build a graph, and feed the graph and token representations into a GNN to obtain new token representations.</li>
+<li>The problem is that for summarization, the intuitive approach would be to use sentences as nodes and construct a relationship graph between sentences. This would result in sentence-level representations, lacking word-level granularity, which would make it difficult to implement an attention-based decoder.</li>
+<li>The authors’ approach is quite straightforward: directly create a word-level GNN, where a document with 900 words becomes a graph with 900 nodes. The edge relationships are heterogeneous, consisting of three types:<ul>
+<li>All words in a sentence connect to an additional sentence node, and all words in an entity connect to an additional entity node. These edges are called IN</li>
+<li>Connecting the previous word to the next word, and the previous sentence to the next sentence. These edges are called NEXT</li>
+<li>Coreference resolution, referred to as REF<br>The overall structure is shown in the following image:<br><img data-src="https://s2.ax1x.com/2020/02/11/1Toe6P.png" alt="1Toe6P.png"></li>
 </ul>
-<h1 id="ggnn">GGNN</h1>
-<ul>
-<li><p>The GNN used by the authors is a Gated Graph Neural Network. The
-original paper: GATED GRAPH SEQUENCE NEURAL NETWORKS</p>
-<p><span class="math display">\[
-\begin{aligned} \mathbf{h}_{v}^{(1)}
-&amp;=\left[\boldsymbol{x}_{v}^{\top}, \mathbf{0}\right]^{\top} \\
-\mathbf{a}_{v}^{(t)}
-&amp;=\mathbf{A}_{v:}^{\top}\left[\mathbf{h}_{1}^{(t-1) \top} \ldots
-\mathbf{h}_{|\mathcal{V}|}^{(t-1) \top}\right]^{\top}+\mathbf{b} \\
-\mathbf{z}_{v}^{t} &amp;=\sigma\left(\mathbf{W}^{z}
-\mathbf{a}_{v}^{(t)}+\mathbf{U}^{z} \mathbf{h}_{v}^{(t-1)}\right)
-\end{aligned} \\
-\begin{aligned} \mathbf{r}_{v}^{t} &amp;=\sigma\left(\mathbf{W}^{r}
-\mathbf{a}_{v}^{(t)}+\mathbf{U}^{r} \mathbf{h}_{v}^{(t-1)}\right) \\
-\widetilde{\mathbf{h}_{v}^{(t)}} &amp;=\tanh \left(\mathbf{W}
-\mathbf{a}_{v}^{(t)}+\mathbf{U}\left(\mathbf{r}_{v}^{t} \odot
-\mathbf{h}_{v}^{(t-1)}\right)\right) \\ \mathbf{h}_{v}^{(t)}
-&amp;=\left(1-\mathbf{z}_{v}^{t}\right) \odot
-\mathbf{h}_{v}^{(t-1)}+\mathbf{z}_{v}^{t} \odot
-\widetilde{\mathbf{h}_{v}^{(t)}} \end{aligned} \\
-\]</span></p></li>
-<li><p>GGNN was published in 2015, improving upon the GNN model from
-2009.</p></li>
-<li><p>The original GNN model essentially uses the graph's topological
-relationships, masking some edges in a multi-layer linear network. The
-representation of nodes at each layer is obtained through linear
-transformations of neighboring nodes from the previous layer
-(propagation), with the final layer using a linear layer to output node
-labels. <img data-src="https://s2.ax1x.com/2020/02/27/3082wD.png"
-alt="3082wD.png" /></p></li>
-<li><p>GGNN considers directed and heterogeneous edges. Its adjacency
-matrix A, as shown in the figure, is a linear layer of <span
-class="math inline">\(\mathbf{A} \in \mathbb{R}^{D|\mathcal{V}| \times 2
-D|\mathcal{V}|}\)</span>, with twice the width representing two output
-channels in both directions. The input node representation matrix is
-<span class="math inline">\(\mathbb{R}^{D|\mathcal{V}|}\)</span>, where
-<span class="math inline">\(A\)</span> contains parameters that depend
-on edge type and direction, essentially obtained through embedding
-lookup. This is followed by a GRU-like update, with <span
-class="math inline">\(z\)</span> and <span
-class="math inline">\(r\)</span> being the update and reset gates,
-respectively. The formula meanings are as follows:</p>
-<ul>
-<li>1: Initialize node embeddings by adding hand-crafted features
-according to the specific task and padding to the same length</li>
-<li>2: Obtain propagated information through a linear layer containing
-adjacency information</li>
-<li>3: Calculate the update gate based on the previous layer's state and
-propagated information</li>
-<li>4: Calculate the reset gate based on the previous layer's state and
-propagated information</li>
+</li>
+</ul>
+<h1 id="GGNN"><a href="#GGNN" class="headerlink" title="GGNN"></a>GGNN</h1><ul>
+<li><p>The GNN used by the authors is a Gated Graph Neural Network. The original paper: GATED GRAPH SEQUENCE NEURAL NETWORKS</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \mathbf{h}_{v}^{(1)} &=\left[\boldsymbol{x}_{v}^{\top}, \mathbf{0}\right]^{\top} \\ \mathbf{a}_{v}^{(t)} &=\mathbf{A}_{v:}^{\top}\left[\mathbf{h}_{1}^{(t-1) \top} \ldots \mathbf{h}_{|\mathcal{V}|}^{(t-1) \top}\right]^{\top}+\mathbf{b} \\ \mathbf{z}_{v}^{t} &=\sigma\left(\mathbf{W}^{z} \mathbf{a}_{v}^{(t)}+\mathbf{U}^{z} \mathbf{h}_{v}^{(t-1)}\right) \end{aligned} \\ 
+\begin{aligned} \mathbf{r}_{v}^{t} &=\sigma\left(\mathbf{W}^{r} \mathbf{a}_{v}^{(t)}+\mathbf{U}^{r} \mathbf{h}_{v}^{(t-1)}\right) \\ \widetilde{\mathbf{h}_{v}^{(t)}} &=\tanh \left(\mathbf{W} \mathbf{a}_{v}^{(t)}+\mathbf{U}\left(\mathbf{r}_{v}^{t} \odot \mathbf{h}_{v}^{(t-1)}\right)\right) \\ \mathbf{h}_{v}^{(t)} &=\left(1-\mathbf{z}_{v}^{t}\right) \odot \mathbf{h}_{v}^{(t-1)}+\mathbf{z}_{v}^{t} \odot \widetilde{\mathbf{h}_{v}^{(t)}} \end{aligned} \\</script></li>
+<li>GGNN was published in 2015, improving upon the GNN model from 2009.</li>
+<li>The original GNN model essentially uses the graph’s topological relationships, masking some edges in a multi-layer linear network. The representation of nodes at each layer is obtained through linear transformations of neighboring nodes from the previous layer (propagation), with the final layer using a linear layer to output node labels.<br><img data-src="https://s2.ax1x.com/2020/02/27/3082wD.png" alt="3082wD.png"></li>
+<li>GGNN considers directed and heterogeneous edges. Its adjacency matrix A, as shown in the figure, is a linear layer of $\mathbf{A} \in \mathbb{R}^{D|\mathcal{V}| \times 2 D|\mathcal{V}|}$, with twice the width representing two output channels in both directions. The input node representation matrix is $\mathbb{R}^{D|\mathcal{V}|}$, where $A$ contains parameters that depend on edge type and direction, essentially obtained through embedding lookup. This is followed by a GRU-like update, with $z$ and $r$ being the update and reset gates, respectively. The formula meanings are as follows:<ul>
+<li>1: Initialize node embeddings by adding hand-crafted features according to the specific task and padding to the same length</li>
+<li>2: Obtain propagated information through a linear layer containing adjacency information</li>
+<li>3: Calculate the update gate based on the previous layer’s state and propagated information</li>
+<li>4: Calculate the reset gate based on the previous layer’s state and propagated information</li>
 <li>5,6: Similar to GRU</li>
-</ul></li>
-<li><p>For the output part, a simple linear layer can be applied to each
-node for node-level tasks. To obtain the graph's representation, a
-gating mechanism can be used (originally described as attention):</p>
-<p><span class="math display">\[
-\mathbf{h}_{\mathcal{G}}=\tanh \left(\sum_{v \in \mathcal{V}}
-\sigma\left(i\left(\mathbf{h}_{v}^{(T)},
-\boldsymbol{x}_{v}\right)\right) \odot \tanh
-\left(j\left(\mathbf{h}_{v}^{(T)},
-\boldsymbol{x}_{v}\right)\right)\right)
-\]</span></p></li>
 </ul>
-<h1 id="ggsnn">GGSNN</h1>
-<ul>
-<li><p>The gated GNN can be extended to sequence output, namely GATED
-GRAPH SEQUENCE NEURAL NETWORK. <img data-src="https://s2.ax1x.com/2020/02/28/3BkTun.png"
-alt="3BkTun.png" /></p></li>
-<li><p>As shown in the figure, a typical seq2seq model needs to encode
-the input sequence and then decode step by step. However, in a graph,
-one step already contains all sequence token information, with multiple
-layers being a stacking of depth rather than temporal layers. Therefore,
-we can start decoding at any depth, similar to CRF, as shown in the
-figure: <span class="math inline">\(o\)</span> is the output, <span
-class="math inline">\(X^k\)</span> is the input embedding matrix at the
-k-th output step, <span class="math inline">\(H^{k,t}\)</span>
-represents the k-th output, and the node embedding of the entire input
-is propagated t steps in depth. Similar to transition and emission
-matrices, the authors used two GGNNs <span
-class="math inline">\(F_o,F_x\)</span> to complete the transfer and
-emission of hidden states. They can share parameters in the propagation
-part. Although only <span class="math inline">\(F_x\)</span>
-transferring <span class="math inline">\(H\)</span> to <span
-class="math inline">\(X\)</span> is written, in practice, similar to
-LSTM, <span class="math inline">\(X^{k+1}\)</span> is also determined by
-<span class="math inline">\(X^k\)</span>:</p>
-<p><span class="math display">\[
-\boldsymbol{x}_{v}^{(k+1)}=\sigma\left(j\left(\mathbf{h}_{v}^{(k, T)},
-\boldsymbol{x}_{v}^{(k)}\right)\right)
-\]</span></p></li>
-<li><p>Similarly, it's possible to directly input <span
-class="math inline">\(X\)</span> for each decoding step, similar to
-teacher forcing</p></li>
-<li><p>The experiments in the paper were on relatively small state
-spaces, different from text tasks. Refer to the usage in STRUCTURED
-NEURAL SUMMARIZATION</p></li>
+</li>
+<li><p>For the output part, a simple linear layer can be applied to each node for node-level tasks. To obtain the graph’s representation, a gating mechanism can be used (originally described as attention):</p>
+<script type="math/tex; mode=display">
+\mathbf{h}_{\mathcal{G}}=\tanh \left(\sum_{v \in \mathcal{V}} \sigma\left(i\left(\mathbf{h}_{v}^{(T)}, \boldsymbol{x}_{v}\right)\right) \odot \tanh \left(j\left(\mathbf{h}_{v}^{(T)}, \boldsymbol{x}_{v}\right)\right)\right)</script></li>
 </ul>
-<h1 id="sequence-gnns">Sequence GNNs</h1>
-<ul>
-<li><p>The authors introduced GGNN into the encoding side, equivalent to
-supplementing the traditional seq2seq encoder with a GNN, but the
-encoder output remains unchanged, and the decoder remains unchanged
-(abandoning the GGSNN decoder design)</p></li>
-<li><p>First, the authors described GGNN in clearer language, with each
-step including propagation and update</p>
-<ul>
-<li>Propagation: <span
-class="math inline">\(\boldsymbol{m}_{v}^{(i)}=g\left(\left\{f_{k}\left(\boldsymbol{h}_{u}^{(i)}\right)
-| \text { there is an edge of type } k \text { from } u \text { to }
-v\right\}\right.)\)</span>, i.e., collecting and summing neighboring
-node information using edge-related linear transformations, where <span
-class="math inline">\(f\)</span> is a linear layer and <span
-class="math inline">\(g\)</span> is summation</li>
-<li>Update: <span
-class="math inline">\(\boldsymbol{h}_{v}^{(i+1)}=\operatorname{GRU}\left(\boldsymbol{m}_{v}^{(i)},
-\boldsymbol{h}_{v}^{(i)}\right)\)</span></li>
-</ul></li>
-<li><p>In seq2seq, the encoder must provide two pieces of information:
-token representation and context representation. Token-level
-representation is obtained through GNN node embeddings, and for
-context-level representation, in addition to the gated weighted sum of
-nodes used in GGNN, they also concatenated the hidden state before and
-after inputting the graph, seemingly concatenating the hidden states of
-all nodes before and after graph input as the final node embedding. The
-RNN output is directly concatenated with the graph embedding and then
-passed through a linear layer. Note that the RNN output is essentially a
-representation of the graph (entire sequence), so it can be directly
-concatenated:</p>
-<p><span class="math display">\[
-\left[\mathbf{e}_{1}^{\prime} \ldots
-\mathbf{e}_{N}^{\prime}\right]=\operatorname{GNN}\left(\left(S,\left[R_{1}
-\ldots R_{K}\right],\left[\mathbf{e}_{1} \ldots
-\mathbf{e}_{N}\right]\right)\right) \\
-\]</span></p>
-<p><span class="math display">\[
-\sigma\left(w\left(\boldsymbol{h}_{v}^{(T)}\right)\right) \in[0,1] \\
-\]</span></p>
-<p><span class="math display">\[
-\hat{\mathbf{e}}=\sum_{1&lt;i&lt;N}
-\sigma\left(w\left(\mathbf{e}_{i}^{\prime}\right)\right) \cdot
-\aleph\left(\mathbf{e}_{i}^{\prime}\right) \\
-\]</span></p>
-<p><span class="math display">\[
-Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\
-\]</span></p></li>
-<li><p>In practical engineering implementation, batching graphs of
-different sizes is inconvenient. The authors used two tricks:</p>
-<ul>
-<li>Standard GNN approach: Combine small graphs into a large graph with
-multiple connected subgraphs as a batch</li>
-<li>Since copy and attention mechanisms require calculating weights
-across the entire input sequence, after combining into a large graph,
-the authors also preserved each node's index in the small graph. Then,
-using TensorFlow's unsorted segment * operator (performing operations on
-segments of different lengths), they can efficiently and numerically
-stably perform softmax over the variable number of node representations
-for each graph</li>
-</ul></li>
-<li><p>The authors used a simple LSTM encoder and decoder configuration,
-mainly modifying the pointer generator code. GNN was stacked eight
-layers</p></li>
-<li><p>The final results did not surpass the pointer generator, but the
-ablation with the pointer mechanism was quite significant, as shown in
-the following figure: <img data-src="https://s2.ax1x.com/2020/02/11/1TTHPJ.png"
-alt="1TTHPJ.png" /></p></li>
-<li><p>The authors did not provide much analysis of the results, as the
-paper used three datasets, with the other two being code summaries that
-have naturally structured data, thus performing well. On purely natural
-language datasets like CNNDM, the performance was not particularly
-outstanding</p></li>
-<li><p>However, in the ablation experiments, it's worth noting that even
-without adding coreference information, simply using GNN to process
-sentence structure performed better than LSTM</p></li>
+<h1 id="GGSNN"><a href="#GGSNN" class="headerlink" title="GGSNN"></a>GGSNN</h1><ul>
+<li>The gated GNN can be extended to sequence output, namely GATED GRAPH SEQUENCE NEURAL NETWORK.<br><img data-src="https://s2.ax1x.com/2020/02/28/3BkTun.png" alt="3BkTun.png"></li>
+<li><p>As shown in the figure, a typical seq2seq model needs to encode the input sequence and then decode step by step. However, in a graph, one step already contains all sequence token information, with multiple layers being a stacking of depth rather than temporal layers. Therefore, we can start decoding at any depth, similar to CRF, as shown in the figure: $o$ is the output, $X^k$ is the input embedding matrix at the k-th output step, $H^{k,t}$ represents the k-th output, and the node embedding of the entire input is propagated t steps in depth. Similar to transition and emission matrices, the authors used two GGNNs $F_o,F_x$ to complete the transfer and emission of hidden states. They can share parameters in the propagation part. Although only $F_x$ transferring $H$ to $X$ is written, in practice, similar to LSTM, $X^{k+1}$ is also determined by $X^k$:</p>
+<script type="math/tex; mode=display">
+\boldsymbol{x}_{v}^{(k+1)}=\sigma\left(j\left(\mathbf{h}_{v}^{(k, T)}, \boldsymbol{x}_{v}^{(k)}\right)\right)</script></li>
+<li>Similarly, it’s possible to directly input $X$ for each decoding step, similar to teacher forcing</li>
+<li>The experiments in the paper were on relatively small state spaces, different from text tasks. Refer to the usage in STRUCTURED NEURAL SUMMARIZATION</li>
+</ul>
+<h1 id="Sequence-GNNs"><a href="#Sequence-GNNs" class="headerlink" title="Sequence GNNs"></a>Sequence GNNs</h1><ul>
+<li>The authors introduced GGNN into the encoding side, equivalent to supplementing the traditional seq2seq encoder with a GNN, but the encoder output remains unchanged, and the decoder remains unchanged (abandoning the GGSNN decoder design)</li>
+<li>First, the authors described GGNN in clearer language, with each step including propagation and update<ul>
+<li>Propagation: $\boldsymbol{m}<em>{v}^{(i)}=g\left(\left{f</em>{k}\left(\boldsymbol{h}_{u}^{(i)}\right) | \text { there is an edge of type } k \text { from } u \text { to } v\right}\right.)$, i.e., collecting and summing neighboring node information using edge-related linear transformations, where $f$ is a linear layer and $g$ is summation</li>
+<li>Update: $\boldsymbol{h}<em>{v}^{(i+1)}=\operatorname{GRU}\left(\boldsymbol{m}</em>{v}^{(i)}, \boldsymbol{h}_{v}^{(i)}\right)$</li>
+</ul>
+</li>
+<li><p>In seq2seq, the encoder must provide two pieces of information: token representation and context representation. Token-level representation is obtained through GNN node embeddings, and for context-level representation, in addition to the gated weighted sum of nodes used in GGNN, they also concatenated the hidden state before and after inputting the graph, seemingly concatenating the hidden states of all nodes before and after graph input as the final node embedding. The RNN output is directly concatenated with the graph embedding and then passed through a linear layer. Note that the RNN output is essentially a representation of the graph (entire sequence), so it can be directly concatenated:</p>
+<script type="math/tex; mode=display">
+\left[\mathbf{e}_{1}^{\prime} \ldots \mathbf{e}_{N}^{\prime}\right]=\operatorname{GNN}\left(\left(S,\left[R_{1} \ldots R_{K}\right],\left[\mathbf{e}_{1} \ldots \mathbf{e}_{N}\right]\right)\right) \\</script><script type="math/tex; mode=display">
+\sigma\left(w\left(\boldsymbol{h}_{v}^{(T)}\right)\right) \in[0,1] \\</script><script type="math/tex; mode=display">
+\hat{\mathbf{e}}=\sum_{1<i<N} \sigma\left(w\left(\mathbf{e}_{i}^{\prime}\right)\right) \cdot \aleph\left(\mathbf{e}_{i}^{\prime}\right) \\</script><script type="math/tex; mode=display">
+Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\</script></li>
+<li>In practical engineering implementation, batching graphs of different sizes is inconvenient. The authors used two tricks:<ul>
+<li>Standard GNN approach: Combine small graphs into a large graph with multiple connected subgraphs as a batch</li>
+<li>Since copy and attention mechanisms require calculating weights across the entire input sequence, after combining into a large graph, the authors also preserved each node’s index in the small graph. Then, using TensorFlow’s unsorted segment * operator (performing operations on segments of different lengths), they can efficiently and numerically stably perform softmax over the variable number of node representations for each graph</li>
+</ul>
+</li>
+<li>The authors used a simple LSTM encoder and decoder configuration, mainly modifying the pointer generator code. GNN was stacked eight layers</li>
+<li>The final results did not surpass the pointer generator, but the ablation with the pointer mechanism was quite significant, as shown in the following figure:<br><img data-src="https://s2.ax1x.com/2020/02/11/1TTHPJ.png" alt="1TTHPJ.png"></li>
+<li>The authors did not provide much analysis of the results, as the paper used three datasets, with the other two being code summaries that have naturally structured data, thus performing well. On purely natural language datasets like CNNDM, the performance was not particularly outstanding</li>
+<li>However, in the ablation experiments, it’s worth noting that even without adding coreference information, simply using GNN to process sentence structure performed better than LSTM</li>
 </ul>
 </div>
-<div id="zh-content" class="lang-content" style="display: none;"><h1 id="intuition">Intuition</h1>
-<ul>
-<li>将GNN引入seq2seq的一个很自然的想法就是先用sequence encoder得到token
-representations，然后再构建token之间的关系，建图，将图和token
-representations送入GNN，得到新的token表示。</li>
-<li>问题在于，对于摘要，直觉的想法是以句子为节点，构建句子之间的关系图，这样最后得到的是句子的表示，不能到词级别的细粒度，这样的话attention
-based decoder就不太好做。</li>
-<li>本文作者的想法就很粗暴，干脆就做词级别的GNN，一篇文章900个词，就构建900个节点的图，而边的关系是异构的，分三种：
-<ul>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h1><ul>
+<li>将GNN引入seq2seq的一个很自然的想法就是先用sequence encoder得到token representations，然后再构建token之间的关系，建图，将图和token representations送入GNN，得到新的token表示。</li>
+<li>问题在于，对于摘要，直觉的想法是以句子为节点，构建句子之间的关系图，这样最后得到的是句子的表示，不能到词级别的细粒度，这样的话attention based decoder就不太好做。</li>
+<li>本文作者的想法就很粗暴，干脆就做词级别的GNN，一篇文章900个词，就构建900个节点的图，而边的关系是异构的，分三种：<ul>
 <li>一句里的所有词连向一个额外添加的句子节点、一个实体里的所有词连向一个额外添加的实体节点，这类边都叫做IN</li>
 <li>前一个词连后一个词，前一句连后一句，这类边叫NEXT</li>
-<li>指代消解，这部分叫做REF 整体如下图所示： <img data-src="https://s2.ax1x.com/2020/02/11/1Toe6P.png" alt="1Toe6P.png" /></li>
-</ul></li>
+<li>指代消解，这部分叫做REF<br>整体如下图所示：<br><img data-src="https://s2.ax1x.com/2020/02/11/1Toe6P.png" alt="1Toe6P.png"></li>
 </ul>
-<h1 id="ggnn">GGNN</h1>
-<ul>
-<li><p>作者使用的GNN是Gated Graph Neural Network。原论文见：GATED GRAPH
-SEQUENCE NEURAL NETWORKS</p>
-<p><span class="math display">\[
-\begin{aligned} \mathbf{h}_{v}^{(1)}
-&amp;=\left[\boldsymbol{x}_{v}^{\top}, \mathbf{0}\right]^{\top} \\
-\mathbf{a}_{v}^{(t)}
-&amp;=\mathbf{A}_{v:}^{\top}\left[\mathbf{h}_{1}^{(t-1) \top} \ldots
-\mathbf{h}_{|\mathcal{V}|}^{(t-1) \top}\right]^{\top}+\mathbf{b} \\
-\mathbf{z}_{v}^{t} &amp;=\sigma\left(\mathbf{W}^{z}
-\mathbf{a}_{v}^{(t)}+\mathbf{U}^{z} \mathbf{h}_{v}^{(t-1)}\right)
-\end{aligned} \\
-\begin{aligned} \mathbf{r}_{v}^{t} &amp;=\sigma\left(\mathbf{W}^{r}
-\mathbf{a}_{v}^{(t)}+\mathbf{U}^{r} \mathbf{h}_{v}^{(t-1)}\right) \\
-\widetilde{\mathbf{h}_{v}^{(t)}} &amp;=\tanh \left(\mathbf{W}
-\mathbf{a}_{v}^{(t)}+\mathbf{U}\left(\mathbf{r}_{v}^{t} \odot
-\mathbf{h}_{v}^{(t-1)}\right)\right) \\ \mathbf{h}_{v}^{(t)}
-&amp;=\left(1-\mathbf{z}_{v}^{t}\right) \odot
-\mathbf{h}_{v}^{(t-1)}+\mathbf{z}_{v}^{t} \odot
-\widetilde{\mathbf{h}_{v}^{(t)}} \end{aligned} \\
-\]</span></p></li>
-<li><p>GGNN发布于2015年，在2009年的GNN模型上改进。</p></li>
-<li><p>原始的GNN模型相当于用图的拓扑关系，在多层线性网络中Mask掉部分边，节点在每一层的表示通过上一层中相邻的节点线性变换而来，即propagation，最后一层linear做output输出节点标签
-<img data-src="https://s2.ax1x.com/2020/02/27/3082wD.png"
-alt="3082wD.png" /></p></li>
-<li><p>GGNN考虑了边的有向和异构。其邻接矩阵A如上图所示，是一个<span
-class="math inline">\(\mathbf{A} \in \mathbb{R}^{D|\mathcal{V}| \times 2
-D|\mathcal{V}|}\)</span>的线性层，两倍的宽代表双向两个输出频道，输入节点的表示矩阵<span
-class="math inline">\(\mathbb{R}^{D|\mathcal{V}|}\)</span>，这里的<span
-class="math inline">\(A\)</span>包含了参数，依赖于边的类型和方向，相当于这个包含了邻接信息的线性层也是通过embedding
-lookup得到的。接下来就是类似于GRU的更新，<span
-class="math inline">\(z\)</span>和<span
-class="math inline">\(r\)</span>分别是更新门和重置门。所以公式含义如下</p>
-<ul>
+</li>
+</ul>
+<h1 id="GGNN"><a href="#GGNN" class="headerlink" title="GGNN"></a>GGNN</h1><ul>
+<li><p>作者使用的GNN是Gated Graph Neural Network。原论文见：GATED GRAPH SEQUENCE NEURAL NETWORKS</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \mathbf{h}_{v}^{(1)} &=\left[\boldsymbol{x}_{v}^{\top}, \mathbf{0}\right]^{\top} \\ \mathbf{a}_{v}^{(t)} &=\mathbf{A}_{v:}^{\top}\left[\mathbf{h}_{1}^{(t-1) \top} \ldots \mathbf{h}_{|\mathcal{V}|}^{(t-1) \top}\right]^{\top}+\mathbf{b} \\ \mathbf{z}_{v}^{t} &=\sigma\left(\mathbf{W}^{z} \mathbf{a}_{v}^{(t)}+\mathbf{U}^{z} \mathbf{h}_{v}^{(t-1)}\right) \end{aligned} \\ 
+\begin{aligned} \mathbf{r}_{v}^{t} &=\sigma\left(\mathbf{W}^{r} \mathbf{a}_{v}^{(t)}+\mathbf{U}^{r} \mathbf{h}_{v}^{(t-1)}\right) \\ \widetilde{\mathbf{h}_{v}^{(t)}} &=\tanh \left(\mathbf{W} \mathbf{a}_{v}^{(t)}+\mathbf{U}\left(\mathbf{r}_{v}^{t} \odot \mathbf{h}_{v}^{(t-1)}\right)\right) \\ \mathbf{h}_{v}^{(t)} &=\left(1-\mathbf{z}_{v}^{t}\right) \odot \mathbf{h}_{v}^{(t-1)}+\mathbf{z}_{v}^{t} \odot \widetilde{\mathbf{h}_{v}^{(t)}} \end{aligned} \\</script></li>
+<li>GGNN发布于2015年，在2009年的GNN模型上改进。</li>
+<li>原始的GNN模型相当于用图的拓扑关系，在多层线性网络中Mask掉部分边，节点在每一层的表示通过上一层中相邻的节点线性变换而来，即propagation，最后一层linear做output输出节点标签<br><img data-src="https://s2.ax1x.com/2020/02/27/3082wD.png" alt="3082wD.png"></li>
+<li>GGNN考虑了边的有向和异构。其邻接矩阵A如上图所示，是一个$\mathbf{A} \in \mathbb{R}^{D|\mathcal{V}| \times 2 D|\mathcal{V}|}$的线性层，两倍的宽代表双向两个输出频道，输入节点的表示矩阵$\mathbb{R}^{D|\mathcal{V}|}$，这里的$A$包含了参数，依赖于边的类型和方向，相当于这个包含了邻接信息的线性层也是通过embedding lookup得到的。接下来就是类似于GRU的更新，$z$和$r$分别是更新门和重置门。所以公式含义如下<ul>
 <li>1:初始化节点embedding，根据具体任务给每个节点补上手工特征，并Padding到相同长度</li>
 <li>2:通过包含了邻接信息的线性层，得到propagate之后的信息</li>
 <li>3:根据上一层状态和propagate信息计算更新门</li>
 <li>4:根据上一层状态和propagate信息计算重置门</li>
 <li>5,6:同GRU</li>
-</ul></li>
+</ul>
+</li>
 <li><p>output部分，简单的线性层作用于每一个节点就可以做节点级别的任务，如果要获得整张图的表示，可以用一个门控机制来获取（原文表述为attention）：</p>
-<p><span class="math display">\[
-\mathbf{h}_{\mathcal{G}}=\tanh \left(\sum_{v \in \mathcal{V}}
-\sigma\left(i\left(\mathbf{h}_{v}^{(T)},
-\boldsymbol{x}_{v}\right)\right) \odot \tanh
-\left(j\left(\mathbf{h}_{v}^{(T)},
-\boldsymbol{x}_{v}\right)\right)\right)
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\mathbf{h}_{\mathcal{G}}=\tanh \left(\sum_{v \in \mathcal{V}} \sigma\left(i\left(\mathbf{h}_{v}^{(T)}, \boldsymbol{x}_{v}\right)\right) \odot \tanh \left(j\left(\mathbf{h}_{v}^{(T)}, \boldsymbol{x}_{v}\right)\right)\right)</script></li>
 </ul>
-<h1 id="ggsnn">GGSNN</h1>
-<ul>
-<li><p>门控的GNN还可以扩展为sequence output，即GATED GRAPH SEQUENCE
-NEURAL NETWORK。 <img data-src="https://s2.ax1x.com/2020/02/28/3BkTun.png"
-alt="3BkTun.png" /></p></li>
-<li><p>如上图所示，一般的seq2seq，需要把输入的seq编码，之后再逐步解码，但是再graph当中，一步的graph就已经包含了所有seq
-token信息，多层只是深度层次上的叠加，而不是时序的层次，因此我们可以在任意的深度层次开始解码，类似于CRF，如图所示：<span
-class="math inline">\(o\)</span>为输出，<span
-class="math inline">\(X^k\)</span>为第k步输出时节点的input embedding
-matrix，<span
-class="math inline">\(H^{k,t}\)</span>代表第k步输出，同时整个输入的节点embedding在深度上传递了t步时，节点的hidden
-state matrix。类似于转移与发射矩阵，作者分别用了两个GGNN<span
-class="math inline">\(F_o,F_x\)</span>来完成hidden
-state的转移和发射。两者可以共享propagation部分的参数。虽然只写了<span
-class="math inline">\(F_x\)</span>将<span
-class="math inline">\(H\)</span>转移到<span
-class="math inline">\(X\)</span>，但实际上类似于LSTM，<span
-class="math inline">\(X^{k+1}\)</span>同时还由<span
-class="math inline">\(X^k\)</span>决定：</p>
-<p><span class="math display">\[
-\boldsymbol{x}_{v}^{(k+1)}=\sigma\left(j\left(\mathbf{h}_{v}^{(k, T)},
-\boldsymbol{x}_{v}^{(k)}\right)\right)
-\]</span></p></li>
-<li><p>同样，也可以不需要从<span class="math inline">\(H\)</span>到<span
-class="math inline">\(X\)</span>的转移，直接输入每一解码步的<span
-class="math inline">\(X\)</span>，类似于teacher forcing</p></li>
-<li><p>论文里的实验都是状态空间比较小，不同于文本任务。直接看STRUCTURED
-NEURAL SUMMARIZATION里的用法</p></li>
+<h1 id="GGSNN"><a href="#GGSNN" class="headerlink" title="GGSNN"></a>GGSNN</h1><ul>
+<li>门控的GNN还可以扩展为sequence output，即GATED GRAPH SEQUENCE NEURAL NETWORK。<br><img data-src="https://s2.ax1x.com/2020/02/28/3BkTun.png" alt="3BkTun.png"></li>
+<li><p>如上图所示，一般的seq2seq，需要把输入的seq编码，之后再逐步解码，但是再graph当中，一步的graph就已经包含了所有seq token信息，多层只是深度层次上的叠加，而不是时序的层次，因此我们可以在任意的深度层次开始解码，类似于CRF，如图所示：$o$为输出，$X^k$为第k步输出时节点的input embedding matrix，$H^{k,t}$代表第k步输出，同时整个输入的节点embedding在深度上传递了t步时，节点的hidden state matrix。类似于转移与发射矩阵，作者分别用了两个GGNN$F_o,F_x$来完成hidden state的转移和发射。两者可以共享propagation部分的参数。虽然只写了$F_x$将$H$转移到$X$，但实际上类似于LSTM，$X^{k+1}$同时还由$X^k$决定：</p>
+<script type="math/tex; mode=display">
+\boldsymbol{x}_{v}^{(k+1)}=\sigma\left(j\left(\mathbf{h}_{v}^{(k, T)}, \boldsymbol{x}_{v}^{(k)}\right)\right)</script></li>
+<li>同样，也可以不需要从$H$到$X$的转移，直接输入每一解码步的$X$，类似于teacher forcing</li>
+<li>论文里的实验都是状态空间比较小，不同于文本任务。直接看STRUCTURED NEURAL SUMMARIZATION里的用法</li>
 </ul>
-<h1 id="sequence-gnns">Sequence GNNs</h1>
-<ul>
-<li><p>作者将GGNN引入编码端，相当于传统的seq2seq
-encoder最后用GNN补充了一次编码，但是encoder的输出不变，decoder不变（抛弃了GGSNN的decoder设计）</p></li>
-<li><p>首先作者用更加清晰的语言描述了GGNN，每一步包含propagation 与
-update</p>
-<ul>
-<li>propagation：<span
-class="math inline">\(\boldsymbol{m}_{v}^{(i)}=g\left(\left\{f_{k}\left(\boldsymbol{h}_{u}^{(i)}\right)
-| \text { there is an edge of type } k \text { from } u \text { to }
-v\right\}\right.)\)</span>，即用边相关的线性变换收集邻域节点信息求和，其中<span
-class="math inline">\(f\)</span>是线性层，<span
-class="math inline">\(g\)</span>是求和</li>
-<li>update：<span
-class="math inline">\(\boldsymbol{h}_{v}^{(i+1)}=\operatorname{GRU}\left(\boldsymbol{m}_{v}^{(i)},
-\boldsymbol{h}_{v}^{(i)}\right)\)</span></li>
-</ul></li>
-<li><p>seq2seq中的encoder至少要提供两点信息：token representation 和
-context representation。token级别的已经拿到了，即GNN之后的节点
-embedding，context级别即图的表示，这里作者除了沿用GGNN里门控算权重求和各节点之外，还拼接了输入图之前、RNN编码之后的hidden
-state，看代码貌似是把所有节点输入图前后的hidden
-state拼接起来，作为最终的节点embedding；把RNN的输出直接和图embedding表示拼接起来再过一个线性层。这里注意RNN的输出实际上是对图（整个序列）的一个表示，和graph
-embedding是同一级别的，所以直接拼接：</p>
-<p><span class="math display">\[
-\left[\mathbf{e}_{1}^{\prime} \ldots
-\mathbf{e}_{N}^{\prime}\right]=\operatorname{GNN}\left(\left(S,\left[R_{1}
-\ldots R_{K}\right],\left[\mathbf{e}_{1} \ldots
-\mathbf{e}_{N}\right]\right)\right) \\
-\]</span></p>
-<p><span class="math display">\[
-\sigma\left(w\left(\boldsymbol{h}_{v}^{(T)}\right)\right) \in[0,1] \\
-\]</span></p>
-<p><span class="math display">\[
-\hat{\mathbf{e}}=\sum_{1&lt;i&lt;N}
-\sigma\left(w\left(\mathbf{e}_{i}^{\prime}\right)\right) \cdot
-\aleph\left(\mathbf{e}_{i}^{\prime}\right) \\
-\]</span></p>
-<p><span class="math display">\[
-Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\
-\]</span></p></li>
-<li><p>在实际工程实现中，不同大小的图打包成batch不方便，作者也是采用了两个trick</p>
-<ul>
+<h1 id="Sequence-GNNs"><a href="#Sequence-GNNs" class="headerlink" title="Sequence GNNs"></a>Sequence GNNs</h1><ul>
+<li>作者将GGNN引入编码端，相当于传统的seq2seq encoder最后用GNN补充了一次编码，但是encoder的输出不变，decoder不变（抛弃了GGSNN的decoder设计）</li>
+<li>首先作者用更加清晰的语言描述了GGNN，每一步包含propagation 与 update<ul>
+<li>propagation：$\boldsymbol{m}<em>{v}^{(i)}=g\left(\left{f</em>{k}\left(\boldsymbol{h}_{u}^{(i)}\right) | \text { there is an edge of type } k \text { from } u \text { to } v\right}\right.)$，即用边相关的线性变换收集邻域节点信息求和，其中$f$是线性层，$g$是求和</li>
+<li>update：$\boldsymbol{h}<em>{v}^{(i+1)}=\operatorname{GRU}\left(\boldsymbol{m}</em>{v}^{(i)}, \boldsymbol{h}_{v}^{(i)}\right)$</li>
+</ul>
+</li>
+<li><p>seq2seq中的encoder至少要提供两点信息：token representation 和 context representation。token级别的已经拿到了，即GNN之后的节点 embedding，context级别即图的表示，这里作者除了沿用GGNN里门控算权重求和各节点之外，还拼接了输入图之前、RNN编码之后的hidden state，看代码貌似是把所有节点输入图前后的hidden state拼接起来，作为最终的节点embedding；把RNN的输出直接和图embedding表示拼接起来再过一个线性层。这里注意RNN的输出实际上是对图（整个序列）的一个表示，和graph embedding是同一级别的，所以直接拼接：</p>
+<script type="math/tex; mode=display">
+\left[\mathbf{e}_{1}^{\prime} \ldots \mathbf{e}_{N}^{\prime}\right]=\operatorname{GNN}\left(\left(S,\left[R_{1} \ldots R_{K}\right],\left[\mathbf{e}_{1} \ldots \mathbf{e}_{N}\right]\right)\right) \\</script><script type="math/tex; mode=display">
+\sigma\left(w\left(\boldsymbol{h}_{v}^{(T)}\right)\right) \in[0,1] \\</script><script type="math/tex; mode=display">
+\hat{\mathbf{e}}=\sum_{1<i<N} \sigma\left(w\left(\mathbf{e}_{i}^{\prime}\right)\right) \cdot \aleph\left(\mathbf{e}_{i}^{\prime}\right) \\</script><script type="math/tex; mode=display">
+Embedding_{graph} = W \cdot(\mathbf{e} \hat{\mathbf{e}}) \\</script></li>
+<li>在实际工程实现中，不同大小的图打包成batch不方便，作者也是采用了两个trick<ul>
 <li>GNN的常规做法：把小图拼接成有多个连接子图的大图作为一个batch</li>
-<li>由于copy和attention机制需要在整个输入序列上计算权重，拼接成大图之后作者也保留了每个节点在小图当中的index，然后通过tensorflow的unsorted
-segment *操作符（即对不同长度的段分别做操作），可以完成一个efficient and
-numerically stable softmax over the variable number of representations
-of the nodes of each graph.</li>
-</ul></li>
-<li><p>作者只用了简单的LSTM的encoder和decoder配置，基本在pointer
-generator的代码上做改动。GNN叠加八层</p></li>
-<li><p>最后的结果并没有超过pointer
-generator，但是引入pointer机制后的ablation比较明显，如下图， <img data-src="https://s2.ax1x.com/2020/02/11/1TTHPJ.png"
-alt="1TTHPJ.png" /></p></li>
-<li><p>作者也没有对结果做太多分析，因为论文做了三个数据集，其余两个是代码摘要，有比较自然的结构化数据，因此表现很好，在CNNDM这种纯自然语言数据集上表现并不是特别亮眼。</p></li>
-<li><p>但是在消融实验中值得注意的是即便不添加指代信息，仅仅是让GNN处理句子结构，表现也比LSTM要好。</p></li>
+<li>由于copy和attention机制需要在整个输入序列上计算权重，拼接成大图之后作者也保留了每个节点在小图当中的index，然后通过tensorflow的unsorted segment *操作符（即对不同长度的段分别做操作），可以完成一个efficient and numerically stable softmax over the variable number of representations of the nodes of each graph.</li>
+</ul>
+</li>
+<li>作者只用了简单的LSTM的encoder和decoder配置，基本在pointer generator的代码上做改动。GNN叠加八层</li>
+<li>最后的结果并没有超过pointer generator，但是引入pointer机制后的ablation比较明显，如下图，<br><img data-src="https://s2.ax1x.com/2020/02/11/1TTHPJ.png" alt="1TTHPJ.png"></li>
+<li>作者也没有对结果做太多分析，因为论文做了三个数据集，其余两个是代码摘要，有比较自然的结构化数据，因此表现很好，在CNNDM这种纯自然语言数据集上表现并不是特别亮眼。</li>
+<li>但是在消融实验中值得注意的是即便不添加指代信息，仅仅是让GNN处理句子结构，表现也比LSTM要好。</li>
 </ul>
 </div>
 <script src="https://giscus.app/client.js"
@@ -672,7 +441,6 @@ alt="1TTHPJ.png" /></p></li>
         crossorigin="anonymous"
         async>
 </script>
-
     </div>
 
     
@@ -737,13 +505,13 @@ alt="1TTHPJ.png" /></p></li>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">1.1m</span>
+    <span title="Word count total">1m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">16:25</span>
+    <span title="Reading time total">15:27</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
