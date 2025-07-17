@@ -9,31 +9,37 @@ html: true
 
 <!-- Initialize Firebase and PV counter -->
 <script>
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    databaseURL: "https://blog-a38f5-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "blog-a38f5",
-    apiKey: "AIzaSyDgs_qagScUwYJr0O1MUyc3EcWbhyWzoCw",
-    authDomain: "blog-a38f5.firebaseapp.com",
-    storageBucket: "blog-a38f5.appspot.com",
-    messagingSenderId: "1091568780806",
-    appId: "1:1091568780806:web:774c32a22ef91802d92587"
-  };
+  // Wait for DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      databaseURL: "https://blog-a38f5-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "blog-a38f5",
+      apiKey: "AIzaSyDgs_qagScUwYJr0O1MUyc3EcWbhyWzoCw",
+      authDomain: "blog-a38f5.firebaseapp.com",
+      storageBucket: "blog-a38f5.appspot.com",
+      messagingSenderId: "1091568780806",
+      appId: "1:1091568780806:web:774c32a22ef91802d92587"
+    };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
-  // Get a reference to the page views - update to match your database structure
-  const pvRef = firebase.database().ref('pageViews');
+    // Get a reference to the page views - update to match your database structure
+    const pvRef = firebase.database().ref('pageViews');
 
-  // Update page views
-  pvRef.transaction(currentViews => {
-    return (currentViews || 10000) + 1;  // Set default to 10000 to match your initial value
-  });
+    // Update page views
+    pvRef.transaction(currentViews => {
+      return (currentViews || 10000) + 1;  // Set default to 10000 to match your initial value
+    });
 
-  // Display page views
-  pvRef.on('value', (snapshot) => {
-    document.getElementById('page-views').textContent = snapshot.val() || 0;
+    // Display page views
+    pvRef.on('value', (snapshot) => {
+      const pageViewsElement = document.getElementById('page-views');
+      if (pageViewsElement) {
+        pageViewsElement.textContent = snapshot.val() || 0;
+      }
+    });
   });
 </script>
 
@@ -317,13 +323,14 @@ html: true
         color: inherit;
         background: none;
         border: none;
+    }
+
+    .pv-counter #page-views {
         transition: color 0.3s ease;
     }
 
-    .pv-counter:hover {
+    .pv-counter:hover #page-views {
         color: #6699FF;
-        background: none;
-        border: none;
     }
 </style>
 
@@ -347,7 +354,7 @@ html: true
       outline: none; 
       text-decoration: none !important; 
       color: #ffffff !important; 
-      background: linear-gradient(135deg, #769ecb 0%, #5a7ba8 100%);
+      background: linear-gradient(135deg, #a8c5e8 0%, #4a6b95 100%);
       border: none;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
@@ -363,7 +370,7 @@ html: true
     .libutton:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(118, 158, 203, 0.3);
-      background: linear-gradient(135deg, #5a7ba8 0%, #4a6b95 100%);
+      background: linear-gradient(135deg, #8db4e0 0%, #3a5a85 100%);
     }
     
     .libutton:active {
@@ -380,7 +387,7 @@ html: true
       outline: none; 
       text-decoration: none !important; 
       color: #ffffff !important; 
-      background: linear-gradient(135deg, #4285f4 0%, #3367d6 100%);
+      background: linear-gradient(135deg, #74a9ff 0%, #1a4bb8 100%);
       border: none;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
@@ -396,7 +403,7 @@ html: true
     .gsbutton:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
-      background: linear-gradient(135deg, #3367d6 0%, #2b5ce6 100%);
+      background: linear-gradient(135deg, #5a95ff 0%, #1440a8 100%);
     }
     
     .gsbutton:active {
@@ -413,14 +420,14 @@ html: true
       outline: none; 
       text-decoration: none !important; 
       color: #ffffff !important; 
-      background: linear-gradient(135deg, #333333 0%, #24292e 100%);
+      background: linear-gradient(135deg, #8b7db8 0%, #1a1a1a 100%);
       border: none;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       font-size: 14px;
       font-weight: 500;
       height: 32px;
-      box-shadow: 0 2px 8px rgba(51, 51, 51, 0.2);
+      box-shadow: 0 2px 8px rgba(139, 125, 184, 0.2);
       transition: all 0.3s ease;
       cursor: pointer;
       margin: 0 5px;
@@ -428,13 +435,13 @@ html: true
     
     .ghbutton:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(51, 51, 51, 0.3);
-      background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+      box-shadow: 0 4px 12px rgba(139, 125, 184, 0.3);
+      background: linear-gradient(135deg, #7a6ba5 0%, #0d0d0d 100%);
     }
     
     .ghbutton:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(51, 51, 51, 0.2);
+      box-shadow: 0 2px 6px rgba(139, 125, 184, 0.2);
     }
     
     .gmbutton { 
@@ -446,14 +453,14 @@ html: true
       outline: none; 
       text-decoration: none !important; 
       color: #ffffff !important; 
-      background: linear-gradient(135deg, #ea4335 0%, #d33b2c 100%);
+      background: linear-gradient(135deg, #ff8a80 0%, #c62828 100%);
       border: none;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       font-size: 14px;
       font-weight: 500;
       height: 32px;
-      box-shadow: 0 2px 8px rgba(234, 67, 53, 0.2);
+      box-shadow: 0 2px 8px rgba(255, 138, 128, 0.2);
       transition: all 0.3s ease;
       cursor: pointer;
       margin: 0 5px;
@@ -461,13 +468,13 @@ html: true
     
     .gmbutton:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(234, 67, 53, 0.3);
-      background: linear-gradient(135deg, #d33b2c 0%, #c23321 100%);
+      box-shadow: 0 4px 12px rgba(255, 138, 128, 0.3);
+      background: linear-gradient(135deg, #ff7569 0%, #b71c1c 100%);
     }
     
     .gmbutton:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(234, 67, 53, 0.2);
+      box-shadow: 0 2px 6px rgba(255, 138, 128, 0.2);
     }
     
     @media (max-width: 768px) {
@@ -528,13 +535,15 @@ html: true
 </div>
 
 - Hello, I'm Wei Liu (刘维). Welcome to my blog (<span class="pv-counter"><span id="page-views">0</span> views</span>). You can search me on google with keyword "thinkwee", which means "The Thinking Wei".
+- Past experience:
     -   2014-2021: Bachelor of Communication Engineering in BUPT, and Master of Computer Engineering in CIST Lab@BUPT.
     -   2021-2023: Application Research in the NLP&LLM Department in [Tencent](https://www.tencent.com/en-us/about.html).
     -   2023-2025: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/)@Tsinghua University with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) and Prof. [Chen Qian](http://qianc62.github.io) on LLM Multi-Agent System.
     -   2025-now: Proud to be a PhD advised by [Prof. Yulan He](https://sites.google.com/view/yulanhe) and a member of [KCLNLP](https://kclnlp.github.io/)!
 
 # Recent News
--   **2025.5.16 Checkout KCLNLP's amazing works [here](https://x.com/kclnlp/status/1923409800009748788), with 15 papers accepted by ACL 2025 and 3 papers accepted by ICML 2025!**.
+
+- **2025.5.16 Checkout KCLNLP's amazing works [here](https://x.com/kclnlp/status/1923409800009748788), with 15 papers accepted by ACL 2025 and 3 papers accepted by ICML 2025!**.
 - **2025.5.21 Check out [NOVER](https://arxiv.org/abs/2505.16022), a novel verifier-free reinforcement learning framework for training Large Reasoning Model. Train your own R1-Zero-like reasoning model on ANY DATA!**
 - **2025.6.9 Check out [AgentsMeetRL](https://github.com/thinkwee/AgentsMeetRL), an awesome list of Reinforcement Learning-based Large Language Agent!**
 
