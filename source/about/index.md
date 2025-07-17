@@ -516,15 +516,15 @@ html: true
 # About Me
 
 <div style="text-align: center; width: 100%; overflow: hidden;">
-  <div style="display: inline-block; width: 32%; text-align: center; vertical-align: top;">
-    <img src="/img/bupt.png" alt="I'm in BUPT" style="width: 90%; max-width: 250px; height: auto;">
-  </div>
-  <div style="display: inline-block; width: 32%; text-align: center; vertical-align: top;">
-    <img src="/img/tencent.png" alt="I'm in Tecent" style="width: 90%; max-width: 250px; height: auto;">
-  </div>
-  <div style="display: inline-block; width: 32%; text-align: center; vertical-align: top;">
-    <img src="/img/tsinghua.png" alt="I'm in Tsinghua" style="width: 90%; max-width: 250px; height: auto;">
-  </div>
+<div style="display: inline-block; width: 32%; text-align: center; vertical-align: top;">
+<img src="/img/bupt.png" alt="I'm in BUPT" style="width: 90%; max-width: 250px; height: auto;">
+</div>
+<div style="display: inline-block; width: 32%; text-align: center; vertical-align: top;">
+<img src="/img/tencent.png" alt="I'm in Tecent" style="width: 90%; max-width: 250px; height: auto;">
+</div>
+<div style="display: inline-block; width: 32%; text-align: center; vertical-align: top;">
+<img src="/img/tsinghua.png" alt="I'm in Tsinghua" style="width: 90%; max-width: 250px; height: auto;">
+</div>
 </div>
 
 - Hello, I'm Wei Liu (刘维). Welcome to my blog (<span class="pv-counter"><span id="page-views">0</span> views</span>). You can search me on google with keyword "thinkwee", which means "The Thinking Wei".
