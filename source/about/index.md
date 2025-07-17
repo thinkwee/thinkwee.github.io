@@ -332,29 +332,211 @@ html: true
 </p>
 <center>Since February 2025, I've been based in London pursuing my PhD journey!</center>
 <center>Fun Fact: My giraffe icon isn't random - I actually have a long neck! </center>
-<center>See for yourself and meet other talented researchers on our <a href="https://kclnlp.github.io/team.html" target="_blank" rel="noopener">team page</a>.</center>
+<center>See for yourself and meet other talented researchers on our <a href="https://kclnlp.github.io/team.html" target="_blank" rel="noopener">KCLNLP team page</a>.</center>
+
+---
+
 <center>
-  <style>.libutton { display: flex; flex-direction: column; justify-content: center; padding: 7px; text-align: center; outline: none; text-decoration: none !important; color: #ffffff !important; width: 200px; height: 20px; border-radius: 16px; background-color: #769ecb; font-family: "SF Pro Text", Helvetica, sans-serif; } </style>
-  <a class="libutton" href="http://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=thinkwee" target="_black">Follow This Guy on Linkedin</a>
+  <style>
+    .libutton { 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      padding: 0px 12px; 
+      text-align: center; 
+      outline: none; 
+      text-decoration: none !important; 
+      color: #ffffff !important; 
+      background: linear-gradient(135deg, #769ecb 0%, #5a7ba8 100%);
+      border: none;
+      border-radius: 8px; 
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      font-size: 14px;
+      font-weight: 500;
+      height: 32px;
+      box-shadow: 0 2px 8px rgba(118, 158, 203, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    
+    .libutton:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(118, 158, 203, 0.3);
+      background: linear-gradient(135deg, #5a7ba8 0%, #4a6b95 100%);
+    }
+    
+    .libutton:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(118, 158, 203, 0.2);
+    }
+    
+    .gsbutton { 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      padding: 0px 12px; 
+      text-align: center; 
+      outline: none; 
+      text-decoration: none !important; 
+      color: #ffffff !important; 
+      background: linear-gradient(135deg, #4285f4 0%, #3367d6 100%);
+      border: none;
+      border-radius: 8px; 
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      font-size: 14px;
+      font-weight: 500;
+      height: 32px;
+      box-shadow: 0 2px 8px rgba(66, 133, 244, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    
+    .gsbutton:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+      background: linear-gradient(135deg, #3367d6 0%, #2b5ce6 100%);
+    }
+    
+    .gsbutton:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(66, 133, 244, 0.2);
+    }
+    
+    .ghbutton { 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      padding: 0px 12px; 
+      text-align: center; 
+      outline: none; 
+      text-decoration: none !important; 
+      color: #ffffff !important; 
+      background: linear-gradient(135deg, #333333 0%, #24292e 100%);
+      border: none;
+      border-radius: 8px; 
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      font-size: 14px;
+      font-weight: 500;
+      height: 32px;
+      box-shadow: 0 2px 8px rgba(51, 51, 51, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    
+    .ghbutton:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(51, 51, 51, 0.3);
+      background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+    }
+    
+    .ghbutton:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(51, 51, 51, 0.2);
+    }
+    
+    .gmbutton { 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      padding: 0px 12px; 
+      text-align: center; 
+      outline: none; 
+      text-decoration: none !important; 
+      color: #ffffff !important; 
+      background: linear-gradient(135deg, #ea4335 0%, #d33b2c 100%);
+      border: none;
+      border-radius: 8px; 
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      font-size: 14px;
+      font-weight: 500;
+      height: 32px;
+      box-shadow: 0 2px 8px rgba(234, 67, 53, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    
+    .gmbutton:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(234, 67, 53, 0.3);
+      background: linear-gradient(135deg, #d33b2c 0%, #c23321 100%);
+    }
+    
+    .gmbutton:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(234, 67, 53, 0.2);
+    }
+    
+    @media (max-width: 768px) {
+      .libutton, .gsbutton, .ghbutton, .gmbutton {
+        padding: 0px 10px;
+        font-size: 13px;
+        height: 30px;
+        margin: 0 3px;
+      }
+    }
+  </style>
+
+  <center>
+  You can find this guy via
+  </center>
+  <a class="libutton" href="http://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=thinkwee" target="_blank">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </svg>
+    Linkedin
+  </a>
+  <a class="gsbutton" href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ" target="_blank">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;">
+      <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+    </svg>
+    Google Scholar
+  </a>
+  <a class="ghbutton" href="https://github.com/thinkwee" target="_blank">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;">
+      <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+    </svg>
+    GitHub
+  </a>
+  <a class="gmbutton" href="mailto:thinkwee2767@gmail.com">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;">
+      <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h3.819v.273L12 10.186l6.545-6.092v-.273h3.819c.904 0 1.636.732 1.636 1.636Z"/>
+    </svg>
+    Gmail
+  </a>
+  <p align="center">
+  <img data-src="/img/wechat.bmp" alt="wechat" width="350">
+  </p>
 </center>
-<center>
-  or Find This Guy on WeChat
-</center>
-<p align="center">
-  <img data-src="/img/wechat.png" alt="wechat" width="350">
-</p>
+
 
 # About Me
+
+<div style="text-align: center; width: 100%; overflow: hidden;">
+  <div style="display: inline-block; width: 32%; text-align: center; vertical-align: top;">
+    <img src="/img/bupt.png" alt="I'm in BUPT" style="width: 90%; max-width: 250px; height: auto;">
+  </div>
+  <div style="display: inline-block; width: 32%; text-align: center; vertical-align: top;">
+    <img src="/img/tencent.png" alt="I'm in Tecent" style="width: 90%; max-width: 250px; height: auto;">
+  </div>
+  <div style="display: inline-block; width: 32%; text-align: center; vertical-align: top;">
+    <img src="/img/tsinghua.png" alt="I'm in Tsinghua" style="width: 90%; max-width: 250px; height: auto;">
+  </div>
+</div>
+
 - Hello, I'm Wei Liu (刘维). Welcome to my blog (<span class="pv-counter"><span id="page-views">0</span> views</span>). You can search me on google with keyword "thinkwee", which means "The Thinking Wei".
-- Here are my <a href="mailto:thinkwee2767@gmail.com" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Email</a>, <a href="https://github.com/thinkwee" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Github</a>, and <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; text-decoration: none; line-height: 1;">Google Scholar</a>.
-- My previous experience
-    -   2014-2021: Bachelor of Communication Engineering in BUPT, and Master of Computer Engineering in CIST Lab@BUPT
-    -   2021-2023: Application Research, [Tencent](https://www.tencent.com/en-us/about.html)
-    -   2023.8-2025.1: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/) with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) and Prof. [Chen Qian](http://qianc62.github.io) with a focus on LLM Multi-Agent System.
-    -   2025.2 Proud to be a PhD advised by [Prof. Yulan He](https://sites.google.com/view/yulanhe) and a member of [KCLNLP](https://kclnlp.github.io/)!.
-- Recent News
-    -   **2025.5 Checkout KCLNLP's amazing works [here](https://x.com/kclnlp/status/1923409800009748788), with 15 papers accepted by ACL 2025 and 3 papers accepted by ICML 2025!**.
-    - **Check out [NOVER](https://arxiv.org/abs/2505.16022), a novel verifier-free reinforcement learning framework for training Large Reasoning Model. Train your own R1-Zero-like reasoning model on ANY DATA!**
+    -   2014-2021: Bachelor of Communication Engineering in BUPT, and Master of Computer Engineering in CIST Lab@BUPT.
+    -   2021-2023: Application Research in the NLP&LLM Department in [Tencent](https://www.tencent.com/en-us/about.html).
+    -   2023-2025: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/)@Tsinghua University with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) and Prof. [Chen Qian](http://qianc62.github.io) on LLM Multi-Agent System.
+    -   2025-now: Proud to be a PhD advised by [Prof. Yulan He](https://sites.google.com/view/yulanhe) and a member of [KCLNLP](https://kclnlp.github.io/)!
+
+# Recent News
+-   **2025.5.16 Checkout KCLNLP's amazing works [here](https://x.com/kclnlp/status/1923409800009748788), with 15 papers accepted by ACL 2025 and 3 papers accepted by ICML 2025!**.
+- **2025.5.21 Check out [NOVER](https://arxiv.org/abs/2505.16022), a novel verifier-free reinforcement learning framework for training Large Reasoning Model. Train your own R1-Zero-like reasoning model on ANY DATA!**
+- **2025.6.9 Check out [AgentsMeetRL](https://github.com/thinkwee/AgentsMeetRL), an awesome list of Reinforcement Learning-based Large Language Agent!**
 
 # Research Interests
 -   **Inference Time Scaling and Agentic AI**.
