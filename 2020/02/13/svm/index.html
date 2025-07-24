@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2020-02-13T14:04:46.000Z">
 <meta property="article:modified_time" content="2025-07-15T20:35:23.185Z">
 <meta property="article:author" content="Thinkwee">
-<meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="math">
+<meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="svm">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.mji.rip/2025/07/16/94237772906ab6b432dad7cb2a98d766.png">
@@ -146,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#objective-function"><span class="nav-number">1.</span> <span class="nav-text">Objective Function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#min-max"><span class="nav-number">2.</span> <span class="nav-text">Min-Max</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#duality"><span class="nav-number">3.</span> <span class="nav-text">Duality</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solution"><span class="nav-number">4.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text">目标函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#min-max"><span class="nav-number">6.</span> <span class="nav-text">min-max</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E5%81%B6"><span class="nav-number">7.</span> <span class="nav-text">对偶</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3"><span class="nav-number">8.</span> <span class="nav-text">求解</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Objective-Function"><span class="nav-number">1.</span> <span class="nav-text">Objective Function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Min-Max"><span class="nav-number">2.</span> <span class="nav-text">Min-Max</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Duality"><span class="nav-number">3.</span> <span class="nav-text">Duality</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution"><span class="nav-number">4.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text">目标函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#min-max"><span class="nav-number">6.</span> <span class="nav-text">min-max</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E5%81%B6"><span class="nav-number">7.</span> <span class="nav-text">对偶</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3"><span class="nav-number">8.</span> <span class="nav-text">求解</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -294,418 +294,144 @@
 <p>Long time no see, SVM.</p>
 <span id="more"></span>
 <style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
-<div id="en-content" class="lang-content" style="display: block;"><h1 id="objective-function">Objective Function</h1>
-<ul>
-<li><p>The most primitive idea is naturally to consider the geometric
-margin</p>
-<p><span class="math display">\[
-\begin{array}{cc}{\max _{\vec{w}, b} \gamma} \\ {s . t . \quad
-\tilde{y}_{i}\left(\frac{\overrightarrow{\mathbf{w}}}{\|\overrightarrow{\mathbf{w}}\|_{2}}
-\cdot
-\overrightarrow{\mathbf{x}}_{i}+\frac{b}{\|\overrightarrow{\mathbf{w}}\|_{2}}\right)
-\geq \gamma, i=1,2, \cdots, N}\end{array}
-\]</span></p></li>
-<li><p>However, the geometric margin can be represented by the
-functional margin, and the functional margin can be scaled without
-affecting the choice of the classification hyperplane. Therefore, we set
-the functional margin to 1, then take the reciprocal to replace max with
-min, simplifying the objective function</p>
-<p><span class="math display">\[
-\begin{array}{c}{\min _{\vec{w}, b}
-\frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}} \\ {\text {s.t.}
-\quad \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot
-\overrightarrow{\mathbf{x}}_{i}+b\right)-1 \geq 0, i=1,2, \cdots,
-N}\end{array}
-\]</span></p></li>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="Objective-Function"><a href="#Objective-Function" class="headerlink" title="Objective Function"></a>Objective Function</h1><ul>
+<li><p>The most primitive idea is naturally to consider the geometric margin</p>
+<script type="math/tex; mode=display">
+\begin{array}{cc}{\max _{\vec{w}, b} \gamma} \\ {s . t . \quad \tilde{y}_{i}\left(\frac{\overrightarrow{\mathbf{w}}}{\|\overrightarrow{\mathbf{w}}\|_{2}} \cdot \overrightarrow{\mathbf{x}}_{i}+\frac{b}{\|\overrightarrow{\mathbf{w}}\|_{2}}\right) \geq \gamma, i=1,2, \cdots, N}\end{array}</script></li>
+<li><p>However, the geometric margin can be represented by the functional margin, and the functional margin can be scaled without affecting the choice of the classification hyperplane. Therefore, we set the functional margin to 1, then take the reciprocal to replace max with min, simplifying the objective function</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}{\min _{\vec{w}, b} \frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}} \\ {\text {s.t.} \quad \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot \overrightarrow{\mathbf{x}}_{i}+b\right)-1 \geq 0, i=1,2, \cdots, N}\end{array}</script></li>
 </ul>
-<h1 id="min-max">Min-Max</h1>
-<ul>
-<li><p>After defining the problem as an optimization problem with
-inequality constraints, Lagrangian duality is used to transform the
-primal problem into a dual problem</p></li>
-<li><p>The description in statistical learning methods is as
-follows:</p>
+<h1 id="Min-Max"><a href="#Min-Max" class="headerlink" title="Min-Max"></a>Min-Max</h1><ul>
+<li>After defining the problem as an optimization problem with inequality constraints, Lagrangian duality is used to transform the primal problem into a dual problem</li>
+<li><p>The description in statistical learning methods is as follows:</p>
 <ul>
 <li><p>For the optimization problem:</p>
-<p><span class="math display">\[
-\begin{array}{ll}{\min _{x \in \mathbf{R}^{n}} f(x)} &amp; {} \\ {\text
-{ s.t. } \quad c_{i}(x) \leqslant 0, \quad i=1,2, \cdots, k} \\ {\qquad
-\begin{array}{ll}{h_{j}(x)=0,} &amp; {j=1,2, \cdots,
-l}\end{array}}\end{array}
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\begin{array}{ll}{\min _{x \in \mathbf{R}^{n}} f(x)} & {} \\ {\text { s.t. } \quad c_{i}(x) \leqslant 0, \quad i=1,2, \cdots, k} \\ {\qquad \begin{array}{ll}{h_{j}(x)=0,} & {j=1,2, \cdots, l}\end{array}}\end{array}</script></li>
 <li><p>Introduce the generalized Lagrangian function</p>
-<p><span class="math display">\[
-L(x, \alpha, \beta)=f(x)+\sum_{i=1}^{k} \alpha_{i}
-c_{i}(x)+\sum_{j=1}^{I} \beta_{j} h_{j}(x)
-\]</span></p></li>
+<script type="math/tex; mode=display">
+L(x, \alpha, \beta)=f(x)+\sum_{i=1}^{k} \alpha_{i} c_{i}(x)+\sum_{j=1}^{I} \beta_{j} h_{j}(x)</script></li>
 <li><p>Define</p>
-<p><span class="math display">\[
-\theta_{P}(x)=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha,
-\beta)
-\]</span></p></li>
-<li><p>It can be determined that if the constraints are not satisfied,
-the Lagrangian multipliers can be set to a non-zero value to make the
-above expression infinite. If satisfied, the maximum value can only be
-achieved when <span class="math inline">\(\alpha\)</span> is 0, and
-<span class="math inline">\(\beta\)</span> does not play a role,
-therefore:</p>
-<p><span class="math display">\[
-\theta_{P}(x)=\left\{\begin{array}{l}{f(x)} \ x \text{satisfies original
-problem constraints} \\ {+\infty} \ \text{otherwise} \end{array}\right.
-\]</span></p></li>
-</ul></li>
-<li><p>Thus, the original minimization of f is transformed into
-minimizing a maximized <span class="math inline">\(\theta\)</span>,
-namely</p>
-<p><span class="math display">\[
-\min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha,
-\beta)
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\theta_{P}(x)=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)</script></li>
+<li><p>It can be determined that if the constraints are not satisfied, the Lagrangian multipliers can be set to a non-zero value to make the above expression infinite. If satisfied, the maximum value can only be achieved when $\alpha$ is 0, and $\beta$ does not play a role, therefore:</p>
+<script type="math/tex; mode=display">
+\theta_{P}(x)=\left\{\begin{array}{l}{f(x)} \ x \text{satisfies original problem constraints} \\ {+\infty} \ \text{otherwise} \end{array}\right.</script></li>
 </ul>
-<h1 id="duality">Duality</h1>
-<ul>
-<li><p>Swapping the positions of max and min yields the dual problem,
-which is first optimizing for <span class="math inline">\(x\)</span>,
-then optimizing for <span
-class="math inline">\(\alpha,\beta\)</span></p>
-<p><span class="math display">\[
-\begin{array}{l}{\max _{\alpha, \beta} \theta_{D}(\alpha, \beta)=\max
-_{\alpha, \beta} \min _{x} L(x, \alpha, \beta)} \\ {\text { s.t. } \quad
-\alpha_{i} \geqslant 0, \quad i=1,2, \cdots, k}\end{array}
-\]</span></p></li>
-<li><p>The relationship between the dual problem and the primal
-problem:</p>
-<p><span class="math display">\[
-d^{*}=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} \min _{x} L(x,
-\alpha, \beta) \leqslant \min _{x} \max _{\alpha, \beta: \alpha_{i}
-\geqslant 0} L(x, \alpha, \beta)=p^{*}
-\]</span></p></li>
-<li><p>Proof: First look at the inner part of both sides. The left side
-is <span class="math inline">\(\min \ L\)</span>, the right side is
-<span class="math inline">\(\max \ L\)</span>. Although the variables
-are different, when the variables are fixed, there must be <span
-class="math inline">\(\min _{x} L(x, \alpha, \beta) \leqslant L(x,
-\alpha, \beta) \leqslant \max _{\alpha, \beta: \alpha_{i} \geqslant 0}
-L(x, \alpha, \beta)\)</span>. Now looking at the whole thing as a
-function and focusing on the outer part, comparing the max of <span
-class="math inline">\(f_1\)</span> and the min of <span
-class="math inline">\(f_2\)</span>, from the above we know that <span
-class="math inline">\(f_1\)</span> is everywhere less than or equal to
-<span class="math inline">\(f_2\)</span>. Therefore, even the maximum of
-<span class="math inline">\(f_1\)</span> must be less than or equal to
-the minimum of <span class="math inline">\(f_2\)</span>, which is the
-so-called "chicken head is smaller than phoenix tail", with the premise
-that each chicken in the chicken flock is smaller than or equal to each
-phoenix in the phoenix flock.</p></li>
-<li><p>SVM satisfies the strong duality relationship, meaning the above
-equation reaches equality. Therefore, optimizing the original problem
-can be transformed into optimizing the dual problem, which facilitates
-the introduction of kernel functions.</p></li>
-<li><p>The original min-max problem can be solved directly, but not by
-directly taking partial derivatives of the min-max form, because taking
-partial derivatives with respect to <span
-class="math inline">\(\alpha\)</span> first is meaningless. We hope to
-obtain <span class="math inline">\(w,b\)</span> such that for any <span
-class="math inline">\(\alpha \neq 0\)</span>, <span
-class="math inline">\(\max L\)</span> can be minimized.</p></li>
+</li>
+<li><p>Thus, the original minimization of f is transformed into minimizing a maximized $\theta$, namely</p>
+<script type="math/tex; mode=display">
+\min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)</script></li>
 </ul>
-<h1 id="solution">Solution</h1>
+<h1 id="Duality"><a href="#Duality" class="headerlink" title="Duality"></a>Duality</h1><ul>
+<li><p>Swapping the positions of max and min yields the dual problem, which is first optimizing for $x$, then optimizing for $\alpha,\beta$</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}{\max _{\alpha, \beta} \theta_{D}(\alpha, \beta)=\max _{\alpha, \beta} \min _{x} L(x, \alpha, \beta)} \\ {\text { s.t. } \quad \alpha_{i} \geqslant 0, \quad i=1,2, \cdots, k}\end{array}</script></li>
+<li><p>The relationship between the dual problem and the primal problem:</p>
+<script type="math/tex; mode=display">
+d^{*}=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} \min _{x} L(x, \alpha, \beta) \leqslant \min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)=p^{*}</script></li>
+<li>Proof: First look at the inner part of both sides. The left side is $\min \ L$, the right side is $\max \ L$. Although the variables are different, when the variables are fixed, there must be $\min <em>{x} L(x, \alpha, \beta) \leqslant L(x, \alpha, \beta) \leqslant \max </em>{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)$. Now looking at the whole thing as a function and focusing on the outer part, comparing the max of $f_1$ and the min of $f_2$, from the above we know that $f_1$ is everywhere less than or equal to $f_2$. Therefore, even the maximum of $f_1$ must be less than or equal to the minimum of $f_2$, which is the so-called “chicken head is smaller than phoenix tail”, with the premise that each chicken in the chicken flock is smaller than or equal to each phoenix in the phoenix flock.</li>
+<li>SVM satisfies the strong duality relationship, meaning the above equation reaches equality. Therefore, optimizing the original problem can be transformed into optimizing the dual problem, which facilitates the introduction of kernel functions.</li>
+<li>The original min-max problem can be solved directly, but not by directly taking partial derivatives of the min-max form, because taking partial derivatives with respect to $\alpha$ first is meaningless. We hope to obtain $w,b$ such that for any $\alpha \neq 0$, $\max L$ can be minimized.</li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li><p>After converting to the dual problem, first take derivatives of $w,b$ and set them to zero, then substitute the obtained $w,b$ back into the dual problem to get:</p>
+<script type="math/tex; mode=display">
+\text{Substituting into the dual problem:} L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot \overrightarrow{\mathbf{x}}_{i}+b\right)+\sum_{i=1}^{N} \alpha_{i} \\</script><script type="math/tex; mode=display">
+\begin{aligned} L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} & \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left[\left(\sum_{j=1}^{N} \alpha_{j} \tilde{y}_{j} \overrightarrow{\mathbf{x}}_{j}\right) \cdot \overrightarrow{\mathbf{x}}_{i}+b\right]+\sum_{i=1}^{N} \alpha_{i} \\ &=-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \end{aligned} \\</script></li>
+<li><p>Here, the first term’s coefficient is 1/2, the $b$ part in the second term is 0, and the remaining part is actually the same as the first term, just with a coefficient of 1. Therefore, subtracting gives -1/2. Finally, the outer max optimization objective is obtained</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \max _{\vec{\alpha}}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \\ s . t . \quad \sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}=0 \\ \alpha_{i} \geq 0, i=1,2, \cdots, N \end{aligned}</script></li>
+<li><p>The equality constraint condition is obtained by taking the derivative of $b$ to zero. As mentioned earlier, the objective function and constraints of SVM satisfy the strong duality relationship. The necessary and sufficient condition for strong duality is the KKT conditions, so the above equation should also satisfy the KKT conditions, namely:</p>
 <ul>
-<li><p>After converting to the dual problem, first take derivatives of
-<span class="math inline">\(w,b\)</span> and set them to zero, then
-substitute the obtained <span class="math inline">\(w,b\)</span> back
-into the dual problem to get:</p>
-<p><span class="math display">\[
-\text{Substituting into the dual problem:}
-L(\overrightarrow{\mathbf{w}}, b,
-\vec{\alpha})=\frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}-\sum_{i=1}^{N}
-\alpha_{i} \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot
-\overrightarrow{\mathbf{x}}_{i}+b\right)+\sum_{i=1}^{N} \alpha_{i} \\
-\]</span></p>
-<p><span class="math display">\[
-\begin{aligned} L(\overrightarrow{\mathbf{w}}, b,
-\vec{\alpha})=\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} &amp; \alpha_{i}
-\alpha_{j} \tilde{y}_{i}
-\tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot
-\overrightarrow{\mathbf{x}}_{j}\right)-\sum_{i=1}^{N} \alpha_{i}
-\tilde{y}_{i}\left[\left(\sum_{j=1}^{N} \alpha_{j} \tilde{y}_{j}
-\overrightarrow{\mathbf{x}}_{j}\right) \cdot
-\overrightarrow{\mathbf{x}}_{i}+b\right]+\sum_{i=1}^{N} \alpha_{i} \\
-&amp;=-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j}
-\tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot
-\overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i}
-\end{aligned} \\
-\]</span></p></li>
-<li><p>Here, the first term's coefficient is 1/2, the <span
-class="math inline">\(b\)</span> part in the second term is 0, and the
-remaining part is actually the same as the first term, just with a
-coefficient of 1. Therefore, subtracting gives -1/2. Finally, the outer
-max optimization objective is obtained</p>
-<p><span class="math display">\[
-\begin{aligned} \max _{\vec{\alpha}}-\frac{1}{2} \sum_{i=1}^{N}
-\sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i}
-\tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot
-\overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \\ s .
-t . \quad \sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}=0 \\ \alpha_{i} \geq
-0, i=1,2, \cdots, N \end{aligned}
-\]</span></p></li>
-<li><p>The equality constraint condition is obtained by taking the
-derivative of <span class="math inline">\(b\)</span> to zero. As
-mentioned earlier, the objective function and constraints of SVM satisfy
-the strong duality relationship. The necessary and sufficient condition
-for strong duality is the KKT conditions, so the above equation should
-also satisfy the KKT conditions, namely:</p>
-<ul>
-<li><p>Take partial derivatives of the Lagrangian function with respect
-to <span class="math inline">\(w,b\)</span> and set to zero</p></li>
-<li><p>The constraint part of the Lagrangian function (each term in the
-summation) is zero, i.e., the complementary slackness condition</p></li>
-<li><p>Original problem constraints</p></li>
+<li>Take partial derivatives of the Lagrangian function with respect to $w,b$ and set to zero</li>
+<li>The constraint part of the Lagrangian function (each term in the summation) is zero, i.e., the complementary slackness condition</li>
+<li>Original problem constraints</li>
 <li><p>Lagrangian multipliers are non-negative</p>
-<p><span class="math display">\[
-\begin{aligned} \nabla_{\overrightarrow{\mathrm{w}}}
-L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*},
-\vec{\alpha}^{*}\right)=&amp;
-\overrightarrow{\mathrm{w}}^{*}-\sum_{i=1}^{N} \alpha_{i}^{*}
-\tilde{y}_{i} \overrightarrow{\mathrm{x}}_{i}=0 \\ \nabla_{b}
-L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*},
-\vec{\alpha}^{*}\right)=&amp; \sum_{i=1}^{N} \alpha_{i}^{*}
-\tilde{y}_{i}=0 \\
-\alpha_{i}^{*}\left[\tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*}
-\cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1\right]=0, i=1,2,
-\cdots, N \\ \tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot
-\overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1 \geq 0, i=1,2, \cdots, N
-\\ \alpha_{i}^{*} \geq 0, i=1,2, \cdots, N \end{aligned}
-\]</span></p></li>
-</ul></li>
-<li><p>From the KKT conditions, we can express <span
-class="math inline">\(w\)</span> using <span
-class="math inline">\(\alpha\)</span> (which was also obtained when
-taking derivatives before). We know that <span
-class="math inline">\(w\)</span> represents the direction of the
-classification hyperplane, <span class="math inline">\(b\)</span>
-represents the bias, and is determined by support vectors. Therefore,
-those corresponding to non-zero <span class="math inline">\(\alpha
-_j\)</span></p>
-<p><span class="math display">\[
-\tilde{y}_{i}\left(\overrightarrow{\mathbf{w}}^{*} \cdot
-\overrightarrow{\mathbf{x}}_{i}+b^{*}\right)-1
-\]</span></p>
-<p>determines <span class="math inline">\(b\)</span> (because when <span
-class="math inline">\(\alpha\)</span> is non-zero, by the complementary
-slackness condition, the latter term is zero, so <span
-class="math inline">\(b\)</span> can be solved). Finally, we get:</p>
-<p><span class="math display">\[
-b^{*}=\tilde{y}_{j}-\sum_{i=1}^{N} \alpha_{i}^{*}
-\tilde{y}_{i}\left(\overrightarrow{\mathrm{x}}_{i} \cdot
-\overrightarrow{\mathrm{x}}_{j}\right)
-\]</span></p>
-<p>It can be seen that <span class="math inline">\(w,b\)</span> are in
-the form of summation, but most are zero. Only the non-zero <span
-class="math inline">\(\alpha\)</span> terms (directly finding the
-non-zero <span class="math inline">\(\alpha _j\)</span> in the <span
-class="math inline">\(b\)</span> expression) play a role, meaning the
-support vector machine is determined only by a few support
-vectors.</p></li>
-<li><p>Therefore, given the data, first solve the maximum of the dual
-problem to obtain <span class="math inline">\(\alpha\)</span>, then
-calculate <span class="math inline">\(w,b\)</span> from the non-zero
-parts of <span class="math inline">\(\alpha\)</span>, to obtain the
-hyperplane.</p></li>
-<li><p>The definition and solving process of soft margin and non-linear
-support vector machines are similar, just with different constraint
-conditions and objective functions.</p></li>
-<li><p>The solving of <span class="math inline">\(\alpha\)</span>
-involves convex quadratic programming with many solution methods. One
-advantage of support vector machines is that the learned parameters only
-depend on support vectors, avoiding the curse of dimensionality during
-inference. However, during the learning process, all samples need to be
-calculated for optimization, so it is not friendly to large-scale data.
-Here, the SMO algorithm can be used for optimization.</p></li>
+<script type="math/tex; mode=display">
+\begin{aligned} \nabla_{\overrightarrow{\mathrm{w}}} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \overrightarrow{\mathrm{w}}^{*}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i} \overrightarrow{\mathrm{x}}_{i}=0 \\ \nabla_{b} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}=0 \\ \alpha_{i}^{*}\left[\tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1\right]=0, i=1,2, \cdots, N \\ \tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1 \geq 0, i=1,2, \cdots, N \\ \alpha_{i}^{*} \geq 0, i=1,2, \cdots, N \end{aligned}</script></li>
+</ul>
+</li>
+<li><p>From the KKT conditions, we can express $w$ using $\alpha$ (which was also obtained when taking derivatives before). We know that $w$ represents the direction of the classification hyperplane, $b$ represents the bias, and is determined by support vectors. Therefore, those corresponding to non-zero $\alpha _j$</p>
+<script type="math/tex; mode=display">
+\tilde{y}_{i}\left(\overrightarrow{\mathbf{w}}^{*} \cdot \overrightarrow{\mathbf{x}}_{i}+b^{*}\right)-1</script><p>determines $b$ (because when $\alpha$ is non-zero, by the complementary slackness condition, the latter term is zero, so $b$ can be solved). Finally, we get:</p>
+<script type="math/tex; mode=display">
+b^{*}=\tilde{y}_{j}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}\left(\overrightarrow{\mathrm{x}}_{i} \cdot \overrightarrow{\mathrm{x}}_{j}\right)</script><p>It can be seen that $w,b$ are in the form of summation, but most are zero. Only the non-zero $\alpha$ terms (directly finding the non-zero $\alpha _j$ in the $b$ expression) play a role, meaning the support vector machine is determined only by a few support vectors.</p>
+</li>
+<li>Therefore, given the data, first solve the maximum of the dual problem to obtain $\alpha$, then calculate $w,b$ from the non-zero parts of $\alpha$, to obtain the hyperplane.</li>
+<li>The definition and solving process of soft margin and non-linear support vector machines are similar, just with different constraint conditions and objective functions.</li>
+<li>The solving of $\alpha$ involves convex quadratic programming with many solution methods. One advantage of support vector machines is that the learned parameters only depend on support vectors, avoiding the curse of dimensionality during inference. However, during the learning process, all samples need to be calculated for optimization, so it is not friendly to large-scale data. Here, the SMO algorithm can be used for optimization.</li>
 </ul>
 </div>
-<div id="zh-content" class="lang-content" style="display: none;"><h1 id="目标函数">目标函数</h1>
-<ul>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h1><ul>
 <li><p>最原始的想法自然是考虑几何间隔</p>
-<p><span class="math display">\[
-\begin{array}{cc}{\max _{\vec{w}, b} \gamma} \\ {s . t . \quad
-\tilde{y}_{i}\left(\frac{\overrightarrow{\mathbf{w}}}{\|\overrightarrow{\mathbf{w}}\|_{2}}
-\cdot
-\overrightarrow{\mathbf{x}}_{i}+\frac{b}{\|\overrightarrow{\mathbf{w}}\|_{2}}\right)
-\geq \gamma, i=1,2, \cdots, N}\end{array}
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\begin{array}{cc}{\max _{\vec{w}, b} \gamma} \\ {s . t . \quad \tilde{y}_{i}\left(\frac{\overrightarrow{\mathbf{w}}}{\|\overrightarrow{\mathbf{w}}\|_{2}} \cdot \overrightarrow{\mathbf{x}}_{i}+\frac{b}{\|\overrightarrow{\mathbf{w}}\|_{2}}\right) \geq \gamma, i=1,2, \cdots, N}\end{array}</script></li>
 <li><p>但是几何间隔可以用函数间隔表示，且函数间隔可以缩放而不影响分类超平面的选择，因此才有令函数间隔等于1，再取倒数把max换成min，化简了目标函数</p>
-<p><span class="math display">\[
-\begin{array}{c}{\min _{\vec{w}, b}
-\frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}} \\ {\text {s.t.}
-\quad \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot
-\overrightarrow{\mathbf{x}}_{i}+b\right)-1 \geq 0, i=1,2, \cdots,
-N}\end{array}
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\begin{array}{c}{\min _{\vec{w}, b} \frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}} \\ {\text {s.t.} \quad \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot \overrightarrow{\mathbf{x}}_{i}+b\right)-1 \geq 0, i=1,2, \cdots, N}\end{array}</script></li>
 </ul>
-<h1 id="min-max">min-max</h1>
-<ul>
-<li><p>在将问题定义为带有不等式约束的最优化问题之后，就要用到拉格朗日对偶性来将原始问题转为对偶问题</p></li>
+<h1 id="min-max"><a href="#min-max" class="headerlink" title="min-max"></a>min-max</h1><ul>
+<li>在将问题定义为带有不等式约束的最优化问题之后，就要用到拉格朗日对偶性来将原始问题转为对偶问题</li>
 <li><p>统计学习方法的描述如下：</p>
 <ul>
 <li><p>对于最优化问题：</p>
-<p><span class="math display">\[
-\begin{array}{ll}{\min _{x \in \mathbf{R}^{n}} f(x)} &amp; {} \\ {\text
-{ s.t. } \quad c_{i}(x) \leqslant 0, \quad i=1,2, \cdots, k} \\ {\qquad
-\begin{array}{ll}{h_{j}(x)=0,} &amp; {j=1,2, \cdots,
-l}\end{array}}\end{array}
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\begin{array}{ll}{\min _{x \in \mathbf{R}^{n}} f(x)} & {} \\ {\text { s.t. } \quad c_{i}(x) \leqslant 0, \quad i=1,2, \cdots, k} \\ {\qquad \begin{array}{ll}{h_{j}(x)=0,} & {j=1,2, \cdots, l}\end{array}}\end{array}</script></li>
 <li><p>引入广义拉格朗日函数</p>
-<p><span class="math display">\[
-L(x, \alpha, \beta)=f(x)+\sum_{i=1}^{k} \alpha_{i}
-c_{i}(x)+\sum_{j=1}^{I} \beta_{j} h_{j}(x)
-\]</span></p></li>
+<script type="math/tex; mode=display">
+L(x, \alpha, \beta)=f(x)+\sum_{i=1}^{k} \alpha_{i} c_{i}(x)+\sum_{j=1}^{I} \beta_{j} h_{j}(x)</script></li>
 <li><p>定义</p>
-<p><span class="math display">\[
-\theta_{P}(x)=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha,
-\beta)
-\]</span></p></li>
-<li><p>可以判断，假如不满足约束条件的话，可以令拉格朗日乘子不为0从而使上式无穷大，满足情况的话，上式要最大只能让<span
-class="math inline">\(\alpha\)</span>为0，<span
-class="math inline">\(\beta\)</span>则不起作用，因此：</p>
-<p><span class="math display">\[
-\theta_{P}(x)=\left\{\begin{array}{l}{f(x)} \ x满足原始问题约束 \\
-{+\infty} \ 其他 \end{array}\right.
-\]</span></p></li>
-</ul></li>
-<li><p>这样原始的最小化一个f就转换为最小化一个最大化的<span
-class="math inline">\(\theta\)</span>，即</p>
-<p><span class="math display">\[
-\min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha,
-\beta)
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\theta_{P}(x)=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)</script></li>
+<li><p>可以判断，假如不满足约束条件的话，可以令拉格朗日乘子不为0从而使上式无穷大，满足情况的话，上式要最大只能让$\alpha$为0，$\beta$则不起作用，因此：</p>
+<script type="math/tex; mode=display">
+\theta_{P}(x)=\left\{\begin{array}{l}{f(x)} \ x满足原始问题约束 \\ {+\infty} \ 其他 \end{array}\right.</script></li>
 </ul>
-<h1 id="对偶">对偶</h1>
-<ul>
-<li><p>max和min对换位置就得到对偶问题，即先针对<span
-class="math inline">\(x\)</span>优化，再针对<span
-class="math inline">\(\alpha,\beta\)</span>优化</p>
-<p><span class="math display">\[
-\begin{array}{l}{\max _{\alpha, \beta} \theta_{D}(\alpha, \beta)=\max
-_{\alpha, \beta} \min _{x} L(x, \alpha, \beta)} \\ {\text { s.t. } \quad
-\alpha_{i} \geqslant 0, \quad i=1,2, \cdots, k}\end{array}
-\]</span></p></li>
+</li>
+<li><p>这样原始的最小化一个f就转换为最小化一个最大化的$\theta$，即</p>
+<script type="math/tex; mode=display">
+\min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)</script></li>
+</ul>
+<h1 id="对偶"><a href="#对偶" class="headerlink" title="对偶"></a>对偶</h1><ul>
+<li><p>max和min对换位置就得到对偶问题，即先针对$x$优化，再针对$\alpha,\beta$优化</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}{\max _{\alpha, \beta} \theta_{D}(\alpha, \beta)=\max _{\alpha, \beta} \min _{x} L(x, \alpha, \beta)} \\ {\text { s.t. } \quad \alpha_{i} \geqslant 0, \quad i=1,2, \cdots, k}\end{array}</script></li>
 <li><p>对偶问题和原始问题的关系：</p>
-<p><span class="math display">\[
-d^{*}=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} \min _{x} L(x,
-\alpha, \beta) \leqslant \min _{x} \max _{\alpha, \beta: \alpha_{i}
-\geqslant 0} L(x, \alpha, \beta)=p^{*}
-\]</span></p></li>
-<li><p>证明：先看两边的里面一部分，左边是<span
-class="math inline">\(\min \ L\)</span>，右边是<span
-class="math inline">\(\max \
-L\)</span>，尽管自变量不一样，但是当自变量固定时，必然有<span
-class="math inline">\(\min _{x} L(x, \alpha, \beta) \leqslant L(x,
-\alpha, \beta) \leqslant \max _{\alpha, \beta: \alpha_{i} \geqslant 0}
-L(x, \alpha,
-\beta)\)</span>，现在把里面整体看成一个函数，只看外面，即比较左边的<span
-class="math inline">\(\max f_1\)</span>和<span
-class="math inline">\(\min f_2\)</span>，由上可知<span
-class="math inline">\(f_1\)</span>处处小于等于<span
-class="math inline">\(f_2\)</span>，那即便是<span
-class="math inline">\(f_1\)</span>的最大值，也一定小于等于<span
-class="math inline">\(f_2\)</span>的最小值，也就是所谓的“鸡头小于凤尾”，前提是鸡群里的每一只鸡小于等于凤群里的每一只凤。</p></li>
-<li><p>SVM满足强对偶关系，即上式取到等号，因此优化原问题可以转化为优化对偶问题，方便引入核函数。</p></li>
-<li><p>原始的min-max问题可以直接解，但不是对min-max形式直接求偏导，因为先对<span
-class="math inline">\(\alpha\)</span>求偏导没有意义，我们是希望得到<span
-class="math inline">\(w,b\)</span>使得对任意的<span
-class="math inline">\(\alpha \neq 0\)</span>，<span
-class="math inline">\(\max L\)</span>都可以取到最小值。</p></li>
+<script type="math/tex; mode=display">
+d^{*}=\max _{\alpha, \beta: \alpha_{i} \geqslant 0} \min _{x} L(x, \alpha, \beta) \leqslant \min _{x} \max _{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)=p^{*}</script></li>
+<li>证明：先看两边的里面一部分，左边是$\min \ L$，右边是$\max \ L$，尽管自变量不一样，但是当自变量固定时，必然有$\min <em>{x} L(x, \alpha, \beta) \leqslant L(x, \alpha, \beta) \leqslant \max </em>{\alpha, \beta: \alpha_{i} \geqslant 0} L(x, \alpha, \beta)$，现在把里面整体看成一个函数，只看外面，即比较左边的$\max f_1$和$\min f_2$，由上可知$f_1$处处小于等于$f_2$，那即便是$f_1$的最大值，也一定小于等于$f_2$的最小值，也就是所谓的“鸡头小于凤尾”，前提是鸡群里的每一只鸡小于等于凤群里的每一只凤。</li>
+<li>SVM满足强对偶关系，即上式取到等号，因此优化原问题可以转化为优化对偶问题，方便引入核函数。</li>
+<li>原始的min-max问题可以直接解，但不是对min-max形式直接求偏导，因为先对$\alpha$求偏导没有意义，我们是希望得到$w,b$使得对任意的$\alpha \neq 0$，$\max L$都可以取到最小值。</li>
 </ul>
-<h1 id="求解">求解</h1>
-<ul>
-<li><p>转换为对偶问题之后，先对<span
-class="math inline">\(w,b\)</span>求导令其为0，之后将得到的<span
-class="math inline">\(w,b\)</span>回代入对偶问题得到：</p>
-<p><span class="math display">\[
-带入对偶问题：L(\overrightarrow{\mathbf{w}}, b,
-\vec{\alpha})=\frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}-\sum_{i=1}^{N}
-\alpha_{i} \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot
-\overrightarrow{\mathbf{x}}_{i}+b\right)+\sum_{i=1}^{N} \alpha_{i} \\
-\]</span></p>
-<p><span class="math display">\[
-\begin{aligned} L(\overrightarrow{\mathbf{w}}, b,
-\vec{\alpha})=\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} &amp; \alpha_{i}
-\alpha_{j} \tilde{y}_{i}
-\tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot
-\overrightarrow{\mathbf{x}}_{j}\right)-\sum_{i=1}^{N} \alpha_{i}
-\tilde{y}_{i}\left[\left(\sum_{j=1}^{N} \alpha_{j} \tilde{y}_{j}
-\overrightarrow{\mathbf{x}}_{j}\right) \cdot
-\overrightarrow{\mathbf{x}}_{i}+b\right]+\sum_{i=1}^{N} \alpha_{i} \\
-&amp;=-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j}
-\tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot
-\overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i}
-\end{aligned} \\
-\]</span></p></li>
+<h1 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h1><ul>
+<li><p>转换为对偶问题之后，先对$w,b$求导令其为0，之后将得到的$w,b$回代入对偶问题得到：</p>
+<script type="math/tex; mode=display">
+带入对偶问题：L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2}\|\overrightarrow{\mathbf{w}}\|_{2}^{2}-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left(\overrightarrow{\mathbf{w}} \cdot \overrightarrow{\mathbf{x}}_{i}+b\right)+\sum_{i=1}^{N} \alpha_{i} \\</script><script type="math/tex; mode=display">
+\begin{aligned} L(\overrightarrow{\mathbf{w}}, b, \vec{\alpha})=\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} & \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)-\sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}\left[\left(\sum_{j=1}^{N} \alpha_{j} \tilde{y}_{j} \overrightarrow{\mathbf{x}}_{j}\right) \cdot \overrightarrow{\mathbf{x}}_{i}+b\right]+\sum_{i=1}^{N} \alpha_{i} \\ &=-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \end{aligned} \\</script></li>
 <li><p>这里第一项系数为1/2，第二项中b的部分为0，剩余部分其实和第一项相同，只不过系数为1，因此相减得到-1/2。最后得到外层的max优化目标</p>
-<p><span class="math display">\[
-\begin{aligned} \max _{\vec{\alpha}}-\frac{1}{2} \sum_{i=1}^{N}
-\sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i}
-\tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot
-\overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \\ s .
-t . \quad \sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}=0 \\ \alpha_{i} \geq
-0, i=1,2, \cdots, N \end{aligned}
-\]</span></p></li>
-<li><p>其中等式约束条件是对<span
-class="math inline">\(b\)</span>求导为0得到的。之前说到SVM的目标函数和约束条件满足强对偶关系，强对偶关系的充要条件是KKT条件，因此上式应该也满足KKT条件，即</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \max _{\vec{\alpha}}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} \tilde{y}_{i} \tilde{y}_{j}\left(\overrightarrow{\mathbf{x}}_{i} \cdot \overrightarrow{\mathbf{x}}_{j}\right)+\sum_{i=1}^{N} \alpha_{i} \\ s . t . \quad \sum_{i=1}^{N} \alpha_{i} \tilde{y}_{i}=0 \\ \alpha_{i} \geq 0, i=1,2, \cdots, N \end{aligned}</script></li>
+<li><p>其中等式约束条件是对$b$求导为0得到的。之前说到SVM的目标函数和约束条件满足强对偶关系，强对偶关系的充要条件是KKT条件，因此上式应该也满足KKT条件，即</p>
 <ul>
-<li><p>拉格朗日函数对<span
-class="math inline">\(w,b\)</span>求偏导为0</p></li>
-<li><p>拉格朗日函数中原问题的约束部分（求和的每一项）为0，即松弛互补条件</p></li>
-<li><p>原始问题约束</p></li>
+<li>拉格朗日函数对$w,b$求偏导为0</li>
+<li>拉格朗日函数中原问题的约束部分（求和的每一项）为0，即松弛互补条件</li>
+<li>原始问题约束</li>
 <li><p>拉格朗日乘子非负</p>
-<p><span class="math display">\[
-\begin{aligned} \nabla_{\overrightarrow{\mathrm{w}}}
-L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*},
-\vec{\alpha}^{*}\right)=&amp;
-\overrightarrow{\mathrm{w}}^{*}-\sum_{i=1}^{N} \alpha_{i}^{*}
-\tilde{y}_{i} \overrightarrow{\mathrm{x}}_{i}=0 \\ \nabla_{b}
-L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*},
-\vec{\alpha}^{*}\right)=&amp; \sum_{i=1}^{N} \alpha_{i}^{*}
-\tilde{y}_{i}=0 \\
-\alpha_{i}^{*}\left[\tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*}
-\cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1\right]=0, i=1,2,
-\cdots, N \\ \tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot
-\overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1 \geq 0, i=1,2, \cdots, N
-\\ \alpha_{i}^{*} \geq 0, i=1,2, \cdots, N \end{aligned}
-\]</span></p></li>
-</ul></li>
-<li><p>由KKT条件，我们可以用<span
-class="math inline">\(\alpha\)</span>表示<span
-class="math inline">\(w\)</span>（之前求导时也已经得到过），我们知道<span
-class="math inline">\(w\)</span>代表分类超平面的方向，<span
-class="math inline">\(b\)</span>代表偏置，由支持向量决定，因此那些<span
-class="math inline">\(\alpha _j\)</span>不为0对应的</p>
-<p><span class="math display">\[
-\tilde{y}_{i}\left(\overrightarrow{\mathbf{w}}^{*} \cdot
-\overrightarrow{\mathbf{x}}_{i}+b^{*}\right)-1
-\]</span></p>
-<p>决定了<span class="math inline">\(b\)</span>（因为<span
-class="math inline">\(\alpha\)</span>不为0，由松弛互补条件，则后一项为0，就可以求得<span
-class="math inline">\(b\)</span>）。最后得到：</p>
-<p><span class="math display">\[
-b^{*}=\tilde{y}_{j}-\sum_{i=1}^{N} \alpha_{i}^{*}
-\tilde{y}_{i}\left(\overrightarrow{\mathrm{x}}_{i} \cdot
-\overrightarrow{\mathrm{x}}_{j}\right)
-\]</span></p>
-<p>可以看到，<span
-class="math inline">\(w,b\)</span>都是求和的形式，但大部分为0，只有不为0的<span
-class="math inline">\(\alpha\)</span>（在<span
-class="math inline">\(b\)</span>的表达式里直接找出不为0的记为<span
-class="math inline">\(\alpha
-_j\)</span>）项才起作用，即支持向量机只有少数的支持向量决定。</p></li>
-<li><p>因此，给定数据，先求得对偶问题极大值，得到<span
-class="math inline">\(\alpha\)</span>，再由<span
-class="math inline">\(\alpha\)</span>中不为0的部分计算出<span
-class="math inline">\(w,b\)</span>，得到超平面。</p></li>
-<li><p>软间隔和非线性支持向量机的定义和求解过程类似，只不过约束条件和目标函数不同。</p></li>
-<li><p><span
-class="math inline">\(\alpha\)</span>的求解涉及凸二次规划，有很多解法。支持向量机的一个优点就是学习到的参数只依赖支持向量，推理时避免了维度灾难，但是在学习的过程中，需要对所有样本计算最优化，因此对于大规模数据不友好，这里可以用SMO算法来优化</p></li>
+<script type="math/tex; mode=display">
+\begin{aligned} \nabla_{\overrightarrow{\mathrm{w}}} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \overrightarrow{\mathrm{w}}^{*}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i} \overrightarrow{\mathrm{x}}_{i}=0 \\ \nabla_{b} L\left(\overrightarrow{\mathrm{w}}^{*}, b^{*}, \vec{\alpha}^{*}\right)=& \sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}=0 \\ \alpha_{i}^{*}\left[\tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1\right]=0, i=1,2, \cdots, N \\ \tilde{y}_{i}\left(\overrightarrow{\mathrm{w}}^{*} \cdot \overrightarrow{\mathrm{x}}_{i}+b^{*}\right)-1 \geq 0, i=1,2, \cdots, N \\ \alpha_{i}^{*} \geq 0, i=1,2, \cdots, N \end{aligned}</script></li>
+</ul>
+</li>
+<li><p>由KKT条件，我们可以用$\alpha$表示$w$（之前求导时也已经得到过），我们知道$w$代表分类超平面的方向，$b$代表偏置，由支持向量决定，因此那些$\alpha _j$不为0对应的</p>
+<script type="math/tex; mode=display">
+\tilde{y}_{i}\left(\overrightarrow{\mathbf{w}}^{*} \cdot \overrightarrow{\mathbf{x}}_{i}+b^{*}\right)-1</script><p>决定了$b$（因为$\alpha$不为0，由松弛互补条件，则后一项为0，就可以求得$b$）。最后得到：</p>
+<script type="math/tex; mode=display">
+b^{*}=\tilde{y}_{j}-\sum_{i=1}^{N} \alpha_{i}^{*} \tilde{y}_{i}\left(\overrightarrow{\mathrm{x}}_{i} \cdot \overrightarrow{\mathrm{x}}_{j}\right)</script><p>可以看到，$w,b$都是求和的形式，但大部分为0，只有不为0的$\alpha$（在$b$的表达式里直接找出不为0的记为$\alpha _j$）项才起作用，即支持向量机只有少数的支持向量决定。</p>
+</li>
+<li>因此，给定数据，先求得对偶问题极大值，得到$\alpha$，再由$\alpha$中不为0的部分计算出$w,b$，得到超平面。</li>
+<li>软间隔和非线性支持向量机的定义和求解过程类似，只不过约束条件和目标函数不同。</li>
+<li>$\alpha$的求解涉及凸二次规划，有很多解法。支持向量机的一个优点就是学习到的参数只依赖支持向量，推理时避免了维度灾难，但是在学习的过程中，需要对所有样本计算最优化，因此对于大规模数据不友好，这里可以用SMO算法来优化</li>
 </ul>
 </div>
 <script src="https://giscus.app/client.js"
@@ -733,8 +459,8 @@ class="math inline">\(\alpha\)</span>的求解涉及凸二次规划，有很多�
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
               <a href="/tags/math/" rel="tag"># math</a>
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
               <a href="/tags/svm/" rel="tag"># svm</a>
           </div>
 
@@ -788,13 +514,13 @@ class="math inline">\(\alpha\)</span>的求解涉及凸二次规划，有很多�
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">1.1m</span>
+    <span title="Word count total">1m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">16:35</span>
+    <span title="Reading time total">15:37</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
