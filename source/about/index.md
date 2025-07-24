@@ -543,7 +543,7 @@ html: true
     -   2014-2021: Bachelor of Communication Engineering in BUPT, and Master of Computer Engineering in CIST Lab@BUPT.
     -   2021-2023: Application Research in the NLP&LLM Department in [Tencent](https://www.tencent.com/en-us/about.html).
     -   2023-2025: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/)@Tsinghua University with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) and Prof. [Chen Qian](http://qianc62.github.io) on LLM Multi-Agent System.
-    -   2025-now: Proud to be a PhD advised by [Prof. Yulan He](https://sites.google.com/view/yulanhe) and a member of [KCLNLP](https://kclnlp.github.io/)!
+    -   2025-now: Proud to be a PhD advised by [Prof. Yulan He](https://sites.google.com/view/yulanhe) and [Prof. Yali Du](https://yalidu.github.io/), and a member of [KCLNLP](https://kclnlp.github.io/)!
 
 # Recent News
 
