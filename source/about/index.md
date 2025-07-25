@@ -539,6 +539,7 @@ html: true
 <li>Hello, I'm Wei Liu (刘维). Welcome to my blog <span class="pv-counter">(<span id="page-views">0</span> views)</span>. You can search me on google with keyword "thinkwee", which means "The Thinking Wei".</li>
 </ul>
 </div>
+
 - Past experience:
     -   2014-2021: Bachelor of Communication Engineering in BUPT, and Master of Computer Engineering in CIST Lab@BUPT.
     -   2021-2023: Application Research in the NLP&LLM Department in [Tencent](https://www.tencent.com/en-us/about.html).
