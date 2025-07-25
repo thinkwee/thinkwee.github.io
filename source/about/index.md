@@ -545,22 +545,23 @@ html: true
     -   2021-2023: Application Research in the NLP&LLM Department in [Tencent](https://www.tencent.com/en-us/about.html).
     -   2023-2025: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/)@Tsinghua University with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) and Prof. [Chen Qian](http://qianc62.github.io) on LLM Multi-Agent System.
     -   2025-now: Proud to be a PhD advised by [Prof. Yulan He](https://sites.google.com/view/yulanhe) and [Prof. Yali Du](https://yalidu.github.io/), and a member of [KCLNLP](https://kclnlp.github.io/)!
+- I'm interested in:
+  -   **Inference Time Scaling and Agentic AI**.
+  -   Compression Intelligence in NLP.
 
 # Recent News
-
 - **2025.5.16 Checkout KCLNLP's amazing works [here](https://x.com/kclnlp/status/1923409800009748788), with 15 papers accepted by ACL 2025 and 3 papers accepted by ICML 2025!**.
 - **2025.5.21 Check out [NOVER](https://arxiv.org/abs/2505.16022), a novel verifier-free reinforcement learning framework for training Large Reasoning Model. Train your own R1-Zero-like reasoning model on ANY DATA!**
 - **2025.6.9 Check out [AgentsMeetRL](https://github.com/thinkwee/AgentsMeetRL), an awesome list of Reinforcement Learning-based Large Language Agent!**
 
-# Research Interests
--   **Inference Time Scaling and Agentic AI**.
--   Compression Intelligence in NLP.
--   Served as reviewer for 
+# Services
+- Program Committee Member
     - ACL(2021,2022,2024)
     - EMNLP(2020,2023,2024,2025)
     - NeurIPS(2024,2025)
     - ICLR(2024)
     - CVPR(2025)
+    - AAAI(2025)
 
 # Industrial Experience
 -   At Tencent, I aim to bridge the gap between technology in NLP and scenario in Recommendation & Advertisement.
