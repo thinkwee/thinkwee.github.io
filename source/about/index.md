@@ -514,9 +514,6 @@ html: true
     </svg>
     Gmail
   </a>
-  <p align="center">
-  <img data-src="/img/wechat.bmp" alt="wechat" width="350">
-  </p>
 </center>
 
 
@@ -593,3 +590,9 @@ html: true
     -   <span class="conf-ccis">CCIS 2018</span> <a href="https://www.researchgate.net/publication/332432404_A_Multi-View_Abstractive_Summarization_Model_Jointly_Considering_Semantics_and_Sentiment" class="bp">paper</a> A Multi-View Abstractive Summarization Model Jointly Considering Semantics and Sentiment
     -   <span class="conf-arxiv">arXiv 2021</span> <a href="https://arxiv.org/pdf/2112.01147.pdf" class="bp">paper</a> <a href="https://github.com/thinkwee/co2sum" class="bc">code</a> CO2Sum: Contrastive Learning for Factual-Consistent Abstractive Summarization\*
     -   <span class="conf-arxiv">arXiv 2021</span> <a href="https://arxiv.org/pdf/2106.10084.pdf" class="bp">paper</a> <a href="https://github.com/thinkwee/SubjectiveBiasABS" class="bc">code</a> Subjective Bias in Abstractive Summarization\*
+
+# Social Media
+<p align="center">
+<img data-src="/img/all.png" alt="social" width="800">
+</p>
+- I sometimes sync some articles from this blog on Wechat and Rednote, and I share other interesting things on these platforms. You can find me via above links.
