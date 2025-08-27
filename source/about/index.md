@@ -477,6 +477,39 @@ html: true
       box-shadow: 0 2px 6px rgba(255, 138, 128, 0.15);
     }
     
+    .aclbutton { 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      padding: 0px 12px; 
+      text-align: center; 
+      outline: none; 
+      text-decoration: none !important; 
+      color: #ffffff !important; 
+      background: linear-gradient(135deg, #f07a7f 0%, #c53a40 100%);
+      border: none;
+      border-radius: 8px; 
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      font-size: 14px;
+      font-weight: 500;
+      height: 32px;
+      box-shadow: 0 2px 8px rgba(241, 73, 80, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    
+    .aclbutton:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(241, 73, 80, 0.3);
+      background: linear-gradient(135deg, #e86a6f 0%, #a93035 100%);
+    }
+    
+    .aclbutton:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(241, 73, 80, 0.2);
+    }
+    
     @media (max-width: 768px) {
       .libutton, .gsbutton, .ghbutton, .gmbutton {
         padding: 0px 10px;
@@ -490,6 +523,12 @@ html: true
   <center>
   You can find this guy via
   </center>
+  <a class="aclbutton" href="https://aclanthology.org/people/wei-liu-kcl/" target="_blank">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;">
+      <path d="M19 2H8a2 2 0 0 0-2 2v1H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Zm-3 16a1 1 0 0 1-1 1H5V7h10a1 1 0 0 1 1 1v10Zm3-3h-1V8a3 3 0 0 0-3-3H8V4h11v11Z"/>
+    </svg>
+    ACL Anthology
+  </a>
   <a class="libutton" href="http://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=thinkwee" target="_blank">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 6px;">
       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -547,9 +586,13 @@ html: true
   -   Compression Intelligence in NLP.
 
 # Recent News
-- **2025.5.16 Checkout KCLNLP's amazing works [here](https://x.com/kclnlp/status/1923409800009748788), with 15 papers accepted by ACL 2025 and 3 papers accepted by ICML 2025!**.
-- **2025.5.21 Check out [NOVER](https://arxiv.org/abs/2505.16022), a novel verifier-free reinforcement learning framework for training Large Reasoning Model. Train your own R1-Zero-like reasoning model on ANY DATA!**
-- **2025.6.9 Check out [AgentsMeetRL](https://github.com/thinkwee/AgentsMeetRL), an awesome list of Reinforcement Learning-based Large Language Agent!**
+- 2025.05.16 Checkout KCLNLP's amazing works [here](https://x.com/kclnlp/status/1923409800009748788), with 15 papers accepted by ACL 2025 and 3 papers accepted by ICML 2025!
+- 2025.06.09 Check out [AgentsMeetRL](https://github.com/thinkwee/AgentsMeetRL), an awesome list of Reinforcement Learning-based Large Language Agent!
+- 2025.08.20 Checkout KCLNLP's new works [here](https://x.com/kclnlp/status/1959938651753787832), with 8 papers accepted by EMNLP 2025 and 1 papers accepted by COLM 2025!
+- **2025.08.20 Two papers accepted by EMNLP 2025, Check out [EcoLANG](https://arxiv.org/pdf/2505.06904) and [NOVER](https://arxiv.org/pdf/2505.16022)!**
+  - NOVER extend RLVR to any task, make a step towards the general reasoning model.
+  - EcoLANG scale up the agentic social simulation faster and better with self-evolution on communication efficiency.
+
 
 # Services
 - Program Committee Member
@@ -572,14 +615,14 @@ html: true
 -   Personal Agentic AI:
     -   <span class="conf-neurips">NeurIPS 2024</span> <a href="https://arxiv.org/abs/2406.14928" class="bp">paper</a>  <a href="https://github.com/thinkwee/iAgents" class="bc">code</a> Autonomous Agents for Collaborative Task under Information Asymmetry\*
 -   Inference Time Scaling:
-    -   <span class="conf-arxiv">arXiv 2025</span> <a href="https://arxiv.org/abs/2505.16022" class="bp">paper</a>  <a href="https://github.com/thinkwee/NOVER" class="bc">code</a> NOVER: Incentive Training for Language Models via Verifier-Free Reinforcement Learning\*
+    -   <span class="conf-emnlp">EMNLP 2025</span> <a href="https://arxiv.org/abs/2505.16022" class="bp">paper</a>  <a href="https://github.com/thinkwee/NOVER" class="bc">code</a> NOVER: Incentive Training for Language Models via Verifier-Free Reinforcement Learning\*
     -   <span class="conf-iclr">ICLR 2025</span> <a href="https://arxiv.org/pdf/2406.07155" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Scaling Large-Language-Model-based Multi-Agent Collaboration
 -   Multi-Agents System with LLMs:
+    -   <span class="conf-emnlp">EMNLP 2025</span> <a href="https://arxiv.org/pdf/2505.06904" class="bp">paper</a>  <a href="https://github.com/xymou/EcoLANG" class="bc">code</a> EcoLANG: Efficient and Effective Agent Communication Language Induction for Social Simulation
     -   <span class="conf-acl">ACL 2024</span> <a href="https://arxiv.org/abs/2307.07924" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Communicative Agents for Software Development
     -   <span class="conf-acl">ACL 2024</span> <a href="https://arxiv.org/abs/2312.17025" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Experiential Co-Learning of Software-Developing Agents
     -   <span class="conf-acl">ACL 2025</span> <a href="https://arxiv.org/pdf/2406.08979" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Multi-Agent Software Development through Cross-Team Collaboration
     -   <span class="conf-arxiv">arXiv 2024</span> <a href="https://arxiv.org/pdf/2405.04219" class="bp">paper</a>  <a href="https://github.com/OpenBMB/ChatDev" class="bc">code</a> Iterative Experience Refinement of Software-Developing Agents
-    -   <span class="conf-arxiv">arXiv 2025</span> <a href="https://arxiv.org/pdf/2505.06904" class="bp">paper</a>  <a href="https://github.com/xymou/EcoLANG" class="bc">code</a> EcoLANG: Efficient and Effective Agent Communication Language Induction for Social Simulation
 -   Compression Intelligence in NLP: 
     -   <span class="conf-acl">ACL 2021</span> <a href="https://arxiv.org/pdf/2106.04847.pdf" class="bp">paper</a> <a href="https://github.com/thinkwee/UniKeyphrase" class="bc">code</a> UniKeyphrase: A Unified Extraction and Generation Framework for Keyphrase Prediction\*
     -   <span class="conf-aaai">AAAI 2022</span> <a href="https://ojs.aaai.org/index.php/AAAI/article/download/21402/version/19689/21151" class="bp">paper</a> <a href="https://github.com/m1594730237/FastAndConstrainedKeyphrase" class="bc">code</a> Fast and Constrained Absent Keyphrase Generation by Prompt-Based Learning
