@@ -11,7 +11,7 @@ refplus: true
 mathjax: true
 ---
 
-<img src="https://i.mji.rip/2025/07/18/2e9daed2f82508d5db2c449cbb90188a.png" width="600"/>
+<img src="https://i.mji.rip/2025/07/18/2e9daed2f82508d5db2c449cbb90188a.png" width="400"/>
 
 What I Talk About When I Talk About Scaling the Environment?
 <!--more-->
@@ -22,7 +22,7 @@ What I Talk About When I Talk About Scaling the Environment?
 
 # Scaling Environments
 
-<img src="https://i.mji.rip/2025/07/18/1844572f3d9fd6443aa0d80ced17728a.gif" width="600"/>
+<img src="https://i.mji.rip/2025/07/18/1844572f3d9fd6443aa0d80ced17728a.gif" width="400"/>
 
 
 - In the previous blog post, we mentioned the importance of scaling environments in the era of RL for LLMs.

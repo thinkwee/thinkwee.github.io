@@ -14,7 +14,7 @@ refplus: true
 mathjax: true
 ---
 
-<img src="https://i.mji.rip/2025/09/13/6afdb242505675e387a7e2498a292346.png" width="600"/>
+<img src="https://i.mji.rip/2025/09/13/6afdb242505675e387a7e2498a292346.png" width="400"/>
 
 How far have we gone towards general reasoning? How far are we from the general reasoning?
 <!--more-->
@@ -23,7 +23,7 @@ How far have we gone towards general reasoning? How far are we from the general 
 
 {% lang_content en %}
 
-<img src="https://i.mji.rip/2025/09/13/fc1d7e4647d71b982f9ad9a0cbbbeaa0.png" width="600"/>
+<img src="https://i.mji.rip/2025/09/13/fc1d7e4647d71b982f9ad9a0cbbbeaa0.png" width="400"/>
 
 Recently our paper *NOVER: Incentive Training for Language Models via Verifier-Free Reinforcement Learning* was accepted to EMNLP. NOVER uses the LLM's perplexity of the ground truth conditioned on the reasoning trajectory as the reward, which extends the RLVR paradigm beyond math and code, enabling learning of general reasoning on arbitrary text-to-text tasks without extra models or verifiers.
 

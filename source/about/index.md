@@ -41,9 +41,125 @@ html: true
       }
     });
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const newsList = document.querySelector('.news-list');
+    if (newsList) {
+        newsList.scrollTop = newsList.scrollHeight;
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elements = document.querySelectorAll('[data-repo]');
+    if (!elements || !elements.length) return;
+
+    function formatStars(count) {
+      if (typeof count !== 'number' || isNaN(count)) return 'N/A';
+      if (count >= 1000000) return (count / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+      if (count >= 1000) return (count / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+      return String(count);
+    }
+
+    var cache = {};
+    elements.forEach(function(el) {
+      var repo = el.getAttribute('data-repo');
+      if (!repo) return;
+
+      if (cache[repo]) {
+        el.textContent = cache[repo];
+        return;
+      }
+
+      fetch('https://api.github.com/repos/' + repo)
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          var value = (data && typeof data.stargazers_count === 'number') ? formatStars(data.stargazers_count) : 'N/A';
+          cache[repo] = value;
+          el.textContent = value;
+        })
+        .catch(function() {
+          el.textContent = 'N/A';
+        });
+    });
+  });
 </script>
 
 <style>
+    .news-list {
+        max-height: 200px;
+        overflow-y: auto;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .news-list::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .news-list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .news-list::-webkit-scrollbar-thumb {
+        background: #ccc;
+    }
+
+    .news-list::-webkit-scrollbar-thumb:hover {
+        background: #888;
+    }
+
+    .news-item {
+        padding: 6px 0;
+        display: flex;
+        align-items: flex-start;
+        line-height: 1.8;
+    }
+
+    .news-item::before {
+        content: "•";
+        color: #888;
+        margin-right: 12px;
+        flex-shrink: 0;
+    }
+
+    .news-date {
+        font-size: 13px;
+        color: #888;
+        margin-right: 8px;
+        font-family: inherit;
+        flex-shrink: 0;
+    }
+
+    .news-content {
+        color: #555;
+        font-size: 14px;
+        flex: 1;
+    }
+
+    .news-content a {
+        color: #555;
+        text-decoration: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .news-content a:hover {
+        border-bottom-color: #555;
+    }
+
+    .news-highlight {
+        background: #f5f5f5;
+        padding: 0 3px;
+    }
+
+    .news-content ul {
+        margin: 4px 0 0 0;
+        padding-left: 20px;
+    }
+
+    .news-content li {
+        margin: 2px 0;
+    }
     .bc {
         display: inline-block;
         padding: 0px 5px;
@@ -60,7 +176,7 @@ html: true
     }
 
     .bc:hover {
-        background-color: #999999; /* Darker blue color on hover */
+        background-color: #888888; /* Darker blue color on hover */
         color: white;
         border: 1px solid transparent; /* 将边框颜色设置为透明 */
     }
@@ -337,7 +453,6 @@ html: true
 <p align="center">
   <img src="/img/bg_blog.jpg" alt="I'm in London" width="600">
 </p>
-<center>Since February 2025, I've been based in London pursuing my PhD journey!</center>
 <center>Fun Fact: My giraffe icon isn't random - I actually have a long neck! </center>
 <center>See for yourself and meet other talented researchers on our <a href="https://kclnlp.github.io/team.html" target="_blank" rel="noopener">KCLNLP team page</a>.</center>
 
@@ -576,42 +691,90 @@ html: true
 </ul>
 </div>
 
-- Past experience:
-    -   2014-2021: Bachelor of Communication Engineering in BUPT, and Master of Computer Engineering in CIST Lab@BUPT.
-    -   2021-2023: Application Research in the NLP&LLM Department in [Tencent](https://www.tencent.com/en-us/about.html).
-    -   2023-2025: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/)@Tsinghua University with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) and Prof. [Chen Qian](http://qianc62.github.io) on LLM Multi-Agent System.
-    -   2025-now: Proud to be a PhD advised by [Prof. Yulan He](https://sites.google.com/view/yulanhe) and [Prof. Yali Du](https://yalidu.github.io/), and a member of [KCLNLP](https://kclnlp.github.io/)!
 - I'm interested in:
-  -   **Inference Time Scaling and Agentic AI**.
-  -   Compression Intelligence in NLP.
+  -   (before 2023) Compression Intelligence in NLP.
+  -   (2023 - 2025) Inference Time Scaling and Agentic AI.
+  -   (2025 - now) **AI in the Wild** (check out this [blog](https://thinkwee.top/2025/10/05/wild-era/#more)).
+
+- Past Experience:
+    -   2014 - 2021: Bachelor of Communication Engineering in BUPT, and Master of Computer Engineering in CIST Lab@BUPT.
+    -   2021 - 2023: Application Research in the NLP&LLM Department in [Tencent](https://www.tencent.com/en-us/about.html).
+    -   2023 - 2025: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/)@Tsinghua University with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) and Prof. [Chen Qian](http://qianc62.github.io) on LLM Multi-Agent System.
+    -   2025 - 2029(expected): Happy to join [KCLNLP](https://kclnlp.github.io/) as a PhD candidate advised by [Prof. Yulan He](https://sites.google.com/view/yulanhe) and [Prof. Yali Du](https://yalidu.github.io/)!
 
 # Recent News
-- 2025.05.16 Checkout KCLNLP's amazing works [here](https://x.com/kclnlp/status/1923409800009748788), with 15 papers accepted by ACL 2025 and 3 papers accepted by ICML 2025!
-- 2025.06.09 Check out [AgentsMeetRL](https://github.com/thinkwee/AgentsMeetRL), an awesome list of Reinforcement Learning-based Large Language Agent!
-- 2025.08.20 Checkout KCLNLP's new works [here](https://x.com/kclnlp/status/1959938651753787832), with 8 papers accepted by EMNLP 2025 and 1 papers accepted by COLM 2025!
-- **2025.08.20 Two papers accepted by EMNLP 2025, Check out [EcoLANG](https://arxiv.org/pdf/2505.06904) and [NOVER](https://arxiv.org/pdf/2505.16022)!**
-  - NOVER extend RLVR to any task, make a step towards the general reasoning model.
-  - EcoLANG scale up the agentic social simulation faster and better with self-evolution on communication efficiency.
 
+<ul class="news-list">
+<li class="news-item">
+<span class="news-date">2023.09.07</span>
+<span class="news-content">🚀 <a href="https://github.com/OpenBMB/ChatDev" target="_blank">ChatDev</a> made #1 on Github Trending! It now has earn over <span class="news-highlight"><span id="chatdev-stars" data-repo="OpenBMB/ChatDev">...</span> stars!</span>
+</li>
+<li class="news-item">
+<span class="news-date">2024.05.15</span>
+<span class="news-content">🇹🇭 2 papers about LLM Multi-Agent System were accepted by ACL 2024!</span>
+</li>
+<li class="news-item">
+<span class="news-date">2024.08.15</span>
+<span class="news-content">🚀 I made a interactive websites showing popular MultiAgent Frameworks and show THUNLP MultiAgent Team's amazing works at <a href="https://thinkwee.top/multiagent_ebook" target="_blank">LLM MultiAgent EBook</a></span>
+</li>
+<li class="news-item">
+<span class="news-date">2024.09.26</span>
+<span class="news-content">🇨🇦 1 paper about Personal Agentic AI was accepted by NeurIPS 2024!</span>
+</li>
+<li class="news-item">
+<span class="news-date">2025.01.22</span>
+<span class="news-content">🇸🇬 1 paper about Scaling LLM Agents was accepted by ICLR 2025!</span>
+</li>
+<li class="news-item">
+<span class="news-date">2025.05.15</span>
+<span class="news-content">🇦🇹 1 paper about LLM Agent for Software Development was accepted by ACL 2025!</span>
+</li>
+<li class="news-item">
+<span class="news-date">2025.02.21</span>
+<span class="news-content">🇬🇧 I started my journey as a PhD student in the UK!</span>
+</li>
+<li class="news-item">
+<span class="news-date">2025.05.16</span>
+<span class="news-content">🎉 Find KCLNLP's amazing works <a href="https://x.com/kclnlp/status/1923409800009748788" target="_blank">here</a>, with <span class="news-highlight">15 papers accepted by ACL 2025</span> and <span class="news-highlight">3 papers accepted by ICML 2025</span>!</span>
+</li>
+<li class="news-item">
+<span class="news-date">2025.06.09</span>
+<span class="news-content">🚀 I made <a href="https://thinkwee.top/amr/" target="_blank">AgentsMeetRL</a>, an awesome list of Reinforcement Learning-based Large Language Agent, which has now earned over <span class="news-highlight"><span id="agentsmeetrl-stars" data-repo="thinkwee/AgentsMeetRL">...</span> stars!</span> welcome to the era of experience!</span>
+</li>
+<li class="news-item">
+<span class="news-date">2025.08.20</span>
+<span class="news-content">🎉 KCLNLP's new works <a href="https://x.com/kclnlp/status/1959938651753787832" target="_blank">here</a>, with <span class="news-highlight">8 papers accepted by EMNLP 2025</span> and <span class="news-highlight">1 paper accepted by COLM 2025</span>!</span>
+</li>
+<li class="news-item">
+<span class="news-date">2025.08.20</span>
+<span class="news-content">🇨🇳 <span class="news-highlight">2 papers accepted by EMNLP 2025</span>, Check out <a href="https://arxiv.org/pdf/2505.06904" target="_blank">EcoLANG</a> and <a href="https://arxiv.org/pdf/2505.16022" target="_blank">NOVER</a>!
+<ul>
+<li>NOVER extends RLVR to any task, making a step towards the general reasoning model. See my detailed blog <a href="https://thinkwee.top/2025/09/13/general-reasoning/" target="_blank">here</a>.</li>
+<li>EcoLANG scales up the agentic social simulation faster and better with self-evolution on communication efficiency.</li>
+</ul>
+</span>
+</li>
+</ul>
 
 # Services
 - Program Committee Member
     - ACL(2021,2022,2024)
     - EMNLP(2020,2023,2024,2025)
     - NeurIPS(2024,2025)
-    - ICLR(2024)
+    - ICLR(2024,2025,2026)
     - CVPR(2025)
     - AAAI(2025)
 
 # Industrial Experience
--   At Tencent, I aim to bridge the gap between technology in NLP and scenario in Recommendation & Advertisement.
+-   I spent 3 years of happy time at Tencent, where I bring NLP in the wild of Recommendation & Advertisement.
     -   Improving the NLU ability for News Feed Recommendation.
     -   Resolving the mismatch between commercial inclinations and content interests for Wechat Ads.
     -   Stability, Warm-Up, Efficiency-Quality Tradeoff, Interpretability & Explainability on Large Recommendation System.
     -   Diverse user interest modeling.
 
 # Publications
--   \* denotes first/co-first author.
+\* denotes first/co-first author.
+
 -   Personal Agentic AI:
     -   <span class="conf-neurips">NeurIPS 2024</span> <a href="https://arxiv.org/abs/2406.14928" class="bp">paper</a>  <a href="https://github.com/thinkwee/iAgents" class="bc">code</a> Autonomous Agents for Collaborative Task under Information Asymmetry\*
 -   Inference Time Scaling:

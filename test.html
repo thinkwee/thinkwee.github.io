@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chart</title>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif; background:#f7fafc; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .card { background:#fff; border:1px solid #e5e7eb; border-radius: 12px; padding: 24px; }
+    .toolbar { display:flex; justify-content:flex-end; margin-bottom:16px; }
+    .btn { background:#2563eb; color:#fff; border:0; padding:10px 14px; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; gap:8px; box-shadow:0 1px 2px rgba(0,0,0,.05); }
+    .btn:hover { background:#1d4ed8; }
+    .caption { margin-top:16px; text-align:center; color:#4b5563; font-size:14px; max-width: 900px; margin-left:auto; margin-right:auto; }
+    @media print {
+      body { background:#fff; }
+      .toolbar { display:none; }
+      .container { max-width: unset; padding: 0; }
+      .card { border:0; border-radius:0; padding: 0; }
+    }
+  </style>
+  <!-- ECharts CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <!-- jsPDF (UMD) and its SVG plugin for vector PDF export -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.plugin.svg.js"></script>
+  <!-- svg2pdf UMD as fallback -->
+  <script src="https://cdn.jsdelivr.net/npm/svg2pdf.js@2.2.4/dist/svg2pdf.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="toolbar">
+      <button id="exportBtn" class="btn" type="button" title="Export as PDF">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 10v6"></path>
+          <path d="M9 13l3 3 3-3"></path>
+          <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9z"></path>
+        </svg>
+        Export as PDF
+      </button>
+    </div>
+
+    <div class="card" id="chart-card">
+      <div id="chart" style="width:100%; height:600px;"></div>
+    </div>
+  </div>
+
+  <script>
+    // Data (ported from original file)
+    const rows = [
+      { benchmark: 'WildToolBench', 'Claude-Opus 4': 9.4, 'Claude-Sonnet 4': 12.5, 'GPT5': 5.9, 'GLM4.5': 13.7, 'K2': 10.6, 'Grok 4': 10.2, 'Gemini2.5 pro': 14.1, 'GPT4o': 11.7, 'DeepSeek R1': 9.4, 'DeepSeek V3': 9 },
+      { benchmark: 'BFCL-v4', 'Claude-Opus 4': 69.6, 'Claude-Sonnet 4': 71.7, 'GPT5': 71.1, 'GLM4.5': 64.9, 'K2': 42.1, 'Grok 4': 68.9, 'Gemini2.5 pro': 48.6, 'GPT4o': 64.7, 'DeepSeek R1': 32, 'DeepSeek V3': 27.44 },
+      { benchmark: 'BFCL-v3', 'Claude-Opus 4': 57.9, 'Claude-Sonnet 4': 54.8, 'GPT5': 28.5, 'GLM4.5': 65.6, 'K2': 48.8, 'Grok 4': 36.1, 'Gemini2.5 pro': 25, 'GPT4o': 42.5, 'DeepSeek R1': 44.5, 'DeepSeek V3': 33 },
+      { benchmark: 'BFCL-v2', 'Claude-Opus 4': 81.5, 'Claude-Sonnet 4': 81.1, 'GPT5': 58.3, 'GLM4.5': 81.7, 'K2': 80.8, 'Grok 4': 74.4, 'Gemini2.5 pro': 64, 'GPT4o': 70.5, 'DeepSeek R1': 80.9, 'DeepSeek V3': 79.94 },
+      { benchmark: 'τ-Bench', 'Claude-Opus 4': 70.5, 'Claude-Sonnet 4': 70.3, 'GPT5': 72.3, 'GLM4.5': 70.1, 'K2': 62.6, 'Grok 4': 67.5, 'Gemini2.5 pro': 62.5, 'GPT4o': 51.6, 'DeepSeek R1': 58.7, 'DeepSeek V3': 57.6 },
+      { benchmark: 'τ²Bench\n(telecom)', 'Claude-Opus 4': 57, 'Claude-Sonnet 4': 45.2, 'GPT5': 96.7, 'GLM4.5': 24.6, 'K2': 65.8, 'Grok 4': 47.9, 'Gemini2.5 pro': 54.1, 'GPT4o': 25.1, 'DeepSeek R1': 36.5, 'DeepSeek V3': 32.5 }
+];
+
+const modelColors = {
+  'Claude-Opus 4': '#1f77b4',
+  'Claude-Sonnet 4': '#ff7f0e',
+  'GPT5': '#2ca02c',
+  'GLM4.5': '#d62728',
+  'K2': '#9467bd',
+  'Grok 4': '#8c564b',
+  'Gemini2.5 pro': '#e377c2',
+  'GPT4o': '#7f7f7f',
+  'DeepSeek R1': '#bcbd22',
+  'DeepSeek V3': '#ff9896'
+};
+
+    const benchmarks = rows.map(r => r.benchmark);
+    const models = Object.keys(modelColors);
+
+    // Build series for grouped bar chart
+    const series = models.map(model => ({
+      name: model,
+      type: 'bar',
+      data: rows.map(r => r[model] ?? 0),
+      itemStyle: { color: modelColors[model] },
+      barGap: 0,
+      barCategoryGap: '40%'
+    }));
+
+    const chartEl = document.getElementById('chart');
+    const chart = echarts.init(chartEl, null, { renderer: 'svg' });
+
+    const option = {
+      // no title per requirement
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+      legend: { top: 36, type: 'scroll' },
+      grid: { left: 40, right: 30, top: 80, bottom: 120 },
+      xAxis: {
+        type: 'category',
+        data: benchmarks,
+        axisLabel: { interval: 0, rotate: 0, fontSize: 14 }
+      },
+      yAxis: { type: 'value', min: 0, max: 100, axisLabel: { fontSize: 12 } },
+      series
+    };
+
+    chart.setOption(option);
+
+    window.addEventListener('resize', () => chart.resize());
+
+    // Export to PDF as vector, prefer jsPDF SVG plugin, fallback to svg2pdf
+    document.getElementById('exportBtn').addEventListener('click', async function () {
+      const { jsPDF } = window.jspdf;
+      // ECharts SVG root retrieval
+      const zr = chart.getZr();
+      const painter = zr && zr.painter;
+      const svg = painter && (painter.getSvgRoot ? painter.getSvgRoot() : painter.getViewportRoot && painter.getViewportRoot());
+      if (!svg) return;
+
+      // Compute size and scale to A4 landscape while preserving aspect ratio
+      const bbox = svg.getBBox();
+      const svgWidth = bbox.width || svg.viewBox.baseVal.width || svg.clientWidth || 1200;
+      const svgHeight = bbox.height || svg.viewBox.baseVal.height || svg.clientHeight || 600;
+
+      const pdf = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      const scale = Math.min(pageWidth / svgWidth, pageHeight / svgHeight) * 0.95; // small margin
+      const renderWidth = svgWidth * scale;
+      const renderHeight = svgHeight * scale;
+      const offsetX = (pageWidth - renderWidth) / 2;
+      const offsetY = (pageHeight - renderHeight) / 2;
+
+      if (typeof pdf.svg === 'function') {
+        // Use jsPDF SVG plugin if present
+        await pdf.svg(svg, { x: offsetX, y: offsetY, width: renderWidth, height: renderHeight });
+      } else if (typeof window.svg2pdf === 'function') {
+        // Fallback: use svg2pdf to draw onto pdf context
+        const cloned = svg.cloneNode(true);
+        cloned.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        cloned.setAttribute('width', svgWidth);
+        cloned.setAttribute('height', svgHeight);
+        await window.svg2pdf(cloned, pdf, { x: offsetX, y: offsetY, width: renderWidth, height: renderHeight, assumePt: true });
+      } else {
+        alert('SVG to PDF conversion plugin not loaded.');
+        return;
+      }
+
+      pdf.save('academic-benchmark-comparison.pdf');
+    });
+  </script>
+</body>
+</html>
