@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Deep-Bayes 2018 Summer Camp的习题 填不动了，就到这吧">
+    <meta name="description" content="Deep-Bayes 2018 Summer Camp的习题填不动了，就到这吧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DeepBayes 2018">
 <meta property="og:url" content="https://thinkwee.top/2018/09/22/deepbayes2018/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="Deep-Bayes 2018 Summer Camp的习题 填不动了，就到这吧">
+<meta property="og:description" content="Deep-Bayes 2018 Summer Camp的习题填不动了，就到这吧">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.mji.rip/2025/07/16/fb319b1deaab8213b5f89adf14512e93.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/10/20/i0Ihiq.png">
@@ -33,8 +33,8 @@
 <meta property="article:published_time" content="2018-09-22T02:26:48.000Z">
 <meta property="article:modified_time" content="2025-07-16T10:39:06.471Z">
 <meta property="article:author" content="Thinkwee">
-<meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="math">
+<meta property="article:tag" content="machine learning">
 <meta property="article:tag" content="bayes">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.mji.rip/2025/07/16/fb319b1deaab8213b5f89adf14512e93.png">
@@ -98,7 +98,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">52</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">53</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -149,10 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#deepbayes-summer-school.-practical-session-on-em-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Deep|Bayes summer school. Practical session on EM
-algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#data"><span class="nav-number">1.0.1.</span> <span class="nav-text">Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#goal-and-plan"><span class="nav-number">1.0.2.</span> <span class="nav-text">Goal and plan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#implementation"><span class="nav-number">1.0.3.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#implement-calculate_log_probability"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">1. Implement
-calculate_log_probability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#implement-calculate_lower_bound"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">2. Implement
-calculate_lower_bound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#implement-e-step"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">3. Implement E-step</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#implement-m-step"><span class="nav-number">1.0.3.4.</span> <span class="nav-text">4. Implement M-step</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#implement-em_algorithm"><span class="nav-number">1.0.3.5.</span> <span class="nav-text">5. Implement EM_algorithm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#who-is-the-prankster"><span class="nav-number">1.0.4.</span> <span class="nav-text">Who is the prankster?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#optional-part-hard-em"><span class="nav-number">1.0.5.</span> <span class="nav-text">Optional part: hard-EM</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Deep-Bayes-summer-school-Practical-session-on-EM-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Deep|Bayes summer school. Practical session on EM algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data"><span class="nav-number">1.0.1.</span> <span class="nav-text">Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Goal-and-plan"><span class="nav-number">1.0.2.</span> <span class="nav-text">Goal and plan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementation"><span class="nav-number">1.0.3.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Implement-calculate-log-probability"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">1. Implement calculate_log_probability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Implement-calculate-lower-bound"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">2. Implement calculate_lower_bound</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Implement-E-step"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">3. Implement E-step</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Implement-M-step"><span class="nav-number">1.0.3.4.</span> <span class="nav-text">4. Implement M-step</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Implement-EM-algorithm"><span class="nav-number">1.0.3.5.</span> <span class="nav-text">5. Implement EM_algorithm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Who-is-the-prankster"><span class="nav-number">1.0.4.</span> <span class="nav-text">Who is the prankster?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optional-part-hard-EM"><span class="nav-number">1.0.5.</span> <span class="nav-text">Optional part: hard-EM</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -165,7 +162,7 @@ calculate_lower_bound</span></a></li><li class="nav-item nav-level-4"><a class="
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -297,43 +294,30 @@ calculate_lower_bound</span></a></li><li class="nav-item nav-level-4"><a class="
     
     
     <div class="post-body" itemprop="articleBody"><p><img data-src="https://i.mji.rip/2025/07/16/fb319b1deaab8213b5f89adf14512e93.png" width="500"/></p>
-<p>Deep-Bayes 2018 Summer Camp的习题 填不动了，就到这吧</p>
+<p>Deep-Bayes 2018 Summer Camp的习题<br>填不动了，就到这吧</p>
 <span id="more"></span>
-<h1
-id="deepbayes-summer-school.-practical-session-on-em-algorithm">Deep<span
-style="color:green">|</span>Bayes summer school. Practical session on EM
-algorithm</h1>
-<ul>
+<h1 id="Deep-Bayes-summer-school-Practical-session-on-EM-algorithm"><a href="#Deep-Bayes-summer-school-Practical-session-on-EM-algorithm" class="headerlink" title="Deep|Bayes summer school. Practical session on EM algorithm"></a>Deep<span style="color:green">|</span>Bayes summer school. Practical session on EM algorithm</h1><ul>
 <li>第一题就是应用EM算法还原图像，人像和背景叠加在一起，灰度值的概率分布形式已知，设计人像在背景中的位置为隐变量，进行EM迭代推断。</li>
 <li>具体说明在官网和下面的notebook注释中有，实际上公式已经给出，想要完成作业就是把公式打上去，可以自己推一下公式。</li>
 </ul>
-<p>One of the school organisers decided to prank us and hid all games
-for our Thursday Game Night somewhere.</p>
-<p>Let's find the prankster!</p>
-<p>When you recognize <a target="_blank" rel="noopener" href="http://deepbayes.ru/#speakers">him or
-her</a>, send:</p>
+<p>One of the school organisers decided to prank us and hid all games for our Thursday Game Night somewhere.</p>
+<p>Let’s find the prankster!</p>
+<p>When you recognize <a target="_blank" rel="noopener" href="http://deepbayes.ru/#speakers">him or her</a>, send:</p>
 <ul>
 <li>name</li>
 <li>reconstructed photo</li>
-<li>this notebook with your code (doesn't matter how awful it is :)</li>
+<li>this notebook with your code (doesn’t matter how awful it is :)</li>
 </ul>
-<p><strong>privately</strong> to <a
-target="_blank" rel="noopener" href="https://www.facebook.com/nadiinchi">Nadia Chirkova</a> at Facebook
-or to info@deepbayes.ru. The first three participants will receive a
-present. Do not make spoilers to other participants!</p>
-<p>Please, note that you have only <strong>one attempt</strong> to send
-a message!</p>
+<p><strong>privately</strong> to <a target="_blank" rel="noopener" href="https://www.facebook.com/nadiinchi">Nadia Chirkova</a> at Facebook or to info@deepbayes.ru. The first three participants will receive a present. Do not make spoilers to other participants!</p>
+<p>Please, note that you have only <strong>one attempt</strong> to send a message!</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DATA_FILE = <span class="string">&quot;data_em&quot;</span></span><br><span class="line">w = <span class="number">73</span> <span class="comment"># face_width</span></span><br></pre></td></tr></table></figure>
-<h3 id="data">Data</h3>
-<p>We are given a set of <span class="math inline">\(K\)</span> images
-with shape <span class="math inline">\(H \times W\)</span>.</p>
-<p>It is represented by a numpy-array with shape <span
-class="math inline">\(H \times W \times K\)</span>:</p>
+<h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><p>We are given a set of $K$ images with shape $H \times W$.</p>
+<p>It is represented by a numpy-array with shape $H \times W \times K$:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X = np.load(DATA_FILE)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X.shape <span class="comment"># H, W, K</span></span><br></pre></td></tr></table></figure>
-<pre><code>(100, 200, 1000)</code></pre>
-<p>Example of noisy image:</p>
+<pre><code>(100, 200, 1000)
+</code></pre><p>Example of noisy image:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.imshow(X[:, :, <span class="number">0</span>], cmap=<span class="string">&quot;Greys_r&quot;</span>)</span><br><span class="line">plt.axis(<span class="string">&quot;off&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(X[<span class="number">1</span>,:,<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>[255. 255.  41. 255.   0.  51. 255.  15. 255.  59.   0.   0.   0. 255.
    0. 255. 255.   0. 175.  74. 184.   0.   0. 150. 255. 255.   0.   0.
@@ -349,177 +333,98 @@ class="math inline">\(H \times W \times K\)</span>:</p>
    0. 255.   0. 255.   0.   0.   0. 255.   0.  43. 219.   0. 255. 255.
  255. 166. 255.   0. 255.  42. 255.  44. 255. 255. 255. 255. 255. 255.
  255. 255.  28.   0.  52. 255.  81. 104. 255. 255.  48. 255. 255. 255.
- 102.  25.  30.  73.]</code></pre>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0Ihiq.png" alt="i0Ihiq.png" />
-<figcaption aria-hidden="true">i0Ihiq.png</figcaption>
-</figure>
-<h3 id="goal-and-plan">Goal and plan</h3>
-<p>Our goal is to find face <span class="math inline">\(F\)</span>
-(<span class="math inline">\(H \times w\)</span>).</p>
+ 102.  25.  30.  73.]
+</code></pre><p><img data-src="https://s1.ax1x.com/2018/10/20/i0Ihiq.png" alt="i0Ihiq.png"></p>
+<h3 id="Goal-and-plan"><a href="#Goal-and-plan" class="headerlink" title="Goal and plan"></a>Goal and plan</h3><p>Our goal is to find face $F$ ($H \times w$).</p>
 <p>Also, we will find:</p>
 <ul>
-<li><span class="math inline">\(B\)</span>: background (<span
-class="math inline">\(H \times W\)</span>)</li>
-<li><span class="math inline">\(s\)</span>: noise standard deviation
-(float)</li>
-<li><span class="math inline">\(a\)</span>: discrete prior over face
-positions (<span class="math inline">\(W-w+1\)</span>)</li>
-<li><span class="math inline">\(q(d)\)</span>: discrete posterior over
-face positions for each image ((<span
-class="math inline">\(W-w+1\)</span>) x <span
-class="math inline">\(K\)</span>)</li>
+<li>$B$: background  ($H \times W$)</li>
+<li>$s$: noise standard deviation (float)</li>
+<li>$a$: discrete prior over face positions ($W-w+1$)</li>
+<li>$q(d)$: discrete posterior over face positions for each image  (($W-w+1$) x $K$)</li>
 </ul>
 <p>Implementation plan:</p>
-<ol type="1">
-<li>calculating <span class="math inline">\(log\, p(X \mid
-d,\,F,\,B,\,s)\)</span></li>
+<ol>
+<li>calculating $log\, p(X  \mid d,\,F,\,B,\,s)$</li>
 <li>calculating objective</li>
-<li>E-step: finding <span class="math inline">\(q(d)\)</span></li>
-<li>M-step: estimating <span class="math inline">\(F,\, B, \,s,
-\,a\)</span></li>
+<li>E-step: finding $q(d)$</li>
+<li>M-step: estimating $F,\, B, \,s, \,a$</li>
 <li>composing EM-algorithm from E- and M-step</li>
 </ol>
-<h3 id="implementation">Implementation</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Variables to test implementation</span></span><br><span class="line">tH, tW, tw, tK = <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">tX = np.arange(tH*tW*tK).reshape(tH, tW, tK)</span><br><span class="line">tF = np.arange(tH*tw).reshape(tH, tw)</span><br><span class="line">tB = np.arange(tH*tW).reshape(tH, tW)</span><br><span class="line">ts = <span class="number">0.1</span></span><br><span class="line">ta = np.arange(<span class="number">1</span>, (tW-tw+<span class="number">1</span>)+<span class="number">1</span>)</span><br><span class="line">ta = ta / ta.<span class="built_in">sum</span>()</span><br><span class="line">tq = np.arange(<span class="number">1</span>, (tW-tw+<span class="number">1</span>)*tK+<span class="number">1</span>).reshape(tW-tw+<span class="number">1</span>, tK)</span><br><span class="line">tq = tq / tq.<span class="built_in">sum</span>(axis=<span class="number">0</span>)[np.newaxis, :]</span><br></pre></td></tr></table></figure>
-<h4 id="implement-calculate_log_probability">1. Implement
-calculate_log_probability</h4>
-<p>For <span class="math inline">\(k\)</span>-th image <span
-class="math inline">\(X_k\)</span> and some face position <span
-class="math inline">\(d_k\)</span>: <span
-class="math display">\[p(X_k  \mid d_k,\,F,\,B,\,s) = \prod_{ij}
-    \begin{cases}
-      \mathcal{N}(X_k[i,j]\mid F[i,\,j-d_k],\,s^2),
-      &amp; \text{if}\, (i,j)\in faceArea(d_k)\\
-      \mathcal{N}(X_k[i,j]\mid B[i,j],\,s^2), &amp; \text{else}
-    \end{cases}\]</span></p>
-<p>Important notes:</p>
+<h3 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### Variables to test implementation</span></span><br><span class="line">tH, tW, tw, tK = <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">tX = np.arange(tH*tW*tK).reshape(tH, tW, tK)</span><br><span class="line">tF = np.arange(tH*tw).reshape(tH, tw)</span><br><span class="line">tB = np.arange(tH*tW).reshape(tH, tW)</span><br><span class="line">ts = <span class="number">0.1</span></span><br><span class="line">ta = np.arange(<span class="number">1</span>, (tW-tw+<span class="number">1</span>)+<span class="number">1</span>)</span><br><span class="line">ta = ta / ta.<span class="built_in">sum</span>()</span><br><span class="line">tq = np.arange(<span class="number">1</span>, (tW-tw+<span class="number">1</span>)*tK+<span class="number">1</span>).reshape(tW-tw+<span class="number">1</span>, tK)</span><br><span class="line">tq = tq / tq.<span class="built_in">sum</span>(axis=<span class="number">0</span>)[np.newaxis, :]</span><br></pre></td></tr></table></figure>
+<h4 id="1-Implement-calculate-log-probability"><a href="#1-Implement-calculate-log-probability" class="headerlink" title="1. Implement calculate_log_probability"></a>1. Implement calculate_log_probability</h4><p>For $k$-th image $X_k$ and some face position $d_k$:</p>
+<script type="math/tex; mode=display">p(X_k  \mid d_k,\,F,\,B,\,s) = \prod_{ij}
+    \begin{cases} 
+      \mathcal{N}(X_k[i,j]\mid F[i,\,j-d_k],\,s^2), 
+      & \text{if}\, (i,j)\in faceArea(d_k)\\
+      \mathcal{N}(X_k[i,j]\mid B[i,j],\,s^2), & \text{else}
+    \end{cases}</script><p>Important notes:</p>
 <ul>
 <li>Do not forget about logarithm!</li>
 <li>This implementation should use no more than 1 cycle!</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">calculate_log_probability</span>(<span class="params">X, F, B, s</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Calculates log p(X_k|d_k, F, B, s) for all images X_k in X and</span></span><br><span class="line"><span class="string">    all possible face position d_k.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Parameters</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    X : array, shape (H, W, K)</span></span><br><span class="line"><span class="string">        K images of size H x W.</span></span><br><span class="line"><span class="string">    F : array, shape (H, w)</span></span><br><span class="line"><span class="string">        Estimate of prankster&#x27;s face.</span></span><br><span class="line"><span class="string">    B : array, shape (H, W)</span></span><br><span class="line"><span class="string">        Estimate of background.</span></span><br><span class="line"><span class="string">    s : float</span></span><br><span class="line"><span class="string">        Estimate of standard deviation of Gaussian noise.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns</span></span><br><span class="line"><span class="string">    -------</span></span><br><span class="line"><span class="string">    ll : array, shape(W-w+1, K)</span></span><br><span class="line"><span class="string">        ll[dw, k] - log-likelihood of observing image X_k given</span></span><br><span class="line"><span class="string">        that the prankster&#x27;s face F is located at position dw</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># your code here</span></span><br><span class="line">    H = X.shape[<span class="number">0</span>]</span><br><span class="line">    W = X.shape[<span class="number">1</span>]</span><br><span class="line">    K = X.shape[<span class="number">2</span>]</span><br><span class="line">    w = F.shape[<span class="number">1</span>]</span><br><span class="line">    ll = np.zeros((W-w+<span class="number">1</span>,K))</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(K):</span><br><span class="line">        X_minus_B = X[:,:,k]-B[:,:]</span><br><span class="line">        XB = np.multiply(X_minus_B,X_minus_B)</span><br><span class="line">        <span class="keyword">for</span> dk <span class="keyword">in</span> <span class="built_in">range</span>(W-w+<span class="number">1</span>):</span><br><span class="line">            F_temp = np.zeros((H,W))</span><br><span class="line">            F_temp[:,dk:dk+w] = F</span><br><span class="line">            X_minus_F = X[:,:,k] - F_temp[:,:]</span><br><span class="line">            XF = np.multiply(X_minus_F,X_minus_F)</span><br><span class="line">            XB_mask = np.ones((H,W))</span><br><span class="line">            XB_mask[:,dk:dk+w] = <span class="number">0</span></span><br><span class="line">            XF_mask = <span class="number">1</span>-XB_mask</span><br><span class="line">            XB_temp = np.multiply(XB,XB_mask)</span><br><span class="line">            XF_temp = np.multiply(XF,XF_mask)   </span><br><span class="line">            Sum = (np.<span class="built_in">sum</span>(XB_temp+XF_temp))*(-<span class="number">1</span>/(<span class="number">2</span>*s**<span class="number">2</span>))-H*W*np.log(np.sqrt(<span class="number">2</span>*np.pi)*s)</span><br><span class="line">            ll[dk][k]=Sum    </span><br><span class="line">    <span class="keyword">return</span> ll</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># run this cell to test your implementation</span></span><br><span class="line">expected = np.array([[-<span class="number">3541.69812064</span>, -<span class="number">5541.69812064</span>],</span><br><span class="line">       [-<span class="number">4541.69812064</span>, -<span class="number">6741.69812064</span>],</span><br><span class="line">       [-<span class="number">6141.69812064</span>, -<span class="number">8541.69812064</span>]])</span><br><span class="line">actual = calculate_log_probability(tX, tF, tB, ts)</span><br><span class="line"><span class="keyword">assert</span> np.allclose(actual, expected)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;OK&quot;</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>OK</code></pre>
-<h4 id="implement-calculate_lower_bound">2. Implement
-calculate_lower_bound</h4>
-<p><span class="math display">\[\mathcal{L}(q, \,F, \,B,\, s,\, a) =
-\sum_k \biggl (\mathbb{E} _ {q( d_k)}\bigl ( \log p(  X_{k}  \mid
-{d}_{k} , \,F,\,B,\,s) +
-    \log p( d_k  \mid a)\bigr) - \mathbb{E} _ {q( d_k)} \log q(
-d_k)\biggr) \]</span></p>
-<p>Important notes:</p>
+<pre><code>OK
+</code></pre><h4 id="2-Implement-calculate-lower-bound"><a href="#2-Implement-calculate-lower-bound" class="headerlink" title="2. Implement calculate_lower_bound"></a>2. Implement calculate_lower_bound</h4><script type="math/tex; mode=display">\mathcal{L}(q, \,F, \,B,\, s,\, a) = \sum_k \biggl (\mathbb{E} _ {q( d_k)}\bigl ( \log p(  X_{k}  \mid {d}_{k} , \,F,\,B,\,s) + 
+    \log p( d_k  \mid a)\bigr) - \mathbb{E} _ {q( d_k)} \log q( d_k)\biggr)</script><p>Important notes:</p>
 <ul>
-<li>Use already implemented calculate_log_probability!</li>
-<li>Note that distributions <span class="math inline">\(q( d_k)\)</span>
-and <span class="math inline">\(p( d_k \mid a)\)</span> are discrete.
-For example, <span class="math inline">\(P(d_k=i \mid a) =
-a[i]\)</span>.</li>
+<li>Use already implemented calculate_log_probability! </li>
+<li>Note that distributions $q( d_k)$ and $p( d_k  \mid a)$ are discrete. For example, $P(d_k=i \mid a) = a[i]$.</li>
 <li>This implementation should not use cycles!</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">calculate_lower_bound</span>(<span class="params">X, F, B, s, a, q</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Calculates the lower bound L(q, F, B, s, a) for </span></span><br><span class="line"><span class="string">    the marginal log likelihood.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Parameters</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    X : array, shape (H, W, K)</span></span><br><span class="line"><span class="string">        K images of size H x W.</span></span><br><span class="line"><span class="string">    F : array, shape (H, w)</span></span><br><span class="line"><span class="string">        Estimate of prankster&#x27;s face.</span></span><br><span class="line"><span class="string">    B : array, shape (H, W)</span></span><br><span class="line"><span class="string">        Estimate of background.</span></span><br><span class="line"><span class="string">    s : float</span></span><br><span class="line"><span class="string">        Estimate of standard deviation of Gaussian noise.</span></span><br><span class="line"><span class="string">    a : array, shape (W-w+1)</span></span><br><span class="line"><span class="string">        Estimate of prior on position of face in any image.</span></span><br><span class="line"><span class="string">    q : array</span></span><br><span class="line"><span class="string">        q[dw, k] - estimate of posterior </span></span><br><span class="line"><span class="string">                   of position dw</span></span><br><span class="line"><span class="string">                   of prankster&#x27;s face given image Xk</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns</span></span><br><span class="line"><span class="string">    -------</span></span><br><span class="line"><span class="string">    L : float</span></span><br><span class="line"><span class="string">        The lower bound L(q, F, B, s, a) </span></span><br><span class="line"><span class="string">        for the marginal log likelihood.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># your code here</span></span><br><span class="line">    K = X.shape[<span class="number">2</span>]</span><br><span class="line">    ll = calculate_log_probability(X,F,B,s)</span><br><span class="line">    ll_expectation = np.multiply(ll,q)</span><br><span class="line">    q_expectation = np.multiply(np.log(q),q)</span><br><span class="line">    dk_expection = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(K):</span><br><span class="line">        dk_expection += np.multiply(np.log(a),q[:,k])</span><br><span class="line">    L = np.<span class="built_in">sum</span>(ll_expectation)-np.<span class="built_in">sum</span>(q_expectation)+np.<span class="built_in">sum</span>(dk_expection)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># run this cell to test your implementation</span></span><br><span class="line">expected = -<span class="number">12761.1875</span></span><br><span class="line">actual = calculate_lower_bound(tX, tF, tB, ts, ta, tq)</span><br><span class="line"><span class="keyword">assert</span> np.allclose(actual, expected)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;OK&quot;</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>OK</code></pre>
-<h4 id="implement-e-step">3. Implement E-step</h4>
-<p><span class="math display">\[q(d_k) = p(d_k \mid X_k, \,F, \,B,
-\,s,\, a) =
+<pre><code>OK
+</code></pre><h4 id="3-Implement-E-step"><a href="#3-Implement-E-step" class="headerlink" title="3. Implement E-step"></a>3. Implement E-step</h4><script type="math/tex; mode=display">q(d_k) = p(d_k \mid X_k, \,F, \,B, \,s,\, a) = 
 \frac {p(  X_{k}  \mid {d}_{k} , \,F,\,B,\,s)\, p(d_k \mid a)}
-{\sum_{d&#39;_k} p(  X_{k}  \mid d&#39;_k , \,F,\,B,\,s) \,p(d&#39;_k
-\mid a)}\]</span></p>
-<p>Important notes:</p>
+{\sum_{d'_k} p(  X_{k}  \mid d'_k , \,F,\,B,\,s) \,p(d'_k \mid a)}</script><p>Important notes:</p>
 <ul>
 <li>Use already implemented calculate_log_probability!</li>
-<li>For computational stability, perform all computations with
-logarithmic values and apply exp only before return. Also, we recommend
-using this trick: <span class="math display">\[\beta_i =
-\log{p_i(\dots)} \quad\rightarrow \quad
-\frac{e^{\beta_i}}{\sum_k e^{\beta_k}} =
-\frac{e^{(\beta_i - \max_j \beta_j)}}{\sum_k e^{(\beta_k- \max_j
-\beta_j)}}\]</span></li>
+<li>For computational stability, perform all computations with logarithmic values and apply exp only before return. Also, we recommend using this trick:<script type="math/tex; mode=display">\beta_i = \log{p_i(\dots)} \quad\rightarrow \quad
+\frac{e^{\beta_i}}{\sum_k e^{\beta_k}} = 
+\frac{e^{(\beta_i - \max_j \beta_j)}}{\sum_k e^{(\beta_k- \max_j \beta_j)}}</script></li>
 <li>This implementation should not use cycles!</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">run_e_step</span>(<span class="params">X, F, B, s, a</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Given the current esitmate of the parameters, for each image Xk</span></span><br><span class="line"><span class="string">    esitmates the probability p(d_k|X_k, F, B, s, a).</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Parameters</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    X : array, shape(H, W, K)</span></span><br><span class="line"><span class="string">        K images of size H x W.</span></span><br><span class="line"><span class="string">    F  : array_like, shape(H, w)</span></span><br><span class="line"><span class="string">        Estimate of prankster&#x27;s face.</span></span><br><span class="line"><span class="string">    B : array shape(H, W)</span></span><br><span class="line"><span class="string">        Estimate of background.</span></span><br><span class="line"><span class="string">    s : float</span></span><br><span class="line"><span class="string">        Eestimate of standard deviation of Gaussian noise.</span></span><br><span class="line"><span class="string">    a : array, shape(W-w+1)</span></span><br><span class="line"><span class="string">        Estimate of prior on face position in any image.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns</span></span><br><span class="line"><span class="string">    -------</span></span><br><span class="line"><span class="string">    q : array</span></span><br><span class="line"><span class="string">        shape (W-w+1, K)</span></span><br><span class="line"><span class="string">        q[dw, k] - estimate of posterior of position dw</span></span><br><span class="line"><span class="string">        of prankster&#x27;s face given image Xk</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># your code here</span></span><br><span class="line">    ll = calculate_log_probability(X,F,B,s)</span><br><span class="line">    K = X.shape[<span class="number">2</span>]</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(K):</span><br><span class="line">        max_ll = ll[:,k].<span class="built_in">max</span>()</span><br><span class="line">        ll[:,k] -= max_ll</span><br><span class="line">        ll[:,k] = np.exp(ll[:,k])*a</span><br><span class="line">        denominator = np.<span class="built_in">sum</span>(ll[:,k])</span><br><span class="line">        ll[:,k] /= denominator</span><br><span class="line">    q = ll</span><br><span class="line">    <span class="keyword">return</span> q</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># run this cell to test your implementation</span></span><br><span class="line">expected = np.array([[ <span class="number">1.</span>,  <span class="number">1.</span>],</span><br><span class="line">                   [ <span class="number">0.</span>,  <span class="number">0.</span>],</span><br><span class="line">                   [ <span class="number">0.</span>,  <span class="number">0.</span>]])</span><br><span class="line">actual = run_e_step(tX, tF, tB, ts, ta)</span><br><span class="line"><span class="keyword">assert</span> np.allclose(actual, expected)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;OK&quot;</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>OK</code></pre>
-<h4 id="implement-m-step">4. Implement M-step</h4>
-<p><span class="math display">\[a[j] = \frac{\sum_k q( d_k = j
-)}{\sum_{j&#39;}  \sum_{k&#39;} q( d_{k&#39;} = j&#39;)}\]</span> <span
-class="math display">\[F[i, m] = \frac 1 K  \sum_k \sum_{d_k} q(d_k)\,
-X^k[i,\, m+d_k]\]</span> <span class="math display">\[B[i, j] = \frac
-{\sum_k \sum_{ d_k:\, (i, \,j) \,\not\in faceArea(d_k)} q(d_k)\, X^k[i,
-j]}
-      {\sum_k \sum_{d_k: \,(i, \,j)\, \not\in faceArea(d_k)}
-q(d_k)}\]</span> <span class="math display">\[s^2 = \frac 1
-{HWK}   \sum_k \sum_{d_k} q(d_k)
-      \sum_{i,\, j}  (X^k[i, \,j] - Model^{d_k}[i, \,j])^2\]</span></p>
-<p>where <span class="math inline">\(Model^{d_k}[i, j]\)</span> is an
-image composed from background and face located at <span
-class="math inline">\(d_k\)</span>.</p>
+<pre><code>OK
+</code></pre><h4 id="4-Implement-M-step"><a href="#4-Implement-M-step" class="headerlink" title="4. Implement M-step"></a>4. Implement M-step</h4><script type="math/tex; mode=display">a[j] = \frac{\sum_k q( d_k = j )}{\sum_{j'}  \sum_{k'} q( d_{k'} = j')}</script><script type="math/tex; mode=display">F[i, m] = \frac 1 K  \sum_k \sum_{d_k} q(d_k)\, X^k[i,\, m+d_k]</script><script type="math/tex; mode=display">B[i, j] = \frac {\sum_k \sum_{ d_k:\, (i, \,j) \,\not\in faceArea(d_k)} q(d_k)\, X^k[i, j]} 
+      {\sum_k \sum_{d_k: \,(i, \,j)\, \not\in faceArea(d_k)} q(d_k)}</script><script type="math/tex; mode=display">s^2 = \frac 1 {HWK}   \sum_k \sum_{d_k} q(d_k)
+      \sum_{i,\, j}  (X^k[i, \,j] - Model^{d_k}[i, \,j])^2</script><p>where $Model^{d_k}[i, j]$ is an image composed from background and face located at $d_k$.</p>
 <p>Important notes:</p>
 <ul>
-<li>Update parameters in the following order: <span
-class="math inline">\(a\)</span>, <span
-class="math inline">\(F\)</span>, <span
-class="math inline">\(B\)</span>, <span
-class="math inline">\(s\)</span>.</li>
-<li>When the parameter is updated, its <strong>new</strong> value is
-used to update other parameters.</li>
-<li>This implementation should use no more than 3 cycles and no embedded
-cycles!</li>
+<li>Update parameters in the following order: $a$, $F$, $B$, $s$.</li>
+<li>When the parameter is updated, its <strong>new</strong> value is used to update other parameters.</li>
+<li>This implementation should use no more than 3 cycles and no embedded cycles!</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">run_m_step</span>(<span class="params">X, q, w</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Estimates F, B, s, a given esitmate of posteriors defined by q.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Parameters</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    X : array, shape (H, W, K)</span></span><br><span class="line"><span class="string">        K images of size H x W.</span></span><br><span class="line"><span class="string">    q  :</span></span><br><span class="line"><span class="string">        q[dw, k] - estimate of posterior of position dw</span></span><br><span class="line"><span class="string">                   of prankster&#x27;s face given image Xk</span></span><br><span class="line"><span class="string">    w : int</span></span><br><span class="line"><span class="string">        Face mask width.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns</span></span><br><span class="line"><span class="string">    -------</span></span><br><span class="line"><span class="string">    F : array, shape (H, w)</span></span><br><span class="line"><span class="string">        Estimate of prankster&#x27;s face.</span></span><br><span class="line"><span class="string">    B : array, shape (H, W)</span></span><br><span class="line"><span class="string">        Estimate of background.</span></span><br><span class="line"><span class="string">    s : float</span></span><br><span class="line"><span class="string">        Estimate of standard deviation of Gaussian noise.</span></span><br><span class="line"><span class="string">    a : array, shape (W-w+1)</span></span><br><span class="line"><span class="string">        Estimate of prior on position of face in any image.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># your code here</span></span><br><span class="line">    K = X.shape[<span class="number">2</span>]</span><br><span class="line">    W = X.shape[<span class="number">1</span>]</span><br><span class="line">    H = X.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    a = np.<span class="built_in">sum</span>(q,axis=<span class="number">1</span>) / np.<span class="built_in">sum</span>(q)</span><br><span class="line"></span><br><span class="line">    F = np.zeros((H,w))</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(K):</span><br><span class="line">        <span class="keyword">for</span> dk <span class="keyword">in</span> <span class="built_in">range</span>(W-w+<span class="number">1</span>):</span><br><span class="line">            F+=q[dk][k]*X[:,dk:dk+w,k]</span><br><span class="line">    F = F / K</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    B = np.zeros((H,W))</span><br><span class="line">    denominator = np.zeros((H,W))</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(K):</span><br><span class="line">        <span class="keyword">for</span> dk <span class="keyword">in</span> <span class="built_in">range</span>(W-w+<span class="number">1</span>):</span><br><span class="line">            mask = np.ones((H,W))</span><br><span class="line">            mask[:,dk:dk+w] = <span class="number">0</span></span><br><span class="line">            B += np.multiply(q[dk][k]*X[:,:,k],mask)</span><br><span class="line">            denominator += q[dk][k]*mask</span><br><span class="line">    denominator = <span class="number">1</span>/denominator</span><br><span class="line">    B = B * denominator</span><br><span class="line"></span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(K):</span><br><span class="line">        <span class="keyword">for</span> dk <span class="keyword">in</span> <span class="built_in">range</span>(W-w+<span class="number">1</span>):</span><br><span class="line">            F_B = np.zeros((H,W))</span><br><span class="line">            F_B[:,dk:dk+w]=F</span><br><span class="line">            mask = np.ones((H,W))</span><br><span class="line">            mask[:,dk:dk+w] = <span class="number">0</span></span><br><span class="line">            Model = F_B + np.multiply(B,mask)</span><br><span class="line">            temp = X[:,:,k]-Model[:,:]</span><br><span class="line">            temp = np.multiply(temp,temp)</span><br><span class="line">            temp = np.<span class="built_in">sum</span>(temp)</span><br><span class="line">            temp *= q[dk][k]</span><br><span class="line">            s += temp</span><br><span class="line">    s = np.sqrt(s /(H*W*K))          </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> F,B,s,a</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># run this cell to test your implementation</span></span><br><span class="line">expected = [np.array([[ <span class="number">3.27777778</span>],</span><br><span class="line">                      [ <span class="number">9.27777778</span>]]),</span><br><span class="line"> np.array([[  <span class="number">0.48387097</span>,   <span class="number">2.5</span>       ,   <span class="number">4.52941176</span>],</span><br><span class="line">           [  <span class="number">6.48387097</span>,   <span class="number">8.5</span>       ,  <span class="number">10.52941176</span>]]),</span><br><span class="line">  <span class="number">0.94868</span>,</span><br><span class="line"> np.array([ <span class="number">0.13888889</span>,  <span class="number">0.33333333</span>,  <span class="number">0.52777778</span>])]</span><br><span class="line">actual = run_m_step(tX, tq, tw)</span><br><span class="line"><span class="keyword">for</span> a, e <span class="keyword">in</span> <span class="built_in">zip</span>(actual, expected):</span><br><span class="line">    <span class="keyword">assert</span> np.allclose(a, e)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;OK&quot;</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>OK</code></pre>
-<h4 id="implement-em_algorithm">5. Implement EM_algorithm</h4>
-<p>Initialize parameters, if they are not passed, and then repeat E- and
-M-steps till convergence.</p>
-<p>Please note that <span class="math inline">\(\mathcal{L}(q, \,F, \,B,
-\,s, \,a)\)</span> must increase after each iteration.</p>
+<pre><code>OK
+</code></pre><h4 id="5-Implement-EM-algorithm"><a href="#5-Implement-EM-algorithm" class="headerlink" title="5. Implement EM_algorithm"></a>5. Implement EM_algorithm</h4><p>Initialize parameters, if they are not passed, and then repeat E- and M-steps till convergence.</p>
+<p>Please note that $\mathcal{L}(q, \,F, \,B, \,s, \,a)$ must increase after each iteration.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">run_EM</span>(<span class="params">X, w, F=<span class="literal">None</span>, B=<span class="literal">None</span>, s=<span class="literal">None</span>, a=<span class="literal">None</span>, tolerance=<span class="number">0.001</span>,</span></span><br><span class="line"><span class="params">           max_iter=<span class="number">50</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Runs EM loop until the likelihood of observing X given current</span></span><br><span class="line"><span class="string">    estimate of parameters is idempotent as defined by a fixed</span></span><br><span class="line"><span class="string">    tolerance.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Parameters</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    X : array, shape (H, W, K)</span></span><br><span class="line"><span class="string">        K images of size H x W.</span></span><br><span class="line"><span class="string">    w : int</span></span><br><span class="line"><span class="string">        Face mask width.</span></span><br><span class="line"><span class="string">    F : array, shape (H, w), optional</span></span><br><span class="line"><span class="string">        Initial estimate of prankster&#x27;s face.</span></span><br><span class="line"><span class="string">    B : array, shape (H, W), optional</span></span><br><span class="line"><span class="string">        Initial estimate of background.</span></span><br><span class="line"><span class="string">    s : float, optional</span></span><br><span class="line"><span class="string">        Initial estimate of standard deviation of Gaussian noise.</span></span><br><span class="line"><span class="string">    a : array, shape (W-w+1), optional</span></span><br><span class="line"><span class="string">        Initial estimate of prior on position of face in any image.</span></span><br><span class="line"><span class="string">    tolerance : float, optional</span></span><br><span class="line"><span class="string">        Parameter for stopping criterion.</span></span><br><span class="line"><span class="string">    max_iter  : int, optional</span></span><br><span class="line"><span class="string">        Maximum number of iterations.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns</span></span><br><span class="line"><span class="string">    -------</span></span><br><span class="line"><span class="string">    F, B, s, a : trained parameters.</span></span><br><span class="line"><span class="string">    LL : array, shape(number_of_iters + 2,)</span></span><br><span class="line"><span class="string">        L(q, F, B, s, a) at initial guess, </span></span><br><span class="line"><span class="string">        after each EM iteration and after</span></span><br><span class="line"><span class="string">        final estimate of posteriors;</span></span><br><span class="line"><span class="string">        number_of_iters is actual number of iterations that was done.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    H, W, N = X.shape</span><br><span class="line">    <span class="keyword">if</span> F <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        F = np.random.randint(<span class="number">0</span>, <span class="number">255</span>, (H, w))</span><br><span class="line">    <span class="keyword">if</span> B <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        B = np.random.randint(<span class="number">0</span>, <span class="number">255</span>, (H, W))</span><br><span class="line">    <span class="keyword">if</span> a <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        a = np.ones(W - w + <span class="number">1</span>)</span><br><span class="line">        a /= np.<span class="built_in">sum</span>(a)</span><br><span class="line">    <span class="keyword">if</span> s <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        s = np.random.rand()*<span class="built_in">pow</span>(<span class="number">64</span>,<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># your code here</span></span><br><span class="line">    LL = [-<span class="number">100000</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(max_iter):</span><br><span class="line">        q = run_e_step(X,F,B,s,a)</span><br><span class="line">        F,B,s,a = run_m_step(X,q,w)</span><br><span class="line">        LL.append(calculate_lower_bound(X,F,B,s,a,q))</span><br><span class="line">        <span class="keyword">if</span> LL[-<span class="number">1</span>]-LL[-<span class="number">2</span>] &lt; tolerance :</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    LL = np.array(LL)</span><br><span class="line">    <span class="keyword">return</span> F,B,s,a,LL</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># run this cell to test your implementation</span></span><br><span class="line">res = run_EM(tX, tw, max_iter=<span class="number">10</span>)</span><br><span class="line">LL = res[-<span class="number">1</span>]</span><br><span class="line"><span class="keyword">assert</span> np.alltrue(LL[<span class="number">1</span>:] - LL[:-<span class="number">1</span>] &gt; <span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;OK&quot;</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>OK</code></pre>
-<h3 id="who-is-the-prankster">Who is the prankster?</h3>
-<p>To speed up the computation, we will perform 5 iterations over small
-subset of images and then gradually increase the subset.</p>
-<p>If everything is implemented correctly, you will recognize the
-prankster (remember he is the one from <a
-target="_blank" rel="noopener" href="http://deepbayes.ru/#speakers">DeepBayes team</a>).</p>
+<pre><code>OK
+</code></pre><h3 id="Who-is-the-prankster"><a href="#Who-is-the-prankster" class="headerlink" title="Who is the prankster?"></a>Who is the prankster?</h3><p>To speed up the computation, we will perform 5 iterations over small subset of images and then gradually increase the subset.</p>
+<p>If everything is implemented correctly, you will recognize the prankster (remember he is the one from <a target="_blank" rel="noopener" href="http://deepbayes.ru/#speakers">DeepBayes team</a>).</p>
 <p>Run EM-algorithm:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">show</span>(<span class="params">F, i=<span class="number">1</span>, n=<span class="number">1</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    shows face F at subplot i out of n</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    plt.subplot(<span class="number">1</span>, n, i)</span><br><span class="line">    plt.imshow(F, cmap=<span class="string">&quot;Greys_r&quot;</span>)</span><br><span class="line">    plt.axis(<span class="string">&quot;off&quot;</span>)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">F, B, s, a = [<span class="literal">None</span>] * <span class="number">4</span></span><br><span class="line">LL = []</span><br><span class="line">lens = [<span class="number">50</span>, <span class="number">100</span>, <span class="number">300</span>, <span class="number">500</span>, <span class="number">1000</span>]</span><br><span class="line">iters = [<span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">plt.figure(figsize=(<span class="number">20</span>, <span class="number">5</span>))</span><br><span class="line"><span class="keyword">for</span> i, (l, it) <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">zip</span>(lens, iters)):</span><br><span class="line">    F, B, s, a, _ = run_EM(X[:, :, :l], w, F, B, s, a, max_iter=it)</span><br><span class="line">    show(F, i+<span class="number">1</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0omSf.png" alt="i0omSf.png" />
-<figcaption aria-hidden="true">i0omSf.png</figcaption>
-</figure>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0omSf.png" alt="i0omSf.png"></p>
 <p>And this is the background:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show(B)</span><br></pre></td></tr></table></figure>
-<figure>
-<img data-src="https://s1.ax1x.com/2018/10/20/i0I4J0.png" alt="i0I4J0.png" />
-<figcaption aria-hidden="true">i0I4J0.png</figcaption>
-</figure>
-<h3 id="optional-part-hard-em">Optional part: hard-EM</h3>
-<p>If you have some time left, you can implement simplified version of
-EM-algorithm called hard-EM. In hard-EM, instead of finding posterior
-distribution <span class="math inline">\(p(d_k|X_k, F, B, s, A)\)</span>
-at E-step, we just remember its argmax <span
-class="math inline">\(\tilde d_k\)</span> for each image <span
-class="math inline">\(k\)</span>. Thus, the distribution q is replaced
-with a singular distribution: <span class="math display">\[q(d_k) =
-\begin{cases} 1, \, if d_k = \tilde d_k \\ 0, \,
-otherwise\end{cases}\]</span> This modification simplifies formulas for
-<span class="math inline">\(\mathcal{L}\)</span> and M-step and speeds
-their computation up. However, the convergence of hard-EM is usually
-slow.</p>
-<p>If you implement hard-EM, add binary flag hard_EM to the parameters
-of the following functions:</p>
+<p><img data-src="https://s1.ax1x.com/2018/10/20/i0I4J0.png" alt="i0I4J0.png"></p>
+<h3 id="Optional-part-hard-EM"><a href="#Optional-part-hard-EM" class="headerlink" title="Optional part: hard-EM"></a>Optional part: hard-EM</h3><p>If you have some time left, you can implement simplified version of EM-algorithm called hard-EM. In hard-EM, instead of finding posterior distribution $p(d_k|X_k, F, B, s, A)$ at E-step, we just remember its argmax $\tilde d_k$ for each image $k$. Thus, the distribution q is replaced with a singular distribution:</p>
+<script type="math/tex; mode=display">q(d_k) = \begin{cases} 1, \, if d_k = \tilde d_k \\ 0, \, otherwise\end{cases}</script><p>This modification simplifies formulas for $\mathcal{L}$ and M-step and speeds their computation up. However, the convergence of hard-EM is usually slow.</p>
+<p>If you implement hard-EM, add binary flag hard_EM to the parameters of the following functions:</p>
 <ul>
 <li>calculate_lower_bound</li>
 <li>run_e_step</li>
 <li>run_m_step</li>
 <li>run_EM</li>
 </ul>
-<p>After implementation, compare overall computation time for EM and
-hard-EM till recognizable F.</p>
+<p>After implementation, compare overall computation time for EM and hard-EM till recognizable F.</p>
 
     </div>
 
@@ -529,8 +434,8 @@ hard-EM till recognizable F.</p>
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
               <a href="/tags/math/" rel="tag"># math</a>
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
               <a href="/tags/bayes/" rel="tag"># bayes</a>
           </div>
 
@@ -590,7 +495,7 @@ hard-EM till recognizable F.</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">16:58</span>
+    <span title="Reading time total">16:10</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>

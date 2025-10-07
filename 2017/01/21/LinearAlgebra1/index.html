@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="First Lecture: Geometric Interpretation of Systems of Equations  From three perspectives to view the system of equations: row graph, column graph, matrix">
+    <meta name="description" content="First Lecture: Geometric Interpretation of Systems of Equations From three perspectives to view the system of equations: row graph, column graph, matrix">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Note for Linear Algebra 1">
 <meta property="og:url" content="https://thinkwee.top/2017/01/21/LinearAlgebra1/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="First Lecture: Geometric Interpretation of Systems of Equations  From three perspectives to view the system of equations: row graph, column graph, matrix">
+<meta property="og:description" content="First Lecture: Geometric Interpretation of Systems of Equations From three perspectives to view the system of equations: row graph, column graph, matrix">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.mji.rip/2025/07/16/fcab3101f40bfbdcf2ec3e30b6171a26.png">
 <meta property="og:image" content="http://ojtdnrpmt.bkt.clouddn.com/blog/20170122/203313042.png">
@@ -96,7 +96,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">52</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">53</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -147,18 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#first-lecture-geometric-interpretation-of-systems-of-equations"><span class="nav-number">1.</span> <span class="nav-text">First
-Lecture: Geometric Interpretation of Systems of Equations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#image-processing"><span class="nav-number">1.1.</span> <span class="nav-text">Image processing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list-images"><span class="nav-number">1.2.</span> <span class="nav-text">List images</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#matrix"><span class="nav-number">1.3.</span> <span class="nav-text">Matrix</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#second-lecture-elimination-back-substitution-and-replacement"><span class="nav-number">2.</span> <span class="nav-text">Second
-Lecture: Elimination, Back Substitution, and Replacement</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#elimination"><span class="nav-number">2.1.</span> <span class="nav-text">Elimination</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#back-substitution"><span class="nav-number">2.2.</span> <span class="nav-text">Back-substitution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#replacement"><span class="nav-number">2.3.</span> <span class="nav-text">Replacement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#third-lecture-multiplication-and-inverse-matrices"><span class="nav-number">3.</span> <span class="nav-text">Third
-Lecture: Multiplication and Inverse Matrices</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#matrix-multiplication"><span class="nav-number">3.1.</span> <span class="nav-text">Matrix multiplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#invertible-matrix"><span class="nav-number">3.2.</span> <span class="nav-text">Invertible matrix</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fourth-lecture-lu-decomposition-of-a"><span class="nav-number">4.</span> <span class="nav-text">Fourth Lecture: LU
-Decomposition of A</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lu-decomposition"><span class="nav-number">4.1.</span> <span class="nav-text">LU decomposition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#elimination-consumption"><span class="nav-number">4.2.</span> <span class="nav-text">Elimination Consumption</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%A4"><span class="nav-number">4.3.</span> <span class="nav-text">群</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-5-transposition-permutation-vector-space-r"><span class="nav-number">5.</span> <span class="nav-text">Lecture 5:
-Transposition, Permutation, Vector Space R</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%A2"><span class="nav-number">5.1.</span> <span class="nav-text">换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transpose"><span class="nav-number">5.2.</span> <span class="nav-text">Transpose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vector-space"><span class="nav-number">5.3.</span> <span class="nav-text">Vector Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#through-matrix-construction-into-quantum-space"><span class="nav-number">5.4.</span> <span class="nav-text">Through matrix
-construction into quantum space</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-6-column-space-and-null-space"><span class="nav-number">6.</span> <span class="nav-text">Lecture 6: Column Space
-and Null Space</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#list-space"><span class="nav-number">6.1.</span> <span class="nav-text">List space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zero-space"><span class="nav-number">6.2.</span> <span class="nav-text">Zero Space</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-7-main-variables-special-solutions"><span class="nav-number">7.</span> <span class="nav-text">Lecture 7: Main
-Variables, Special Solutions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#main-variable"><span class="nav-number">7.1.</span> <span class="nav-text">Main Variable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#special-solution"><span class="nav-number">7.2.</span> <span class="nav-text">Special Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#simplified-row-ladder-form"><span class="nav-number">7.3.</span> <span class="nav-text">Simplified row ladder form</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zero-space-matrix"><span class="nav-number">7.4.</span> <span class="nav-text">Zero-space matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#take-an-example-to-go-through-the-algorithm-again"><span class="nav-number">7.5.</span> <span class="nav-text">Take an
-example to go through the algorithm again</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lecture-8-solvability-and-the-structure-of-solutions"><span class="nav-number">8.</span> <span class="nav-text">Lecture 8:
-Solvability and the Structure of Solutions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#solvability"><span class="nav-number">8.1.</span> <span class="nav-text">Solvability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#structure-of-the-explanation"><span class="nav-number">8.2.</span> <span class="nav-text">Structure of the Explanation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#an-explanation-from-a-netizens-perspective-of-the-vector-space"><span class="nav-number">8.3.</span> <span class="nav-text">An
-explanation from a netizen&#39;s perspective of the vector space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E5%9B%BE%E5%83%8F"><span class="nav-number">8.4.</span> <span class="nav-text">行图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E5%9B%BE%E5%83%8F"><span class="nav-number">8.5.</span> <span class="nav-text">列图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5"><span class="nav-number">8.6.</span> <span class="nav-text">矩阵</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E8%AE%B2%E6%B6%88%E5%85%83%E5%9B%9E%E4%BB%A3%E5%92%8C%E7%BD%AE%E6%8D%A2"><span class="nav-number">9.</span> <span class="nav-text">第二讲：消元、回代和置换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E5%85%83"><span class="nav-number">9.1.</span> <span class="nav-text">消元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E4%BB%A3"><span class="nav-number">9.2.</span> <span class="nav-text">回代</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2"><span class="nav-number">9.3.</span> <span class="nav-text">置换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E8%AE%B2%E4%B9%98%E6%B3%95%E5%92%8C%E9%80%86%E7%9F%A9%E9%98%B5"><span class="nav-number">10.</span> <span class="nav-text">第三讲：乘法和逆矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95"><span class="nav-number">10.1.</span> <span class="nav-text">矩阵乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%86%E7%9F%A9%E9%98%B5"><span class="nav-number">10.2.</span> <span class="nav-text">逆矩阵</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E8%AE%B2a%E7%9A%84lu%E5%88%86%E8%A7%A3"><span class="nav-number">11.</span> <span class="nav-text">第四讲：A的LU分解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lu%E5%88%86%E8%A7%A3"><span class="nav-number">11.1.</span> <span class="nav-text">LU分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E5%85%83%E6%B6%88%E8%80%97"><span class="nav-number">11.2.</span> <span class="nav-text">消元消耗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%A4"><span class="nav-number">11.3.</span> <span class="nav-text">群</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E8%AE%B2%E8%BD%AC%E7%BD%AE%E7%BD%AE%E6%8D%A2%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4r"><span class="nav-number">12.</span> <span class="nav-text">第五讲：转置、置换、向量空间R</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2-1"><span class="nav-number">12.1.</span> <span class="nav-text">置换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E7%BD%AE"><span class="nav-number">12.2.</span> <span class="nav-text">转置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="nav-number">12.3.</span> <span class="nav-text">向量空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E7%9F%A9%E9%98%B5%E6%9E%84%E9%80%A0%E5%90%91%E9%87%8F%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">12.4.</span> <span class="nav-text">通过矩阵构造向量子空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E8%AE%B2%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E7%A9%BA%E9%97%B4"><span class="nav-number">13.</span> <span class="nav-text">第六讲：列空间和零空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E7%A9%BA%E9%97%B4"><span class="nav-number">13.1.</span> <span class="nav-text">列空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E7%A9%BA%E9%97%B4"><span class="nav-number">13.2.</span> <span class="nav-text">零空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E8%AE%B2%E4%B8%BB%E5%8F%98%E9%87%8F%E7%89%B9%E8%A7%A3"><span class="nav-number">14.</span> <span class="nav-text">第七讲：主变量、特解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E5%8F%98%E9%87%8F"><span class="nav-number">14.1.</span> <span class="nav-text">主变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E8%A7%A3"><span class="nav-number">14.2.</span> <span class="nav-text">特解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E8%A1%8C%E9%98%B6%E6%A2%AF%E5%BD%A2%E5%BC%8F"><span class="nav-number">14.3.</span> <span class="nav-text">简化行阶梯形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E7%A9%BA%E9%97%B4%E7%9F%A9%E9%98%B5"><span class="nav-number">14.4.</span> <span class="nav-text">零空间矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90%E8%BF%87%E4%B8%80%E9%81%8D%E7%AE%97%E6%B3%95"><span class="nav-number">14.5.</span> <span class="nav-text">最后举个栗子过一遍算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E8%AE%B2%E5%8F%AF%E8%A7%A3%E6%80%A7%E4%B8%8E%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">15.</span> <span class="nav-text">第八讲：可解性与解的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%A3%E6%80%A7"><span class="nav-number">15.1.</span> <span class="nav-text">可解性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">15.2.</span> <span class="nav-text">解的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%BD%91%E5%8F%8B%E4%BB%8E%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E8%A7%92%E5%BA%A6%E7%9A%84%E8%A7%A3%E9%87%8A"><span class="nav-number">15.3.</span> <span class="nav-text">一个网友从向量空间角度的解释</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#First-Lecture-Geometric-Interpretation-of-Systems-of-Equations"><span class="nav-number">1.</span> <span class="nav-text">First Lecture: Geometric Interpretation of Systems of Equations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-processing"><span class="nav-number">1.1.</span> <span class="nav-text">Image processing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List-images"><span class="nav-number">1.2.</span> <span class="nav-text">List images</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrix"><span class="nav-number">1.3.</span> <span class="nav-text">Matrix</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Second-Lecture-Elimination-Back-Substitution-and-Replacement"><span class="nav-number">2.</span> <span class="nav-text">Second Lecture: Elimination, Back Substitution, and Replacement</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Elimination"><span class="nav-number">2.1.</span> <span class="nav-text">Elimination</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Back-substitution"><span class="nav-number">2.2.</span> <span class="nav-text">Back-substitution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Replacement"><span class="nav-number">2.3.</span> <span class="nav-text">Replacement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Third-Lecture-Multiplication-and-Inverse-Matrices"><span class="nav-number">3.</span> <span class="nav-text">Third Lecture: Multiplication and Inverse Matrices</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrix-multiplication"><span class="nav-number">3.1.</span> <span class="nav-text">Matrix multiplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Invertible-matrix"><span class="nav-number">3.2.</span> <span class="nav-text">Invertible matrix</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fourth-Lecture-LU-Decomposition-of-A"><span class="nav-number">4.</span> <span class="nav-text">Fourth Lecture: LU Decomposition of A</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LU-decomposition"><span class="nav-number">4.1.</span> <span class="nav-text">LU decomposition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Elimination-Consumption"><span class="nav-number">4.2.</span> <span class="nav-text">Elimination Consumption</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-5-Transposition-Permutation-Vector-Space-R"><span class="nav-number">5.</span> <span class="nav-text">Lecture 5: Transposition, Permutation, Vector Space R</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Transpose"><span class="nav-number">5.1.</span> <span class="nav-text">Transpose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vector-Space"><span class="nav-number">5.2.</span> <span class="nav-text">Vector Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Through-matrix-construction-into-quantum-space"><span class="nav-number">5.3.</span> <span class="nav-text">Through matrix construction into quantum space</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-6-Column-Space-and-Null-Space"><span class="nav-number">6.</span> <span class="nav-text">Lecture 6: Column Space and Null Space</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#List-space"><span class="nav-number">6.1.</span> <span class="nav-text">List space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zero-Space"><span class="nav-number">6.2.</span> <span class="nav-text">Zero Space</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-7-Main-Variables-Special-Solutions"><span class="nav-number">7.</span> <span class="nav-text">Lecture 7: Main Variables, Special Solutions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Main-Variable"><span class="nav-number">7.1.</span> <span class="nav-text">Main Variable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Special-Solution"><span class="nav-number">7.2.</span> <span class="nav-text">Special Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simplified-row-ladder-form"><span class="nav-number">7.3.</span> <span class="nav-text">Simplified row ladder form</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zero-space-matrix"><span class="nav-number">7.4.</span> <span class="nav-text">Zero-space matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Take-an-example-to-go-through-the-algorithm-again"><span class="nav-number">7.5.</span> <span class="nav-text">Take an example to go through the algorithm again</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lecture-8-Solvability-and-the-Structure-of-Solutions"><span class="nav-number">8.</span> <span class="nav-text">Lecture 8: Solvability and the Structure of Solutions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Solvability"><span class="nav-number">8.1.</span> <span class="nav-text">Solvability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure-of-the-Explanation"><span class="nav-number">8.2.</span> <span class="nav-text">Structure of the Explanation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#An-explanation-from-a-netizen%E2%80%99s-perspective-of-the-vector-space"><span class="nav-number">8.3.</span> <span class="nav-text">An explanation from a netizen’s perspective of the vector space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E5%9B%BE%E5%83%8F"><span class="nav-number">8.4.</span> <span class="nav-text">行图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E5%9B%BE%E5%83%8F"><span class="nav-number">8.5.</span> <span class="nav-text">列图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5"><span class="nav-number">8.6.</span> <span class="nav-text">矩阵</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9A%E6%B6%88%E5%85%83%E3%80%81%E5%9B%9E%E4%BB%A3%E5%92%8C%E7%BD%AE%E6%8D%A2"><span class="nav-number">9.</span> <span class="nav-text">第二讲：消元、回代和置换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E5%85%83"><span class="nav-number">9.1.</span> <span class="nav-text">消元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E4%BB%A3"><span class="nav-number">9.2.</span> <span class="nav-text">回代</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2"><span class="nav-number">9.3.</span> <span class="nav-text">置换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E4%B9%98%E6%B3%95%E5%92%8C%E9%80%86%E7%9F%A9%E9%98%B5"><span class="nav-number">10.</span> <span class="nav-text">第三讲：乘法和逆矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95"><span class="nav-number">10.1.</span> <span class="nav-text">矩阵乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%86%E7%9F%A9%E9%98%B5"><span class="nav-number">10.2.</span> <span class="nav-text">逆矩阵</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E8%AE%B2%EF%BC%9AA%E7%9A%84LU%E5%88%86%E8%A7%A3"><span class="nav-number">11.</span> <span class="nav-text">第四讲：A的LU分解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LU%E5%88%86%E8%A7%A3"><span class="nav-number">11.1.</span> <span class="nav-text">LU分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E5%85%83%E6%B6%88%E8%80%97"><span class="nav-number">11.2.</span> <span class="nav-text">消元消耗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%A4"><span class="nav-number">11.3.</span> <span class="nav-text">群</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E8%AE%B2%EF%BC%9A%E8%BD%AC%E7%BD%AE%E3%80%81%E7%BD%AE%E6%8D%A2%E3%80%81%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4R"><span class="nav-number">12.</span> <span class="nav-text">第五讲：转置、置换、向量空间R</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2-1"><span class="nav-number">12.1.</span> <span class="nav-text">置换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E7%BD%AE"><span class="nav-number">12.2.</span> <span class="nav-text">转置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4"><span class="nav-number">12.3.</span> <span class="nav-text">向量空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E7%9F%A9%E9%98%B5%E6%9E%84%E9%80%A0%E5%90%91%E9%87%8F%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">12.4.</span> <span class="nav-text">通过矩阵构造向量子空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E8%AE%B2%EF%BC%9A%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E7%A9%BA%E9%97%B4"><span class="nav-number">13.</span> <span class="nav-text">第六讲：列空间和零空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E7%A9%BA%E9%97%B4"><span class="nav-number">13.1.</span> <span class="nav-text">列空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E7%A9%BA%E9%97%B4"><span class="nav-number">13.2.</span> <span class="nav-text">零空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E8%AE%B2%EF%BC%9A%E4%B8%BB%E5%8F%98%E9%87%8F%E3%80%81%E7%89%B9%E8%A7%A3"><span class="nav-number">14.</span> <span class="nav-text">第七讲：主变量、特解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E5%8F%98%E9%87%8F"><span class="nav-number">14.1.</span> <span class="nav-text">主变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E8%A7%A3"><span class="nav-number">14.2.</span> <span class="nav-text">特解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E8%A1%8C%E9%98%B6%E6%A2%AF%E5%BD%A2%E5%BC%8F"><span class="nav-number">14.3.</span> <span class="nav-text">简化行阶梯形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E7%A9%BA%E9%97%B4%E7%9F%A9%E9%98%B5"><span class="nav-number">14.4.</span> <span class="nav-text">零空间矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90%E8%BF%87%E4%B8%80%E9%81%8D%E7%AE%97%E6%B3%95"><span class="nav-number">14.5.</span> <span class="nav-text">最后举个栗子过一遍算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E8%AE%B2%EF%BC%9A%E5%8F%AF%E8%A7%A3%E6%80%A7%E4%B8%8E%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">15.</span> <span class="nav-text">第八讲：可解性与解的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%A3%E6%80%A7"><span class="nav-number">15.1.</span> <span class="nav-text">可解性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">15.2.</span> <span class="nav-text">解的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%BD%91%E5%8F%8B%E4%BB%8E%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E8%A7%92%E5%BA%A6%E7%9A%84%E8%A7%A3%E9%87%8A"><span class="nav-number">15.3.</span> <span class="nav-text">一个网友从向量空间角度的解释</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -171,7 +160,7 @@ explanation from a netizen&#39;s perspective of the vector space</span></a></li>
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -285,14 +274,14 @@ explanation from a netizen&#39;s perspective of the vector space</span></a></li>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>28k</span>
+      <span>26k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>26 mins.</span>
+      <span>24 mins.</span>
     </span>
 </div>
 
@@ -303,32 +292,25 @@ explanation from a netizen&#39;s perspective of the vector space</span></a></li>
     
     
     <div class="post-body" itemprop="articleBody"><p><img data-src="https://i.mji.rip/2025/07/16/fcab3101f40bfbdcf2ec3e30b6171a26.png" width="500"/></p>
-<h1
-id="first-lecture-geometric-interpretation-of-systems-of-equations">First
-Lecture: Geometric Interpretation of Systems of Equations</h1>
-<ul>
-<li>From three perspectives to view the system of equations: row graph,
-column graph, matrix</li>
+<h1 id="First-Lecture-Geometric-Interpretation-of-Systems-of-Equations"><a href="#First-Lecture-Geometric-Interpretation-of-Systems-of-Equations" class="headerlink" title="First Lecture: Geometric Interpretation of Systems of Equations"></a>First Lecture: Geometric Interpretation of Systems of Equations</h1><ul>
+<li>From three perspectives to view the system of equations: row graph, column graph, matrix</li>
 </ul>
 <span id="more"></span>
 <style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
 <div id="en-content" class="lang-content" style="display: block;"><ul>
 <li>For example, for the system of equations:</li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{cases}
 2x-y=0\\
 -x+2y=3\\
-\end{cases}
-\]</span></p>
-<h2 id="image-processing">Image processing</h2>
-<ul>
+\end{cases}</script><h2 id="Image-processing"><a href="#Image-processing" class="headerlink" title="Image processing"></a>Image processing</h2><ul>
 <li>Image of the line:</li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-2 &amp; -1 \\
--1 &amp; 2 \\
+2 & -1 \\
+-1 & 2 \\
 \end{bmatrix}
 \begin{bmatrix}
 x \\
@@ -338,23 +320,16 @@ y \\
 \begin{bmatrix}
 0 \\
 3 \\
-\end{bmatrix}
-\]</span></p>
-<ul>
+\end{bmatrix}</script><ul>
 <li>Can also be written as</li>
 </ul>
-<p><span class="math display">\[
-Ax=b
-\]</span></p>
-<ul>
-<li>The intersection point of two lines in a two-dimensional plane is
-the solution to the equation, and this is generalized to n dimensions as
-the intersection point of n lines in an n-dimensional plane</li>
+<script type="math/tex; mode=display">
+Ax=b</script><ul>
+<li>The intersection point of two lines in a two-dimensional plane is the solution to the equation, and this is generalized to n dimensions as the intersection point of n lines in an n-dimensional plane</li>
 </ul>
-<h2 id="list-images">List images</h2>
-<ul>
+<h2 id="List-images"><a href="#List-images" class="headerlink" title="List images"></a>List images</h2><ul>
 <li><p>List of images:</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 x
 \begin{bmatrix}
 2  \\
@@ -369,370 +344,234 @@ x
 \begin{bmatrix}
 0 \\
 3 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>The solution to the equation is the linear combination
-coefficients of the vector set, under which the vectors combine to form
-the target vector</p></li>
+\end{bmatrix}</script></li>
+<li><p>The solution to the equation is the linear combination coefficients of the vector set, under which the vectors combine to form the target vector</p>
+</li>
 </ul>
-<h2 id="matrix">Matrix</h2>
-<ul>
-<li>Consider the list of images, different x, y values can lead to
-different linear combinations. Does there exist a solution for any b, x?
-Or can the linear combination of these two vectors cover the entire
-space? Or are these two (or n) vectors linearly independent?</li>
-<li>If so, then the matrix composed of these two (or n) vectors is
-called a nonsingular matrix, which is invertible; otherwise, it is
-called a singular matrix, which is not invertible</li>
+<h2 id="Matrix"><a href="#Matrix" class="headerlink" title="Matrix"></a>Matrix</h2><ul>
+<li>Consider the list of images, different x, y values can lead to different linear combinations. Does there exist a solution for any b, x? Or can the linear combination of these two vectors cover the entire space? Or are these two (or n) vectors linearly independent?</li>
+<li>If so, then the matrix composed of these two (or n) vectors is called a nonsingular matrix, which is invertible; otherwise, it is called a singular matrix, which is not invertible</li>
 </ul>
-<h1
-id="second-lecture-elimination-back-substitution-and-replacement">Second
-Lecture: Elimination, Back Substitution, and Replacement</h1>
-<h2 id="elimination">Elimination</h2>
-<ul>
-<li><p>Consider the system of equations <span class="math display">\[
+<h1 id="Second-Lecture-Elimination-Back-Substitution-and-Replacement"><a href="#Second-Lecture-Elimination-Back-Substitution-and-Replacement" class="headerlink" title="Second Lecture: Elimination, Back Substitution, and Replacement"></a>Second Lecture: Elimination, Back Substitution, and Replacement</h1><h2 id="Elimination"><a href="#Elimination" class="headerlink" title="Elimination"></a>Elimination</h2><ul>
+<li><p>Consider the system of equations </p>
+<script type="math/tex; mode=display">
 \begin{cases}
   x+2y+z=2\\
   3x+8y+z=12\\
   4y+z=2\\
-  \end{cases}
-\]</span></p></li>
+  \end{cases}</script></li>
 <li><p>His A matrix is</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-1 &amp; 2 &amp; 1  \\
-3 &amp; 8 &amp; 1  \\
-0 &amp; 4 &amp; 1  \\
-\end{bmatrix}
-\]</span></p></li>
+1 & 2 & 1  \\
+3 & 8 & 1  \\
+0 & 4 & 1  \\
+\end{bmatrix}</script></li>
 <li><p>After row transformation becomes</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-1 &amp; 2 &amp; 1  \\
-0 &amp; 2 &amp; -2  \\
-0 &amp; 4 &amp; 1  \\
-\end{bmatrix}
-\]</span></p></li>
+1 & 2 & 1  \\
+0 & 2 & -2  \\
+0 & 4 & 1  \\
+\end{bmatrix}</script></li>
 <li><p>Re-transformed into</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-1 &amp; 2 &amp; 1  \\
-0 &amp; 2 &amp; -2  \\
-0 &amp; 0 &amp; 5  \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>This series of transformations is the elimination method</p></li>
-<li><p>The rule of transformation is that the ith element of the ith row
-is set as the pivot (p), and through row transformations, the elements
-before the pivot in each row are successively eliminated, so that matrix
-A becomes matrix U (upper triangular matrix)</p></li>
+1 & 2 & 1  \\
+0 & 2 & -2  \\
+0 & 0 & 5  \\
+\end{bmatrix}</script></li>
+<li><p>This series of transformations is the elimination method</p>
+</li>
+<li><p>The rule of transformation is that the ith element of the ith row is set as the pivot (p), and through row transformations, the elements before the pivot in each row are successively eliminated, so that matrix A becomes matrix U (upper triangular matrix)</p>
+</li>
 <li><p>Matrix</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \left[\begin{array}{c|c}
-A &amp; X \\
-\end{array}\right]
-\]</span></p></li>
-<li><p>Augmented matrix. Applying the same transformation to b yields
-c.</p></li>
+A & X \\
+\end{array}\right]</script></li>
+<li><p>Augmented matrix. Applying the same transformation to b yields c.</p>
+</li>
 </ul>
-<h2 id="back-substitution">Back-substitution</h2>
-<ul>
-<li>Solving the equation Ax=b is equivalent to solving the equation
-Ux=c, and solving Ux=c is very easy to obtain the solution, taking the
-three-term equation as an example</li>
-<li>Because U is an upper triangular matrix, z can be easily
-obtained</li>
+<h2 id="Back-substitution"><a href="#Back-substitution" class="headerlink" title="Back-substitution"></a>Back-substitution</h2><ul>
+<li>Solving the equation Ax=b is equivalent to solving the equation Ux=c, and solving Ux=c is very easy to obtain the solution, taking the three-term equation as an example</li>
+<li>Because U is an upper triangular matrix, z can be easily obtained</li>
 <li>Substitute z into the second row to find y</li>
 <li>Substitute z, y into the first row to find x</li>
 <li>This process is called back substitution</li>
 </ul>
-<h2 id="replacement">Replacement</h2>
-<p><span class="math display">\[
+<h2 id="Replacement"><a href="#Replacement" class="headerlink" title="Replacement"></a>Replacement</h2><script type="math/tex; mode=display">
 \begin{bmatrix}
-a &amp; b &amp; c  \\
-\end{bmatrix}*A
-\]</span></p>
-<ul>
-<li>The meaning of this expression is to obtain a row matrix whose
-values are a times the first row of A, b times the second row of A, and
-c times the third row of A</li>
+a & b & c  \\
+\end{bmatrix}*A</script><ul>
+<li>The meaning of this expression is to obtain a row matrix whose values are a times the first row of A, b times the second row of A, and c times the third row of A</li>
 </ul>
-<p>Similarly <span class="math display">\[
+<p>Similarly </p>
+<script type="math/tex; mode=display">
 A*\begin{bmatrix}
 a \\
 b \\
 c \\
-\end{bmatrix}
-\]</span></p>
-<ul>
-<li>The meaning of this expression is to obtain a column matrix whose
-values are a times column 1 of A plus b times column 2 of A plus c times
-column 3 of A</li>
-<li>It can be deduced that the matrix obtained by swapping two rows of
-matrix A is</li>
+\end{bmatrix}</script><ul>
+<li>The meaning of this expression is to obtain a column matrix whose values are a times column 1 of A plus b times column 2 of A plus c times column 3 of A</li>
+<li>It can be deduced that the matrix obtained by swapping two rows of matrix A is</li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-0 &amp; 1  \\
-1 &amp; 0  \\
-\end{bmatrix}*A
-\]</span></p>
-<ul>
+0 & 1  \\
+1 & 0  \\
+\end{bmatrix}*A</script><ul>
 <li>The matrix with columns A exchanged is</li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A*\begin{bmatrix}
-0 &amp; 1  \\
-1 &amp; 0  \\
-\end{bmatrix}
-\]</span></p>
-<ul>
-<li><p>The multiplication with a matrix completes row and column
-transformations; such a matrix is called a permutation matrix</p></li>
-<li><p>In elimination, the row and column transformations required to
-eliminate the element at the i-th row and j-th column are represented as
-a permutation matrix, denoted as <span
-class="math inline">\(E_{ij}\)</span></p></li>
+0 & 1  \\
+1 & 0  \\
+\end{bmatrix}</script><ul>
+<li><p>The multiplication with a matrix completes row and column transformations; such a matrix is called a permutation matrix</p>
+</li>
+<li><p>In elimination, the row and column transformations required to eliminate the element at the i-th row and j-th column are represented as a permutation matrix, denoted as $E_{ij}$</p>
+</li>
 <li><p>Elimination can be written as</p>
-<p><span class="math display">\[
-E_{32}E_{31}E_{21}A=U
-\]</span></p></li>
+<script type="math/tex; mode=display">
+E_{32}E_{31}E_{21}A=U</script></li>
 </ul>
-<h1 id="third-lecture-multiplication-and-inverse-matrices">Third
-Lecture: Multiplication and Inverse Matrices</h1>
-<h2 id="matrix-multiplication">Matrix multiplication</h2>
-<ul>
+<h1 id="Third-Lecture-Multiplication-and-Inverse-Matrices"><a href="#Third-Lecture-Multiplication-and-Inverse-Matrices" class="headerlink" title="Third Lecture: Multiplication and Inverse Matrices"></a>Third Lecture: Multiplication and Inverse Matrices</h1><h2 id="Matrix-multiplication"><a href="#Matrix-multiplication" class="headerlink" title="Matrix multiplication"></a>Matrix multiplication</h2><ul>
 <li><p>Consider matrix multiplication</p>
-<p><span class="math display">\[
-A*B=C
-\]</span></p></li>
-<li><p>First Algorithm: Dot Product <span
-class="math inline">\(C_{ij}=\sum_iA_{ik}B_{kj}\)</span></p></li>
-<li><p>Second Algorithm: Viewed as matrix multiplication by a vector,
-the C column is a linear combination of the A columns, with the
-combination coefficients in the B matrix. For example, the elements in
-each row of the first column of B are the linear combination
-coefficients of the individual columns in A. After linear combination,
-the first column of C is obtained</p></li>
-<li><p>Third algorithm: Viewed as a vector multiplying a matrix, the C
-row is a linear combination of the B row, with the combination
-coefficients in the A matrix; for example, each element in the first row
-of the A matrix is the linear combination coefficient for each row in B,
-and after the linear combination, the first row of C is
-obtained</p></li>
-<li><p>Fourth algorithm: Multiply a column of A with a row of B to
-obtain a submatrix, and the sum of all submatrices is C</p></li>
-<li><p>Fifth Algorithm: Matrix Blocking Algorithm</p></li>
+<script type="math/tex; mode=display">
+A*B=C</script></li>
+<li><p>First Algorithm: Dot Product $C<em>{ij}=\sum_iA</em>{ik}B_{kj}$</p>
+</li>
+<li><p>Second Algorithm: Viewed as matrix multiplication by a vector, the C column is a linear combination of the A columns, with the combination coefficients in the B matrix. For example, the elements in each row of the first column of B are the linear combination coefficients of the individual columns in A. After linear combination, the first column of C is obtained</p>
+</li>
+<li><p>Third algorithm: Viewed as a vector multiplying a matrix, the C row is a linear combination of the B row, with the combination coefficients in the A matrix; for example, each element in the first row of the A matrix is the linear combination coefficient for each row in B, and after the linear combination, the first row of C is obtained</p>
+</li>
+<li><p>Fourth algorithm: Multiply a column of A with a row of B to obtain a submatrix, and the sum of all submatrices is C</p>
+</li>
+<li><p>Fifth Algorithm: Matrix Blocking Algorithm</p>
+</li>
 </ul>
-<h2 id="invertible-matrix">Invertible matrix</h2>
-<ul>
-<li>For the inverse matrix <span class="math inline">\(A^{-1}\)</span> ,
-there exists <span class="math inline">\(AA^{-1}=I\)</span> , I is the
-identity matrix</li>
-<li>The inverse matrix on the left and the inverse matrix on the right
-are the same</li>
-<li>If there exists a non-zero matrix X such that <span
-class="math inline">\(AX=0\)</span> , then A is not invertible</li>
-<li>Gaussian Jordan idea for finding the inverse matrix: Treat A|I as an
-augmented matrix, and when transforming A to I, I is correspondingly
-transformed to the inverse matrix of A
+<h2 id="Invertible-matrix"><a href="#Invertible-matrix" class="headerlink" title="Invertible matrix"></a>Invertible matrix</h2><ul>
+<li>For the inverse matrix $A^{-1}$ , there exists $AA^{-1}=I$ , I is the identity matrix</li>
+<li>The inverse matrix on the left and the inverse matrix on the right are the same</li>
+<li>If there exists a non-zero matrix X such that $AX=0$ , then A is not invertible</li>
+<li><p>Gaussian Jordan idea for finding the inverse matrix: Treat A|I as an augmented matrix, and when transforming A to I, I is correspondingly transformed to the inverse matrix of A</p>
 <ul>
 <li><p>Proof:</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 EA=I \\
 E=A^{-1} \\
-EI=A^{-1} \\
-\]</span></p></li>
-</ul></li>
+EI=A^{-1} \\</script></li>
 </ul>
-<h1 id="fourth-lecture-lu-decomposition-of-a">Fourth Lecture: LU
-Decomposition of A</h1>
-<h2 id="lu-decomposition">LU decomposition</h2>
-<ul>
-<li><p><span
-class="math inline">\((AB)^{-1}=B^{-1}A^{-1}\)</span></p></li>
-<li><p>The transpose matrix of A, denoted as <span
-class="math inline">\(A^T\)</span> , can be easily obtained</p>
-<p><span class="math display">\[
+</li>
+</ul>
+<h1 id="Fourth-Lecture-LU-Decomposition-of-A"><a href="#Fourth-Lecture-LU-Decomposition-of-A" class="headerlink" title="Fourth Lecture: LU Decomposition of A"></a>Fourth Lecture: LU Decomposition of A</h1><h2 id="LU-decomposition"><a href="#LU-decomposition" class="headerlink" title="LU decomposition"></a>LU decomposition</h2><ul>
+<li><p>$(AB)^{-1}=B^{-1}A^{-1}$</p>
+</li>
+<li><p>The transpose matrix of A, denoted as $A^T$ , can be easily obtained</p>
+<script type="math/tex; mode=display">
 AA^{-1}=I \\
 (A^{-1})^TA^T=I \\
-所以(A^T)^{-1}=(A^{-1})^T \\
-\]</span></p></li>
-<li><p>For a single matrix, transpose and inverse can be
-interchanged</p></li>
-<li><p>Matrix Decomposition: A = LU, where U is transformed back into A
-through a series of permutation matrices, and L is the cumulative
-permutation matrix. Taking a 3x3 matrix as an example</p>
-<p><span class="math display">\[
+所以(A^T)^{-1}=(A^{-1})^T \\</script></li>
+<li><p>For a single matrix, transpose and inverse can be interchanged</p>
+</li>
+<li><p>Matrix Decomposition: A = LU, where U is transformed back into A through a series of permutation matrices, and L is the cumulative permutation matrix. Taking a 3x3 matrix as an example</p>
+<script type="math/tex; mode=display">
 E_{32}E_{31}E_{21}A=U \\
 所以可得L: \\
-L=E_{21}^{-1}E_{31}^{-1}E_{32}^{-1} \\
-\]</span></p></li>
-<li><p>Why study A=LU rather than EA=U: Because if there are no row
-transformations, the elimination coefficients can be directly written
-into L; conversely, if E is studied, the operation of the nth row is
-related to the operation of the already eliminated (n-1)th row, and the
-elimination coefficients cannot be written down intuitively</p></li>
+L=E_{21}^{-1}E_{31}^{-1}E_{32}^{-1} \\</script></li>
+<li><p>Why study A=LU rather than EA=U: Because if there are no row transformations, the elimination coefficients can be directly written into L; conversely, if E is studied, the operation of the nth row is related to the operation of the already eliminated (n-1)th row, and the elimination coefficients cannot be written down intuitively</p>
+</li>
 </ul>
-<h2 id="elimination-consumption">Elimination Consumption</h2>
-<ul>
-<li><p>A single multiplication and a single subtraction in the
-elimination process consume one element at a time (the unit of
-consumption is the product and subtraction of numbers rather than the
-product and subtraction of rows), with the total consumption being</p>
-<p><span class="math display">\[
-\sum_{i=1}^{n}i*(i-1) \approx \sum_{i=1}^{n}i^2 \approx \frac 13 n^3
-\]</span></p></li>
+<h2 id="Elimination-Consumption"><a href="#Elimination-Consumption" class="headerlink" title="Elimination Consumption"></a>Elimination Consumption</h2><ul>
+<li><p>A single multiplication and a single subtraction in the elimination process consume one element at a time (the unit of consumption is the product and subtraction of numbers rather than the product and subtraction of rows), with the total consumption being</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{n}i*(i-1) \approx \sum_{i=1}^{n}i^2 \approx \frac 13 n^3</script></li>
 </ul>
-<h2 id="群">群</h2>
+<p>群<br>-</p>
 <ul>
-<li>For example, using a 3*3 unitary matrix, there are a total of 6
-(i.e., permutation matrices)</li>
-<li>For these matrices, <span
-class="math inline">\(P^{-1}=P^T\)</span></li>
-<li>The permutations and inverses of these 6 matrices still lie within
-these 6 matrices, and are called a group</li>
+<li>For example, using a 3*3 unitary matrix, there are a total of 6 (i.e., permutation matrices)</li>
+<li>For these matrices, $P^{-1}=P^T$</li>
+<li>The permutations and inverses of these 6 matrices still lie within these 6 matrices, and are called a group</li>
 <li>There are n! row permutation matrices for an n*n matrix</li>
 </ul>
-<h1 id="lecture-5-transposition-permutation-vector-space-r">Lecture 5:
-Transposition, Permutation, Vector Space R</h1>
-<h2 id="换">换</h2>
+<h1 id="Lecture-5-Transposition-Permutation-Vector-Space-R"><a href="#Lecture-5-Transposition-Permutation-Vector-Space-R" class="headerlink" title="Lecture 5: Transposition, Permutation, Vector Space R"></a>Lecture 5: Transposition, Permutation, Vector Space R</h1><p>换<br>-</p>
 <ul>
 <li>Replacement matrix is used to perform row exchanges</li>
-<li>A = LU, L has 1s on the diagonal, below which are the elimination
-multipliers, and U has zeros below the diagonal</li>
-<li>PA=LU is used to describe LU decomposition with row
-permutations</li>
-<li>P(Permutation permutation matrix) is a unit matrix with rows
-rearranged, and there are n! permutations of n*n permutation matrices,
-which is the number of rearrangements of the rows. They are all
-invertible, and finding the inverse is equivalent to finding the
-transpose</li>
+<li>A = LU, L has 1s on the diagonal, below which are the elimination multipliers, and U has zeros below the diagonal</li>
+<li>PA=LU is used to describe LU decomposition with row permutations</li>
+<li>P(Permutation permutation matrix) is a unit matrix with rows rearranged, and there are n! permutations of n*n permutation matrices, which is the number of rearrangements of the rows. They are all invertible, and finding the inverse is equivalent to finding the transpose</li>
 </ul>
-<h2 id="transpose">Transpose</h2>
-<ul>
-<li>Row exchange is equivalent to transpose, denoted as <span
-class="math inline">\(A^T\)</span> , <span
-class="math inline">\(A_{ij}=A_{ji}^T\)</span></li>
-<li><span class="math inline">\((AB)^T=B^TA^T\)</span></li>
-<li>Symmetric matrix (symmetric), <span
-class="math inline">\(A^T=A\)</span></li>
-<li>For any matrix A, <span class="math inline">\(AA^T\)</span> is
-always symmetric, because <span
-class="math inline">\((A^TA)^T=(A^TA^{TT})=(A^TA)\)</span></li>
+<h2 id="Transpose"><a href="#Transpose" class="headerlink" title="Transpose"></a>Transpose</h2><ul>
+<li>Row exchange is equivalent to transpose, denoted as $A^T$ , $A<em>{ij}=A</em>{ji}^T$</li>
+<li>$(AB)^T=B^TA^T$</li>
+<li>Symmetric matrix (symmetric), $A^T=A$</li>
+<li>For any matrix A, $AA^T$ is always symmetric, because $(A^TA)^T=(A^TA^{TT})=(A^TA)$</li>
 </ul>
-<h2 id="vector-space">Vector Space</h2>
-<ul>
+<h2 id="Vector-Space"><a href="#Vector-Space" class="headerlink" title="Vector Space"></a>Vector Space</h2><ul>
 <li>Vectors can be added and subtracted, and can be dotted</li>
-<li><strong>A space represents a set of vectors, not all vectors, and a
-vector space is constrained, requiring the condition of closure under
-linear combinations</strong></li>
-<li>For example, <span class="math inline">\(R^2\)</span> represents the
-two-dimensional vector space of all real numbers</li>
-<li>Any vector in a vector space remains within the vector space after
-linear combination, thus the vector space must contain (0,0)</li>
-<li>Not an example of a vector space: Only the first quadrant of <span
-class="math inline">\(R^2\)</span> is taken, vector addition within any
-space remains within the space, but scalar multiplication is not
-necessarily so (it can be multiplied by a negative number), and vector
-spaces are closed</li>
-<li>A straight line passing through the origin within <span
-class="math inline">\(R^2\)</span> can be called the vector subspace
-<span class="math inline">\(R^2\)</span> , which still satisfies the
-property of self-closedness (addition, subtraction, and scalar
-multiplication)</li>
-<li>What are the subspaces of <span class="math inline">\(R^2\)</span> ?
-<ul>
+<li><strong>A space represents a set of vectors, not all vectors, and a vector space is constrained, requiring the condition of closure under linear combinations</strong></li>
+<li>For example, $R^2$ represents the two-dimensional vector space of all real numbers</li>
+<li>Any vector in a vector space remains within the vector space after linear combination, thus the vector space must contain (0,0)</li>
+<li>Not an example of a vector space: Only the first quadrant of $R^2$ is taken, vector addition within any space remains within the space, but scalar multiplication is not necessarily so (it can be multiplied by a negative number), and vector spaces are closed</li>
+<li>A straight line passing through the origin within $R^2$ can be called the vector subspace $R^2$ , which still satisfies the property of self-closedness (addition, subtraction, and scalar multiplication)</li>
+<li>What are the subspaces of $R^2$ ?<ul>
 <li>Itself</li>
-<li>A straight line extending infinitely on both sides beyond the origin
-(note that this is different from <span
-class="math inline">\(R^1\)</span> )</li>
+<li>A straight line extending infinitely on both sides beyond the origin (note that this is different from $R^1$ )</li>
 <li>(0,0), abbreviated as Z</li>
-</ul></li>
-<li>What are the subspaces of <span class="math inline">\(R^3\)</span> ?
-<ul>
+</ul>
+</li>
+<li>What are the subspaces of $R^3$ ?<ul>
 <li>Itself</li>
-<li>A straight line extending infinitely on both sides beyond the origin
-(note that this is different from <span
-class="math inline">\(R^1\)</span> )</li>
+<li>A straight line extending infinitely on both sides beyond the origin (note that this is different from $R^1$ )</li>
 <li>Infinite Plane Beyond Zero Point</li>
 <li>(0,0,0)</li>
-</ul></li>
 </ul>
-<h2 id="through-matrix-construction-into-quantum-space">Through matrix
-construction into quantum space</h2>
-<p><span class="math display">\[
+</li>
+</ul>
+<h2 id="Through-matrix-construction-into-quantum-space"><a href="#Through-matrix-construction-into-quantum-space" class="headerlink" title="Through matrix construction into quantum space"></a>Through matrix construction into quantum space</h2><script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 3  \\
-2 &amp; 3  \\
-4 &amp; 1  \\
-\end{bmatrix}
-\]</span></p>
-<ul>
-<li>Each column belongs to <span class="math inline">\(R^3\)</span> ,
-and any linear combination (scalar multiplication and addition) of these
-two columns should be in the subspace, which is called the column space,
-denoted as C(A). In three-dimensional space, this column space is a
-plane, passing through these two column vectors and (0,0,0) <img data-src="http://ojtdnrpmt.bkt.clouddn.com/blog/20170122/203313042.png"
-alt="mark" /></li>
+1 & 3  \\
+2 & 3  \\
+4 & 1  \\
+\end{bmatrix}</script><ul>
+<li>Each column belongs to $R^3$ , and any linear combination (scalar multiplication and addition) of these two columns should be in the subspace, which is called the column space, denoted as C(A). In three-dimensional space, this column space is a plane, passing through these two column vectors and (0,0,0) <img data-src="http://ojtdnrpmt.bkt.clouddn.com/blog/20170122/203313042.png" alt="mark"> </li>
 </ul>
-<h1 id="lecture-6-column-space-and-null-space">Lecture 6: Column Space
-and Null Space</h1>
-<h2 id="list-space">List space</h2>
-<ul>
-<li><p>The previous lecture mentioned two subspaces, the plane P and the
-line L. <span class="math inline">\(P \bigcup L\)</span> is not a
-subspace, <span class="math inline">\(P \bigcap L\)</span> is a
-subspace.</p></li>
-<li><p>For any subspaces S, T, <span class="math inline">\(S \bigcap
-T\)</span> is a subspace</p></li>
+<h1 id="Lecture-6-Column-Space-and-Null-Space"><a href="#Lecture-6-Column-Space-and-Null-Space" class="headerlink" title="Lecture 6: Column Space and Null Space"></a>Lecture 6: Column Space and Null Space</h1><h2 id="List-space"><a href="#List-space" class="headerlink" title="List space"></a>List space</h2><ul>
+<li><p>The previous lecture mentioned two subspaces, the plane P and the line L. $P \bigcup L$ is not a subspace, $P \bigcap L$ is a subspace.</p>
+</li>
+<li><p>For any subspaces S, T, $S \bigcap T$ is a subspace</p>
+</li>
 <li><p>Give an example</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 1 &amp; 2  \\
-2 &amp; 1 &amp; 3  \\
-3 &amp; 1 &amp; 5  \\
-4 &amp; 1 &amp; 5  \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>C(A) is the <span class="math inline">\(R^4\)</span> subspace,
-and the linear combination of these three column vectors yields the
-subspace</p></li>
-<li><p>The subspace is related to the linear system below</p></li>
-<li><p>Are there solutions for Ax=b for any b? How can b make x have a
-solution?</p>
+1 & 1 & 2  \\
+2 & 1 & 3  \\
+3 & 1 & 5  \\
+4 & 1 & 5  \\
+\end{bmatrix}</script></li>
+<li><p>C(A) is the $R^4$ subspace, and the linear combination of these three column vectors yields the subspace</p>
+</li>
+<li><p>The subspace is related to the linear system below</p>
+</li>
+<li><p>Are there solutions for Ax=b for any b? How can b make x have a solution?</p>
 <ul>
-<li>The answer to the former is no, because with four equations and
-three unknowns, the linear combination of three column vectors cannot
-fill the entire <span class="math inline">\(R^4\)</span> space, i.e.,
-the column space cannot fill the entire four-dimensional space</li>
-<li>The latter responds that obviously b=(0,0,0,0) is an answer, and
-b=(1,2,3,4) is also an answer, i.e., first write any solution
-(x1,x2,x3), and the calculated b is the b that makes x have a solution,
-which is equivalent to only when b is in the column space of A, x has a
-solution</li>
-</ul></li>
-<li><p>If we remove the third column, we can still obtain the same
-column space, because these three columns are not linearly independent;
-the third column is the sum of the first two columns. At this point, we
-call the first two columns the main columns, so the column space in this
-case is a two-dimensional subspace</p></li>
+<li>The answer to the former is no, because with four equations and three unknowns, the linear combination of three column vectors cannot fill the entire $R^4$ space, i.e., the column space cannot fill the entire four-dimensional space</li>
+<li>The latter responds that obviously b=(0,0,0,0) is an answer, and b=(1,2,3,4) is also an answer, i.e., first write any solution (x1,x2,x3), and the calculated b is the b that makes x have a solution, which is equivalent to only when b is in the column space of A, x has a solution</li>
 </ul>
-<h2 id="zero-space">Zero Space</h2>
-<ul>
-<li><p>The null space (null space) is completely different from the
-column space; the null space of A contains all solutions x to Ax =
-0</p></li>
-<li><p>Column space concerns A, the null space concerns x (in the case
-where b=0), in the example above, the column space is a subspace of
-four-dimensional space, and the null space is a subspace of
-three-dimensional space</p>
-<p><span class="math display">\[
+</li>
+<li>If we remove the third column, we can still obtain the same column space, because these three columns are not linearly independent; the third column is the sum of the first two columns. At this point, we call the first two columns the main columns, so the column space in this case is a two-dimensional subspace</li>
+</ul>
+<h2 id="Zero-Space"><a href="#Zero-Space" class="headerlink" title="Zero Space"></a>Zero Space</h2><ul>
+<li><p>The null space (null space) is completely different from the column space; the null space of A contains all solutions x to Ax = 0</p>
+</li>
+<li><p>Column space concerns A, the null space concerns x (in the case where b=0), in the example above, the column space is a subspace of four-dimensional space, and the null space is a subspace of three-dimensional space</p>
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-1 &amp; 1 &amp; 2  \\
-2 &amp; 1 &amp; 3  \\
-3 &amp; 1 &amp; 5  \\
-4 &amp; 1 &amp; 5  \\
+1 & 1 & 2  \\
+2 & 1 & 3  \\
+3 & 1 & 5  \\
+4 & 1 & 5  \\
 \end{bmatrix}
 \begin{bmatrix}
 X_1 \\
@@ -744,23 +583,18 @@ X_3 \\
 0 \\
 0 \\
 0 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>Clearly, the zero space contains (0,0,0) and (1,1,-1), and these
-two vectors determine a line (c,c,-c), so this line is the zero
-space</p></li>
-<li><p>Why can the zero space be called a space (satisfying the closure
-property of vector spaces?): namely, to prove that for any two solutions
-of Ax=0, their linear combination is still a solution. Because:
-...matrix multiplication can be expanded... the distributive
-law...</p></li>
+\end{bmatrix}</script></li>
+<li><p>Clearly, the zero space contains (0,0,0) and (1,1,-1), and these two vectors determine a line (c,c,-c), so this line is the zero space</p>
+</li>
+<li><p>Why can the zero space be called a space (satisfying the closure property of vector spaces?): namely, to prove that for any two solutions of Ax=0, their linear combination is still a solution. Because: …matrix multiplication can be expanded… the distributive law…</p>
+</li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-1 &amp; 1 &amp; 2  \\
-2 &amp; 1 &amp; 3  \\
-3 &amp; 1 &amp; 5  \\
-4 &amp; 1 &amp; 5  \\
+1 & 1 & 2  \\
+2 & 1 & 3  \\
+3 & 1 & 5  \\
+4 & 1 & 5  \\
 \end{bmatrix}
 \begin{bmatrix}
 X_1 \\
@@ -772,293 +606,205 @@ X_3 \\
 2 \\
 3 \\
 4 \\
-\end{bmatrix}
-\]</span></p>
-<ul>
-<li>We replaced b, and the solution is (1,0,0). Are there other
-solutions? If there are, can these solutions form a subspace?</li>
-<li>Clearly not a subspace, as the solution does not contain (0,0,0),
-which does not satisfy the basic conditions of a vector space, as in
-this case, the two solutions (1,0,0), (0,-1,1), but the linear
-combination of these vectors does not pass through the origin, and they
-cannot form a vector space. Therefore, the discussion of the solution
-space or null space is based on the condition that b=0.</li>
-<li>Two methods of constructing subspaces are the column space and the
-null space
-<ul>
-<li>From several vectors, a subspace is obtained through linear
-combination</li>
-<li>From a system of equations, obtain a subspace by making x satisfy
-specific conditions</li>
-</ul></li>
+\end{bmatrix}</script><ul>
+<li>We replaced b, and the solution is (1,0,0). Are there other solutions? If there are, can these solutions form a subspace?</li>
+<li>Clearly not a subspace, as the solution does not contain (0,0,0), which does not satisfy the basic conditions of a vector space, as in this case, the two solutions (1,0,0), (0,-1,1), but the linear combination of these vectors does not pass through the origin, and they cannot form a vector space. Therefore, the discussion of the solution space or null space is based on the condition that b=0.</li>
+<li>Two methods of constructing subspaces are the column space and the null space<ul>
+<li>From several vectors, a subspace is obtained through linear combination</li>
+<li>From a system of equations, obtain a subspace by making x satisfy specific conditions</li>
 </ul>
-<h1 id="lecture-7-main-variables-special-solutions">Lecture 7: Main
-Variables, Special Solutions</h1>
-<h2 id="main-variable">Main Variable</h2>
-<ul>
-<li><p>How to Solve Ax=0 with Algorithms</p></li>
+</li>
+</ul>
+<h1 id="Lecture-7-Main-Variables-Special-Solutions"><a href="#Lecture-7-Main-Variables-Special-Solutions" class="headerlink" title="Lecture 7: Main Variables, Special Solutions"></a>Lecture 7: Main Variables, Special Solutions</h1><h2 id="Main-Variable"><a href="#Main-Variable" class="headerlink" title="Main Variable"></a>Main Variable</h2><ul>
+<li><p>How to Solve Ax=0 with Algorithms</p>
+</li>
 <li><p>Give an example:</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 2 &amp; 2  \\
-2 &amp; 4 &amp; 6 &amp; 8  \\
-3 &amp; 6 &amp; 8 &amp; 10  \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>The third line is the sum of the first and second lines; they are
-linearly related, which will be reflected in the elimination process
-later</p></li>
-<li><p>Elimination does not change the set of equations, because
-elimination modifies the column space, but not the solution
-space</p></li>
-<li><p>After the first elimination, only the leading element in the
-first row of the first column is non-zero</p></li>
+1 & 2 & 2 & 2  \\
+2 & 4 & 6 & 8  \\
+3 & 6 & 8 & 10  \\
+\end{bmatrix}</script></li>
+<li><p>The third line is the sum of the first and second lines; they are linearly related, which will be reflected in the elimination process later</p>
+</li>
+<li><p>Elimination does not change the set of equations, because elimination modifies the column space, but not the solution space</p>
+</li>
+<li><p>After the first elimination, only the leading element in the first row of the first column is non-zero</p>
+</li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 2 &amp; 2  \\
-0 &amp; 0 &amp; 2 &amp; 4  \\
-0 &amp; 0 &amp; 2 &amp; 4  \\
-\end{bmatrix}
-\]</span></p>
-<ul>
-<li><p>At this point, due to linear correlation between the second and
-third columns, the pivot of the second row has shifted to the third
-column, and the elimination process continues</p>
-<p><span class="math display">\[
+1 & 2 & 2 & 2  \\
+0 & 0 & 2 & 4  \\
+0 & 0 & 2 & 4  \\
+\end{bmatrix}</script><ul>
+<li><p>At this point, due to linear correlation between the second and third columns, the pivot of the second row has shifted to the third column, and the elimination process continues</p>
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 2 &amp; 2  \\
-0 &amp; 0 &amp; 2 &amp; 4  \\
-0 &amp; 0 &amp; 0 &amp; 0  \\
-\end{bmatrix}=U
-\]</span></p></li>
-<li><p>If we separate the non-zero elements from the zeros, we obtain a
-step line, with the number of steps being the number of leading elements
-(non-zero), which is 2 in this case, and we call this the rank of the
-matrix (the number of equations remaining after elimination), the
-columns containing the leading elements are called leading columns
-(1,3), and the remaining columns are free columns (2,4)</p></li>
-<li><p>Now we can solve Ux=0 and perform back substitution</p></li>
-<li><p>The solutions corresponding to the free columns are the free
-variables x2, x4, which can be arbitrarily chosen. After selection, the
-main variables x1, x3 corresponding to the main columns can be solved
-out by back substitution</p></li>
+1 & 2 & 2 & 2  \\
+0 & 0 & 2 & 4  \\
+0 & 0 & 0 & 0  \\
+\end{bmatrix}=U</script></li>
+<li><p>If we separate the non-zero elements from the zeros, we obtain a step line, with the number of steps being the number of leading elements (non-zero), which is 2 in this case, and we call this the rank of the matrix (the number of equations remaining after elimination), the columns containing the leading elements are called leading columns (1,3), and the remaining columns are free columns (2,4)</p>
+</li>
+<li><p>Now we can solve Ux=0 and perform back substitution</p>
+</li>
+<li><p>The solutions corresponding to the free columns are the free variables x2, x4, which can be arbitrarily chosen. After selection, the main variables x1, x3 corresponding to the main columns can be solved out by back substitution</p>
+</li>
 </ul>
-<h2 id="special-solution">Special Solution</h2>
-<ul>
-<li>In this case, if we take x2=1, x4=0, we can obtain x=(-2,1,0,0), and
-(-2,1,0,0) multiplied by any real number is still a solution, thus
-determining a line. However, is this line the solution space? No.
-Because we have two free variables, we can determine more than one line,
-for example, taking x2=0, x4=1, we can obtain x=(2,0,-2,1).</li>
-<li>So the algorithm first eliminates variables, obtaining the leading
-column and the free column, then assigns values (1,0) to the free
-variables to complete the solution (-2,1,0,0), and then assigns another
-set of values (0,1) to the free variables to obtain another complete
-solution (2,0,-2,1).</li>
-<li>Two special values for the free variables (one being 1, the rest
-being 0, with none being 0, as that would result in a complete solution
-that is all zeros) yield two sets of solutions, which are called
-particular solutions. Based on the particular solutions, we can obtain
-the solution space: the linear combination of the two particular
-solutions, a*(-2,1,0,0) + b*(2,0,-2,1)</li>
-<li>r represents the number of principal variables, i.e., the number of
-principal elements, and only r equations are active. The m*n matrix A
-has n-r free variables</li>
+<h2 id="Special-Solution"><a href="#Special-Solution" class="headerlink" title="Special Solution"></a>Special Solution</h2><ul>
+<li>In this case, if we take x2=1, x4=0, we can obtain x=(-2,1,0,0), and (-2,1,0,0) multiplied by any real number is still a solution, thus determining a line. However, is this line the solution space? No. Because we have two free variables, we can determine more than one line, for example, taking x2=0, x4=1, we can obtain x=(2,0,-2,1).</li>
+<li>So the algorithm first eliminates variables, obtaining the leading column and the free column, then assigns values (1,0) to the free variables to complete the solution (-2,1,0,0), and then assigns another set of values (0,1) to the free variables to obtain another complete solution (2,0,-2,1).</li>
+<li>Two special values for the free variables (one being 1, the rest being 0, with none being 0, as that would result in a complete solution that is all zeros) yield two sets of solutions, which are called particular solutions. Based on the particular solutions, we can obtain the solution space: the linear combination of the two particular solutions, a*(-2,1,0,0) + b*(2,0,-2,1)</li>
+<li>r represents the number of principal variables, i.e., the number of principal elements, and only r equations are active. The m*n matrix A has n-r free variables</li>
 </ul>
-<h2 id="simplified-row-ladder-form">Simplified row ladder form</h2>
-<ul>
+<h2 id="Simplified-row-ladder-form"><a href="#Simplified-row-ladder-form" class="headerlink" title="Simplified row ladder form"></a>Simplified row ladder form</h2><ul>
 <li><p>U can be further simplified</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 U=\begin{bmatrix}
-1 &amp; 2 &amp; 2 &amp; 2  \\
-0 &amp; 0 &amp; 2 &amp; 4  \\
-0 &amp; 0 &amp; 0 &amp; 0  \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>In the reduced row echelon form (RREF), all entries above the
-leading pivot are also 0</p>
-<p><span class="math display">\[
+1 & 2 & 2 & 2  \\
+0 & 0 & 2 & 4  \\
+0 & 0 & 0 & 0  \\
+\end{bmatrix}</script></li>
+<li><p>In the reduced row echelon form (RREF), all entries above the leading pivot are also 0</p>
+<script type="math/tex; mode=display">
 U=\begin{bmatrix}
-1 &amp; 2 &amp; 0 &amp; -2  \\
-0 &amp; 0 &amp; 2 &amp; 4  \\
-0 &amp; 0 &amp; 0 &amp; 0  \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>And the leading element must be made into 1, because b=0, so the
-second row can be directly divided by 2</p>
-<p><span class="math display">\[
+1 & 2 & 0 & -2  \\
+0 & 0 & 2 & 4  \\
+0 & 0 & 0 & 0  \\
+\end{bmatrix}</script></li>
+<li><p>And the leading element must be made into 1, because b=0, so the second row can be directly divided by 2</p>
+<script type="math/tex; mode=display">
 U=\begin{bmatrix}
-1 &amp; 2 &amp; 0 &amp; -2  \\
-0 &amp; 0 &amp; 1 &amp; 2  \\
-0 &amp; 0 &amp; 0 &amp; 0  \\
-\end{bmatrix}=R
-\]</span></p></li>
-<li><p>Simplified row 阶梯 form contains all the information of the
-matrix in its simplest form</p></li>
-<li><p>The unit matrix is located at the intersection of the main row
-and the main column</p></li>
-<li><p>An extremely simplified system of equations is obtained: Rx = 0
-(columns can be arbitrarily interchanged), F represents free columns</p>
-<p><span class="math display">\[
+1 & 2 & 0 & -2  \\
+0 & 0 & 1 & 2  \\
+0 & 0 & 0 & 0  \\
+\end{bmatrix}=R</script></li>
+<li><p>Simplified row 阶梯 form contains all the information of the matrix in its simplest form</p>
+</li>
+<li><p>The unit matrix is located at the intersection of the main row and the main column</p>
+</li>
+<li><p>An extremely simplified system of equations is obtained: Rx = 0 (columns can be arbitrarily interchanged), F represents free columns</p>
+<script type="math/tex; mode=display">
 R=\begin{bmatrix}
-I &amp; F \\
-0 &amp; 0 \\
-\end{bmatrix}
-\]</span></p>
-<p>Among them, I is the unit matrix (principal column), F is the matrix
-corresponding to the free columns, R has r rows, I has r columns, and F
-has n-r columns</p></li>
+I & F \\
+0 & 0 \\
+\end{bmatrix}</script><p>Among them, I is the unit matrix (principal column), F is the matrix corresponding to the free columns, R has r rows, I has r columns, and F has n-r columns</p>
+</li>
 </ul>
-<h2 id="zero-space-matrix">Zero-space matrix</h2>
-<ul>
-<li><p>Zero space matrix, whose columns are composed of particular
-solutions, denoted as N, it can be seen that if there are a number of
-free variables, then N has a columns, and if there are no free
-variables, N does not exist, x has only a unique solution or no
-solution</p>
-<p><span class="math display">\[
-R*N=0
-\]</span></p>
-<p><span class="math display">\[
+<h2 id="Zero-space-matrix"><a href="#Zero-space-matrix" class="headerlink" title="Zero-space matrix"></a>Zero-space matrix</h2><ul>
+<li><p>Zero space matrix, whose columns are composed of particular solutions, denoted as N, it can be seen that if there are a number of free variables, then N has a columns, and if there are no free variables, N does not exist, x has only a unique solution or no solution</p>
+<script type="math/tex; mode=display">
+R*N=0</script><script type="math/tex; mode=display">
 N=\begin{bmatrix}
 -F \\
 I  \\
-\end{bmatrix}
-\]</span></p></li>
+\end{bmatrix}</script></li>
 <li><p>The entire equation can be written as</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-I &amp; F \\
+I & F \\
 \end{bmatrix}
 \begin{bmatrix}
 x_{pivot} \\
 x_{free}  \\
-\end{bmatrix}=0
-\]</span></p>
-<p><span class="math display">\[
-x_{pivot}=-F
-\]</span></p></li>
+\end{bmatrix}=0</script><script type="math/tex; mode=display">
+x_{pivot}=-F</script></li>
 </ul>
-<h2 id="take-an-example-to-go-through-the-algorithm-again">Take an
-example to go through the algorithm again</h2>
-<ul>
+<h2 id="Take-an-example-to-go-through-the-algorithm-again"><a href="#Take-an-example-to-go-through-the-algorithm-again" class="headerlink" title="Take an example to go through the algorithm again"></a>Take an example to go through the algorithm again</h2><ul>
 <li><p>Original Matrix</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 3 \\
-2 &amp; 4 &amp; 6 \\
-2 &amp; 6 &amp; 8 \\
-2 &amp; 8 &amp; 10 \\
-\end{bmatrix}
-\]</span></p></li>
+1 & 2 & 3 \\
+2 & 4 & 6 \\
+2 & 6 & 8 \\
+2 & 8 & 10 \\
+\end{bmatrix}</script></li>
 <li><p>First elimination</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 3 \\
-0 &amp; 0 &amp; 0 \\
-0 &amp; 2 &amp; 2 \\
-0 &amp; 4 &amp; 4 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>Second elimination (perform a row swap to make the second pivot
-element in the second row)</p>
-<p><span class="math display">\[
+1 & 2 & 3 \\
+0 & 0 & 0 \\
+0 & 2 & 2 \\
+0 & 4 & 4 \\
+\end{bmatrix}</script></li>
+<li><p>Second elimination (perform a row swap to make the second pivot element in the second row)</p>
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 3 \\
-0 &amp; 2 &amp; 2 \\
-0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 \\
-\end{bmatrix}=U
-\]</span></p></li>
-<li><p>Clearly, r=2, 1 degree of freedom, let the degree of freedom be
-1, obtain the particular solution x</p>
-<p><span class="math display">\[
+1 & 2 & 3 \\
+0 & 2 & 2 \\
+0 & 0 & 0 \\
+0 & 0 & 0 \\
+\end{bmatrix}=U</script></li>
+<li><p>Clearly, r=2, 1 degree of freedom, let the degree of freedom be 1, obtain the particular solution x</p>
+<script type="math/tex; mode=display">
 x=\begin{bmatrix}
 -1 \\
 -1 \\
 1 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>Zero space is denoted as cx, a straight line, with x being the
-basis of the zero space</p></li>
+\end{bmatrix}</script></li>
+<li><p>Zero space is denoted as cx, a straight line, with x being the basis of the zero space</p>
+</li>
 <li><p>Next, continue to simplify U</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 U=\begin{bmatrix}
-1 &amp; 0 &amp; 1 \\
-0 &amp; 1 &amp; 1 \\
-0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 \\
+1 & 0 & 1 \\
+0 & 1 & 1 \\
+0 & 0 & 0 \\
+0 & 0 & 0 \\
 \end{bmatrix}=R=
 \begin{bmatrix}
-I &amp; F  \\
-0 &amp; 0  \\
-0 &amp; 0  \\
-\end{bmatrix}
-\]</span></p></li>
+I & F  \\
+0 & 0  \\
+0 & 0  \\
+\end{bmatrix}</script></li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 F=\begin{bmatrix}
 1 \\
 1 \\
-\end{bmatrix}=U
-\]</span></p>
-<p><span class="math display">\[
+\end{bmatrix}=U</script><script type="math/tex; mode=display">
 x=\begin{bmatrix}
 -F \\
 I  \\
-\end{bmatrix}=N
-\]</span></p>
-<h1 id="lecture-8-solvability-and-the-structure-of-solutions">Lecture 8:
-Solvability and the Structure of Solutions</h1>
-<h2 id="solvability">Solvability</h2>
-<p><span class="math display">\[
+\end{bmatrix}=N</script><h1 id="Lecture-8-Solvability-and-the-Structure-of-Solutions"><a href="#Lecture-8-Solvability-and-the-Structure-of-Solutions" class="headerlink" title="Lecture 8: Solvability and the Structure of Solutions"></a>Lecture 8: Solvability and the Structure of Solutions</h1><h2 id="Solvability"><a href="#Solvability" class="headerlink" title="Solvability"></a>Solvability</h2><script type="math/tex; mode=display">
 \begin{cases}
 x_1+2x_2+2x_3+2x_4=b_1\\
 2x_1+4x_2+6x_3+8x_4=b_2\\
 3x_1+6x_2+8x_3+10x_4=b_3\\
-\end{cases}
-\]</span></p>
-<ul>
+\end{cases}</script><ul>
 <li><p>Written in the expanded matrix form:</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \left[\begin{array}{c c c c|c}
-1 &amp; 2 &amp; 2 &amp; 2 &amp; b_1 \\
-2 &amp; 4 &amp; 6 &amp; 8 &amp; b_2 \\
-3 &amp; 6 &amp; 8 &amp; 10 &amp; b_3 \\
-\end{array}\right]
-\]</span></p></li>
+1 & 2 & 2 & 2 & b_1 \\
+2 & 4 & 6 & 8 & b_2 \\
+3 & 6 & 8 & 10 & b_3 \\
+\end{array}\right]</script></li>
 <li><p>Elimination yields:</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \left[\begin{array}{c c c c|c}
-1 &amp; 2 &amp; 2 &amp; 2 &amp; b_1 \\
-0 &amp; 0 &amp; 2 &amp; 4 &amp; b_2-2b_1 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; b_3-b_2-b_1 \\
-\end{array}\right]
-\]</span></p></li>
-<li><p>The first and third columns are the main columns, while the
-second and fourth columns are free columns</p></li>
-<li><p>Solvability: What conditions must b satisfy when there is a
-solution? The easily obtainable condition is that b must be in the
-column space of A</p></li>
-<li><p><strong>If the linear combination of each row of A results in 0,
-what conditions must b satisfy? Then, the same combination of elements
-in b must also be zero</strong></p></li>
+1 & 2 & 2 & 2 & b_1 \\
+0 & 0 & 2 & 4 & b_2-2b_1 \\
+0 & 0 & 0 & 0 & b_3-b_2-b_1 \\
+\end{array}\right]</script></li>
+<li><p>The first and third columns are the main columns, while the second and fourth columns are free columns</p>
+</li>
+<li><p>Solvability: What conditions must b satisfy when there is a solution? The easily obtainable condition is that b must be in the column space of A</p>
+</li>
+<li><p><strong>If the linear combination of each row of A results in 0, what conditions must b satisfy? Then, the same combination of elements in b must also be zero</strong></p>
+</li>
 <li><p>How to find all solutions of Ax=b?</p>
 <ul>
-<li><p>First step: Find a particular solution, set all free variables to
-0, and solve for all principal variables. In the example, <span
-class="math inline">\(x_2和x_4\)</span> is set to 0, which yields <span
-class="math inline">\(x_1和x_3\)</span> to be -2 and 1.5,
-respectively.</p></li>
-<li><p>The second step: The complete solution is a particular solution
-plus any vector in the null space</p></li>
-<li><p><span class="math inline">\(Ax_{particular}=b \\ Ax_{nullspace}=0
-\\ A(x_{particular}+x_{nullspace})=b\)</span></p></li>
-<li><p>In this case, the particular solution is (-2,0,1.5,0), and the
-solutions in the null space are (-2,1,0,0) and (2,0,-2,1).</p></li>
+<li><p>First step: Find a particular solution, set all free variables to 0, and solve for all principal variables. In the example, $x_2和x_4$ is set to 0, which yields $x_1和x_3$ to be -2 and 1.5, respectively.</p>
+</li>
+<li><p>The second step: The complete solution is a particular solution plus any vector in the null space</p>
+</li>
+<li><p>$Ax<em>{particular}=b   \   Ax</em>{nullspace}=0   \   A(x<em>{particular}+x</em>{nullspace})=b$</p>
+</li>
+<li><p>In this case, the particular solution is (-2,0,1.5,0), and the solutions in the null space are (-2,1,0,0) and (2,0,-2,1).</p>
+</li>
 <li><p>Complete solution is:</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 x_{complete}=
 \begin{bmatrix}
 -2 \\
@@ -1077,86 +823,46 @@ c_2\begin{bmatrix}
 0 \\
 -2 \\
 1 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>If its image is plotted in a four-dimensional space with four
-solutions as axes, it forms a plane, similar to a subspace translating
-from the zero point to a particular solution point</p></li>
-</ul></li>
+\end{bmatrix}</script></li>
+<li><p>If its image is plotted in a four-dimensional space with four solutions as axes, it forms a plane, similar to a subspace translating from the zero point to a particular solution point</p>
+</li>
 </ul>
-<h2 id="structure-of-the-explanation">Structure of the Explanation</h2>
-<ul>
-<li><p>Consider an m*n matrix of rank r, where r &lt;= m and r &lt;= n,
-with the case when r is full rank, i.e., r = min(m, n)</p></li>
+</li>
+</ul>
+<h2 id="Structure-of-the-Explanation"><a href="#Structure-of-the-Explanation" class="headerlink" title="Structure of the Explanation"></a>Structure of the Explanation</h2><ul>
+<li><p>Consider an m*n matrix of rank r, where r &lt;= m and r &lt;= n, with the case when r is full rank, i.e., r = min(m, n)</p>
+</li>
 <li><p>Rank full: r=n</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 R=\begin{bmatrix}
 I \\
 0 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>Rank full: r = m &lt; n, at this time, no zero row will appear
-during elimination, and for any b, Ax = b has a solution. There are n -
-r, i.e., n - m, free variables. At this time, the form of r is</p>
-<p><span class="math display">\[
+\end{bmatrix}</script></li>
+<li><p>Rank full: r = m &lt; n, at this time, no zero row will appear during elimination, and for any b, Ax = b has a solution. There are n - r, i.e., n - m, free variables. At this time, the form of r is</p>
+<script type="math/tex; mode=display">
 R=\begin{bmatrix}
-I &amp; F \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>When r=m=n, A is a reversible matrix, R=I, N(A)={0}, and the
-system Ax=b has a solution for any b, and the solution is
-unique</p></li>
+I & F \\
+\end{bmatrix}</script></li>
+<li><p>When r=m=n, A is a reversible matrix, R=I, N(A)={0}, and the system Ax=b has a solution for any b, and the solution is unique</p>
+</li>
 </ul>
-<h2
-id="an-explanation-from-a-netizens-perspective-of-the-vector-space">An
-explanation from a netizen's perspective of the vector space</h2>
-<blockquote>
-<p>When the dimension r occupied by the vectors equals the number of
-vectors n and also equals the dimension m of the ambient space, these
-vectors can be combined to form any vector within the ambient space,
-that is, for any value of b, there is always a solution. However, since
-all vectors must be combined together to reach any coordinate point in
-the entire ambient space, the stretching of each vector must be a
-specific amount, meaning x has only one solution. When the dimension r
-occupied by the vectors equals the dimension m of the ambient space but
-is less than the number of vectors n, that is, the stretching and
-combination of some vectors in A can reach any coordinate point in the
-ambient space, there exist free vectors here. Regardless of the position
-b takes in the space, you can first arbitrarily stretch your free vector
-to obtain a new vector, and then combine this new vector with the part
-of vectors that can completely reach the ambient space through a
-specific contraction to obtain vector b. As long as the stretching
-amount of the free vector changes, the contraction amount of the other
-vectors must also change, so X has infinitely many solutions. (Expressed
-in terms of the x formula, this means you can use the stretching and
-combination of some vectors in A (m primitive vectors) to obtain b (this
-is the particular solution) and then use m primitive vectors and the
-other n-m free vectors to arbitrarily form a zero vector, thus obtaining
-infinitely many sets of x.) When the dimension occupied by the vectors
-equals the number of vectors but is less than the dimension of the
-ambient space, that is, the vectors in A can only cover a subspace of
-the ambient space but there are free vectors in this subspace, then if b
-is within this subspace, the situation is the same as the second point,
-X has infinitely many solutions; if b is outside the subspace, X cannot
-be contracted to reach it, so there is no solution.</p>
+<h2 id="An-explanation-from-a-netizen’s-perspective-of-the-vector-space"><a href="#An-explanation-from-a-netizen’s-perspective-of-the-vector-space" class="headerlink" title="An explanation from a netizen’s perspective of the vector space"></a>An explanation from a netizen’s perspective of the vector space</h2><blockquote>
+<p>When the dimension r occupied by the vectors equals the number of vectors n and also equals the dimension m of the ambient space, these vectors can be combined to form any vector within the ambient space, that is, for any value of b, there is always a solution. However, since all vectors must be combined together to reach any coordinate point in the entire ambient space, the stretching of each vector must be a specific amount, meaning x has only one solution. When the dimension r occupied by the vectors equals the dimension m of the ambient space but is less than the number of vectors n, that is, the stretching and combination of some vectors in A can reach any coordinate point in the ambient space, there exist free vectors here. Regardless of the position b takes in the space, you can first arbitrarily stretch your free vector to obtain a new vector, and then combine this new vector with the part of vectors that can completely reach the ambient space through a specific contraction to obtain vector b. As long as the stretching amount of the free vector changes, the contraction amount of the other vectors must also change, so X has infinitely many solutions. (Expressed in terms of the x formula, this means you can use the stretching and combination of some vectors in A (m primitive vectors) to obtain b (this is the particular solution) and then use m primitive vectors and the other n-m free vectors to arbitrarily form a zero vector, thus obtaining infinitely many sets of x.) When the dimension occupied by the vectors equals the number of vectors but is less than the dimension of the ambient space, that is, the vectors in A can only cover a subspace of the ambient space but there are free vectors in this subspace, then if b is within this subspace, the situation is the same as the second point, X has infinitely many solutions; if b is outside the subspace, X cannot be contracted to reach it, so there is no solution.</p>
 </blockquote>
 </div>
 <div id="zh-content" class="lang-content" style="display: none;"><ul>
 <li>例如对方程组：</li>
 </ul>
-<p><span class="math display">\[\begin{cases}
+<script type="math/tex; mode=display">\begin{cases}
 2x-y=0\\
 -x+2y=3\\
-\end{cases}
-\]</span></p>
-<h2 id="行图像">行图像</h2>
-<ul>
+\end{cases}</script><h2 id="行图像"><a href="#行图像" class="headerlink" title="行图像"></a>行图像</h2><ul>
 <li>行图像为：</li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-2 &amp; -1 \\
--1 &amp; 2 \\
+2 & -1 \\
+-1 & 2 \\
 \end{bmatrix}
 \begin{bmatrix}
 x \\
@@ -1166,21 +872,16 @@ y \\
 \begin{bmatrix}
 0 \\
 3 \\
-\end{bmatrix}
-\]</span></p>
-<ul>
+\end{bmatrix}</script><ul>
 <li>也可以写成</li>
 </ul>
-<p><span class="math display">\[
-Ax=b
-\]</span></p>
-<ul>
+<script type="math/tex; mode=display">
+Ax=b</script><ul>
 <li>即二维平面上两条直线的交点为方程的解，推广到n维就是n维平面上n条直线的交点</li>
 </ul>
-<h2 id="列图像">列图像</h2>
-<ul>
+<h2 id="列图像"><a href="#列图像" class="headerlink" title="列图像"></a>列图像</h2><ul>
 <li><p>列图像为：</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 x
 \begin{bmatrix}
 2  \\
@@ -1195,277 +896,217 @@ x
 \begin{bmatrix}
 0 \\
 3 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>方程的解即向量组的线性组合系数，在这个组合系数下向量组合成目标向量</p></li>
+\end{bmatrix}</script></li>
+<li><p>方程的解即向量组的线性组合系数，在这个组合系数下向量组合成目标向量</p>
+</li>
 </ul>
-<h2 id="矩阵">矩阵</h2>
-<ul>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><ul>
 <li>现在考虑列图像，不同的x,y可以导致不同的线性组合，是否对任意b，x都有解？或者说这两个向量的线性组合能否覆盖整个空间？或者说这两(或n)个向量是否线性独立？</li>
-<li>如果是，那么这两个(或n个)向量组成的矩阵我们称之为非奇异矩阵(nonsingular
-matrix)，且可逆(invertible)；反之称之为奇异矩阵，不可逆</li>
+<li>如果是，那么这两个(或n个)向量组成的矩阵我们称之为非奇异矩阵(nonsingular matrix)，且可逆(invertible)；反之称之为奇异矩阵，不可逆</li>
 </ul>
-<h1 id="第二讲消元回代和置换">第二讲：消元、回代和置换</h1>
-<h2 id="消元">消元</h2>
-<ul>
-<li><p>考虑方程组 <span class="math display">\[\begin{cases}
+<h1 id="第二讲：消元、回代和置换"><a href="#第二讲：消元、回代和置换" class="headerlink" title="第二讲：消元、回代和置换"></a>第二讲：消元、回代和置换</h1><h2 id="消元"><a href="#消元" class="headerlink" title="消元"></a>消元</h2><ul>
+<li>考虑方程组<script type="math/tex; mode=display">\begin{cases}
 x+2y+z=2\\
 3x+8y+z=12\\
 4y+z=2\\
-\end{cases}
-\]</span></p></li>
+\end{cases}</script></li>
 <li><p>他的A矩阵为</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-1 &amp; 2 &amp; 1  \\
-3 &amp; 8 &amp; 1  \\
-0 &amp; 4 &amp; 1  \\
-\end{bmatrix}
-\]</span></p></li>
+1 & 2 & 1  \\
+3 & 8 & 1  \\
+0 & 4 & 1  \\
+\end{bmatrix}</script></li>
 <li><p>经过行变换后为</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-1 &amp; 2 &amp; 1  \\
-0 &amp; 2 &amp; -2  \\
-0 &amp; 4 &amp; 1  \\
-\end{bmatrix}
-\]</span></p></li>
+1 & 2 & 1  \\
+0 & 2 & -2  \\
+0 & 4 & 1  \\
+\end{bmatrix}</script></li>
 <li><p>再变换为</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-1 &amp; 2 &amp; 1  \\
-0 &amp; 2 &amp; -2  \\
-0 &amp; 0 &amp; 5  \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>这样一系列变换即消元</p></li>
-<li><p>变换的规律是，第i行的第i个元素设为主元(pivot)，通过行变换依次消除每一行主元前面的元素，这样矩阵A就变成了矩阵U(Upper
-Triangle上三角）</p></li>
+1 & 2 & 1  \\
+0 & 2 & -2  \\
+0 & 0 & 5  \\
+\end{bmatrix}</script></li>
+<li>这样一系列变换即消元</li>
+<li>变换的规律是，第i行的第i个元素设为主元(pivot)，通过行变换依次消除每一行主元前面的元素，这样矩阵A就变成了矩阵U(Upper Triangle上三角）</li>
 <li><p>矩阵</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \left[\begin{array}{c|c}
-A &amp; X \\
-\end{array}\right]
-\]</span></p></li>
-<li><p>称为增广矩阵(Augmented matrix)。b做同样变换可以得到c</p></li>
+A & X \\
+\end{array}\right]</script></li>
+<li>称为增广矩阵(Augmented matrix)。b做同样变换可以得到c</li>
 </ul>
-<h2 id="回代">回代</h2>
-<ul>
+<h2 id="回代"><a href="#回代" class="headerlink" title="回代"></a>回代</h2><ul>
 <li>解方程Ax=b等同于解方程Ux=c，Ux=c非常容易求得解，以三元方程为例</li>
 <li>因为U为上三角矩阵，z很容易求得</li>
 <li>将z代入第二行求得y</li>
 <li>将z,y代入第一行求得x</li>
 <li>这个过程即回代</li>
 </ul>
-<h2 id="置换">置换</h2>
-<p><span class="math display">\[
+<h2 id="置换"><a href="#置换" class="headerlink" title="置换"></a>置换</h2><script type="math/tex; mode=display">
 \begin{bmatrix}
-a &amp; b &amp; c  \\
-\end{bmatrix}*A
-\]</span></p>
-<ul>
+a & b & c  \\
+\end{bmatrix}*A</script><ul>
 <li>这个式子的含义是求得一个行矩阵，其值为a倍A行1+b倍A行2+c倍A行3</li>
 </ul>
-<p>同理 <span class="math display">\[
+<p>同理</p>
+<script type="math/tex; mode=display">
 A*\begin{bmatrix}
 a \\
 b \\
 c \\
-\end{bmatrix}
-\]</span></p>
-<ul>
+\end{bmatrix}</script><ul>
 <li>这个式子的含义是求得一个列矩阵，其值为a倍A列1+b倍A列2+c倍A列3</li>
 <li>可以推出，交换A两行的矩阵为</li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-0 &amp; 1  \\
-1 &amp; 0  \\
-\end{bmatrix}*A
-\]</span></p>
-<ul>
+0 & 1  \\
+1 & 0  \\
+\end{bmatrix}*A</script><ul>
 <li>交换A两列的矩阵为</li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A*\begin{bmatrix}
-0 &amp; 1  \\
-1 &amp; 0  \\
-\end{bmatrix}
-\]</span></p>
-<ul>
-<li><p>与矩阵相乘完成了行列变换，这样的矩阵就是置换矩阵</p></li>
-<li><p>在消元中，把第i行第j列处元素消掉所需要的行列变换表示为置换矩阵，记作<span
-class="math inline">\(E_{ij}\)</span></p></li>
+0 & 1  \\
+1 & 0  \\
+\end{bmatrix}</script><ul>
+<li>与矩阵相乘完成了行列变换，这样的矩阵就是置换矩阵</li>
+<li>在消元中，把第i行第j列处元素消掉所需要的行列变换表示为置换矩阵，记作$E_{ij}$</li>
 <li><p>消元可写成</p>
-<p><span class="math display">\[
-E_{32}E_{31}E_{21}A=U
-\]</span></p></li>
+<script type="math/tex; mode=display">
+E_{32}E_{31}E_{21}A=U</script></li>
 </ul>
-<h1 id="第三讲乘法和逆矩阵">第三讲：乘法和逆矩阵</h1>
-<h2 id="矩阵乘法">矩阵乘法</h2>
-<ul>
+<h1 id="第三讲：乘法和逆矩阵"><a href="#第三讲：乘法和逆矩阵" class="headerlink" title="第三讲：乘法和逆矩阵"></a>第三讲：乘法和逆矩阵</h1><h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><ul>
 <li><p>考虑矩阵乘法</p>
-<p><span class="math display">\[
-A*B=C
-\]</span></p></li>
-<li><p>第一种算法：点乘 <span
-class="math inline">\(C_{ij}=\sum_iA_{ik}B_{kj}\)</span></p></li>
-<li><p>第二种算法：看成矩阵乘向量，C列为A列的线性组合,组合系数在B矩阵中，例如：B的第一列中每行元素就是A中各个列的线性组合系数，线性组合之后得到C的第一列</p></li>
-<li><p>第三种算法：看成向量乘矩阵，C行为B行的线性组合,组合系数在A矩阵中，例如：A的第一行中每列元素就是B中各个行的线性组合系数，线性组合之后得到C的第一行</p></li>
-<li><p>第四种算法：A的某一列乘B的某一行得到一个子矩阵，所有子矩阵相加即为C</p></li>
-<li><p>第五种算法：矩阵分块算</p></li>
+<script type="math/tex; mode=display">
+A*B=C</script></li>
+<li>第一种算法：点乘 $C<em>{ij}=\sum_iA</em>{ik}B_{kj}$</li>
+<li>第二种算法：看成矩阵乘向量，C列为A列的线性组合,组合系数在B矩阵中，例如：B的第一列中每行元素就是A中各个列的线性组合系数，线性组合之后得到C的第一列</li>
+<li>第三种算法：看成向量乘矩阵，C行为B行的线性组合,组合系数在A矩阵中，例如：A的第一行中每列元素就是B中各个行的线性组合系数，线性组合之后得到C的第一行</li>
+<li>第四种算法：A的某一列乘B的某一行得到一个子矩阵，所有子矩阵相加即为C</li>
+<li>第五种算法：矩阵分块算</li>
 </ul>
-<h2 id="逆矩阵">逆矩阵</h2>
-<ul>
-<li>对逆矩阵<span class="math inline">\(A^{-1}\)</span>,有<span
-class="math inline">\(AA^{-1}=I\)</span>,I为单位矩阵</li>
+<h2 id="逆矩阵"><a href="#逆矩阵" class="headerlink" title="逆矩阵"></a>逆矩阵</h2><ul>
+<li>对逆矩阵$A^{-1}$,有$AA^{-1}=I$,I为单位矩阵</li>
 <li>对方阵，左逆矩阵与右逆矩阵相同</li>
-<li>若存在非零矩阵X,使得<span
-class="math inline">\(AX=0\)</span>,则A不可逆</li>
-<li>求逆矩阵的高斯若尔当思想:将A|I作为增广矩阵，将A变换到I时，I相应变换到A的逆矩阵
+<li>若存在非零矩阵X,使得$AX=0$,则A不可逆</li>
+<li><p>求逆矩阵的高斯若尔当思想:将A|I作为增广矩阵，将A变换到I时，I相应变换到A的逆矩阵</p>
 <ul>
 <li><p>证明：</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 EA=I \\
 E=A^{-1} \\
-EI=A^{-1} \\
-\]</span></p></li>
-</ul></li>
+EI=A^{-1} \\</script></li>
 </ul>
-<h1 id="第四讲a的lu分解">第四讲：A的LU分解</h1>
-<h2 id="lu分解">LU分解</h2>
-<ul>
-<li><p><span
-class="math inline">\((AB)^{-1}=B^{-1}A^{-1}\)</span></p></li>
-<li><p>对A的转置矩阵<span class="math inline">\(A^T\)</span>,易得</p>
-<p><span class="math display">\[
+</li>
+</ul>
+<h1 id="第四讲：A的LU分解"><a href="#第四讲：A的LU分解" class="headerlink" title="第四讲：A的LU分解"></a>第四讲：A的LU分解</h1><h2 id="LU分解"><a href="#LU分解" class="headerlink" title="LU分解"></a>LU分解</h2><ul>
+<li>$(AB)^{-1}=B^{-1}A^{-1}$</li>
+<li><p>对A的转置矩阵$A^T$,易得</p>
+<script type="math/tex; mode=display">
 AA^{-1}=I \\
 (A^{-1})^TA^T=I \\
-所以(A^T)^{-1}=(A^{-1})^T \\
-\]</span></p></li>
-<li><p>对单个矩阵而言，转置和求逆可以互换</p></li>
+所以(A^T)^{-1}=(A^{-1})^T \\</script></li>
+<li>对单个矩阵而言，转置和求逆可以互换</li>
 <li><p>矩阵分解：A=LU,即U通过一系列置换矩阵变回为A，L就是置换矩阵的累积.以3*3矩阵为例</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 E_{32}E_{31}E_{21}A=U \\
 所以可得L: \\
-L=E_{21}^{-1}E_{31}^{-1}E_{32}^{-1} \\
-\]</span></p></li>
-<li><p>为什么研究A=LU而不是EA=U：因为如果不存在行变换，消元系数可以直接写进L中，反之，如果研究E,第n行的运算与前面已经消元过的第n-1行运算相关，不能直观的写出消元系数</p></li>
+L=E_{21}^{-1}E_{31}^{-1}E_{32}^{-1} \\</script></li>
+<li>为什么研究A=LU而不是EA=U：因为如果不存在行变换，消元系数可以直接写进L中，反之，如果研究E,第n行的运算与前面已经消元过的第n-1行运算相关，不能直观的写出消元系数</li>
 </ul>
-<h2 id="消元消耗">消元消耗</h2>
-<ul>
+<h2 id="消元消耗"><a href="#消元消耗" class="headerlink" title="消元消耗"></a>消元消耗</h2><ul>
 <li><p>记消元中一次乘法加一次减法即消掉某一元素为一次消耗(是数的乘和减为单位而不是行的乘和减)，总消耗为</p>
-<p><span class="math display">\[
-\sum_{i=1}^{n}i*(i-1) \approx \sum_{i=1}^{n}i^2 \approx \frac 13 n^3
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{n}i*(i-1) \approx \sum_{i=1}^{n}i^2 \approx \frac 13 n^3</script></li>
 </ul>
-<h2 id="群">群</h2>
-<ul>
+<h2 id="群"><a href="#群" class="headerlink" title="群"></a>群</h2><ul>
 <li>以3*3单位置换矩阵为例，总共有6个(即行互换矩阵)</li>
-<li>对这些矩阵，<span class="math inline">\(P^{-1}=P^T\)</span></li>
+<li>对这些矩阵，$P^{-1}=P^T$</li>
 <li>这6个矩阵的置换和逆依然在这6个矩阵之中，称之为群</li>
 <li>n*n矩阵共有n!个行置换矩阵</li>
 </ul>
-<h1 id="第五讲转置置换向量空间r">第五讲：转置、置换、向量空间R</h1>
-<h2 id="置换-1">置换</h2>
-<ul>
+<h1 id="第五讲：转置、置换、向量空间R"><a href="#第五讲：转置、置换、向量空间R" class="headerlink" title="第五讲：转置、置换、向量空间R"></a>第五讲：转置、置换、向量空间R</h1><h2 id="置换-1"><a href="#置换-1" class="headerlink" title="置换"></a>置换</h2><ul>
 <li>置换矩阵是用来完成行交换的矩阵</li>
 <li>A=LU,L对角线上都是1，下方为消元乘数，U下三角为0</li>
 <li>PA=LU用于描述包含行交换的lu分解</li>
 <li>P(Permutation置换矩阵)是行重新排列了的单位矩阵，n*n置换矩阵共n!种，即各行重新排列后的数目，他们均可逆，且求逆与求转置等价</li>
 </ul>
-<h2 id="转置">转置</h2>
-<ul>
-<li>行列交换即转置，记作<span class="math inline">\(A^T\)</span>，<span
-class="math inline">\(A_{ij}=A_{ji}^T\)</span></li>
-<li><span class="math inline">\((AB)^T=B^TA^T\)</span></li>
-<li>对称矩阵(symmetric),<span class="math inline">\(A^T=A\)</span></li>
-<li>对任意矩阵A，<span
-class="math inline">\(AA^T\)</span>总是对称的,因为<span
-class="math inline">\((A^TA)^T=(A^TA^{TT})=(A^TA)\)</span></li>
+<h2 id="转置"><a href="#转置" class="headerlink" title="转置"></a>转置</h2><ul>
+<li>行列交换即转置，记作$A^T$，$A<em>{ij}=A</em>{ji}^T$</li>
+<li>$(AB)^T=B^TA^T$</li>
+<li>对称矩阵(symmetric),$A^T=A$</li>
+<li>对任意矩阵A，$AA^T$总是对称的,因为$(A^TA)^T=(A^TA^{TT})=(A^TA)$</li>
 </ul>
-<h2 id="向量空间">向量空间</h2>
-<ul>
+<h2 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h2><ul>
 <li>向量可以相加减，点乘</li>
 <li><strong>空间代表一些向量的集合，不代表所有向量，向量空间是有约束条件的，需要满足对线性组合自封闭的条件</strong></li>
-<li>例如<span
-class="math inline">\(R^2\)</span>，代表所有实数的二维向量空间</li>
-<li>向量空间内的任何向量进行线性组合后依然在向量空间内，所以<span
-class="math inline">\(R^2\)</span>向量空间内必须存在(0,0)</li>
-<li>不是向量空间的一个例子：只取<span
-class="math inline">\(R^2\)</span>的第一象限，任意空间内的向量相加依然在空间内，但数乘就不一定(可以乘以一个负数),向量空间是封闭的</li>
-<li>在<span
-class="math inline">\(R^2\)</span>内取一条过零点直线可以称为<span
-class="math inline">\(R^2\)</span>的向量子空间，这个子空间依然满足自封闭性(加减和数乘)</li>
-<li><span class="math inline">\(R^2\)</span>的子空间都有哪些？
-<ul>
-<li><span class="math inline">\(R^2\)</span>本身</li>
-<li>过零点两端无限延伸的直线(注意这和<span
-class="math inline">\(R^1\)</span>不同)</li>
+<li>例如$R^2$，代表所有实数的二维向量空间</li>
+<li>向量空间内的任何向量进行线性组合后依然在向量空间内，所以$R^2$向量空间内必须存在(0,0)</li>
+<li>不是向量空间的一个例子：只取$R^2$的第一象限，任意空间内的向量相加依然在空间内，但数乘就不一定(可以乘以一个负数),向量空间是封闭的</li>
+<li>在$R^2$内取一条过零点直线可以称为$R^2$的向量子空间，这个子空间依然满足自封闭性(加减和数乘)</li>
+<li>$R^2$的子空间都有哪些？<ul>
+<li>$R^2$本身</li>
+<li>过零点两端无限延伸的直线(注意这和$R^1$不同)</li>
 <li>(0,0),简写为Z</li>
-</ul></li>
-<li><span class="math inline">\(R^3\)</span>的子空间都有哪些？
-<ul>
-<li><span class="math inline">\(R^3\)</span>本身</li>
-<li>过零点两端无限延伸的直线(注意这和<span
-class="math inline">\(R^1\)</span>不同)</li>
+</ul>
+</li>
+<li>$R^3$的子空间都有哪些？<ul>
+<li>$R^3$本身</li>
+<li>过零点两端无限延伸的直线(注意这和$R^1$不同)</li>
 <li>过零点的无限大平面</li>
 <li>(0,0,0)</li>
-</ul></li>
 </ul>
-<h2 id="通过矩阵构造向量子空间">通过矩阵构造向量子空间</h2>
-<p><span class="math display">\[
+</li>
+</ul>
+<h2 id="通过矩阵构造向量子空间"><a href="#通过矩阵构造向量子空间" class="headerlink" title="通过矩阵构造向量子空间"></a>通过矩阵构造向量子空间</h2><script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 3  \\
-2 &amp; 3  \\
-4 &amp; 1  \\
-\end{bmatrix}
-\]</span></p>
-<ul>
-<li>各列属于<span
-class="math inline">\(R^3\)</span>，这两列的任何线性组合(数乘和加法)应该在子空间中,称这个子空间为列空间,记作C(A)，在三维空间中这个列空间就是一个平面，过这两个列向量及(0,0,0)
-<img data-src="http://ojtdnrpmt.bkt.clouddn.com/blog/20170122/203313042.png"
-alt="mark" /></li>
+1 & 3  \\
+2 & 3  \\
+4 & 1  \\
+\end{bmatrix}</script><ul>
+<li>各列属于$R^3$，这两列的任何线性组合(数乘和加法)应该在子空间中,称这个子空间为列空间,记作C(A)，在三维空间中这个列空间就是一个平面，过这两个列向量及(0,0,0)<br><img data-src="http://ojtdnrpmt.bkt.clouddn.com/blog/20170122/203313042.png" alt="mark"></li>
 </ul>
-<h1 id="第六讲列空间和零空间">第六讲：列空间和零空间</h1>
-<h2 id="列空间">列空间</h2>
-<ul>
-<li><p>上一讲提到两种子空间，平面P和直线L。<span class="math inline">\(P
-\bigcup L\)</span>不是一个子空间，<span class="math inline">\(P \bigcap
-L\)</span>是一个子空间</p></li>
-<li><p>对任意子空间S、T,<span class="math inline">\(S \bigcap
-T\)</span>是一个子空间</p></li>
+<h1 id="第六讲：列空间和零空间"><a href="#第六讲：列空间和零空间" class="headerlink" title="第六讲：列空间和零空间"></a>第六讲：列空间和零空间</h1><h2 id="列空间"><a href="#列空间" class="headerlink" title="列空间"></a>列空间</h2><ul>
+<li><p>上一讲提到两种子空间，平面P和直线L。$P \bigcup L$不是一个子空间，$P \bigcap L$是一个子空间</p>
+</li>
+<li><p>对任意子空间S、T,$S \bigcap T$是一个子空间</p>
+</li>
 <li><p>举个栗子</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 1 &amp; 2  \\
-2 &amp; 1 &amp; 3  \\
-3 &amp; 1 &amp; 5  \\
-4 &amp; 1 &amp; 5  \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>C(A)是<span
-class="math inline">\(R^4\)</span>子空间，将这三个列向量做线性组合可以得到子空间</p></li>
-<li><p>下面将子空间与线性方程组联系起来</p></li>
+1 & 1 & 2  \\
+2 & 1 & 3  \\
+3 & 1 & 5  \\
+4 & 1 & 5  \\
+\end{bmatrix}</script></li>
+<li><p>C(A)是$R^4$子空间，将这三个列向量做线性组合可以得到子空间</p>
+</li>
+<li><p>下面将子空间与线性方程组联系起来</p>
+</li>
 <li><p>现提出两个问题：Ax=b对任意b是否都有解?b怎样才能使x有解？</p>
 <ul>
-<li>前者回答是，否，因为四个方程，三个未知数，等同于3个列向量的线性组合无法填充整个<span
-class="math inline">\(R^4\)</span>空间，<strong>即列空间无法填充整个四维空间</strong></li>
+<li>前者回答是，否，因为四个方程，三个未知数，等同于3个列向量的线性组合无法填充整个$R^4$空间，<strong>即列空间无法填充整个四维空间</strong></li>
 <li>后者回答，显然b=(0,0,0,0)是一个答案，b=(1,2,3,4)显然也是一个答案,即先写出任意解(x1,x2,x3)，计算出的b就是使x有解的b，<strong>等同于只有b在A的列空间内，x有解</strong></li>
-</ul></li>
-<li><p>如果我们去掉第三列，我们依然可以得到相同的列空间，因为这三列并不是线性无关，第三列是前两列之和，此时我们称前两列为主列,所以此栗中的列空间是一个二维子空间</p></li>
 </ul>
-<h2 id="零空间">零空间</h2>
-<ul>
-<li><p>零空间(null
-space)与列空间完全不同，A的零空间包含Ax=0的所有解x</p></li>
+</li>
+<li><p>如果我们去掉第三列，我们依然可以得到相同的列空间，因为这三列并不是线性无关，第三列是前两列之和，此时我们称前两列为主列,所以此栗中的列空间是一个二维子空间</p>
+</li>
+</ul>
+<h2 id="零空间"><a href="#零空间" class="headerlink" title="零空间"></a>零空间</h2><ul>
+<li>零空间(null space)与列空间完全不同，A的零空间包含Ax=0的所有解x</li>
 <li><p>列空间关心A,零空间关心x(在b=0的情况下)，在上面那个栗子中，列空间是四维空间的子空间,零空间是三维空间的子空间</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-1 &amp; 1 &amp; 2  \\
-2 &amp; 1 &amp; 3  \\
-3 &amp; 1 &amp; 5  \\
-4 &amp; 1 &amp; 5  \\
+1 & 1 & 2  \\
+2 & 1 & 3  \\
+3 & 1 & 5  \\
+4 & 1 & 5  \\
 \end{bmatrix}
 \begin{bmatrix}
 X_1 \\
@@ -1477,17 +1118,16 @@ X_3 \\
 0 \\
 0 \\
 0 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>显然零空间包含(0,0,0)，(1,1,-1),这两个向量确定一条直线(c,c,-c)，所以这条直线就是零空间</p></li>
-<li><p>为什么零空间可以称为空间(满足向量空间的自封闭性?):即证明对Ax=0的任意两个解，他们的线性组合依然是解。因为：......矩阵乘法可以展开......分配率......</p></li>
+\end{bmatrix}</script></li>
+<li>显然零空间包含(0,0,0)，(1,1,-1),这两个向量确定一条直线(c,c,-c)，所以这条直线就是零空间</li>
+<li>为什么零空间可以称为空间(满足向量空间的自封闭性?):即证明对Ax=0的任意两个解，他们的线性组合依然是解。因为：……矩阵乘法可以展开……分配率……</li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-1 &amp; 1 &amp; 2  \\
-2 &amp; 1 &amp; 3  \\
-3 &amp; 1 &amp; 5  \\
-4 &amp; 1 &amp; 5  \\
+1 & 1 & 2  \\
+2 & 1 & 3  \\
+3 & 1 & 5  \\
+4 & 1 & 5  \\
 \end{bmatrix}
 \begin{bmatrix}
 X_1 \\
@@ -1499,228 +1139,187 @@ X_3 \\
 2 \\
 3 \\
 4 \\
-\end{bmatrix}
-\]</span></p>
-<ul>
+\end{bmatrix}</script><ul>
 <li>我们更换了b，解为(1,0,0),有其他解吗，如果存在，这些解能构成子空间吗？</li>
 <li>显然不构成，因为解中不包含(0,0,0),不满足向量空间的基本条件，如本例，两个解(1,0,0),(0,-1,1),但这两个向量的线性组合不通过原点，无法组成向量空间。所以讨论解空间或者说零空间，前提是b=0</li>
-<li>列空间和零空间是两种构造子空间的方法
-<ul>
+<li>列空间和零空间是两种构造子空间的方法<ul>
 <li>从几个向量通过线性组合来得到子空间</li>
 <li>从一个方程组，通过让x满足特定条件来得到子空间</li>
-</ul></li>
 </ul>
-<h1 id="第七讲主变量特解">第七讲：主变量、特解</h1>
-<h2 id="主变量">主变量</h2>
-<ul>
-<li><p>如何用算法解Ax=0</p></li>
+</li>
+</ul>
+<h1 id="第七讲：主变量、特解"><a href="#第七讲：主变量、特解" class="headerlink" title="第七讲：主变量、特解"></a>第七讲：主变量、特解</h1><h2 id="主变量"><a href="#主变量" class="headerlink" title="主变量"></a>主变量</h2><ul>
+<li>如何用算法解Ax=0</li>
 <li><p>举个栗子:</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 2 &amp; 2  \\
-2 &amp; 4 &amp; 6 &amp; 8  \\
-3 &amp; 6 &amp; 8 &amp; 10  \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>第三行是第一行加第二行，他们线性相关，这将在之后的消元中体现出来</p></li>
-<li><p>消元不改变方程的组，因为消元改动列空间,不改动解空间</p></li>
-<li><p>第一次消元之后,第一列只有第一行的主元不为零</p></li>
+1 & 2 & 2 & 2  \\
+2 & 4 & 6 & 8  \\
+3 & 6 & 8 & 10  \\
+\end{bmatrix}</script></li>
+<li>第三行是第一行加第二行，他们线性相关，这将在之后的消元中体现出来</li>
+<li>消元不改变方程的组，因为消元改动列空间,不改动解空间</li>
+<li>第一次消元之后,第一列只有第一行的主元不为零</li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 2 &amp; 2  \\
-0 &amp; 0 &amp; 2 &amp; 4  \\
-0 &amp; 0 &amp; 2 &amp; 4  \\
-\end{bmatrix}
-\]</span></p>
-<ul>
+1 & 2 & 2 & 2  \\
+0 & 0 & 2 & 4  \\
+0 & 0 & 2 & 4  \\
+\end{bmatrix}</script><ul>
 <li><p>此时因为第二列第三列线性相关，第二行的主元到了第三列,继续消元</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 2 &amp; 2  \\
-0 &amp; 0 &amp; 2 &amp; 4  \\
-0 &amp; 0 &amp; 0 &amp; 0  \\
-\end{bmatrix}=U
-\]</span></p></li>
-<li><p>如果我们将非0元素和0分开，会得到一个阶梯线，阶梯数是主元(非0)数，在本例中是2，我们称之为矩阵的秩(消元后剩下几个方程)，主元所在的列叫主列(1,3)，其余的列是自由列(2,4)</p></li>
-<li><p>现在我们可以解Ux=0,并进行回代</p></li>
-<li><p>自由列所对应的解为自由变量x2,x4，可以任意选择，选定之后主列对应的<strong>主变量</strong>x1,x3可以通过回代解出</p></li>
+1 & 2 & 2 & 2  \\
+0 & 0 & 2 & 4  \\
+0 & 0 & 0 & 0  \\
+\end{bmatrix}=U</script></li>
+<li>如果我们将非0元素和0分开，会得到一个阶梯线，阶梯数是主元(非0)数，在本例中是2，我们称之为矩阵的秩(消元后剩下几个方程)，主元所在的列叫主列(1,3)，其余的列是自由列(2,4)</li>
+<li>现在我们可以解Ux=0,并进行回代</li>
+<li>自由列所对应的解为自由变量x2,x4，可以任意选择，选定之后主列对应的<strong>主变量</strong>x1,x3可以通过回代解出</li>
 </ul>
-<h2 id="特解">特解</h2>
-<ul>
+<h2 id="特解"><a href="#特解" class="headerlink" title="特解"></a>特解</h2><ul>
 <li>在本例中假如取x2=1,x4=0,可以得到x=(-2,1,0,0),而(-2,1,0,0)乘任意实数依然是解，这样就确定了一条直线，但这条直线是解(零)空间吗?不是。因为我们有两个自由变量，可以确定不止一条直线，例如取x2=0,x4=1,可以得到x=(2,0,-2,1)</li>
 <li>所以算法是先消元，得到主列和自由列，然后对自由变量分配数值(1,0)，完成整个解(-2,1,0,0),再对自由变量取另外一组值(0,1)，再得到一组完全解(2,0,-2,1)。</li>
 <li>两次对自由变量取特殊值(其中一个为1，剩下的都是0，不能全为0，那样得到的完整解也全为0)得到的两组解称为<strong>特解</strong>，根据特解我们可以得到解空间：两组特解的线性组合,a*(-2,1,0,0)+b*(2,0,-2,1)</li>
 <li>秩r代表主变量即主元的个数，只有r个方程起作用，m*n的A矩阵有n-r个自由变量</li>
 </ul>
-<h2 id="简化行阶梯形式">简化行阶梯形式</h2>
-<ul>
-<li><p>U还能进一步简化</p>
-<p><span class="math display">\[
+<h2 id="简化行阶梯形式"><a href="#简化行阶梯形式" class="headerlink" title="简化行阶梯形式"></a>简化行阶梯形式</h2><ul>
+<li><p>U还能进一步简化 </p>
+<script type="math/tex; mode=display">
 U=\begin{bmatrix}
-1 &amp; 2 &amp; 2 &amp; 2  \\
-0 &amp; 0 &amp; 2 &amp; 4  \\
-0 &amp; 0 &amp; 0 &amp; 0  \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>在简化行阶梯形式(reduced row echelon form
-RREF)中，主元上方也全是0</p>
-<p><span class="math display">\[
+1 & 2 & 2 & 2  \\
+0 & 0 & 2 & 4  \\
+0 & 0 & 0 & 0  \\
+\end{bmatrix}</script></li>
+<li><p>在简化行阶梯形式(reduced row echelon form RREF)中，主元上方也全是0</p>
+<script type="math/tex; mode=display">
 U=\begin{bmatrix}
-1 &amp; 2 &amp; 0 &amp; -2  \\
-0 &amp; 0 &amp; 2 &amp; 4  \\
-0 &amp; 0 &amp; 0 &amp; 0  \\
-\end{bmatrix}
-\]</span></p></li>
+1 & 2 & 0 & -2  \\
+0 & 0 & 2 & 4  \\
+0 & 0 & 0 & 0  \\
+\end{bmatrix}</script></li>
 <li><p>而且需将主元化为1,因为b=0,所以第二行可以直接除以2</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 U=\begin{bmatrix}
-1 &amp; 2 &amp; 0 &amp; -2  \\
-0 &amp; 0 &amp; 1 &amp; 2  \\
-0 &amp; 0 &amp; 0 &amp; 0  \\
-\end{bmatrix}=R
-\]</span></p></li>
-<li><p>简化行阶梯形式以最简形式包含了矩阵的所有信息</p></li>
-<li><p>单位矩阵位于主行与主列交汇处</p></li>
+1 & 2 & 0 & -2  \\
+0 & 0 & 1 & 2  \\
+0 & 0 & 0 & 0  \\
+\end{bmatrix}=R</script></li>
+<li>简化行阶梯形式以最简形式包含了矩阵的所有信息</li>
+<li>单位矩阵位于主行与主列交汇处</li>
 <li><p>最终得到一个极简的方程组:Rx=0(列可以随便交换位置)，F代表自由列</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 R=\begin{bmatrix}
-I &amp; F \\
-0 &amp; 0 \\
-\end{bmatrix}
-\]</span></p>
-<p>其中I为单位矩阵(主列)，F(自由列对应的矩阵),R有r行，I有r列，F有n-r列</p></li>
+I & F \\
+0 & 0 \\
+\end{bmatrix}</script><p>其中I为单位矩阵(主列)，F(自由列对应的矩阵),R有r行，I有r列，F有n-r列</p>
+</li>
 </ul>
-<h2 id="零空间矩阵">零空间矩阵</h2>
-<ul>
+<h2 id="零空间矩阵"><a href="#零空间矩阵" class="headerlink" title="零空间矩阵"></a>零空间矩阵</h2><ul>
 <li><p>零空间矩阵，它的各列由特解组成，记作N，可以看出若有a个自由变量，则N有a列，若无自由变量，则N不存在，x只有唯一解或无解</p>
-<p><span class="math display">\[
-R*N=0
-\]</span></p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
+R*N=0</script><script type="math/tex; mode=display">
 N=\begin{bmatrix}
 -F \\
 I  \\
-\end{bmatrix}
-\]</span></p></li>
+\end{bmatrix}</script></li>
 <li><p>整个方程可以写成</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{bmatrix}
-I &amp; F \\
+I & F \\
 \end{bmatrix}
 \begin{bmatrix}
 x_{pivot} \\
 x_{free}  \\
-\end{bmatrix}=0
-\]</span></p>
-<p><span class="math display">\[
-x_{pivot}=-F
-\]</span></p></li>
+\end{bmatrix}=0</script><script type="math/tex; mode=display">
+x_{pivot}=-F</script></li>
 </ul>
-<h2 id="最后举个栗子过一遍算法">最后举个栗子过一遍算法</h2>
-<ul>
+<h2 id="最后举个栗子过一遍算法"><a href="#最后举个栗子过一遍算法" class="headerlink" title="最后举个栗子过一遍算法"></a>最后举个栗子过一遍算法</h2><ul>
 <li><p>原矩阵</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 3 \\
-2 &amp; 4 &amp; 6 \\
-2 &amp; 6 &amp; 8 \\
-2 &amp; 8 &amp; 10 \\
-\end{bmatrix}
-\]</span></p></li>
+1 & 2 & 3 \\
+2 & 4 & 6 \\
+2 & 6 & 8 \\
+2 & 8 & 10 \\
+\end{bmatrix}</script></li>
 <li><p>第一遍消元</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 3 \\
-0 &amp; 0 &amp; 0 \\
-0 &amp; 2 &amp; 2 \\
-0 &amp; 4 &amp; 4 \\
-\end{bmatrix}
-\]</span></p></li>
+1 & 2 & 3 \\
+0 & 0 & 0 \\
+0 & 2 & 2 \\
+0 & 4 & 4 \\
+\end{bmatrix}</script></li>
 <li><p>第二遍消元(进行一次行交换使得第二个主元在第二行)</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 A=\begin{bmatrix}
-1 &amp; 2 &amp; 3 \\
-0 &amp; 2 &amp; 2 \\
-0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 \\
-\end{bmatrix}=U
-\]</span></p></li>
+1 & 2 & 3 \\
+0 & 2 & 2 \\
+0 & 0 & 0 \\
+0 & 0 & 0 \\
+\end{bmatrix}=U</script></li>
 <li><p>显然r=2,1个自由变量,令自由变量为1，得到特解x</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 x=\begin{bmatrix}
 -1 \\
 -1 \\
 1 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>零空间就是cx,一条直线，这个x为零空间的基</p></li>
+\end{bmatrix}</script></li>
+<li>零空间就是cx,一条直线，这个x为零空间的基</li>
 <li><p>接下来继续化简U</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 U=\begin{bmatrix}
-1 &amp; 0 &amp; 1 \\
-0 &amp; 1 &amp; 1 \\
-0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 \\
+1 & 0 & 1 \\
+0 & 1 & 1 \\
+0 & 0 & 0 \\
+0 & 0 & 0 \\
 \end{bmatrix}=R=
 \begin{bmatrix}
-I &amp; F  \\
-0 &amp; 0  \\
-0 &amp; 0  \\
-\end{bmatrix}
-\]</span></p></li>
+I & F  \\
+0 & 0  \\
+0 & 0  \\
+\end{bmatrix}</script></li>
 </ul>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 F=\begin{bmatrix}
 1 \\
 1 \\
-\end{bmatrix}=U
-\]</span></p>
-<p><span class="math display">\[
+\end{bmatrix}=U</script><script type="math/tex; mode=display">
 x=\begin{bmatrix}
 -F \\
 I  \\
-\end{bmatrix}=N
-\]</span></p>
-<h1 id="第八讲可解性与解的结构">第八讲：可解性与解的结构</h1>
-<h2 id="可解性">可解性</h2>
-<p><span class="math display">\[\begin{cases}
+\end{bmatrix}=N</script><h1 id="第八讲：可解性与解的结构"><a href="#第八讲：可解性与解的结构" class="headerlink" title="第八讲：可解性与解的结构"></a>第八讲：可解性与解的结构</h1><h2 id="可解性"><a href="#可解性" class="headerlink" title="可解性"></a>可解性</h2><script type="math/tex; mode=display">\begin{cases}
 x_1+2x_2+2x_3+2x_4=b_1\\
 2x_1+4x_2+6x_3+8x_4=b_2\\
 3x_1+6x_2+8x_3+10x_4=b_3\\
-\end{cases}
-\]</span></p>
-<ul>
+\end{cases}</script><ul>
 <li><p>写成增广矩阵形式：</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \left[\begin{array}{c c c c|c}
-1 &amp; 2 &amp; 2 &amp; 2 &amp; b_1 \\
-2 &amp; 4 &amp; 6 &amp; 8 &amp; b_2 \\
-3 &amp; 6 &amp; 8 &amp; 10 &amp; b_3 \\
-\end{array}\right]
-\]</span></p></li>
+1 & 2 & 2 & 2 & b_1 \\
+2 & 4 & 6 & 8 & b_2 \\
+3 & 6 & 8 & 10 & b_3 \\
+\end{array}\right]</script></li>
 <li><p>消元得到:</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \left[\begin{array}{c c c c|c}
-1 &amp; 2 &amp; 2 &amp; 2 &amp; b_1 \\
-0 &amp; 0 &amp; 2 &amp; 4 &amp; b_2-2b_1 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; b_3-b_2-b_1 \\
-\end{array}\right]
-\]</span></p></li>
-<li><p>第一列和第三列为主列，第二列和第四列是自由列</p></li>
-<li><p>可解性：有解时b需要满足的条件？易得条件为b必须在A的列空间里</p></li>
-<li><p><strong>如果A各行的线性组合得到0，b需要满足什么条件？那么b中元素的同样组合必然也是零</strong></p></li>
+1 & 2 & 2 & 2 & b_1 \\
+0 & 0 & 2 & 4 & b_2-2b_1 \\
+0 & 0 & 0 & 0 & b_3-b_2-b_1 \\
+\end{array}\right]</script></li>
+<li>第一列和第三列为主列，第二列和第四列是自由列</li>
+<li>可解性：有解时b需要满足的条件？易得条件为b必须在A的列空间里</li>
+<li><strong>如果A各行的线性组合得到0，b需要满足什么条件？那么b中元素的同样组合必然也是零</strong></li>
 <li><p>如何求Ax=b的所有解？</p>
 <ul>
-<li><p>第一步：求一个特解，将所有自由变量设为0，求所有主变量，在例子中，<span
-class="math inline">\(x_2和x_4\)</span>设为0，可以解得<span
-class="math inline">\(x_1和x_3\)</span>分别为-2、1.5</p></li>
-<li><p>第二步：完整的解为一个特解加上零空间中任意向量</p></li>
-<li><p><span class="math inline">\(Ax_{particular}=b \\ Ax_{nullspace}=0
-\\ A(x_{particular}+x_{nullspace})=b\)</span></p></li>
-<li><p>在此例中，特解为(-2,0,1.5,0),零空间中的解为(-2,1,0,0)和(2,0,-2,1)</p></li>
+<li>第一步：求一个特解，将所有自由变量设为0，求所有主变量，在例子中，$x_2和x_4$设为0，可以解得$x_1和x_3$分别为-2、1.5</li>
+<li>第二步：完整的解为一个特解加上零空间中任意向量</li>
+<li>$Ax<em>{particular}=b   \   Ax</em>{nullspace}=0   \   A(x<em>{particular}+x</em>{nullspace})=b$</li>
+<li>在此例中，特解为(-2,0,1.5,0),零空间中的解为(-2,1,0,0)和(2,0,-2,1)</li>
 <li><p>完整解为：</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 x_{complete}=
 \begin{bmatrix}
 -2 \\
@@ -1739,38 +1338,28 @@ c_2\begin{bmatrix}
 0 \\
 -2 \\
 1 \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>其图像如果在以4个解为轴的四维空间中画出，是一个平面，类似于子空间从零点平移过特解点</p></li>
-</ul></li>
+\end{bmatrix}</script></li>
+<li>其图像如果在以4个解为轴的四维空间中画出，是一个平面，类似于子空间从零点平移过特解点</li>
 </ul>
-<h2 id="解的结构">解的结构</h2>
-<ul>
-<li><p>现在考虑秩为r的m*n矩阵，r&lt;=m，r&lt;=n
-，r取满秩时的情况,r=min(m,n)</p></li>
-<li><p>列满秩：r=n&lt;m，此时没有自由变量
-，<strong>N(A)={0}</strong>,Ax=b的解只有特解一个(b在列空间内)，或者无解。此时R的形式为</p>
-<p><span class="math display">\[
+</li>
+</ul>
+<h2 id="解的结构"><a href="#解的结构" class="headerlink" title="解的结构"></a>解的结构</h2><ul>
+<li>现在考虑秩为r的m*n矩阵，r&lt;=m，r&lt;=n ，r取满秩时的情况,r=min(m,n)</li>
+<li><p>列满秩：r=n&lt;m，此时没有自由变量 ，<strong>N(A)={0}</strong>,Ax=b的解只有特解一个(b在列空间内)，或者无解。此时R的形式为</p>
+<script type="math/tex; mode=display">
 R=\begin{bmatrix}
 I \\
 0 \\
-\end{bmatrix}
-\]</span></p></li>
+\end{bmatrix}</script></li>
 <li><p>行满秩：r=m&lt;n，此时消元时不会出现零行，对任意b，Ax=b有解，共有n-r即n-m个自由变量,此时r的形式为</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 R=\begin{bmatrix}
-I &amp; F \\
-\end{bmatrix}
-\]</span></p></li>
-<li><p>r=m=n时，A为可逆矩阵，R=I，N(A)={0},Ax=b对任意b有解，解唯一</p></li>
+I & F \\
+\end{bmatrix}</script></li>
+<li>r=m=n时，A为可逆矩阵，R=I，N(A)={0},Ax=b对任意b有解，解唯一</li>
 </ul>
-<h2 id="一个网友从向量空间角度的解释">一个网友从向量空间角度的解释</h2>
-<blockquote>
-<p>当向量所占的维数r等于向量的个数n又等于母空间m的维数的时候。这些向量就可以组合成母空间内任意的向量了，即无论b为何值一定有解，但由于必须要所有的向量共同组合才能到达整个母空间任意坐标点，所以每个向量的伸缩必须时特定的量，即x只有一组解。
-当向量所占的维数r等于母空间m的维数的时候小于向量的个数n时，即A中的部分向量伸缩组合就可以到达母空间的任意坐标点。那么这里就存在着自由向量了，无论b取空间里的什么位置，你可以先随意伸缩你的自由向量得到一个新向量，然后通过那部分可以完全到达母空间的向量与这个新向量一起进过特定的收缩得到向量b。只要自由向量的伸缩量改变那么其它向量的收缩量也要跟着改变，那么X就有无穷多组解。（用x的表达公式来描述就是你可以用A中部分向量（m个主元向量）伸缩组合得到b(此为特解）并且再通过m个主元向量与另外n-m个自由向量随意组成0向量，就可以得到无穷多个x组了）
-当向量所占维数等于向量的个数小于母空间的维数时，即A中的向量无论怎么伸缩组合只达到母空间中的一个子空间。那么当b在这个子空间时那么A通过特定的伸缩可以到达这一坐标点即X有一组解（这里由于没有自由向量所以没有多解的情况，不要存在b只占子空间部分维数留另外的给自由向量的想法，b在r的每个方向都有值，0也是值。就拿子空间为3维空间举例，如果b只在xy平面内，Z仍然需要进行收缩，缩为0，不是自由的）。如果b没在这一子空间内，那么无论A中向量如何收缩都不能得到即无解（同样拿三维举例，如果A中的向量只在xy平面那么如果b为（1
-2 3）你如何收缩取得？）
-当向量所占的维数小于向量的个数小于母空间的个数时，即A中的向量只能覆盖母空间的一个子空间但在这子空间有自由向量，那么如果b在这个子空间内那么情况和第二点相同，X有无穷多组解；如果b在子空间之外，X无论如何收缩都不能达到，无解。</p>
+<h2 id="一个网友从向量空间角度的解释"><a href="#一个网友从向量空间角度的解释" class="headerlink" title="一个网友从向量空间角度的解释"></a>一个网友从向量空间角度的解释</h2><blockquote>
+<p>当向量所占的维数r等于向量的个数n又等于母空间m的维数的时候。这些向量就可以组合成母空间内任意的向量了，即无论b为何值一定有解，但由于必须要所有的向量共同组合才能到达整个母空间任意坐标点，所以每个向量的伸缩必须时特定的量，即x只有一组解。<br>当向量所占的维数r等于母空间m的维数的时候小于向量的个数n时，即A中的部分向量伸缩组合就可以到达母空间的任意坐标点。那么这里就存在着自由向量了，无论b取空间里的什么位置，你可以先随意伸缩你的自由向量得到一个新向量，然后通过那部分可以完全到达母空间的向量与这个新向量一起进过特定的收缩得到向量b。只要自由向量的伸缩量改变那么其它向量的收缩量也要跟着改变，那么X就有无穷多组解。（用x的表达公式来描述就是你可以用A中部分向量（m个主元向量）伸缩组合得到b(此为特解）并且再通过m个主元向量与另外n-m个自由向量随意组成0向量，就可以得到无穷多个x组了）<br>当向量所占维数等于向量的个数小于母空间的维数时，即A中的向量无论怎么伸缩组合只达到母空间中的一个子空间。那么当b在这个子空间时那么A通过特定的伸缩可以到达这一坐标点即X有一组解（这里由于没有自由向量所以没有多解的情况，不要存在b只占子空间部分维数留另外的给自由向量的想法，b在r的每个方向都有值，0也是值。就拿子空间为3维空间举例，如果b只在xy平面内，Z仍然需要进行收缩，缩为0，不是自由的）。如果b没在这一子空间内，那么无论A中向量如何收缩都不能得到即无解（同样拿三维举例，如果A中的向量只在xy平面那么如果b为（1 2 3）你如何收缩取得？）<br>当向量所占的维数小于向量的个数小于母空间的个数时，即A中的向量只能覆盖母空间的一个子空间但在这子空间有自由向量，那么如果b在这个子空间内那么情况和第二点相同，X有无穷多组解；如果b在子空间之外，X无论如何收缩都不能达到，无解。</p>
 </blockquote>
 </div>
 <script src="https://giscus.app/client.js"
@@ -1789,7 +1378,6 @@ I &amp; F \\
         crossorigin="anonymous"
         async>
 </script>
-
     </div>
 
     
@@ -1858,7 +1446,7 @@ I &amp; F \\
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">16:58</span>
+    <span title="Reading time total">16:10</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>

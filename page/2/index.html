@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">52</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">53</span></a></li><li class="menu-item menu-item-multi-agent-ebook"><a href="/multiagent_ebook/" rel="section"><i class="fa fa-book fa-fw"></i>Multi-Agent EBook</a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -193,6 +193,131 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2019/03/20/vae/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/03/20/vae/" class="post-title-link" itemprop="url">Note for Variational Auto-Encoder</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-03-20 09:53:31" itemprop="dateCreated datePublished" datetime="2019-03-20T09:53:31+08:00">2019-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-07-16 18:37:06" itemprop="dateModified" datetime="2025-07-16T18:37:06+08:00">2025-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2019/03/20/vae/" class="post-meta-item leancloud_visitors" data-flag-title="Note for Variational Auto-Encoder" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>17k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>15 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="https://i.mji.rip/2025/07/16/86c202d0b5712f432526beca2939166e.png" width="500"/></p>
+<ul>
+<li>Variational Autoencoder Learning Notes</li>
+<li><p>Reference Article:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1312.6114.pdf">Auto-Encoding Variational Bayes</a></li>
+<li><a target="_blank" rel="noopener" href="https://dfdazac.github.io/01-vae.html">Daniel Daza, The Variational Autoencoder</a></li>
+<li><a target="_blank" rel="noopener" href="https://spaces.ac.cn/tag/vae/">Sūshén’s VAE series</a></li>
+</ul>
+</li>
+<li>On VAE, the original paper and the two blogs above have already explained it very clearly. I am just repeating and paraphrasing, just to go through it myself. If anyone reads this blog, I recommend reading these three reference sources first</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/03/20/vae/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -264,14 +389,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>12k</span>
+      <span>11k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>11 mins.</span>
+      <span>10 mins.</span>
     </span>
 </div>
 
@@ -284,11 +409,7 @@
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/681b34e5ff4f1b7bf5780a5eb7a984ce.png" width="500"/></p>
 <ul>
-<li>Record the mathematical derivation of GloVe word vectors, as the
-original paper does not derive the model graphically but rather
-calculates the objective function through pure mathematical operations.
-This design approach is very interesting, and it also writes out and
-compares the mathematical essence of word2vec.</li>
+<li>Record the mathematical derivation of GloVe word vectors, as the original paper does not derive the model graphically but rather calculates the objective function through pure mathematical operations. This design approach is very interesting, and it also writes out and compares the mathematical essence of word2vec.</li>
 <li>GloVe: Global Vectors for Word Representation</li>
 </ul>
           <!--noindex-->
@@ -406,8 +527,10 @@ compares the mathematical essence of word2vec.</li>
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/814348a7a047f33afd7b70e437cf6ddb.png" width="500"/></p>
 <ul>
-<li><p>Convolutional Sequence to Sequence</p></li>
-<li><p>Robust Unsupervised Cross-Lingual Word Embedding Mapping</p></li>
+<li><p>Convolutional Sequence to Sequence</p>
+</li>
+<li><p>Robust Unsupervised Cross-Lingual Word Embedding Mapping</p>
+</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -504,14 +627,14 @@ compares the mathematical essence of word2vec.</li>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>134k</span>
+      <span>119k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2:02</span>
+      <span>1:48</span>
     </span>
 </div>
 
@@ -523,9 +646,7 @@ compares the mathematical essence of word2vec.</li>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/d1c3632ae2916e58df8591e7ac188747.png" width="500"/></p>
-<p>Course Notes on Computational Linguistics, Reference Textbook: Speech
-and Language Processing: An Introduction to Natural Language Processing,
-Computational Linguistics, and Speech Recognition.</p>
+<p>Course Notes on Computational Linguistics, Reference Textbook: Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/11/16/coling/#more" rel="contents">
@@ -621,14 +742,14 @@ Computational Linguistics, and Speech Recognition.</p>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>12k</span>
+      <span>11k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>11 mins.</span>
+      <span>10 mins.</span>
     </span>
 </div>
 
@@ -640,26 +761,14 @@ Computational Linguistics, and Speech Recognition.</p>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/50e93d01eefd2d64738c372694d4f1fd.png" width="500"/></p>
-<p>Note for John Mount's "The Equivalence of Logistic Regression and
-Maximum Entropy Models" and explains that this proof is a special case
-of the general derivation proof of the maximum entropy model introduced
-in statistical learning methods</p>
+<p>Note for John Mount’s “The Equivalence of Logistic Regression and Maximum Entropy Models” and explains that this proof is a special case of the general derivation proof of the maximum entropy model introduced in statistical learning methods</p>
 <p>Conclusion</p>
 <ul>
 <li>Maximum entropy model is softmax classification</li>
-<li>Under the balanced conditions of the general linear model, the model
-mapping function that satisfies the maximum entropy condition is the
-softmax function</li>
-<li>In the book on Statistical Machine Learning methods, a maximum
-entropy model defined under the feature function is presented, which,
-along with softmax regression, belongs to the class of log-linear
-models</li>
-<li>When the feature function extends from a binary function to the
-feature value itself, the maximum entropy model becomes a softmax
-regression model</li>
-<li>The maximum entropy maximizes conditional entropy, not the entropy
-of conditional probabilities, nor the entropy of joint
-probabilities.</li>
+<li>Under the balanced conditions of the general linear model, the model mapping function that satisfies the maximum entropy condition is the softmax function</li>
+<li>In the book on Statistical Machine Learning methods, a maximum entropy model defined under the feature function is presented, which, along with softmax regression, belongs to the class of log-linear models</li>
+<li>When the feature function extends from a binary function to the feature value itself, the maximum entropy model becomes a softmax regression model</li>
+<li>The maximum entropy maximizes conditional entropy, not the entropy of conditional probabilities, nor the entropy of joint probabilities.</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -775,16 +884,7 @@ probabilities.</li>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/d1c3632ae2916e58df8591e7ac188747.png" width="500"/></p>
-<p>Attended a light salon at Tsinghua University's FIT, which introduced
-some advancements in machine reading comprehension. Interestingly, the
-PhD who spoke at 9 am also mentioned an unpublished work: BERT, which is
-very impressive and well-funded; it took eight p100 GPUs to train for a
-year. By 10:30, Machine Intelligence had already published a report, and
-by the afternoon, Zhihu was buzzing with discussions, saying that a new
-era for NLP had arrived... This salon is part of a series, and there may
-be future sessions on machine translation, deep Bayesian, transfer
-learning, and knowledge graphs, so if you have the time, you might as
-well listen and take notes.</p>
+<p>Attended a light salon at Tsinghua University’s FIT, which introduced some advancements in machine reading comprehension. Interestingly, the PhD who spoke at 9 am also mentioned an unpublished work: BERT, which is very impressive and well-funded; it took eight p100 GPUs to train for a year. By 10:30, Machine Intelligence had already published a report, and by the afternoon, Zhihu was buzzing with discussions, saying that a new era for NLP had arrived… This salon is part of a series, and there may be future sessions on machine translation, deep Bayesian, transfer learning, and knowledge graphs, so if you have the time, you might as well listen and take notes.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/10/13/compute-future/#more" rel="contents">
@@ -899,7 +999,7 @@ well listen and take notes.</p>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/fb319b1deaab8213b5f89adf14512e93.png" width="500"/></p>
-<p>Deep-Bayes 2018 Summer Camp的习题 填不动了，就到这吧</p>
+<p>Deep-Bayes 2018 Summer Camp的习题<br>填不动了，就到这吧</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/09/22/deepbayes2018/#more" rel="contents">
@@ -995,14 +1095,14 @@ well listen and take notes.</p>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>50k</span>
+      <span>49k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>46 mins.</span>
+      <span>44 mins.</span>
     </span>
 </div>
 
@@ -1014,19 +1114,7 @@ well listen and take notes.</p>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/cbd846ecd88abb611db2c204930d896d.png" width="500"/></p>
-<p>Record the principles and derivations of algorithms used for
-inferring unknown variables in probabilistic machine learning, such as
-Variational Inference, Expectation Maximization, and Markov Chain Monte
-Carlo. Many contents and derivations, as well as images, come from the
-online course and lecture notes of Professor Xu Yida at the University
-of Technology Sydney. Professor Xu's series of videos on non-parametric
-Bayesian methods are very good, and you can find the videos by searching
-his name on Bilibili or Youku. The address of Professor Xu's course
-notes is <a
-target="_blank" rel="noopener" href="https://github.com/roboticcam/machine-learning-notes">roboticcam/machine-learning-notes</a>.
-Unless otherwise specified, some screenshots and code are from Professor
-Xu's lecture notes. Other contents come from various books or tutorials,
-and the references will be indicated in the text.</p>
+<p>Record the principles and derivations of algorithms used for inferring unknown variables in probabilistic machine learning, such as Variational Inference, Expectation Maximization, and Markov Chain Monte Carlo. Many contents and derivations, as well as images, come from the online course and lecture notes of Professor Xu Yida at the University of Technology Sydney. Professor Xu’s series of videos on non-parametric Bayesian methods are very good, and you can find the videos by searching his name on Bilibili or Youku. The address of Professor Xu’s course notes is <a target="_blank" rel="noopener" href="https://github.com/roboticcam/machine-learning-notes">roboticcam/machine-learning-notes</a>. Unless otherwise specified, some screenshots and code are from Professor Xu’s lecture notes. Other contents come from various books or tutorials, and the references will be indicated in the text.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/08/28/inference-algorithm/#more" rel="contents">
@@ -1122,7 +1210,7 @@ and the references will be indicated in the text.</p>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>2.5k</span>
+      <span>2k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -1141,12 +1229,7 @@ and the references will be indicated in the text.</p>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/d67b97f7a9ddae88afabc277d249b281.png" width="500"/></p>
-<p>The ten major algorithms of statistical learning methods have been
-simplified and handwritten out (although I think the book itself is
-already quite concise). Now there is only the process of the algorithms
-themselves; in the future, if I have any new understandings, I will
-supplement them. The writing is ugly, even I can't bear to look at it,
-so I post it purely as a backup</p>
+<p>The ten major algorithms of statistical learning methods have been simplified and handwritten out (although I think the book itself is already quite concise). Now there is only the process of the algorithms themselves; in the future, if I have any new understandings, I will supplement them. The writing is ugly, even I can’t bear to look at it, so I post it purely as a backup</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/08/09/statistical-handwriting/#more" rel="contents">
@@ -1242,14 +1325,14 @@ so I post it purely as a backup</p>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>77k</span>
+      <span>76k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1:10</span>
+      <span>1:09</span>
     </span>
 </div>
 
@@ -1261,12 +1344,7 @@ so I post it purely as a backup</p>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/cbd846ecd88abb611db2c204930d896d.png" width="500"/></p>
-<p>Latent Dirichlet Allocation Document Topic Generation Model Study
-Notes This article mainly summarizes from "Mathematical Curiosities of
-LDA(LDA数学八卦)," which is written very beautifully (recommend reading
-the original first). There are many places that spark further thought,
-and this article sorts out the steps to derive LDA, removes some
-irrelevant extensions, and summarizes LDA in plain language.</p>
+<p>Latent Dirichlet Allocation Document Topic Generation Model Study Notes This article mainly summarizes from “Mathematical Curiosities of LDA(LDA数学八卦),” which is written very beautifully (recommend reading the original first). There are many places that spark further thought, and this article sorts out the steps to derive LDA, removes some irrelevant extensions, and summarizes LDA in plain language.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/07/23/lda/#more" rel="contents">
@@ -1381,9 +1459,7 @@ irrelevant extensions, and summarizes LDA in plain language.</p>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/2f67b4f7fae34b1e08aa1c7cc17df6b8.png" width="500"/></p>
-<p>A bachelor's graduation project involves developing a short sentence
-summarization model based on seq2seq and designing an emotional fusion
-mechanism. Now, let's provide a brief summary of the entire model</p>
+<p>A bachelor’s graduation project involves developing a short sentence summarization model based on seq2seq and designing an emotional fusion mechanism. Now, let’s provide a brief summary of the entire model</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/07/04/seq2seq-summarization/#more" rel="contents">
@@ -1479,14 +1555,14 @@ mechanism. Now, let's provide a brief summary of the entire model</p>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>20k</span>
+      <span>19k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>18 mins.</span>
+      <span>17 mins.</span>
     </span>
 </div>
 
@@ -1621,17 +1697,26 @@ mechanism. Now, let's provide a brief summary of the entire model</p>
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/814348a7a047f33afd7b70e437cf6ddb.png" width="500"/></p>
 <ul>
-<li><p>Opening Work on Attention (Machine Translation)</p></li>
-<li><p>Luong attention, global and local attention,</p></li>
-<li><p>Opening Work on Attention (Automatic Text Summarization)</p></li>
-<li><p>Generative Summary Techniques Collection: LVT, Switching
-Networks, Hierarchical Attention</p></li>
-<li><p>Dialogue System, End-to-End Hierarchical RNN</p></li>
-<li><p>Weibo summary, supplement micropoints</p></li>
-<li><p>disan, directed transformer, attention mask</p></li>
-<li><p>Attention Extractor</p></li>
-<li><p>Generative Summary Based on Reinforcement Learning</p></li>
-<li><p>w2v, negative sampling</p></li>
+<li><p>Opening Work on Attention (Machine Translation)</p>
+</li>
+<li><p>Luong attention, global and local attention,</p>
+</li>
+<li><p>Opening Work on Attention (Automatic Text Summarization)</p>
+</li>
+<li><p>Generative Summary Techniques Collection: LVT, Switching Networks, Hierarchical Attention</p>
+</li>
+<li><p>Dialogue System, End-to-End Hierarchical RNN</p>
+</li>
+<li><p>Weibo summary, supplement micropoints</p>
+</li>
+<li><p>disan, directed transformer, attention mask</p>
+</li>
+<li><p>Attention Extractor</p>
+</li>
+<li><p>Generative Summary Based on Reinforcement Learning</p>
+</li>
+<li><p>w2v, negative sampling</p>
+</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -1747,8 +1832,7 @@ Networks, Hierarchical Attention</p></li>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/2f67b4f7fae34b1e08aa1c7cc17df6b8.png" width="500"/></p>
-<p>Recorded some basic knowledge of deep learning learned when recording
-the seq2seq model in the entry-level NLP.</p>
+<p>Recorded some basic knowledge of deep learning learned when recording the seq2seq model in the entry-level NLP.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/03/07/NLPBasic/#more" rel="contents">
@@ -1863,8 +1947,7 @@ the seq2seq model in the entry-level NLP.</p>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/86c202d0b5712f432526beca2939166e.png" width="500"/></p>
-<p>算法刷题目录，方便自己查找回忆复习
-之后(2018.9.27)只更新leetcode上的题了，也懒得整理源码了，leetcode上都存了，只记录思路吧</p>
+<p>算法刷题目录，方便自己查找回忆复习<br>之后(2018.9.27)只更新leetcode上的题了，也懒得整理源码了，leetcode上都存了，只记录思路吧</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/03/27/oj/#more" rel="contents">
@@ -1979,8 +2062,7 @@ the seq2seq model in the entry-level NLP.</p>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/681b34e5ff4f1b7bf5780a5eb7a984ce.png" width="500"/></p>
-<p>Introduction of the Lagrange multiplier method and its extension KKT
-conditions, as well as their applications in PCA and SVM</p>
+<p>Introduction of the Lagrange multiplier method and its extension KKT conditions, as well as their applications in PCA and SVM</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/03/18/Lagrange/#more" rel="contents">
@@ -2095,15 +2177,7 @@ conditions, as well as their applications in PCA and SVM</p>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/881fef7085a3a58b245072cf7c2b8e81.png" width="500"/></p>
-<p>The school's innovation project has a simple app that implements the
-following functions: recording sound and saving it as a wav file, using
-JSON to communicate with the server, uploading the wav file to the
-server, converting it to a midi file on the server, downloading the midi
-file and sheet music from the server for playback. At the same time, the
-modified electronic piano can also communicate with the server, with the
-phone providing auxiliary parameters to the electronic piano, which
-reads the intermediate key value file of the music from the server via
-Arduino to play.</p>
+<p>The school’s innovation project has a simple app that implements the following functions: recording sound and saving it as a wav file, using JSON to communicate with the server, uploading the wav file to the server, converting it to a midi file on the server, downloading the midi file and sheet music from the server for playback. At the same time, the modified electronic piano can also communicate with the server, with the phone providing auxiliary parameters to the electronic piano, which reads the intermediate key value file of the music from the server via Arduino to play.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/03/09/dachuang/#more" rel="contents">
@@ -2206,7 +2280,7 @@ Arduino to play.</p>
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>26 mins.</span>
+      <span>25 mins.</span>
     </span>
 </div>
 
@@ -2218,33 +2292,24 @@ Arduino to play.</p>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/33690ecfca113fa9961fb6a6a328039c.png" width="500"/></p>
-<p>Notes on some concepts and algorithms in machine learning, sourced
-from:</p>
+<p>Notes on some concepts and algorithms in machine learning, sourced from:</p>
 <ul>
-<li>Elective Course on Pattern Recognition (An elective course for
-third-year students at Beijing University of Posts and
-Telecommunications, Pattern Recognition, textbook is "Pattern
-Recognition" compiled by Zhang Xuegong, published by Tsinghua University
-Press)</li>
+<li>Elective Course on Pattern Recognition (An elective course for third-year students at Beijing University of Posts and Telecommunications, Pattern Recognition, textbook is “Pattern Recognition” compiled by Zhang Xuegong, published by Tsinghua University Press)</li>
 <li>Watermelon Book</li>
 <li>Statistical Learning Methods</li>
-<li>Deep Learning (Translated in Chinese: <a
-target="_blank" rel="noopener" href="https://github.com/exacity/deeplearningbook-chinese">exacity/deeplearningbook-chinese</a>)</li>
+<li>Deep Learning (Translated in Chinese: <a target="_blank" rel="noopener" href="https://github.com/exacity/deeplearningbook-chinese">exacity/deeplearningbook-chinese</a>)</li>
 </ul>
 <p>Update:</p>
 <ul>
-<li><p>2017-02-12 Overview Update</p></li>
-<li><p>2017-03-01 Update k-Nearest Neighbors</p></li>
-<li><p>2017-03-08 Update SVM</p></li>
-<li><p>2018-01-04 Update of fundamental knowledge of machine learning
-and mathematical knowledge in the book "Deep Learning"</p></li>
-<li><p>2018-08-09 The content of Statistical Learning Methods has been
-posted in another article titled "Handwritten Notes on Statistical
-Learning Methods," and it is estimated that it will not be updated
-anymore. Later, some remaining contents in "Deep Learning" may be
-updated</p></li>
-</ul>
-<p>
+<li><p>2017-02-12 Overview Update</p>
+</li>
+<li><p>2017-03-01 Update k-Nearest Neighbors</p>
+</li>
+<li><p>2017-03-08 Update SVM</p>
+</li>
+<li><p>2018-01-04 Update of fundamental knowledge of machine learning and mathematical knowledge in the book “Deep Learning”</p>
+</li>
+<li><p>2018-08-09 The content of Statistical Learning Methods has been posted in another article titled “Handwritten Notes on Statistical Learning Methods,” and it is estimated that it will not be updated anymore. Later, some remaining contents in “Deep Learning” may be updated</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/02/12/MachineLearningNote/#more" rel="contents">
@@ -2340,14 +2405,14 @@ updated</p></li>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>32k</span>
+      <span>9.6k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>29 mins.</span>
+      <span>9 mins.</span>
     </span>
 </div>
 
@@ -2359,35 +2424,37 @@ updated</p></li>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/fcab3101f40bfbdcf2ec3e30b6171a26.png" width="500"/></p>
-<h1 id="lecture-17-determinants-and-their-properties">Lecture 17:
-Determinants and Their Properties</h1>
-<h2 id="determinant">Determinant</h2>
-<ul>
-<li><p>The determinant of matrix A is a number associated with the
-matrix, denoted as <span
-class="math inline">\(detA或者|A|\)</span></p></li>
+<h1 id="Lecture-17-Determinants-and-Their-Properties"><a href="#Lecture-17-Determinants-and-Their-Properties" class="headerlink" title="Lecture 17: Determinants and Their Properties"></a>Lecture 17: Determinants and Their Properties</h1><h2 id="Determinant"><a href="#Determinant" class="headerlink" title="Determinant"></a>Determinant</h2><ul>
+<li><p>The determinant of matrix A is a number associated with the matrix, denoted as $detA或者|A|$</p>
+</li>
 <li><p>Properties of determinants</p>
 <ul>
-<li><p><span class="math inline">\(detI=1\)</span></p></li>
-<li><p>The sign of the determinant value will be reversed when rows are
-exchanged</p></li>
-<li><p>The determinant of a permutation matrix is 1 or -1, depending on
-the parity of the number of rows exchanged</p></li>
-<li><p>Two rows being equal makes the determinant equal to 0 (which can
-be directly deduced from property two)</p></li>
-<li><p>Matrix elimination does not change its determinant (proof is
-below)</p></li>
-<li><p>A certain row is 0, the determinant is 0 (multiplying by 0 is
-equivalent to a certain row being 0, resulting in 0)</p></li>
-<li><p>When and only when A is a singular matrix</p></li>
-<li><p><span class="math inline">\(det(A+B) \neq detA+detB \\
-detAB=(detA)(detB)\)</span></p></li>
-<li><p><span class="math inline">\(detA^{-1}detA=1\)</span></p></li>
-<li><p><span class="math inline">\(detA^2=(detA)^2\)</span></p></li>
-<li><p><span class="math inline">\(det2A=2^n detA\)</span></p></li>
-<li><p><span class="math inline">\(detA^T=detA\)</span> (Proof see
-below)</p></li>
-</ul></li>
+<li><p>$detI=1$</p>
+</li>
+<li><p>The sign of the determinant value will be reversed when rows are exchanged</p>
+</li>
+<li><p>The determinant of a permutation matrix is 1 or -1, depending on the parity of the number of rows exchanged</p>
+</li>
+<li><p>Two rows being equal makes the determinant equal to 0 (which can be directly deduced from property two)</p>
+</li>
+<li><p>Matrix elimination does not change its determinant (proof is below)</p>
+</li>
+<li><p>A certain row is 0, the determinant is 0 (multiplying by 0 is equivalent to a certain row being 0, resulting in 0)</p>
+</li>
+<li><p>When and only when A is a singular matrix</p>
+</li>
+<li><p>$det(A+B) \neq detA+detB \ detAB=(detA)(detB)$</p>
+</li>
+<li><p>$detA^{-1}detA=1$</p>
+</li>
+<li><p>$detA^2=(detA)^2$</p>
+</li>
+<li><p>$det2A=2^n detA$</p>
+</li>
+<li><p>$detA^T=detA$ (Proof see below)</p>
+</li>
+</ul>
+</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -2484,14 +2551,14 @@ below)</p></li>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>26k</span>
+      <span>25k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>24 mins.</span>
+      <span>23 mins.</span>
     </span>
 </div>
 
@@ -2503,35 +2570,14 @@ below)</p></li>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/fcab3101f40bfbdcf2ec3e30b6171a26.png" width="500"/></p>
-<h1 id="lecture-9-linear-correlation-basis-dimension">Lecture 9: Linear
-Correlation, Basis, Dimension</h1>
-<h2 id="linear-correlation">Linear Correlation</h2>
-<ul>
-<li>Background knowledge: Assume a matrix A, where m &lt; n, i.e., the
-number of unknowns is greater than the number of equations. Therefore,
-in the null space, there are vectors other than the zero vector, up to m
-leading principal elements, and there exist n-m free vectors, and the
-entire equation system has non-zero solutions.</li>
-<li>Under what conditions is the vector <span
-class="math inline">\(x_1,x_2,x_3...x_n\)</span> linearly independent?
-If there exists a combination of coefficients not all equal to zero such
-that the linear sum results in 0, then it is linearly dependent;
-otherwise, it is linearly independent.</li>
-<li>If there exists a zero vector in the set of vectors, then the set of
-vectors cannot be linearly independent.</li>
-<li>If three vectors are randomly drawn in two-dimensional space, they
-must be linearly dependent. Why? This can be deduced from background
-knowledge.</li>
-<li>For a matrix A, we are concerned with whether the columns are
-linearly dependent; if there exists a non-zero vector in the null space,
-then the columns are dependent.</li>
-<li>When <span class="math inline">\(v_1,v_2...v_n\)</span> is the
-columns of A, if they are unrelated, then what is the null space of A?
-Only the zero vector. If they are related, then in addition to the zero
-vector, there exists a non-zero vector in the null space.</li>
-<li>When the column vectors are linearly independent, all column vectors
-are leading vectors, and the rank is n. When the column vectors are
-linearly dependent, the rank is less than n.</li>
+<h1 id="Lecture-9-Linear-Correlation-Basis-Dimension"><a href="#Lecture-9-Linear-Correlation-Basis-Dimension" class="headerlink" title="Lecture 9: Linear Correlation, Basis, Dimension"></a>Lecture 9: Linear Correlation, Basis, Dimension</h1><h2 id="Linear-Correlation"><a href="#Linear-Correlation" class="headerlink" title="Linear Correlation"></a>Linear Correlation</h2><ul>
+<li>Background knowledge: Assume a matrix A, where m &lt; n, i.e., the number of unknowns is greater than the number of equations. Therefore, in the null space, there are vectors other than the zero vector, up to m leading principal elements, and there exist n-m free vectors, and the entire equation system has non-zero solutions.</li>
+<li>Under what conditions is the vector $x_1,x_2,x_3…x_n$ linearly independent? If there exists a combination of coefficients not all equal to zero such that the linear sum results in 0, then it is linearly dependent; otherwise, it is linearly independent.</li>
+<li>If there exists a zero vector in the set of vectors, then the set of vectors cannot be linearly independent.</li>
+<li>If three vectors are randomly drawn in two-dimensional space, they must be linearly dependent. Why? This can be deduced from background knowledge.</li>
+<li>For a matrix A, we are concerned with whether the columns are linearly dependent; if there exists a non-zero vector in the null space, then the columns are dependent.</li>
+<li>When $v_1,v_2…v_n$ is the columns of A, if they are unrelated, then what is the null space of A? Only the zero vector. If they are related, then in addition to the zero vector, there exists a non-zero vector in the null space.</li>
+<li>When the column vectors are linearly independent, all column vectors are leading vectors, and the rank is n. When the column vectors are linearly dependent, the rank is less than n.</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -2628,14 +2674,14 @@ linearly dependent, the rank is less than n.</li>
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>28k</span>
+      <span>26k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>26 mins.</span>
+      <span>24 mins.</span>
     </span>
 </div>
 
@@ -2647,12 +2693,8 @@ linearly dependent, the rank is less than n.</li>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/fcab3101f40bfbdcf2ec3e30b6171a26.png" width="500"/></p>
-<h1
-id="first-lecture-geometric-interpretation-of-systems-of-equations">First
-Lecture: Geometric Interpretation of Systems of Equations</h1>
-<ul>
-<li>From three perspectives to view the system of equations: row graph,
-column graph, matrix</li>
+<h1 id="First-Lecture-Geometric-Interpretation-of-Systems-of-Equations"><a href="#First-Lecture-Geometric-Interpretation-of-Systems-of-Equations" class="headerlink" title="First Lecture: Geometric Interpretation of Systems of Equations"></a>First Lecture: Geometric Interpretation of Systems of Equations</h1><ul>
+<li>From three perspectives to view the system of equations: row graph, column graph, matrix</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -2768,26 +2810,14 @@ column graph, matrix</li>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/d1c3632ae2916e58df8591e7ac188747.png" width="500"/></p>
-<p>Always wanted to build my own blog, previously thought of using
-WordPress, but suffered from laziness, didn't want to mess with the
-server. Later, I stumbled upon GitHub Pages, which automatically
-generates a website by uploading a js project, and everything is hosted
-on GitHub. The official instructions also recommend using this for
-writing blogs, so I started to try it. The general framework should be
-that GitHub Pages generates the website from your github.io project on
-GitHub, Hexo generates the static web page project from your blog
-content and custom settings, and then uploads it to your repository. To
-back up, we will establish two branches in the repository: one master
-for Hexo to upload static web page files, and one hexo for saving the
-local Hexo project. Below, I share some experiences and pitfalls
-encountered.</p>
+<p>Always wanted to build my own blog, previously thought of using WordPress, but suffered from laziness, didn’t want to mess with the server. Later, I stumbled upon GitHub Pages, which automatically generates a website by uploading a js project, and everything is hosted on GitHub. The official instructions also recommend using this for writing blogs, so I started to try it. The general framework should be that GitHub Pages generates the website from your github.io project on GitHub, Hexo generates the static web page project from your blog content and custom settings, and then uploads it to your repository. To back up, we will establish two branches in the repository: one master for Hexo to upload static web page files, and one hexo for saving the local Hexo project. Below, I share some experiences and pitfalls encountered.</p>
 <ul>
-<li><pre><code>  2017.2.8 update md writing software</code></pre></li>
-<li><pre><code>  2017.2.10 update mathjax cdn, add long gallery, update domain name, access分流(blog2.0)</code></pre></li>
-<li><pre><code>  2017.2.13 update optimization plugin, update top description, optimize long gallery, widen article width(blog3.0)</code></pre></li>
-<li><pre><code>  2017.3.30 update top description original address</code></pre></li>
-<li><pre><code>  2017.12.27 update异地恢复</code></pre></li>
-<li><pre><code>  2018.7.6 update a more comprehensive reference website</code></pre></li>
+<li>2017.2.8 update md writing software</li>
+<li>2017.2.10 update mathjax cdn, add long gallery, update domain name, access分流(blog2.0)</li>
+<li>2017.2.13 update optimization plugin, update top description, optimize long gallery, widen article width(blog3.0)</li>
+<li>2017.3.30 update top description original address</li>
+<li>2017.12.27 update异地恢复</li>
+<li>2018.7.6 update a more comprehensive reference website</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -2903,18 +2933,7 @@ encountered.</p>
     
     <div class="post-body" itemprop="articleBody">
           <p><img src="https://i.mji.rip/2025/07/16/50e93d01eefd2d64738c372694d4f1fd.png" width="500"/></p>
-<h1 id="introduction">Introduction</h1>
-<p>Write an app to query the school's empty classrooms Pull information
-from the school's registration website, classify and display it, and add
-some miscellaneous things After all, it's my first time writing Android,
-so I want to try everything Download here: <a
-target="_blank" rel="noopener" href="https://fir.im/buptroom">BuptRoom</a> repository address: <a
-target="_blank" rel="noopener" href="https://github.com/thinkwee/BuptRoom">A simple Beiyou self-study
-room query system</a> It took about 3 weekends to complete the first
-version, and then I spent about 1 month updating miscellaneous things
-After that, I spent about 1 month updating miscellaneous things Many
-things written in an unstandardized manner, and I just looked up and
-used them temporarily Summarize the experience of writing the App:</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Write an app to query the school’s empty classrooms<br>Pull information from the school’s registration website, classify and display it, and add some miscellaneous things<br>After all, it’s my first time writing Android, so I want to try everything<br>Download here: <a target="_blank" rel="noopener" href="https://fir.im/buptroom">BuptRoom</a><br>repository address: <a target="_blank" rel="noopener" href="https://github.com/thinkwee/BuptRoom">A simple Beiyou self-study room query system</a><br>It took about 3 weekends to complete the first version, and then I spent about 1 month updating miscellaneous things<br>After that, I spent about 1 month updating miscellaneous things<br>Many things written in an unstandardized manner, and I just looked up and used them temporarily<br>Summarize the experience of writing the App:</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/01/16/buptroomreview/#more" rel="contents">
@@ -2972,7 +2991,7 @@ used them temporarily Summarize the experience of writing the App:</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">16:58</span>
+    <span title="Reading time total">16:10</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
