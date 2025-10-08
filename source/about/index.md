@@ -60,27 +60,114 @@ html: true
       return String(count);
     }
 
-    var cache = {};
+    // Use localStorage for persistent caching across page loads
+    var CACHE_KEY = 'github_stars_cache';
+    var CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+    
+    function getCache() {
+      try {
+        var cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+          var data = JSON.parse(cached);
+          // Check if cache is still valid
+          if (Date.now() - data.timestamp < CACHE_DURATION) {
+            return data.repos;
+          }
+        }
+      } catch (e) {
+        console.warn('Failed to read cache:', e);
+      }
+      return {};
+    }
+
+    function setCache(cache) {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          timestamp: Date.now(),
+          repos: cache
+        }));
+      } catch (e) {
+        console.warn('Failed to save cache:', e);
+      }
+    }
+
+    var cache = getCache();
+    var pendingRequests = 0;
+    var maxConcurrentRequests = 2; // Limit concurrent requests
+    var requestQueue = [];
+
+    function processQueue() {
+      if (pendingRequests >= maxConcurrentRequests || requestQueue.length === 0) {
+        return;
+      }
+
+      var task = requestQueue.shift();
+      pendingRequests++;
+      
+      var repo = task.repo;
+      var el = task.el;
+
+      fetch('https://api.github.com/repos/' + repo)
+        .then(function(res) { 
+          if (res.status === 403) {
+            throw new Error('Rate limit exceeded');
+          }
+          return res.json(); 
+        })
+        .then(function(data) {
+          var value = (data && typeof data.stargazers_count === 'number') ? formatStars(data.stargazers_count) : 'N/A';
+          cache[repo] = value;
+          var starHistoryUrl = 'https://www.star-history.com/#' + repo + '&Date';
+          el.innerHTML = '<a href="' + starHistoryUrl + '" target="_blank" class="dynamic-value" title="Live data from GitHub - Click to view star history">' + value + '</a>';
+          el.classList.add('github-stars-loaded');
+          setCache(cache);
+        })
+        .catch(function(err) {
+          console.warn('Failed to fetch stars for ' + repo + ':', err.message);
+          // Use fallback values if available
+          var fallbackValue;
+          if (repo === 'OpenBMB/ChatDev') {
+            fallbackValue = '28k';
+          } else if (repo === 'thinkwee/AgentsMeetRL') {
+            fallbackValue = '490';
+          } else {
+            fallbackValue = 'N/A';
+          }
+          var starHistoryUrl = 'https://www.star-history.com/#' + repo + '&Date';
+          el.innerHTML = '<a href="' + starHistoryUrl + '" target="_blank" class="dynamic-value fallback" title="Cached data (API rate limited) - Click to view star history">' + fallbackValue + '</a>';
+          el.classList.add('github-stars-fallback');
+        })
+        .finally(function() {
+          pendingRequests--;
+          // Process next item in queue
+          setTimeout(processQueue, 1000); // Add 1 second delay between requests
+        });
+    }
+
     elements.forEach(function(el) {
       var repo = el.getAttribute('data-repo');
       if (!repo) return;
 
+      // Show loading state
+      el.innerHTML = '<span class="dynamic-value loading">...</span>';
+
+      // Check if we have cached value
       if (cache[repo]) {
-        el.textContent = cache[repo];
+        var starHistoryUrl = 'https://www.star-history.com/#' + repo + '&Date';
+        el.innerHTML = '<a href="' + starHistoryUrl + '" target="_blank" class="dynamic-value cached" title="Cached data from GitHub - Click to view star history">' + cache[repo] + '</a>';
+        el.classList.add('github-stars-cached');
         return;
       }
 
-      fetch('https://api.github.com/repos/' + repo)
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-          var value = (data && typeof data.stargazers_count === 'number') ? formatStars(data.stargazers_count) : 'N/A';
-          cache[repo] = value;
-          el.textContent = value;
-        })
-        .catch(function() {
-          el.textContent = 'N/A';
-        });
+      // Add to request queue
+      requestQueue.push({ repo: repo, el: el });
     });
+
+    // Start processing queue
+    processQueue();
+    if (requestQueue.length > 0) {
+      setTimeout(processQueue, 1000);
+    }
   });
 </script>
 
@@ -448,6 +535,23 @@ html: true
     .pv-counter:hover #page-views {
         color: #6699FF;
     }
+
+    /* Dynamic GitHub stars styling */
+    .dynamic-value {
+        display: inline;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        border-bottom: 1px dotted #ccc;
+        color: inherit;
+        text-decoration: none;
+    }
+    
+    a.dynamic-value {
+        cursor: pointer;
+    }
+    
+    span.dynamic-value.loading {
+        cursor: default;
+    }
 </style>
 
 <p align="center">
@@ -468,29 +572,27 @@ html: true
       text-align: center; 
       outline: none; 
       text-decoration: none !important; 
-      color: #ffffff !important; 
-      background: linear-gradient(135deg, #8fa6c4 0%, #3d5470 100%);
-      border: none;
+      color: black !important;
+      background-color: #FFFFFF;
+      border: 1px solid #CCCCCC;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       font-size: 14px;
       font-weight: 500;
       height: 32px;
-      box-shadow: 0 2px 8px rgba(118, 158, 203, 0.15);
       transition: all 0.3s ease;
       cursor: pointer;
       margin: 0 5px;
     }
     
     .libutton:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(118, 158, 203, 0.25);
-      background: linear-gradient(135deg, #7a95b8 0%, #324660 100%);
+      background: linear-gradient(135deg, #8fa6c4 0%, #3d5470 100%);
+      color: white !important;
+      border: 1px solid transparent;
     }
     
     .libutton:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(118, 158, 203, 0.15);
     }
     
     .gsbutton { 
@@ -501,29 +603,27 @@ html: true
       text-align: center; 
       outline: none; 
       text-decoration: none !important; 
-      color: #ffffff !important; 
-      background: linear-gradient(135deg, #6090d4 0%, #2d4a8a 100%);
-      border: none;
+      color: black !important;
+      background-color: #FFFFFF;
+      border: 1px solid #CCCCCC;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       font-size: 14px;
       font-weight: 500;
       height: 32px;
-      box-shadow: 0 2px 8px rgba(66, 133, 244, 0.15);
       transition: all 0.3s ease;
       cursor: pointer;
       margin: 0 5px;
     }
     
     .gsbutton:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(66, 133, 244, 0.25);
-      background: linear-gradient(135deg, #5280c8 0%, #253f7a 100%);
+      background: linear-gradient(135deg, #6090d4 0%, #2d4a8a 100%);
+      color: white !important;
+      border: 1px solid transparent;
     }
     
     .gsbutton:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(66, 133, 244, 0.15);
     }
     
     .ghbutton { 
@@ -534,29 +634,27 @@ html: true
       text-align: center; 
       outline: none; 
       text-decoration: none !important; 
-      color: #ffffff !important; 
-      background: linear-gradient(135deg, #706a90 0%, #2a2a2a 100%);
-      border: none;
+      color: black !important;
+      background-color: #FFFFFF;
+      border: 1px solid #CCCCCC;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       font-size: 14px;
       font-weight: 500;
       height: 32px;
-      box-shadow: 0 2px 8px rgba(139, 125, 184, 0.15);
       transition: all 0.3s ease;
       cursor: pointer;
       margin: 0 5px;
     }
     
     .ghbutton:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(139, 125, 184, 0.25);
-      background: linear-gradient(135deg, #625d80 0%, #1d1d1d 100%);
+      background: linear-gradient(135deg, #706a90 0%, #2a2a2a 100%);
+      color: white !important;
+      border: 1px solid transparent;
     }
     
     .ghbutton:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(139, 125, 184, 0.15);
     }
     
     .gmbutton { 
@@ -567,29 +665,27 @@ html: true
       text-align: center; 
       outline: none; 
       text-decoration: none !important; 
-      color: #ffffff !important; 
-      background: linear-gradient(135deg, #d47570 0%, #a03838 100%);
-      border: none;
+      color: black !important;
+      background-color: #FFFFFF;
+      border: 1px solid #CCCCCC;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       font-size: 14px;
       font-weight: 500;
       height: 32px;
-      box-shadow: 0 2px 8px rgba(255, 138, 128, 0.15);
       transition: all 0.3s ease;
       cursor: pointer;
       margin: 0 5px;
     }
     
     .gmbutton:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(255, 138, 128, 0.25);
-      background: linear-gradient(135deg, #c86560 0%, #902828 100%);
+      background: linear-gradient(135deg, #d47570 0%, #a03838 100%);
+      color: white !important;
+      border: 1px solid transparent;
     }
     
     .gmbutton:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(255, 138, 128, 0.15);
     }
     
     .aclbutton { 
@@ -600,33 +696,31 @@ html: true
       text-align: center; 
       outline: none; 
       text-decoration: none !important; 
-      color: #ffffff !important; 
-      background: linear-gradient(135deg, #f07a7f 0%, #c53a40 100%);
-      border: none;
+      color: black !important;
+      background-color: #FFFFFF;
+      border: 1px solid #CCCCCC;
       border-radius: 8px; 
       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
       font-size: 14px;
       font-weight: 500;
       height: 32px;
-      box-shadow: 0 2px 8px rgba(241, 73, 80, 0.2);
       transition: all 0.3s ease;
       cursor: pointer;
       margin: 0 5px;
     }
     
     .aclbutton:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(241, 73, 80, 0.3);
-      background: linear-gradient(135deg, #e86a6f 0%, #a93035 100%);
+      background: linear-gradient(135deg, #f07a7f 0%, #c53a40 100%);
+      color: white !important;
+      border: 1px solid transparent;
     }
     
     .aclbutton:active {
       transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(241, 73, 80, 0.2);
     }
     
     @media (max-width: 768px) {
-      .libutton, .gsbutton, .ghbutton, .gmbutton {
+      .libutton, .gsbutton, .ghbutton, .gmbutton, .aclbutton {
         padding: 0px 10px;
         font-size: 13px;
         height: 30px;
@@ -695,7 +789,6 @@ html: true
   -   (before 2023) Compression Intelligence in NLP.
   -   (2023 - 2025) Inference Time Scaling and Agentic AI.
   -   (2025 - now) **AI in the Wild** (check out this [blog](https://thinkwee.top/2025/10/05/wild-era/#more)).
-
 - Past Experience:
     -   2014 - 2021: Bachelor of Communication Engineering in BUPT, and Master of Computer Engineering in CIST Lab@BUPT.
     -   2021 - 2023: Application Research in the NLP&LLM Department in [Tencent](https://www.tencent.com/en-us/about.html).
