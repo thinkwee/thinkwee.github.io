@@ -103,6 +103,8 @@ menu:
   archives: /archives/ || fa fa-archive
   Multi-Agent EBook: /multiagent_ebook/ || fa fa-book
   iAgents: /iagents/ || fa fa-robot
+  DDRBench: https://thinkwee.notion.site/ddrbench || fa-solid fa-user-secret
+  NOVER: https://huggingface.co/spaces/thinkwee/NOVER || fa fa-wind
   # novel: /novel/ || fa fa-gamepad
   # game: /game/ || fa fa-gamepad
   # Memory: /memory/ || fa fa-smile-wink

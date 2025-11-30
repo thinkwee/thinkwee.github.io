@@ -840,12 +840,16 @@ html: true
 </li>
 <li class="news-item">
 <span class="news-date">2025.08.20</span>
-<span class="news-content">🇨🇳 <span class="news-highlight">2 papers accepted by EMNLP 2025</span>, Check out <a href="https://arxiv.org/pdf/2505.06904" target="_blank">EcoLANG</a> and <a href="https://arxiv.org/pdf/2505.16022" target="_blank">NOVER</a>!
+<span class="news-content">🇨🇳 <span class="news-highlight">2 papers accepted by EMNLP 2025</span>, Check out **[EcoLANG](https://arxiv.org/pdf/2505.06904)** and **[NOVER](https://arxiv.org/pdf/2505.16022)!**
 <ul>
-<li>NOVER extends RLVR to any task, making a step towards the general reasoning model. See my detailed blog <a href="https://thinkwee.top/2025/09/13/general-reasoning/" target="_blank">here</a>.</li>
+<li>NOVER extends RLVR to any task, making a step towards the general reasoning model. See my **[detailed blog](https://thinkwee.top/2025/09/13/general-reasoning/)**.</li>
 <li>EcoLANG scales up the agentic social simulation faster and better with self-evolution on communication efficiency.</li>
 </ul>
 </span>
+</li>
+<li class="news-item">
+<span class="news-date">2025.10.27</span>
+<span class="news-content">🚀 <span class="news-highlight">Checkout DDRBench, the first benchmark for Agentic Deep Data Research!</span> DDRBench is a verfiable benchmark where LLMs are asked to dive into the database and explore whatever insight they think that is important. A fully autonomous Data2Insights task w/o any instruction/question. Find more on this **[blog](https://thinkwee.notion.site/ddrbench)!**</span>
 </li>
 </ul>
 
