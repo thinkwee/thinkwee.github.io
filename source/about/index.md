@@ -173,7 +173,7 @@ html: true
 
 <style>
     .news-list {
-        max-height: 200px;
+        max-height: 400px;
         overflow-y: auto;
         list-style: none;
         padding: 0;
@@ -790,8 +790,8 @@ html: true
   -   (2023 - 2025) Inference Time Scaling and Agentic AI.
   -   (2025 - now) **AI in the Wild** (check out this [blog](https://thinkwee.top/2025/10/05/wild-era/#more)).
 - Past Experience:
-    -   2014 - 2021: Bachelor of Communication Engineering in BUPT, and Master of Computer Engineering in CIST Lab@BUPT.
-    -   2021 - 2023: Application Research in the NLP&LLM Department in [Tencent](https://www.tencent.com/en-us/about.html).
+    -   2014 - 2021: Bachelor and Master in BUPT.
+    -   2021 - 2023: Application Research in [Tencent](https://www.tencent.com/en-us/about.html).
     -   2023 - 2025: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/)@Tsinghua University with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) and Prof. [Chen Qian](http://qianc62.github.io) on LLM Multi-Agent System.
     -   2025 - 2029(expected): Happy to join [KCLNLP](https://kclnlp.github.io/) as a PhD candidate advised by [Prof. Yulan He](https://sites.google.com/view/yulanhe) and [Prof. Yali Du](https://yalidu.github.io/)!
 
@@ -804,7 +804,7 @@ html: true
 </li>
 <li class="news-item">
 <span class="news-date">2024.05.15</span>
-<span class="news-content">🇹🇭 2 papers about LLM Multi-Agent System were accepted by ACL 2024!</span>
+<span class="news-content">🇹🇭 2 papers about LLM Multi-Agent System were accepted by <span class="news-highlight">ACL 2024</span>!</span>
 </li>
 <li class="news-item">
 <span class="news-date">2024.08.15</span>
@@ -812,23 +812,19 @@ html: true
 </li>
 <li class="news-item">
 <span class="news-date">2024.09.26</span>
-<span class="news-content">🇨🇦 1 paper about Personal Agentic AI was accepted by NeurIPS 2024!</span>
+<span class="news-content">🇨🇦 1 paper about Personal Agentic AI was accepted by <span class="news-highlight">NeurIPS 2024</span>!</span>
 </li>
 <li class="news-item">
 <span class="news-date">2025.01.22</span>
-<span class="news-content">🇸🇬 1 paper about Scaling LLM Agents was accepted by ICLR 2025!</span>
+<span class="news-content">🇸🇬 1 paper about Scaling LLM Agents was accepted by <span class="news-highlight">ICLR 2025</span>!</span>
 </li>
 <li class="news-item">
 <span class="news-date">2025.05.15</span>
-<span class="news-content">🇦🇹 1 paper about LLM Agent for Software Development was accepted by ACL 2025!</span>
+<span class="news-content">🇦🇹 1 paper about LLM Agent for Software Development was accepted by <span class="news-highlight">ACL 2025</span>!</span>
 </li>
 <li class="news-item">
 <span class="news-date">2025.02.21</span>
 <span class="news-content">🇬🇧 I started my journey as a PhD student in the UK!</span>
-</li>
-<li class="news-item">
-<span class="news-date">2025.05.16</span>
-<span class="news-content">🎉 Find KCLNLP's amazing works <a href="https://x.com/kclnlp/status/1923409800009748788" target="_blank">here</a>, with <span class="news-highlight">15 papers accepted by ACL 2025</span> and <span class="news-highlight">3 papers accepted by ICML 2025</span>!</span>
 </li>
 <li class="news-item">
 <span class="news-date">2025.06.09</span>
@@ -836,31 +832,42 @@ html: true
 </li>
 <li class="news-item">
 <span class="news-date">2025.08.20</span>
-<span class="news-content">🎉 KCLNLP's new works <a href="https://x.com/kclnlp/status/1959938651753787832" target="_blank">here</a>, with <span class="news-highlight">8 papers accepted by EMNLP 2025</span> and <span class="news-highlight">1 paper accepted by COLM 2025</span>!</span>
-</li>
-<li class="news-item">
-<span class="news-date">2025.08.20</span>
-<span class="news-content">🇨🇳 <span class="news-highlight">2 papers accepted by EMNLP 2025</span>, Check out **[EcoLANG](https://arxiv.org/pdf/2505.06904)** and **[NOVER](https://arxiv.org/pdf/2505.16022)!**
+<span class="news-content">🇨🇳 2 papers accepted by <span class="news-highlight">EMNLP 2025</span>, Check out <a href="https://arxiv.org/abs/2505.06904" target="_blank">EcoLANG</a> and <a href="https://arxiv.org/abs/2505.16022" target="_blank">NOVER</a>!
 <ul>
-<li>NOVER extends RLVR to any task, making a step towards the general reasoning model. See my **[detailed blog](https://thinkwee.top/2025/09/13/general-reasoning/)**.</li>
+<li>NOVER extends RLVR to any task, making a step towards the general reasoning model. See my <a href="https://thinkwee.top/2025/09/13/general-reasoning/" target="_blank">detailed blog</a>.</li>
 <li>EcoLANG scales up the agentic social simulation faster and better with self-evolution on communication efficiency.</li>
 </ul>
 </span>
 </li>
 <li class="news-item">
-<span class="news-date">2025.10.27</span>
-<span class="news-content">🚀 <span class="news-highlight">Checkout DDRBench, the first benchmark for Agentic Deep Data Research!</span> DDRBench is a verfiable benchmark where LLMs are asked to dive into the database and explore whatever insight they think that is important. A fully autonomous Data2Insights task w/o any instruction/question. Find more on this **[blog](https://thinkwee.notion.site/ddrbench)!**</span>
+<span class="news-date">2026.01.25</span>
+<span class="news-content">🇧🇷 1 paper about LLM tool-use in the wild was accepted by <span class="news-highlight">ICLR 2026</span>!
+<ul>
+<li>WildToolBench is a tool-use benchmark grounded in real-world user behavior patterns. We show that the real challenge for LLM tool-use lies in the wild nature of user behavior.
+<li>We need to reconsider the interactions among LLMs, users, and tools.</li>
+</ul>
+</span>
+</li>
+<li class="news-item">
+<span class="news-date">2026.02.02</span>
+<span class="news-content">🚀 Introducing <a href="https://arxiv.org/abs/2602.02039" target="_blank">DDR-Bench</a>, which evaluates the Agentic LLMs on the data exploration and insight discovery with only database as input. 
+<ul>
+<li>Deep Data Research takes the database as hunting ground, while LLMs as hunters.</li>
+<li>This is our first step towards the Investigatory Intelligence in the wild. See my <a href="https://thinkwee.top/2025/11/30/ddrbench/#more" target="_blank">detailed blog</a>.</li>
+</ul>
+</span>
 </li>
 </ul>
 
 # Services
-- Program Committee Member
-    - ACL(2021,2022,2024)
+- Program Committee Member (scaling reviewers is all we need...)
+    - ACL(2021,2022,2024,2026)
     - EMNLP(2020,2023,2024,2025)
     - NeurIPS(2024,2025)
     - ICLR(2024,2025,2026)
     - CVPR(2025)
     - AAAI(2025)
+    - ICML(2026)
 
 # Industrial Experience
 -   I spent 3 years of happy time at Tencent, where I bring NLP in the wild of Recommendation & Advertisement.
