@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@hapi/hawk": "^8.0.0",
-    "@snyk/protect": "^1.1294.0",
+    "@snyk/protect": "^1.1294.1",
     "hexo": "^7.3.0",
     "hexo-baidu-url-submit": "0.0.6",
     "hexo-deployer-git": "^3.0.0",
