@@ -857,6 +857,24 @@ html: true
 </ul>
 </span>
 </li>
+<li class="news-item">
+<span class="news-date">2026.02.06</span>
+<span class="news-content">🚀 We made an interesting <a href="https://www.techrxiv.org/doi/full/10.36227/techrxiv.177126511.17803866/v1" target="_blank">discussion</a> on what is missing in current self-evolving AI systems. 
+<ul>
+<li>RL is not all you need. Self-play is not all you need.</li>
+<li>Learnable information gain matters.</li>
+</ul>
+</span>
+</li>
+<li class="news-item">
+<span class="news-date">2026.02.16</span>
+<span class="news-content">🎉 Happy Chinese New Year! 
+<ul>
+<li>Care about people in real life</li>
+<li>Solve problems in the wild</li>
+</ul>
+</span> 
+</li>
 </ul>
 
 # Services
