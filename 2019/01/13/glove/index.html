@@ -146,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Word-vectors"><span class="nav-number">1.</span> <span class="nav-text">Word vectors</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Discovery"><span class="nav-number">2.</span> <span class="nav-text">Discovery</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Design"><span class="nav-number">3.</span> <span class="nav-text">Design</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Comparing-with-Word2vec"><span class="nav-number">4.</span> <span class="nav-text">Comparing with Word2vec</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Concept"><span class="nav-number">5.</span> <span class="nav-text">Concept</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%8D%E5%90%91%E9%87%8F"><span class="nav-number">6.</span> <span class="nav-text">词向量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E7%8E%B0"><span class="nav-number">7.</span> <span class="nav-text">发现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1"><span class="nav-number">8.</span> <span class="nav-text">设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8EWord2vec%E6%AF%94%E8%BE%83"><span class="nav-number">9.</span> <span class="nav-text">与Word2vec比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">10.</span> <span class="nav-text">思路</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#word-vectors"><span class="nav-number">1.</span> <span class="nav-text">Word vectors</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#discovery"><span class="nav-number">2.</span> <span class="nav-text">Discovery</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#design"><span class="nav-number">3.</span> <span class="nav-text">Design</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#comparing-with-word2vec"><span class="nav-number">4.</span> <span class="nav-text">Comparing with Word2vec</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#concept"><span class="nav-number">5.</span> <span class="nav-text">Concept</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%8D%E5%90%91%E9%87%8F"><span class="nav-number">6.</span> <span class="nav-text">词向量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E7%8E%B0"><span class="nav-number">7.</span> <span class="nav-text">发现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1"><span class="nav-number">8.</span> <span class="nav-text">设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8Eword2vec%E6%AF%94%E8%BE%83"><span class="nav-number">9.</span> <span class="nav-text">与Word2vec比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">10.</span> <span class="nav-text">思路</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -273,14 +273,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>11k</span>
+      <span>12k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>10 mins.</span>
+      <span>11 mins.</span>
     </span>
 </div>
 
@@ -292,233 +292,458 @@
     
     <div class="post-body" itemprop="articleBody"><p><img data-src="https://i.mji.rip/2025/07/16/681b34e5ff4f1b7bf5780a5eb7a984ce.png" width="500"/></p>
 <ul>
-<li>Record the mathematical derivation of GloVe word vectors, as the original paper does not derive the model graphically but rather calculates the objective function through pure mathematical operations. This design approach is very interesting, and it also writes out and compares the mathematical essence of word2vec.</li>
+<li>Record the mathematical derivation of GloVe word vectors, as the
+original paper does not derive the model graphically but rather
+calculates the objective function through pure mathematical operations.
+This design approach is very interesting, and it also writes out and
+compares the mathematical essence of word2vec.</li>
 <li>GloVe: Global Vectors for Word Representation</li>
 </ul>
 <span id="more"></span>
 <style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
-<div id="en-content" class="lang-content" style="display: block;"><h1 id="Word-vectors"><a href="#Word-vectors" class="headerlink" title="Word vectors"></a>Word vectors</h1><ul>
-<li>Whether based on global matrix factorization or local window-based word vectors, the method of extracting semantics is to mine meaning from the co-occurrence statistical information between words.</li>
-<li>Clearly, the global approach does not make use of the advantages of the local one: for example, global techniques such as LSA are insensitive to local contextual information, making it difficult to mine synonyms based on context; the local approach does not make use of the advantages of the global one, as it only relies on independent local contexts, and if the window is too small, it cannot effectively utilize the information of the entire document or corpus.</li>
-<li>The GloVe approach is to utilize the global word co-occurrence matrix while also calculating relevance using local contextual relationships.</li>
-<li>The result of word vectors is a mapping that generates meaningful semantic relationships based on distance relationships. To achieve this goal, GloVe designed a log-bilinear regression model and specifically adopted a weighted least mean square regression model to train word vectors.</li>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="word-vectors">Word vectors</h1>
+<ul>
+<li>Whether based on global matrix factorization or local window-based
+word vectors, the method of extracting semantics is to mine meaning from
+the co-occurrence statistical information between words.</li>
+<li>Clearly, the global approach does not make use of the advantages of
+the local one: for example, global techniques such as LSA are
+insensitive to local contextual information, making it difficult to mine
+synonyms based on context; the local approach does not make use of the
+advantages of the global one, as it only relies on independent local
+contexts, and if the window is too small, it cannot effectively utilize
+the information of the entire document or corpus.</li>
+<li>The GloVe approach is to utilize the global word co-occurrence
+matrix while also calculating relevance using local contextual
+relationships.</li>
+<li>The result of word vectors is a mapping that generates meaningful
+semantic relationships based on distance relationships. To achieve this
+goal, GloVe designed a log-bilinear regression model and specifically
+adopted a weighted least mean square regression model to train word
+vectors.</li>
 </ul>
-<h1 id="Discovery"><a href="#Discovery" class="headerlink" title="Discovery"></a>Discovery</h1><ul>
-<li>Definition:<ul>
+<h1 id="discovery">Discovery</h1>
+<ul>
+<li>Definition:
+<ul>
 <li>For a single word.</li>
-<li>The number of occurrences of $x_j$ in the context of $x_i$ .</li>
-<li>The number of times all words appear in the context of $x_i$ .</li>
-<li>The probability of $x_j$ appearing in the context of $x_i$ , which is the probabilization of the frequency count of the context occurrence, referred to as “co-occurrence probabilities” in the paper.</li>
-<li>$r = \frac {P<em>{ik}}{P</em>{jk}}$ : Introduce an intermediate word $x_k$ , referred to as “probe word” in the paper, by introducing this $x_k$ , it can indirectly measure the relationship between $x_i$ and $x_j$ , represented by $r$ , i.e., the ratio.</li>
+<li>The number of occurrences of <span
+class="math inline">\(x_j\)</span> in the context of <span
+class="math inline">\(x_i\)</span> .</li>
+<li>The number of times all words appear in the context of <span
+class="math inline">\(x_i\)</span> .</li>
+<li>The probability of <span class="math inline">\(x_j\)</span>
+appearing in the context of <span class="math inline">\(x_i\)</span> ,
+which is the probabilization of the frequency count of the context
+occurrence, referred to as "co-occurrence probabilities" in the
+paper.</li>
+<li><span class="math inline">\(r = \frac {P_{ik}}{P_{jk}}\)</span> :
+Introduce an intermediate word <span class="math inline">\(x_k\)</span>
+, referred to as "probe word" in the paper, by introducing this <span
+class="math inline">\(x_k\)</span> , it can indirectly measure the
+relationship between <span class="math inline">\(x_i\)</span> and <span
+class="math inline">\(x_j\)</span> , represented by <span
+class="math inline">\(r\)</span> , i.e., the ratio.</li>
+</ul></li>
+<li>The role of introduction is reflected in two aspects:
+<ul>
+<li>For the <span class="math inline">\(x_i\)</span> and <span
+class="math inline">\(x_j\)</span> to be compared, filter out the <span
+class="math inline">\(x_k\)</span> without discriminative power, which
+is noise. When <span class="math inline">\(r \approx 1\)</span> , <span
+class="math inline">\(x_k\)</span> is considered noise.</li>
+<li>Given <span class="math inline">\(x_k\)</span> , such that those
+<span class="math inline">\(r &gt;&gt; 1\)</span> of <span
+class="math inline">\(x_i\)</span> have similar meanings, and those
+<span class="math inline">\(r &lt;&lt; 1\)</span> of <span
+class="math inline">\(x_j\)</span> have similar meanings.</li>
+</ul></li>
+<li>Therefore, we can filter out noise and only mine word sense
+relationships from co-occurrence data where <span
+class="math inline">\(r\)</span> is very large or very small.</li>
 </ul>
-</li>
-<li>The role of introduction is reflected in two aspects:<ul>
-<li>For the $x_i$ and $x_j$ to be compared, filter out the $x_k$ without discriminative power, which is noise. When $r \approx 1$ , $x_k$ is considered noise.</li>
-<li>Given $x_k$ , such that those $r &gt;&gt; 1$ of $x_i$ have similar meanings, and those $r &lt;&lt; 1$ of $x_j$ have similar meanings.</li>
-</ul>
-</li>
-<li>Therefore, we can filter out noise and only mine word sense relationships from co-occurrence data where $r$ is very large or very small.</li>
-</ul>
-<h1 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h1><ul>
-<li><p>Next, the author directly applies the target design function.</p>
-</li>
-<li><p>The goal is: the distance calculation results between the word vectors designed should reflect the ratio previously discovered from the word co-occurrence matrix, specifically for the triplet, words i, j, and the probe word k, the word vectors of these three words should embody r</p>
-</li>
-<li><p>Then, directly designing, defining $w_i$ as the word vector corresponding to $x_i$ , we assume $F$ to be the function for calculating distance:</p>
-<script type="math/tex; mode=display">
+<h1 id="design">Design</h1>
+<ul>
+<li><p>Next, the author directly applies the target design
+function.</p></li>
+<li><p>The goal is: the distance calculation results between the word
+vectors designed should reflect the ratio previously discovered from the
+word co-occurrence matrix, specifically for the triplet, words i, j, and
+the probe word k, the word vectors of these three words should embody
+r</p></li>
+<li><p>Then, directly designing, defining <span
+class="math inline">\(w_i\)</span> as the word vector corresponding to
+<span class="math inline">\(x_i\)</span> , we assume <span
+class="math inline">\(F\)</span> to be the function for calculating
+distance:</p>
+<p><span class="math display">\[
 F(w_i,w_j,w^{*}_k) = r \\
-= \frac {P_{ik}}{P_{jk}} \\</script></li>
-<li><p>The word vectors of above $w_k$ are distinguished by asterisks from the word vectors of $w_i$ and $w_j$ , because $w_k$ is an independent context word vector, parallel to the required word vectors, similar to the forward and backward word embedding matrices in word2vec.</p>
-</li>
-<li><p>Next, a natural thought is to reduce the parameters, i.e., only the word vectors and the context word vectors are needed, because it is a distance calculation function and the vector space is a linear space; we use the vector difference between $w_i$ and $w_j$ as the parameters:</p>
-<script type="math/tex; mode=display">
-F(w_i - w_j,w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\</script></li>
-<li><p>The current function takes a vector as its parameter, and outputs a tensor. The simplest structure is to perform a dot product:</p>
-<script type="math/tex; mode=display">
-F((w_i-w_j)^T w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\</script></li>
-<li><p>The next key point is symmetry. Noticing that although context and non-context word vectors are distinguished, since the co-occurrence matrix $X$ is symmetric, the two sets of word vectors $w$ and $w^{*}$ should have the same effect. This is because the values of the two sets of word vectors are different due to different random initialization, but they should be the same in terms of measuring similarity, that is, $w_i^T w^{*}_j$ and $w_j^T w^{*}_i$ should be the same.</p>
-</li>
-<li><p>Due to symmetry, $x_i,x_j,x_k$ can be any word in the corpus, so the two parameters of the $F$ function should be interchangeable ( $w$ and $w^{*}$ , $X$ and $X^T$ ), and here a bit of mathematical technique is further applied to symmetrize the function:</p>
+= \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
+<li><p>The word vectors of above <span
+class="math inline">\(w_k\)</span> are distinguished by asterisks from
+the word vectors of <span class="math inline">\(w_i\)</span> and <span
+class="math inline">\(w_j\)</span> , because <span
+class="math inline">\(w_k\)</span> is an independent context word
+vector, parallel to the required word vectors, similar to the forward
+and backward word embedding matrices in word2vec.</p></li>
+<li><p>Next, a natural thought is to reduce the parameters, i.e., only
+the word vectors and the context word vectors are needed, because it is
+a distance calculation function and the vector space is a linear space;
+we use the vector difference between <span
+class="math inline">\(w_i\)</span> and <span
+class="math inline">\(w_j\)</span> as the parameters:</p>
+<p><span class="math display">\[
+F(w_i - w_j,w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
+<li><p>The current function takes a vector as its parameter, and outputs
+a tensor. The simplest structure is to perform a dot product:</p>
+<p><span class="math display">\[
+F((w_i-w_j)^T w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
+<li><p>The next key point is symmetry. Noticing that although context
+and non-context word vectors are distinguished, since the co-occurrence
+matrix <span class="math inline">\(X\)</span> is symmetric, the two sets
+of word vectors <span class="math inline">\(w\)</span> and <span
+class="math inline">\(w^{\*}\)</span> should have the same effect. This
+is because the values of the two sets of word vectors are different due
+to different random initialization, but they should be the same in terms
+of measuring similarity, that is, <span class="math inline">\(w_i^T
+w^{\*}_j\)</span> and <span class="math inline">\(w_j^T
+w^{\*}_i\)</span> should be the same.</p></li>
+<li><p>Due to symmetry, <span class="math inline">\(x_i,x_j,x_k\)</span>
+can be any word in the corpus, so the two parameters of the <span
+class="math inline">\(F\)</span> function should be interchangeable (
+<span class="math inline">\(w\)</span> and <span
+class="math inline">\(w^{\*}\)</span> , <span
+class="math inline">\(X\)</span> and <span
+class="math inline">\(X^T\)</span> ), and here a bit of mathematical
+technique is further applied to symmetrize the function:</p>
 <ul>
 <li><p>Design:</p>
-<script type="math/tex; mode=display">
-F((w_i-w_j)^T w^{*}_k) = \frac {F(w_i w^{*}_k)} {F(w_j w^{*}_k)} \\</script></li>
-<li><p>Then both the numerator and denominator are of the same form, that is</p>
-<script type="math/tex; mode=display">
-F(w_i w^{*}_k) = P_{ik} = \frac {X_{ik}} {X_i} \\</script></li>
-<li><p>To satisfy the above $F$ , it can be decomposed into two sub- $F$ , and then $F$ can be the $exp$ function, i.e</p>
-<script type="math/tex; mode=display">
-w_i^T w_k^{*} = log(X_{ik}) - log {X_i} \\</script></li>
-<li><p>The indices k, i, j can be interchanged without changing the meaning. Since the numerator and denominator have the same form, we only need to ensure that this form is satisfied; the fraction will naturally satisfy the mapping from the triplet to the ratio thereafter.</p>
-</li>
-<li><p>Noticing that in the above formula, the inner product of the two vectors on the left remains unchanged when the i,k symbols are interchanged, while the subtraction of the two log expressions on the right does not satisfy this symmetry. Therefore, we add an $log{x_k}$ to make it symmetric and simplify it to the bias $b^{*}$ . Similarly, after interchanging the i,k symbols, we add an $Log{x_i}$ to make it symmetric, i.e., the bias $b_i$ . The bias, like word vectors, also consists of two sets:</p>
-<script type="math/tex; mode=display">
-w_i^Tw_k^{*} + b_i + b_k^{*} = log(X_{ik}) \\</script></li>
-<li><p>Finally, add smoothing to prevent the log parameter from being 0:</p>
-<script type="math/tex; mode=display">
-w_i^Tw_k^{*} + b_i + b_k^{*} = log(1 + X_{ik}) \\</script></li>
-</ul>
-</li>
-<li><p>Here we have preliminarily completed the design of the $F$ function, but there is still an issue that it averages the weights of each co-occurrence, while in general corpora, most co-occurrences have very low frequencies</p>
-</li>
-<li><p>The solution for Glove is to use weighted functions. After weighting, the training of word vectors is regarded as a least mean square error regression of the F function, and the loss function is designed:</p>
-<script type="math/tex; mode=display">
-J = \sum _{i,j}^V f(X_{ij}) (w_i^T w_j^{*} + b_i + b_j^{*} - log (1 + X_{ij}))^2 \\</script></li>
-<li><p>Among which, f is the weighted function, with its parameters being the co-occurrence frequency; the author points out that this function must satisfy three properties:</p>
+<p><span class="math display">\[
+F((w_i-w_j)^T w^{*}_k) = \frac {F(w_i w^{*}_k)} {F(w_j w^{*}_k)} \\
+\]</span></p></li>
+<li><p>Then both the numerator and denominator are of the same form,
+that is</p>
+<p><span class="math display">\[
+F(w_i w^{*}_k) = P_{ik} = \frac {X_{ik}} {X_i} \\
+\]</span></p></li>
+<li><p>To satisfy the above <span class="math inline">\(F\)</span> , it
+can be decomposed into two sub- <span class="math inline">\(F\)</span> ,
+and then <span class="math inline">\(F\)</span> can be the <span
+class="math inline">\(exp\)</span> function, i.e</p>
+<p><span class="math display">\[
+w_i^T w_k^{*} = log(X_{ik}) - log {X_i} \\
+\]</span></p></li>
+<li><p>The indices k, i, j can be interchanged without changing the
+meaning. Since the numerator and denominator have the same form, we only
+need to ensure that this form is satisfied; the fraction will naturally
+satisfy the mapping from the triplet to the ratio thereafter.</p></li>
+<li><p>Noticing that in the above formula, the inner product of the two
+vectors on the left remains unchanged when the i,k symbols are
+interchanged, while the subtraction of the two log expressions on the
+right does not satisfy this symmetry. Therefore, we add an <span
+class="math inline">\(log{x_k}\)</span> to make it symmetric and
+simplify it to the bias <span class="math inline">\(b^{*}\)</span> .
+Similarly, after interchanging the i,k symbols, we add an <span
+class="math inline">\(Log{x_i}\)</span> to make it symmetric, i.e., the
+bias <span class="math inline">\(b_i\)</span> . The bias, like word
+vectors, also consists of two sets:</p>
+<p><span class="math display">\[
+w_i^Tw_k^{*} + b_i + b_k^{*} = log(X_{ik}) \\
+\]</span></p></li>
+<li><p>Finally, add smoothing to prevent the log parameter from being
+0:</p>
+<p><span class="math display">\[
+w_i^Tw_k^{*} + b_i + b_k^{*} = log(1 + X_{ik}) \\
+\]</span></p></li>
+</ul></li>
+<li><p>Here we have preliminarily completed the design of the <span
+class="math inline">\(F\)</span> function, but there is still an issue
+that it averages the weights of each co-occurrence, while in general
+corpora, most co-occurrences have very low frequencies</p></li>
+<li><p>The solution for Glove is to use weighted functions. After
+weighting, the training of word vectors is regarded as a least mean
+square error regression of the F function, and the loss function is
+designed:</p>
+<p><span class="math display">\[
+J = \sum _{i,j}^V f(X_{ij}) (w_i^T w_j^{*} + b_i + b_j^{*} - log (1 +
+X_{ij}))^2 \\
+\]</span></p></li>
+<li><p>Among which, f is the weighted function, with its parameters
+being the co-occurrence frequency; the author points out that this
+function must satisfy three properties:</p>
 <ul>
 <li>Clearly, if no co-occurrence occurs, the weight is 0.</li>
-<li>Non-decreasing: The higher the co-occurrence frequency, the greater the weight.</li>
-<li>relatively small for large X: To prevent over-weighting for certain common co-occurrences with high frequencies, which may affect the results.</li>
+<li>Non-decreasing: The higher the co-occurrence frequency, the greater
+the weight.</li>
+<li>relatively small for large X: To prevent over-weighting for certain
+common co-occurrences with high frequencies, which may affect the
+results.</li>
+</ul></li>
+<li><p>Based on the above three properties, the author designed a
+truncated weighted function within the threshold <span
+class="math inline">\(X_{max}\)</span></p>
+<p><span class="math display">\[
+f(x) = (\frac {x}{X_{max}}) ^ {\alpha} \\
+\]</span></p>
+<p>If exceeding the threshold, the function value is 1.</p></li>
 </ul>
-</li>
-<li><p>Based on the above three properties, the author designed a truncated weighted function within the threshold $X_{max}$</p>
-<script type="math/tex; mode=display">
-f(x) = (\frac {x}{X_{max}}) ^ {\alpha} \\</script><p>If exceeding the threshold, the function value is 1.</p>
-</li>
-</ul>
-<h1 id="Comparing-with-Word2vec"><a href="#Comparing-with-Word2vec" class="headerlink" title="Comparing with Word2vec"></a>Comparing with Word2vec</h1><ul>
-<li><p>For the skip-gram model in Word2vec, the goal is to maximize the probability of predicting the correct central word given the context, which is generally probabilized through the softmax function, i.e.:</p>
-<script type="math/tex; mode=display">
-Q_{ij} = \frac {exp (w_i^T w_j^{*})} { \sum _{k=1}^V exp(w_i^T w_k^{*})} \\</script></li>
-<li><p>Through gradient descent, the overall loss function can be written as:</p>
-<script type="math/tex; mode=display">
-J = - \sum _{i \in corpus , j \in context(i)} log Q_{ij} \\</script></li>
-<li><p>Group the same $Q_{ij}$ first and then sum up to get:</p>
-<script type="math/tex; mode=display">
-J = - \sum _{i=1}^V \sum _{j=1}^V X_{ij} log Q_{ij} \\</script></li>
-<li><p>Next, further transformations are made using the previously defined symbols:</p>
-<script type="math/tex; mode=display">
+<h1 id="comparing-with-word2vec">Comparing with Word2vec</h1>
+<ul>
+<li><p>For the skip-gram model in Word2vec, the goal is to maximize the
+probability of predicting the correct central word given the context,
+which is generally probabilized through the softmax function, i.e.:</p>
+<p><span class="math display">\[
+Q_{ij} = \frac {exp (w_i^T w_j^{*})} { \sum _{k=1}^V exp(w_i^T w_k^{*})}
+\\
+\]</span></p></li>
+<li><p>Through gradient descent, the overall loss function can be
+written as:</p>
+<p><span class="math display">\[
+J = - \sum _{i \in corpus , j \in context(i)} log Q_{ij} \\
+\]</span></p></li>
+<li><p>Group the same <span class="math inline">\(Q_{ij}\)</span> first
+and then sum up to get:</p>
+<p><span class="math display">\[
+J = - \sum _{i=1}^V \sum _{j=1}^V X_{ij} log Q_{ij} \\
+\]</span></p></li>
+<li><p>Next, further transformations are made using the previously
+defined symbols:</p>
+<p><span class="math display">\[
 J = - \sum _{i=1^V} X_i \sum _{j=1}^V P_{ij} log Q_{ij} \\
-= \sum _{i=1}^V X_i H(P_i,Q_i) \\</script></li>
-<li><p>That is to say, the loss function of Word2vec is actually weighted cross-entropy, however, cross-entropy is only one possible measure and has many drawbacks:</p>
+= \sum _{i=1}^V X_i H(P_i,Q_i) \\
+\]</span></p></li>
+<li><p>That is to say, the loss function of Word2vec is actually
+weighted cross-entropy, however, cross-entropy is only one possible
+measure and has many drawbacks:</p>
 <ul>
 <li>Probability requiring normalization as a parameter</li>
-<li>Softmax computation is computationally intensive, referred to as the model’s computational bottleneck</li>
-<li>For long-tailed distributions, cross-entropy often assigns too much weight to less likely items</li>
-</ul>
-</li>
-<li><p>Solution to the above problems: Simply do not normalize, directly use co-occurrence counts, do not use cross-entropy and softmax, directly use mean squared error, let $Q<em>{ij} = exp(w_i^T w_j^{*})$ , $P</em>{ij} = X_{ij}$ , then:</p>
-<script type="math/tex; mode=display">
-J = \sum _{i,j} X_i (P_{ij} - Q_{ij})^2 \\</script></li>
-<li><p>However, non-normalization can cause numerical overflow, so take the logarithm again:</p>
-<script type="math/tex; mode=display">
+<li>Softmax computation is computationally intensive, referred to as the
+model's computational bottleneck</li>
+<li>For long-tailed distributions, cross-entropy often assigns too much
+weight to less likely items</li>
+</ul></li>
+<li><p>Solution to the above problems: Simply do not normalize, directly
+use co-occurrence counts, do not use cross-entropy and softmax, directly
+use mean squared error, let <span class="math inline">\(Q_{ij} =
+exp(w_i^T w_j^{*})\)</span> , <span class="math inline">\(P_{ij} =
+X_{ij}\)</span> , then:</p>
+<p><span class="math display">\[
+J = \sum _{i,j} X_i (P_{ij} - Q_{ij})^2 \\
+\]</span></p></li>
+<li><p>However, non-normalization can cause numerical overflow, so take
+the logarithm again:</p>
+<p><span class="math display">\[
 J = \sum _{i,j} X_i (log P_{ij} - log Q_{ij})^2 \\
-=  \sum _{i,j} X_i (w_i^T w_j^{*} - log X_{ij})^2 \\</script></li>
-<li><p>Thus, the simplest objective function of GloVe is obtained.</p>
-</li>
-<li><p>The authors of Word2vec found that filtering out some common words could improve the effectiveness of word vectors, and the weighted function in Word2vec is denoted as $f(X_i)=X_i$ , thus filtering out common words is equivalent to designing a non-decreasing weighted function. GloVe designed a more sophisticated weighted function.</p>
-</li>
-<li><p>Therefore, from the perspective of mathematical derivation, GloVe simplifies the objective function of Word2vec, replacing cross-entropy with mean squared error and redesigning the weighting function.</p>
-</li>
+=  \sum _{i,j} X_i (w_i^T w_j^{*} - log X_{ij})^2 \\
+\]</span></p></li>
+<li><p>Thus, the simplest objective function of GloVe is
+obtained.</p></li>
+<li><p>The authors of Word2vec found that filtering out some common
+words could improve the effectiveness of word vectors, and the weighted
+function in Word2vec is denoted as <span
+class="math inline">\(f(X_i)=X_i\)</span> , thus filtering out common
+words is equivalent to designing a non-decreasing weighted function.
+GloVe designed a more sophisticated weighted function.</p></li>
+<li><p>Therefore, from the perspective of mathematical derivation, GloVe
+simplifies the objective function of Word2vec, replacing cross-entropy
+with mean squared error and redesigning the weighting function.</p></li>
 </ul>
-<h1 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h1><ul>
-<li>The paper provides a good idea for designing a model, namely, designing the objective function based on evaluation indicators, and then training the model to obtain the parameters (by-products) as the desired results.</li>
+<h1 id="concept">Concept</h1>
+<ul>
+<li>The paper provides a good idea for designing a model, namely,
+designing the objective function based on evaluation indicators, and
+then training the model to obtain the parameters (by-products) as the
+desired results.</li>
 </ul>
 </div>
-<div id="zh-content" class="lang-content" style="display: none;"><h1 id="词向量"><a href="#词向量" class="headerlink" title="词向量"></a>词向量</h1><ul>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="词向量">词向量</h1>
+<ul>
 <li>无论是基于全局矩阵分解的还是基于局部窗口的词向量，其提取semantic的方式都是从词与词的共现统计信息中挖掘意义。</li>
 <li>显然，全局的方式没有利用到局部的优点：全局例如LSA等技术对于局部上下文信息不敏感，难以根据上下文挖掘近义词；局部的方式没有利用到全局的优点，它只依赖于独立的局部上下文，窗口太小的话不能有效利用整个文档乃至语料的信息。</li>
 <li>Glove的思路是利用全局的词与词共现矩阵，同时利用局部上下文关系计算相关性。</li>
 <li>词向量的结果是能产生有意义的语义关系到距离关系的映射，针对这个目标，Glove设计了一个log-bilinear回归模型，并具体采用一个加权最小均方回归模型来训练词向量。</li>
 </ul>
-<h1 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h1><ul>
-<li>定义：<ul>
-<li>$x$：为单个词。</li>
-<li>$X_{ij}$：$x_j$ 出现在$x_i$的上下文中的次数。</li>
-<li>$X<em>i = \sum _k x</em>{ik}$：所有词出现在$x_i$的上下文中的次数。</li>
-<li>$P<em>{ij} = P(j|i) = \frac {x</em>{ij}} {X_i}$：$x_j$出现在$x_i$的上下文中的概率，即上下文出现频次计数概率化，论文中称之为”co-occurrence probabilities”。</li>
-<li>$r = \frac {P<em>{ik}}{P</em>{jk}}$：引入中间词$x_k$，论文中叫”probe word”，通过引入这个$x_k$可以间接的衡量$x_i$和$x_j$的关系，通过$r$即ratio表示。</li>
+<h1 id="发现">发现</h1>
+<ul>
+<li>定义：
+<ul>
+<li><span class="math inline">\(x\)</span>：为单个词。</li>
+<li><span class="math inline">\(X_{ij}\)</span>：<span
+class="math inline">\(x_j\)</span> 出现在<span
+class="math inline">\(x_i\)</span>的上下文中的次数。</li>
+<li><span class="math inline">\(X_i = \sum _k
+x_{ik}\)</span>：所有词出现在<span
+class="math inline">\(x_i\)</span>的上下文中的次数。</li>
+<li><span class="math inline">\(P_{ij} = P(j|i) = \frac {x_{ij}}
+{X_i}\)</span>：<span class="math inline">\(x_j\)</span>出现在<span
+class="math inline">\(x_i\)</span>的上下文中的概率，即上下文出现频次计数概率化，论文中称之为"co-occurrence
+probabilities"。</li>
+<li><span class="math inline">\(r = \frac
+{P_{ik}}{P_{jk}}\)</span>：引入中间词<span
+class="math inline">\(x_k\)</span>，论文中叫"probe
+word"，通过引入这个<span
+class="math inline">\(x_k\)</span>可以间接的衡量<span
+class="math inline">\(x_i\)</span>和<span
+class="math inline">\(x_j\)</span>的关系，通过<span
+class="math inline">\(r\)</span>即ratio表示。</li>
+</ul></li>
+<li><span class="math inline">\(r\)</span>引入的作用体现在两个方面：
+<ul>
+<li>对于要比较的<span class="math inline">\(x_i\)</span>和<span
+class="math inline">\(x_j\)</span>，筛除对于没有区分度的<span
+class="math inline">\(x_k\)</span>，也就是噪音。当<span
+class="math inline">\(r \approx 1\)</span>时，<span
+class="math inline">\(x_k\)</span>即为噪音。</li>
+<li>给定<span class="math inline">\(x_k\)</span>，使得<span
+class="math inline">\(r &gt;&gt; 1\)</span>的那些<span
+class="math inline">\(x_i\)</span>具有相近的词义，使得<span
+class="math inline">\(r &lt;&lt; 1\)</span>的那些<span
+class="math inline">\(x_j\)</span>具有相近的词义。</li>
+</ul></li>
+<li>因此，我们可以过滤噪音，仅仅在<span
+class="math inline">\(r\)</span>很大或很小的词共现数据中挖掘词义关系。</li>
 </ul>
-</li>
-<li>$r$引入的作用体现在两个方面：<ul>
-<li>对于要比较的$x_i$和$x_j$，筛除对于没有区分度的$x_k$，也就是噪音。当$r \approx 1$时，$x_k$即为噪音。</li>
-<li>给定$x_k$，使得$r &gt;&gt; 1$的那些$x_i$具有相近的词义，使得$r &lt;&lt; 1$的那些$x_j$具有相近的词义。</li>
-</ul>
-</li>
-<li>因此，我们可以过滤噪音，仅仅在$r$很大或很小的词共现数据中挖掘词义关系。</li>
-</ul>
-<h1 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h1><ul>
-<li>接下来，作者直接根据目标设计函数。</li>
-<li>目标是：设计出来的词向量之间的距离计算结果应该能够反映之前我们从词共现矩阵中发现的ratio，具体而言是对于三元组，词i,j和probe word k，这三个词的词向量能够体现r</li>
-<li><p>那么直接设计,定义$w_i$为$x_i$对应的词向量，则假设$F$为计算距离的函数：</p>
-<script type="math/tex; mode=display">
+<h1 id="设计">设计</h1>
+<ul>
+<li><p>接下来，作者直接根据目标设计函数。</p></li>
+<li><p>目标是：设计出来的词向量之间的距离计算结果应该能够反映之前我们从词共现矩阵中发现的ratio，具体而言是对于三元组，词i,j和probe
+word k，这三个词的词向量能够体现r</p></li>
+<li><p>那么直接设计,定义<span class="math inline">\(w_i\)</span>为<span
+class="math inline">\(x_i\)</span>对应的词向量，则假设<span
+class="math inline">\(F\)</span>为计算距离的函数：</p>
+<p><span class="math display">\[
 F(w_i,w_j,w^{*}_k) = r \\
-= \frac {P_{ik}}{P_{jk}} \\</script></li>
-<li>上面$w_k$的词向量加了星号区别于$w_i$和$w_j$的词向量，因为$w_k$是独立的上下文词向量，与我们需要的词向量是平行的两套，类似于word2vec里面的前后词嵌入矩阵。</li>
-<li><p>接下来，一个自然的想法是，减少参数，即只需要词向量和上下文词向量，因为是距离计算函数且向量空间是线性空间，我们使用$w_i$和$w_j$的向量差作为参数：</p>
-<script type="math/tex; mode=display">
-F(w_i - w_j,w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\</script></li>
+= \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
+<li><p>上面<span
+class="math inline">\(w_k\)</span>的词向量加了星号区别于<span
+class="math inline">\(w_i\)</span>和<span
+class="math inline">\(w_j\)</span>的词向量，因为<span
+class="math inline">\(w_k\)</span>是独立的上下文词向量，与我们需要的词向量是平行的两套，类似于word2vec里面的前后词嵌入矩阵。</p></li>
+<li><p>接下来，一个自然的想法是，减少参数，即只需要词向量和上下文词向量，因为是距离计算函数且向量空间是线性空间，我们使用<span
+class="math inline">\(w_i\)</span>和<span
+class="math inline">\(w_j\)</span>的向量差作为参数：</p>
+<p><span class="math display">\[
+F(w_i - w_j,w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
 <li><p>现在函数的参数是向量，输出是张量，最简单的一个结构就是做点乘：</p>
-<script type="math/tex; mode=display">
-F((w_i-w_j)^T w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\</script></li>
-<li>接下来的一个关键点：对称。注意到虽然区分了上下文和非上下文词向量，但是由于共现矩阵$X$是对称的，因此两套词向量$w$和$w^{*}$应该具有相同的效果，只是由于随机初始化不同，两套词向量的值不一样，在衡量相似度时应该是一样的目标，即$w_i^T w^{*}_j$和$w_j^T w^{*}_i$一样。</li>
-<li><p>由于对称性，$x_i,x_j,x_k$可以是语料中任意词，因此$F$函数的两个参数应该是可以交换位置（$w$和$w^{*}$，$X$和$X^T$），那这里进一步运用了一点数学技巧将函数对称化：</p>
+<p><span class="math display">\[
+F((w_i-w_j)^T w^{*}_k) = \frac {P_{ik}}{P_{jk}} \\
+\]</span></p></li>
+<li><p>接下来的一个关键点：对称。注意到虽然区分了上下文和非上下文词向量，但是由于共现矩阵<span
+class="math inline">\(X\)</span>是对称的，因此两套词向量<span
+class="math inline">\(w\)</span>和<span
+class="math inline">\(w^{\*}\)</span>应该具有相同的效果，只是由于随机初始化不同，两套词向量的值不一样，在衡量相似度时应该是一样的目标，即<span
+class="math inline">\(w_i^T w^{\*}_j\)</span>和<span
+class="math inline">\(w_j^T w^{\*}_i\)</span>一样。</p></li>
+<li><p>由于对称性，<span
+class="math inline">\(x_i,x_j,x_k\)</span>可以是语料中任意词，因此<span
+class="math inline">\(F\)</span>函数的两个参数应该是可以交换位置（<span
+class="math inline">\(w\)</span>和<span
+class="math inline">\(w^{\*}\)</span>，<span
+class="math inline">\(X\)</span>和<span
+class="math inline">\(X^T\)</span>），那这里进一步运用了一点数学技巧将函数对称化：</p>
 <ul>
 <li><p>设计：</p>
-<script type="math/tex; mode=display">
-F((w_i-w_j)^T w^{*}_k) = \frac {F(w_i w^{*}_k)} {F(w_j w^{*}_k)} \\</script></li>
+<p><span class="math display">\[
+F((w_i-w_j)^T w^{*}_k) = \frac {F(w_i w^{*}_k)} {F(w_j w^{*}_k)} \\
+\]</span></p></li>
 <li><p>那么分子分母都是一样的形式，即</p>
-<script type="math/tex; mode=display">
-F(w_i w^{*}_k) = P_{ik} = \frac {X_{ik}} {X_i} \\</script></li>
-<li><p>要满足上面$F$可以拆分为两个子$F$的比，则$F$可以为$exp$函数，即</p>
-<script type="math/tex; mode=display">
-w_i^T w_k^{*} = log(X_{ik}) - log {X_i} \\</script></li>
-<li>这样k,i,j下标可互换位置且表达意思一致。由于分子分母形式一致，因此我们只要关注这个形式能够满足就行了，之后求分数自然会满足从三元组到ratio的映射。</li>
-<li><p>注意到上面式子当中，左边的两个向量内积，i,k符号互换值不变，而右边的两个log式子相减并不满足这种对称，因此我们补上一个$log{x_k}$使之对称，并将其简化为偏置$b^{*}$，同样的道理，i,k符号互换后，补上一个$Log{x_i}$使之对称，即偏置$b_i$，偏置和词向量一样，也是两套：</p>
-<script type="math/tex; mode=display">
-w_i^Tw_k^{*} + b_i + b_k^{*} = log(X_{ik}) \\</script></li>
+<p><span class="math display">\[
+F(w_i w^{*}_k) = P_{ik} = \frac {X_{ik}} {X_i} \\
+\]</span></p></li>
+<li><p>要满足上面<span
+class="math inline">\(F\)</span>可以拆分为两个子<span
+class="math inline">\(F\)</span>的比，则<span
+class="math inline">\(F\)</span>可以为<span
+class="math inline">\(exp\)</span>函数，即</p>
+<p><span class="math display">\[
+w_i^T w_k^{*} = log(X_{ik}) - log {X_i} \\
+\]</span></p></li>
+<li><p>这样k,i,j下标可互换位置且表达意思一致。由于分子分母形式一致，因此我们只要关注这个形式能够满足就行了，之后求分数自然会满足从三元组到ratio的映射。</p></li>
+<li><p>注意到上面式子当中，左边的两个向量内积，i,k符号互换值不变，而右边的两个log式子相减并不满足这种对称，因此我们补上一个<span
+class="math inline">\(log{x_k}\)</span>使之对称，并将其简化为偏置<span
+class="math inline">\(b^{*}\)</span>，同样的道理，i,k符号互换后，补上一个<span
+class="math inline">\(Log{x_i}\)</span>使之对称，即偏置<span
+class="math inline">\(b_i\)</span>，偏置和词向量一样，也是两套：</p>
+<p><span class="math display">\[
+w_i^Tw_k^{*} + b_i + b_k^{*} = log(X_{ik}) \\
+\]</span></p></li>
 <li><p>最后加上平滑，防止log的参数取0：</p>
-<script type="math/tex; mode=display">
-w_i^Tw_k^{*} + b_i + b_k^{*} = log(1 + X_{ik}) \\</script></li>
-</ul>
-</li>
-<li>到这里我们已经初步完成了$F$函数的设计，但这个还存在的一个问题是，它是平均加权每一个共现的，而一般语料中大部分共现都频次很低</li>
+<p><span class="math display">\[
+w_i^Tw_k^{*} + b_i + b_k^{*} = log(1 + X_{ik}) \\
+\]</span></p></li>
+</ul></li>
+<li><p>到这里我们已经初步完成了<span
+class="math inline">\(F\)</span>函数的设计，但这个还存在的一个问题是，它是平均加权每一个共现的，而一般语料中大部分共现都频次很低</p></li>
 <li><p>Glove的解决办法是使用加权函数。加权之后将词向量的训练看成是F函数的最小均方误差回归，设计损失函数：</p>
-<script type="math/tex; mode=display">
-J = \sum _{i,j}^V f(X_{ij}) (w_i^T w_j^{*} + b_i + b_j^{*} - log (1 + X_{ij}))^2 \\</script></li>
-<li>其中f为加权函数，其参数是共现频次，作者指出该函数必须满足三条性质：<ul>
-<li>$f(0)=0$：显然，没有出现共现则权重为0。</li>
+<p><span class="math display">\[
+J = \sum _{i,j}^V f(X_{ij}) (w_i^T w_j^{*} + b_i + b_j^{*} - log (1 +
+X_{ij}))^2 \\
+\]</span></p></li>
+<li><p>其中f为加权函数，其参数是共现频次，作者指出该函数必须满足三条性质：</p>
+<ul>
+<li><span
+class="math inline">\(f(0)=0\)</span>：显然，没有出现共现则权重为0。</li>
 <li>Non-decreasing：共现频次越大则权重越大。</li>
-<li>relatively small for large X：防止对于某些频次很高的常见共现加权过大，影响结果。</li>
+<li>relatively small for large
+X：防止对于某些频次很高的常见共现加权过大，影响结果。</li>
+</ul></li>
+<li><p>基于以上三种性质，作者设计了截尾的加权函数，在阈值<span
+class="math inline">\(X_{max}\)</span>以内：</p>
+<p><span class="math display">\[
+f(x) = (\frac {x}{X_{max}}) ^ {\alpha} \\
+\]</span></p>
+<p>超过阈值则函数值为1.</p></li>
 </ul>
-</li>
-<li><p>基于以上三种性质，作者设计了截尾的加权函数，在阈值$X_{max}$以内：</p>
-<script type="math/tex; mode=display">
-f(x) = (\frac {x}{X_{max}}) ^ {\alpha} \\</script><p>超过阈值则函数值为1.</p>
-</li>
-</ul>
-<h1 id="与Word2vec比较"><a href="#与Word2vec比较" class="headerlink" title="与Word2vec比较"></a>与Word2vec比较</h1><ul>
+<h1 id="与word2vec比较">与Word2vec比较</h1>
+<ul>
 <li><p>对于Word2vec中的skip-gram模型，其目标是最大化给定上下文之后预测正确中心词的概率，一般通过softmax函数将其概率化，即：</p>
-<script type="math/tex; mode=display">
-Q_{ij} = \frac {exp (w_i^T w_j^{*})} { \sum _{k=1}^V exp(w_i^T w_k^{*})} \\</script></li>
+<p><span class="math display">\[
+Q_{ij} = \frac {exp (w_i^T w_j^{*})} { \sum _{k=1}^V exp(w_i^T w_k^{*})}
+\\
+\]</span></p></li>
 <li><p>通过梯度下降求解，则整体损失函数可以写成：</p>
-<script type="math/tex; mode=display">
-J = - \sum _{i \in corpus , j \in context(i)} log Q_{ij} \\</script></li>
-<li><p>将相同的$Q_{ij}$先分组再累加，得到：</p>
-<script type="math/tex; mode=display">
-J = - \sum _{i=1}^V \sum _{j=1}^V X_{ij} log Q_{ij} \\</script></li>
+<p><span class="math display">\[
+J = - \sum _{i \in corpus , j \in context(i)} log Q_{ij} \\
+\]</span></p></li>
+<li><p>将相同的<span
+class="math inline">\(Q_{ij}\)</span>先分组再累加，得到：</p>
+<p><span class="math display">\[
+J = - \sum _{i=1}^V \sum _{j=1}^V X_{ij} log Q_{ij} \\
+\]</span></p></li>
 <li><p>接下来用之前定义的符号进一步变换：</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 J = - \sum _{i=1^V} X_i \sum _{j=1}^V P_{ij} log Q_{ij} \\
-= \sum _{i=1}^V X_i H(P_i,Q_i) \\</script></li>
-<li>也就是说，Word2vec的损失函数实际上是加权的交叉熵，然而交叉熵只是一种可能的度量，且具有很多缺点：<ul>
+= \sum _{i=1}^V X_i H(P_i,Q_i) \\
+\]</span></p></li>
+<li><p>也就是说，Word2vec的损失函数实际上是加权的交叉熵，然而交叉熵只是一种可能的度量，且具有很多缺点：</p>
+<ul>
 <li>需要归一化的概率作为参数</li>
 <li>softmax计算量大，称为模型的计算瓶颈</li>
 <li>对于长尾分布，交叉熵常常分配给不太可能的项太多权重</li>
-</ul>
-</li>
-<li><p>解决以上问题的方法：干脆不归一化，直接用共现计数，不用交叉熵和softmax，直接用均方误差，令$Q<em>{ij} = exp(w_i^T w_j^{*})$，$P</em>{ij} = X_{ij}$，则：</p>
-<script type="math/tex; mode=display">
-J = \sum _{i,j} X_i (P_{ij} - Q_{ij})^2 \\</script></li>
+</ul></li>
+<li><p>解决以上问题的方法：干脆不归一化，直接用共现计数，不用交叉熵和softmax，直接用均方误差，令<span
+class="math inline">\(Q_{ij} = exp(w_i^T w_j^{*})\)</span>，<span
+class="math inline">\(P_{ij} = X_{ij}\)</span>，则：</p>
+<p><span class="math display">\[
+J = \sum _{i,j} X_i (P_{ij} - Q_{ij})^2 \\
+\]</span></p></li>
 <li><p>但是不归一化会造成数值上溢，那就再取个对数：</p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 J = \sum _{i,j} X_i (log P_{ij} - log Q_{ij})^2 \\
-=  \sum _{i,j} X_i (w_i^T w_j^{*} - log X_{ij})^2 \\</script></li>
-<li>这样就得到了Glove最朴素的目标函数。</li>
-<li>Word2vec的作者发现筛除一些常见词能够提高词向量效果，而Word2vec中的加权函数即$f(X_i)=X_i$，因此筛除常见词等价于设计一个非降的加权函数。Glove则设计了更为精巧的加权函数。</li>
-<li>因此从数学公式推导上看，Glove简化了Word2vec的目标函数，用均方误差替换交叉熵，并重新设计了加权函数。</li>
+=  \sum _{i,j} X_i (w_i^T w_j^{*} - log X_{ij})^2 \\
+\]</span></p></li>
+<li><p>这样就得到了Glove最朴素的目标函数。</p></li>
+<li><p>Word2vec的作者发现筛除一些常见词能够提高词向量效果，而Word2vec中的加权函数即<span
+class="math inline">\(f(X_i)=X_i\)</span>，因此筛除常见词等价于设计一个非降的加权函数。Glove则设计了更为精巧的加权函数。</p></li>
+<li><p>因此从数学公式推导上看，Glove简化了Word2vec的目标函数，用均方误差替换交叉熵，并重新设计了加权函数。</p></li>
 </ul>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ul>
+<h1 id="思路">思路</h1>
+<ul>
 <li>该文提供了一个很好的设计模型的思路，即根据评测指标设计目标函数，反过来训练模型，得到函数的参数（副产品）作为所需的结果。</li>
 </ul>
 </div>
@@ -538,6 +763,7 @@ J = \sum _{i,j} X_i (log P_{ij} - log Q_{ij})^2 \\
         crossorigin="anonymous"
         async>
 </script>
+
     </div>
 
     
@@ -607,7 +833,7 @@ J = \sum _{i,j} X_i (log P_{ij} - log Q_{ij})^2 \\
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">16:15</span>
+    <span title="Reading time total">17:13</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
