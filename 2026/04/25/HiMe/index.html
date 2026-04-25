@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Introducing HiMe: Towards Personal Health Agentic Intelligence.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HiMe: A Personal Health Agent in the Wild">
+<meta property="og:url" content="https://thinkwee.top/2026/04/25/HiMe/index.html">
+<meta property="og:site_name" content="Thinkwee&#39;s Blog">
+<meta property="og:description" content="Introducing HiMe: Towards Personal Health Agentic Intelligence.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/thinkwee/HiMe/main/assets/logo.png">
+<meta property="article:published_time" content="2026-04-25T03:46:22.000Z">
+<meta property="article:modified_time" content="2026-04-25T11:38:08.855Z">
+<meta property="article:author" content="Thinkwee">
+<meta property="article:tag" content="agent">
+<meta property="article:tag" content="health">
+<meta property="article:tag" content="llm">
+<meta property="article:tag" content="ios">
+<meta property="article:tag" content="self-hosted">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/thinkwee/HiMe/main/assets/logo.png">
+
+
+<link rel="canonical" href="https://thinkwee.top/2026/04/25/HiMe/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://thinkwee.top/2026/04/25/HiMe/","path":"2026/04/25/HiMe/","title":"HiMe: A Personal Health Agent in the Wild"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>HiMe: A Personal Health Agent in the Wild | Thinkwee's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96114782-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-96114782-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script>(function() {function calculateHeight(element) {let height = 0;const items = element.children;for (let i = 0; i < items.length; i++) {height += items[i].offsetHeight || 25;const child = items[i].querySelector(".nav-child");if (child && child.style.display !== "none") {height += calculateHeight(child);}}return height;}function generateToc(lang, container) {const content = document.getElementById(lang + "-content");if (!content) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));if (headers.length === 0) return;const ol = document.createElement("ol");ol.className = "nav";let currentLevel = 1;let currentOl = ol;let stack = [ol];let counters = [0, 0, 0, 0, 0, 0];headers.forEach((header, index) => {const level = parseInt(header.tagName[1]);counters[level - 1]++;for (let i = level; i < 6; i++) counters[i] = 0;const li = document.createElement("li");li.className = "nav-item nav-level-" + level;if (level === 1 && index === 0) {li.classList.add("active", "active-current");}const link = document.createElement("a");link.className = "nav-link";if (level === 1 && index === 0) link.classList.add("active");link.href = "#" + header.id;const numSpan = document.createElement("span");numSpan.className = "nav-number";numSpan.textContent = counters.slice(0, level).filter(n => n > 0).join(".");const textSpan = document.createElement("span");textSpan.className = "nav-text";textSpan.textContent = header.textContent;link.appendChild(numSpan);link.appendChild(document.createTextNode(" "));link.appendChild(textSpan);li.appendChild(link);if (level > currentLevel) {const newOl = document.createElement("ol");newOl.className = "nav-child";if (currentLevel === 1) {newOl.style.display = "block";stack[currentLevel - 1].lastElementChild.classList.add("active");}stack[currentLevel - 1].lastElementChild.appendChild(newOl);stack[level - 1] = newOl;currentOl = newOl;} else if (level < currentLevel) {currentOl = stack[level - 1];}currentOl.appendChild(li);currentLevel = level;});container.appendChild(ol);setTimeout(() => {const navHeight = calculateHeight(ol);ol.style.setProperty("--height", navHeight + "px");const navChilds = ol.getElementsByClassName("nav-child");Array.from(navChilds).forEach(child => {if (child.style.display === "block") {const childHeight = calculateHeight(child);child.style.setProperty("--height", childHeight + "px");}});}, 0);return ol;}function updateActiveHeading() {const activeLang = document.getElementById("en-content").style.display === "block" ? "en" : "zh";const content = document.getElementById(activeLang + "-content");const toc = document.getElementById(activeLang + "-toc");if (!content || !toc) return;const headers = Array.from(content.querySelectorAll("h1, h2, h3, h4, h5, h6"));const scrollPos = window.scrollY + window.innerHeight / 3;let activeHeader = null;for (let i = headers.length - 1; i >= 0; i--) {const header = headers[i];const headerTop = header.getBoundingClientRect().top + window.scrollY;if (headerTop <= scrollPos) {activeHeader = header;break;}}const links = toc.getElementsByClassName("nav-link");Array.from(links).forEach(link => {link.classList.remove("active");const parentLi = link.parentElement;if (parentLi) {parentLi.classList.remove("active", "active-current");}});if (activeHeader) {const activeLink = toc.querySelector(`a[href="#${activeHeader.id}"]`);if (activeLink) {activeLink.classList.add("active");let parent = activeLink.parentElement;while (parent && parent.classList) {if (parent.classList.contains("nav-item")) {parent.classList.add("active");if (parent.classList.contains("nav-level-1")) {parent.classList.add("active-current");}}parent = parent.parentElement;}}}}function initTippy() {document.querySelectorAll(".refplus-num").forEach((ref) => {if (ref._tippy) {ref._tippy.destroy();}let refid = ref.firstChild.href.replace(location.origin+location.pathname,"");let refel = document.querySelector(refid);if (!refel) return;let refnum = refel.dataset.num;let ref_content = refel.innerText.replace(`[${refnum}]`,"");tippy(ref, {content: ref_content,});});}function initToc() {const originalToc = document.querySelector(".post-toc-wrap");if (!originalToc || !document.getElementById("langToggle")) return;const tocContainer = document.createElement("div");tocContainer.className = "post-toc-wrap sidebar-panel sidebar-panel-active";const enToc = document.createElement("div");enToc.id = "en-toc";enToc.className = "post-toc motion-element";enToc.style.display = "block";const zhToc = document.createElement("div");zhToc.id = "zh-toc";zhToc.className = "post-toc motion-element";zhToc.style.display = "none";generateToc("en", enToc);generateToc("zh", zhToc);tocContainer.appendChild(enToc);tocContainer.appendChild(zhToc);originalToc.parentNode.replaceChild(tocContainer, originalToc);window.addEventListener("scroll", updateActiveHeading);setTimeout(updateActiveHeading, 0);}window.toggleLanguage = function() {const enContent = document.getElementById("en-content");const zhContent = document.getElementById("zh-content");const enToc = document.getElementById("en-toc");const zhToc = document.getElementById("zh-toc");const button = document.getElementById("langToggle");if (!enContent || !zhContent || !enToc || !zhToc || !button) return;const isEnglish = enContent.style.display === "block";enContent.style.display = isEnglish ? "none" : "block";zhContent.style.display = isEnglish ? "block" : "none";enToc.style.display = isEnglish ? "none" : "block";zhToc.style.display = isEnglish ? "block" : "none";button.querySelector(".button-text").textContent = isEnglish ? "Switch to English" : "切换中文";setTimeout(updateActiveHeading, 0);setTimeout(initTippy, 100);};document.addEventListener("DOMContentLoaded", function() {initToc();setTimeout(initTippy, 3000);});})();</script><style>.post-toc { transition: all 0.2s ease-in-out; }.post-toc .nav { padding-left: 0; }.post-toc .nav-child { padding-left: 1em; }.post-toc .nav-item { line-height: 1.8; }.post-toc .nav-link { color: #555; }.post-toc .nav-link:hover { color: #222; }.post-toc .nav-link.active { color: #fc6423; }.post-toc .active > .nav-link { color: #fc6423; }.post-toc .active-current > .nav-link { color: #fc6423; }</style><!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Thinkwee's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Too Stupid to Give Up Thinking</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">55</span></a></li><li class="menu-item menu-item-iagents"><a href="/iagents/" rel="section"><i class="fa fa-robot fa-fw"></i>iAgents</a></li><li class="menu-item menu-item-ddrbench"><a href="https://thinkwee.notion.site/ddrbench" rel="section" target="_blank"><i class="fa-solid fa-user-secret fa-fw"></i>DDRBench</a></li><li class="menu-item menu-item-nover"><a href="https://huggingface.co/spaces/thinkwee/NOVER" rel="section" target="_blank"><i class="fa fa-wind fa-fw"></i>NOVER</a></li><li class="menu-item menu-item-hime"><a href="https://github.com/thinkwee/hime" rel="section" target="_blank"><i class="fa fa-heartbeat fa-fw"></i>HiMe</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#what-is-hime"><span class="nav-number">1.</span> <span class="nav-text">What is HiMe?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#why-health-agent"><span class="nav-number">2.</span> <span class="nav-text">Why Health Agent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#from-data-to-environment"><span class="nav-number">3.</span> <span class="nav-text">From Data to Environment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#what-i-want-to-learn"><span class="nav-number">4.</span> <span class="nav-text">What I Want to Learn</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hime-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">5.</span> <span class="nav-text">HiMe 是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%81%A5%E5%BA%B7-agent"><span class="nav-number">6.</span> <span class="nav-text">为什么是健康 Agent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%88%B0%E7%8E%AF%E5%A2%83"><span class="nav-number">7.</span> <span class="nav-text">从数据到环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E9%AA%8C%E8%AF%81%E4%BB%80%E4%B9%88"><span class="nav-number">8.</span> <span class="nav-text">我想验证什么</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Thinkwee</p>
+  <div class="site-description" itemprop="description">Failed Better</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thinkwee" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thinkwee" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:thinkwee2767@gmail.com" title="E-Mail → mailto:thinkwee2767@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/thinkwee2767" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;thinkwee2767" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://scholar.google.com/citations?hl=en&user=QvW2leIAAAAJ" title="GScholar → https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?hl&#x3D;en&amp;user&#x3D;QvW2leIAAAAJ" rel="noopener me" target="_blank"><i class="fa fa-graduation-cap fa-fw"></i>GScholar</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://thinkwee.top/2026/04/25/HiMe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Thinkwee">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thinkwee's Blog">
+      <meta itemprop="description" content="Failed Better">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="HiMe: A Personal Health Agent in the Wild | Thinkwee's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HiMe: A Personal Health Agent in the Wild
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-25 11:46:22 / Modified: 19:38:08" itemprop="dateCreated datePublished" datetime="2026-04-25T11:46:22+08:00">2026-04-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LLM/" itemprop="url" rel="index"><span itemprop="name">LLM</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2026/04/25/HiMe/" class="post-meta-item leancloud_visitors" data-flag-title="HiMe: A Personal Health Agent in the Wild" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>5.4k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>5 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img data-src="https://raw.githubusercontent.com/thinkwee/HiMe/main/assets/logo.png" width="500"/></p>
+<p>Introducing HiMe: Towards Personal Health Agentic Intelligence.</p>
+<span id="more"></span>
+<style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="what-is-hime">What is HiMe?</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/thinkwee/HiMe">HiMe</a> is a self-hosted
+personal health AI agent. It connects Apple Watch and iPhone HealthKit
+data to a local backend in real time, then lets the user talk with an
+agent through Telegram or Feishu. The agent can answer questions about
+recent health patterns, generate reports, set scheduled or
+event-triggered checks, and create small personalised pages such as
+trackers or dashboards.</p>
+<p>In short, it is an attempt to move the understanding of wearable data
+from passive charts toward an interactive health companion that can
+understand and respond to a person's real-time data stream. It is still
+research-grade software, not a medical device, and does not constitute
+medical advice.</p>
+<h1 id="why-health-agent">Why Health Agent</h1>
+<p>The next scaling of agents may come from heterogeneous, personal
+multiagent systems: the internet has almost been exhausted as an average
+of humanity, while each person's micro-world still continuously
+generates data, environments, and feedback. HiMe is a small attempt
+along this line.</p>
+<p>At first glance, personal health looks like an ordinary vertical
+application. Apple Watch collects heart rate, sleep, steps, workouts,
+HRV, blood oxygen and many other signals; an app draws charts; a model
+writes a summary. This version is useful, but I do not think it is the
+most interesting part.</p>
+<p>The more interesting question is: <strong>can a person's long-running
+health stream become an environment for an agent?</strong></p>
+<p>The difference is subtle. A dashboard assumes the user already knows
+what to ask. I hope an agent can help discover what is worth asking. A
+dashboard optimizes for visualization. A health agent may need to care
+more about timing, memory, evidence, and follow-up. A dashboard is
+pulled by the user. A health agent might sometimes push back: not as a
+doctor, but as a sensor-facing companion that notices weak signals
+before the user opens the app.</p>
+<h1 id="from-data-to-environment">From Data to Environment</h1>
+<p>In many AI discussions, "environment" still means a benchmark, a
+simulator, a game, or a carefully wrapped tool-use task. Wearable data
+gives a different kind of environment:</p>
+<ul>
+<li>It is continuous rather than episodic.</li>
+<li>It is personalized rather than drawn from a public dataset.</li>
+<li>It has delayed and ambiguous feedback.</li>
+<li>It is full of confounders that the sensor cannot observe.</li>
+<li>It is sensitive enough that hallucination matters, but not formal
+enough to be solved by rule-based verification.</li>
+</ul>
+<p>This is where I would place HiMe on the hard-to-verify side. "Your
+resting heart rate is 5 bpm higher than your 30-day baseline" is easy to
+verify. "You are probably under-recovered today" is already a semantic
+interpretation. "You should change tomorrow's training" crosses into
+advice and should be treated with much more caution. A system like this
+has to move between facts, hypotheses, and actions, and I would like
+these three to remain distinguishable.</p>
+<p>So the key problem is not "can LLMs summarize health data". Of course
+they can. The key problem is whether we can build the right loop:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sensor stream -&gt; query -&gt; analysis -&gt; evidence -&gt; memory -&gt; trigger -&gt; user feedback -&gt; better next query</span><br></pre></td></tr></table></figure>
+<p>If this loop works, a personal health agent may be closer to a
+<strong>World Sensor</strong> than to a chatbot. It collects fragments
+of the user's world, compresses them into usable state, and tries to
+decide when the state deserves attention.</p>
+<h1 id="what-i-want-to-learn">What I Want to Learn</h1>
+<p>HiMe is also an early attempt to probe several questions:</p>
+<ul>
+<li>If personal micro-worlds continuously generate data, can personal
+agents become a real scaling path rather than a toy application?</li>
+<li>Can an agent learn useful long-term context without pretending to be
+a doctor?</li>
+<li>Can user-specific interfaces become a normal output modality of
+agents, beyond chat and reports?</li>
+<li>Can grounding make an agent trustworthy enough for sensitive
+personal domains?</li>
+<li>Can we build AI systems that participate in daily life without
+immediately falling into metric hacking?</li>
+</ul>
+<p>I do not know the answers yet. But personal health seems to be a good
+testbed because it is simultaneously mundane and difficult. It has data,
+but the data is incomplete. It has feedback, but the feedback is
+delayed. It has goals, but the goals are not clean reward functions. It
+is personal, but not isolated from society. It is useful, but dangerous
+if overclaimed.</p>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="hime-是什么">HiMe 是什么？</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/thinkwee/HiMe">HiMe</a>
+是一个自托管的个人健康 AI Agent。它连接 Apple Watch 和 iPhone 的
+HealthKit 数据，将数据即时同步到本地后端，然后让用户通过 Telegram
+或飞书和 Agent 对话。Agent
+可以回答近期健康模式相关的问题，生成报告，设置定时或事件触发的检查，也可以创建一些小的个性化页面，例如
+tracker 或 dashboard。</p>
+<p>简单来说，它是一个尝试：把可穿戴数据的理解模式从被动图表，变成一个可以理解实时跟人数据流的交互的健康
+companion。它仍然是 research-grade
+software，不是医疗器械，也不构成医疗建议。</p>
+<h1 id="为什么是健康-agent">为什么是健康 Agent</h1>
+<p>Agent 下一步的 scaling 也许来自 heterogeneous, personal multiagent
+systems：互联网作为人类平均意义上的知识已经几乎被耗尽，但每个人的小世界依然在持续产生数据、环境和反馈。HiMe
+是沿着这条线做的一个小尝试。</p>
+<p>表面上，个人健康像是一个普通的垂直应用。Apple Watch
+采集心率、睡眠、步数、运动、HRV、血氧等信号；App
+画几张图；模型写一段总结。这个版本当然有用，但我觉得它并不是最有意思的部分。</p>
+<p>更有趣的问题是：<strong>一个人长期运行的健康数据流，能否成为 Agent
+的环境？</strong></p>
+<p>这里的差别很微妙。Dashboard 默认用户已经知道该问什么。我希望 Agent
+能帮助发现什么值得问。Dashboard 优化的是可视化。健康 Agent
+也许更需要关心时机、记忆、证据和追问。Dashboard 由用户主动拉取。健康
+Agent 有时也许应该主动推送：不是作为医生，而是作为一个面向传感器的
+companion，在用户打开 App 之前先注意到一些弱信号。</p>
+<h1 id="从数据到环境">从数据到环境</h1>
+<p>在很多 AI 讨论里，environment 仍然意味着
+benchmark、simulator、game，或者一个被精心封装的 tool-use
+task。可穿戴数据提供了另一种环境：</p>
+<ul>
+<li>它是连续的，而不是 episodic 的。</li>
+<li>它是个人化的，而不是来自公共数据集。</li>
+<li>它的反馈延迟且模糊。</li>
+<li>它充满传感器无法观测到的混杂因素。</li>
+<li>它足够 sensitive，因此幻觉很重要；但又不够形式化，无法靠 rule-based
+verifier 解决。</li>
+</ul>
+<p>我会把 HiMe 放在 hard-to-verify 的一侧。“你的静息心率比 30 天
+baseline 高了 5
+bpm”容易验证；“你今天可能恢复不足”已经是语义解释；“你应该调整明天的训练”则跨入建议，应当更加谨慎。这样的系统需要不断在
+facts、hypotheses、actions 之间移动，而我希望这三者不要被混在一起。</p>
+<p>所以关键问题不是“LLM
+能不能总结健康数据”。当然可以。关键问题是能否建立一个正确的循环：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sensor stream -&gt; query -&gt; analysis -&gt; evidence -&gt; memory -&gt; trigger -&gt; user feedback -&gt; better next query</span><br></pre></td></tr></table></figure>
+<p>如果这个循环成立，个人健康 Agent 也许更像一个 <strong>World
+Sensor</strong>，而不是
+chatbot。它收集用户世界的碎片，将其压缩为可用状态，并尝试判断什么时候这些状态值得被注意。</p>
+<h1 id="我想验证什么">我想验证什么</h1>
+<p>HiMe 也是用来探测几个问题的初步尝试：</p>
+<ul>
+<li>如果个人 micro-world 持续产生数据，personal agents 能否成为真实的
+scaling 路径，而不是玩具应用？</li>
+<li>Agent 能否学习长期上下文，同时不假装自己是医生？</li>
+<li>用户特定的 interfaces 能否成为 Agent 的常规输出模态，而不只是 chat
+和 reports？</li>
+<li>Grounding 能否让 Agent 在敏感个人领域达到可用的可信度？</li>
+<li>我们能否构建一种参与日常生活的 AI 系统，而不立刻落入 metric
+hacking？</li>
+</ul>
+<p>我还不知道答案。但个人健康似乎是一个很好的
+testbed，因为它既日常又困难。它有数据，但数据不完整。它有反馈，但反馈延迟。它有目标，但目标不是干净的
+reward
+function。它是个人的，但又不脱离社会。它有用，但过度声称就危险。</p>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="thinkwee/thinkwee.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk3OTYxNjMwOA=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBL7ZNM4CkozI"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/agent/" rel="tag"># agent</a>
+              <a href="/tags/health/" rel="tag"># health</a>
+              <a href="/tags/llm/" rel="tag"># llm</a>
+              <a href="/tags/ios/" rel="tag"># ios</a>
+              <a href="/tags/self-hosted/" rel="tag"># self-hosted</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/11/30/ddrbench/" rel="prev" title="Deep Data Research -- Database as Hunting Ground, LLMs as Hunters">
+                  <i class="fa fa-angle-left"></i> Deep Data Research -- Database as Hunting Ground, LLMs as Hunters
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">ICP/IP地址/域名信息备案管理系统 </a>
+      <img src="http://www.beian.gov.cn/img/new/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=%E4%BA%ACICP%E5%A4%872023015408%E5%8F%B7" rel="noopener" target="_blank">京ICP备2023015408号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Thinkwee</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1.1m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">17:17</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/thinkwee" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"g58NgfMJBlwTyftr6hizdozq-gzGzoHsz","app_key":"1nA1tNVxeeSlAumHogP0PvSd","server_url":"https://leancloud.cn","security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://thinkwee.top/2026/04/25/HiMe/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>
