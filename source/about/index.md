@@ -792,6 +792,7 @@ html: true
 - Past Experience:
     -   2014 - 2021: Bachelor and Master in BUPT.
     -   2021 - 2023: Application Research in [Tencent](https://www.tencent.com/en-us/about.html).
+    -   2023.10: I had heart surgery and replaced parts of my heart. Now I am the Iron Man!
     -   2023 - 2025: Working at [THUNLP](https://nlp.csai.tsinghua.edu.cn/)@Tsinghua University with Prof. [Zhiyuan Liu](http://nlp.csai.tsinghua.edu.cn/~lzy/) and Prof. [Chen Qian](http://qianc62.github.io) on LLM Multi-Agent System.
     -   2025 - 2029(expected): Happy to join [KCLNLP](https://kclnlp.github.io/) as a PhD candidate advised by [Prof. Yulan He](https://sites.google.com/view/yulanhe) and [Prof. Yali Du](https://yalidu.github.io/)!
 
@@ -868,10 +869,10 @@ html: true
 </li>
 <li class="news-item">
 <span class="news-date">2026.02.16</span>
-<span class="news-content">🎉 Happy Chinese New Year! 
+<span class="news-content">🚀 We launched <a href="https://github.com/thinkwee/HiMe" target="_blank">HiMe</a>, a self-hosted, fully local, secure and open-source one-stop personal health AI agent platform.
 <ul>
-<li>Care about people in real life</li>
-<li>Solve problems in the wild</li>
+<li>Real-time wearable data ingestion (Apple Watch + iPhone), with autonomous analysis and proactive insights 7/24.</li>
+<li>Evidence-backed chat over Telegram/Feishu, iOS/watchOS companion apps, and strong self-hosted privacy posture.</li>
 </ul>
 </span> 
 </li>

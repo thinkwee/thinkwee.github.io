@@ -101,10 +101,11 @@ menu:
   # tags: /tags/ || fa fa-tags
   # categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
-  Multi-Agent EBook: /multiagent_ebook/ || fa fa-book
+  # Multi-Agent EBook: /multiagent_ebook/ || fa fa-book
   iAgents: /iagents/ || fa fa-robot
   DDRBench: https://thinkwee.notion.site/ddrbench || fa-solid fa-user-secret
   NOVER: https://huggingface.co/spaces/thinkwee/NOVER || fa fa-wind
+  HiMe: https://github.com/thinkwee/hime || fa fa-heartbeat
   # novel: /novel/ || fa fa-gamepad
   # game: /game/ || fa fa-gamepad
   # Memory: /memory/ || fa fa-smile-wink
