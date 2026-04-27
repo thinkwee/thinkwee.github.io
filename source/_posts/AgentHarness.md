@@ -9,7 +9,7 @@ tags:
   - harness
 ---
 
-<img src="https://s41.ax1x.com/2026/04/26/pehcf81.png" width="800"/>
+<img src="https://i.mji.rip/2026/04/27/1b73a417652e5ff2aa969209d181ac3f.png" width="800"/>
 
 Some practical notes on Agent Harness from building HiMe.
 
@@ -137,7 +137,7 @@ Any system that can enter a loop needs a breaker.
 
 Take responsibility for hallucination. Most agents use web retrieval to keep responses factual, but for personal agents, the more common problem is **unfaithfulness**: for example, the agent may perform no tool call at all, then claim it did and produce a fabricated analysis.
 
-HiMe includes an audit agent that reviews every message the Chat Agent sends to the user. By looking at the tool-call chain, it checks whether the quantitative or qualitative claims in the message are actually supported by query results from the user's real health data.
+HiMe includes an audit agent that reviews every message the Chat Agent sends to the user. By looking at the tool-call chain, it checks whether the quantitative or qualitative claims in the message are actually supported by query results from the user's real-time health data.
 
 The persistence layer, including data and queues, must outlive the application layer, namely the agent loop. The data in a personal agent is a real user asset. It cannot be lost because the agent temporarily behaves abnormally.
 
