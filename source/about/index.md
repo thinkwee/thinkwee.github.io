@@ -335,6 +335,29 @@ html: true
         border: 1px solid transparent;
     }
 
+    .conf-icml {
+        display: inline-block;
+        padding: 0px 5px;
+        font-size: 14px;
+        text-align: center;
+        width: 110px;
+        text-decoration: none;
+        background-color: #FFFFFF !important; /* White background by default */
+        color: black !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 8px;
+        border: 1px solid #CCCCCC;
+        transition: background-color 0.3s ease;
+        cursor: default;
+    }
+
+    .conf-icml:hover {
+        background-color: #4a90e2 !important; /* Blue for ICML on hover */
+        color: white !important;
+        border: 1px solid transparent;
+    }
+
     .conf-acl {
         display: inline-block;
         padding: 0px 5px;
@@ -809,7 +832,7 @@ html: true
 </li>
 <li class="news-item">
 <span class="news-date">2024.08.15</span>
-<span class="news-content">🚀 I made a interactive websites showing popular MultiAgent Frameworks and show THUNLP MultiAgent Team's amazing works at <a href="https://thinkwee.top/multiagent_ebook" target="_blank">LLM MultiAgent EBook</a></span>
+<span class="news-content">🚀 I built an interactive site on popular MultiAgent frameworks and THUNLP MultiAgent Team works: <a href="https://thinkwee.top/multiagent_ebook" target="_blank">LLM MultiAgent EBook</a></span>
 </li>
 <li class="news-item">
 <span class="news-date">2024.09.26</span>
@@ -829,52 +852,40 @@ html: true
 </li>
 <li class="news-item">
 <span class="news-date">2025.06.09</span>
-<span class="news-content">🚀 I made <a href="https://thinkwee.top/amr/" target="_blank">AgentsMeetRL</a>, an awesome list of Reinforcement Learning-based Large Language Agent, which has now earned over <span class="news-highlight"><span id="agentsmeetrl-stars" data-repo="thinkwee/AgentsMeetRL">...</span> stars!</span> welcome to the era of experience!</span>
+<span class="news-content">🚀 I made <a href="https://thinkwee.top/amr/" target="_blank">AgentsMeetRL</a>, an awesome list of RL for training LLM Agents (<span class="news-highlight"><span id="agentsmeetrl-stars" data-repo="thinkwee/AgentsMeetRL">...</span> stars!</span>) welcome to the era of experience!</span>
 </li>
 <li class="news-item">
 <span class="news-date">2025.08.20</span>
 <span class="news-content">🇨🇳 2 papers accepted by <span class="news-highlight">EMNLP 2025</span>, Check out <a href="https://arxiv.org/abs/2505.06904" target="_blank">EcoLANG</a> and <a href="https://arxiv.org/abs/2505.16022" target="_blank">NOVER</a>!
-<ul>
-<li>NOVER extends RLVR to any task, making a step towards the general reasoning model. See my <a href="https://thinkwee.top/2025/09/13/general-reasoning/" target="_blank">detailed blog</a>.</li>
-<li>EcoLANG scales up the agentic social simulation faster and better with self-evolution on communication efficiency.</li>
-</ul>
 </span>
 </li>
 <li class="news-item">
 <span class="news-date">2026.01.25</span>
-<span class="news-content">🇧🇷 1 paper about LLM tool-use in the wild was accepted by <span class="news-highlight">ICLR 2026</span>!
-<ul>
-<li>WildToolBench is a tool-use benchmark grounded in real-world user behavior patterns. We show that the real challenge for LLM tool-use lies in the wild nature of user behavior.
-<li>We need to reconsider the interactions among LLMs, users, and tools.</li>
-</ul>
+<span class="news-content">🇧🇷 1 paper accepted by <span class="news-highlight">ICLR 2026</span>!
 </span>
 </li>
 <li class="news-item">
-<span class="news-date">2026.02.02</span>
-<span class="news-content">🚀 Introducing <a href="https://arxiv.org/abs/2602.02039" target="_blank">DDR-Bench</a>, which evaluates the Agentic LLMs on the data exploration and insight discovery with only database as input. 
-<ul>
-<li>Deep Data Research takes the database as hunting ground, while LLMs as hunters.</li>
-<li>This is our first step towards the Investigatory Intelligence in the wild. See my <a href="https://thinkwee.top/2025/11/30/ddrbench/#more" target="_blank">detailed blog</a>.</li>
-</ul>
-</span>
-</li>
-<li class="news-item">
-<span class="news-date">2026.02.06</span>
-<span class="news-content">🚀 We made an interesting <a href="https://www.techrxiv.org/doi/full/10.36227/techrxiv.177126511.17803866/v1" target="_blank">discussion</a> on what is missing in current self-evolving AI systems. 
-<ul>
-<li>RL is not all you need. Self-play is not all you need.</li>
-<li>Learnable information gain matters.</li>
-</ul>
-</span>
-</li>
-<li class="news-item">
-<span class="news-date">2026.02.16</span>
-<span class="news-content">🚀 We launched <a href="https://github.com/thinkwee/HiMe" target="_blank">HiMe</a>, a self-hosted, fully local, secure and open-source one-stop personal health AI agent platform.
+<span class="news-date">2026.04.22</span>
+<span class="news-content">🚀 We launched <span class=news-highlight><a href="https://github.com/thinkwee/HiMe" target="_blank">HiMe</a></span>, a self-hosted, fully local, secure and open-source one-stop personal health AI agent platform.
 <ul>
 <li>Real-time wearable data ingestion (Apple Watch + iPhone), with autonomous analysis and proactive insights 7/24.</li>
 <li>Evidence-backed chat over Telegram/Feishu, iOS/watchOS companion apps, and strong self-hosted privacy posture.</li>
 </ul>
 </span> 
+</li>
+<li class="news-item">
+<span class="news-date">2026.04.28</span>
+<span class="news-content">🚀 I made <a href="https://github.com/thinkwee/AwesomeOPD" target="_blank">AwesomeOPD</a>, an awesome list of on-policy distillation (<span class="news-highlight"><span id="awesomeopd-stars" data-repo="thinkwee/AwesomeOPD">...</span> stars!</span>)</span>
+</li>
+<li class="news-item">
+<span class="news-date">2026.04.30</span>
+<span class="news-content">🇰🇷 3 papers accepted by <span class="news-highlight">ICML 2026</span>!
+<ul>
+<li><strong>Deep Data Research</strong>: We introduce DDR as an open-ended setting where LLMs must proactively mine raw databases for insights, and build DDR-Bench to evaluate investigatory intelligence beyond execution-only task solving.</li>
+<li><strong>Self-Evolve</strong>: We show self-play plateaus unless each iteration increases learnable information, and propose a triadic Proposer-Solver-Verifier pipeline with asymmetric co-evolution, capacity growth, and proactive information seeking.</li>
+<li><strong>Hallucination Detection</strong>: We model attention as frequency-domain signals and find hallucinated tokens carry stronger high-frequency energy, enabling a lightweight detector that improves contextual hallucination detection.</li>
+</ul>
+</span>
 </li>
 </ul>
 
@@ -903,9 +914,9 @@ html: true
 
 -   Agentic AI in the Wild:
     -   <span class="conf-iclr">ICLR 2026</span> <a href="https://openreview.net/forum?id=yz7fL5vfpn" class="bp">paper</a>  <a href="https://github.com/yupeijei1997/WildToolBench" class="bc">code</a> Benchmarking LLM Tool-Use in the Wild
-    -   <span class="conf-arxiv">arXiv 2026</span> <a href="https://arxiv.org/abs/2602.02039" class="bp">paper</a> <a href="https://github.com/thinkwee/DDR_Bench" class="bc">code</a> Hunt Instead of Wait: Evaluating Deep Data Research on Large Language Models♦️
-    -   <span class="conf-arxiv">arXiv 2026</span> <a href="https://arxiv.org/abs/2603.02218" class="bp">paper</a> Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain♦️
-    -   <span class="conf-arxiv">arXiv 2026</span> <a href="https://arxiv.org/abs/2602.18145" class="bp">paper</a> Detecting Contextual Hallucinations in LLMs with Frequency-Aware Attention
+    -   <span class="conf-icml">ICML 2026</span> <a href="https://arxiv.org/abs/2602.02039" class="bp">paper</a> <a href="https://github.com/thinkwee/DDR_Bench" class="bc">code</a> Hunt Instead of Wait: Evaluating Deep Data Research on Large Language Models♦️
+    -   <span class="conf-icml">ICML 2026</span> <a href="https://arxiv.org/abs/2603.02218" class="bp">paper</a> Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain♦️
+    -   <span class="conf-icml">ICML 2026</span> <a href="https://arxiv.org/abs/2602.18145" class="bp">paper</a> Detecting Contextual Hallucinations in LLMs with Frequency-Aware Attention
     -   <span class="conf-emnlp">EMNLP 2025</span> <a href="https://arxiv.org/abs/2505.16022" class="bp">paper</a>  <a href="https://github.com/thinkwee/NOVER" class="bc">code</a> NOVER: Incentive Training for Language Models via Verifier-Free Reinforcement Learning♦️
     -   <span class="conf-neurips">NeurIPS 2024</span> <a href="https://arxiv.org/abs/2406.14928" class="bp">paper</a>  <a href="https://github.com/thinkwee/iAgents" class="bc">code</a> Autonomous Agents for Collaborative Task under Information Asymmetry♦️
 -  LLM-based Multi-Agents System:
