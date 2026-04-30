@@ -555,7 +555,7 @@ html: true
 </style>
 
 <p align="center">
-  <img src="/img/bg_blog.jpg" alt="I'm in London" width="600">
+  <img src="/img/bg_blog.png" alt="I'm in London" width="600">
 </p>
 <center>Fun Fact: My giraffe icon isn't random - I actually have a long neck! </center>
 <center>See for yourself and meet other talented researchers on our <a href="https://kclnlp.github.io/team.html" target="_blank" rel="noopener">KCLNLP team page</a>.</center>
