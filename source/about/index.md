@@ -68,13 +68,8 @@ html: true
     // Get a reference to the page views - update to match your database structure
     const pvRef = firebase.database().ref('pageViews');
 
-    // Update page views
-    pvRef.transaction(currentViews => {
-      return (currentViews || 10000) + 1;  // Set default to 10000 to match your initial value
-    });
-
-    // Display page views: count up from 0 once the counter is visible AND a real
-    // value has arrived, then reflect later live updates directly.
+    // Display page views: count up from 0 once the counter is visible AND the real
+    // committed value has arrived, then reflect later live updates directly.
     const pageViewsElement = document.getElementById('page-views');
     let pvValue = 0;
     let pvVisible = false;
@@ -88,13 +83,24 @@ html: true
 
     whenVisible(pageViewsElement, function () { pvVisible = true; tryStartPv(); });
 
-    pvRef.on('value', (snapshot) => {
-      pvValue = snapshot.val() || 0;
-      if (pvStarted) {
-        if (pageViewsElement) pageViewsElement.textContent = pvValue;
-      } else {
-        tryStartPv();
+    // Increment, then animate to the COMMITTED server value. We must use the
+    // transaction's completion snapshot, not `.on('value')`: the SDK fires an
+    // optimistic local event (10000 default + 1 = 10001) before fetching the real
+    // value, and animating to that stale number is what showed "10001".
+    pvRef.transaction(
+      (currentViews) => (currentViews || 10000) + 1,
+      (error, committed, snapshot) => {
+        if (snapshot) {
+          pvValue = snapshot.val() || 0;
+          tryStartPv();
+        }
       }
+    );
+
+    // Reflect live updates from other visitors, but only after the count-up began.
+    pvRef.on('value', (snapshot) => {
+      if (!pvStarted) return;
+      if (pageViewsElement) pageViewsElement.textContent = snapshot.val() || 0;
     });
   });
 
