@@ -9,6 +9,46 @@ html: true
 
 <!-- Initialize Firebase and PV counter -->
 <script>
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Count up from 0 to target with an easeOut curve; respects reduced-motion.
+  function animateCount(el, target, duration, formatter) {
+    formatter = formatter || function (v) { return String(Math.round(v)); };
+    target = Number(target) || 0;
+    if (prefersReducedMotion || target <= 0) {
+      el.textContent = formatter(target);
+      return;
+    }
+    var startTime = null;
+    function step(now) {
+      if (startTime === null) startTime = now;
+      var p = Math.min((now - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = formatter(eased * target);
+      if (p < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = formatter(target);
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Run cb once, the first time el scrolls into the viewport (immediately if unsupported).
+  function whenVisible(el, cb) {
+    if (!el || !('IntersectionObserver' in window)) { cb(); return; }
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          io.disconnect();
+          cb();
+          return;
+        }
+      }
+    }, { threshold: 0.25 });
+    io.observe(el);
+  }
+
   // Wait for DOM to be fully loaded
   document.addEventListener('DOMContentLoaded', function() {
     // Your web app's Firebase configuration
@@ -33,11 +73,27 @@ html: true
       return (currentViews || 10000) + 1;  // Set default to 10000 to match your initial value
     });
 
-    // Display page views
+    // Display page views: count up from 0 once the counter is visible AND a real
+    // value has arrived, then reflect later live updates directly.
+    const pageViewsElement = document.getElementById('page-views');
+    let pvValue = 0;
+    let pvVisible = false;
+    let pvStarted = false;
+
+    function tryStartPv() {
+      if (pvStarted || !pvVisible || !pvValue || !pageViewsElement) return;
+      pvStarted = true;
+      animateCount(pageViewsElement, pvValue, 6000);
+    }
+
+    whenVisible(pageViewsElement, function () { pvVisible = true; tryStartPv(); });
+
     pvRef.on('value', (snapshot) => {
-      const pageViewsElement = document.getElementById('page-views');
-      if (pageViewsElement) {
-        pageViewsElement.textContent = snapshot.val() || 0;
+      pvValue = snapshot.val() || 0;
+      if (pvStarted) {
+        if (pageViewsElement) pageViewsElement.textContent = pvValue;
+      } else {
+        tryStartPv();
       }
     });
   });
@@ -57,11 +113,32 @@ html: true
       if (typeof count !== 'number' || isNaN(count)) return 'N/A';
       if (count >= 1000000) return (count / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
       if (count >= 1000) return (count / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
-      return String(count);
+      return String(Math.round(count));
     }
 
-    // Use localStorage for persistent caching across page loads
-    var CACHE_KEY = 'github_stars_cache';
+    // Render a star count into `el` as a link, counting up from 0 to the value.
+    // `value` may be a number (animated) or a string like 'N/A' (shown as-is).
+    function showStars(el, repo, value, statusClass, title) {
+      var url = 'https://www.star-history.com/#' + repo + '&Date';
+      var a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.className = 'dynamic-value';
+      a.title = title;
+      el.innerHTML = '';
+      el.appendChild(a);
+      el.classList.add(statusClass);
+      if (typeof value === 'number') {
+        a.textContent = formatStars(0);
+        whenVisible(el, function () { animateCount(a, value, 4800, formatStars); });
+      } else {
+        a.textContent = value;
+      }
+    }
+
+    // Use localStorage for persistent caching across page loads.
+    // Stores raw star counts (v2); v1 stored pre-formatted strings, so the key bump drops it.
+    var CACHE_KEY = 'github_stars_cache_v2';
     var CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
     
     function getCache() {
@@ -115,27 +192,25 @@ html: true
           return res.json(); 
         })
         .then(function(data) {
-          var value = (data && typeof data.stargazers_count === 'number') ? formatStars(data.stargazers_count) : 'N/A';
-          cache[repo] = value;
-          var starHistoryUrl = 'https://www.star-history.com/#' + repo + '&Date';
-          el.innerHTML = '<a href="' + starHistoryUrl + '" target="_blank" class="dynamic-value" title="Live data from GitHub - Click to view star history">' + value + '</a>';
-          el.classList.add('github-stars-loaded');
-          setCache(cache);
+          var count = (data && typeof data.stargazers_count === 'number') ? data.stargazers_count : null;
+          if (count !== null) {
+            cache[repo] = count;
+            setCache(cache);
+          }
+          showStars(el, repo, count === null ? 'N/A' : count, 'github-stars-loaded', 'Live data from GitHub - Click to view star history');
         })
         .catch(function(err) {
           console.warn('Failed to fetch stars for ' + repo + ':', err.message);
           // Use fallback values if available
           var fallbackValue;
           if (repo === 'OpenBMB/ChatDev') {
-            fallbackValue = '28k';
+            fallbackValue = 28000;
           } else if (repo === 'thinkwee/AgentsMeetRL') {
-            fallbackValue = '490';
+            fallbackValue = 490;
           } else {
             fallbackValue = 'N/A';
           }
-          var starHistoryUrl = 'https://www.star-history.com/#' + repo + '&Date';
-          el.innerHTML = '<a href="' + starHistoryUrl + '" target="_blank" class="dynamic-value fallback" title="Cached data (API rate limited) - Click to view star history">' + fallbackValue + '</a>';
-          el.classList.add('github-stars-fallback');
+          showStars(el, repo, fallbackValue, 'github-stars-fallback', 'Cached data (API rate limited) - Click to view star history');
         })
         .finally(function() {
           pendingRequests--;
@@ -152,10 +227,8 @@ html: true
       el.innerHTML = '<span class="dynamic-value loading">...</span>';
 
       // Check if we have cached value
-      if (cache[repo]) {
-        var starHistoryUrl = 'https://www.star-history.com/#' + repo + '&Date';
-        el.innerHTML = '<a href="' + starHistoryUrl + '" target="_blank" class="dynamic-value cached" title="Cached data from GitHub - Click to view star history">' + cache[repo] + '</a>';
-        el.classList.add('github-stars-cached');
+      if (cache[repo] !== undefined) {
+        showStars(el, repo, cache[repo], 'github-stars-cached', 'Cached data from GitHub - Click to view star history');
         return;
       }
 
@@ -173,7 +246,7 @@ html: true
 
 <style>
     .news-list {
-        max-height: 400px;
+        max-height: 460px;
         overflow-y: auto;
         list-style: none;
         padding: 0;
@@ -259,7 +332,7 @@ html: true
         margin-bottom: 5px; /* 调整按钮之间的下外边距 */
         border-radius: 8px; /* Slight border radius for a softer look */
         border: 1px solid #CCCCCC; /* Border color same as background color */
-        transition: background-color 0.3s ease; /* Smooth transition on hover */
+        transition: all 0.3s ease; /* Smooth transition on hover */
     }
 
     .bc:hover {
@@ -279,7 +352,7 @@ html: true
         color: black;
         border-radius: 8px; /* Slight border radius for a softer look */
         border: 1px solid #CCCCCC; /* Border color same as background color */
-        transition: background-color 0.3s ease; /* Smooth transition on hover */
+        transition: all 0.3s ease; /* Smooth transition on hover */
     }
 
     .bp:hover {
@@ -288,259 +361,40 @@ html: true
         border: 1px solid transparent; /* 将边框颜色设置为透明 */
     }
 
-    /* Conference button styles - different colors for different conferences */
-    .conf-neurips {
+    /* Conference badges — shared base; per-conference accent on hover */
+    [class^="conf-"] {
         display: inline-block;
         padding: 0px 5px;
         font-size: 14px;
         text-align: center;
         width: 110px;
         text-decoration: none;
-        background-color: #FFFFFF !important; /* White background by default */
+        background-color: #FFFFFF !important;
         color: black !important;
         margin-bottom: 5px;
         margin-right: 5px;
         border-radius: 8px;
         border: 1px solid #CCCCCC;
-        transition: background-color 0.3s ease;
+        transition: all 0.3s ease;
         cursor: default;
     }
 
-    .conf-neurips:hover {
-        background-color: #8668a3 !important; /* Red for NeurIPS on hover */
+    [class^="conf-"]:hover {
         color: white !important;
         border: 1px solid transparent;
     }
 
-    .conf-iclr {
-        display: inline-block;
-        padding: 0px 5px;
-        font-size: 14px;
-        text-align: center;
-        width: 110px;
-        text-decoration: none;
-        background-color: #FFFFFF !important; /* White background by default */
-        color: black !important;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        border-radius: 8px;
-        border: 1px solid #CCCCCC;
-        transition: background-color 0.3s ease;
-        cursor: default;
-    }
-
-    .conf-iclr:hover {
-        background-color: #6fca62 !important; /* Teal for ICLR on hover */
-        color: white !important;
-        border: 1px solid transparent;
-    }
-
-    .conf-icml {
-        display: inline-block;
-        padding: 0px 5px;
-        font-size: 14px;
-        text-align: center;
-        width: 110px;
-        text-decoration: none;
-        background-color: #FFFFFF !important; /* White background by default */
-        color: black !important;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        border-radius: 8px;
-        border: 1px solid #CCCCCC;
-        transition: background-color 0.3s ease;
-        cursor: default;
-    }
-
-    .conf-icml:hover {
-        background-color: #4a90e2 !important; /* Blue for ICML on hover */
-        color: white !important;
-        border: 1px solid transparent;
-    }
-
-    .conf-acl {
-        display: inline-block;
-        padding: 0px 5px;
-        font-size: 14px;
-        text-align: center;
-        width: 110px;
-        text-decoration: none;
-        background-color: #FFFFFF !important; /* White background by default */
-        color: black !important;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        border-radius: 8px;
-        border: 1px solid #CCCCCC;
-        transition: background-color 0.3s ease;
-        cursor: default;
-    }
-
-    .conf-acl:hover {
-        background-color: #f14950 !important; /* Blue for ACL on hover */
-        color: white !important;
-        border: 1px solid transparent;
-    }
-
-    .conf-aaai {
-        display: inline-block;
-        padding: 0px 5px;
-        font-size: 14px;
-        text-align: center;
-        width: 110px;
-        text-decoration: none;
-        background-color: #FFFFFF !important; /* White background by default */
-        color: black !important;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        border-radius: 8px;
-        border: 1px solid #CCCCCC;
-        transition: background-color 0.3s ease;
-        cursor: default;
-    }
-
-    .conf-aaai:hover {
-        background-color: #5b90a8 !important; /* Orange for AAAI on hover */
-        color: white !important;
-        border: 1px solid transparent;
-    }
-
-    .conf-conll {
-        display: inline-block;
-        padding: 0px 5px;
-        font-size: 14px;
-        text-align: center;
-        width: 110px;
-        text-decoration: none;
-        background-color: #FFFFFF !important; /* White background by default */
-        color: black !important;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        border-radius: 8px;
-        border: 1px solid #CCCCCC;
-        transition: background-color 0.3s ease;
-        cursor: default;
-    }
-
-    .conf-conll:hover {
-        background-color: #f14950 !important; /* Purple for CoNLL on hover */
-        color: white !important;
-        border: 1px solid transparent;
-    }
-
-    .conf-emnlp {
-        display: inline-block;
-        padding: 0px 5px;
-        font-size: 14px;
-        text-align: center;
-        width: 110px;
-        text-decoration: none;
-        background-color: #FFFFFF !important; /* White background by default */
-        color: black !important;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        border-radius: 8px;
-        border: 1px solid #CCCCCC;
-        transition: background-color 0.3s ease;
-        cursor: default;
-    }
-
-    .conf-emnlp:hover {
-        background-color: #f14950 !important; /* Green for EMNLP on hover */
-        color: white !important;
-        border: 1px solid transparent;
-    }
-
-    .conf-sigir {
-        display: inline-block;
-        padding: 0px 5px;
-        font-size: 14px;
-        text-align: center;
-        width: 110px;
-        text-decoration: none;
-        background-color: #FFFFFF !important; /* White background by default */
-        color: black !important;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        border-radius: 8px;
-        border: 1px solid #CCCCCC;
-        transition: background-color 0.3s ease;
-        cursor: default;
-    }
-
-    .conf-sigir:hover {
-        background-color: #e6a800 !important; /* Dark red for SIGIR on hover */
-        color: white !important;
-        border: 1px solid transparent;
-    }
-
-    .conf-ranlp {
-        display: inline-block;
-        padding: 0px 5px;
-        font-size: 14px;
-        text-align: center;
-        width: 110px;
-        text-decoration: none;
-        background-color: #FFFFFF !important; /* White background by default */
-        color: black !important;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        border-radius: 8px;
-        border: 1px solid #CCCCCC;
-        transition: background-color 0.3s ease;
-        cursor: default;
-    }
-
-    .conf-ranlp:hover {
-        background-color: #f14950  !important; /* Dark blue for RANLP on hover */
-        color: white !important;
-        border: 1px solid transparent;
-    }
-
-    .conf-ccis {
-        display: inline-block;
-        padding: 0px 5px;
-        font-size: 14px;
-        text-align: center;
-        width: 110px;
-        text-decoration: none;
-        background-color: #FFFFFF !important; /* White background by default */
-        color: black !important;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        border-radius: 8px;
-        border: 1px solid #CCCCCC;
-        transition: background-color 0.3s ease;
-        cursor: default;
-    }
-
-    .conf-ccis:hover {
-        background-color: #f14950 !important; /* Gray for CCIS on hover */
-        color: white !important;
-        border: 1px solid transparent;
-    }
-
-    .conf-arxiv {
-        display: inline-block;
-        padding: 0px 5px;
-        font-size: 14px;
-        text-align: center;
-        width: 110px;
-        text-decoration: none;
-        background-color: #FFFFFF !important; /* White background by default */
-        color: black !important;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        border-radius: 8px;
-        border: 1px solid #CCCCCC;
-        transition: background-color 0.3s ease;
-        cursor: default;
-    }
-
-    .conf-arxiv:hover {
-        background-color: #c45569 !important; /* Light gray for arXiv on hover */
-        color: white !important;
-        border: 1px solid transparent;
-    }
+    .conf-neurips:hover { background-color: #8668a3 !important; }
+    .conf-iclr:hover    { background-color: #6fca62 !important; }
+    .conf-icml:hover    { background-color: #4a90e2 !important; }
+    .conf-acl:hover     { background-color: #f14950 !important; }
+    .conf-aaai:hover    { background-color: #5b90a8 !important; }
+    .conf-conll:hover   { background-color: #f14950 !important; }
+    .conf-emnlp:hover   { background-color: #f14950 !important; }
+    .conf-sigir:hover   { background-color: #e6a800 !important; }
+    .conf-ranlp:hover   { background-color: #f14950 !important; }
+    .conf-ccis:hover    { background-color: #f14950 !important; }
+    .conf-arxiv:hover   { background-color: #c45569 !important; }
 
     .pv-counter {
         display: inline;
@@ -575,6 +429,13 @@ html: true
     span.dynamic-value.loading {
         cursor: default;
     }
+
+    /* Avoid ugly inter-word gaps from justified text when long titles wrap */
+    .post-body ul,
+    .post-body ol,
+    .post-body li {
+        text-align: left;
+    }
 </style>
 
 <p align="center">
@@ -587,19 +448,19 @@ html: true
 
 <center>
   <style>
-    .libutton { 
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 0px 12px; 
-      text-align: center; 
-      outline: none; 
-      text-decoration: none !important; 
+    .libutton, .gsbutton, .ghbutton, .gmbutton, .aclbutton {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0px 12px;
+      text-align: center;
+      outline: none;
+      text-decoration: none !important;
       color: black !important;
       background-color: #FFFFFF;
       border: 1px solid #CCCCCC;
-      border-radius: 8px; 
-      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      border-radius: 8px;
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-size: 14px;
       font-weight: 500;
       height: 32px;
@@ -607,141 +468,18 @@ html: true
       cursor: pointer;
       margin: 0 5px;
     }
-    
-    .libutton:hover {
-      background: linear-gradient(135deg, #8fa6c4 0%, #3d5470 100%);
+
+    .libutton:hover, .gsbutton:hover, .ghbutton:hover, .gmbutton:hover, .aclbutton:hover {
       color: white !important;
       border: 1px solid transparent;
     }
-    
-    .libutton:active {
-      transform: translateY(0);
-    }
-    
-    .gsbutton { 
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 0px 12px; 
-      text-align: center; 
-      outline: none; 
-      text-decoration: none !important; 
-      color: black !important;
-      background-color: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      border-radius: 8px; 
-      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-      font-size: 14px;
-      font-weight: 500;
-      height: 32px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      margin: 0 5px;
-    }
-    
-    .gsbutton:hover {
-      background: linear-gradient(135deg, #6090d4 0%, #2d4a8a 100%);
-      color: white !important;
-      border: 1px solid transparent;
-    }
-    
-    .gsbutton:active {
-      transform: translateY(0);
-    }
-    
-    .ghbutton { 
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 0px 12px; 
-      text-align: center; 
-      outline: none; 
-      text-decoration: none !important; 
-      color: black !important;
-      background-color: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      border-radius: 8px; 
-      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-      font-size: 14px;
-      font-weight: 500;
-      height: 32px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      margin: 0 5px;
-    }
-    
-    .ghbutton:hover {
-      background: linear-gradient(135deg, #706a90 0%, #2a2a2a 100%);
-      color: white !important;
-      border: 1px solid transparent;
-    }
-    
-    .ghbutton:active {
-      transform: translateY(0);
-    }
-    
-    .gmbutton { 
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 0px 12px; 
-      text-align: center; 
-      outline: none; 
-      text-decoration: none !important; 
-      color: black !important;
-      background-color: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      border-radius: 8px; 
-      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-      font-size: 14px;
-      font-weight: 500;
-      height: 32px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      margin: 0 5px;
-    }
-    
-    .gmbutton:hover {
-      background: linear-gradient(135deg, #d47570 0%, #a03838 100%);
-      color: white !important;
-      border: 1px solid transparent;
-    }
-    
-    .gmbutton:active {
-      transform: translateY(0);
-    }
-    
-    .aclbutton { 
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 0px 12px; 
-      text-align: center; 
-      outline: none; 
-      text-decoration: none !important; 
-      color: black !important;
-      background-color: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      border-radius: 8px; 
-      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-      font-size: 14px;
-      font-weight: 500;
-      height: 32px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      margin: 0 5px;
-    }
-    
-    .aclbutton:hover {
-      background: linear-gradient(135deg, #f07a7f 0%, #c53a40 100%);
-      color: white !important;
-      border: 1px solid transparent;
-    }
-    
-    .aclbutton:active {
-      transform: translateY(0);
-    }
-    
+
+    .libutton:hover  { background: linear-gradient(135deg, #8fa6c4 0%, #3d5470 100%); }
+    .gsbutton:hover  { background: linear-gradient(135deg, #6090d4 0%, #2d4a8a 100%); }
+    .ghbutton:hover  { background: linear-gradient(135deg, #706a90 0%, #2a2a2a 100%); }
+    .gmbutton:hover  { background: linear-gradient(135deg, #d47570 0%, #a03838 100%); }
+    .aclbutton:hover { background: linear-gradient(135deg, #f07a7f 0%, #c53a40 100%); }
+
     @media (max-width: 768px) {
       .libutton, .gsbutton, .ghbutton, .gmbutton, .aclbutton {
         padding: 0px 10px;
@@ -866,12 +604,7 @@ html: true
 </li>
 <li class="news-item">
 <span class="news-date">2026.04.22</span>
-<span class="news-content">🚀 We launched <span class=news-highlight><a href="https://github.com/thinkwee/HiMe" target="_blank">HiMe</a></span>, a self-hosted, fully local, secure and open-source one-stop personal health AI agent platform.
-<ul>
-<li>Real-time wearable data ingestion (Apple Watch + iPhone), with autonomous analysis and proactive insights 7/24.</li>
-<li>Evidence-backed chat over Telegram/Feishu, iOS/watchOS companion apps, and strong self-hosted privacy posture.</li>
-</ul>
-</span> 
+<span class="news-content">🚀 We launched <a href="https://github.com/thinkwee/HiMe" target="_blank">HiMe</a>, a self-hosted, fully local, open-source one-stop personal health AI agent platform (<span class="news-highlight"><span id="hime-stars" data-repo="thinkwee/HiMe">...</span> stars!</span>)</span>
 </li>
 <li class="news-item">
 <span class="news-date">2026.04.28</span>
@@ -879,11 +612,14 @@ html: true
 </li>
 <li class="news-item">
 <span class="news-date">2026.04.30</span>
-<span class="news-content">🇰🇷 3 papers accepted by <span class="news-highlight">ICML 2026</span>!
+<span class="news-content">🇰🇷 3 papers accepted by <span class="news-highlight">ICML 2026</span>, on Deep Data Research, self-evolving agents, and hallucination detection!</span>
+</li>
+<li class="news-item">
+<span class="news-date">2026.06.22</span>
+<span class="news-content">🛡️ 2 new papers on <span class="news-highlight">AI Safety in the Wild</span>!
 <ul>
-<li><strong>Deep Data Research</strong>: We introduce DDR as an open-ended setting where LLMs must proactively mine raw databases for insights, and build DDR-Bench to evaluate investigatory intelligence beyond execution-only task solving.</li>
-<li><strong>Self-Evolve</strong>: We show self-play plateaus unless each iteration increases learnable information, and propose a triadic Proposer-Solver-Verifier pipeline with asymmetric co-evolution, capacity growth, and proactive information seeking.</li>
-<li><strong>Hallucination Detection</strong>: We model attention as frequency-domain signals and find hallucinated tokens carry stronger high-frequency energy, enabling a lightweight detector that improves contextual hallucination detection.</li>
+<li><a href="https://arxiv.org/abs/2606.04075" target="_blank">LLMs Hack Rewards, and Society</a> (featured in <a href="https://www.science.org/content/article/ai-models-have-troubling-knack-discovering-legal-loopholes" target="_blank">Science News</a>): RL-trained LLMs exploit gaps in societal rules just like they hack reward functions, which we study in SocioHack, a sandbox of 72 environments.</li>
+<li><a href="https://arxiv.org/abs/2606.09890" target="_blank">PreAct-Bench</a>: a benchmark of 1,000 paired trajectories testing whether agents can foresee unethical outcomes before they happen, for proactive predictive monitoring.</li>
 </ul>
 </span>
 </li>
@@ -892,8 +628,8 @@ html: true
 # Services
 - Program Committee Member (scaling reviewers is all we need...)
     - ACL(2021,2022,2024,2026)
-    - EMNLP(2020,2023,2024,2025)
-    - NeurIPS(2024,2025)
+    - EMNLP(2020,2023,2024,2025,2026)
+    - NeurIPS(2024,2025,2026)
     - ICLR(2024,2025,2026)
     - CVPR(2025)
     - AAAI(2025)
@@ -910,9 +646,11 @@ html: true
 - ♦️ denotes first/co-first author.
 - ♣️ denotes workshop/findings papers.
 
-# 
+---
 
 -   Agentic AI in the Wild:
+    -   <span class="conf-arxiv">arXiv 2026</span> <a href="https://arxiv.org/abs/2606.04075" class="bp">paper</a> <a href="https://github.com/thinkwee/SocioHack" class="bc">code</a> Large Language Models Hack Rewards, and Society♦️
+    -   <span class="conf-arxiv">arXiv 2026</span> <a href="https://arxiv.org/abs/2606.09890" class="bp">paper</a> <a href="https://github.com/oyarsa/preact-bench" class="bc">code</a> PreAct-Bench: Benchmarking Predictive Monitoring in LLMs
     -   <span class="conf-iclr">ICLR 2026</span> <a href="https://openreview.net/forum?id=yz7fL5vfpn" class="bp">paper</a>  <a href="https://github.com/yupeijei1997/WildToolBench" class="bc">code</a> Benchmarking LLM Tool-Use in the Wild
     -   <span class="conf-icml">ICML 2026</span> <a href="https://arxiv.org/abs/2602.02039" class="bp">paper</a> <a href="https://github.com/thinkwee/DDR_Bench" class="bc">code</a> Hunt Instead of Wait: Evaluating Deep Data Research on Large Language Models♦️
     -   <span class="conf-icml">ICML 2026</span> <a href="https://arxiv.org/abs/2603.02218" class="bp">paper</a> Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain♦️
