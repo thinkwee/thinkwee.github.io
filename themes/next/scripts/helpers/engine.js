@@ -28,7 +28,10 @@ hexo.extend.helper.register('next_js', function(file, {
     version : next_version,
     file    : 'source/js/' + file,
     minified: 'source/js/' + file.replace(/\.js$/, '.min.js'),
-    local   : this.url_for(`${this.theme.js}/${file}`),
+    // Append theme version to local assets so a theme upgrade busts browser/CDN
+    // cache (the URL is otherwise constant across versions, which leaves stale
+    // JS running against new page config -> "Cannot read properties of undefined").
+    local   : this.url_for(`${this.theme.js}/${file}`) + '?v=' + next_version,
     custom  : custom_cdn_url
   });
   const src = links[internal] || links.local;
