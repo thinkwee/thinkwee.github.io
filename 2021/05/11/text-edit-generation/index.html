@@ -162,7 +162,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#levenshtein-transformer"><span class="nav-number">1.</span> <span class="nav-text">Levenshtein Transformer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-definition"><span class="nav-number">1.1.</span> <span class="nav-text">Problem Definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#training"><span class="nav-number">1.2.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inference"><span class="nav-number">1.3.</span> <span class="nav-text">Inference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiments"><span class="nav-number">1.4.</span> <span class="nav-text">Experiments</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#editnts"><span class="nav-number">2.</span> <span class="nav-text">EditNTS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lasertagger"><span class="nav-number">3.</span> <span class="nav-text">LaserTagger</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#text-editing-as-tagging"><span class="nav-number">3.1.</span> <span class="nav-text">Text Editing as Tagging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiment"><span class="nav-number">3.2.</span> <span class="nav-text">Experiment</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pie"><span class="nav-number">4.</span> <span class="nav-text">PIE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#felix"><span class="nav-number">5.</span> <span class="nav-text">Felix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#summary"><span class="nav-number">6.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#levenshtein-transformer"><span class="nav-number">7.</span> <span class="nav-text">Levenshtein Transformer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E9%97%AE%E9%A2%98"><span class="nav-number">7.1.</span> <span class="nav-text">定义问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">7.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E6%96%AD"><span class="nav-number">7.3.</span> <span class="nav-text">推断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">7.4.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#editnts"><span class="nav-number">8.</span> <span class="nav-text">EditNTS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lasertagger"><span class="nav-number">9.</span> <span class="nav-text">LaserTagger</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#text-editing-as-tagging"><span class="nav-number">9.1.</span> <span class="nav-text">Text Editing as Tagging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C-1"><span class="nav-number">9.2.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pie"><span class="nav-number">10.</span> <span class="nav-text">PIE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#felix"><span class="nav-number">11.</span> <span class="nav-text">Felix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">12.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Levenshtein-Transformer"><span class="nav-number">1.</span> <span class="nav-text">Levenshtein Transformer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Definition"><span class="nav-number">1.1.</span> <span class="nav-text">Problem Definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training"><span class="nav-number">1.2.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inference"><span class="nav-number">1.3.</span> <span class="nav-text">Inference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">1.4.</span> <span class="nav-text">Experiments</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EditNTS"><span class="nav-number">2.</span> <span class="nav-text">EditNTS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LaserTagger"><span class="nav-number">3.</span> <span class="nav-text">LaserTagger</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-Editing-as-Tagging"><span class="nav-number">3.1.</span> <span class="nav-text">Text Editing as Tagging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment"><span class="nav-number">3.2.</span> <span class="nav-text">Experiment</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PIE"><span class="nav-number">4.</span> <span class="nav-text">PIE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Felix"><span class="nav-number">5.</span> <span class="nav-text">Felix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number">6.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Levenshtein-Transformer"><span class="nav-number">7.</span> <span class="nav-text">Levenshtein Transformer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E9%97%AE%E9%A2%98"><span class="nav-number">7.1.</span> <span class="nav-text">定义问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">7.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E6%96%AD"><span class="nav-number">7.3.</span> <span class="nav-text">推断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">7.4.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EditNTS"><span class="nav-number">8.</span> <span class="nav-text">EditNTS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LaserTagger"><span class="nav-number">9.</span> <span class="nav-text">LaserTagger</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-Editing-as-Tagging"><span class="nav-number">9.1.</span> <span class="nav-text">Text Editing as Tagging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C-1"><span class="nav-number">9.2.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PIE"><span class="nav-number">10.</span> <span class="nav-text">PIE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Felix"><span class="nav-number">11.</span> <span class="nav-text">Felix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">12.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -308,507 +308,181 @@
     
     <div class="post-body" itemprop="articleBody"><p><img data-src="https://i.mji.rip/2025/07/16/c762f093907fbcdae6c6077555cb0552.png" width="500"/></p>
 <ul>
-<li>Record the methods of editing seq2seq in recent years, which have
-the advantages of high efficiency (partially autoregressive or
-non-autoregressive decoding) and less data hungry (small output
-vocabulary) for tasks with the same language input and output and minor
-changes (error correction, simplification, summarization).</li>
-<li>Mainly read five papers, sorted by their publication date on arXiv:
-<ul>
+<li>Record the methods of editing seq2seq in recent years, which have the advantages of high efficiency (partially autoregressive or non-autoregressive decoding) and less data hungry (small output vocabulary) for tasks with the same language input and output and minor changes (error correction, simplification, summarization).</li>
+<li>Mainly read five papers, sorted by their publication date on arXiv:<ul>
 <li>(LevT, Facebook) Levenshtein Transformer</li>
-<li>(Huawei) EditNTS: An Neural Programmer-Interpreter Model for
-Sentence Simplification through Explicit Editing</li>
-<li>(LaserTagger, Google) Encode, Tag, Realize: High-Precision Text
-Editing</li>
-<li>(PIE) Parallel Iterative Edit Models for Local Sequence
-Transduction</li>
-<li>(Google) Felix: Flexible Text Editing Through Tagging and
-Insertion</li>
-</ul></li>
+<li>(Huawei) EditNTS: An Neural Programmer-Interpreter Model for Sentence Simplification through Explicit Editing</li>
+<li>(LaserTagger, Google) Encode, Tag, Realize: High-Precision Text Editing</li>
+<li>(PIE) Parallel Iterative Edit Models for Local Sequence Transduction</li>
+<li>(Google) Felix: Flexible Text Editing Through Tagging and Insertion</li>
+</ul>
+</li>
 </ul>
 <span id="more"></span>
 <style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
-<div id="en-content" class="lang-content" style="display: block;"><h1 id="levenshtein-transformer">Levenshtein Transformer</h1>
-<ul>
-<li>Contributions
-<ul>
-<li>Proposed an edit-based transformer using insertion and deletion
-operations, improving efficiency by 5 times.</li>
-<li>Designed a dual-policy reinforcement learning training method,
-addressing the complementarity of insertion and deletion.</li>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="Levenshtein-Transformer"><a href="#Levenshtein-Transformer" class="headerlink" title="Levenshtein Transformer"></a>Levenshtein Transformer</h1><ul>
+<li>Contributions<ul>
+<li>Proposed an edit-based transformer using insertion and deletion operations, improving efficiency by 5 times.</li>
+<li>Designed a dual-policy reinforcement learning training method, addressing the complementarity of insertion and deletion.</li>
 <li>Unified the tasks of text generation and text refinement.</li>
-</ul></li>
 </ul>
-<h2 id="problem-definition">Problem Definition</h2>
+</li>
+</ul>
+<h2 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h2><ul>
+<li><p>The authors unify text generation and text refinement into a single Markov process, defined by the tuple (Y, A, $\xi$, R, $y_0$) (sequence, action set, environment, reward function, initial sequence).</p>
 <ul>
-<li><p>The authors unify text generation and text refinement into a
-single Markov process, defined by the tuple (Y, A, <span
-class="math inline">\(\xi\)</span>, R, <span
-class="math inline">\(y_0\)</span>) (sequence, action set, environment,
-reward function, initial sequence).</p>
-<ul>
-<li>Y represents the text sequence, with size <span
-class="math inline">\(V^N\)</span>.</li>
-<li><span class="math inline">\(\xi\)</span> is the environment. At each
-decoding step, the agent receives a sequence y as input, takes an action
-a, and then receives a reward r.</li>
-<li>The reward function is defined as the distance between the current
-sequence and the ground truth sequence, using Levenshtein distance (edit
-distance) in this case.</li>
-<li>The policy the agent learns is a mapping from sequence y to a
-probability distribution over actions P(A).</li>
-<li>It is worth noting that <span class="math inline">\(y_0\)</span> can
-be an empty sequence, representing text generation, or a previously
-generated sequence, representing text refinement.</li>
-</ul></li>
+<li>Y represents the text sequence, with size $V^N$.</li>
+<li>$\xi$ is the environment. At each decoding step, the agent receives a sequence y as input, takes an action a, and then receives a reward r.</li>
+<li>The reward function is defined as the distance between the current sequence and the ground truth sequence, using Levenshtein distance (edit distance) in this case.</li>
+<li>The policy the agent learns is a mapping from sequence y to a probability distribution over actions P(A).</li>
+<li>It is worth noting that $y_0$ can be an empty sequence, representing text generation, or a previously generated sequence, representing text refinement.</li>
+</ul>
+</li>
 <li><p>Actions</p>
 <ul>
-<li>Deletion operation: For each token in the sequence, perform binary
-classification to decide whether it should be deleted. The first and
-last tokens are retained without deletion checks to avoid breaking the
-sequence boundaries.</li>
-<li>Insertion operation: The insertion operation is performed in two
-steps: first, predict the insert position by performing a multi-class
-classification on each pair of adjacent token positions (the number of
-insert positions). It is important to note that the input includes these
-two tokens. Then, for each predicted position, a classification is done
-over a vocabulary V to generate the specific word to insert.</li>
-</ul></li>
-<li><p>The entire process is divided into three steps: input sequence
-<span class="math inline">\(y_0\)</span>, perform deletion operations in
-parallel at all positions in the sequence to obtain <span
-class="math inline">\(y_1\)</span>; for <span
-class="math inline">\(y_1\)</span>, predict insert positions at all
-positions in the sequence, add placeholders according to the predictions
-to obtain <span class="math inline">\(y_2\)</span>; for all placeholders
-in <span class="math inline">\(y_2\)</span>, predict specific words to
-generate the final result, completing one iteration.</p></li>
-<li><p>The three operations share a single transformer, and to reduce
-complexity (turning one autoregressive text generation round into three
-non-autoregressive operations), the classifiers for deletion and insert
-position predictions are attached to the middle transformer blocks. The
-classifier for text generation is only attached to the final transformer
-block, as the first two tasks are relatively simple and do not require
-complex feature extraction.</p></li>
+<li>Deletion operation: For each token in the sequence, perform binary classification to decide whether it should be deleted. The first and last tokens are retained without deletion checks to avoid breaking the sequence boundaries.</li>
+<li>Insertion operation: The insertion operation is performed in two steps: first, predict the insert position by performing a multi-class classification on each pair of adjacent token positions (the number of insert positions). It is important to note that the input includes these two tokens. Then, for each predicted position, a classification is done over a vocabulary V to generate the specific word to insert.</li>
 </ul>
-<h2 id="training">Training</h2>
-<ul>
-<li><p>The training process follows imitation learning. While there are
-many reinforcement learning concepts, it essentially involves perturbing
-the data and having the model learn to recover, still following Maximum
-Likelihood Estimation (MLE). I will attempt to explain its specific
-operations in the context of NLP tasks:</p>
-<ul>
-<li><p>The training still uses teacher forcing, meaning the model
-directly learns to predict the oracle (ground truth) from the input,
-without autoregression.</p></li>
-<li><p>For Levenshtein Transformer, three components are needed during
-training:</p>
-<ul>
-<li>Training input: The input is the text requiring edit operations
-(state distribution fed during training). These sentences should be
-original texts that have been disturbed by perturbation operations
-(roll-in policy). This is easy to understand—e.g., deleting some tokens
-and then having the model learn to insert them. The construction of this
-input involves two steps: determining the original text and applying
-perturbation operations. The original text can either be empty or the
-ground truth. In the design of the perturbation operations, the authors
-introduce the so-called dual policy, which essentially means allowing
-the model’s own operations to also serve as perturbations.</li>
+</li>
+<li><p>The entire process is divided into three steps: input sequence $y_0$, perform deletion operations in parallel at all positions in the sequence to obtain $y_1$; for $y_1$, predict insert positions at all positions in the sequence, add placeholders according to the predictions to obtain $y_2$; for all placeholders in $y_2$, predict specific words to generate the final result, completing one iteration.</p>
+</li>
+<li><p>The three operations share a single transformer, and to reduce complexity (turning one autoregressive text generation round into three non-autoregressive operations), the classifiers for deletion and insert position predictions are attached to the middle transformer blocks. The classifier for text generation is only attached to the final transformer block, as the first two tasks are relatively simple and do not require complex feature extraction.</p>
+</li>
 </ul>
-<table>
-<colgroup>
-<col style="width: 39%" />
-<col style="width: 24%" />
-<col style="width: 21%" />
-<col style="width: 14%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Operation</th>
-<th>Perturbation Type</th>
-<th>Learn from Model</th>
-<th>Dual Policy</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Randomly drop words from oracle text as input</td>
-<td>Deletion</td>
-<td>Insertion</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Directly use oracle input text as input</td>
-<td>Insertion</td>
-<td>Deletion</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Use the text after model deletion as input</td>
-<td>Deletion</td>
-<td>Insertion</td>
-<td>√</td>
-</tr>
-<tr class="even">
-<td>Use the text after model insertion as input</td>
-<td>Insertion</td>
-<td>Deletion</td>
-<td>√</td>
-</tr>
-</tbody>
-</table>
-<p>The authors use probabilities to choose the operations for
-constructing data, as shown in the diagram below:</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/gaoEPx"><img data-src="https://z3.ax1x.com/2021/05/11/gaoEPx.png"
-alt="gaoEPx.png" /></a></p>
+<h2 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h2><ul>
+<li><p>The training process follows imitation learning. While there are many reinforcement learning concepts, it essentially involves perturbing the data and having the model learn to recover, still following Maximum Likelihood Estimation (MLE). I will attempt to explain its specific operations in the context of NLP tasks:</p>
 <ul>
-<li>Training output: After learning the opposite operations of the
-perturbation, the model needs to restore the original text. Once the
-input and output are determined, the ground truth actions (expert
-policy) are set. Generally, the model should restore the oracle, but
-since direct restoration can be difficult, the model is trained to
-restore a low-noise version with a certain probability. This low-noise
-version is derived from sequence distillation. Specifically, a normal
-transformer is trained on a unified dataset, and this transformer is
-used to infer each piece of data, using beam search to find non-top-1
-sentences as low-noise versions for the model to learn to restore.</li>
-<li>Ground truth actions during training: Once the input and output are
-determined, the minimum edit distance operation is computed using
-dynamic programming as the ground truth action (expert policy) for the
-model to learn.</li>
-</ul></li>
-</ul></li>
+<li><p>The training still uses teacher forcing, meaning the model directly learns to predict the oracle (ground truth) from the input, without autoregression.</p>
+</li>
+<li><p>For Levenshtein Transformer, three components are needed during training:</p>
+<ul>
+<li>Training input: The input is the text requiring edit operations (state distribution fed during training). These sentences should be original texts that have been disturbed by perturbation operations (roll-in policy). This is easy to understand—e.g., deleting some tokens and then having the model learn to insert them. The construction of this input involves two steps: determining the original text and applying perturbation operations. The original text can either be empty or the ground truth. In the design of the perturbation operations, the authors introduce the so-called dual policy, which essentially means allowing the model’s own operations to also serve as perturbations.</li>
 </ul>
-<h2 id="inference">Inference</h2>
+<p>| Operation                        | Perturbation Type | Learn from Model | Dual Policy |<br>| ——————————————- | ————————— | ———————— | —————- |<br>| Randomly drop words from oracle text as input | Deletion   | Insertion |             |<br>| Directly use oracle input text as input | Insertion  | Deletion  |             |<br>| Use the text after model deletion as input | Deletion   | Insertion | √           |<br>| Use the text after model insertion as input | Insertion  | Deletion  | √           |</p>
+<p>The authors use probabilities to choose the operations for constructing data, as shown in the diagram below:</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/gaoEPx"><img data-src="https://z3.ax1x.com/2021/05/11/gaoEPx.png" alt="gaoEPx.png"></a></p>
 <ul>
-<li>During inference, the model performs multiple rounds of editing on
-the input text (each round includes one deletion, prediction of
-position, and insertion), greedily selecting the operation with the
-highest probability.</li>
-<li>Multiple rounds of editing continue until:
-<ul>
+<li>Training output: After learning the opposite operations of the perturbation, the model needs to restore the original text. Once the input and output are determined, the ground truth actions (expert policy) are set. Generally, the model should restore the oracle, but since direct restoration can be difficult, the model is trained to restore a low-noise version with a certain probability. This low-noise version is derived from sequence distillation. Specifically, a normal transformer is trained on a unified dataset, and this transformer is used to infer each piece of data, using beam search to find non-top-1 sentences as low-noise versions for the model to learn to restore.</li>
+<li>Ground truth actions during training: Once the input and output are determined, the minimum edit distance operation is computed using dynamic programming as the ground truth action (expert policy) for the model to learn.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h2><ul>
+<li>During inference, the model performs multiple rounds of editing on the input text (each round includes one deletion, prediction of position, and insertion), greedily selecting the operation with the highest probability.</li>
+<li>Multiple rounds of editing continue until:<ul>
 <li>A loop occurs (i.e., the same text reappears after editing),</li>
 <li>A preset maximum number of rounds is reached.</li>
-</ul></li>
-<li>Too many placeholders can lead to overly short generated text, and a
-penalty term can be added to control the number of placeholders.</li>
-<li>The use of two editing operations adds a degree of interpretability
-to the model’s inference.</li>
 </ul>
-<h2 id="experiments">Experiments</h2>
-<ul>
-<li>The evaluation metrics include six items: BLEU scores for three
-translation pairs and ROUGE-1, ROUGE-2, and L values for the Gigaword
-summarization task. For English-Japanese translation and Gigaword, the
-original Transformer achieved the best results, outperforming LevT by
-about one point. For the other two translation datasets, the
-sequence-distilled LevT outperformed the original Transformer by about
-one point.</li>
-<li>For LevT, training with sequence distillation is generally better
-than using the original oracle sequence.</li>
-<li>In terms of inference speed, the LevT with sequence distillation is
-the fastest, with single sentence inference around 90ms, while the
-original Transformer takes 200-300ms for translation and 116ms for
-summarization tasks. The authors also report the number of inference
-iterations, showing that LevT requires an average of only 2 iterations,
-i.e., two deletions and two insertions, applied to the entire sentence.
-In contrast, the original Transformer’s average number of iterations is
-proportional to the length of the sentence. For short summarization
-datasets, the average number of iterations is 10.1, while for
-translation datasets, it reaches over 20. This demonstrates another
-advantage of LevT: its inference speed is not overly sensitive to text
-length and is primarily related to the number of iterations required for
-processing the entire sentence. The growth rate of iterations with
-length is smaller than the logarithmic complexity and far smaller than
-the quadratic complexity of traditional Transformers. The inference
-latency of the Transformer scales roughly linearly with text length,
-while LevT remains around 90ms with just two iterations.</li>
-<li>Ablation studies show that the design of the two operations,
-parameter sharing, and the dual policy all contribute to better final
-metrics.</li>
-<li>For deletion and insert position prediction, early exiting after the
-first transformer block yields good results, with BLEU dropping 0.4 but
-speeding up inference by a factor of 3.5 to 5 times compared to using
-the sixth layer.</li>
-<li>Additionally, the authors found that a LevT trained on translation
-tasks can be used zero-shot for text refinement, with performance within
-0.3 BLEU points of a separately trained text refinement LevT, and even
-better performance on Ro-En. Both outperform traditional Transformers.
-This adaptability to text refinement aligns with intuition, as text
-refinement involves smaller edits compared to generating new text, where
-the hypothesis space is larger and more difficult to reach an ideal
-result. After fine-tuning on a text refinement dataset, LevT
-outperformed all models comprehensively.</li>
+</li>
+<li>Too many placeholders can lead to overly short generated text, and a penalty term can be added to control the number of placeholders.</li>
+<li>The use of two editing operations adds a degree of interpretability to the model’s inference.</li>
 </ul>
-<h1 id="editnts">EditNTS</h1>
-<ul>
-<li><p>A sentence simplification model is proposed that explicitly
-performs three types of operations: insertion, deletion, and
-retention.</p></li>
-<li><p>Unlike LevT, EditNTS remains autoregressive, meaning it does not
-operate on the entire sentence simultaneously, and it introduces more
-information when predicting operations.</p></li>
-<li><p>The model consists of two parts: an LSTM-based seq2seq model as
-the <em>programmer</em> that predicts the operation for each token
-position, generating a sequence of editing operations; and an additional
-<em>interpreter</em> that executes these operations to generate the
-edited sentence. The interpreter also includes a simple LSTM that
-aggregates the contextual information of the edited sentence. <a
-target="_blank" rel="noopener" href="https://imgtu.com/i/gdTVa9"><img data-src="https://z3.ax1x.com/2021/05/12/gdTVa9.png"
-alt="gdTVa9.png" /></a></p></li>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><ul>
+<li>The evaluation metrics include six items: BLEU scores for three translation pairs and ROUGE-1, ROUGE-2, and L values for the Gigaword summarization task. For English-Japanese translation and Gigaword, the original Transformer achieved the best results, outperforming LevT by about one point. For the other two translation datasets, the sequence-distilled LevT outperformed the original Transformer by about one point.</li>
+<li>For LevT, training with sequence distillation is generally better than using the original oracle sequence.</li>
+<li>In terms of inference speed, the LevT with sequence distillation is the fastest, with single sentence inference around 90ms, while the original Transformer takes 200-300ms for translation and 116ms for summarization tasks. The authors also report the number of inference iterations, showing that LevT requires an average of only 2 iterations, i.e., two deletions and two insertions, applied to the entire sentence. In contrast, the original Transformer’s average number of iterations is proportional to the length of the sentence. For short summarization datasets, the average number of iterations is 10.1, while for translation datasets, it reaches over 20. This demonstrates another advantage of LevT: its inference speed is not overly sensitive to text length and is primarily related to the number of iterations required for processing the entire sentence. The growth rate of iterations with length is smaller than the logarithmic complexity and far smaller than the quadratic complexity of traditional Transformers. The inference latency of the Transformer scales roughly linearly with text length, while LevT remains around 90ms with just two iterations.</li>
+<li>Ablation studies show that the design of the two operations, parameter sharing, and the dual policy all contribute to better final metrics.</li>
+<li>For deletion and insert position prediction, early exiting after the first transformer block yields good results, with BLEU dropping 0.4 but speeding up inference by a factor of 3.5 to 5 times compared to using the sixth layer.</li>
+<li>Additionally, the authors found that a LevT trained on translation tasks can be used zero-shot for text refinement, with performance within 0.3 BLEU points of a separately trained text refinement LevT, and even better performance on Ro-En. Both outperform traditional Transformers. This adaptability to text refinement aligns with intuition, as text refinement involves smaller edits compared to generating new text, where the hypothesis space is larger and more difficult to reach an ideal result. After fine-tuning on a text refinement dataset, LevT outperformed all models comprehensively.</li>
+</ul>
+<h1 id="EditNTS"><a href="#EditNTS" class="headerlink" title="EditNTS"></a>EditNTS</h1><ul>
+<li>A sentence simplification model is proposed that explicitly performs three types of operations: insertion, deletion, and retention.</li>
+<li>Unlike LevT, EditNTS remains autoregressive, meaning it does not operate on the entire sentence simultaneously, and it introduces more information when predicting operations.</li>
+<li><p>The model consists of two parts: an LSTM-based seq2seq model as the <em>programmer</em> that predicts the operation for each token position, generating a sequence of editing operations; and an additional <em>interpreter</em> that executes these operations to generate the edited sentence. The interpreter also includes a simple LSTM that aggregates the contextual information of the edited sentence.<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gdTVa9"><img data-src="https://z3.ax1x.com/2021/05/12/gdTVa9.png" alt="gdTVa9.png"></a></p>
+</li>
 <li><p>Three key points to note:</p>
 <ul>
-<li>After predicting deletion and retention, the programmer moves to the
-next word. However, when predicting an insertion operation, the
-programmer stays on the current word and continues predicting the next
-operation, which enables the insertion of multiple words.</li>
-<li>The interpreter not only performs the editing based on the
-programmer’s predicted results, but also uses an LSTM to aggregate the
-contextual information of the sentence at the current time step after
-editing.</li>
-<li>When predicting editing operations, the programmer uses four pieces
-of information:
-<ul>
-<li>The encoder’s context, which comes from the last-layer
-attention-weighted output of the encoder LSTM.</li>
-<li>The word being processed, which comes from the decoder LSTM’s hidden
-state.</li>
-<li>The already edited sentence’s context, which comes from the
-interpreter LSTM’s attention-weighted output.</li>
-<li>The already generated editing operation sequence, which comes from
-the attention-weighted edit label output. Here, a simple attention
-mechanism is used, not an LSTM.</li>
-</ul></li>
-</ul></li>
-<li><p>The encoder input also introduces position embedding.</p></li>
-<li><p>Label construction, similar to LevT, involves creating a ground
-truth sequence of editing operations based on an edit distance dynamic
-programming approach. When multiple operation sequences exist, the
-sequence with more insertions is prioritized. The authors experimented
-with other prioritization strategies (e.g., prioritizing deletions,
-random, introducing replacement operations), but found that prioritizing
-insertions yielded the best results.</p></li>
-<li><p>The model uses 100-dimensional GloVe vectors to initialize word
-vectors and edit label embeddings, 30-dimensional vectors to initialize
-position embeddings, and uses inverse frequency of the edit labels as
-loss weights to balance the loss contributions from each label.</p></li>
-<li><p>The results are not very impressive. In terms of metrics, the
-model does not outperform non-editing methods, and while human
-evaluation shows some improvement, it is subjective. Ablation studies do
-not show significant improvements.</p></li>
+<li>After predicting deletion and retention, the programmer moves to the next word. However, when predicting an insertion operation, the programmer stays on the current word and continues predicting the next operation, which enables the insertion of multiple words.</li>
+<li>The interpreter not only performs the editing based on the programmer’s predicted results, but also uses an LSTM to aggregate the contextual information of the sentence at the current time step after editing.</li>
+<li>When predicting editing operations, the programmer uses four pieces of information:<ul>
+<li>The encoder’s context, which comes from the last-layer attention-weighted output of the encoder LSTM.</li>
+<li>The word being processed, which comes from the decoder LSTM’s hidden state.</li>
+<li>The already edited sentence’s context, which comes from the interpreter LSTM’s attention-weighted output.</li>
+<li>The already generated editing operation sequence, which comes from the attention-weighted edit label output. Here, a simple attention mechanism is used, not an LSTM.</li>
 </ul>
-<h1 id="lasertagger">LaserTagger</h1>
-<ul>
-<li>LaserTagger also uses the three operations: retention, deletion, and
-insertion, but it incorporates BERT, with Google's engineering
-capabilities enabling an acceleration factor of 100-200 times.</li>
-<li>Contributions:
-<ul>
-<li>Introduced the model and proposed a method for generating label
-dictionaries from data.</li>
-<li>Proposed two versions based on BERT: one directly uses BERT for
-tagging, which is faster, and the other uses BERT to initialize a
-seq2seq encoder, which yields better results.</li>
-</ul></li>
+</li>
 </ul>
-<h2 id="text-editing-as-tagging">Text Editing as Tagging</h2>
-<ul>
-<li>LaserTagger transforms the text editing problem into a sequence
-labeling problem, which consists of three main components:
-<ul>
-<li><strong>Labeling Operations</strong>: Instead of using the three
-basic operations (retain, delete, insert), the labels are divided into
-two parts: a <em>base tag</em> (B), which includes <em>retain</em> and
-<em>delete</em> operations, and an <em>added phrase</em> (P), which can
-take <em>V</em> different values representing inserted fragments (empty
-space, words, or phrases). The vocabulary for P is built from the
-training data. The combination of B and P generates the labels, so there
-are a total of 2V possible labels. Task-specific labels can also be
-added based on downstream tasks.</li>
-<li><strong>Building the Added Phrase Vocabulary</strong>: Constructing
-the vocabulary is a combinatorial optimization problem. On one hand, we
-want the vocabulary to be as small as possible; on the other, we want it
-to cover the most editing scenarios. Finding the perfect solution is
-NP-hard, so the authors used another approach. For each training pair,
-they compute the longest common subsequence (LCS) between the input and
-the target sequence using dynamic programming. The added phrases are
-derived by subtracting the LCS from the target sequence. These phrases
-are then ranked by frequency, and the top-k phrases are selected. For
-public datasets, the top 500 phrases cover 85% of the data.</li>
-<li><strong>Constructing the Label Sequence</strong>: This is done using
-a greedy approach, matching the shortest phrase to insert for each word,
-without the need for dynamic programming. <a
-target="_blank" rel="noopener" href="https://imgtu.com/i/gdxc0x"><img data-src="https://z3.ax1x.com/2021/05/12/gdxc0x.png" alt="gdxc0x.png" /></a>
-This approach may sometimes result in cases where no edits are made,
-which are then filtered out from the training set. The authors argue
-that this can also be seen as a form of noise reduction.</li>
-<li><strong>Editing the Sentence Based on Predictions</strong>: This is
-the direct operation where, based on downstream tasks, special labels
-may be predicted to perform task-specific operations. The authors argue
-that modularizing the editing operations makes the model more flexible
-than an end-to-end approach.</li>
-</ul></li>
+</li>
+<li><p>The encoder input also introduces position embedding.</p>
+</li>
+<li><p>Label construction, similar to LevT, involves creating a ground truth sequence of editing operations based on an edit distance dynamic programming approach. When multiple operation sequences exist, the sequence with more insertions is prioritized. The authors experimented with other prioritization strategies (e.g., prioritizing deletions, random, introducing replacement operations), but found that prioritizing insertions yielded the best results.</p>
+</li>
+<li><p>The model uses 100-dimensional GloVe vectors to initialize word vectors and edit label embeddings, 30-dimensional vectors to initialize position embeddings, and uses inverse frequency of the edit labels as loss weights to balance the loss contributions from each label.</p>
+</li>
+<li><p>The results are not very impressive. In terms of metrics, the model does not outperform non-editing methods, and while human evaluation shows some improvement, it is subjective. Ablation studies do not show significant improvements.</p>
+</li>
 </ul>
-<h2 id="experiment">Experiment</h2>
-<ul>
-<li>There are two versions of the model: one directly uses BERT for
-tagging, and the other uses seq2seq with a BERT-initialized encoder. In
-the first case, a transformer block is added to BERT’s last layer to
-perform the tagging.</li>
-<li>Four tasks were tested: sentence fusion, sentence splitting and
-rephrasing, summarization, and grammar correction. All tasks
-outperformed the baseline, with sentence fusion achieving new SOTA
-results. However, LaserTagger's standout performance lies in its
-efficiency, achieving up to 200 times acceleration with just the BERT
-encoder (since the text generation is reduced to a sequence labeling
-task with a small dictionary). It is also very friendly for few-shot
-learning.</li>
-<li>The authors also analyzed common issues with seq2seq models and
-editing-based models, their respective advantages, and the causes of
-these problems:
-<ul>
-<li><strong>Imaginary Words</strong>: seq2seq models may generate
-non-existent words at the subword level, whereas LaserTagger does not
-have this problem.</li>
-<li><strong>Premature Termination</strong>: seq2seq models may
-prematurely generate EOS tokens, resulting in incomplete or overly short
-sentences. While this is theoretically possible for LaserTagger, the
-authors have not observed it in practice, as it would require predicting
-many deletion operations, which are rare in the training data.</li>
-<li><strong>Repetitive Phrases</strong>: In sentence splitting tasks,
-seq2seq models often repeat phrases, while LaserTagger tends to avoid
-splitting or uses a "lazy split."</li>
-<li><strong>Hallucination</strong>: Both models may generate text that
-is unrelated or counterfactual, but seq2seq models tend to hide this
-issue more effectively (appearing fluent but actually illogical), while
-LaserTagger is more transparent.</li>
-<li><strong>Coreference Resolution</strong>: Both models struggle with
-coreference resolution. Seq2seq models may incorrectly replace pronouns
-with the wrong noun, while LaserTagger may fail to resolve pronouns
-properly.</li>
-<li><strong>Error Deletion</strong>: While LaserTagger appears more
-controllable in terms of text generation, it still sometimes deletes
-words, leaving the remaining sentence fluent but incorrect in
-meaning.</li>
-<li><strong>Lazy Split</strong>: In sentence splitting tasks,
-LaserTagger might only split the sentence without performing any
-post-processing on the resulting sentences.</li>
-</ul></li>
+<h1 id="LaserTagger"><a href="#LaserTagger" class="headerlink" title="LaserTagger"></a>LaserTagger</h1><ul>
+<li>LaserTagger also uses the three operations: retention, deletion, and insertion, but it incorporates BERT, with Google’s engineering capabilities enabling an acceleration factor of 100-200 times.</li>
+<li>Contributions:<ul>
+<li>Introduced the model and proposed a method for generating label dictionaries from data.</li>
+<li>Proposed two versions based on BERT: one directly uses BERT for tagging, which is faster, and the other uses BERT to initialize a seq2seq encoder, which yields better results.</li>
 </ul>
-<h1 id="pie">PIE</h1>
-<ul>
-<li>PIE also combines BERT with sequence labeling, while constructing a
-phrase dictionary from the data.</li>
-<li>The editing operations include copying (retaining), insertion,
-deletion, and morphological transformation (for grammar
-correction).</li>
-<li>Constructing the phrase dictionary, ground truth editing operations,
-and the method are quite similar to LaserTagger.</li>
-<li>BERT is extended on both sides with two additional components to
-obtain the information required for replacement or insertion:
-<ul>
-<li>The input layer includes M for mask identifiers (embedding), p for
-positional embeddings, and X for word embeddings.</li>
-<li>h represents the original BERT information, containing both word and
-positional information.</li>
-<li>r represents replacement information, where the word at the current
-position is masked and replaced by M, and attention is not applied to
-the current word's h during the calculation.</li>
-<li>a represents insertion information, where the current word is masked
-and replaced by M, and the positional embedding p is replaced by the
-average positional embedding of neighboring tokens. <a
-target="_blank" rel="noopener" href="https://imgtu.com/i/gwZarT"><img data-src="https://z3.ax1x.com/2021/05/12/gwZarT.png"
-alt="gwZarT.png" /></a></li>
-<li>Afterward, the three types of information are used to compute the
-probabilities for different operations, which are then normalized. CARDT
-represents the operations: copy (retain), insert, replace, delete, and
-morphological transformation. <a target="_blank" rel="noopener" href="https://imgtu.com/i/gwZ5IH"><img data-src="https://z3.ax1x.com/2021/05/12/gwZ5IH.png"
-alt="gwZ5IH.png" /></a></li>
-<li>The first term in the formula is the score for each editing
-operation. The second term is the score for retaining the current word,
-with deletion and replacement not contributing to the score. Other
-operations are parameterized using the word embedding <span
-class="math inline">\(\phi(x_i)\)</span>, though the exact meaning of
-<span class="math inline">\(\phi\)</span> is unclear. The third term
-represents the effect of new words, which is only relevant for
-replacement and insertion.</li>
-</ul></li>
-<li>Inference also involves multiple rounds of editing (output becoming
-input), stopping when a repeated sentence is produced.</li>
-<li>The motivation behind the design of the editing operations is not
-fully clear, and the final results are quite average. Only under
-ensemble settings does PIE perform on par with a Transformer +
-Pre-training + LM + Spellcheck + Ensemble Decoding model. Ablation
-studies show that pre-trained models are the main contributor to
-performance improvement.</li>
+</li>
 </ul>
-<h1 id="felix">Felix</h1>
-<ul>
-<li>Felix divides the editing operations into two non-autoregressive
-parts: first, a Transformer-based pointer network performs tagging and
-reordering, inserting placeholders; second, a masked language model
-(MLM) predicts the words for the placeholders.</li>
-<li>The design of Felix considers three needs:
-<ul>
+<h2 id="Text-Editing-as-Tagging"><a href="#Text-Editing-as-Tagging" class="headerlink" title="Text Editing as Tagging"></a>Text Editing as Tagging</h2><ul>
+<li>LaserTagger transforms the text editing problem into a sequence labeling problem, which consists of three main components:<ul>
+<li><strong>Labeling Operations</strong>: Instead of using the three basic operations (retain, delete, insert), the labels are divided into two parts: a <em>base tag</em> (B), which includes <em>retain</em> and <em>delete</em> operations, and an <em>added phrase</em> (P), which can take <em>V</em> different values representing inserted fragments (empty space, words, or phrases). The vocabulary for P is built from the training data. The combination of B and P generates the labels, so there are a total of 2V possible labels. Task-specific labels can also be added based on downstream tasks.</li>
+<li><strong>Building the Added Phrase Vocabulary</strong>: Constructing the vocabulary is a combinatorial optimization problem. On one hand, we want the vocabulary to be as small as possible; on the other, we want it to cover the most editing scenarios. Finding the perfect solution is NP-hard, so the authors used another approach. For each training pair, they compute the longest common subsequence (LCS) between the input and the target sequence using dynamic programming. The added phrases are derived by subtracting the LCS from the target sequence. These phrases are then ranked by frequency, and the top-k phrases are selected. For public datasets, the top 500 phrases cover 85% of the data.</li>
+<li><strong>Constructing the Label Sequence</strong>: This is done using a greedy approach, matching the shortest phrase to insert for each word, without the need for dynamic programming.<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gdxc0x"><img data-src="https://z3.ax1x.com/2021/05/12/gdxc0x.png" alt="gdxc0x.png"></a><br>This approach may sometimes result in cases where no edits are made, which are then filtered out from the training set. The authors argue that this can also be seen as a form of noise reduction.</li>
+<li><strong>Editing the Sentence Based on Predictions</strong>: This is the direct operation where, based on downstream tasks, special labels may be predicted to perform task-specific operations. The authors argue that modularizing the editing operations makes the model more flexible than an end-to-end approach.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><ul>
+<li>There are two versions of the model: one directly uses BERT for tagging, and the other uses seq2seq with a BERT-initialized encoder. In the first case, a transformer block is added to BERT’s last layer to perform the tagging.</li>
+<li>Four tasks were tested: sentence fusion, sentence splitting and rephrasing, summarization, and grammar correction. All tasks outperformed the baseline, with sentence fusion achieving new SOTA results. However, LaserTagger’s standout performance lies in its efficiency, achieving up to 200 times acceleration with just the BERT encoder (since the text generation is reduced to a sequence labeling task with a small dictionary). It is also very friendly for few-shot learning.</li>
+<li>The authors also analyzed common issues with seq2seq models and editing-based models, their respective advantages, and the causes of these problems:<ul>
+<li><strong>Imaginary Words</strong>: seq2seq models may generate non-existent words at the subword level, whereas LaserTagger does not have this problem.</li>
+<li><strong>Premature Termination</strong>: seq2seq models may prematurely generate EOS tokens, resulting in incomplete or overly short sentences. While this is theoretically possible for LaserTagger, the authors have not observed it in practice, as it would require predicting many deletion operations, which are rare in the training data.</li>
+<li><strong>Repetitive Phrases</strong>: In sentence splitting tasks, seq2seq models often repeat phrases, while LaserTagger tends to avoid splitting or uses a “lazy split.”</li>
+<li><strong>Hallucination</strong>: Both models may generate text that is unrelated or counterfactual, but seq2seq models tend to hide this issue more effectively (appearing fluent but actually illogical), while LaserTagger is more transparent.</li>
+<li><strong>Coreference Resolution</strong>: Both models struggle with coreference resolution. Seq2seq models may incorrectly replace pronouns with the wrong noun, while LaserTagger may fail to resolve pronouns properly.</li>
+<li><strong>Error Deletion</strong>: While LaserTagger appears more controllable in terms of text generation, it still sometimes deletes words, leaving the remaining sentence fluent but incorrect in meaning.</li>
+<li><strong>Lazy Split</strong>: In sentence splitting tasks, LaserTagger might only split the sentence without performing any post-processing on the resulting sentences.</li>
+</ul>
+</li>
+</ul>
+<h1 id="PIE"><a href="#PIE" class="headerlink" title="PIE"></a>PIE</h1><ul>
+<li>PIE also combines BERT with sequence labeling, while constructing a phrase dictionary from the data.</li>
+<li>The editing operations include copying (retaining), insertion, deletion, and morphological transformation (for grammar correction).</li>
+<li>Constructing the phrase dictionary, ground truth editing operations, and the method are quite similar to LaserTagger.</li>
+<li>BERT is extended on both sides with two additional components to obtain the information required for replacement or insertion:<ul>
+<li>The input layer includes M for mask identifiers (embedding), p for positional embeddings, and X for word embeddings.</li>
+<li>h represents the original BERT information, containing both word and positional information.</li>
+<li>r represents replacement information, where the word at the current position is masked and replaced by M, and attention is not applied to the current word’s h during the calculation.</li>
+<li>a represents insertion information, where the current word is masked and replaced by M, and the positional embedding p is replaced by the average positional embedding of neighboring tokens.<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gwZarT"><img data-src="https://z3.ax1x.com/2021/05/12/gwZarT.png" alt="gwZarT.png"></a></li>
+<li>Afterward, the three types of information are used to compute the probabilities for different operations, which are then normalized. CARDT represents the operations: copy (retain), insert, replace, delete, and morphological transformation.<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gwZ5IH"><img data-src="https://z3.ax1x.com/2021/05/12/gwZ5IH.png" alt="gwZ5IH.png"></a></li>
+<li>The first term in the formula is the score for each editing operation. The second term is the score for retaining the current word, with deletion and replacement not contributing to the score. Other operations are parameterized using the word embedding $\phi(x_i)$, though the exact meaning of $\phi$ is unclear. The third term represents the effect of new words, which is only relevant for replacement and insertion.</li>
+</ul>
+</li>
+<li>Inference also involves multiple rounds of editing (output becoming input), stopping when a repeated sentence is produced.</li>
+<li>The motivation behind the design of the editing operations is not fully clear, and the final results are quite average. Only under ensemble settings does PIE perform on par with a Transformer + Pre-training + LM + Spellcheck + Ensemble Decoding model. Ablation studies show that pre-trained models are the main contributor to performance improvement.</li>
+</ul>
+<h1 id="Felix"><a href="#Felix" class="headerlink" title="Felix"></a>Felix</h1><ul>
+<li>Felix divides the editing operations into two non-autoregressive parts: first, a Transformer-based pointer network performs tagging and reordering, inserting placeholders; second, a masked language model (MLM) predicts the words for the placeholders.</li>
+<li>The design of Felix considers three needs:<ul>
 <li>Flexible editing, suitable for various text generation tasks.</li>
 <li>Efficient utilization of pre-trained models like BERT.</li>
-<li>Efficient inference. <a target="_blank" rel="noopener" href="https://imgtu.com/i/gwKovR"><img data-src="https://z3.ax1x.com/2021/05/12/gwKovR.png"
-alt="gwKovR.png" /></a></li>
-</ul></li>
-<li>The diagram below clearly shows the tagging design of Felix, where
-<em>y^t</em> represents the editing operation sequence predicted by the
-tagging model, and <em>y^m</em> represents the intermediate sequence
-after inserting special tokens (REPL, MASK) based on the editing
-operation sequence. This intermediate sequence is then fed to the MLM to
-predict the words that need to be inserted, resulting in the final
-prediction. <a target="_blank" rel="noopener" href="https://imgtu.com/i/gwMHzj"><img data-src="https://z3.ax1x.com/2021/05/12/gwMHzj.md.png"
-alt="gwMHzj.md.png" /></a></li>
-<li>Two points to note:
-<ul>
-<li>Although the MLM only predicts the insertion of words, it still
-requires the full editing operation information. Instead of simply
-deleting the words predicted for deletion, the authors use REPL to
-bracket the span that should be deleted, providing the MLM with
-information about the deletions.</li>
-<li>The diagram shows two forms of Mask and Infill, which involve
-different masking strategies for the intermediate sequence and deciding
-who is responsible for tasks like multi-token insertion. In the Mask
-approach, the task is handled by the tagging model, which directly
-predicts multi-word insertions (e.g., <span
-class="math inline">\(DEL^{INS\_2}\)</span> for inserting two words,
-corresponding to two MASK tokens in the intermediate sequence). In the
-Infill approach, the task is handled by the MLM, where four MASK tokens
-are prepared for each insertion position, with extra tokens predicted as
-PAD.</li>
-</ul></li>
-<li>To model more flexibly, the tagging model also performs reordering,
-as swapping two words requires first deleting and then adding them,
-which increases complexity. The reordering is handled using pointer
-network attention, which directs each word to its subsequent word, with
-the first word indicated by a special CLS token. During inference,
-controlled beam search is used to avoid cyclical pointer sequences.</li>
-<li>Compared to LaserTagger, Felix performs better in terms of
-performance and small sample learning, and it does not suffer from the
-limitations of phrase vocabulary. The authors also performed experiments
-on phrase vocabulary and reordering, with results available in the
-original paper.</li>
+<li>Efficient inference.<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gwKovR"><img data-src="https://z3.ax1x.com/2021/05/12/gwKovR.png" alt="gwKovR.png"></a></li>
 </ul>
-<h1 id="summary">Summary</h1>
-<p>Here's a summary of the key models with their editing operations,
-performance, and tasks:</p>
+</li>
+<li>The diagram below clearly shows the tagging design of Felix, where <em>y^t</em> represents the editing operation sequence predicted by the tagging model, and <em>y^m</em> represents the intermediate sequence after inserting special tokens (REPL, MASK) based on the editing operation sequence. This intermediate sequence is then fed to the MLM to predict the words that need to be inserted, resulting in the final prediction.<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gwMHzj"><img data-src="https://z3.ax1x.com/2021/05/12/gwMHzj.md.png" alt="gwMHzj.md.png"></a></li>
+<li>Two points to note:<ul>
+<li>Although the MLM only predicts the insertion of words, it still requires the full editing operation information. Instead of simply deleting the words predicted for deletion, the authors use REPL to bracket the span that should be deleted, providing the MLM with information about the deletions.</li>
+<li>The diagram shows two forms of Mask and Infill, which involve different masking strategies for the intermediate sequence and deciding who is responsible for tasks like multi-token insertion. In the Mask approach, the task is handled by the tagging model, which directly predicts multi-word insertions (e.g., $DEL^{INS_2}$ for inserting two words, corresponding to two MASK tokens in the intermediate sequence). In the Infill approach, the task is handled by the MLM, where four MASK tokens are prepared for each insertion position, with extra tokens predicted as PAD.</li>
+</ul>
+</li>
+<li>To model more flexibly, the tagging model also performs reordering, as swapping two words requires first deleting and then adding them, which increases complexity. The reordering is handled using pointer network attention, which directs each word to its subsequent word, with the first word indicated by a special CLS token. During inference, controlled beam search is used to avoid cyclical pointer sequences.</li>
+<li>Compared to LaserTagger, Felix performs better in terms of performance and small sample learning, and it does not suffer from the limitations of phrase vocabulary. The authors also performed experiments on phrase vocabulary and reordering, with results available in the original paper.</li>
+</ul>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>Here’s a summary of the key models with their editing operations, performance, and tasks:</p>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 12%" />
-<col style="width: 14%" />
-<col style="width: 18%" />
-<col style="width: 15%" />
-<col style="width: 12%" />
-<col style="width: 19%" />
-</colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th><strong>Model</strong></th>
 <th><strong>Editing Operations</strong></th>
 <th><strong>Acceleration</strong></th>
@@ -819,7 +493,7 @@ performance, and tasks:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><strong>LevT</strong></td>
 <td>Insert, Delete</td>
 <td>Multi-round non-autoregressive, 5x</td>
@@ -828,7 +502,7 @@ performance, and tasks:</p>
 <td>Degrades to text generation</td>
 <td>Translation, Summarization</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>EditNTS</strong></td>
 <td>Insert, Delete, Retain</td>
 <td>Autoregressive, acceleration not mentioned</td>
@@ -837,386 +511,190 @@ performance, and tasks:</p>
 <td>Degrades to text generation</td>
 <td>Text Simplification</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>LaserTagger</strong></td>
 <td>Insert, Delete, Retain</td>
 <td>One-round sequence labeling, 100+ times</td>
-<td>Direct insertion of phrases, phrase vocabulary built from training
-data</td>
+<td>Direct insertion of phrases, phrase vocabulary built from training data</td>
 <td>Greedy matching</td>
 <td>No editing (lazy)</td>
-<td>Sentence Fusion, Sentence Splitting and Paraphrasing, Summarization,
-Grammar Correction</td>
+<td>Sentence Fusion, Sentence Splitting and Paraphrasing, Summarization, Grammar Correction</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>PIE</strong></td>
 <td>Insert, Delete, Replace, Copy, Morphological Transformation</td>
 <td>Sequence labeling, 2x</td>
-<td>Direct insertion of phrases, phrase vocabulary built from training
-data</td>
+<td>Direct insertion of phrases, phrase vocabulary built from training data</td>
 <td>Greedy matching</td>
 <td>Not specified</td>
 <td>Grammar Correction</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>Felix</strong></td>
 <td>Delete, Insert, Retain, Reordering</td>
 <td>Tagging + MLM, faster than LaserTagger</td>
 <td>Use multiple masks for MLM to predict</td>
 <td>Simple comparison</td>
 <td>Poor MLM prediction</td>
-<td>Sentence Fusion, Post-processing in Machine Translation,
-Summarization, Text Simplification</td>
+<td>Sentence Fusion, Post-processing in Machine Translation, Summarization, Text Simplification</td>
 </tr>
 </tbody>
 </table>
-<p>This table gives an overview of each model's characteristics,
-strengths, and weaknesses across different editing operations and
-tasks.</p>
 </div>
-<div id="zh-content" class="lang-content" style="display: none;"><h1 id="levenshtein-transformer">Levenshtein Transformer</h1>
-<ul>
-<li>贡献点
-<ul>
+<p>This table gives an overview of each model’s characteristics, strengths, and weaknesses across different editing operations and tasks.</p>
+</div>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="Levenshtein-Transformer"><a href="#Levenshtein-Transformer" class="headerlink" title="Levenshtein Transformer"></a>Levenshtein Transformer</h1><ul>
+<li>贡献点<ul>
 <li>提出了基于插入和删除操作的编辑式transformer，效率提升5倍</li>
 <li>针对插入和删除互补性，设计了一种dual policy式的强化学习训练方法</li>
 <li>统一了文本生成和文本完善（refinement）两个任务</li>
-</ul></li>
 </ul>
-<h2 id="定义问题">定义问题</h2>
-<ul>
-<li>作者将文本生成和文本完善统一为一个马尔科夫过程，由元组(Y,A,<span
-class="math inline">\(\xi\)</span>,R,<span
-class="math inline">\(y_0\)</span>)定义（序列，动作集合，环境，奖励函数，初始序列）
-<ul>
-<li>Y即文本序列，大小为<span class="math inline">\(V^N\)</span></li>
-<li><span
-class="math inline">\(\xi\)</span>是环境，在解码的每一步，agent接收一个序列y作为输入，采取动作a，然后得到奖励r</li>
-<li>奖励函数定义为当前序列和ground
-truth序列之间的距离，显然本文就使用了Levenshtein距离（编辑距离）</li>
+</li>
+</ul>
+<h2 id="定义问题"><a href="#定义问题" class="headerlink" title="定义问题"></a>定义问题</h2><ul>
+<li>作者将文本生成和文本完善统一为一个马尔科夫过程，由元组(Y,A,$\xi$,R,$y_0$)定义（序列，动作集合，环境，奖励函数，初始序列）<ul>
+<li>Y即文本序列，大小为$V^N$</li>
+<li>$\xi$是环境，在解码的每一步，agent接收一个序列y作为输入，采取动作a，然后得到奖励r</li>
+<li>奖励函数定义为当前序列和ground truth序列之间的距离，显然本文就使用了Levenshtein距离（编辑距离）</li>
 <li>agent要学习的策略即一个从序列y到动作概率分布P(A)的映射</li>
-<li>值得注意的是，<span
-class="math inline">\(y_0\)</span>可以是空序列，此时即文本生成，也可以是一个生成好的序列，此时的任务即文本完善</li>
-</ul></li>
-<li>动作
-<ul>
-<li>删除操作：对序列中的每一个token做二分类，决定是否应该删除。对于序列中第一个和最后一个token直接保留，不做删除操作的判断，避免序列边界被破坏</li>
-<li>插入操作：插入操作分为两步：首先预测insert
-position,对每两个相邻token位置做一个多分类（insert
-position的数量），值得注意的是输入包含了这两个token；之后再针对每个预测位置做一个词典V大小的分类，生成具体的词插入。</li>
-</ul></li>
-<li>整个流程分为了三步：输入序列<span
-class="math inline">\(y_0\)</span>，并行的对序列所有位置做删除操作，得到<span
-class="math inline">\(y_1\)</span>；对<span
-class="math inline">\(y_1\)</span>，对序列所有位置预测insert
-position，根据预测结果添加placeholder得到序列<span
-class="math inline">\(y_2\)</span>；对<span
-class="math inline">\(y_2\)</span>中的所有placeholder预测具体的词得到最终结果，完成一轮迭代。</li>
-<li>三步操作共享一个transformer，同时为了降低复杂度（一轮自回归文本生成变成了三轮非自回归操作），将删除和insert
-position预测操作的分类器接在中间的transformer
-block上，只对文本生成的分类器接在最后一层transformer
-block上，因为前两个任务比较简单，不需要复杂的特征提取。</li>
+<li>值得注意的是，$y_0$可以是空序列，此时即文本生成，也可以是一个生成好的序列，此时的任务即文本完善</li>
 </ul>
-<h2 id="训练">训练</h2>
+</li>
+<li>动作<ul>
+<li>删除操作：对序列中的每一个token做二分类，决定是否应该删除。对于序列中第一个和最后一个token直接保留，不做删除操作的判断，避免序列边界被破坏</li>
+<li>插入操作：插入操作分为两步：首先预测insert position,对每两个相邻token位置做一个多分类（insert position的数量），值得注意的是输入包含了这两个token；之后再针对每个预测位置做一个词典V大小的分类，生成具体的词插入。</li>
+</ul>
+</li>
+<li>整个流程分为了三步：输入序列$y_0$，并行的对序列所有位置做删除操作，得到$y_1$；对$y_1$，对序列所有位置预测insert position，根据预测结果添加placeholder得到序列$y_2$；对$y_2$中的所有placeholder预测具体的词得到最终结果，完成一轮迭代。</li>
+<li>三步操作共享一个transformer，同时为了降低复杂度（一轮自回归文本生成变成了三轮非自回归操作），将删除和insert position预测操作的分类器接在中间的transformer block上，只对文本生成的分类器接在最后一层transformer block上，因为前两个任务比较简单，不需要复杂的特征提取。</li>
+</ul>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><ul>
+<li><p>训练的过程为imitation learning，这里有较多强化学习概念，但实际上就是对数据做扰动然后让模型学习还原，且依然是MLE。我尝试在NLP任务中用其具体操作来解释</p>
 <ul>
-<li><p>训练的过程为imitation
-learning，这里有较多强化学习概念，但实际上就是对数据做扰动然后让模型学习还原，且依然是MLE。我尝试在NLP任务中用其具体操作来解释</p>
-<ul>
-<li><p>训练依然是teacher forcing，即直接对输入去学习预测oracle（ground
-truth），不存在自回归。</p></li>
+<li><p>训练依然是teacher forcing，即直接对输入去学习预测oracle（ground truth），不存在自回归。</p>
+</li>
 <li><p>对于Levenshtein Transformer，训练时我们需要三部分：</p>
 <ul>
-<li>训练时的输入：输入即需要做编辑操作的文本（state distribution fed
-during training)，这些句子应该是一些原始文本做了一些扰动操作（roll-in
-policy）得到的。很容易理解，比如我故意删除了一些token，然后让模型去学习插入。因此该部分文本构建分为两步：确定原始文本，执行扰动操作。其中原始文本可以是空文本，也可以是ground
-truth文本。在设计扰动操作时，引入了作者所谓的dual
-policy，实际上就是让模型自己的操作也作为扰动操作</li>
+<li>训练时的输入：输入即需要做编辑操作的文本（state distribution fed during training)，这些句子应该是一些原始文本做了一些扰动操作（roll-in policy）得到的。很容易理解，比如我故意删除了一些token，然后让模型去学习插入。因此该部分文本构建分为两步：确定原始文本，执行扰动操作。其中原始文本可以是空文本，也可以是ground truth文本。在设计扰动操作时，引入了作者所谓的dual policy，实际上就是让模型自己的操作也作为扰动操作</li>
 </ul>
-<table>
-<colgroup>
-<col style="width: 47%" />
-<col style="width: 10%" />
-<col style="width: 13%" />
-<col style="width: 28%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>操作</th>
-<th>扰动类型</th>
-<th>让模型学习</th>
-<th>dual policy</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>对oracle文本随机丢词作为输入</td>
-<td>删除</td>
-<td>插入</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>直接将oracle输入文本作为输入</td>
-<td>插入</td>
-<td>删除</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>使用模型执行删除动作后的文本作为输入</td>
-<td>删除</td>
-<td>插入</td>
-<td>√</td>
-</tr>
-<tr class="even">
-<td>使用模型执行插入动作后的文本作为输入</td>
-<td>插入</td>
-<td>删除</td>
-<td>√</td>
-</tr>
-</tbody>
-</table>
-<p>这里作者使用概率来选择各个操作构造数据，示意图如下： <a
-target="_blank" rel="noopener" href="https://imgtu.com/i/gaoEPx"><img data-src="https://z3.ax1x.com/2021/05/11/gaoEPx.png"
-alt="gaoEPx.png" /></a></p>
+<p>| 操作                 | 扰动类型 | 让模型学习 | dual policy |<br>| ————————— | —— | ——- | —————- |<br>| 对oracle文本随机丢词作为输入  | 删除   | 插入    |             |<br>| 直接将oracle输入文本作为输入  | 插入   | 删除    |             |<br>| 使用模型执行删除动作后的文本作为输入 | 删除   | 插入    | √           |<br>| 使用模型执行插入动作后的文本作为输入 | 插入   | 删除    | √           |</p>
+<p>这里作者使用概率来选择各个操作构造数据，示意图如下：<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gaoEPx"><img data-src="https://z3.ax1x.com/2021/05/11/gaoEPx.png" alt="gaoEPx.png"></a></p>
 <ul>
-<li>训练时的输出：即模型学习到与扰动相反的操作之后，需要还原的原始文本，当确定了输入输出之后，ground
-truth的动作（expert
-policy）就确定了。一般来讲自然是要还原到oracle，但是作者考虑到直接学习太难，因此以一定概率模型只需要还原出一个低噪声版本即可。这个低噪声版本由序列蒸馏得到，具体做法是用统一数据集训练一个正常的transformer，然后用这个transformer对每条数据做推断，使用beam
-search找出非top 1的句子作为该条数据的低噪声版本给模型学习还原。</li>
-<li>训练时的ground truth
-action：在确定了输入和输出之后，利用动态规划得到编辑距离消耗最小的操作作为ground
-truth action(expert policy)让模型学习</li>
-</ul></li>
-</ul></li>
+<li>训练时的输出：即模型学习到与扰动相反的操作之后，需要还原的原始文本，当确定了输入输出之后，ground truth的动作（expert policy）就确定了。一般来讲自然是要还原到oracle，但是作者考虑到直接学习太难，因此以一定概率模型只需要还原出一个低噪声版本即可。这个低噪声版本由序列蒸馏得到，具体做法是用统一数据集训练一个正常的transformer，然后用这个transformer对每条数据做推断，使用beam search找出非top 1的句子作为该条数据的低噪声版本给模型学习还原。</li>
+<li>训练时的ground truth action：在确定了输入和输出之后，利用动态规划得到编辑距离消耗最小的操作作为ground truth action(expert policy)让模型学习</li>
 </ul>
-<h2 id="推断">推断</h2>
-<ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="推断"><a href="#推断" class="headerlink" title="推断"></a>推断</h2><ul>
 <li>推断时，直接对输入文本进行多轮编辑（每一轮包括一次删除、预测位置、插入），直接贪心的选择概率最大的操作。</li>
-<li>多轮编辑直到：
-<ul>
+<li>多轮编辑直到：<ul>
 <li>出现循环（即重复出现的编辑后文本）</li>
 <li>预设最大轮次</li>
-</ul></li>
+</ul>
+</li>
 <li>添加placeholder过多会导致生成的文本过短，可以根据实际情况对placeholder添加惩罚项</li>
 <li>用两个编辑操作能够对模型的推断带来一定的可解释性</li>
 </ul>
-<h2 id="实验">实验</h2>
-<ul>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><ul>
 <li>指标结果主要包含六项，三类语对的翻译BLEU值以及摘要Gigaword的ROUGE-1,2，L值。在英日翻译和Gigaword全指标上，原始Transformer取得最好结果，比LevT好一个点左右，在剩下两个翻译数据集上LevT使用序列蒸馏的结果最好，比原始Transformer好一个点左右。</li>
 <li>对于LevT，序列蒸馏来训练比用原始oracle序列普遍要好</li>
 <li>在推断速度上，使用序列蒸馏的LevT效率最高，推断单句基本在90ms左右，而原始Transformer在翻译数据上要200-300ms，在摘要数据上也要116ms。作者还给出了推断迭代次数，这里可以看到LevT平均只要2次迭代，即两次删除+两次插入，注意这是对整句同时进行操作，而Transformer的平均迭代次数就是平均推断文本长度。短摘要数据集平均迭代10.1次，即平均长度10.1，而翻译数据集上则达到了20+。这样也能看出LevT的另一个优势，就是推断速度对于推断文本长度不是那么敏感，其主要和对整句的处理迭代次数相关，而迭代次数随长度的增长速度小于对数复杂度，远小于传统Transformer的平方复杂度。Transformer的推断延迟和长度基本成正比，而LevT都在90ms左右，两次迭代。</li>
-<li>消融表明了两种操作的设计、参数共享、dual
-policy都能提升最终指标。</li>
-<li>对删除和预测insert position直接用第一层结果early
-exit就能取得较好效果，相比取用第六层，BLEU降低0.4，换来加速比从3.5倍提升到5倍</li>
+<li>消融表明了两种操作的设计、参数共享、dual policy都能提升最终指标。</li>
+<li>对删除和预测insert position直接用第一层结果early exit就能取得较好效果，相比取用第六层，BLEU降低0.4，换来加速比从3.5倍提升到5倍</li>
 <li>同时作者发现，在翻译任务上训练的LevT可以zero-shot直接用于文本完善，效果比重新训练一个文本完善LevT最小只差了0.3个点，在Ro-En上甚至表现更好，且都优于传统Transformer。这里对于文本完善的适应性也符合直觉，完善文本自然是进行较小的编辑修改，完全重新生成的假设空间更大，难以达到理想目标。在文本完善数据集上微调之后，效果更是全面优于所有模型。</li>
 </ul>
-<h1 id="editnts">EditNTS</h1>
-<ul>
+<h1 id="EditNTS"><a href="#EditNTS" class="headerlink" title="EditNTS"></a>EditNTS</h1><ul>
 <li>提出了一个句子简化模型，显式地执行三类操作：插入、删除、保留</li>
 <li>与LevT不同的是，EditNTS依然是自回归的，并没有同时对整句操作，并且在预测操作时引入了更多的信息</li>
-<li>模型包含两部分：基于LSTM的seq2seq作为programmer，预测每个token位置的操作，产生编辑操作序列；以及一个额外的interpreter来执行操作生成编辑后的句子，这个interpreter还包含一个简单的LSTM来汇总编辑后句子的上下文信息
-<a target="_blank" rel="noopener" href="https://imgtu.com/i/gdTVa9"><img data-src="https://z3.ax1x.com/2021/05/12/gdTVa9.png"
-alt="gdTVa9.png" /></a></li>
-<li>值得注意的有三点：
-<ul>
+<li>模型包含两部分：基于LSTM的seq2seq作为programmer，预测每个token位置的操作，产生编辑操作序列；以及一个额外的interpreter来执行操作生成编辑后的句子，这个interpreter还包含一个简单的LSTM来汇总编辑后句子的上下文信息<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gdTVa9"><img data-src="https://z3.ax1x.com/2021/05/12/gdTVa9.png" alt="gdTVa9.png"></a></li>
+<li>值得注意的有三点：<ul>
 <li>预测出删除和保留后，programmer就移动到下一个单词，而预测出插入操作时，programmer不移动单词，接着在这个单词上预测下一个操作，来满足插入多个词的场景</li>
 <li>interpreter除了根据programmer预测结果完成编辑外，还用了一个LSTM来汇总当前时间步的编辑后句子信息</li>
-<li>programmer在预测编辑操作时，用到了四部分信息：
-<ul>
-<li>encoder的context，来自encoder lstm last layer attention-weighted
-output</li>
+<li>programmer在预测编辑操作时，用到了四部分信息：<ul>
+<li>encoder的context，来自encoder lstm last layer attention-weighted output</li>
 <li>当前操作的词，来自decoder lstm hidden state</li>
-<li>已经编辑好的句子的context，来自interpreter lstm attention-weighted
-output</li>
-<li>已经产生的编辑操作序列，来自attention-weighted edit label
-output，这里只用了简单的attention，没有用lstm</li>
-</ul></li>
-</ul></li>
+<li>已经编辑好的句子的context，来自interpreter lstm attention-weighted output</li>
+<li>已经产生的编辑操作序列，来自attention-weighted edit label output，这里只用了简单的attention，没有用lstm</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>encoder输入还额外引入了pos embedding</li>
-<li>标签构造，类似LevT，需要在句子简化数据集上构建出ground
-truth编辑操作，依然是基于编辑距离的动态规划得到操作序列，当多个操作序列存在时，优先选择插入序列多的，作者尝试过其他优先方式（优先删除、随机、引入替换操作），效果均不如直接优先插入。</li>
-<li>使用100维的glove向量来初始化词向量和编辑label
-embedding，用30维向量初始化pos
-embedding，使用编辑标签逆频次作为损失权重来平衡各个标签的损失占比。</li>
+<li>标签构造，类似LevT，需要在句子简化数据集上构建出ground truth编辑操作，依然是基于编辑距离的动态规划得到操作序列，当多个操作序列存在时，优先选择插入序列多的，作者尝试过其他优先方式（优先删除、随机、引入替换操作），效果均不如直接优先插入。</li>
+<li>使用100维的glove向量来初始化词向量和编辑label embedding，用30维向量初始化pos embedding，使用编辑标签逆频次作为损失权重来平衡各个标签的损失占比。</li>
 <li>结果并不是很优秀，在指标上没有比非编辑方法好，在人类评估上好一些但存在主观性。消融也不是很显著。</li>
 </ul>
-<h1 id="lasertagger">LaserTagger</h1>
-<ul>
+<h1 id="LaserTagger"><a href="#LaserTagger" class="headerlink" title="LaserTagger"></a>LaserTagger</h1><ul>
 <li>依然是保留、删除、插入三种操作，不过用上了BERT，且google的工程能力使得加速比达到了100-200倍</li>
-<li>贡献点
-<ul>
+<li>贡献点<ul>
 <li>提出了模型，并提出了从数据中生成标签词典的方法</li>
-<li>提出了基于BERT的和用BERT初始化seq2seq
-encoder的两个版本，前者加速快，后者效果好</li>
-</ul></li>
+<li>提出了基于BERT的和用BERT初始化seq2seq encoder的两个版本，前者加速快，后者效果好</li>
 </ul>
-<h2 id="text-editing-as-tagging">Text Editing as Tagging</h2>
-<ul>
-<li>LaserTagger将文本编辑问题转换为序列标注问题，主要包含三部分
-<ul>
-<li>标注操作：将编辑转化标注，其标签并不是保留删除插入三种，而是分为两部分：base
-tag B，有保留和删除两种；added phrase
-P，有V种，代表插入的片段（空白、词或者短语），从训练数据中构建一个P
-vocabulary得到，P和B组合得到标签，因此标签总共有2V种。可以根据下游人物添加任务相关的标签。</li>
-<li>added phrase
-vocabulary构建：构建词典是一个组合优化问题，一方面我们希望这个词典尽可能小，另一方面我们希望这个词袋能够覆盖最多的编辑情况，完美的解决该问题是NP-hard的，作者采用了另外一种方式。对每个训练文本对，通过动态规划求出最长公共子序列，用目标序列减去最长公共子序列就得到了需要添加的phrase，之后对phrase按照出现频次排序，取top
-k，在公开数据集上top 500就能覆盖85%的数据。</li>
-<li>构建标注序列：直接见伪算法，这里不需要动态规划，而是采取了一种贪心的方式，逐字匹配，找最短phrase插入
-<a target="_blank" rel="noopener" href="https://imgtu.com/i/gdxc0x"><img data-src="https://z3.ax1x.com/2021/05/12/gdxc0x.png" alt="gdxc0x.png" /></a>
-这样可能会出现不能编辑的情况，这种情况就从训练集中筛去，作者认为这样也可以看成是一种降噪。</li>
+</li>
+</ul>
+<h2 id="Text-Editing-as-Tagging"><a href="#Text-Editing-as-Tagging" class="headerlink" title="Text Editing as Tagging"></a>Text Editing as Tagging</h2><ul>
+<li>LaserTagger将文本编辑问题转换为序列标注问题，主要包含三部分<ul>
+<li>标注操作：将编辑转化标注，其标签并不是保留删除插入三种，而是分为两部分：base tag B，有保留和删除两种；added phrase P，有V种，代表插入的片段（空白、词或者短语），从训练数据中构建一个P vocabulary得到，P和B组合得到标签，因此标签总共有2V种。可以根据下游人物添加任务相关的标签。</li>
+<li>added phrase vocabulary构建：构建词典是一个组合优化问题，一方面我们希望这个词典尽可能小，另一方面我们希望这个词袋能够覆盖最多的编辑情况，完美的解决该问题是NP-hard的，作者采用了另外一种方式。对每个训练文本对，通过动态规划求出最长公共子序列，用目标序列减去最长公共子序列就得到了需要添加的phrase，之后对phrase按照出现频次排序，取top k，在公开数据集上top 500就能覆盖85%的数据。</li>
+<li>构建标注序列：直接见伪算法，这里不需要动态规划，而是采取了一种贪心的方式，逐字匹配，找最短phrase插入<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gdxc0x"><img data-src="https://z3.ax1x.com/2021/05/12/gdxc0x.png" alt="gdxc0x.png"></a><br>这样可能会出现不能编辑的情况，这种情况就从训练集中筛去，作者认为这样也可以看成是一种降噪。</li>
 <li>根据预测结果编辑句子：就是直接操作，可能根据下游任务预测出特别的标签进行任务相关的操作。作者认为将编辑操作模块化出来比直接端到端要更灵活。</li>
-</ul></li>
 </ul>
-<h2 id="实验-1">实验</h2>
-<ul>
-<li>模型有两种，直接用BERT做标注或者用一个seq2seq，encoder用BERT初始化，前者的话就是在BERT最后一层是再加一层transformer
-block做标注。</li>
-<li>四项任务，句子融合，分句与转述，摘要，语法纠错。均超过baseline，其中句子融合取得新的SOTA。但是LaserTagger最亮眼的表现在于其效率，只用BERT
-encoder能达到最高200倍的加速比（毕竟把文本生成变成了一个小词典的序列标注），同时对于小样本学习非常友好。</li>
-<li>作者还分析了seq2seq和基于编辑的模型常出现的问题及其原因、两者的优势等等
-<ul>
+</li>
+</ul>
+<h2 id="实验-1"><a href="#实验-1" class="headerlink" title="实验"></a>实验</h2><ul>
+<li>模型有两种，直接用BERT做标注或者用一个seq2seq，encoder用BERT初始化，前者的话就是在BERT最后一层是再加一层transformer block做标注。</li>
+<li>四项任务，句子融合，分句与转述，摘要，语法纠错。均超过baseline，其中句子融合取得新的SOTA。但是LaserTagger最亮眼的表现在于其效率，只用BERT encoder能达到最高200倍的加速比（毕竟把文本生成变成了一个小词典的序列标注），同时对于小样本学习非常友好。</li>
+<li>作者还分析了seq2seq和基于编辑的模型常出现的问题及其原因、两者的优势等等<ul>
 <li>想象词：seq2seq会在subword粒度上组合生成不存在的词，LaserTagger不存在这种情况</li>
 <li>过早结束：seq2seq可能很早生成EOS导致句子不完整或者过短，而LaserTagger理论上存在这种可能，实际上作者没有见到过，因为这意味着模型要预测出一堆删除操作，而这在训练数据中是几乎没有的。</li>
-<li>重复短语：在分句任务中，seq2seq经常会重复生成短语，而LaserTagger会选择不分句，或者lazy
-split</li>
+<li>重复短语：在分句任务中，seq2seq经常会重复生成短语，而LaserTagger会选择不分句，或者lazy split</li>
 <li>Hallucination：即生成的文本与源文本无关或者反常识反事实，两类模型都会出现这类问题，seq2seq可能隐藏的更深（看起来流畅，实际上不合理）</li>
 <li>共指消解：两类模型都存在这种问题，seq2seq容易将代词替换为错误名词，LaserTagger容易保留代词不管</li>
 <li>错误删除：LaserTagger看似文本生成较为可控，但任然存在一些情况，即模型删除了部分词，剩下句子语义流畅，但含义错误</li>
-<li>lazy
-split：在分句任务中，LasterTagger可能只分句，而不对分开的句子做任何后处理。</li>
-</ul></li>
+<li>lazy split：在分句任务中，LasterTagger可能只分句，而不对分开的句子做任何后处理。</li>
 </ul>
-<h1 id="pie">PIE</h1>
-<ul>
+</li>
+</ul>
+<h1 id="PIE"><a href="#PIE" class="headerlink" title="PIE"></a>PIE</h1><ul>
 <li>也是BERT+序列标注，同时从数据中构造phrase词典</li>
 <li>编辑操作包括复制（保留）、插入、删除、词形变换（用于语法纠错）</li>
 <li>构造phrase词典、构造ground truth编辑操作和LaserTagger基本一致</li>
-<li>将BERT左右扩展了两部分来获得替换或者增加所需的信息：
-<ul>
-<li>输入层，M为mask标识符的embedding，p为positional embedding，X为word
-embedding</li>
+<li>将BERT左右扩展了两部分来获得替换或者增加所需的信息：<ul>
+<li>输入层，M为mask标识符的embedding，p为positional embedding，X为word embedding</li>
 <li>h即原始BERT信息，包含词和位置信息</li>
 <li>r即替换信息，只不过把当前位置的词mask掉，用M替代，且计算注意力时不查询当前位置的h</li>
-<li>a即插入信息，只不过把当前位置的词mask掉，用M替代，且p替换为相邻位置p的平均
-<a target="_blank" rel="noopener" href="https://imgtu.com/i/gwZarT"><img data-src="https://z3.ax1x.com/2021/05/12/gwZarT.png"
-alt="gwZarT.png" /></a></li>
-<li>之后利用三类信息来分别计算不同操作的概率，并归一化，CARDT分别代表复制（保留）、插入、替换、删除、词形变换
-<a target="_blank" rel="noopener" href="https://imgtu.com/i/gwZ5IH"><img data-src="https://z3.ax1x.com/2021/05/12/gwZ5IH.png"
-alt="gwZ5IH.png" /></a></li>
-<li>上式第一项是每一项编辑操作的得分；第二项是保留当前词的得分，删除和替换不得分，其余的则用当前词embedding
-<span class="math inline">\(\phi(x_i)\)</span>来参数化得分，这里<span
-class="math inline">\(\phi\)</span>的意义不明，原文是Embedding of w,
-represented by <span class="math inline">\(\phi(w)\)</span> is obtained
-by summing up in-dividual output embeddings of tokens in
-w；第三项是新词带来的影响，只有替换和插入有。</li>
-</ul></li>
-<li>推断时也是多轮推断（输出变输入），直到出现重复句子</li>
-<li>这里编辑操作设计的动机和解释不是很清楚，最终结果也很一般，ensemble情况下才与Transformer
-+ Pre-training + LM+ Spellcheck + Ensemble Decoding
-的工作持平，而且从消融来看，预训练模型是带来性能提升的主要原因。</li>
+<li>a即插入信息，只不过把当前位置的词mask掉，用M替代，且p替换为相邻位置p的平均<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gwZarT"><img data-src="https://z3.ax1x.com/2021/05/12/gwZarT.png" alt="gwZarT.png"></a></li>
+<li>之后利用三类信息来分别计算不同操作的概率，并归一化，CARDT分别代表复制（保留）、插入、替换、删除、词形变换<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gwZ5IH"><img data-src="https://z3.ax1x.com/2021/05/12/gwZ5IH.png" alt="gwZ5IH.png"></a></li>
+<li>上式第一项是每一项编辑操作的得分；第二项是保留当前词的得分，删除和替换不得分，其余的则用当前词embedding $\phi(x_i)$来参数化得分，这里$\phi$的意义不明，原文是Embedding of w, represented by $\phi(w)$ is obtained by summing up in-dividual output embeddings of tokens in w；第三项是新词带来的影响，只有替换和插入有。</li>
 </ul>
-<h1 id="felix">Felix</h1>
-<ul>
+</li>
+<li>推断时也是多轮推断（输出变输入），直到出现重复句子</li>
+<li>这里编辑操作设计的动机和解释不是很清楚，最终结果也很一般，ensemble情况下才与Transformer + Pre-training + LM+ Spellcheck + Ensemble Decoding 的工作持平，而且从消融来看，预训练模型是带来性能提升的主要原因。</li>
+</ul>
+<h1 id="Felix"><a href="#Felix" class="headerlink" title="Felix"></a>Felix</h1><ul>
 <li>将编辑操作分为两个非自回归的部分，首先用一个基于Transformer的指针网络做tagging和reordering，并插入placeholder；然后用一个MLM对placeholder做预测</li>
-<li>Felix的设计考虑三点需求
-<ul>
+<li>Felix的设计考虑三点需求<ul>
 <li>灵活的编辑，适合多种文本生成任务</li>
 <li>充分利用BERT等预训练模型</li>
-<li>高效推断 <a target="_blank" rel="noopener" href="https://imgtu.com/i/gwKovR"><img data-src="https://z3.ax1x.com/2021/05/12/gwKovR.png"
-alt="gwKovR.png" /></a></li>
-</ul></li>
-<li>下图可以清晰的表示出Felix的标签设计，其中<em>y<sup>t<em>是tagging模型需要预测出的编辑操作序列，</em>y</sup>m</em>是根据编辑操作序列，添加相关special
-token(REPL,MASK)之后的中间状态序列，中间状态序列直接喂给MLM来预测需要插入的词，最终得到Pred里的结果</li>
-<li><a target="_blank" rel="noopener" href="https://imgtu.com/i/gwMHzj"><img data-src="https://z3.ax1x.com/2021/05/12/gwMHzj.md.png"
-alt="gwMHzj.md.png" /></a></li>
-<li>这里需要注意两点：
-<ul>
-<li>MLM虽然只完成插入词的预测，但也需要完整的编辑操作信息，而不是输入MLM时直接把预测删除操作位置的词删掉，这里作者的做法是用REPL括起来要删除的span，给MLM也提供了删除编辑的信息。</li>
-<li>图中给出了Mask和Infill两种形式，其实就是对中间状态序列的MASK设计不同，涉及到多token插入的任务交给谁：Mask方式里是把任务交给了tagging模型，直接预测出插入多个词的编辑操作，例如<span
-class="math inline">\(DEL^{INS\_2}\)</span>，即插入两个，对应的就在中间序列中生成两个MASK让模型预测；Infill方式里把这个任务交给了MLM，统一对每个插入位置准备四个MASK让模型预测，多了的部分就预测PAD</li>
-</ul></li>
-<li>为了更灵活的建模，tagging部分的模型还需要做reordering，不然交互两个词的位置就得先删再添加，增加了复杂度。这里是通过指针网络注意力来为每个词确定其指向的后一个词，第一个词由特殊标识CLS指示。在推断时，使用了受控的beam
-search避免指向顺序产生循环。</li>
-<li>主要与LaserTagger对比，在性能，小样本上的表现要优于LaserTagger,且没有了phrase
-vocabulary的限制。作者也就phrase
-vocabulary和reordering做了实验，结果很多可见原论文。</li>
+<li>高效推断<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gwKovR"><img data-src="https://z3.ax1x.com/2021/05/12/gwKovR.png" alt="gwKovR.png"></a></li>
 </ul>
-<h1 id="总结">总结</h1>
-<ul>
+</li>
+<li>下图可以清晰的表示出Felix的标签设计，其中<em>y^t</em>是tagging模型需要预测出的编辑操作序列，<em>y^m</em>是根据编辑操作序列，添加相关special token(REPL,MASK)之后的中间状态序列，中间状态序列直接喂给MLM来预测需要插入的词，最终得到Pred里的结果</li>
+<li><a target="_blank" rel="noopener" href="https://imgtu.com/i/gwMHzj"><img data-src="https://z3.ax1x.com/2021/05/12/gwMHzj.md.png" alt="gwMHzj.md.png"></a></li>
+<li>这里需要注意两点：<ul>
+<li>MLM虽然只完成插入词的预测，但也需要完整的编辑操作信息，而不是输入MLM时直接把预测删除操作位置的词删掉，这里作者的做法是用REPL括起来要删除的span，给MLM也提供了删除编辑的信息。</li>
+<li>图中给出了Mask和Infill两种形式，其实就是对中间状态序列的MASK设计不同，涉及到多token插入的任务交给谁：Mask方式里是把任务交给了tagging模型，直接预测出插入多个词的编辑操作，例如$DEL^{INS_2}$，即插入两个，对应的就在中间序列中生成两个MASK让模型预测；Infill方式里把这个任务交给了MLM，统一对每个插入位置准备四个MASK让模型预测，多了的部分就预测PAD</li>
+</ul>
+</li>
+<li>为了更灵活的建模，tagging部分的模型还需要做reordering，不然交互两个词的位置就得先删再添加，增加了复杂度。这里是通过指针网络注意力来为每个词确定其指向的后一个词，第一个词由特殊标识CLS指示。在推断时，使用了受控的beam search避免指向顺序产生循环。</li>
+<li>主要与LaserTagger对比，在性能，小样本上的表现要优于LaserTagger,且没有了phrase vocabulary的限制。作者也就phrase vocabulary和reordering做了实验，结果很多可见原论文。</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
 <li><p>总结各个模型</p>
-<table>
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 10%" />
-<col style="width: 16%" />
-<col style="width: 21%" />
-<col style="width: 15%" />
-<col style="width: 9%" />
-<col style="width: 16%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">模型</th>
-<th style="text-align: center;">编辑操作</th>
-<th style="text-align: center;">加速</th>
-<th style="text-align: center;">插入多个词</th>
-<th style="text-align: center;">构建ground truth编辑序列</th>
-<th style="text-align: center;">编辑失败</th>
-<th style="text-align: center;">测试任务</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">LevT</td>
-<td style="text-align: center;">插入删除</td>
-<td style="text-align: center;">多轮非自回归，5倍</td>
-<td style="text-align: center;">先预测placeholder数量，再替换</td>
-<td style="text-align: center;">基于编辑距离动态规划</td>
-<td style="text-align: center;">退化为文本生成</td>
-<td style="text-align: center;">翻译、摘要</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">EditNTS</td>
-<td style="text-align: center;">插入删除保留</td>
-<td style="text-align: center;">自回归，未提及加速</td>
-<td style="text-align: center;">插入时原地停留，直到插入完毕</td>
-<td style="text-align: center;">基于编辑距离动态规划</td>
-<td style="text-align: center;">退化为文本生成</td>
-<td style="text-align: center;">文本简化</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">LaserTagger</td>
-<td style="text-align: center;">插入删除保留</td>
-<td style="text-align: center;">一轮序列标注，100+倍</td>
-<td
-style="text-align: center;">直接插入phrase，根据训练数据构建phrase词典</td>
-<td style="text-align: center;">贪心匹配</td>
-<td style="text-align: center;">不编辑</td>
-<td
-style="text-align: center;">句子融合，分句与转述，摘要，语法纠错</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">PIE</td>
-<td style="text-align: center;">插入删除替换复制词形变换</td>
-<td style="text-align: center;">序列标注，2倍</td>
-<td
-style="text-align: center;">直接插入phrase，根据训练数据构建phrase词典</td>
-<td style="text-align: center;">贪心匹配</td>
-<td style="text-align: center;">未说明</td>
-<td style="text-align: center;">语法纠错</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Felix</td>
-<td style="text-align: center;">删除插入保留重排序</td>
-<td style="text-align: center;">标注+MLM，快于LaserTagger</td>
-<td style="text-align: center;">设置多个Mask让MLM预测</td>
-<td style="text-align: center;">简单比较</td>
-<td style="text-align: center;">较差的MLM预测结果</td>
-<td
-style="text-align: center;">句子融合、机器翻译后处理、摘要、文本简化</td>
-</tr>
-</tbody>
-</table></li>
+<p>| 模型          | 编辑操作         | 加速                   | 插入多个词                       | 构建ground truth编辑序列 | 编辑失败       | 测试任务                 |<br>|:—————-:|:——————:|:——————————:|:—————————————-:|:—————————:|:—————:|:——————————:|<br>| LevT        | 插入删除         | 多轮非自回归，5倍            | 先预测placeholder数量，再替换        | 基于编辑距离动态规划         | 退化为文本生成    | 翻译、摘要                |<br>| EditNTS     | 插入删除保留       | 自回归，未提及加速            | 插入时原地停留，直到插入完毕              | 基于编辑距离动态规划         | 退化为文本生成    | 文本简化                 |<br>| LaserTagger | 插入删除保留       | 一轮序列标注，100+倍         | 直接插入phrase，根据训练数据构建phrase词典 | 贪心匹配               | 不编辑        | 句子融合，分句与转述，摘要，语法纠错   |<br>| PIE         | 插入删除替换复制词形变换 | 序列标注，2倍              | 直接插入phrase，根据训练数据构建phrase词典 | 贪心匹配               | 未说明        | 语法纠错                 |<br>| Felix       | 删除插入保留重排序    | 标注+MLM，快于LaserTagger | 设置多个Mask让MLM预测              | 简单比较               | 较差的MLM预测结果 | 句子融合、机器翻译后处理、摘要、文本简化 |</p>
+</li>
 </ul>
 </div>
 <script src="https://giscus.app/client.js"
@@ -1235,7 +713,6 @@ style="text-align: center;">句子融合、机器翻译后处理、摘要、文�
         crossorigin="anonymous"
         async>
 </script>
-
     </div>
 
     
@@ -1301,13 +778,13 @@ style="text-align: center;">句子融合、机器翻译后处理、摘要、文�
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">1.2m</span>
+    <span title="Word count total">1.1m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">17:41</span>
+    <span title="Reading time total">16:42</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>

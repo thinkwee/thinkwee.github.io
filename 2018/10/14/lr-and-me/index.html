@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"thinkwee.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":50,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Note for John Mount&#39;s &quot;The Equivalence of Logistic Regression and Maximum Entropy Models&quot; and explains that this proof is a special case of the general derivation proof of the maximum entropy model i">
+    <meta name="description" content="Note for John Mount’s “The Equivalence of Logistic Regression and Maximum Entropy Models” and explains that this proof is a special case of the general derivation proof of the maximum entropy model i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Logistic Regression and Maximum Entropy">
 <meta property="og:url" content="https://thinkwee.top/2018/10/14/lr-and-me/index.html">
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
-<meta property="og:description" content="Note for John Mount&#39;s &quot;The Equivalence of Logistic Regression and Maximum Entropy Models&quot; and explains that this proof is a special case of the general derivation proof of the maximum entropy model i">
+<meta property="og:description" content="Note for John Mount’s “The Equivalence of Logistic Regression and Maximum Entropy Models” and explains that this proof is a special case of the general derivation proof of the maximum entropy model i">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.mji.rip/2025/07/16/50e93d01eefd2d64738c372694d4f1fd.png">
 <meta property="article:published_time" content="2018-10-14T12:38:59.000Z">
@@ -146,9 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#define-symbols"><span class="nav-number">1.</span> <span class="nav-text">Define symbols</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#logistic-regression"><span class="nav-number">2.</span> <span class="nav-text">Logistic regression</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#softmax-regression"><span class="nav-number">3.</span> <span class="nav-text">Softmax regression</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solving-softmax"><span class="nav-number">4.</span> <span class="nav-text">Solving softmax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#balanced-equation"><span class="nav-number">5.</span> <span class="nav-text">Balanced Equation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#from-maximum-entropy-to-softmax"><span class="nav-number">6.</span> <span class="nav-text">From Maximum Entropy to
-Softmax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solving-parameters"><span class="nav-number">7.</span> <span class="nav-text">Solving Parameters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#connection-with-the-maximum-entropy-model-defined-by-characteristic-functions"><span class="nav-number">8.</span> <span class="nav-text">Connection
-with the Maximum Entropy Model Defined by Characteristic Functions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%8E%E7%A1%AE%E7%AC%A6%E5%8F%B7"><span class="nav-number">9.</span> <span class="nav-text">明确符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#logistic%E5%9B%9E%E5%BD%92"><span class="nav-number">10.</span> <span class="nav-text">Logistic回归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#softmax%E5%9B%9E%E5%BD%92"><span class="nav-number">11.</span> <span class="nav-text">Softmax回归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3softmax"><span class="nav-number">12.</span> <span class="nav-text">求解softmax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B3%E8%A1%A1%E7%AD%89%E5%BC%8F"><span class="nav-number">13.</span> <span class="nav-text">平衡等式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B1%E6%9C%80%E5%A4%A7%E7%86%B5%E6%8E%A8%E5%87%BAsoftmax"><span class="nav-number">14.</span> <span class="nav-text">由最大熵推出softmax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3%E5%8F%82%E6%95%B0"><span class="nav-number">15.</span> <span class="nav-text">求解参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8E%E7%89%B9%E5%BE%81%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E7%9A%84%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%81%94%E7%B3%BB"><span class="nav-number">16.</span> <span class="nav-text">与特征函数定义的最大熵模型的联系</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Define-symbols"><span class="nav-number">1.</span> <span class="nav-text">Define symbols</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic-regression"><span class="nav-number">2.</span> <span class="nav-text">Logistic regression</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Softmax-regression"><span class="nav-number">3.</span> <span class="nav-text">Softmax regression</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solving-softmax"><span class="nav-number">4.</span> <span class="nav-text">Solving softmax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Balanced-Equation"><span class="nav-number">5.</span> <span class="nav-text">Balanced Equation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#From-Maximum-Entropy-to-Softmax"><span class="nav-number">6.</span> <span class="nav-text">From Maximum Entropy to Softmax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solving-Parameters"><span class="nav-number">7.</span> <span class="nav-text">Solving Parameters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Connection-with-the-Maximum-Entropy-Model-Defined-by-Characteristic-Functions"><span class="nav-number">8.</span> <span class="nav-text">Connection with the Maximum Entropy Model Defined by Characteristic Functions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%8E%E7%A1%AE%E7%AC%A6%E5%8F%B7"><span class="nav-number">9.</span> <span class="nav-text">明确符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic%E5%9B%9E%E5%BD%92"><span class="nav-number">10.</span> <span class="nav-text">Logistic回归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Softmax%E5%9B%9E%E5%BD%92"><span class="nav-number">11.</span> <span class="nav-text">Softmax回归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3softmax"><span class="nav-number">12.</span> <span class="nav-text">求解softmax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B3%E8%A1%A1%E7%AD%89%E5%BC%8F"><span class="nav-number">13.</span> <span class="nav-text">平衡等式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%B1%E6%9C%80%E5%A4%A7%E7%86%B5%E6%8E%A8%E5%87%BAsoftmax"><span class="nav-number">14.</span> <span class="nav-text">由最大熵推出softmax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3%E5%8F%82%E6%95%B0"><span class="nav-number">15.</span> <span class="nav-text">求解参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8E%E7%89%B9%E5%BE%81%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E7%9A%84%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%81%94%E7%B3%BB"><span class="nav-number">16.</span> <span class="nav-text">与特征函数定义的最大熵模型的联系</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -275,14 +273,14 @@ with the Maximum Entropy Model Defined by Characteristic Functions</span></a></l
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>12k</span>
+      <span>11k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>11 mins.</span>
+      <span>10 mins.</span>
     </span>
 </div>
 
@@ -293,470 +291,256 @@ with the Maximum Entropy Model Defined by Characteristic Functions</span></a></l
     
     
     <div class="post-body" itemprop="articleBody"><p><img data-src="https://i.mji.rip/2025/07/16/50e93d01eefd2d64738c372694d4f1fd.png" width="500"/></p>
-<p>Note for John Mount's "The Equivalence of Logistic Regression and
-Maximum Entropy Models" and explains that this proof is a special case
-of the general derivation proof of the maximum entropy model introduced
-in statistical learning methods</p>
+<p>Note for John Mount’s “The Equivalence of Logistic Regression and Maximum Entropy Models” and explains that this proof is a special case of the general derivation proof of the maximum entropy model introduced in statistical learning methods</p>
 <p>Conclusion</p>
 <ul>
 <li>Maximum entropy model is softmax classification</li>
-<li>Under the balanced conditions of the general linear model, the model
-mapping function that satisfies the maximum entropy condition is the
-softmax function</li>
-<li>In the book on Statistical Machine Learning methods, a maximum
-entropy model defined under the feature function is presented, which,
-along with softmax regression, belongs to the class of log-linear
-models</li>
-<li>When the feature function extends from a binary function to the
-feature value itself, the maximum entropy model becomes a softmax
-regression model</li>
-<li>The maximum entropy maximizes conditional entropy, not the entropy
-of conditional probabilities, nor the entropy of joint
-probabilities.</li>
+<li>Under the balanced conditions of the general linear model, the model mapping function that satisfies the maximum entropy condition is the softmax function</li>
+<li>In the book on Statistical Machine Learning methods, a maximum entropy model defined under the feature function is presented, which, along with softmax regression, belongs to the class of log-linear models</li>
+<li>When the feature function extends from a binary function to the feature value itself, the maximum entropy model becomes a softmax regression model</li>
+<li>The maximum entropy maximizes conditional entropy, not the entropy of conditional probabilities, nor the entropy of joint probabilities.</li>
 </ul>
 <span id="more"></span>
 <style>.lang-content {width: 100%;overflow: hidden;}.lang-content:not(:first-child) {display: none;}</style><div style="text-align: right; margin: 0 0 20px auto; max-width: 200px;"><button id="langToggle" onclick="toggleLanguage()" class="lang-switch-btn" style="width: 100%;padding: 10px 20px;border-radius: 8px;border: 2px solid #2c3e50;background-color: #fff;cursor: pointer;color: #2c3e50;font-size: 15px;transition: all 0.3s ease;display: flex;align-items: center;justify-content: center;gap: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><span class="button-text">切换中文</span></button></div>
-<div id="en-content" class="lang-content" style="display: block;"><h1 id="define-symbols">Define symbols</h1>
-<ul>
-<li>n-dimensional features, m samples, <span
-class="math inline">\(x(i)_j\)</span> denotes the j-th feature of the
-i-th sample, discuss the multi-class scenario, the output classification
-<span class="math inline">\(y(i)\)</span> has k classes, the mapping
-probability function <span class="math inline">\(\pi\)</span> maps from
-<span class="math inline">\(R^n\)</span> to <span
-class="math inline">\(R^k\)</span> , we hope <span
-class="math inline">\(\pi(x(i))_{y(i)}\)</span> to be as large as
-possible.</li>
-<li>Indicator function <span class="math inline">\(A(u,v)\)</span> ,
-equals 1 when <span class="math inline">\(u==v\)</span> and 0
-otherwise</li>
+<div id="en-content" class="lang-content" style="display: block;"><h1 id="Define-symbols"><a href="#Define-symbols" class="headerlink" title="Define symbols"></a>Define symbols</h1><ul>
+<li>n-dimensional features, m samples, $x(i)<em>j$ denotes the j-th feature of the i-th sample, discuss the multi-class scenario, the output classification $y(i)$ has k classes, the mapping probability function $\pi$ maps from $R^n$ to $R^k$ , we hope $\pi(x(i))</em>{y(i)}$ to be as large as possible.</li>
+<li>Indicator function $A(u,v)$ , equals 1 when $u==v$ and 0 otherwise</li>
 </ul>
-<h1 id="logistic-regression">Logistic regression</h1>
-<p><span class="math display">\[
+<h1 id="Logistic-regression"><a href="#Logistic-regression" class="headerlink" title="Logistic regression"></a>Logistic regression</h1><script type="math/tex; mode=display">
 \pi(x)_1 = \frac{e^{\lambda x}}{1+e^{\lambda x}} \\
-\pi(x)_2 = 1 - \pi(x)_1\\
-\]</span></p>
-<ul>
-<li>The parameter to be learned <span
-class="math inline">\(\lambda\)</span> is <span
-class="math inline">\(R^n\)</span></li>
+\pi(x)_2 = 1 - \pi(x)_1\\</script><ul>
+<li>The parameter to be learned $\lambda$ is $R^n$</li>
 </ul>
-<h1 id="softmax-regression">Softmax regression</h1>
-<p><span class="math display">\[
-\pi(x)_v = \frac{e^{\lambda _v x}} {\sum _{u=1}^k e^{\lambda _u x}}
-\]</span></p>
-<ul>
-<li>For <span class="math inline">\(R^{k * n}\)</span></li>
+<h1 id="Softmax-regression"><a href="#Softmax-regression" class="headerlink" title="Softmax regression"></a>Softmax regression</h1><script type="math/tex; mode=display">
+\pi(x)_v = \frac{e^{\lambda _v x}} {\sum _{u=1}^k e^{\lambda _u x}}</script><ul>
+<li>For $R^{k * n}$</li>
 </ul>
-<h1 id="solving-softmax">Solving softmax</h1>
-<ul>
-<li><p>When using softmax or logistic as nonlinear functions, they
-possess a good property of differentiation, that is, the derivative
-function can be expressed in terms of the original function</p></li>
-<li><p>We can now define the objective function, which is to maximize
-the correct category probability output by the <span
-class="math inline">\(\pi\)</span> function (maximum likelihood), and
-define the optimization obtained by <span
-class="math inline">\(\lambda\)</span> :</p>
-<p><span class="math display">\[
+<h1 id="Solving-softmax"><a href="#Solving-softmax" class="headerlink" title="Solving softmax"></a>Solving softmax</h1><ul>
+<li><p>When using softmax or logistic as nonlinear functions, they possess a good property of differentiation, that is, the derivative function can be expressed in terms of the original function</p>
+</li>
+<li><p>We can now define the objective function, which is to maximize the correct category probability output by the $\pi$ function (maximum likelihood), and define the optimization obtained by $\lambda$ :</p>
+<script type="math/tex; mode=display">
 \lambda = argmax \sum _{i=1}^m log (\pi (x(i))_{y(i)}) \\
-= argmax f(\lambda) \\
-\]</span></p></li>
+= argmax f(\lambda) \\</script></li>
 </ul>
-<h1 id="balanced-equation">Balanced Equation</h1>
-<ul>
-<li><p>Derive the objective function above and set the derivative to
-0:</p>
-<p><span class="math display">\[
-\frac {\partial f(\lambda)}{\partial \lambda _{u,j}} = \sum
-_{i=1，y(i)=u}^m x(i)_j - \sum _{i=1}^m x(i)_j \pi (x(i))_u =0 \\
-\]</span></p></li>
+<h1 id="Balanced-Equation"><a href="#Balanced-Equation" class="headerlink" title="Balanced Equation"></a>Balanced Equation</h1><ul>
+<li><p>Derive the objective function above and set the derivative to 0:</p>
+<script type="math/tex; mode=display">
+\frac {\partial f(\lambda)}{\partial \lambda _{u,j}} = \sum _{i=1，y(i)=u}^m x(i)_j - \sum _{i=1}^m x(i)_j \pi (x(i))_u =0 \\</script></li>
 <li><p>Thus, we obtain an important balance equation:</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \ \  for \ all \ u,j \\
-\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
-\]</span></p></li>
+\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\</script></li>
 <li><p>Analyze this equation:</p>
 <ul>
-<li><p>Plain Language: We hope to obtain a mapping function <span
-class="math inline">\(\pi\)</span> , such that for a certain dimension
-(j) feature, the sum of the weighted feature values of all samples
-mapped to the u class by the mapping function is equal to the sum of the
-feature values of all samples within the u class. It is obvious that the
-best case is that the elements within both summation expressions are
-completely identical, only the samples of the u class are summed, and
-the probability that the mapping function maps the u class samples to
-the u class is 1, while the probability that samples of other classes
-are mapped to the u class is 0.</p></li>
-<li><p>However, this equation is very lenient, requiring only that the
-two sums be equal, without demanding that each element be the same, and
-the expression of the mapping function is not explicitly written out.
-Any nonlinear mapping that satisfies this equation could be called a
-mapping function.</p></li>
+<li><p>Plain Language: We hope to obtain a mapping function $\pi$ , such that for a certain dimension (j) feature, the sum of the weighted feature values of all samples mapped to the u class by the mapping function is equal to the sum of the feature values of all samples within the u class. It is obvious that the best case is that the elements within both summation expressions are completely identical, only the samples of the u class are summed, and the probability that the mapping function maps the u class samples to the u class is 1, while the probability that samples of other classes are mapped to the u class is 0.</p>
+</li>
+<li><p>However, this equation is very lenient, requiring only that the two sums be equal, without demanding that each element be the same, and the expression of the mapping function is not explicitly written out. Any nonlinear mapping that satisfies this equation could be called a mapping function.</p>
+</li>
 <li><p>In formulaic terms, it is expressed as</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \sum _{i=1}^m A(u,y(i)) x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
-\pi (x(i))_u \approx A(u,y(i)) \\
-\]</span></p></li>
-</ul></li>
+\pi (x(i))_u \approx A(u,y(i)) \\</script></li>
 </ul>
-<h1 id="from-maximum-entropy-to-softmax">From Maximum Entropy to
-Softmax</h1>
+</li>
+</ul>
+<h1 id="From-Maximum-Entropy-to-Softmax"><a href="#From-Maximum-Entropy-to-Softmax" class="headerlink" title="From Maximum Entropy to Softmax"></a>From Maximum Entropy to Softmax</h1><ul>
+<li><p>What was mentioned above is that the balanced equation does not require the format of the mapping function, then why did we choose softmax? In other words, under what conditions can the constraint of the balanced equation lead to the conclusion that the nonlinear mapping is softmax?</p>
+</li>
+<li><p>The answer is maximum entropy. Now let’s review the conditions that need to be met in $\pi$ .</p>
 <ul>
-<li><p>What was mentioned above is that the balanced equation does not
-require the format of the mapping function, then why did we choose
-softmax? In other words, under what conditions can the constraint of the
-balanced equation lead to the conclusion that the nonlinear mapping is
-softmax?</p></li>
-<li><p>The answer is maximum entropy. Now let's review the conditions
-that need to be met in <span class="math inline">\(\pi\)</span> .</p>
-<ul>
-<li><p>Balance equation (i.e., this <span
-class="math inline">\(\pi\)</span> can fit the data):</p>
-<p><span class="math display">\[
+<li><p>Balance equation (i.e., this $\pi$ can fit the data):</p>
+<script type="math/tex; mode=display">
 \ \  for \ all \ u,j \\
-\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
-\]</span></p></li>
-<li><p>The output of <span class="math inline">\(\pi\)</span> should be
-a probability:</p>
-<p><span class="math display">\[
+\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\</script></li>
+<li><p>The output of $\pi$ should be a probability:</p>
+<script type="math/tex; mode=display">
 \pi (x)_v \geq 0 \\
-\sum _{v=1}^k \pi (x)_v = 1 \\
-\]</span></p></li>
-</ul></li>
-<li><p>According to the maximum entropy principle, we hope that <span
-class="math inline">\(\pi\)</span> can have the maximum entropy while
-satisfying the aforementioned constraints:</p>
-<p><span class="math display">\[
+\sum _{v=1}^k \pi (x)_v = 1 \\</script></li>
+</ul>
+</li>
+<li><p>According to the maximum entropy principle, we hope that $\pi$ can have the maximum entropy while satisfying the aforementioned constraints:</p>
+<script type="math/tex; mode=display">
 \pi = argmax \ Ent(\pi) \\
-Ent(\pi) = - \sum_{v=1}^k \sum _{i=1}^m \pi (x(i))_v log (\pi (x(i))_v)
-\\
-\]</span></p></li>
+Ent(\pi) = - \sum_{v=1}^k \sum _{i=1}^m \pi (x(i))_v log (\pi (x(i))_v) \\</script></li>
 <li><p>The maximum entropy can be understood from two perspectives:</p>
 <ul>
-<li>Maximum entropy, also known as maximum perplexity, refers to the low
-risk of overfitting in the model, with low model complexity. According
-to Ockham's Razor principle, among multiple models with the same effect,
-the one with lower complexity has better generalization ability. Under
-the satisfaction of constraint conditions, of course, we would hope for
-a model with lower complexity, which is equivalent to
-regularization.</li>
-<li>The constraints are the parts of our model that are known to need to
-be satisfied and need to be fitted; the remaining parts are the unknown
-parts, with no rules or data to guide us in assigning probabilities.
-What should we do in this unknown situation? In the case of the unknown,
-probabilities should be uniformly distributed among all possibilities,
-which corresponds to the maximum entropy situation.</li>
-</ul></li>
-<li><p>The problem has now been formulated as a constrained optimization
-problem, which can be solved using the Lagrange multiplier method. There
-is a trick; the original text states that it would be somewhat complex
-to directly consider the probabilistic inequality conditions, and the
-KKT conditions would need to be used, which we will not consider here.
-If the <span class="math inline">\(\pi\)</span> obtained satisfies the
-inequality conditions, we can skip it (which is indeed the
-case).</p></li>
+<li>Maximum entropy, also known as maximum perplexity, refers to the low risk of overfitting in the model, with low model complexity. According to Ockham’s Razor principle, among multiple models with the same effect, the one with lower complexity has better generalization ability. Under the satisfaction of constraint conditions, of course, we would hope for a model with lower complexity, which is equivalent to regularization.</li>
+<li>The constraints are the parts of our model that are known to need to be satisfied and need to be fitted; the remaining parts are the unknown parts, with no rules or data to guide us in assigning probabilities. What should we do in this unknown situation? In the case of the unknown, probabilities should be uniformly distributed among all possibilities, which corresponds to the maximum entropy situation.</li>
 </ul>
-<p><span class="math display">\[
-L = \sum _{j=1}^n \sum _{v=1}^k \lambda _{v,j} (\sum _{i=1}^m \pi
-(x(i))_v x(i)_j - A(v,y(i)) x(i)_j) \\
+</li>
+<li>The problem has now been formulated as a constrained optimization problem, which can be solved using the Lagrange multiplier method. There is a trick; the original text states that it would be somewhat complex to directly consider the probabilistic inequality conditions, and the KKT conditions would need to be used, which we will not consider here. If the $\pi$ obtained satisfies the inequality conditions, we can skip it (which is indeed the case).</li>
+</ul>
+<script type="math/tex; mode=display">
+L = \sum _{j=1}^n \sum _{v=1}^k \lambda _{v,j} (\sum _{i=1}^m \pi (x(i))_v x(i)_j - A(v,y(i)) x(i)_j) \\
 + \sum _{v=1}^k \sum _{i=1}^m \beta _i (\pi (x(i))_v -1) \\
-- \sum _{v=1}^k \sum _{i=1}^m \pi(x(i))_v log(\pi (x(i))_v) \\
-\]</span></p>
-<ul>
-<li><p>Here is another trick, where we should differentiate all
-parameters. Here, we first differentiate <span class="math inline">\(\pi
-(x(i))_u\)</span> and set it to 0 to obtain:</p>
-<p><span class="math display">\[
-\pi (x(i))_u = e^{\lambda _u x(i) + \beta _i -1}
-\]</span></p></li>
-<li><p>Considering the equality constraint condition (the sum of
-probabilities equals 1), it is not necessary to differentiate with
-respect to <span class="math inline">\(\beta\)</span></p>
-<p><span class="math display">\[
+- \sum _{v=1}^k \sum _{i=1}^m \pi(x(i))_v log(\pi (x(i))_v) \\</script><ul>
+<li><p>Here is another trick, where we should differentiate all parameters. Here, we first differentiate $\pi (x(i))_u$ and set it to 0 to obtain:</p>
+<script type="math/tex; mode=display">
+\pi (x(i))_u = e^{\lambda _u x(i) + \beta _i -1}</script></li>
+<li><p>Considering the equality constraint condition (the sum of probabilities equals 1), it is not necessary to differentiate with respect to $\beta$</p>
+<script type="math/tex; mode=display">
 \sum _{v=1}^k e^{\lambda _v x(i) + \beta _i -1} = 1 \\
-e^{\beta} = \frac {1}{\sum _{v=1}^k e^{\lambda _v x(i) - 1}} \\
-\]</span></p></li>
+e^{\beta} = \frac {1}{\sum _{v=1}^k e^{\lambda _v x(i) - 1}} \\</script></li>
 <li><p>Re-substitution yields:</p>
-<p><span class="math display">\[
-\pi (x)_u = \frac {e^{\lambda _u}x}{\sum _{v=1}^k e^{\lambda _v}x}
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\pi (x)_u = \frac {e^{\lambda _u}x}{\sum _{v=1}^k e^{\lambda _v}x}</script></li>
 </ul>
-<h1 id="solving-parameters">Solving Parameters</h1>
-<ul>
-<li>From the time of introducing the balanced equation, it can be seen
-that we need to solve <span class="math inline">\(n \* k\)</span>
-equations to obtain <span class="math inline">\(n \* k\)</span>
-parameters <span class="math inline">\(\lambda\)</span> , or take
-partial derivatives of <span class="math inline">\(n \* k\)</span> <span
-class="math inline">\(\lambda\)</span> in the Lagrange equation of
-maximum entropy, because <span class="math inline">\(\pi\)</span> is a
-non-linear function of <span class="math inline">\(\lambda\)</span> .
-Both of these methods are relatively difficult, but we can calculate the
-Jacobian equations (or the Hessian matrix of the objective function) of
-these equations by differentiation, and then we can solve <span
-class="math inline">\(\lambda\)</span> using some Newton method, Fisher
-Scoring, or iterative method</li>
+<h1 id="Solving-Parameters"><a href="#Solving-Parameters" class="headerlink" title="Solving Parameters"></a>Solving Parameters</h1><ul>
+<li>From the time of introducing the balanced equation, it can be seen that we need to solve $n * k$ equations to obtain $n * k$ parameters $\lambda$ , or take partial derivatives of $n * k$ $\lambda$ in the Lagrange equation of maximum entropy, because $\pi$ is a non-linear function of $\lambda$ . Both of these methods are relatively difficult, but we can calculate the Jacobian equations (or the Hessian matrix of the objective function) of these equations by differentiation, and then we can solve $\lambda$ using some Newton method, Fisher Scoring, or iterative method</li>
 </ul>
-<h1
-id="connection-with-the-maximum-entropy-model-defined-by-characteristic-functions">Connection
-with the Maximum Entropy Model Defined by Characteristic Functions</h1>
-<ul>
-<li><p>In this paper, the constraint is (omitted the constraint <span
-class="math inline">\(\pi\)</span> must be a probability):</p>
-<p><span class="math display">\[
-\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
-\]</span></p></li>
+<h1 id="Connection-with-the-Maximum-Entropy-Model-Defined-by-Characteristic-Functions"><a href="#Connection-with-the-Maximum-Entropy-Model-Defined-by-Characteristic-Functions" class="headerlink" title="Connection with the Maximum Entropy Model Defined by Characteristic Functions"></a>Connection with the Maximum Entropy Model Defined by Characteristic Functions</h1><ul>
+<li><p>In this paper, the constraint is (omitted the constraint $\pi$ must be a probability):</p>
+<script type="math/tex; mode=display">
+\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\</script></li>
 <li><p>The maximum entropy is:</p>
-<p><span class="math display">\[
-Ent(\pi) = - \sum_{v=1}^k \sum _{i=1}^m \pi (x(i))_v log (\pi (x(i))_v)
-\\
-\]</span></p></li>
+<script type="math/tex; mode=display">
+Ent(\pi) = - \sum_{v=1}^k \sum _{i=1}^m \pi (x(i))_v log (\pi (x(i))_v) \\</script></li>
 <li><p>The results obtained are:</p>
-<p><span class="math display">\[
-\pi (x)_u = \frac {e^{\lambda _u}x}{\sum _{v=1}^k e^{\lambda _v}x}
-\]</span></p></li>
-<li><p>In statistical learning methods, the constraints are (with the
-probability constraints similarly omitted), where <span
-class="math inline">\(P^{*}\)</span> represents the empirical
-distribution:</p>
-<p><span class="math display">\[
-\sum _{x,y} P^{*} (x,y)f(x,y) = \sum _{x,y} P^{*} (x)P(y|x)f(x,y)
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\pi (x)_u = \frac {e^{\lambda _u}x}{\sum _{v=1}^k e^{\lambda _v}x}</script></li>
+<li><p>In statistical learning methods, the constraints are (with the probability constraints similarly omitted), where $P^{*}$ represents the empirical distribution:</p>
+<script type="math/tex; mode=display">
+\sum _{x,y} P^{*} (x,y)f(x,y) = \sum _{x,y} P^{*} (x)P(y|x)f(x,y)</script></li>
 <li><p>The maximum entropy is:</p>
-<p><span class="math display">\[
-Ent(P) = - \sum _{x,y} P^{*}(x) P(y|x) log P(y|x)
-\]</span></p></li>
+<script type="math/tex; mode=display">
+Ent(P) = - \sum _{x,y} P^{*}(x) P(y|x) log P(y|x)</script></li>
 <li><p>The results obtained are:</p>
-<p><span class="math display">\[
-P(y|x) = \frac{e^{\sum _i w_i f_i(x,y)}}{\sum _y e^{\sum _i w_i
-f_i(x,y)}}
-\]</span></p></li>
-<li><p>It can be seen that there is a distinction in the representation
-of the two; the former directly obtains the form of the softmax
-function, but does not maximize the conditional entropy, whereas the
-latter is the opposite</p></li>
-<li><p>In fact, both are unified. Firstly, the parameters of the model
-are all Lagrange multipliers, the former being <span
-class="math inline">\(\lambda\)</span> , and the latter being <span
-class="math inline">\(w\)</span> , with the relationship:</p>
-<p><span class="math display">\[
-\lambda = \{w_0,...,w_i,...\}
-\]</span></p></li>
-<li><p>When the characteristic function extends to the eigenvalue, the
-model obtained by both is the same (softmax function):</p>
-<p><span class="math display">\[
-f_i(x_j,y) = x(j)_i
-\]</span></p></li>
-<li><p>The balance conditions of both are also consistent. Noticing that
-<span class="math inline">\(P^{*}\)</span> is an empirical distribution,
-which is statistically obtained through classical probability type on
-the training set, in general, repeated data is not considered (with a
-total sample size of N and a number of categories K), then:</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
+P(y|x) = \frac{e^{\sum _i w_i f_i(x,y)}}{\sum _y e^{\sum _i w_i f_i(x,y)}}</script></li>
+<li><p>It can be seen that there is a distinction in the representation of the two; the former directly obtains the form of the softmax function, but does not maximize the conditional entropy, whereas the latter is the opposite</p>
+</li>
+<li><p>In fact, both are unified. Firstly, the parameters of the model are all Lagrange multipliers, the former being $\lambda$ , and the latter being $w$ , with the relationship:</p>
+<script type="math/tex; mode=display">
+\lambda = \{w_0,...,w_i,...\}</script></li>
+<li><p>When the characteristic function extends to the eigenvalue, the model obtained by both is the same (softmax function):</p>
+<script type="math/tex; mode=display">
+f_i(x_j,y) = x(j)_i</script></li>
+<li><p>The balance conditions of both are also consistent. Noticing that $P^{*}$ is an empirical distribution, which is statistically obtained through classical probability type on the training set, in general, repeated data is not considered (with a total sample size of N and a number of categories K), then:</p>
+<script type="math/tex; mode=display">
 P^{*} (x) = \frac 1N \\
 \sum _{x,y} P^{*} (x,y) = 1 \\
-P^{*} (x,y) \in \{0,\frac 1N \} \\
-\]</span></p></li>
-<li><p>After substitution, it will be found that the balance conditions
-of the two are consistent, while the calculation in the paper seems to
-be entropy, but it is actually conditional entropy; it merely ignores
-the constant condition <span class="math inline">\(P^{*} (x) = \frac
-1N\)</span> from the argmax expression and writes it in the form of
-entropy.</p></li>
+P^{*} (x,y) \in \{0,\frac 1N \} \\</script></li>
+<li><p>After substitution, it will be found that the balance conditions of the two are consistent, while the calculation in the paper seems to be entropy, but it is actually conditional entropy; it merely ignores the constant condition $P^{*} (x) = \frac 1N$ from the argmax expression and writes it in the form of entropy.</p>
+</li>
 </ul>
 </div>
-<div id="zh-content" class="lang-content" style="display: none;"><h1 id="明确符号">明确符号</h1>
-<ul>
-<li>n维特征，m个样本，<span
-class="math inline">\(x(i)_j\)</span>表示第i个样本第j维特征，讨论多分类情况，输出分类<span
-class="math inline">\(y(i)\)</span>有k类，映射概率函数<span
-class="math inline">\(\pi\)</span>从<span
-class="math inline">\(R^n\)</span>映射到<span
-class="math inline">\(R^k\)</span>，我们希望<span
-class="math inline">\(\pi(x(i))_{y(i)}\)</span>尽可能大。</li>
-<li>指示函数<span class="math inline">\(A(u,v)\)</span>，当<span
-class="math inline">\(u==v\)</span>时为1，否则为0</li>
+<div id="zh-content" class="lang-content" style="display: none;"><h1 id="明确符号"><a href="#明确符号" class="headerlink" title="明确符号"></a>明确符号</h1><ul>
+<li>n维特征，m个样本，$x(i)<em>j$表示第i个样本第j维特征，讨论多分类情况，输出分类$y(i)$有k类，映射概率函数$\pi$从$R^n$映射到$R^k$，我们希望$\pi(x(i))</em>{y(i)}$尽可能大。</li>
+<li>指示函数$A(u,v)$，当$u==v$时为1，否则为0</li>
 </ul>
-<h1 id="logistic回归">Logistic回归</h1>
-<p><span class="math display">\[
+<h1 id="Logistic回归"><a href="#Logistic回归" class="headerlink" title="Logistic回归"></a>Logistic回归</h1><script type="math/tex; mode=display">
 \pi(x)_1 = \frac{e^{\lambda x}}{1+e^{\lambda x}} \\
-\pi(x)_2 = 1 - \pi(x)_1\\
-\]</span></p>
-<ul>
-<li>其中要学习到的参数<span
-class="math inline">\(\lambda\)</span>为<span
-class="math inline">\(R^n\)</span></li>
+\pi(x)_2 = 1 - \pi(x)_1\\</script><ul>
+<li>其中要学习到的参数$\lambda$为$R^n$</li>
 </ul>
-<h1 id="softmax回归">Softmax回归</h1>
-<p><span class="math display">\[
-\pi(x)_v = \frac{e^{\lambda _v x}} {\sum _{u=1}^k e^{\lambda _u x}}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(\lambda\)</span>为<span
-class="math inline">\(R^{k * n}\)</span></li>
+<h1 id="Softmax回归"><a href="#Softmax回归" class="headerlink" title="Softmax回归"></a>Softmax回归</h1><script type="math/tex; mode=display">
+\pi(x)_v = \frac{e^{\lambda _v x}} {\sum _{u=1}^k e^{\lambda _u x}}</script><ul>
+<li>$\lambda$为$R^{k * n}$</li>
 </ul>
-<h1 id="求解softmax">求解softmax</h1>
-<ul>
-<li><p>当使用softmax或者logistic作为非线性函数时，它们存在一个很好的求导的性质，即导函数可以用原函数表示
-<span class="math display">\[
-\frac {\partial \pi (x)_v}{\partial \lambda _{v,j}} = x_j  \pi (x)_v
-(1-\pi (x)_v) \\
-\frac {\partial \pi (x)_v}{\partial \lambda _{u,j}} = -x_j \pi (x)_v \pi
-(x)_u \ where \  u \neq v \\
-\]</span></p></li>
-<li><p>现在我们可以定义目标函数，即希望<span
-class="math inline">\(\pi\)</span>函数输出的正确类别概率最大（最大似然），并定义最优化得到的<span
-class="math inline">\(\lambda\)</span>：</p>
-<p><span class="math display">\[
+<h1 id="求解softmax"><a href="#求解softmax" class="headerlink" title="求解softmax"></a>求解softmax</h1><ul>
+<li>当使用softmax或者logistic作为非线性函数时，它们存在一个很好的求导的性质，即导函数可以用原函数表示<script type="math/tex; mode=display">
+\frac {\partial \pi (x)_v}{\partial \lambda _{v,j}} = x_j  \pi (x)_v (1-\pi (x)_v) \\
+\frac {\partial \pi (x)_v}{\partial \lambda _{u,j}} = -x_j \pi (x)_v \pi (x)_u \ where \  u \neq v \\</script></li>
+<li><p>现在我们可以定义目标函数，即希望$\pi$函数输出的正确类别概率最大（最大似然），并定义最优化得到的$\lambda$：</p>
+<script type="math/tex; mode=display">
 \lambda = argmax \sum _{i=1}^m log (\pi (x(i))_{y(i)}) \\
-= argmax f(\lambda) \\
-\]</span></p></li>
+= argmax f(\lambda) \\</script></li>
 </ul>
-<h1 id="平衡等式">平衡等式</h1>
-<ul>
+<h1 id="平衡等式"><a href="#平衡等式" class="headerlink" title="平衡等式"></a>平衡等式</h1><ul>
 <li><p>对上面的目标函数求导并令导函数为0：</p>
-<p><span class="math display">\[
-\frac {\partial f(\lambda)}{\partial \lambda _{u,j}} = \sum
-_{i=1，y(i)=u}^m x(i)_j - \sum _{i=1}^m x(i)_j \pi (x(i))_u =0 \\
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\frac {\partial f(\lambda)}{\partial \lambda _{u,j}} = \sum _{i=1，y(i)=u}^m x(i)_j - \sum _{i=1}^m x(i)_j \pi (x(i))_u =0 \\</script></li>
 <li><p>这样我们就得到一个重要的平衡等式(Balance Equation)：</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \ \  for \ all \ u,j \\
-\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
-\]</span></p></li>
+\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\</script></li>
 <li><p>分析这个等式：</p>
 <ul>
-<li><p>大白话：我们希望得到这么一个映射函数<span
-class="math inline">\(\pi\)</span>，对某一维(j)特征，用所有样本被映射函数归为第u类的概率加权所有样本的特征值之和，等于第u类内所有样本的特征值之和。显然，最好的情况就是左右两个累加式内的元素完全一样，只有第u类的样本被累加，且第u类样本被映射函数归为第u类的概率为1，其他类样本被归为第u类样本的概率为0.</p></li>
-<li><p>但是，这个等式非常的宽松，它只要求两个和式相同，并不要求每一个元素相同，而且这个式子没有显示的写出映射函数的表达式，任何满足该式的非线性映射都有可能称为映射函数。</p></li>
+<li>大白话：我们希望得到这么一个映射函数$\pi$，对某一维(j)特征，用所有样本被映射函数归为第u类的概率加权所有样本的特征值之和，等于第u类内所有样本的特征值之和。显然，最好的情况就是左右两个累加式内的元素完全一样，只有第u类的样本被累加，且第u类样本被映射函数归为第u类的概率为1，其他类样本被归为第u类样本的概率为0.</li>
+<li>但是，这个等式非常的宽松，它只要求两个和式相同，并不要求每一个元素相同，而且这个式子没有显示的写出映射函数的表达式，任何满足该式的非线性映射都有可能称为映射函数。</li>
 <li><p>用公式表达，就是</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \sum _{i=1}^m A(u,y(i)) x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
-\pi (x(i))_u \approx A(u,y(i)) \\
-\]</span></p></li>
-</ul></li>
+\pi (x(i))_u \approx A(u,y(i)) \\</script></li>
 </ul>
-<h1 id="由最大熵推出softmax">由最大熵推出softmax</h1>
+</li>
+</ul>
+<h1 id="由最大熵推出softmax"><a href="#由最大熵推出softmax" class="headerlink" title="由最大熵推出softmax"></a>由最大熵推出softmax</h1><ul>
+<li>上面说到了平衡等式并没有要求映射函数的格式，那么为什么我们选择了softmax？换句话，什么条件下能从平衡等式的约束推出非线性映射为softmax？</li>
+<li><p>答案是最大熵。我们现在回顾一下$\pi$需要满足的条件：</p>
 <ul>
-<li><p>上面说到了平衡等式并没有要求映射函数的格式，那么为什么我们选择了softmax？换句话，什么条件下能从平衡等式的约束推出非线性映射为softmax？</p></li>
-<li><p>答案是最大熵。我们现在回顾一下<span
-class="math inline">\(\pi\)</span>需要满足的条件：</p>
-<ul>
-<li><p>平衡等式（即这个<span
-class="math inline">\(\pi\)</span>能拟合数据）：</p>
-<p><span class="math display">\[
+<li><p>平衡等式（即这个$\pi$能拟合数据）：</p>
+<script type="math/tex; mode=display">
 \ \  for \ all \ u,j \\
-\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
-\]</span></p></li>
-<li><p><span class="math inline">\(\pi\)</span>的输出得是一个概率：</p>
-<p><span class="math display">\[
+\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\</script></li>
+<li><p>$\pi$的输出得是一个概率：</p>
+<script type="math/tex; mode=display">
 \pi (x)_v \geq 0 \\
-\sum _{v=1}^k \pi (x)_v = 1 \\
-\]</span></p></li>
-</ul></li>
-<li><p>根据最大熵原理，我们希望满足上述约束条件的<span
-class="math inline">\(\pi\)</span>能够具有最大的熵:</p>
-<p><span class="math display">\[
+\sum _{v=1}^k \pi (x)_v = 1 \\</script></li>
+</ul>
+</li>
+<li><p>根据最大熵原理，我们希望满足上述约束条件的$\pi$能够具有最大的熵:</p>
+<script type="math/tex; mode=display">
 \pi = argmax \ Ent(\pi) \\
-Ent(\pi) = - \sum_{v=1}^k \sum _{i=1}^m \pi (x(i))_v log (\pi (x(i))_v)
-\\
-\]</span></p></li>
-<li><p>最大熵可以从两个角度理解：</p>
-<ul>
+Ent(\pi) = - \sum_{v=1}^k \sum _{i=1}^m \pi (x(i))_v log (\pi (x(i))_v) \\</script></li>
+<li>最大熵可以从两个角度理解：<ul>
 <li>最大熵也就是最大困惑度，即模型过拟合的风险低，模型复杂程度低，根据奥卡姆剃刀原则，在多个具有相同效果的模型中复杂程度小的模型具有更好的泛化能力，在满足了约束条件的情况下，当然我们希望要一个复杂程度小的模型，相当于正则化。</li>
 <li>约束条件是我们的模型已知的需要满足、需要拟合的部分，剩下的部分是未知的部分，没有规则或者数据指导我们分配概率，那该怎么办？在未知的情况下就应该均匀分配概率给所有可能，这正是对应了最大熵的情况。</li>
-</ul></li>
-<li><p>现在问题已经形式化带约束条件的最优化问题，利用拉格朗日乘子法求解即可。这里有一个trick，原文中说如果直接考虑概率的不等条件就有点复杂，需要使用KTT条件，这里先不考虑，之后如果求出的<span
-class="math inline">\(\pi\)</span>满足不等式条件的话就可以跳过了（事实也正是如此）。</p></li>
 </ul>
-<p><span class="math display">\[
-L = \sum _{j=1}^n \sum _{v=1}^k \lambda _{v,j} (\sum _{i=1}^m \pi
-(x(i))_v x(i)_j - A(v,y(i)) x(i)_j) \\
+</li>
+<li>现在问题已经形式化带约束条件的最优化问题，利用拉格朗日乘子法求解即可。这里有一个trick，原文中说如果直接考虑概率的不等条件就有点复杂，需要使用KTT条件，这里先不考虑，之后如果求出的$\pi$满足不等式条件的话就可以跳过了（事实也正是如此）。</li>
+</ul>
+<script type="math/tex; mode=display">
+L = \sum _{j=1}^n \sum _{v=1}^k \lambda _{v,j} (\sum _{i=1}^m \pi (x(i))_v x(i)_j - A(v,y(i)) x(i)_j) \\
 + \sum _{v=1}^k \sum _{i=1}^m \beta _i (\pi (x(i))_v -1) \\
-- \sum _{v=1}^k \sum _{i=1}^m \pi(x(i))_v log(\pi (x(i))_v) \\
-\]</span></p>
-<ul>
-<li><p>这里又有一个trick，本来应该对所有参数求导，这里我们先对<span
-class="math inline">\(\pi (x(i))_u\)</span>求导令其为0可得：</p>
-<p><span class="math display">\[
-\pi (x(i))_u = e^{\lambda _u x(i) + \beta _i -1}
-\]</span></p></li>
-<li><p>再考虑等式约束条件（概率之和为1），这样就不用再对<span
-class="math inline">\(\beta\)</span>求导：</p>
-<p><span class="math display">\[
+- \sum _{v=1}^k \sum _{i=1}^m \pi(x(i))_v log(\pi (x(i))_v) \\</script><ul>
+<li><p>这里又有一个trick，本来应该对所有参数求导，这里我们先对$\pi (x(i))_u$求导令其为0可得：</p>
+<script type="math/tex; mode=display">
+\pi (x(i))_u = e^{\lambda _u x(i) + \beta _i -1}</script></li>
+<li><p>再考虑等式约束条件（概率之和为1），这样就不用再对$\beta$求导：</p>
+<script type="math/tex; mode=display">
 \sum _{v=1}^k e^{\lambda _v x(i) + \beta _i -1} = 1 \\
-e^{\beta} = \frac {1}{\sum _{v=1}^k e^{\lambda _v x(i) - 1}} \\
-\]</span></p></li>
+e^{\beta} = \frac {1}{\sum _{v=1}^k e^{\lambda _v x(i) - 1}} \\</script></li>
 <li><p>回代可得：</p>
-<p><span class="math display">\[
-\pi (x)_u = \frac {e^{\lambda _u}x}{\sum _{v=1}^k e^{\lambda _v}x}
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\pi (x)_u = \frac {e^{\lambda _u}x}{\sum _{v=1}^k e^{\lambda _v}x}</script></li>
 </ul>
-<h1 id="求解参数">求解参数</h1>
-<ul>
-<li>从推出平衡等式的时候可以看到，我们需要解<span
-class="math inline">\(n \* k\)</span>个方程来得到<span
-class="math inline">\(n \* k\)</span>个参数<span
-class="math inline">\(\lambda\)</span>，或者在最大熵的拉格朗日方程里对<span
-class="math inline">\(n \* k\)</span>个<span
-class="math inline">\(\lambda\)</span>求偏导，因为<span
-class="math inline">\(\pi\)</span>是<span
-class="math inline">\(\lambda\)</span>的非线性函数，这两种求解方法比较困难，但是我们可以求导计算这些等式的雅各比方程（或者说是目标函数的Hessian矩阵），之后我们就可以用某种牛顿法、Fisher
-Scoring或者迭代的方法求解<span
-class="math inline">\(\lambda\)</span></li>
+<h1 id="求解参数"><a href="#求解参数" class="headerlink" title="求解参数"></a>求解参数</h1><ul>
+<li>从推出平衡等式的时候可以看到，我们需要解$n * k$个方程来得到$n * k$个参数$\lambda$，或者在最大熵的拉格朗日方程里对$n * k$个$\lambda$求偏导，因为$\pi$是$\lambda$的非线性函数，这两种求解方法比较困难，但是我们可以求导计算这些等式的雅各比方程（或者说是目标函数的Hessian矩阵），之后我们就可以用某种牛顿法、Fisher Scoring或者迭代的方法求解$\lambda$</li>
 </ul>
-<h1
-id="与特征函数定义的最大熵模型的联系">与特征函数定义的最大熵模型的联系</h1>
-<ul>
-<li><p>在本文中，约束为（省略了<span
-class="math inline">\(\pi\)</span>必须为概率的约束）：</p>
-<p><span class="math display">\[
-\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\
-\]</span></p></li>
+<h1 id="与特征函数定义的最大熵模型的联系"><a href="#与特征函数定义的最大熵模型的联系" class="headerlink" title="与特征函数定义的最大熵模型的联系"></a>与特征函数定义的最大熵模型的联系</h1><ul>
+<li><p>在本文中，约束为（省略了$\pi$必须为概率的约束）：</p>
+<script type="math/tex; mode=display">
+\sum _{i=1，y(i)=u}^m x(i)_j = \sum _{i=1}^m x(i)_j \pi (x(i))_u \\</script></li>
 <li><p>最大化的熵为：</p>
-<p><span class="math display">\[
-Ent(\pi) = - \sum_{v=1}^k \sum _{i=1}^m \pi (x(i))_v log (\pi (x(i))_v)
-\\
-\]</span></p></li>
+<script type="math/tex; mode=display">
+Ent(\pi) = - \sum_{v=1}^k \sum _{i=1}^m \pi (x(i))_v log (\pi (x(i))_v) \\</script></li>
 <li><p>得到的结果为：</p>
-<p><span class="math display">\[
-\pi (x)_u = \frac {e^{\lambda _u}x}{\sum _{v=1}^k e^{\lambda _v}x}
-\]</span></p></li>
-<li><p>而在统计学习方法中，约束为（同样省略了概率约束），其中<span
-class="math inline">\(P^{*}\)</span>代表经验分布：</p>
-<p><span class="math display">\[
-\sum _{x,y} P^{*} (x,y)f(x,y) = \sum _{x,y} P^{*} (x)P(y|x)f(x,y)
-\]</span></p></li>
+<script type="math/tex; mode=display">
+\pi (x)_u = \frac {e^{\lambda _u}x}{\sum _{v=1}^k e^{\lambda _v}x}</script></li>
+<li><p>而在统计学习方法中，约束为（同样省略了概率约束），其中$P^{*}$代表经验分布：</p>
+<script type="math/tex; mode=display">
+\sum _{x,y} P^{*} (x,y)f(x,y) = \sum _{x,y} P^{*} (x)P(y|x)f(x,y)</script></li>
 <li><p>最大化的熵为：</p>
-<p><span class="math display">\[
-Ent(P) = - \sum _{x,y} P^{*}(x) P(y|x) log P(y|x)
-\]</span></p></li>
+<script type="math/tex; mode=display">
+Ent(P) = - \sum _{x,y} P^{*}(x) P(y|x) log P(y|x)</script></li>
 <li><p>得到的结果为：</p>
-<p><span class="math display">\[
-P(y|x) = \frac{e^{\sum _i w_i f_i(x,y)}}{\sum _y e^{\sum _i w_i
-f_i(x,y)}}
-\]</span></p></li>
-<li><p>可以看到两者的表示有区别，前者直接得到了softmax函数的形式，但是最大化的不是条件熵，后者则相反</p></li>
-<li><p>实际上两者是统一的。首先，模型的参数都是拉格朗日乘子，前者是<span
-class="math inline">\(\lambda\)</span>，后者是<span
-class="math inline">\(w\)</span>，两者的关系：</p>
-<p><span class="math display">\[
-\lambda = \{w_0,...,w_i,...\}
-\]</span></p></li>
+<script type="math/tex; mode=display">
+P(y|x) = \frac{e^{\sum _i w_i f_i(x,y)}}{\sum _y e^{\sum _i w_i f_i(x,y)}}</script></li>
+<li>可以看到两者的表示有区别，前者直接得到了softmax函数的形式，但是最大化的不是条件熵，后者则相反</li>
+<li><p>实际上两者是统一的。首先，模型的参数都是拉格朗日乘子，前者是$\lambda$，后者是$w$，两者的关系：</p>
+<script type="math/tex; mode=display">
+\lambda = \{w_0,...,w_i,...\}</script></li>
 <li><p>当特征函数扩展到特征值时，两者得到的模型就是一样的（softmax函数）：</p>
-<p><span class="math display">\[
-f_i(x_j,y) = x(j)_i
-\]</span></p></li>
-<li><p>两者的平衡条件也是一致的，注意到<span
-class="math inline">\(P^{*}\)</span>是经验分布，是在训练集上通过古典概型统计出来的，一般情况下不考虑重复数据（样本总数为N，类别数为K），则有：</p>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
+f_i(x_j,y) = x(j)_i</script></li>
+<li><p>两者的平衡条件也是一致的，注意到$P^{*}$是经验分布，是在训练集上通过古典概型统计出来的，一般情况下不考虑重复数据（样本总数为N，类别数为K），则有：</p>
+<script type="math/tex; mode=display">
 P^{*} (x) = \frac 1N \\
 \sum _{x,y} P^{*} (x,y) = 1 \\
-P^{*} (x,y) \in \{0,\frac 1N \} \\
-\]</span></p></li>
-<li><p>代入之后会发现两者的平衡条件一致，而论文中计算的貌似是熵，实际上是条件熵，只不过把$P^{*}
-(x) = 1N $这一常量条件从argmax表达式中忽略了，写成了熵的形式。</p></li>
+P^{*} (x,y) \in \{0,\frac 1N \} \\</script></li>
+<li>代入之后会发现两者的平衡条件一致，而论文中计算的貌似是熵，实际上是条件熵，只不过把$P^{*} (x) = \frac 1N $这一常量条件从argmax表达式中忽略了，写成了熵的形式。</li>
 </ul>
 </div>
 <script src="https://giscus.app/client.js"
@@ -775,7 +559,6 @@ P^{*} (x,y) \in \{0,\frac 1N \} \\
         crossorigin="anonymous"
         async>
 </script>
-
     </div>
 
     
@@ -839,13 +622,13 @@ P^{*} (x,y) \in \{0,\frac 1N \} \\
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">1.2m</span>
+    <span title="Word count total">1.1m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">17:41</span>
+    <span title="Reading time total">16:42</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
