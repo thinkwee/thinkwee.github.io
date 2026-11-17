@@ -374,28 +374,6 @@ html: true
     .gmbutton:hover  { background: linear-gradient(135deg, #d47570 0%, #a03838 100%); }
     .aclbutton:hover { background: linear-gradient(135deg, #f07a7f 0%, #c53a40 100%); }
 
-    /* ---------- Logos ---------- */
-    .about-logos {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 3%;
-        max-width: 760px;
-        margin: 0 auto 10px;
-    }
-    .about-logos > p { display: contents; }
-    .about-logos img {
-        display: block;
-        width: 100%;
-        height: auto;
-        margin: 0 !important;
-        border-radius: 6px;
-        transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease;
-    }
-    .about-logos img:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 22px rgba(0,0,0,.12);
-    }
-
     /* ---------- Journey: research interests as chapters ---------- */
     .journey { margin: 22px 0 6px; }
     .era {
@@ -634,6 +612,29 @@ html: true
     .dot-icml    { --dot: #9db7d6; }
     .dot-neurips { --dot: #b3a3c4; }
     .dot-acl     { --dot: #e3a3a5; }
+
+    /* Lead card: the latest work spans the full row above the 3×3 grid.
+       Cover = two grid columns wide, text sits in the third, so edges line up. */
+    .post-body a.feat-card.feat-lead {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: calc((100% - 44px) * 2 / 3 + 22px) minmax(0, 1fr);
+        column-gap: 22px;
+        align-items: center;
+    }
+    .feat-lead .feat-meta  { margin-top: 0; }
+    .feat-lead .feat-title { font-size: 20px; line-height: 1.4; }
+    .feat-lead .feat-desc  { margin-top: 8px; font-size: 15px; }
+    .feat-new {
+        margin-left: 4px;
+        padding: 0 6px;
+        font-size: 11px;
+        line-height: 1.6;
+        color: #fff;
+        background: linear-gradient(135deg, #b5c6aa 0%, #8aa07d 100%);
+        border-radius: 6px;
+        letter-spacing: .04em;
+    }
 
     /* ---------- Full list, folded by default ---------- */
     .pub-fold { margin: 0; }
@@ -874,6 +875,12 @@ html: true
     @container (max-width: 760px) {
         .feat-grid { gap: 22px 14px; }
         .feat-desc { font-size: 13px; }
+        .post-body a.feat-card.feat-lead {
+            grid-template-columns: calc((100% - 28px) * 2 / 3 + 14px) minmax(0, 1fr);
+            column-gap: 14px;
+        }
+        .feat-lead .feat-title { font-size: 17px; }
+        .feat-lead .feat-desc  { font-size: 13px; }
     }
     /* phones: compact rows, thumbnail left */
     @container (max-width: 540px) {
@@ -892,6 +899,10 @@ html: true
         .feat-meta  { grid-area: meta; margin: 0; font-size: 12px; }
         .feat-title { grid-area: title; font-size: 15px; }
         .feat-desc  { grid-area: desc; margin-top: 2px; font-size: 13px; line-height: 1.6; }
+        /* lead card stacks: full-width cover, text below */
+        .post-body a.feat-card.feat-lead { display: flex; flex-direction: column; }
+        .feat-lead .feat-meta  { margin: 10px 0 2px; }
+        .feat-lead .feat-title { font-size: 16px; }
     }
     @media (prefers-reduced-motion: reduce) {
         .post-body *, .post-body *::before { transition: none !important; animation: none !important; }
@@ -899,15 +910,10 @@ html: true
 </style>
 
 <div class="about-hero">
-<img src="/img/bg_blog.png" alt="I'm in London">
+<img src="/img/about_hero.webp" alt="About Me">
 <p>Fun Fact: My giraffe icon isn't random - I actually have a long neck!</p>
 <p>See for yourself and meet other talented researchers on our <a href="https://kclnlp.github.io/team.html" target="_blank" rel="noopener">KCLNLP team page</a>.</p>
-</div>
-
----
-
-<div class="about-hero">
-<p>You can find this guy via</p>
+<p class="about-findme">You can find this guy via</p>
 <div class="about-social">
 <a class="aclbutton" href="https://aclanthology.org/people/wei-liu-kcl/" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 2H8a2 2 0 0 0-2 2v1H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Zm-3 16a1 1 0 0 1-1 1H5V7h10a1 1 0 0 1 1 1v10Zm3-3h-1V8a3 3 0 0 0-3-3H8V4h11v11Z"/></svg>ACL Anthology</a> <a class="libutton" href="http://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=thinkwee" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>Linkedin</a> <a class="gsbutton" href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=QvW2leIAAAAJ" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>Google Scholar</a> <a class="ghbutton" href="https://github.com/thinkwee" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>GitHub</a> <a class="gmbutton" href="mailto:thinkwee2767@gmail.com"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h3.819v.273L12 10.186l6.545-6.092v-.273h3.819c.904 0 1.636.732 1.636 1.636Z"/></svg>Gmail</a>
 </div>
@@ -915,12 +921,6 @@ html: true
 
 
 # About Me
-
-<div class="about-logos">
-<img src="/img/bupt.png" alt="I'm in BUPT">
-<img src="/img/tencent.png" alt="I'm in Tecent">
-<img src="/img/tsinghua.png" alt="I'm in Tsinghua">
-</div>
 
 <div>
 <ul>
@@ -931,7 +931,7 @@ html: true
 <div class="journey">
 <div class="era era-compress">
 <div class="era-head"><span class="era-time">before 2023</span><span class="era-topic">Natural Language Processing</span></div>
-<div class="era-item"><span class="era-date">2014 – 2021</span><div class="era-text">Bachelor and Master in BUPT, where I worked on abstractive summarization: improving both the diversity and the quality of generated summaries.</div></div>
+<div class="era-item"><span class="era-date">2014 – 2021</span><div class="era-text">Bachelor and Master in BUPT, where I worked on abstractive summarization.</div></div>
 <div class="era-item"><span class="era-date">2021 – 2023</span><div class="era-text">Application Research in <a href="https://www.tencent.com/en-us/about.html">Tencent</a>: 3 happy years bringing NLP into the wild of Recommendation &amp; Advertisement, from news-feed NLU and WeChat Ads to large-scale recommender systems.</div></div>
 </div>
 <div class="era era-agentic">
@@ -940,8 +940,8 @@ html: true
 <div class="era-item"><span class="era-date">2023 – 2025</span><div class="era-text">Working at <a href="https://nlp.csai.tsinghua.edu.cn/">THUNLP</a>@Tsinghua University with Prof. <a href="http://nlp.csai.tsinghua.edu.cn/~lzy/">Zhiyuan Liu</a> and Prof. <a href="http://qianc62.github.io">Chen Qian</a> on LLM Multi-Agent System, including the popular multi-agent framework for software development, <a href="https://github.com/OpenBMB/ChatDev" target="_blank" rel="noopener"><strong>ChatDev</strong></a>.</div></div>
 </div>
 <div class="era era-wild is-now">
-<div class="era-head"><span class="era-time">2025 – now</span><span class="era-topic"><strong>Agentic AI in the Wild</strong> <span class="era-note">(check out this <a href="https://thinkwee.top/2025/10/05/wild-era/#more">blog</a>)</span></span></div>
-<div class="era-item"><span class="era-date">2025.2 - now</span><div class="era-text">Happy to join <a href="https://kclnlp.github.io/">KCLNLP</a> as a PhD candidate advised by <a href="https://sites.google.com/view/yulanhe">Prof. Yulan He</a> and <a href="https://yalidu.github.io/">Prof. Yali Du</a>! I am interested in developing Agentic AI in the real world and beyond the easy to verify domains.</div></div>
+<div class="era-head"><span class="era-time">2025 – now</span><span class="era-topic"><strong>Agentic AI in the Wild</strong></span></div>
+<div class="era-item"><span class="era-date">2025.2 - now</span><div class="era-text">Happy to join <a href="https://kclnlp.github.io/">KCLNLP</a> as a PhD candidate advised by <a href="https://sites.google.com/view/yulanhe">Prof. Yulan He</a> and <a href="https://yalidu.github.io/">Prof. Yali Du</a>! I am interested in building agentic AI for the real world, beyond easy-to-verify domains (check out this <a href="https://thinkwee.top/2025/10/05/wild-era/#more">blog</a>).</div></div>
 </div>
 </div>
 
@@ -963,11 +963,13 @@ html: true
 <li class="news-item"><span class="news-date">2026.04.30</span><span class="news-content">🇰🇷 3 papers accepted by <span class="news-highlight">ICML 2026</span>, on <a href="https://arxiv.org/abs/2602.02039" target="_blank">Deep Data Research</a>, <a href="https://arxiv.org/abs/2603.02218" target="_blank">self-evolving agents</a>, and <a href="https://arxiv.org/abs/2602.18145" target="_blank">hallucination detection</a>!</span></li>
 <li class="news-item"><span class="news-date">2026.06.22</span><span class="news-content">🛡️ 2 new papers on <span class="news-highlight">AI Safety in the Wild</span>!<ul><li><a href="https://arxiv.org/abs/2606.04075" target="_blank">LLMs Hack Rewards, and Society</a> (featured in the news of <a href="https://www.science.org/content/article/ai-models-have-troubling-knack-discovering-legal-loopholes" target="_blank">Science</a>): RL-trained LLMs exploit gaps in societal rules.</li><li><a href="https://arxiv.org/abs/2606.09890" target="_blank">PreAct-Bench</a>: a benchmark of 1,000 paired trajectories testing whether agents can foresee unethical outcomes before they happen.</li></ul></span></li>
 <li class="news-item"><span class="news-date">2026.11.07</span><span class="news-content">🎆 2 new papers on <span class="news-highlight">Agent Environment and Efficiency!</span>!<ul><li><a href="https://arxiv.org/abs/2610.33817" target="_blank">EnvLunch</a>: Agentic LLM can be learned from environment itself, you don't need to imitate trajectory or write tasks.</li><li><a href="https://arxiv.org/abs/2611.06976" target="_blank">PLatour</a>: Large Model prefill, small model decode, better performance-efficiency pareto.</li></ul></span></li>
+<li class="news-item"><span class="news-date">2026.11.13</span><span class="news-content">🤝 New position paper: <a href="https://www.alphaxiv.org/abs/2611.rri" target="_blank">From Recursive Self-Improvement to Human–AI Reciprocal Improvement</a>: another possibility for RSI, where <span class="news-highlight">humans and AI co-evolve</span>. Great AI should bring a great generation of scientists and engineers, not replace humans!</span></li>
 </ul>
 
 # Publications
 
 <div class="feat-grid">
+<a class="feat-card feat-lead" href="https://www.alphaxiv.org/abs/2611.rri" target="_blank" rel="noopener"><div class="feat-cover"><img src="/img/cards/rri.webp" alt="RRI" loading="lazy"></div><div class="feat-body"><div class="feat-meta dot-arxiv">alphaXiv 2026<span class="feat-new">NEW</span></div><div class="feat-title">From Recursive Self-Improvement to Human–AI Reciprocal Improvement</div><div class="feat-desc">RRI is another possibility for Recursive Self-Improvement (RSI): humans and AI co-evolve. Great AI should bring a great generation of scientists and engineers, not replace humans.</div></div></a>
 <a class="feat-card" href="https://arxiv.org/abs/2611.06976" target="_blank" rel="noopener"><div class="feat-cover"><img src="/img/cards/pact.webp" alt="PLatour" loading="lazy"></div><div class="feat-meta dot-arxiv">arXiv 2026</div><div class="feat-title">PLatour</div><div class="feat-desc">Large model prefills, small model decodes, for a better performance–efficiency Pareto.</div></a>
 <a class="feat-card" href="https://arxiv.org/abs/2610.33817" target="_blank" rel="noopener"><div class="feat-cover"><img src="/img/cards/envlunch.webp" alt="EnvLunch" loading="lazy"></div><div class="feat-meta dot-arxiv">arXiv 2026</div><div class="feat-title">EnvLunch</div><div class="feat-desc">Agentic LLMs can learn from the environment itself, no imitated trajectories or hand-written tasks needed.</div></a>
 <a class="feat-card" href="https://arxiv.org/abs/2607.21019" target="_blank" rel="noopener"><div class="feat-cover"><img src="/img/cards/hime.webp" alt="HiMe" loading="lazy"></div><div class="feat-meta dot-emnlp">EMNLP 2026 Demo</div><div class="feat-title">HiMe</div><div class="feat-desc">A real-time, self-hosted personal agent platform that turns wearable data into health insights.</div></a>
@@ -986,6 +988,7 @@ html: true
 
 <div class="pub-group-title">Agentic AI in the Wild</div>
 <div class="pub-list">
+<div class="pub"><span class="conf-arxiv">alphaXiv 2026</span><a href="https://www.alphaxiv.org/abs/2611.rri" class="bp">paper</a><span class="pub-title">From Recursive Self-Improvement to Human–AI Reciprocal Improvement♦️</span></div>
 <div class="pub"><span class="conf-emnlp">EMNLP 2026</span><a href="https://arxiv.org/abs/2607.21019" class="bp">paper</a><a href="https://github.com/thinkwee/HiMe" class="bc">code</a><span class="pub-title">HiMe: Real-Time Self-Hosted Personal Agent Platform for Health Insights with Wearable Devices♦️</span></div>
 <div class="pub"><span class="conf-arxiv">arXiv 2026</span><a href="https://arxiv.org/abs/2610.33817" class="bp">paper</a><a href="https://github.com/thinkwee/EnvLunch" class="bc">code</a><span class="pub-title">EnvLunch: The Environment as a Free Lunch for Learning to Interact♦️</span></div>
 <div class="pub"><span class="conf-arxiv">arXiv 2026</span><a href="https://arxiv.org/abs/2606.04075" class="bp">paper</a><a href="https://github.com/thinkwee/SocioHack" class="bc">code</a><span class="pub-title">Large Language Models Hack Rewards, and Society♦️</span></div>
