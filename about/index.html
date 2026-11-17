@@ -27,10 +27,8 @@
 <meta property="og:site_name" content="Thinkwee&#39;s Blog">
 <meta property="og:description" content="var prefersReducedMotion &#x3D; window.matchMedia &amp;&amp; window.matchMedia(&#39;(prefers-reduced-motion: reduce)&#39;).matches;    &#x2F;&#x2F; Count up from 0 to target with an easeOut curve; respects reduced-motion.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://thinkwee.top/img/bg_blog.png">
-<meta property="og:image" content="https://thinkwee.top/img/bupt.png">
-<meta property="og:image" content="https://thinkwee.top/img/tencent.png">
-<meta property="og:image" content="https://thinkwee.top/img/tsinghua.png">
+<meta property="og:image" content="https://thinkwee.top/img/about_hero.webp">
+<meta property="og:image" content="https://thinkwee.top/img/cards/rri.webp">
 <meta property="og:image" content="https://thinkwee.top/img/cards/pact.webp">
 <meta property="og:image" content="https://thinkwee.top/img/cards/envlunch.webp">
 <meta property="og:image" content="https://thinkwee.top/img/cards/hime.webp">
@@ -42,11 +40,11 @@
 <meta property="og:image" content="https://thinkwee.top/img/cards/chatdev_new.webp">
 <meta property="og:image" content="https://thinkwee.top/img/social/wechat_qr.png">
 <meta property="og:image" content="https://thinkwee.top/img/social/rednote_qr.png">
-<meta property="article:published_time" content="2026-11-07T22:23:17.858Z">
-<meta property="article:modified_time" content="2026-11-07T22:23:17.858Z">
+<meta property="article:published_time" content="2026-11-17T11:56:35.589Z">
+<meta property="article:modified_time" content="2026-11-17T11:56:35.589Z">
 <meta property="article:author" content="Thinkwee">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://thinkwee.top/img/bg_blog.png">
+<meta name="twitter:image" content="https://thinkwee.top/img/about_hero.webp">
 
 
 <link rel="canonical" href="https://thinkwee.top/about/">
@@ -638,28 +636,6 @@
     .gmbutton:hover  { background: linear-gradient(135deg, #d47570 0%, #a03838 100%); }
     .aclbutton:hover { background: linear-gradient(135deg, #f07a7f 0%, #c53a40 100%); }
 
-    /* ---------- Logos ---------- */
-    .about-logos {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 3%;
-        max-width: 760px;
-        margin: 0 auto 10px;
-    }
-    .about-logos > p { display: contents; }
-    .about-logos img {
-        display: block;
-        width: 100%;
-        height: auto;
-        margin: 0 !important;
-        border-radius: 6px;
-        transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease;
-    }
-    .about-logos img:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 22px rgba(0,0,0,.12);
-    }
-
     /* ---------- Journey: research interests as chapters ---------- */
     .journey { margin: 22px 0 6px; }
     .era {
@@ -898,6 +874,29 @@
     .dot-icml    { --dot: #9db7d6; }
     .dot-neurips { --dot: #b3a3c4; }
     .dot-acl     { --dot: #e3a3a5; }
+
+    /* Lead card: the latest work spans the full row above the 3×3 grid.
+       Cover = two grid columns wide, text sits in the third, so edges line up. */
+    .post-body a.feat-card.feat-lead {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: calc((100% - 44px) * 2 / 3 + 22px) minmax(0, 1fr);
+        column-gap: 22px;
+        align-items: center;
+    }
+    .feat-lead .feat-meta  { margin-top: 0; }
+    .feat-lead .feat-title { font-size: 20px; line-height: 1.4; }
+    .feat-lead .feat-desc  { margin-top: 8px; font-size: 15px; }
+    .feat-new {
+        margin-left: 4px;
+        padding: 0 6px;
+        font-size: 11px;
+        line-height: 1.6;
+        color: #fff;
+        background: linear-gradient(135deg, #b5c6aa 0%, #8aa07d 100%);
+        border-radius: 6px;
+        letter-spacing: .04em;
+    }
 
     /* ---------- Full list, folded by default ---------- */
     .pub-fold { margin: 0; }
@@ -1138,6 +1137,12 @@
     @container (max-width: 760px) {
         .feat-grid { gap: 22px 14px; }
         .feat-desc { font-size: 13px; }
+        .post-body a.feat-card.feat-lead {
+            grid-template-columns: calc((100% - 28px) * 2 / 3 + 14px) minmax(0, 1fr);
+            column-gap: 14px;
+        }
+        .feat-lead .feat-title { font-size: 17px; }
+        .feat-lead .feat-desc  { font-size: 13px; }
     }
     /* phones: compact rows, thumbnail left */
     @container (max-width: 540px) {
@@ -1156,13 +1161,17 @@
         .feat-meta  { grid-area: meta; margin: 0; font-size: 12px; }
         .feat-title { grid-area: title; font-size: 15px; }
         .feat-desc  { grid-area: desc; margin-top: 2px; font-size: 13px; line-height: 1.6; }
+        /* lead card stacks: full-width cover, text below */
+        .post-body a.feat-card.feat-lead { display: flex; flex-direction: column; }
+        .feat-lead .feat-meta  { margin: 10px 0 2px; }
+        .feat-lead .feat-title { font-size: 16px; }
     }
     @media (prefers-reduced-motion: reduce) {
         .post-body *, .post-body *::before { transition: none !important; animation: none !important; }
     }
 </style>
 <div class="about-hero">
-<img data-src="/img/bg_blog.png" alt="I'm in London">
+<img data-src="/img/about_hero.webp" alt="About Me">
 <p>
 Fun Fact: My giraffe icon isn't random - I actually have a long neck!
 </p>
@@ -1171,10 +1180,7 @@ See for yourself and meet other talented researchers on our
 <a href="https://kclnlp.github.io/team.html" target="_blank" rel="noopener">KCLNLP
 team page</a>.
 </p>
-</div>
-<hr />
-<div class="about-hero">
-<p>
+<p class="about-findme">
 You can find this guy via
 </p>
 <div class="about-social">
@@ -1188,11 +1194,6 @@ Scholar</a>
 </div>
 </div>
 <h1 id="about-me">About Me</h1>
-<div class="about-logos">
-<p><img data-src="/img/bupt.png" alt="I'm in BUPT">
-<img data-src="/img/tencent.png" alt="I'm in Tecent">
-<img data-src="/img/tsinghua.png" alt="I'm in Tsinghua"></p>
-</div>
 <div>
 <ul>
 <li>
@@ -1213,8 +1214,7 @@ Language Processing</span>
 <span class="era-date">2014 – 2021</span>
 <div class="era-text">
 Bachelor and Master in BUPT, where I worked on abstractive
-summarization: improving both the diversity and the quality of generated
-summaries.
+summarization.
 </div>
 </div>
 <div class="era-item">
@@ -1255,9 +1255,7 @@ software development,
 <div class="era era-wild is-now">
 <div class="era-head">
 <span class="era-time">2025 – now</span><span
-class="era-topic"><strong>Agentic AI in the Wild</strong> <span
-class="era-note">(check out this
-<a href="https://thinkwee.top/2025/10/05/wild-era/#more">blog</a>)</span></span>
+class="era-topic"><strong>Agentic AI in the Wild</strong></span>
 </div>
 <div class="era-item">
 <span class="era-date">2025.2 - now</span>
@@ -1266,8 +1264,9 @@ Happy to join <a target="_blank" rel="noopener" href="https://kclnlp.github.io/"
 candidate advised by
 <a target="_blank" rel="noopener" href="https://sites.google.com/view/yulanhe">Prof. Yulan He</a> and
 <a target="_blank" rel="noopener" href="https://yalidu.github.io/">Prof. Yali Du</a>! I am interested
-in developing Agentic AI in the real world and beyond the easy to verify
-domains.
+in building agentic AI for the real world, beyond easy-to-verify domains
+(check out this
+<a href="https://thinkwee.top/2025/10/05/wild-era/#more">blog</a>).
 </div>
 </div>
 </div>
@@ -1410,9 +1409,36 @@ pareto.
 </ul>
 </span>
 </li>
+<li class="news-item">
+<span class="news-date">2026.11.13</span><span class="news-content">🤝
+New position paper:
+<a href="https://www.alphaxiv.org/abs/2611.rri" target="_blank">From
+Recursive Self-Improvement to Human–AI Reciprocal Improvement</a>:
+another possibility for RSI, where <span class="news-highlight">humans
+and AI co-evolve</span>. Great AI should bring a great generation of
+scientists and engineers, not replace humans!</span>
+</li>
 </ul>
 <h1 id="publications">Publications</h1>
 <div class="feat-grid">
+<a class="feat-card feat-lead" href="https://www.alphaxiv.org/abs/2611.rri" target="_blank" rel="noopener">
+<div class="feat-cover">
+<img data-src="/img/cards/rri.webp" alt="RRI" loading="lazy">
+</div>
+<div class="feat-body">
+<div class="feat-meta dot-arxiv">
+alphaXiv 2026<span class="feat-new">NEW</span>
+</div>
+<div class="feat-title">
+From Recursive Self-Improvement to Human–AI Reciprocal Improvement
+</div>
+<div class="feat-desc">
+RRI is another possibility for Recursive Self-Improvement (RSI): humans
+and AI co-evolve. Great AI should bring a great generation of scientists
+and engineers, not replace humans.
+</div>
+</div>
+</a>
 <a class="feat-card" href="https://arxiv.org/abs/2611.06976" target="_blank" rel="noopener">
 <div class="feat-cover">
 <img data-src="/img/cards/pact.webp" alt="PLatour" loading="lazy">
@@ -1564,6 +1590,12 @@ workshop/findings papers.</span>
 Agentic AI in the Wild
 </div>
 <div class="pub-list">
+<div class="pub">
+<span class="conf-arxiv">alphaXiv
+2026</span><a target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2611.rri" class="bp">paper</a><span
+class="pub-title">From Recursive Self-Improvement to Human–AI Reciprocal
+Improvement♦️</span>
+</div>
 <div class="pub">
 <span class="conf-emnlp">EMNLP
 2026</span><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21019" class="bp">paper</a><a target="_blank" rel="noopener" href="https://github.com/thinkwee/HiMe" class="bc">code</a><span
